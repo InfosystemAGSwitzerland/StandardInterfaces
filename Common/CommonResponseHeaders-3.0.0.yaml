@@ -1,0 +1,9 @@
+x-Flow-ID:
+  name: x-Flow-ID
+  description: (Optional) Technical ID (GUID) for Call identification
+  #DEV: x-Flow-ID zum Request zurückgeben
+  in: header
+  required: false
+  schema:
+    type: string
+    example: '<GUID>'

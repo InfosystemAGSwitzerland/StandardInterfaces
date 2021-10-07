@@ -1,0 +1,998 @@
+openapi: 3.0.3
+info:
+  title: 'performis IF2FA'
+  description: 'performis IF2FA | Interface for Invoices'
+  contact:
+    email: 'support@infosystem.ch'
+  license:
+    name: 'Proprietary Infosystem AG'
+    url: http://www.infosystem.ch
+  version: 3.0.0
+security:
+    - basicAuth: []
+paths:
+  /v3/Invoice:
+    get:
+      tags:
+      - Invoice
+      summary: 'Searches Invoices'
+      description: |
+        By passing in the appropriate options, you can search for
+        available invoices in the system.
+      operationId: searchInvoice
+      parameters:
+      - $ref: './CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
+      - $ref: './CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
+      - $ref: './CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
+      - $ref: './CommonRequestHeaders-3.0.0.yaml#/skip'
+      - $ref: './CommonRequestHeaders-3.0.0.yaml#/limit'
+      - $ref: './CommonRequestHeaders-3.0.0.yaml#/ChangesSinceDateTime'
+      - $ref: './CommonRequestHeaders-3.0.0.yaml#/ChangeSinceChangeID'
+      - name: internalInvoiceNo
+        in: query
+        description: |
+          Retrieve specific invoice record by internal number. (Ignores other search options if provided)
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          example: 21750
+      - name: externalInvoiceNo
+        in: query
+        description: |
+          Retrieve specific invoice record by external number.
+        required: false
+        schema:
+          type: string
+          maxLength: 50
+          example: '6f22f981-a9e7-4eba-b3ac-df1b869eb090'
+      - name: VoucherType
+        in: query
+        description: |
+          VoucherType is used to identify invoices from different systems.
+        required: false
+        schema:
+          type: string
+          maxLength: 4
+          example: 'AFAK'
+      responses:
+        200:
+          description: Search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoices'
+        400:
+          $ref: './CommonResponseCodes-3.0.0.yaml#/400' 
+        401:
+          $ref: './CommonResponseCodes-3.0.0.yaml#/401' 
+        403:
+          $ref: './CommonResponseCodes-3.0.0.yaml#/403' 
+        404:
+          $ref: './CommonResponseCodes-3.0.0.yaml#/404' 
+  /v3/Document:
+    get:
+      tags:
+        - Document
+      summary: 'Retrieve Invoice Documents'
+      description: 'Endpoint to retrieve a single documents content with given pair of ID and GUID. It is not possible to get a delta of all changed documents due to security reasons.'
+      operationId: getDocument
+      parameters:
+      - $ref: './CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
+      - $ref: './CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
+      - $ref: './CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
+      - name: DocumentID
+        in: query
+        description: |
+          Retrieve specific document by ID.
+        required: true
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          example: 4711
+      - name: DocumentGUID
+        in: query
+        description: |
+          Retrieve specific document by GUID.
+        required: true
+        schema:
+          type: string
+          maxLength: 50
+          example: '6f22f981-a9e7-4eba-b3ac-df1b869eb090'
+      responses:
+        200:
+          description: |
+            Search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        400:
+          $ref: './CommonResponseCodes-3.0.0.yaml#/400' 
+        401:
+          $ref: './CommonResponseCodes-3.0.0.yaml#/401' 
+        403:
+          $ref: './CommonResponseCodes-3.0.0.yaml#/403' 
+        404:
+          $ref: './CommonResponseCodes-3.0.0.yaml#/404' 
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  
+  schemas:
+
+    Invoices:
+      type: array
+      items:
+        $ref: '#/components/schemas/Invoice'
+
+    Invoice:
+      type: object
+      properties:
+        ChangeID:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: 'ChangeID of the entity.'
+          example: 4711
+        ChangeDate:
+          type: string
+          format: datetime
+          description: 'ChangeDate of the entity.'
+        InvoiceID:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: 'Unique, internal identifier for Invoice'
+          example: 43328
+        InvoiceNo:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          nullable: true
+          description: 'Invoice document number'
+          example: 1000053
+        CompanyNo:
+          type: integer
+          minimum: 1
+          maximum: 999999
+          description: 'Unique internal identifier for Company in which the invoice was created'
+          example: 30
+        InvoiceRunID:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: 'Unique internal identifier of invoicing run'
+          example: 392
+        InvoiceType:
+          type: string
+          enum:
+            - I
+            - IR
+            - C
+            - CC
+          description: >
+            Types:
+              * I - Invoice
+              * IR - Invoice Reversal
+              * C - Creditmemo
+              * CC - Cancelled Creditmemo
+        Input_Output:
+          type: string
+          enum:
+            - O
+            - I
+          description: >
+            In- or Outgoing:
+              * O - outgoing e.g. Sales Invoice
+              * I - incoming e.g. Purchase Invoice
+          example: O
+        ExternalInvoiceID:
+          type: string
+          maxLength: 20
+          description: 'Third party system identification - External Invoice ID, for example a supplier/vendor invoice number'
+          example: 'INV-2100810'
+        Origin:
+          type: string
+          maxLength: 10
+          description: 'Origin of the external invoice, name of the third-party system.'
+          example: 'SAP'
+        performisOrigin:
+          type: string
+          maxLength: 10
+          description: 'Origin of the invoice if it was generated from a performis module.'
+          example: 'SAP'
+        Language:
+          type: string
+          maxLength: 2
+          description: 'language code in ISO-639-1'
+          #DEV: Interne Konvertierung von ISO-639-1 auf c17 und umgekehrt. Fehler zurückgeben wenn nicht konvertierbar / unbekannter code.
+          example: 'DE'
+        InvoiceDate:
+          type: string
+          format: date
+          description: 'invoice performance date'
+          example: '2021-07-21'
+        InvoiceAmount:
+          type: number
+          format: decimal(14,2)
+          description: 'Total Invoice Amount in Invoice currency'
+          example: '84250.10'
+        InvoiceCurrency:
+          type: string
+          maxLength: 3
+          description: 'Invoice Currency in ISO 4217 Code (3 digit letter)'
+          example: 'CHF'
+          #DEV: Interne Konvertierung von ISO 4217 auf c26 und umgekehrt. Fehler zurückgeben wenn nicht konvertierbar / unbekannter code.
+        LastChangeDateTime:
+          type: string
+          format: date-time
+          description: 'Date and time at which Invoice has last changed'
+          example: '2017-07-21T17:32:28Z'
+
+        InvoiceReceipient:
+          nullable: true
+          type: object
+          $ref: '#/components/schemas/InvoiceReceipient'
+        
+        InvoicingOffice:
+          type: object
+          $ref: '#/components/schemas/InvoicingOffice'
+
+        PostingInformation:
+          type: object
+          $ref: '#/components/schemas/PostingInformation'
+          
+        AdditionalFields:
+          type: object
+          $ref: '#/components/schemas/AdditionalFields'
+
+        Payments:
+          type: object
+          $ref: '#/components/schemas/Payments'
+
+        Positions:
+          type: object
+          $ref: '#/components/schemas/Positions'
+
+        Documents:
+          type: object
+          $ref: '#/components/schemas/Documents'
+
+    Documents:
+      type: array
+      items:
+        $ref: '#/components/schemas/DocumentInfo'
+    
+    DocumentInfo:
+      required:
+      - DocumentType
+      - DocumentID
+      type: object
+      properties:
+        DocumentType:
+          type: string
+          enum:
+            - MainDocument
+            - SingleDocument
+            - PaymentDocument
+          example: 'MainDocument'
+          description: >
+            PartnerType:
+              * MainDocument - Maindocument containing the invoice and payment documents
+              * SingleDocument - Invoice documents
+              * PaymentDocument - Payment document (e.g. PayInSlip, QR-ESR, Bill of Exchange)
+        DocumentName:
+          type: string
+          maxLength: 50
+          description: 'Name of the document'
+          example: 'ESR'
+        DocumentID:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: 'Internal Document ID'
+          example: 29102
+        DocumentGUID:
+          type: string
+          maxLength: 50
+          example: '6f22f981-a9e7-4eba-b3ac-df1b869eb090'
+          description: 'Document GUID. Use this GUID to read the document contents with GET path/document'
+        SequenceNo:
+          type: integer
+          minimum: 1
+          maximum: 99999
+          description: 'Order in which this document is attached (printed) or displayed'
+          example: 10
+        IssuedBool:
+          type: boolean
+          description: 'Wether or not the document has been issued (printed) yet'
+          example: true
+        CopyCount:
+          type: integer
+          minimum: 1
+          maximum: 99
+          description: 'Amount of copies to be issued'
+          example: 2
+
+    Document:
+      required:
+      - DocumentType
+      - DocumentID
+      - DocumentGUID
+      type: object
+      properties:
+        DocumentInfo:
+          type: object
+          $ref: '#/components/schemas/DocumentInfo'
+        DocumentData:
+          type: string
+          description: 'File contents converted to BASE64. If empty, the document is not yet generated.'
+
+    Positions:
+      type: array
+      items:
+        $ref: '#/components/schemas/Position'
+
+    Position:
+      type: object
+      properties:
+        ChargingPositionID:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: 'Unique internal identifier of the charging position'
+          example: 4904
+        ChargingPositionType:
+          type: integer
+          minimum: 0
+          maximum: 99999999
+          description: 'performis code for type of Charging position. C1503'
+          example: 15030809
+        TaxCode:
+          type: integer
+          minimum: 0
+          maximum: 99999999
+          description: 'performis code for type of tax. C23'
+          example: 230001
+        TaxPosition:
+          type: boolean
+          description: 'Describes wether ot not this Position is a tax line. For example a totaling line for a specific TaxCode and Rate.'
+          example: true
+        TaxRate:
+          type: number
+          format: decimal(5,2)
+          description: 'Actual Tax Rate of Charging Position'
+          example: '7.7'
+        TaxPercentage:
+          type: number
+          format: decimal(5,2)
+          nullable: true
+          description: 'Percentage of TaxRate that is actually taxed'
+          example: '-100'
+        TaxReduction:
+          type: boolean
+          nullable: false
+          description: ''
+          example: false
+        AmountInvoiceCurrency: 
+          type: number
+          format: DECIMAL(20,6)
+          description: ''
+          example: 250.75
+          #DEV: Feld betrag_verwrg_buch verwenden
+        AmountBalanceSheetCurrency:
+          type: number
+          format: DECIMAL(20,6)
+          description: ''
+          example: 250.75
+        ExchangeRateInvoiceCurrency:
+          type: number
+          format: DECIMAL(14,6)
+          description: 'exchange rate of invoice currency'
+          nullable: true
+          example: 1.5014
+        AccountNo:
+          type: string
+          maxLength: 20
+          description: 'non-budget expenditure or income account'
+          example: 2099
+        AssetNo:
+          type: string
+          maxLength: 16
+          nullable: true
+          description: 'asset number'
+          example: '100000001.001'
+        CostUnit:
+          type: string
+          maxLength: 20
+          nullable: true
+          description: 'cost unit for posting'
+          example: '110'
+        CostCenter: 
+          type: string
+          maxLength: 20
+          nullable: true
+          description: 'cost center for posting'
+          example: '714'
+        CostType:
+          type: string
+          maxLength: 20
+          nullable: true
+          description: ''
+          example: '5720'
+        SalesChannel:
+          type: string
+          maxLength: 3
+          nullable: true
+          description: 'Sales channel for posting'
+          example: '021'
+        OrderNo:
+          type: string
+          maxLength: 20
+          nullable: true
+          description: 'Order number for posting'
+          example: 'A85021'
+        ReferenceCode:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: ''
+          example: 4770004711
+        Text:
+          type: string
+          maxLength: 4000
+          description: ''
+          example: 'Campaign Discount 21-4'
+        ArticleNo:
+          type: string
+          maxLength: 20
+          description: 'article number'
+          example: 'Z8300'
+        #DEV: use user_artnr
+
+        #menge_le & c28_le
+        QuantityLE:
+          type: number
+          format: DECIMAL(14,4)
+          description: 'quantity in delivery unit'
+          example: 40.2
+        UnitLE:
+          type: integer
+          minimum: 1
+          maximum: 99999999
+          description: 'Delivery unit. c28'
+          example: 280001
+
+        #menge_pe & c28_pe & preis_verwrg
+        QuantityPE:
+          type: number
+          format: DECIMAL(14,4)
+          description: 'quantity in price unit'
+          example: 40.2
+        UnitPE:
+          type: integer
+          minimum: 1
+          maximum: 99999999
+          description: 'Price unit. c28'
+          example: 280001
+
+        PricePerUnitPE:
+          type: number
+          format: DECIMAL(14,4)
+          description: 'price per price unit'
+          example: 235.00
+
+        #menge_lame & c28_lame
+        QuantityLAME:
+          type: number
+          format: DECIMAL(14,4)
+          description: 'quantity in stock unit'
+          example: 40.2
+        UnitLAME:
+          type: integer
+          minimum: 1
+          maximum: 99999999
+          description: 'Stock unit. c28'
+          example: 280001
+
+    Payments:
+      type: array
+      items:
+        $ref: '#/components/schemas/Payment'
+
+    Payment:
+      type: object
+      properties:
+        PaymentType:
+          type: integer
+          minimum: 0
+          maximum: 99999999
+          description: 'performis code for type of payment. C1510'
+          example: 15030809
+        Account:
+          type: string
+          maxLength: 10
+          nullable: true
+          description: 'performis finance account (either AR, AP or GL account)'
+          example: '2956493'
+        AccountType:
+          type: string
+          nullable: false
+          enum:
+            - GL
+            - AP
+            - AR
+          description: >
+            Types:
+              * GL - General Ledger
+              * AP - Account Payable
+              * AR - Account Receivable
+          example: 'AP'
+        PaymentTerms:
+          type: integer
+          minimum: 0
+          maximum: 99999999
+          description: 'PaymentTerms. C27'
+          example: 270043
+        Expiry1:
+          type: string
+          format: date
+          nullable: true
+          description: 'Date of first discount expiration'
+          example: '2021-07-21'
+        Discount1:
+          type: number
+          format: decimal(4,2)
+          nullable: true
+          description: 'First discount in percentage'
+          example: '2'
+        Expiry2:
+          type: string
+          format: date
+          nullable: true
+          description: 'Date of second discount expiration'
+          example: '2021-08-21'
+        Discount2:
+          type: number
+          format: decimal(4,2)
+          nullable: true
+          description: 'Second discount in percentage'
+          example: '1'
+        Expiry3:
+          type: string
+          format: date
+          nullable: true
+          description: 'Date of third discount expiration'
+          example: '2021-09-21'
+        Discount3:
+          type: number
+          format: decimal(4,2)
+          nullable: true
+          description: 'Third discount in percentage'
+          example: '0.5'
+
+        AmountInvoiceCurrency:
+          type: number
+          format: decimal(14,2)
+          description: 'Amount in Invoice document currency'
+          example: '2366.90'
+        AmountAccountCurrency:
+          type: number
+          format: decimal(14,2)
+          description: 'Amount in Invoice document currency'
+          example: '2366.90'
+        
+        OI_Crit1:
+          type: integer
+          minimum: 0
+          maximum: 99999999
+          nullable: true
+          description: 'Statistical values for finance. Criteria 1'
+          example: 2620001
+        OI_Crit2:
+          type: integer
+          minimum: 0
+          maximum: 99999999
+          nullable: true
+          description: 'Statistical values for finance. Criteria 2'
+          example: 170004
+        OI_Crit3:
+          type: integer
+          minimum: 0
+          maximum: 99999999
+          nullable: true
+          description: 'Statistical values for finance. Criteria 3'
+          example: 2660018
+        OI_Crit4:
+          type: integer
+          minimum: 0
+          maximum: 99999999
+          nullable: true
+          description: 'Statistical values for finance. Criteria 4'
+          example: 2630001
+        
+        PayInSlip_Reference:
+          type: string
+          maxLength: 27
+          nullable: true
+          description: 'Pay-In-Slip reference for bank transfer without spacing'
+          example: '065013000000015045001000403'
+        PayInSlip_Code:
+          type: string
+          maxLength: 56
+          description: 'Pay-In-Slip Code' 
+          example: '0100000716604>065013000000015045001000403+ 900456476>'
+        PayInSlip_PaymentAccount:
+          type: string
+          maxLength: 10
+          description: 'Pay-In-Slip Account'
+          example: '1000'
+        PayInSlip_PCAccount:
+          type: string
+          maxLength: 14
+          description: 'Pay-In-Slip Checkings Account'
+          example: '90-45649-2'
+        QR_CODE:
+          type: string
+          maxLength: 4000
+          description: 'Content of the qr-paynslip qr-code'
+        ReferenceType:
+          type: integer
+          minimum: 0
+          maximum: 99999999
+          description: 'performis code for Reference Type. C133'
+          example: 1330100
+        QRESR_Reference:
+          type: string
+          maxLength: 50
+          description: ''
+        QR_IBAN:
+          type: string
+          maxLength: 34
+          description: 'Special IBAN for QRR-Reference QR-PayInSlip payments'
+          example: CH8030808007802945026
+
+        CreditCardInstitute:
+          type: integer
+          minimum: 0
+          maximum: 99999999
+          nullable: true
+          description: 'performis code for Credit Card Institute. C85'
+          example: 850001
+        CreditCardNo:
+          type: string
+          maxLength: 20
+          nullable: true
+          description: 'Credit Card number'
+          example: '372200000000000'
+        CreditCardGTD:
+          type: string
+          maxLength: 4
+          nullable: true
+          description: 'Credit Card Good Through Date'
+          example: '2109'
+        PaymentAccount:
+          type: string
+          maxLength: 10
+          nullable: true
+          description: 'Payment Account, if payment is bank payment'
+        BankNo:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          nullable: true
+          description: 'Identification number of Bank - BIC'
+          example: 11583
+        ClearingNo:
+          type: integer
+          minimum: 1
+          maximum: 99999999999999999999
+          nullable: true
+          description: 'Bank Clearing No'
+          example: 225
+        BankAccountNo:
+          type: string
+          maxLength: 20
+          nullable: true
+          description: 'Bank Account No'
+          example: '123-23565.567'
+        IBAN_BankAccountNo:
+          type: string
+          maxLength: 34
+          nullable: true
+          description: 'IBAN No.'
+          example: 'CH10002300A1023502601'
+        BankAddress: 
+          type: string
+          maxLength: 200 #Bankadresse ist so auf der DB (statt erneut Adresse inkl. ganzer Struktur zurückzugeben)
+          nullable: true
+          description: 'Address of Bank'
+          example: 'Money Heist
+            Greenroadstreet 5
+            9000 Bern'
+        BankCountry:
+          type: string
+          maxLength: 2
+          description: 'Bank Country in ISO code (ISO 3166)'
+          example: 'CH'
+
+    AdditionalFields:
+      type: array
+      nullable: true
+      items:
+        $ref: '#/components/schemas/AdditionalField'
+
+    AdditionalField:
+      required:
+      - Field
+      - Content
+      type: object
+      properties:
+        Field:
+          type: integer
+          minimum: 0
+          maximum: 99999999
+          description: 'performis code for Field type. C1504'
+          example: 15046015
+        Content:
+          type: string
+          maxLength: 4000
+          description: 'value of the content type'
+          example: 'Mrs. O. Dunbar'
+
+    PostingInformation:
+      required:
+      - PostedBool
+      - ReversalBool
+      - VATInclBool
+      - PostingDate
+      - PostingPeriod
+      - ValueDate
+      - DocumentType
+      type: object
+      properties:
+        PostedBool:
+          type: boolean
+          description: 'Wether or not this invoice document has been posted yet'
+          example: true
+        ReversalInvoiceID:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: 'In case the document is a reversal: this (internal) ID refers to the invoice which is reversed'
+          example: 99281
+        ExternalReversalInvoiceID:
+          type: string
+          maxLength: 50
+          description: 'In case the document is a reversal: this (internal) ID refers to the invoice which is reversed'
+          example: 99281
+        Origin:
+          type: string
+          maxLength: 10
+          description: 'Origin of the external reversal invoice, name of the third-party system.'
+          example: 'SAP'
+
+        ReversalBool:
+          type: boolean
+          description: 'Wether or not this invoice document is a reversal of another invoice refered to in ReversalInvoiceID'
+          example: true
+        VATInclBool:
+          type: boolean
+          description: 'Wether or not invoice positions include VAT. TRUE = positions include VAT, FALSE = positions VAT is excluded'
+          example: true
+        PostingDate:
+          type: string
+          format: date
+          description: 'invoice posting date'
+          example: '2021-07-21'
+        PostingPeriod:
+          type: integer
+          minimum: 1
+          maximum: 999999
+          description: 'performis period in which invoice is posted. Usually in format YYYYPP where YYYY = Year and PP = Posting Period. Often, but not necessarely, inline with months.'
+          example: 202107
+        ValueDate:
+          type: string
+          format: date
+          description: 'invoice value date'
+          example: '2021-07-21'
+        VoucherType:
+          type: string
+          maxLength: 4
+          description: 'invoice type, e.g. a credit note has a vouchertype of "GU" while an invoice might have "RG" as vouchertype.' 
+          example: 'AFAK'
+        PostingText:
+          type: string
+          maxLength: 240
+          nullable: true
+          description: 'manual posting text for the invoice'
+          example: 'Sale of assets'
+        eInvoicingSystem:
+          type: integer
+          minimum: 1
+          maximum: 99999999
+          description: 'E-invoice system code type used to send the invoice. c1512'
+          example: 15120100
+        eInvoicingReference:
+          type: string
+          maxLength: 40
+          description: 'E-invoice reference'
+          example: '797987892334'
+    InvoicingOffice:
+      type: object
+      properties:
+        Address:
+          type: object
+          $ref: '#/components/schemas/AddressType'
+        InvoicingOfficeID:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          nullable: true
+          description: 'Internal Business Partner Address ID for invoicing office'
+          example: 29400
+        ExternalInvoicingOfficeID:
+          type: string
+          maxLength: 50
+          nullable: true
+          description: 'External Business Partner Address ID for invoicing office'
+          example: '99-28812'
+        Name:
+          type: string
+          maxLength: 50
+          nullable: false
+          description: 'Name of the invoicing office'
+          example: 'Charging Center, Bern'
+
+    InvoiceReceipient:
+      required:
+      - InvoiceAddress
+      type: object
+      properties:
+        Receipient:
+          type: object
+          nullable: true
+          $ref: '#/components/schemas/AddressType'
+        DispatchAddress:
+          type: string
+          maxLength: 500
+          nullable: true
+          description: 'Address to send the invoice to'
+          example: |
+            'Jack O'Neil
+            Norad Rd. 5
+            99000 Colorado'
+        InvoiceAddress:
+          type: string
+          maxLength: 500
+          description: 'Invoice address. Can be different from receipient. Some invoices only contain an InvoiceAdress'
+          example: |
+            'Samatha Carter
+            Norad Rd. 8
+            99000 Colorado'
+    AddressType:
+      required:
+      - ShortAddress
+      - Country
+      - ZipCode
+      - City
+      type: object
+      properties:
+        BpAddrID:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: 'performis Address ID - This ID uniquely identifies an address in performis. For example, ID "629" for address "Infosystem AG, Wil". To identify the address, either the performis address ID (BpAddrID) or the ID of the external system (ExternalBpAddrID) is required.'
+          example: 281902
+        ExternalBpAddrID:
+          type: string
+          maxLength: 50
+          description: 'Third-party address ID - This ID must be unique within the origin (Origin field). As ID it is recommended to use either the Primary Key of the foreign system or a GUID (Global Unique Identifier). For example, ID "629c5d97-a225-4b08-877c-e8a802c23014" for origin "ERP".		To identify the address, either the performis address ID (BpAddrID) or the ID of the external system (ExternalBpAddrID) is required.'
+          example: 'f3f6f4bb-61d0-4507-9bfc-e3134c4ea9a5'
+        Origin:
+          type: string
+          maxLength: 10
+          description: 'Origin of the business partner, name of the third-party system. Business partners and addresses with an origin can''t be edited in performis.'
+          example: 'SAP'
+        Active:
+          type: boolean
+          description: 'true = active, false = deleted'
+          example: true
+        ShortAddress:
+          type: string
+          maxLength: 50
+          description: 'Short address - Short form of the address. It is generated automatically if not supplied. The short address is used in performis to identify the address. For example, the Wiler address of Infosystem AG is abbreviated as: "Infosystem AG, Wil".'
+          example: 'Infosystem AG, Wil'
+        OverridePartnerName:
+          type: string
+          maxLength: 50
+          nullable: true
+          description: 'If the name of the company on the address differs from that of the business partner, the name of the business partner can be overridden in this field. For example, if Infosystem AG is operating in German-speaking Switzerland as Infosystem AG, the name on the business partner will also be the same. For the Lausanne address, however, the name is overridden as "Infosystem SA".'
+          example: 'Infosystem SA'
+        OverridePartnerNameAddition:
+          type: string
+          maxLength: 50
+          nullable: true
+          description: 'If the name addition of the company on the address differs from that of the business partner, the name suffix of the business partner can be overridden in this field.'
+          example: 'Systèmes d''information et logiciels'
+        Street:
+          type: string
+          maxLength: 43
+          nullable: true
+          description: 'Street name without house number.'
+          example: 'Bronschhoferstrasse'
+        HouseNo:
+          type: string
+          maxLength: 12
+          nullable: true
+          description: 'House number'
+          example: '31a'
+        POBox:
+          type: string
+          maxLength: 50
+          nullable: true
+          description: 'he post office box of the address. The P.O. Box should be transferred including the country-specific text component. For example, for Switzerland "Postfach 12" in England "PO Box 12".'
+        AdditionalLine1:
+          type: string
+          maxLength: 50
+          nullable: true
+          description: 'Additional line of an address which is neither a street nor a post office box. For example, "c/o Samuel Schnelli" or "Office Samuel Schnelli".'
+          example: 'c/o Samuel Schnelli'
+        AdditionalLine2:
+          type: string
+          maxLength: 200
+          nullable: true
+          description: 'Extended additional component of an address that is neither a street nor a post office box. For example, "Floor 12" or "Building 15".'
+          example: 'Stockwerk 12'
+        Country:
+          type: string
+          maxLength: 2
+          description: 'Country in ISO code (ISO 3166)'
+          example: 'CH'
+        ZipCode:
+          type: string
+          maxLength: 20
+          description: 'Zipcode of the address in country-specific format. Mandatory together with the country code and the city. For example, "EC1A 1AA" for London, England or "9500" for Wil, Switzerland.'
+          example: '9500'
+        City:
+          type: string
+          maxLength: 40
+          description: 'city'
+          example: 'Wil'
+        Language:
+          type: string
+          maxLength: 2
+          description: 'Language code in ISO-639-1'
+          example: 'DE'
+          #DEV: Interne Konvertierung von ISO-639-1 auf c17. Fehler zurückgeben wenn nicht konvertierbar / unbekannter code.
+        SearchTerms:
+          type: string
+          maxLength: 500
+          nullable: true
+          description: 'Additional search terms under which this address is found. This is often used to use well-known abbreviations as search terms. For example, "IS" for Infosystem AG or "MS" for Microsoft.'
+          example: 'IS'
+        Latitude:
+          type: number
+          format: Decimal(10,8)
+          minimum: -90
+          maximum: 90
+          nullable: true
+          description: 'Location latitude'
+          example: '46.94809'
+        Longitude:
+          type: number
+          format: Decimal(11,8)
+          minimum: -180
+          maximum: 180
+          nullable: true
+          description: 'Location longitude'
+          example: '7.44744'
+        AttributeValueSet:
+          type: array
+          items:
+            $ref: './CommonComponents-3.0.0.yaml#/AttributeValueSet'
