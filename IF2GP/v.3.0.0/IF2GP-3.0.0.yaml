@@ -20,14 +20,14 @@ paths:
         With this interface the performis business partners can be searched
       operationId: searchBP
       parameters:
-      - $ref: './CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
-      - $ref: './CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
-      - $ref: './CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
-      - $ref: './CommonRequestHeaders-3.0.0.yaml#/searchString'
-      - $ref: './CommonRequestHeaders-3.0.0.yaml#/skip'
-      - $ref: './CommonRequestHeaders-3.0.0.yaml#/limit'
-      - $ref: './CommonRequestHeaders-3.0.0.yaml#/ChangesSinceDateTime'
-      - $ref: './CommonRequestHeaders-3.0.0.yaml#/ChangeSinceChangeID'
+      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
+      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
+      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
+      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/searchString'
+      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/skip'
+      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/limit'
+      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangesSinceDateTime'
+      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangeSinceChangeID'
       - name: internalBpID
         in: query
         description: |
@@ -78,13 +78,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Partners'
         400:
-          $ref: './CommonResponseCodes-3.0.0.yaml#/400' 
+          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
         401:
-          $ref: './CommonResponseCodes-3.0.0.yaml#/401' 
+          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
         403:
-          $ref: './CommonResponseCodes-3.0.0.yaml#/403' 
+          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
         404:
-          $ref: './CommonResponseCodes-3.0.0.yaml#/404' 
+          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/404' 
     put:
       tags:
       - Business Partner
@@ -92,9 +92,9 @@ paths:
       description: Updates or creates a Business Partner
       operationId: putBusinessPartner
       parameters:
-      - $ref: './CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
-      - $ref: './CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
-      - $ref: './CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
+      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
+      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
+      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
       requestBody:
         description: Business Partner to update
         content:
@@ -117,13 +117,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Partner'
         400:
-          $ref: './CommonResponseCodes-3.0.0.yaml#/400' 
+          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
         401:
-          $ref: './CommonResponseCodes-3.0.0.yaml#/401' 
+          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
         403:
-          $ref: './CommonResponseCodes-3.0.0.yaml#/403' 
+          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
         404:
-          $ref: './CommonResponseCodes-3.0.0.yaml#/404' 
+          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/404' 
       x-codegen-request-body-name: BusinessPartner
 components:
   securitySchemes:
@@ -238,7 +238,7 @@ components:
         AttributeValueSet:
           type: array
           items:
-            $ref: './CommonComponents-3.0.0.yaml#/AttributeValueSet'
+            $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonComponents-3.0.0.yaml#/AttributeValueSet'
         Addresses:
           type: array
           items:
@@ -366,7 +366,7 @@ components:
         AttributeValueSet:
           type: array
           items:
-            $ref: './CommonComponents-3.0.0.yaml#/AttributeValueSet'
+            $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonComponents-3.0.0.yaml#/AttributeValueSet'
         CommunicationAddresses:
           type: array
           items:
@@ -529,7 +529,7 @@ components:
         AttributeValueSet:
           type: array
           items:
-            $ref: './CommonComponents-3.0.0.yaml#/AttributeValueSet'
+            $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonComponents-3.0.0.yaml#/AttributeValueSet'
         CommunicationAddresses:
           type: array
           items:
