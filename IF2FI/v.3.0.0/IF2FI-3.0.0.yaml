@@ -19,14 +19,14 @@ paths:
       description: With this interfaces, the account receivables can be searched
       operationId: searchAccountreceivable
       parameters:
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/searchString'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/skip'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/limit'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangesSinceDateTime'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangeSinceChangeID'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/searchString'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/skip'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/limit'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangesSinceDateTime'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangeSinceChangeID'
       - name: internalBpAddrID
         in: query
         description: |
@@ -56,13 +56,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/AccountReceivables'
         400:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
         401:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
         403:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
         404:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/404' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/404' 
     put:
       tags:
       - AccountReceivable
@@ -70,9 +70,9 @@ paths:
       description: Updates or creates an AccountReceivable
       operationId: putAccountReceivable
       parameters:
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
       requestBody:
         description: account receivable to update or create
         content:
@@ -95,13 +95,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/AccountReceivable'
         400:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
         401:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
         403:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
         404:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/404' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/404' 
   /v3/AccountReceivable/CreditLimit:
     put:
       tags:
@@ -112,9 +112,9 @@ paths:
         performis is not the leading accounting system.
       operationId: putCreditLimit
       parameters:
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
       requestBody:
         description: account to update
         content:
@@ -131,13 +131,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/CreditLimit'
         400:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
         401:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
         403:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
         404:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/404' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/404' 
   
 components:
   securitySchemes:

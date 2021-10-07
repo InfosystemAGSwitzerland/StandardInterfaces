@@ -21,13 +21,13 @@ paths:
         available invoices in the system.
       operationId: searchInvoice
       parameters:
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/skip'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/limit'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangesSinceDateTime'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangeSinceChangeID'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/skip'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/limit'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangesSinceDateTime'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangeSinceChangeID'
       - name: internalInvoiceNo
         in: query
         description: |
@@ -64,13 +64,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Invoices'
         400:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
         401:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
         403:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
         404:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/404' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/404' 
   /v3/Document:
     get:
       tags:
@@ -79,9 +79,9 @@ paths:
       description: 'Endpoint to retrieve a single documents content with given pair of ID and GUID. It is not possible to get a delta of all changed documents due to security reasons.'
       operationId: getDocument
       parameters:
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
       - name: DocumentID
         in: query
         description: |
@@ -110,13 +110,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Document'
         400:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
         401:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
         403:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
         404:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/404' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/404' 
 components:
   securitySchemes:
     basicAuth:

@@ -21,14 +21,14 @@ paths:
         for available employee(s) in the system.
       operationId: searchEmployee
       parameters:
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/searchString'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/skip'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/limit'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangesSinceDateTime'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangeSinceChangeID'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/searchString'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/skip'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/limit'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangesSinceDateTime'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangeSinceChangeID'
       - name: internalID
         in: query
         description: |
@@ -69,13 +69,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Employees'
         400:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
         401:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
         403:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
         404:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/404' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/404' 
     put:
       tags:
       - Employee
@@ -83,9 +83,9 @@ paths:
       description: Updates an existing employee if internal nor external ID match. Creates an employee if neither internal or external ID is provided or no matching record could be found.
       operationId: putEmployee
       parameters:
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
-      - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
+      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
       requestBody:
         description: Employee to create or update
         content:
@@ -108,13 +108,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Employee'
         400:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
         401:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
         403:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
         404:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/404'
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/404'
       x-codegen-request-body-name: Employee
   /v3/Codes/{codeType}:
     get:
@@ -124,13 +124,13 @@ paths:
       description: 'Code service to get a list of all available codes for a specific code type'
       operationId: getCodes
       parameters:
-        - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
-        - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
-        - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
-        - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/skip'
-        - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/limit'
-        - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangesSinceDateTime'
-        - $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangeSinceChangeID'
+        - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
+        - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
+        - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
+        - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/skip'
+        - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/limit'
+        - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangesSinceDateTime'
+        - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangeSinceChangeID'
         - name: codeType
           in: path
           required: true
@@ -152,13 +152,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Codes'
         400:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
         401:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
         403:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
         404:
-          $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonResponseCodes-3.0.0.yaml#/404'
+          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/404'
       x-codegen-request-body-name: Codes
 components:
   securitySchemes:
@@ -440,4 +440,4 @@ components:
         AttributeValueSet:
           type: array
           items:
-            $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonComponents-3.0.0.yaml#/AttributeValueSet'
+            $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonComponents-3.0.0.yaml#/AttributeValueSet'
