@@ -4,7 +4,7 @@
   content:
     application/json:
       schema:
-        $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonComponents-3.0.0.yaml#/Error'
+        $ref: './CommonComponents-3.0.0.yaml#/Error'
 401:
   description: Basic Authentication failed
 403:
@@ -17,4 +17,4 @@ Default:
   content:
     application/json:
       schema:
-        $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonComponents-3.0.0.yaml#/Error'
+        $ref: './CommonComponents-3.0.0.yaml#/Error'
