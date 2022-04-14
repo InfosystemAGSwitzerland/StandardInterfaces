@@ -8,6 +8,9 @@ info:
     name: 'Proprietary Infosystem AG'
     url: http://www.infosystem.ch
   version: 3.0.0
+servers:
+  - url: localhost
+    description: Localhost
 security:
     - basicAuth: []
 paths:
@@ -21,13 +24,13 @@ paths:
         available invoices in the system.
       operationId: searchInvoice
       parameters:
-      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
-      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
-      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
-      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/skip'
-      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/limit'
-      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangesSinceDateTime'
-      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/ChangeSinceChangeID'
+      - $ref: './Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
+      - $ref: './Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
+      - $ref: './Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
+      - $ref: './Common/CommonRequestHeaders-3.0.0.yaml#/skip'
+      - $ref: './Common/CommonRequestHeaders-3.0.0.yaml#/limit'
+      - $ref: './Common/CommonRequestHeaders-3.0.0.yaml#/ChangesSinceDateTime'
+      - $ref: './Common/CommonRequestHeaders-3.0.0.yaml#/ChangeSinceChangeID'
       - name: internalInvoiceNo
         in: query
         description: |
@@ -64,13 +67,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Invoices'
         400:
-          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
+          $ref: './Common/CommonResponseCodes-3.0.0.yaml#/400' 
         401:
-          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
+          $ref: './Common/CommonResponseCodes-3.0.0.yaml#/401' 
         403:
-          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
+          $ref: './Common/CommonResponseCodes-3.0.0.yaml#/403' 
         404:
-          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/404' 
+          $ref: './Common/CommonResponseCodes-3.0.0.yaml#/404' 
   /v3/Document:
     get:
       tags:
@@ -79,9 +82,9 @@ paths:
       description: 'Endpoint to retrieve a single documents content with given pair of ID and GUID. It is not possible to get a delta of all changed documents due to security reasons.'
       operationId: getDocument
       parameters:
-      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
-      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
-      - $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
+      - $ref: './Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem'
+      - $ref: './Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser'
+      - $ref: './Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID'
       - name: DocumentID
         in: query
         description: |
@@ -110,13 +113,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Document'
         400:
-          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/400' 
+          $ref: './Common/CommonResponseCodes-3.0.0.yaml#/400' 
         401:
-          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/401' 
+          $ref: './Common/CommonResponseCodes-3.0.0.yaml#/401' 
         403:
-          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/403' 
+          $ref: './Common/CommonResponseCodes-3.0.0.yaml#/403' 
         404:
-          $ref: 'https://raw.githubusercontent.com/InfosystemAGSwitzerland/performisInterfaces/master/Common/CommonResponseCodes-3.0.0.yaml#/404' 
+          $ref: './Common/CommonResponseCodes-3.0.0.yaml#/404' 
 components:
   securitySchemes:
     basicAuth:
@@ -282,7 +285,7 @@ components:
             - PaymentDocument
           example: 'MainDocument'
           description: >
-            PartnerType:
+            DocumentType:
               * MainDocument - Maindocument containing the invoice and payment documents
               * SingleDocument - Invoice documents
               * PaymentDocument - Payment document (e.g. PayInSlip, QR-ESR, Bill of Exchange)
@@ -302,6 +305,11 @@ components:
           maxLength: 50
           example: '6f22f981-a9e7-4eba-b3ac-df1b869eb090'
           description: 'Document GUID. Use this GUID to read the document contents with GET path/document'
+        ExternalDocumentID:
+          type: string
+          maxLength: 50
+          example: '6f22f981-a9e7-4eba-b3ac-df1b869eb090'
+          description: 'External document ID of a third-party archive system.'
         SequenceNo:
           type: integer
           minimum: 1
@@ -995,4 +1003,4 @@ components:
         AttributeValueSet:
           type: array
           items:
-            $ref: 'https://github.com/InfosystemAGSwitzerland/performisInterfaces/blob/master/Common/CommonComponents-3.0.0.yaml#/AttributeValueSet'
+            $ref: './Common/CommonComponents-3.0.0.yaml#/AttributeValueSet'

@@ -1,0 +1,438 @@
+openapi: 3.0.3
+info:
+  title: performis IF2BA
+  description: performis IF2BA | Interface for Basis.NET Application
+  contact:
+    email: support@infosystem.ch
+  license:
+    name: Proprietary Infosystem AG
+    url: 'http://www.infosystem.ch'
+  version: 3.0.0
+servers:
+  - url: localhost
+    description: Localhost
+security:
+  - basicAuth: []
+paths:
+  /v3/Employee:
+    get:
+      tags:
+        - Employee
+      summary: Searches employees
+      description: |
+        By passing in the appropriate options, the service searches 
+        for available employee(s) in the system.
+      operationId: searchEmployee
+      parameters:
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/searchString
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/skip
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/limit
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/ChangesSinceDateTime
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/ChangeSinceChangeID
+        - name: internalID
+          in: query
+          description: |
+            Retrieve specific employee record by internal id.
+            (Ignores other search options if provided)
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 9999999999
+            example: 1104
+        - name: externalID
+          in: query
+          description: |
+            Retrieve specific employee record by external id.
+            (Ignores searchString parameter if provided)
+          required: false
+          schema:
+            type: string
+            maxLength: 50
+            example: 6f22f981-a9e7-4eba-b3ac-df1b869eb090
+        - name: personalNo
+          in: query
+          description: Retrieve specific employee record by personal number
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 9999999999
+            example: 4231
+      responses:
+        '200':
+          description: Search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employees'
+        '400':
+          $ref: ./Common/CommonResponseCodes-3.0.0.yaml#/400
+        '401':
+          $ref: ./Common/CommonResponseCodes-3.0.0.yaml#/401
+        '403':
+          $ref: ./Common/CommonResponseCodes-3.0.0.yaml#/403
+        '404':
+          $ref: ./Common/CommonResponseCodes-3.0.0.yaml#/404
+    put:
+      tags:
+        - Employee
+      summary: Create or update an employee
+      description: Updates an existing employee if internal nor external ID match. Creates an employee if neither internal or external ID is provided or no matching record could be found.
+      operationId: putEmployee
+      parameters:
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID
+      requestBody:
+        description: Employee to create or update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Employee'
+        required: false
+      responses:
+        '200':
+          description: Employee updated. returns updated employee record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '201':
+          description: Employee created. returns created employee record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '400':
+          $ref: ./Common/CommonResponseCodes-3.0.0.yaml#/400
+        '401':
+          $ref: ./Common/CommonResponseCodes-3.0.0.yaml#/401
+        '403':
+          $ref: ./Common/CommonResponseCodes-3.0.0.yaml#/403
+        '404':
+          $ref: ./Common/CommonResponseCodes-3.0.0.yaml#/404
+      x-codegen-request-body-name: Employee
+  '/v3/Codes/{codeType}':
+    get:
+      tags:
+        - Codes
+      summary: Code service to get a list of all available codes for a specific code type
+      description: Code service to get a list of all available codes for a specific code type
+      operationId: getCodes
+      parameters:
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingSystem
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/x-RequestingUser
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/x-Flow-ID
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/skip
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/limit
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/ChangesSinceDateTime
+        - $ref: ./Common/CommonRequestHeaders-3.0.0.yaml#/ChangeSinceChangeID
+        - name: codeType
+          in: path
+          required: true
+          description: CodeType of the required code list.
+          schema:
+            type: integer
+            format: int64
+        - name: include_details
+          in: query
+          description: Defines whether or not detail-values of the codeType are included.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: List of codes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Codes'
+        '400':
+          $ref: ./Common/CommonResponseCodes-3.0.0.yaml#/400
+        '401':
+          $ref: ./Common/CommonResponseCodes-3.0.0.yaml#/401
+        '403':
+          $ref: ./Common/CommonResponseCodes-3.0.0.yaml#/403
+        '404':
+          $ref: ./Common/CommonResponseCodes-3.0.0.yaml#/404
+      x-codegen-request-body-name: Codes
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    Codes:
+      required:
+        - Code
+      type: object
+      properties:
+        Codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Code'
+    Code:
+      required:
+        - ID
+        - Active
+        - CompanyNo
+        - CodeNo
+        - Text
+      type: object
+      properties:
+        ChangeID:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: ChangeID of the entity.
+          example: 4711
+        ChangeDate:
+          type: string
+          format: datetime
+          description: ChangeDate of the entity.
+        ID:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          example: 123121223
+          description: 'Technical ID, do not use.'
+        Active:
+          type: boolean
+          description: 'true = active, false = deleted'
+          example: true
+        CodeType:
+          type: integer
+          minimum: 1
+          maximum: 9999
+          example: 27
+          description: performis CodeType - the code type. E.g. 27 for PaymentTerms
+        CompanyNo:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: 'Company for which the code is valid. If company no is 0, the code is valid for all companies'
+        CodeNo:
+          type: integer
+          minimum: 1
+          maximum: 99999999
+          example: 270001
+          description: 'performis Code - the first four digits are the entry in a specific codetype, the next 1 to 4 digits are the codetype. E.g. 270001 is codetype 27 entry 0001'
+        Text:
+          type: string
+          maxLength: 100
+          example: 30 days EOM
+          description: The textual description of the code. E.g. Code 270001 is "30 days EOM".
+        ShortText:
+          type: string
+          maxLength: 12
+          example: 30 days EOM
+          description: The short description of the code. E.g. Code 270001 is "30dEOM".
+        CodeDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeDetail'
+    CodeDetail:
+      required:
+        - ID
+        - DetailNo
+        - CodeId
+        - Value
+      type: object
+      properties:
+        ID:
+          type: integer
+          minimum: 1
+          maximum: 99999999
+          example: 270001
+          description: 'Technical ID, do not use.'
+        DetailNo:
+          type: integer
+          minimum: 1
+          maximum: 99
+          example: 1
+          description: Identification of the detail
+        CodeId:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          example: 233123
+          description: 'Technical ID of parent code, do not use'
+        Value:
+          type: string
+          maxLength: 120
+          example: 'N'
+          description: The value as characters assigned of the according code detail
+        ValueNumeric:
+          type: integer
+          minimum: 1
+          maximum: 100000000000000000000
+          example: 897987
+          description: 'If the code detail is numeric, the value is additional provided as numeric value.'
+    Employees:
+      required:
+        - Employees
+      type: object
+      properties:
+        Employees:
+          type: array
+          items:
+            $ref: '#/components/schemas/Employee'
+    Employee:
+      type: object
+      properties:
+        ChangeID:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: ChangeID of the entity.
+          example: 4711
+        ChangeDate:
+          type: string
+          format: datetime
+          description: ChangeDate of the entity.
+        EmployeeID:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          example: 1104
+          description: 'performis internal ID, must be supplied if ExternalEmployeeID is not.'
+        ExternalEmployeeID:
+          type: string
+          maxLength: 50
+          description: 'External employee ID, must be supplied if (internal) EmployeeID is not.'
+          example: 6f22f981-a9e7-4eba-b3ac-df1b869eb090
+        Origin:
+          type: string
+          maxLength: 10
+          description: Origin identifier
+          example: SAP
+        Active:
+          type: boolean
+          description: 'true = active, false = deleted'
+          example: true
+        CompanyNo:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: Company for which employee is listed
+          example: 11
+        PersonalNo:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: Employee number
+          example: 4201
+          nullable: true
+        Language:
+          type: string
+          maxLength: 2
+          description: Language in ISO-639-1
+          example: DE
+        User:
+          type: string
+          maxLength: 30
+          description: performis database username of the employee
+          example: HM4201
+          nullable: true
+        Description:
+          type: string
+          maxLength: 120
+          description: The description of the employee. Usually consisting of personal no and names. It is automatically created by performis if supplied as null. Recommended to be kept empty.
+          example: 4201 - Hans Muster
+          nullable: true
+        Name:
+          type: string
+          maxLength: 50
+          example: Muster
+          description: Last name
+        FirstName:
+          type: string
+          maxLength: 50
+          example: Hans
+          description: First name
+          nullable: true
+        Gender:
+          type: string
+          enum:
+            - M
+            - F
+          description: |
+            gender:
+              * M - Male
+              * F - Female
+          example: M
+          nullable: true
+        EntryDate:
+          type: string
+          format: date
+          description: 'Date when employee entered company in format: <YYYY-MM-DD>'
+          example: '2020-05-01'
+          nullable: true
+        LeavingDate:
+          type: string
+          format: date
+          description: 'Date when employee left company in format: <YYYY-MM-DD>'
+          example: '2020-05-31'
+          nullable: true
+        GPIDEmployee:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: Internal partner ID of employee. Must be supplied if ExternalGPIDEmployee is not.
+          example: 948
+          nullable: true
+        ExternalGPIDEmployee:
+          type: string
+          maxLength: 50
+          description: External business partner ID for this employee. Must be supplied if (internal) GPIDEmployee is not.
+          example: 6f22f981-a9e7-4eba-b3ac-df1b869eb090
+          nullable: true
+        OrganizationPath:
+          type: string
+          maxLength: 500
+          description: The organisational part the employee works for.
+          example: \Department\Infrastructure\IT
+          nullable: true
+        Internal:
+          type: boolean
+          description: true = employee is an employed by the organisation. false = e.g. external employee
+          example: true
+        Department:
+          type: string
+          maxLength: 100
+          description: Name of the department the employee is a member of
+          example: IT Infrastructure
+          nullable: true
+        Function:
+          type: string
+          maxLength: 100
+          description: Position or title of the employee
+          example: CIO
+          nullable: true
+        GPAdrIDWorkplace:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: Business-partner address ID of the employees workplace. Must be supplied if ExternalGPAdrIDWorkplace is not.
+          example: 291
+          nullable: true
+        ExternalGPAdrIDWorkplace:
+          type: integer
+          minimum: 1
+          maximum: 9999999999
+          description: External business-partner address ID of the employees workplace. Must be supplied if (internal) GPAdrIDWorkplace ist not.
+          example: 6f22f981-a9e7-4eba-b3ac-df1b869eb090
+          nullable: true
+        AttributeValueSet:
+          type: array
+          items:
+            $ref: ./Common/CommonComponents-3.0.0.yaml#/AttributeValueSet
+      required:
+        - Origin
+        - Active
+        - CompanyNo
+        - Name
