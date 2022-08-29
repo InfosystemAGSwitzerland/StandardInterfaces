@@ -1,0 +1,1105 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "performis IF2FI",
+    "description": "IF2FI Rest Api",
+    "contact": {
+      "name": "Infosystem AG",
+      "email": "info@infosystem.ch"
+    },
+    "version": "v3"
+  },
+  "paths": {
+    "/api/v{version}/AccountReceivable": {
+      "get": {
+        "tags": [
+          "AccountReceivable"
+        ],
+        "summary": "Searches for AccountReceivables",
+        "description": "With this interfaces, the account receivables can be searched",
+        "parameters": [
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Optional search string for looking up a record within  name and searchterm fields.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, Searchstring).",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeID",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, Searchstring).",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "sLAccountNo",
+            "in": "query",
+            "description": "Subledger account number, can be used together with CompanyNo to search for an account",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Company No of Subledger account number, can be used together with SLAccountNo to search for an account",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "internalBpAddrID",
+            "in": "query",
+            "description": "Retrieve specific AccountReceivable record by internal business partner id. (Ignores other search options if provided)",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "externalBpAddrID",
+            "in": "query",
+            "description": "Retrieve specific AccountReceivable record by external business partner address ID. (Ignores searchString parameter if provided)",
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-RequestingSystem",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-RequestingUser",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "(Optional) Technical ID (GUID) for Call identification",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results matching criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "AccountReceivable"
+        ],
+        "summary": "Update or create an AccountReceivable",
+        "description": "Updates or creates an AccountReceivable",
+        "parameters": [
+          {
+            "name": "X-RequestingSystem",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-RequestingUser",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "(Optional) Technical ID (GUID) for Call identification",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "account receivable to update or create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Account receivable updated. Returns updated record.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountDto"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Account receivable created. Returns created record.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v{version}/AccountReceivable/CreditLimit": {
+      "put": {
+        "tags": [
+          "AccountReceivable"
+        ],
+        "summary": "Updates specified account receivable credit limit",
+        "description": "Used to submit the current, open amount on a given account when  performis is not the leading accounting system.",
+        "parameters": [
+          {
+            "name": "X-RequestingSystem",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-RequestingUser",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "(Optional) Technical ID (GUID) for Call identification",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "account to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreditLimitDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreditLimitDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreditLimitDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Accountreceivable updated. Returns updated record.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreditLimitDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v{version}/SalesChannel": {
+      "get": {
+        "tags": [
+          "CACC"
+        ],
+        "summary": "Searches for sales channels",
+        "description": "With this interfaces, the sales channels can be searched",
+        "parameters": [
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Optional search string for looking up a record within the sales channel number and description.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, Searchstring).",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeID",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, Searchstring).",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "salesChannelID",
+            "in": "query",
+            "description": "Internal Id of the sales channel",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Company number of the sales channel (Unique with salesChannelNo)",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "salesChannelNo",
+            "in": "query",
+            "description": "Number of the sales channel (Unique with companyNo)",
+            "schema": {
+              "maxLength": 3,
+              "type": "string"
+            }
+          },
+          {
+            "name": "activeOnly",
+            "in": "query",
+            "description": "If set to true, only the active sales channels will be returned.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "X-RequestingSystem",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-RequestingUser",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "(Optional) Technical ID (GUID) for Call identification",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results matching criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SalesChannelDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountDto": {
+        "required": [
+          "AccountReceivables",
+          "Active"
+        ],
+        "type": "object",
+        "properties": {
+          "ChangeID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "ChangeID of the entity.",
+            "format": "int64",
+            "nullable": true
+          },
+          "ChangeDate": {
+            "type": "string",
+            "description": "ChangeDate of the entity.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "BpAddrID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "performis Address ID - This ID uniquely identifies an address in performis. For example, ID \\\"629\\\" for address \\\"Infosystem AG, Wil\\\". To identify the address, either the performis address ID (BpAddrID) or the ID of the external system (ExternalBpAddrID) is required.",
+            "format": "int64",
+            "nullable": true
+          },
+          "ExternalBpAddrID": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Third-party address ID - This ID must be unique within the origin (Origin field). As ID it is recommended to use either the Primary Key of the foreign system or a GUID (Global Unique Identifier). For example, ID \\\"629c5d97-a225-4b08-877c-e8a802c23014\\\" for origin \\\"ERP\\\".  To identify the address, either the performis address ID (BpAddrID) or the ID of the external system (ExternalBpAddrID) is required.",
+            "nullable": true
+          },
+          "Origin": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Origin of the business partner, name of the third-party system. Business partners and addresses with an origin can't be edited in performis.",
+            "nullable": true
+          },
+          "Active": {
+            "type": "boolean",
+            "description": "Defines whether or not the subledger account head is active or not."
+          },
+          "VATRegistryNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "VAT Registry No - UID",
+            "nullable": true
+          },
+          "VATIdentityNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "VAT Identity No",
+            "nullable": true
+          },
+          "TaxOffice": {
+            "maxLength": 60,
+            "type": "string",
+            "description": "Name of dedicated tax office",
+            "nullable": true
+          },
+          "LastCreditReport": {
+            "$ref": "#/components/schemas/DateOnly"
+          },
+          "Annotation": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "Any annotations in regard to this accountreceivable",
+            "nullable": true
+          },
+          "AccountReceivables": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountReceivableDto"
+            },
+            "description": "Gets or Sets Accounts"
+          }
+        },
+        "additionalProperties": false,
+        "description": "AccountDto"
+      },
+      "AccountReceivableDto": {
+        "required": [
+          "Active",
+          "Currency",
+          "PaymentTerms",
+          "SummaryAccount"
+        ],
+        "type": "object",
+        "properties": {
+          "AccountNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The account number of the account receivable. Note that the account number must remain unique within a company. If no account number is submitted, performis will generate an account number. ATTENTION, the account can only be updated with this number, so it should always be transferred.",
+            "format": "int64"
+          },
+          "CompanyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The company number of the account receivable. ATTENTION, the account can only be updated with this number, so it should always be transferred.",
+            "format": "int32"
+          },
+          "Active": {
+            "type": "boolean",
+            "description": "Defines whether or not the account is active and therefore useable."
+          },
+          "Currency": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "Currency (ISO 4217)"
+          },
+          "AuthorisationGroup": {
+            "maximum": 99999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The authorization group to which this subledger account is assigned. c212 account receivable/c213 account payable",
+            "format": "int32",
+            "nullable": true
+          },
+          "SummaryAccount": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "General ledger summay account for this subledger account.",
+            "format": "int64"
+          },
+          "PaymentTerms": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Default Payment Terms of this subledger account, refer to value list supplied by infosystem. c27",
+            "format": "int64"
+          },
+          "VATCodeDefault": {
+            "maximum": 99999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Default VAT Code. c23",
+            "format": "int32",
+            "nullable": true
+          },
+          "VATIncl": {
+            "type": "boolean",
+            "description": "VAT Incl. default setting",
+            "nullable": true
+          },
+          "CreditLimit": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Maximum amount of open items this subledger account is allowed to have. An empty credit limit allows unrestricted open items.",
+            "format": "int64",
+            "nullable": true
+          },
+          "DelCredere": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Del credere risk in percent",
+            "format": "int32",
+            "nullable": true
+          },
+          "AutomatedOISettlement": {
+            "type": "boolean",
+            "description": "Automated open item settlement",
+            "nullable": true
+          },
+          "DiscountPeriodTolerance": {
+            "maximum": 99,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Discount tolerance in days",
+            "format": "int32",
+            "nullable": true
+          },
+          "MaxWriteOffInPercent": {
+            "maximum": 99,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Maximum write off in percentage",
+            "format": "int32",
+            "nullable": true
+          },
+          "MaxWriteOffInCurrency": {
+            "maximum": 99999999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Maximum write off in amount",
+            "format": "double",
+            "nullable": true
+          },
+          "DebitDirect": {
+            "type": "boolean",
+            "description": "Defines if the account payable uses debit direct for payment.",
+            "nullable": true
+          },
+          "DebitDirectRescission": {
+            "type": "boolean",
+            "description": "If the account receivable uses debit direct, he may be able to use a rescission if selected.",
+            "nullable": true
+          },
+          "PaymentAccount": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Payment account, if not provided the company default will be used.",
+            "format": "int64",
+            "nullable": true
+          },
+          "InterestType": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Type of interest which is used for subledger",
+            "nullable": true
+          },
+          "PaymentMethod": {
+            "maximum": 99999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Payment Method. c973",
+            "format": "int32",
+            "nullable": true
+          },
+          "PaymentGroup": {
+            "maximum": 99999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Payment Group. c214",
+            "format": "int32",
+            "nullable": true
+          },
+          "FeeAgreement": {
+            "maximum": 99999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "DTA rules for charges:   * customer   * Beneficiary   * Splitting",
+            "format": "int32",
+            "nullable": true
+          },
+          "DunningKeys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DunningKeyDto"
+            },
+            "description": "Gets or Sets DunningKeys",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "AccountReceivableDto"
+      },
+      "CreditLimitDto": {
+        "required": [
+          "AccountNo",
+          "CompanyNo"
+        ],
+        "type": "object",
+        "properties": {
+          "CompanyNo": {
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Company of the account receivable",
+            "format": "int32"
+          },
+          "AccountNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The account number of the account receivable. Note that the account number must remain unique within a company.",
+            "format": "int64"
+          },
+          "CreditLimit": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Maximum amount of open items this subledger account is allowed to have. An empty credit limit allows unrestricted open items",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "CreditLimitDto"
+      },
+      "DateOnly": {
+        "type": "object",
+        "properties": {
+          "Year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Month": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Day": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "DayOfWeek": {
+            "$ref": "#/components/schemas/DayOfWeek"
+          },
+          "DayOfYear": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "DayNumber": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DayOfWeek": {
+        "enum": [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "type": "string"
+      },
+      "DunningKeyDto": {
+        "required": [
+          "DunningRating"
+        ],
+        "type": "object",
+        "properties": {
+          "ReminderKey": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Dunning key name",
+            "nullable": true
+          },
+          "Description": {
+            "maxLength": 60,
+            "type": "string",
+            "description": "User defined description of dunning key",
+            "nullable": true
+          },
+          "DunningRating": {
+            "maximum": 99999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Account Receivable dunning rating. c213",
+            "format": "int32"
+          },
+          "DunningAddressBpAddrID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "performis Address ID of the dunning address - This ID uniquely identifies an address in performis. For example, ID \\\"629\\\" for address \\\"Infosystem AG, Wil\\\". To identify the address, either the performis address ID (BpAddrID) or the ID of the external system (ExternalBpAddrID) is required.",
+            "format": "int64",
+            "nullable": true
+          },
+          "DunningAddressExternalBpAddrID": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Third-party address ID of the dunning address - This ID must be unique within the origin (Origin field). As ID it is recommended to use either the Primary Key of the foreign system or a GUID (Global Unique Identifier). Attention, if External IDs are used, no performis IDs may be used in parallel, additionally the Origin field is mandatory. E.g. ID \\\"629c5d97-a225-4b08-877c-e8a802c23014\\\" for origin \\\"SAP\\\". To identify the business partner, either the performis business partner ID (BpID) or the ID of the external system (ExternalBpID) is required.",
+            "nullable": true
+          },
+          "DunningBlockCode": {
+            "maximum": 99999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Dunning block code. c204",
+            "format": "int32",
+            "nullable": true
+          },
+          "DunningBlockedUntil": {
+            "$ref": "#/components/schemas/DateOnly"
+          },
+          "DunningGroup": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Dunning Group of Account Receivable",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "With the dunning keys, the open items of the account receivable can be split into different groups."
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "ErrorDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "Context": {
+            "type": "string",
+            "nullable": true
+          },
+          "ErrorCode": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "ErrorDescription": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MaintenanceWindow": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "Aktiv": {
+            "type": "boolean"
+          },
+          "DatumVon": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "DatumBis": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Info": {
+            "type": "string",
+            "nullable": true
+          },
+          "ClientStartErlaubt": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SalesChannelDto": {
+        "type": "object",
+        "properties": {
+          "ChangeID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "ChangeID of the entity.",
+            "format": "int64",
+            "nullable": true
+          },
+          "ChangeDate": {
+            "type": "string",
+            "description": "ChangeDate of the entity.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "SalesChannelID": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "The internal sales channel id.",
+            "format": "int64"
+          },
+          "SalesChannelNo": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "Unique identification string for the sales channel",
+            "nullable": true
+          },
+          "CompanyNo": {
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Company for which the sales channel is valid.",
+            "format": "int32",
+            "nullable": true
+          },
+          "Active": {
+            "type": "boolean",
+            "description": "true = active, false = inactive",
+            "nullable": true
+          },
+          "Description": {
+            "maxLength": 40,
+            "type": "string",
+            "description": "The description of the cost unit.",
+            "nullable": true
+          },
+          "Responsible": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Name/Description of the responsible person.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "SalesChannelDto"
+      }
+    },
+    "securitySchemes": {
+      "basic": {
+        "type": "http",
+        "description": "Basic Authorization header using the Bearer scheme.",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "basic": [ ]
+    }
+  ]
+}

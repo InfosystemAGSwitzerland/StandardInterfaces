@@ -1,0 +1,1042 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "performis IF2BA",
+    "description": "IF2BA Rest Api",
+    "contact": {
+      "name": "Infosystem AG",
+      "email": "info@infosystem.ch"
+    },
+    "version": "v3"
+  },
+  "paths": {
+    "/api/v3/Code/{codeType}": {
+      "get": {
+        "tags": [
+          "Code"
+        ],
+        "summary": "Code service to get a list of all available codes for a specific code type",
+        "description": "Code service to get a list of all available codes for a specific code type",
+        "parameters": [
+          {
+            "name": "codeType",
+            "in": "path",
+            "description": "CodeType of the required code list.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Optional search string for looking up a record within the code, text and shorttext.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, Searchstring).",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeID",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, Searchstring).",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Company for which the code is valid. If company no is 0, the code is valid for all companies",
+            "required": true,
+            "schema": {
+              "maximum": 999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "includeDetails",
+            "in": "query",
+            "description": "Defines whether or not detail-values of the codeType are included.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "X-RequestingSystem",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-RequestingUser",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "(Optional) Technical ID (GUID) for Call identification",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of codes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CodeDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v3/Employee": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Searches employees",
+        "description": "By passing in the appropriate options, the service searches  for available employee(s) in the system.",
+        "parameters": [
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Optional search string for looking up a record within  name and searchterm fields.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, Searchstring).",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeID",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, Searchstring).",
+            "schema": {
+              "maximum": 99999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "internalID",
+            "in": "query",
+            "description": "Retrieve specific employee record by internal id. (Ignores other search options if provided)",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "externalID",
+            "in": "query",
+            "description": "Retrieve specific employee record by external id. (Ignores searchString parameter if provided)",
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "personalNo",
+            "in": "query",
+            "description": "Retrieve specific employee record by personal number",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "X-RequestingSystem",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-RequestingUser",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "(Optional) Technical ID (GUID) for Call identification",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results matching criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Create or update an employee",
+        "description": "Updates an existing employee if internal nor external ID match. Creates an employee if neither internal or external ID is provided or no matching record could be found.",
+        "parameters": [
+          {
+            "name": "X-RequestingSystem",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-RequestingUser",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "(Optional) Technical ID (GUID) for Call identification",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Employee to create or update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Employee updated. returns updated employee record.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeDto"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Employee created. returns created employee record.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AttributeValueDto": {
+        "required": [
+          "AttributeDefinitionID"
+        ],
+        "type": "object",
+        "properties": {
+          "AttributeDefinitionID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "ID of attribute definition",
+            "format": "int32"
+          },
+          "AttributeDefinitionDescription": {
+            "maxLength": 80,
+            "type": "string",
+            "description": "Description of the attribute definition",
+            "nullable": true
+          },
+          "StringValue": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "A string value",
+            "nullable": true
+          },
+          "NumberValue": {
+            "type": "number",
+            "description": "Number or decimal value",
+            "format": "double",
+            "nullable": true
+          },
+          "DateValue": {
+            "type": "string",
+            "description": "Date value",
+            "format": "date-time",
+            "nullable": true
+          },
+          "BoolValue": {
+            "type": "boolean",
+            "description": "A true or false value",
+            "nullable": true
+          },
+          "CodeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CodeValueDto"
+            },
+            "description": "Gets or Sets CodeValues",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "AttributValueDto"
+      },
+      "AttributeValueSetDto": {
+        "required": [
+          "AttributeSetID"
+        ],
+        "type": "object",
+        "properties": {
+          "AttributeSetID": {
+            "maximum": 999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Performis internal of attribute set ID",
+            "format": "int32"
+          },
+          "AttributSetDescription": {
+            "maxLength": 80,
+            "type": "string",
+            "description": "Description / Title of the attribute set",
+            "nullable": true
+          },
+          "AttributeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttributeValueDto"
+            },
+            "description": "List of attribute values.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "AttributeValueSetDto"
+      },
+      "CodeDetailDto": {
+        "required": [
+          "CodeDetailID",
+          "CodeID",
+          "DetailNo",
+          "Value"
+        ],
+        "type": "object",
+        "properties": {
+          "CodeDetailID": {
+            "maximum": 99999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Technical ID, do not use.",
+            "format": "int64"
+          },
+          "DetailNo": {
+            "maximum": 99,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Identification of the detail",
+            "format": "int32"
+          },
+          "CodeID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Technical ID of parent code, do not use",
+            "format": "int64"
+          },
+          "Value": {
+            "maxLength": 120,
+            "minLength": 1,
+            "type": "string",
+            "description": "The value as characters assigned of the according code detail"
+          },
+          "ValueNumeric": {
+            "type": "number",
+            "description": "If the code detail is numeric, the value in addition provided as numeric value.",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "CodeDetailDto"
+      },
+      "CodeDto": {
+        "required": [
+          "CodeID",
+          "CodeNo",
+          "CompanyNo",
+          "Text"
+        ],
+        "type": "object",
+        "properties": {
+          "ChangeID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "ChangeID of the entity.",
+            "format": "int64",
+            "nullable": true
+          },
+          "ChangeDate": {
+            "type": "string",
+            "description": "ChangeDate of the entity.",
+            "nullable": true
+          },
+          "CodeID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Technical ID, do not use.",
+            "format": "int64"
+          },
+          "Active": {
+            "type": "boolean",
+            "description": "true = active, false = deleted",
+            "nullable": true
+          },
+          "CodeType": {
+            "maximum": 9999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Performis CodeType - the code type. E.g. 27 for PaymentTerms",
+            "format": "int32",
+            "nullable": true
+          },
+          "CompanyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Company for which the code is valid. If company no is 0, the code is valid for all companies",
+            "format": "int32"
+          },
+          "CodeNo": {
+            "maximum": 99999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Performis Code - the first four digits are the entry in a specific codetype, the next 1 to 4 digits are the codetype. E.g. 270001 is codetype 27 entry 0001",
+            "format": "int32"
+          },
+          "Text": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "description": "The textual description of the code. E.g. Code 270001 is \"30 days EOM\"."
+          },
+          "ShortText": {
+            "maxLength": 12,
+            "type": "string",
+            "description": "The short description of the code. E.g. Code 270001 is \"30dEOM\".",
+            "nullable": true
+          },
+          "CodeDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CodeDetailDto"
+            },
+            "description": "Gets or Sets CodeDetails",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "CodeDto"
+      },
+      "CodeValueDto": {
+        "required": [
+          "Code",
+          "CompanyNo"
+        ],
+        "type": "object",
+        "properties": {
+          "CompanyNo": {
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Company no for which the codevalue is available. 0 = all companies",
+            "format": "int32"
+          },
+          "Code": {
+            "maximum": 99999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "ID of code",
+            "format": "int32"
+          },
+          "Text": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Description or title of the codevalue",
+            "nullable": true
+          },
+          "Shorttext": {
+            "maxLength": 12,
+            "type": "string",
+            "description": "Short-description or title of the codevalue",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "CodeValueDto"
+      },
+      "DateOnly": {
+        "type": "object",
+        "properties": {
+          "Year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Month": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Day": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "DayOfWeek": {
+            "$ref": "#/components/schemas/DayOfWeek"
+          },
+          "DayOfYear": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "DayNumber": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DayOfWeek": {
+        "enum": [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "type": "string"
+      },
+      "EmployeeDto": {
+        "required": [
+          "Active",
+          "CompanyNo",
+          "Internal",
+          "Language",
+          "LastName",
+          "Origin",
+          "PersonalNo"
+        ],
+        "type": "object",
+        "properties": {
+          "ChangeID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "ChangeID of the entity.",
+            "format": "int64",
+            "nullable": true
+          },
+          "ChangeDate": {
+            "type": "string",
+            "description": "ChangeDate of the entity.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "EmployeeID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Performis internal ID, must be supplied if ExternalEmployeeID is not.",
+            "format": "int64",
+            "nullable": true
+          },
+          "ExternalEmployeeID": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "External employee ID, must be supplied if (internal) EmployeeID is not.",
+            "nullable": true
+          },
+          "Origin": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string",
+            "description": "Origin identifier"
+          },
+          "Active": {
+            "type": "boolean",
+            "description": "true = active, false = deleted"
+          },
+          "CompanyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Company for which the employee is listed",
+            "format": "int32"
+          },
+          "PersonalNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Employee number",
+            "format": "int64"
+          },
+          "Language": {
+            "maxLength": 2,
+            "minLength": 1,
+            "type": "string",
+            "description": "Language in ISO-639-1"
+          },
+          "User": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Performis database username of the employee",
+            "nullable": true
+          },
+          "Description": {
+            "maxLength": 120,
+            "type": "string",
+            "description": "The description of the employee. Automatically generated in the format: PersonalNo - FirstName LastName (ex. 1234 - John Smith)",
+            "nullable": true
+          },
+          "LastName": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Last name"
+          },
+          "FirstName": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "First name",
+            "nullable": true
+          },
+          "Gender": {
+            "type": "string",
+            "description": "Gender: \r\nM = Male,\r\nF = Female",
+            "nullable": true
+          },
+          "EntryDate": {
+            "$ref": "#/components/schemas/DateOnly"
+          },
+          "LeavingDate": {
+            "$ref": "#/components/schemas/DateOnly"
+          },
+          "BPIDEmployee": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal partner ID of employee. Must be supplied if ExternalBPIDEmployee is not.",
+            "format": "int64",
+            "nullable": true
+          },
+          "ExternalBPIDEmployee": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "External business partner ID for this employee. Must be supplied if (internal) BPIDEmployee is not.",
+            "nullable": true
+          },
+          "OrganizationPath": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "The organisational part the employee works for.",
+            "nullable": true
+          },
+          "Internal": {
+            "type": "boolean",
+            "description": "true = employee is an employed by the organisation. false = e.g. external employee"
+          },
+          "Department": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Name of the department the employee is a member of",
+            "nullable": true
+          },
+          "Function": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Position or title of the employee",
+            "nullable": true
+          },
+          "BPAddrIDWorkplace": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Business-partner address ID of the employees workplace. Must be supplied if ExternalGPAdrIDWorkplace is not.",
+            "format": "int64",
+            "nullable": true
+          },
+          "ExternalBPAddrIDWorkplace": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "External business-partner address ID of the employees workplace. Must be supplied if (internal) GPAdrIDWorkplace ist not.",
+            "nullable": true
+          },
+          "AttributeValueSet": {
+            "$ref": "#/components/schemas/AttributeValueSetDto"
+          },
+          "PrivateAddress": {
+            "$ref": "#/components/schemas/PrivateAddressDto"
+          }
+        },
+        "additionalProperties": false,
+        "description": "EmployeeDto"
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "ErrorDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "Context": {
+            "type": "string",
+            "nullable": true
+          },
+          "ErrorCode": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "ErrorDescription": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MaintenanceWindow": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "Aktiv": {
+            "type": "boolean"
+          },
+          "DatumVon": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "DatumBis": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Info": {
+            "type": "string",
+            "nullable": true
+          },
+          "ClientStartErlaubt": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PrivateAddressDto": {
+        "type": "object",
+        "properties": {
+          "AdditionalLine": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Additional line of an address which is neither a street nor a post office box. For example, \"c/o Samuel Schnelli\" or \"Office Samuel Schnelli\".",
+            "nullable": true
+          },
+          "Country": {
+            "maxLength": 2,
+            "type": "string",
+            "description": "Country in ISO code (ISO 3166)",
+            "nullable": true
+          },
+          "City": {
+            "maxLength": 40,
+            "type": "string",
+            "description": "City",
+            "nullable": true
+          },
+          "ZipCode": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Zipcode of the address in country-specific format. For example, \"EC1A 1AA\" for London, England or \"9500\" for Wil, Switzerland.",
+            "nullable": true
+          },
+          "Street": {
+            "maxLength": 43,
+            "type": "string",
+            "description": "Street name without house number.",
+            "nullable": true
+          },
+          "HouseNo": {
+            "maxLength": 12,
+            "type": "string",
+            "description": "House number",
+            "nullable": true
+          },
+          "Email": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "E-Mail address",
+            "nullable": true
+          },
+          "MobileNo": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Mobile phone number",
+            "nullable": true
+          },
+          "PhoneNo": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Phone number (landline)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "PrivateAddressDto"
+      }
+    },
+    "securitySchemes": {
+      "basic": {
+        "type": "http",
+        "description": "Basic Authorization header using the Bearer scheme.",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "basic": [ ]
+    }
+  ]
+}

@@ -1,0 +1,1141 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "performis IF2GP",
+    "description": "performis IF2GP | Interface for Business Partner, Contacts and Addresses",
+    "contact": {
+      "name": "Infosystem AG",
+      "email": "support@infosystem.ch"
+    },
+    "version": "v3"
+  },
+  "paths": {
+    "/api/v3/BusinessPartner": {
+      "get": {
+        "tags": [
+          "BusinessPartner"
+        ],
+        "summary": "Searches for Business Partners",
+        "description": "With this interface the performis business partners can be searched",
+        "parameters": [
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Optional search string for looking up a record within  name and searchterm fields.",
+            "schema": {
+              "type": "string",
+              "description": "Optional search string for looking up a record within  name and searchterm fields.",
+              "nullable": true
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "description": "Number of records to skip for pagination",
+              "format": "int32",
+              "nullable": true
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "description": "Maximum number of records to return",
+              "format": "int32",
+              "nullable": true
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, Searchstring).",
+            "schema": {
+              "type": "string",
+              "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, Searchstring).",
+              "format": "date-time",
+              "nullable": true
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, Searchstring).",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, Searchstring).",
+              "format": "int32",
+              "nullable": true
+            }
+          },
+          {
+            "name": "internalBpID",
+            "in": "query",
+            "description": "Retrieve specific BusinessPartner record by internal business partner ID. (Ignores other searchString options if provided)",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer",
+              "description": "Retrieve specific BusinessPartner record by internal business partner ID. (Ignores other searchString options if provided)",
+              "format": "int32",
+              "nullable": true
+            }
+          },
+          {
+            "name": "externalBpID",
+            "in": "query",
+            "description": "Retrieve specific BusinessPartner record by external business partner ID. (Ignores searchString parameter if provided)",
+            "schema": {
+              "maxLength": 50,
+              "type": "string",
+              "description": "Retrieve specific BusinessPartner record by external business partner ID. (Ignores searchString parameter if provided)",
+              "nullable": true
+            }
+          },
+          {
+            "name": "internalBpAddrID",
+            "in": "query",
+            "description": "Retrieve specific BusinessPartner record by internal business partner address ID. (Ignores other searchString options if provided)",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer",
+              "description": "Retrieve specific BusinessPartner record by internal business partner address ID. (Ignores other searchString options if provided)",
+              "format": "int32",
+              "nullable": true
+            }
+          },
+          {
+            "name": "externalBpAddrID",
+            "in": "query",
+            "description": "Retrieve specific BusinessPartner record by external business partner address ID. (Ignores searchString parameter if provided)",
+            "schema": {
+              "maxLength": 50,
+              "type": "string",
+              "description": "Retrieve specific BusinessPartner record by external business partner address ID. (Ignores searchString parameter if provided)",
+              "nullable": true
+            }
+          },
+          {
+            "name": "X-RequestingSystem",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string",
+              "description": "Identifing the system calling the service."
+            }
+          },
+          {
+            "name": "X-RequestingUser",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string",
+              "description": "Identifing the user calling the service."
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "(Optional) Technical ID (GUID) for Call identification",
+            "schema": {
+              "maxLength": 30,
+              "type": "string",
+              "description": "(Optional) Technical ID (GUID) for Call identification",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PartnerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PartnerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PartnerDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "BusinessPartner"
+        ],
+        "summary": "Updates or creates a Business Partner",
+        "description": "Updates or creates a Business Partner",
+        "parameters": [
+          {
+            "name": "X-RequestingSystem",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string",
+              "description": "Identifing the system calling the service."
+            }
+          },
+          {
+            "name": "X-RequestingUser",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string",
+              "description": "Identifing the user calling the service."
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "(Optional) Technical ID (GUID) for Call identification",
+            "schema": {
+              "maxLength": 30,
+              "type": "string",
+              "description": "(Optional) Technical ID (GUID) for Call identification",
+              "nullable": true
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Business Partner to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PartnerDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PartnerDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PartnerDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "If a Business Partner was updated, the updated record is returned.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartnerDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartnerDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartnerDto"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "If a Business Partner was created, the created record is returned.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartnerDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartnerDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartnerDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PartnerTypeEnum": {
+        "enum": [
+          "G",
+          "M",
+          "F",
+          "A"
+        ],
+        "type": "string",
+        "description": "PartnerType:   * G - Company/Organization   * M - man   * F - woman   * A - Department/Group'"
+      },
+      "DayOfWeek": {
+        "enum": [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "type": "string"
+      },
+      "DateOnly": {
+        "type": "object",
+        "properties": {
+          "Year": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "Month": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "Day": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "DayOfWeek": {
+            "$ref": "#/components/schemas/DayOfWeek"
+          },
+          "DayOfYear": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "DayNumber": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreditStatusDto": {
+        "type": "object",
+        "properties": {
+          "Date": {
+            "$ref": "#/components/schemas/DateOnly"
+          },
+          "StatusCode": {
+            "type": "integer",
+            "description": "Describes the CreditRating status. Use performis Code 682 values.",
+            "format": "int32",
+            "nullable": true
+          },
+          "CreditLimit": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Credit limit amount in CreditCurrency.",
+            "format": "int32",
+            "nullable": true
+          },
+          "Remarks": {
+            "type": "string",
+            "description": "Additional note or remark for this Credit Status entry.",
+            "nullable": true
+          },
+          "CreditRatingCheckDate": {
+            "$ref": "#/components/schemas/DateOnly"
+          },
+          "CreditRatingNextCheckDate": {
+            "$ref": "#/components/schemas/DateOnly"
+          },
+          "CreditRatingScore": {
+            "maximum": 999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Result of the credit check as score between 0 and 999",
+            "format": "int32",
+            "nullable": true
+          },
+          "CreditCurrency": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "Credit Currency in ISO 4217 Code (3 digit letter)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Credit information or limitation on business partner. This Credit status may override a limit set in account receivable."
+      },
+      "CodeValueDto": {
+        "required": [
+          "Code",
+          "CompanyNo",
+          "Text"
+        ],
+        "type": "object",
+        "properties": {
+          "CompanyNo": {
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Company no for which the codevalue is available. 0 = all companies",
+            "format": "int32"
+          },
+          "Code": {
+            "maximum": 99999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "ID of code",
+            "format": "int32"
+          },
+          "Text": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Description or title of the codevalue"
+          },
+          "Shorttext": {
+            "maxLength": 12,
+            "type": "string",
+            "description": "Short-description or title of the codevalue",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "AttributeValueDto": {
+        "required": [
+          "AttributeDefinitionID"
+        ],
+        "type": "object",
+        "properties": {
+          "AttributeDefinitionID": {
+            "type": "integer",
+            "description": "ID of attribute definition",
+            "format": "int64"
+          },
+          "AttributeDefinitionDescription": {
+            "maxLength": 80,
+            "type": "string",
+            "description": "Description of the attribute definition",
+            "nullable": true
+          },
+          "StringValue": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "A string value",
+            "nullable": true
+          },
+          "NumberValue": {
+            "type": "number",
+            "description": "Number or decimal value",
+            "format": "double",
+            "nullable": true
+          },
+          "DateValue": {
+            "type": "string",
+            "description": "Date value",
+            "format": "date-time",
+            "nullable": true
+          },
+          "BoolValue": {
+            "type": "boolean",
+            "description": "A true or false value",
+            "nullable": true
+          },
+          "CodeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CodeValueDto"
+            },
+            "description": "Gets or Sets CodeValue",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "AttributeValueSetDto": {
+        "required": [
+          "AttributeSetID",
+          "AttributSetDescription"
+        ],
+        "type": "object",
+        "properties": {
+          "AttributeSetID": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "performis internal of attribute set ID",
+            "format": "int64"
+          },
+          "AttributSetDescription": {
+            "maxLength": 80,
+            "type": "string",
+            "description": "Description / Title of the attribute set"
+          },
+          "AttributeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttributeValueDto"
+            },
+            "description": "Gets or Sets AttributeValues",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "CommunicationAddressDto": {
+        "required": [
+          "CommAdrType",
+          "Value"
+        ],
+        "type": "object",
+        "properties": {
+          "CommAdrType": {
+            "type": "integer",
+            "description": "Specific code for communication type. Usually the following codes can be used. Your company might used different codes, please check back with Infosystem. c332   * 3320001 Telephone   * 3320002 Fax   * 3320003 Mobile   * 3320004 Additional Nummer   * 3320005 E-Mail   * 3320006 Internet",
+            "format": "int32"
+          },
+          "Value": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Value for given communication address"
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "ContactDto": {
+        "type": "object",
+        "properties": {
+          "BpID": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "performis Business Partner ID - The business partner ID uniquely identifies a business partner in performis. For example, ID \\\"4711\\\" for the business partner \\\"Infosystem AG\\\". To identify the business partner, either the performis business partner ID (BpID) or the ID of the external system (ExternalBpID) is used.",
+            "format": "int64",
+            "nullable": true
+          },
+          "ExternalBpID": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Third-party business partner ID - This ID must be unique within the origin (Origin field). As ID it is recommended to use either the Primary Key of the foreign system or a GUID (Global Unique Identifier). Attention, if External IDs are used, no performis IDs may be used in parallel, additionally the Origin field is mandatory. E.g. ID \\\"629c5d97-a225-4b08-877c-e8a802c23014\\\" for origin \\\"SAP\\\". To identify the business partner, either the performis business partner ID (BpID) or the ID of the external system (ExternalBpID) is required.",
+            "nullable": true
+          },
+          "Origin": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Origin of the business partner, name of the third-party system. Business partners and addresses with an origin can't be edited in performis.",
+            "nullable": true
+          },
+          "Active": {
+            "type": "boolean",
+            "description": "true = active, false = deleted",
+            "nullable": true
+          },
+          "ContactType": {
+            "$ref": "#/components/schemas/PartnerTypeEnum"
+          },
+          "Salutation": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "How the contact is saluted * may only be used with PartnerType F and M",
+            "nullable": true
+          },
+          "Title": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "If the person owns any known titles * may only be used with PartnerType F and M",
+            "nullable": true
+          },
+          "FirstName": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Firstname  * may only be used with PartnerType F and M",
+            "nullable": true
+          },
+          "MiddleName": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Middlename * may only be used with PartnerType F and M",
+            "nullable": true
+          },
+          "Name": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Name of the business partner - if the partnertype is F or M it is the last name of the person. If the contacttyp is A, it is the name of the department.",
+            "nullable": true
+          },
+          "Language": {
+            "maxLength": 2,
+            "type": "string",
+            "description": "Language code in ISO-639-1",
+            "nullable": true
+          },
+          "Position": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Position or function * may only be used with PartnerType F and M",
+            "nullable": true
+          },
+          "Department": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Department the contact is a member of * may only be used with PartnerType F and M",
+            "nullable": true
+          },
+          "AttributeValueSet": {
+            "$ref": "#/components/schemas/AttributeValueSetDto"
+          },
+          "CommunicationAddresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommunicationAddressDto"
+            },
+            "description": "Gets or Sets CommunicationAddresses",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "Contact2DocumentDto": {
+        "required": [
+          "_Contact2Document",
+          "CompanyNo",
+          "Mode"
+        ],
+        "type": "object",
+        "properties": {
+          "CompanyNo": {
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Company for which the contact2document is created for.",
+            "format": "int32"
+          },
+          "BPEmployeeID": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "performis ID of employee, which is the selected recipient of the selected type of document.",
+            "format": "int64",
+            "nullable": true
+          },
+          "BpAddrID": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "performis Address ID - This ID uniquely identifies an address in performis. For example, ID \\\"629\\\" for address \\\"Infosystem AG, Wil\\\". To identify the address, either the performis address ID (BpAddrID) or the ID of the external system (ExternalBpAddrID) is required.",
+            "format": "int64",
+            "nullable": true
+          },
+          "ExternalBPEmployeeID": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Third-Party ID of employee, which is the selected recipient of the selected type of document.",
+            "nullable": true
+          },
+          "_Contact2Document": {
+            "maximum": 99999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Type of document or correspondence (e.g. invoices), refer to value list supplied by infosystem. c686",
+            "format": "int32"
+          },
+          "Mode": {
+            "maximum": 99999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Mode c688:    * 6880100 - Automatic   * 6880200 - print only   * 6880300 - email only   * 6880400 - Print and email",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "AddressDto": {
+        "required": [
+          "Active",
+          "City",
+          "Country",
+          "Language",
+          "Origin",
+          "ZipCode"
+        ],
+        "type": "object",
+        "properties": {
+          "BpAddrID": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "performis Address ID - This ID uniquely identifies an address in performis. For example, ID \\\"629\\\" for address \\\"Infosystem AG, Wil\\\". To identify the address, either the performis address ID (BpAddrID) or the ID of the external system (ExternalBpAddrID) is required.",
+            "format": "int64",
+            "nullable": true
+          },
+          "ExternalBpAddrID": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Third-party address ID - This ID must be unique within the origin (Origin field). As ID it is recommended to use either the Primary Key of the foreign system or a GUID (Global Unique Identifier). For example, ID \\\"629c5d97-a225-4b08-877c-e8a802c23014\\\" for origin \\\"ERP\\\".  To identify the address, either the performis address ID (BpAddrID) or the ID of the external system (ExternalBpAddrID) is required.",
+            "nullable": true
+          },
+          "Origin": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Origin of the business partner, name of the third-party system. Business partners and addresses with an origin can't be edited in performis."
+          },
+          "Active": {
+            "type": "boolean",
+            "description": "true = active, false = deleted"
+          },
+          "ShortAddress": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Short address - Short form of the address. It is generated automatically if not supplied. The short address is used in performis to identify the address. For example, the Wiler address of Infosystem AG is abbreviated as: \\\"Infosystem AG, Wil\\\".",
+            "nullable": true
+          },
+          "OverridePartnerName": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "If the name of the company on the address differs from that of the business partner, the name of the business partner can be overridden in this field. For example, if Infosystem AG is operating in German-speaking Switzerland as Infosystem AG, the name on the business partner will also be the same. For the Lausanne address, however, the name is overridden as \\\"Infosystem SA\\\".",
+            "nullable": true
+          },
+          "OverridePartnerNameAddition": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "If the name addition of the company on the address differs from that of the business partner, the name suffix of the business partner can be overridden in this field.",
+            "nullable": true
+          },
+          "Street": {
+            "maxLength": 43,
+            "type": "string",
+            "description": "Street name without house number.",
+            "nullable": true
+          },
+          "HouseNo": {
+            "maxLength": 12,
+            "type": "string",
+            "description": "House number",
+            "nullable": true
+          },
+          "POBox": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "he post office box of the address. The P.O. Box should be transferred including the country-specific text component. For example, for Switzerland \\\"Postfach 12\\\" in England \\\"PO Box 12\\\".",
+            "nullable": true
+          },
+          "AdditionalLine1": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Additional line of an address which is neither a street nor a post office box. For example, \\\"c/o Samuel Schnelli\\\" or \\\"Office Samuel Schnelli\\\".",
+            "nullable": true
+          },
+          "AdditionalLine2": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Extended additional component of an address that is neither a street nor a post office box. For example, \\\"Floor 12\\\" or \\\"Building 15\\\".",
+            "nullable": true
+          },
+          "Country": {
+            "maxLength": 2,
+            "type": "string",
+            "description": "Country in ISO code (ISO 3166)"
+          },
+          "ZipCode": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Zipcode of the address in country-specific format. Mandatory together with the country code and the city. For example, \\\"EC1A 1AA\\\" for London, England or \\\"9500\\\" for Wil, Switzerland."
+          },
+          "City": {
+            "maxLength": 40,
+            "type": "string",
+            "description": "city"
+          },
+          "Language": {
+            "maxLength": 2,
+            "type": "string",
+            "description": "Language code in ISO-639-1"
+          },
+          "SearchTerms": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Additional search terms under which this address is found. This is often used to use well-known abbreviations as search terms. For example, \\\"IS\\\" for Infosystem AG or \\\"MS\\\" for Microsoft.",
+            "nullable": true
+          },
+          "Latitude": {
+            "maximum": 90,
+            "minimum": -90,
+            "type": "number",
+            "description": "Location latitude",
+            "format": "double",
+            "nullable": true
+          },
+          "Longitude": {
+            "maximum": 180,
+            "minimum": -180,
+            "type": "number",
+            "description": "Location longitude",
+            "format": "double",
+            "nullable": true
+          },
+          "AttributeValueSet": {
+            "$ref": "#/components/schemas/AttributeValueSetDto"
+          },
+          "CommunicationAddresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommunicationAddressDto"
+            },
+            "description": "Gets or Sets CommunicationAddresses",
+            "nullable": true
+          },
+          "Contacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContactDto"
+            },
+            "description": "Gets or Sets Contacts",
+            "nullable": true
+          },
+          "Contact2Documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Contact2DocumentDto"
+            },
+            "description": "Gets or Sets Contact2Documents",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "PartnerDto": {
+        "required": [
+          "Active",
+          "Addresses",
+          "Name",
+          "Origin",
+          "PartnerType"
+        ],
+        "type": "object",
+        "properties": {
+          "ChangeID": {
+            "type": "integer",
+            "description": "ChangeID of the entity.",
+            "format": "int64",
+            "nullable": true
+          },
+          "ChangeDate": {
+            "type": "string",
+            "description": "ChangeDate of the entity.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "BpID": {
+            "type": "integer",
+            "description": "performis Business Partner ID - The business partner ID uniquely identifies a business partner in performis. For example, ID \\\"4711\\\" for the business partner \\\"Infosystem AG\\\". To identify the business partner, either the performis business partner ID (BpID) or the ID of the external system (ExternalBpID) is required.",
+            "format": "int64",
+            "nullable": true
+          },
+          "ExternalBpID": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Third-party business partner ID - This ID must be unique within the origin (Origin field). As ID it is recommended to use either the Primary Key of the foreign system or a GUID (Global Unique Identifier). Attention, if External IDs are used, no performis IDs may be used in parallel, additionally the Origin field is mandatory. E.g. ID \\\"629c5d97-a225-4b08-877c-e8a802c23014\\\" for origin \\\"SAP\\\". To identify the business partner, either the performis business partner ID (BpID) or the ID of the external system (ExternalBpID) is required.",
+            "nullable": true
+          },
+          "Origin": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Origin of the business partner, name of the third-party system. Business partners and addresses with an origin can't be edited in performis."
+          },
+          "Active": {
+            "type": "boolean",
+            "description": "true = active, false = deleted"
+          },
+          "PartnerType": {
+            "$ref": "#/components/schemas/PartnerTypeEnum"
+          },
+          "Salutation": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Salutation. * may only be used with PartnerType F and M",
+            "nullable": true
+          },
+          "Firstname": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "First name. * may only be used with PartnerType F and M",
+            "nullable": true
+          },
+          "Middlename": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Middle name. * may only be used with PartnerType F and M",
+            "nullable": true
+          },
+          "Title": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Title. * may only be used with PartnerType F and M",
+            "nullable": true
+          },
+          "Name": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Name of the business partner - if the partnertype is F or M it is the last name of the person. If the partnertyp is G or A, it is the name of the company or department."
+          },
+          "NameAddition": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Business partner name addition - Additional n of the business partner For example Infosystem uses an addition to its name: \\\"Informationssysteme und Software\\\"",
+            "nullable": true
+          },
+          "Language": {
+            "maxLength": 2,
+            "type": "string",
+            "description": "Language in ISO-639-1",
+            "nullable": true
+          },
+          "ModifyUser": {
+            "type": "string",
+            "description": "Gets or Sets ModifyUser",
+            "nullable": true
+          },
+          "ModifyDate": {
+            "type": "string",
+            "description": "Gets or Sets ModifyDate",
+            "format": "date-time",
+            "nullable": true
+          },
+          "CreditStatus": {
+            "$ref": "#/components/schemas/CreditStatusDto"
+          },
+          "AttributeValueSet": {
+            "$ref": "#/components/schemas/AttributeValueSetDto"
+          },
+          "Addresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressDto"
+            },
+            "description": "Gets or Sets Addresses"
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "ErrorDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "Context": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "ErrorCode": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "ErrorDescription": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MaintenanceWindow": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "Aktiv": {
+            "type": "boolean"
+          },
+          "DatumVon": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "DatumBis": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Info": {
+            "type": "string",
+            "nullable": true
+          },
+          "ClientStartErlaubt": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "basic": {
+        "type": "http",
+        "description": "Basic Authorization header using the Bearer scheme.",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "basic": [ ]
+    }
+  ]
+}
