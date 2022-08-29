@@ -32,7 +32,7 @@ in connecting to one of Infosystems products:
 * ResSys
 
 All interface are built with .net core/.net and use state of the art OpenAPI descriptions to enable third-party developer quickstart.<br>
-All interfaces are built based on Zalando API Standards: https://github.com/zalando/restful-api-guidelines
+All interfaces are built based on Infosystems Web API Standards, following the IETF RFCs regarding restful HTTP APIs.
 
 At the moment, we enable third party developer to use the following modules via REST API:
 - performis FI - Financial Accounting
@@ -40,9 +40,11 @@ At the moment, we enable third party developer to use the following modules via 
 - performis BA - Base module
 - performis GP - Business Partner
 
+All interfaces offer the same standard functionality to enable you to quickly learn and interact with them. If required, an API might offer enhanced functionality.
+
+To see a graphical representation of the interface, please use the OpenAPI online editor https://editor.swagger.io
+
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 ### Built With
 
@@ -54,13 +56,12 @@ All interfaces are built with:
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Clone the github repository and load the YAML files into your favorite API tester.
+Clone the github repository and load the OpenAPI files into your favorite API tester.
 Speak with us for access to a test environment.
+You may use the 
 
 ### Prerequisites
 
