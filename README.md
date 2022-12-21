@@ -28,7 +28,7 @@
 Infosystem AG has a large variety of standard interface for its products. The interface description is publicly available for every party interested 
 in connecting to one of Infosystems products:  
 * performis ERP
-* LEVA+
+* LEVA⁺
 * ResSys
 
 All interface are built with .net core/.net and use state of the art OpenAPI descriptions to enable third-party developer quickstart.<br>
@@ -39,6 +39,7 @@ At the moment, we enable third party developer to use the following modules via 
 - performis FA - Invoicing
 - performis BA - Base module
 - performis GP - Business Partner
+- LEVA⁺
 
 All interfaces offer the same standard functionality to enable you to quickly learn and interact with them. If required, an API might offer enhanced functionality.
 
