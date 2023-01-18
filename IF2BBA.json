@@ -1,0 +1,1245 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "performis Construction Basis IF2BBA",
+    "description": "Interface for performis Construction Basis related master- and transactional data",
+    "contact": {
+      "name": "Infosystem AG",
+      "url": "https://www.infosystem.ch",
+      "email": "support@infosystem.ch"
+    },
+    "license": {
+      "name": "Proprietary Infosystem"
+    },
+    "version": "v3"
+  },
+  "paths": {
+    "/api/v3/Machine": {
+      "get": {
+        "tags": [
+          "Machine"
+        ],
+        "summary": "Get machine data from LEVA+.",
+        "operationId": "GetMachine",
+        "parameters": [
+          {
+            "name": "X-RequestingSystem",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-RequestingUser",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical ID (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Optional search string for looking up a record within name and searchterm fields.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeID",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "internalMachineID",
+            "in": "query",
+            "description": "Retrieve a specific record by internal machine ID. Ignores other search options if provided.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "externalMachineID",
+            "in": "query",
+            "description": "Retrieve a specific record by external machine ID. Ignores other search options if provided.",
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MachineDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requester has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Machine"
+        ],
+        "summary": "Create or update an existing Machine in LEVA+.",
+        "operationId": "PutMachine",
+        "parameters": [
+          {
+            "name": "X-RequestingSystem",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-RequestingUser",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical ID (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "New or updated machine.\r\nYou may use your own ID.\r\nThe same DTO you receive from a GET is used. The change fields are not required.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MachineDto"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MachineDto"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MachineDto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MachineDto"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "CREATED",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MachineDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requester has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v3/MachineType": {
+      "get": {
+        "tags": [
+          "MachineType"
+        ],
+        "summary": "Get machine type data from LEVA+.",
+        "operationId": "GetMachineType",
+        "parameters": [
+          {
+            "name": "X-RequestingSystem",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-RequestingUser",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical ID (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Optional search string for looking up a record within name and searchterm fields.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineTypeId,\r\nexternalMachineTypeId).",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeID",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search\r\nparameters (searchString, internalMachineTypeId,\r\nexternalMachineTypeId).",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "internalMachineTypeID",
+            "in": "query",
+            "description": "Retrieve a specific record by internal machine type ID. Ignores other search options if provided.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "externalMachineTypeID",
+            "in": "query",
+            "description": "Retrieve a specific record by external machine type ID. Ignores other search options if provided.",
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MachineTypeDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requester has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "MachineType"
+        ],
+        "summary": "Create or update an existing machine type in LEVA+.",
+        "operationId": "PutMachineType",
+        "parameters": [
+          {
+            "name": "X-RequestingSystem",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-RequestingUser",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical ID (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "New or updated machine type.\r\nYou may use your own ID.\r\nThe same DTO you receive from a GET is used. The change fields are not required.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MachineTypeDto"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MachineTypeDto"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MachineTypeDto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MachineTypeDto"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "CREATED",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MachineTypeDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requester has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Application": {
+        "enum": [
+          "B_HTR",
+          "B_SE",
+          "B_TS",
+          "B_WKST"
+        ],
+        "type": "string",
+        "description": "Possible values for performis.Bau.IF2BBA.Core.Dtos.MachineDto.MachineUsages property.\r\n- `B_HTR`: LEVA+\r\n- `B_SE`: Steine + Erden\r\n- `B_TS`: Treibstoff\r\n- `B_WKST`: Werkstatt"
+      },
+      "ApplicationDto": {
+        "required": [
+          "Application"
+        ],
+        "type": "object",
+        "properties": {
+          "Application": {
+            "$ref": "#/components/schemas/Application"
+          }
+        },
+        "additionalProperties": false,
+        "description": "TODO: Comment."
+      },
+      "CounterDto": {
+        "required": [
+          "CounterTypeCode"
+        ],
+        "type": "object",
+        "properties": {
+          "CounterTypeCode": {
+            "maximum": 45489999,
+            "minimum": 45480000,
+            "type": "integer",
+            "description": "C4548 code of the counter type used in the machine, e.g. km, hours of operation.",
+            "format": "int64",
+            "example": 45480010
+          },
+          "Account": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Account to post the counters against.",
+            "nullable": true,
+            "example": "4711"
+          }
+        },
+        "additionalProperties": false,
+        "description": "TODO: Comment."
+      },
+      "DispositionGroupDto": {
+        "required": [
+          "DispositionGroupCode"
+        ],
+        "type": "object",
+        "properties": {
+          "DispositionGroupCode": {
+            "maximum": 45429999,
+            "minimum": 45420000,
+            "type": "integer",
+            "description": "C4542 code of the machine grouping that combines machines of the same type and use\r\n(not necessarily the same model or manufacturer).",
+            "format": "int64",
+            "example": 45420010
+          }
+        },
+        "additionalProperties": false,
+        "description": "TODO: Comment."
+      },
+      "MachineDriverDto": {
+        "type": "object",
+        "properties": {
+          "DriverBpAddrID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Business partner ID of the driver.",
+            "format": "int64",
+            "nullable": true,
+            "example": 57689
+          },
+          "ExternalDriverBpAddrID": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "External business partner ID of the driver - may be used instead of performis.Bau.IF2BBA.Core.Dtos.MachineDriverDto.DriverBpAddrID.",
+            "nullable": true,
+            "example": "ABC-12345"
+          }
+        },
+        "additionalProperties": false,
+        "description": "TODO: Comment."
+      },
+      "MachineDto": {
+        "required": [
+          "Description",
+          "IsExternalResource",
+          "MachineGUID"
+        ],
+        "type": "object",
+        "properties": {
+          "ChangeID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "ChangeID of the entity.",
+            "format": "int64",
+            "nullable": true
+          },
+          "ChangeDate": {
+            "type": "string",
+            "description": "ChangeDate of the entity.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "MachineID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal technical key for the machine.",
+            "format": "int64",
+            "nullable": true,
+            "example": 4711
+          },
+          "ExternalMachineID": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "External technical key for machine - may be used instead of performis.Bau.IF2BBA.Core.Dtos.MachineDto.MachineID.",
+            "nullable": true,
+            "example": "ABC-4711"
+          },
+          "Origin": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Origin of the entity.",
+            "nullable": true
+          },
+          "Active": {
+            "type": "boolean",
+            "description": "Sets whether or not the machine may be used in LEVA+.",
+            "nullable": true,
+            "example": true
+          },
+          "Description": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "Description (e.g. name, type, number) of the machine.",
+            "example": "Genie RS-1932, Blue Version"
+          },
+          "PlacingOnMarket": {
+            "type": "string",
+            "description": "Date when the machine was first registered and used in the business. Important for service dates etc.",
+            "format": "date",
+            "nullable": true,
+            "example": "2022-01-11"
+          },
+          "MachineTypeID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Identification number for performis.Bau.IF2BBA.Core.Dtos.MachineTypeDto.",
+            "format": "int64",
+            "nullable": true,
+            "example": 4711
+          },
+          "ExternalMachineTypeID": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "External identification number for performis.Bau.IF2BBA.Core.Dtos.MachineTypeDto\r\n- may be used instead of the performis.Bau.IF2BBA.Core.Dtos.MachineDto.MachineTypeID.",
+            "nullable": true,
+            "example": "ABC4711"
+          },
+          "MachineGUID": {
+            "maxLength": 36,
+            "minLength": 1,
+            "type": "string",
+            "description": "Unique identifier for a machine. Used for communication with third party systems.",
+            "example": "87315090-9a06-4edc-8fc5-f9f68972e3c6"
+          },
+          "MachineNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Identification number for a single machine.",
+            "format": "int64",
+            "nullable": true,
+            "example": 87315
+          },
+          "AcquisitionDate": {
+            "type": "string",
+            "description": "The date the machine was acquired.",
+            "format": "date",
+            "nullable": true,
+            "example": "2022-11-25"
+          },
+          "UnderWarrantyUntil": {
+            "type": "string",
+            "description": "The warranty expiry date.",
+            "format": "date",
+            "nullable": true,
+            "example": "2028-11-11"
+          },
+          "ManufacturerCode": {
+            "maximum": 45439999,
+            "minimum": 45430000,
+            "type": "integer",
+            "description": "C4543 code of the machine manufacturer.",
+            "format": "int64",
+            "nullable": true,
+            "example": 45430010
+          },
+          "MasterNumber": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "A master number is used to assign and identify the vehicle.",
+            "nullable": true,
+            "example": "325.752.721"
+          },
+          "ChassisNumber": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Chassis number of this vehicle.",
+            "nullable": true,
+            "example": "WMG6315L4FZ010120"
+          },
+          "EngineNumber": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "The number on the engine.",
+            "nullable": true,
+            "example": "D - 0 000 123"
+          },
+          "TypeCertificateNumber": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Official number for identification of the vehicle type by external entities.",
+            "nullable": true,
+            "example": "123123"
+          },
+          "LicensePlate": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Number on the licence plate.",
+            "nullable": true,
+            "example": "BE 1000"
+          },
+          "WikiUrl": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "URL to information portal.",
+            "nullable": true
+          },
+          "OwnerCompanyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Number of the holder company.",
+            "format": "int64",
+            "nullable": true,
+            "example": 1235
+          },
+          "AssetNo": {
+            "maxLength": 16,
+            "type": "string",
+            "description": "Accounting asset number.",
+            "nullable": true,
+            "example": "1546"
+          },
+          "OwnerBpAddrID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Address number of the owner.",
+            "format": "int64",
+            "nullable": true,
+            "example": 12345
+          },
+          "ExternalOwnerBpAddrID": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "External address number of the owner.",
+            "nullable": true,
+            "example": "ABC-12345"
+          },
+          "LocationBpAddrID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Address number of the location.",
+            "format": "int64",
+            "nullable": true,
+            "example": 12345
+          },
+          "ExternalLocationBpAddrID": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "External address number of the location.",
+            "nullable": true,
+            "example": "ABC-12345"
+          },
+          "InvoiceBpAddrID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Address number of the customer to invoice.",
+            "format": "int64",
+            "nullable": true,
+            "example": 12345
+          },
+          "ExternalInvoiceBpAddrID": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "External address number of the customer to invoice.",
+            "nullable": true,
+            "example": "ABC-123451"
+          },
+          "RegularDriverBpAddrID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Address number of the regular driver.",
+            "format": "int64",
+            "nullable": true,
+            "example": 12345
+          },
+          "ExternalRegularDriverBpAddrID": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "External address number of the regular driver.",
+            "nullable": true,
+            "example": "ABC-12345"
+          },
+          "CounterGroupCode": {
+            "maximum": 45469999,
+            "minimum": 45460000,
+            "type": "integer",
+            "description": "C4546 code of the counter group.",
+            "format": "int64",
+            "nullable": true,
+            "example": 45460010
+          },
+          "StandardTrailerMachineID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The identification number of the semi-trailer that is usually coupled with this machine.",
+            "format": "int64",
+            "nullable": true,
+            "example": 5679
+          },
+          "MachineModelCode": {
+            "maximum": 45419999,
+            "minimum": 45410000,
+            "type": "integer",
+            "description": "C4541 code of the machine model, e.g. crane.",
+            "format": "int64",
+            "nullable": true,
+            "example": 45410010
+          },
+          "BranchCode": {
+            "maximum": 45629999,
+            "minimum": 45620000,
+            "type": "integer",
+            "description": "C4562 identification code of the branch to which the machine belongs.",
+            "format": "int64",
+            "nullable": true,
+            "example": 45620010
+          },
+          "IsExternalResource": {
+            "type": "boolean",
+            "description": "Is this machine an external resource?"
+          },
+          "YearOfManufacture": {
+            "type": "integer",
+            "description": "The year in which the machine was built.",
+            "format": "int64",
+            "nullable": true,
+            "example": 2020
+          },
+          "DispositionGroupCode": {
+            "maximum": 45429999,
+            "minimum": 45420000,
+            "type": "integer",
+            "description": "C4542 code of the machine disposition type.",
+            "format": "int64",
+            "nullable": true,
+            "example": 45420010
+          },
+          "LocationApiKey": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "API key to access location service for the machine.",
+            "nullable": true
+          },
+          "MachineLocationSyncEnabled": {
+            "type": "boolean",
+            "description": "Whether or not the machines location is automatically synced.",
+            "nullable": true
+          },
+          "ManufacturerAPICode": {
+            "maximum": 33069999,
+            "minimum": 33060000,
+            "type": "integer",
+            "description": "C3306 code of the used location API connector.",
+            "format": "int64",
+            "nullable": true,
+            "example": 33060010
+          },
+          "EngineType": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "What type of engine does the machine have.",
+            "nullable": true,
+            "example": "Diesel"
+          },
+          "CostCenterNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "TODO: Comment.",
+            "nullable": true,
+            "example": "56789"
+          },
+          "TelematicsDeviceGroupCode": {
+            "maximum": 33369999,
+            "minimum": 33360000,
+            "type": "integer",
+            "description": "C3336 code defining which telematics system the machine uses.",
+            "format": "int64",
+            "nullable": true,
+            "example": 33360010
+          },
+          "LastYearlyService": {
+            "type": "string",
+            "description": "Date of the machine's last yearly service.",
+            "format": "date",
+            "nullable": true,
+            "example": "2023-01-12"
+          },
+          "TypeOfDrives": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TypeOfDriveDto"
+            },
+            "description": "List of type of drives of the machine.",
+            "nullable": true
+          },
+          "DispositionGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DispositionGroupDto"
+            },
+            "description": "List of additional disposition groups. A disposition group combines machines of the same type and use\r\n(not necessarily the same model or manufacturer). (E.g. a 20m boom, might be sold as 12m boom).",
+            "nullable": true
+          },
+          "MachineDrivers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MachineDriverDto"
+            },
+            "description": "List of the business partner IDs of the driver/s that can use this machine.",
+            "nullable": true
+          },
+          "Counters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CounterDto"
+            },
+            "description": "TODO: Comment.",
+            "nullable": true
+          },
+          "MachineUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationDto"
+            },
+            "description": "The applications this machine is used in.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Data transfer object of a LEVA+ `Machine` master data entry."
+      },
+      "MachineTypeDto": {
+        "required": [
+          "Active",
+          "Description"
+        ],
+        "type": "object",
+        "properties": {
+          "ChangeID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "ChangeID of the entity.",
+            "format": "int64",
+            "nullable": true
+          },
+          "ChangeDate": {
+            "type": "string",
+            "description": "ChangeDate of the entity.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "MachineTypeID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Technical identification of the machine type.",
+            "format": "int64",
+            "nullable": true,
+            "example": 4711
+          },
+          "ExternalMachineTypeID": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "External identification of the machine type - may be used instead of the performis.Bau.IF2BBA.Core.Dtos.MachineTypeDto.MachineTypeID.",
+            "nullable": true,
+            "example": "ABC4711"
+          },
+          "Origin": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Origin of the entity.",
+            "nullable": true
+          },
+          "Active": {
+            "type": "boolean",
+            "description": "Is the machine type active or not?"
+          },
+          "Description": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "Name or designation of the associated machine type.",
+            "example": "Genie-GS 1432"
+          },
+          "ManufacturerSeries": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Which machine type series does the machine belong to?",
+            "nullable": true,
+            "example": "GS-1432"
+          },
+          "SuppliersBusinessBpAddrID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Address number of the supplier.",
+            "format": "int64",
+            "nullable": true,
+            "example": 3244
+          },
+          "ExternalSuppliersBusinessBpAddrID": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "External address number of the supplier.",
+            "nullable": true,
+            "example": "ABC-12345"
+          }
+        },
+        "additionalProperties": false,
+        "description": "TODO: Comment."
+      },
+      "MaintenanceWindow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "aktiv": {
+            "type": "boolean"
+          },
+          "datumVon": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "datumBis": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "info": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientStartErlaubt": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "TypeOfDrive": {
+        "enum": [
+          "B",
+          "H",
+          "D",
+          "E"
+        ],
+        "type": "string",
+        "description": "Typ of drive values.\r\n- `B`: Petrol\r\n- `H`: Hybrid\r\n- `D`: Diesel\r\n- `E`: Electric"
+      },
+      "TypeOfDriveDto": {
+        "type": "object",
+        "properties": {
+          "TypeOfDriveCode": {
+            "$ref": "#/components/schemas/TypeOfDrive"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Type of drive of a machine."
+      }
+    },
+    "securitySchemes": {
+      "basic": {
+        "type": "http",
+        "description": "Basic Authorization header using the Bearer scheme.",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "basic": [ ]
+    }
+  ]
+}

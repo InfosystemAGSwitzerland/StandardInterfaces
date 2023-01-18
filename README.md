@@ -36,14 +36,23 @@ All interfaces are built based on Infosystems Web API Standards, following the I
 
 At the moment, we enable third party developer to use the following modules via REST API:
 - performis FI - Financial Accounting
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2FI-3.0.0.json&nocors" target="_blank">See documentation online</a>
 - performis FA - Invoicing
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2FA-3.0.0.json&nocors" target="_blank">See documentation online</a>
 - performis BA - Base module
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BA-3.0.0.json&nocors" target="_blank">See documentation online</a>
 - performis GP - Business Partner
-- LEVA⁺
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2GP-3.0.0.json&nocors" target="_blank">See documentation online</a>
+- LEVA⁺ - Master Data
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BBA.json&nocors" target="_blank">See documentation online</a>
+- LEVA⁺ - Disposition
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BHTR.json&nocors" target="_blank">See documentation online</a>
+- LEVA⁺ - Service
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BWKST.json&nocors" target="_blank">See documentation online</a>
 
 All interfaces offer the same standard functionality to enable you to quickly learn and interact with them. If required, an API might offer enhanced functionality.
 
-To see a graphical representation of the interface, please use the OpenAPI online editor https://editor.swagger.io
+To see a graphical representation of the interface, please use the OpenAPI online editor https://editor.swagger.io or simply click the link below the API above.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
