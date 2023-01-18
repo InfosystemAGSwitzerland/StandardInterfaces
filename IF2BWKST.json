@@ -1,0 +1,529 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "LEVA⁺ Workshop IF2BWKST",
+    "description": "Interface for LEVA⁺ Workshop related master- and transactional data",
+    "contact": {
+      "name": "Infosystem AG",
+      "url": "https://www.infosystem.ch",
+      "email": "support@infosystem.ch"
+    },
+    "license": {
+      "name": "Proprietary Infosystem"
+    },
+    "version": "v3"
+  },
+  "paths": {
+    "/api/v3/ServiceOrder": {
+      "get": {
+        "tags": [
+          "ServiceOrder"
+        ],
+        "summary": "Get ServiceOrder data from LEVA+.",
+        "operationId": "GetServiceOrder",
+        "parameters": [
+          {
+            "name": "X-RequestingSystem",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-RequestingUser",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical ID (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Optional search string for looking up a record within name and searchterm fields.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalServiceOrderId,\r\nexternalServiceOrderId).",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeID",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search\r\nparameters (searchString, internalServiceOrderId,\r\nexternalServiceOrderId).",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "internalServiceOrderID",
+            "in": "query",
+            "description": "Retrieve a specific record by internal service order ID. Ignores other search options if provided.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "externalServiceOrderID",
+            "in": "query",
+            "description": "Retrieve a specific record by external service order ID. Ignores other search options if provided.",
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceOrderDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requester has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ServiceOrder"
+        ],
+        "summary": "Create or update an existing Service Order in LEVA+.",
+        "operationId": "PutServiceOrder",
+        "parameters": [
+          {
+            "name": "X-RequestingSystem",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-RequestingUser",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical ID (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "New or updated ServiceOrder.\r\nYou may use your own ID.\r\nThe same DTO you receive from a GET is used. The change fields are not required.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ServiceOrderDto"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ServiceOrderDto"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ServiceOrderDto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceOrderDto"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "CREATED",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceOrderDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requester has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MaintenanceWindow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "aktiv": {
+            "type": "boolean"
+          },
+          "datumVon": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "datumBis": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "info": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientStartErlaubt": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderStatus": {
+        "enum": [
+          33190010,
+          33190020,
+          33190030,
+          33190040,
+          33190050,
+          33190099
+        ],
+        "type": "integer",
+        "description": "C3319 Order status codes.\r\n- `33190010`: Erfasst\r\n- `33190020`: Bestätigt\r\n- `33190030`: In Arbeit\r\n- `33190040`: Arbeit abgeschlossen\r\n- `33190050`: Abgeschlossen\r\n- `33190099`: Inaktiv / Gelöscht",
+        "format": "int64"
+      },
+      "OrderType": {
+        "enum": [
+          33180010,
+          33180020
+        ],
+        "type": "integer",
+        "description": "C3318 order type codes.\r\n- `33180020`: Dienstleistungsauftrag\r\n- `33180010`: Werkstattauftrag",
+        "format": "int64"
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "ServiceOrderDto": {
+        "required": [
+          "CompanyNo",
+          "OrderDate",
+          "OrderNo",
+          "Title"
+        ],
+        "type": "object",
+        "properties": {
+          "ChangeID": {
+            "type": "integer",
+            "description": "ChangeID of the entity.",
+            "format": "int64",
+            "nullable": true
+          },
+          "ChangeDate": {
+            "type": "string",
+            "description": "ChangeDate of the entity.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ExternalServiceOrderID": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "External key to identify a service order - either performis.Bau.IF2BWKST.Core.Dtos.ServiceOrderDto.ExternalServiceOrderID\r\nor performis.Bau.IF2BWKST.Core.Dtos.ServiceOrderDto.ServiceOrderID has to be used.",
+            "nullable": true,
+            "example": "ABC-4711"
+          },
+          "ServiceOrderID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Primary key of the service order - either performis.Bau.IF2BWKST.Core.Dtos.ServiceOrderDto.ExternalServiceOrderID\r\nor performis.Bau.IF2BWKST.Core.Dtos.ServiceOrderDto.ServiceOrderID has to be used.",
+            "format": "int64",
+            "nullable": true,
+            "example": 4711
+          },
+          "Origin": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Origin of the entity.",
+            "nullable": true
+          },
+          "OrderNo": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string",
+            "description": "The order number of the service - needs to be unique. Used to identify an order in cost accounting.",
+            "example": "W1207"
+          },
+          "CustomerBpAddrID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "AddressID of the customer of the service order.\r\nIf not sent it will be determined through the provided performis.Bau.IF2BWKST.Core.Dtos.ServiceOrderDto.MachineID.",
+            "format": "int64",
+            "nullable": true,
+            "example": 5678
+          },
+          "ExternalCustomerBpAddrID": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "External customer ID of the customer of the service order.\r\nIf not sent it will be determined through the provided performis.Bau.IF2BWKST.Core.Dtos.ServiceOrderDto.MachineID.",
+            "nullable": true,
+            "example": "ABC-4765-78"
+          },
+          "Title": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "description": "Title of the service order. Helps the user to identify a specific order.",
+            "example": "Service order for fork lift"
+          },
+          "MachineID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "ID of the machine which is in service. Either the performis.Bau.IF2BWKST.Core.Dtos.ServiceOrderDto.MachineID or the\r\nperformis.Bau.IF2BWKST.Core.Dtos.ServiceOrderDto.ExternalMachineID has to be used if the service order is for a machine.",
+            "format": "int64",
+            "nullable": true,
+            "example": 4712
+          },
+          "ExternalMachineID": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "External ID of the machine which is in service. Either the performis.Bau.IF2BWKST.Core.Dtos.ServiceOrderDto.MachineID or the\r\nperformis.Bau.IF2BWKST.Core.Dtos.ServiceOrderDto.ExternalMachineID has to be used if the service order is for a machine.",
+            "nullable": true,
+            "example": "MT-56787"
+          },
+          "OrderDate": {
+            "type": "string",
+            "description": "Date the order was created.\r\nIf just performis.Bau.IF2BWKST.Core.Dtos.ServiceOrderDto.OrderDate is sent a full day will be blocked on the LEVA+ Disposition.",
+            "format": "date",
+            "example": "2020-01-01"
+          },
+          "OrderStartDateTime": {
+            "type": "string",
+            "description": "Start date and time of the order.\r\nIf a performis.Bau.IF2BWKST.Core.Dtos.ServiceOrderDto.OrderStartDateTime is sent, the performis.Bau.IF2BWKST.Core.Dtos.ServiceOrderDto.OrderEndDateTime is required.",
+            "format": "date-time",
+            "nullable": true,
+            "example": "2020-01-01T07:00:00Z"
+          },
+          "OrderEndDateTime": {
+            "type": "string",
+            "description": "End date and time of the order.\r\nIf a performis.Bau.IF2BWKST.Core.Dtos.ServiceOrderDto.OrderStartDateTime is sent, the performis.Bau.IF2BWKST.Core.Dtos.ServiceOrderDto.OrderEndDateTime is required.",
+            "format": "date-time",
+            "nullable": true,
+            "example": "2020-01-02T17:00:00Z"
+          },
+          "Notes": {
+            "maxLength": 4000,
+            "type": "string",
+            "description": "Additional notes for the service order.",
+            "nullable": true
+          },
+          "OrderStatusCode": {
+            "$ref": "#/components/schemas/OrderStatus"
+          },
+          "CompanyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Company number the order will be created in.",
+            "format": "int32",
+            "example": 100
+          },
+          "OrderTypeCode": {
+            "$ref": "#/components/schemas/OrderType"
+          }
+        },
+        "additionalProperties": false,
+        "description": "TODO: Comment."
+      }
+    },
+    "securitySchemes": {
+      "basic": {
+        "type": "http",
+        "description": "Basic Authorization header using the Bearer scheme.",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "basic": [ ]
+    }
+  ]
+}
