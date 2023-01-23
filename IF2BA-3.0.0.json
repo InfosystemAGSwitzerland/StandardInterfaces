@@ -177,6 +177,110 @@
         }
       }
     },
+     "/api/v3/filedocument/download/{DocumentID}/{DocumentGUID}": {
+      "get": {
+        "tags": [
+          "Document"
+        ],
+        "summary": "Service to get a document",
+        "description": "Service to get a document",
+        "parameters": [
+          {
+            "name": "DocumentID",
+            "in": "path",
+            "description": "DocumentID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+            {
+            "name": "DocumentGUID",
+            "in": "path",
+            "description": "DocumentGUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-RequestingSystem",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-RequestingUser",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "(Optional) Technical ID (GUID) for Call identification",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+        "200": {
+        "description": "Document data",
+        "content": {
+            "multipart/form-data": {
+                "schema": {
+                    "type": "string",
+                    "format": "binary"
+                }
+            }
+        }
+    },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/v3/Employee": {
       "get": {
         "tags": [
