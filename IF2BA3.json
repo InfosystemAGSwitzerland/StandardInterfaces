@@ -177,110 +177,6 @@
         }
       }
     },
-     "/api/v3/filedocument/download/{DocumentID}/{DocumentGUID}": {
-      "get": {
-        "tags": [
-          "Document"
-        ],
-        "summary": "Service to get a document",
-        "description": "Service to get a document",
-        "parameters": [
-          {
-            "name": "DocumentID",
-            "in": "path",
-            "description": "DocumentID",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-            {
-            "name": "DocumentGUID",
-            "in": "path",
-            "description": "DocumentGUID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-RequestingSystem",
-            "in": "header",
-            "description": "Identifing the system calling the service.",
-            "required": true,
-            "schema": {
-              "maxLength": 50,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-RequestingUser",
-            "in": "header",
-            "description": "Identifing the user calling the service.",
-            "required": true,
-            "schema": {
-              "maxLength": 30,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-Flow-ID",
-            "in": "header",
-            "description": "(Optional) Technical ID (GUID) for Call identification",
-            "schema": {
-              "maxLength": 30,
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-        "200": {
-        "description": "Document data",
-        "content": {
-            "multipart/form-data": {
-                "schema": {
-                    "type": "string",
-                    "format": "binary"
-                }
-            }
-        }
-    },
-          "400": {
-            "description": "Invalid input, object invalid",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MaintenanceWindow"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Basic Authentication failed"
-          },
-          "403": {
-            "description": "Requestor has insufficient rights"
-          },
-          "404": {
-            "description": "No Record found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
     "/api/v3/Employee": {
       "get": {
         "tags": [
@@ -554,6 +450,607 @@
           }
         }
       }
+    },
+    "/api/v3/FileDocument/upload": {
+      "post": {
+        "tags": [
+          "FileDocument"
+        ],
+        "operationId": "UploadFiles",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "files": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDocument"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDocument"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDocument"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/FileDocument/uploadAsFileDocument": {
+      "post": {
+        "tags": [
+          "FileDocument"
+        ],
+        "summary": "Lädt ein oder mehrere Dokumente in Form von FileDocuments in die Dokumententabelle.",
+        "operationId": "UploadAsFileDocument",
+        "parameters": [
+          {
+            "name": "herkunft",
+            "in": "query",
+            "description": "Herkunft in Form von einem String für die Dokumententabelle.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "externeId",
+            "in": "query",
+            "description": "Id für die Verknüpfung des Dokumentes in der Dokumenten-Mapping-Tabelle.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "firmaNr",
+            "in": "query",
+            "description": "Firmanummer für die Angabe in der Dokumenten-Mapping-Tabelle.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "c29Herkunft",
+            "in": "query",
+            "description": "Herkunft in Form eines Codes für die Dokumenten-Mapping-Tabelle.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Array von performis.BA.Core.Model.Common.FileDocument.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FileDocument"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FileDocument"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FileDocument"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FileDocument"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FileDocument"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FileDocument"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/FileDocument/uploadManyAsFileDocument": {
+      "post": {
+        "tags": [
+          "FileDocument"
+        ],
+        "summary": "Lädt ein oder mehrere Dokumente in Form von FileDocument inkl optionaler ID des FileDocumentMappingFolder in die Dokumententabelle.",
+        "operationId": "UploadManyAsFileDocument",
+        "parameters": [
+          {
+            "name": "herkunft",
+            "in": "query",
+            "description": "Herkunft in Form von einem String für die Dokumententabelle.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "externeId",
+            "in": "query",
+            "description": "Id für die Verknüpfung des Dokumentes in der Dokumenten-Mapping-Tabelle.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "firmaNr",
+            "in": "query",
+            "description": "Firmanummer für die Angabe in der Dokumenten-Mapping-Tabelle.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "c29Herkunft",
+            "in": "query",
+            "description": "Herkunft in Form eines Codes für die Dokumenten-Mapping-Tabelle.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Array von System.Collections.Generic.KeyValuePair mit einem performis.BA.Core.Model.Common.FileDocument und optionaler ID des performis.BA.Core.Model.Common.FileDocumentMapping.FileDocumentMappingFolder.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FileDocumentInt64NullableKeyValuePair"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FileDocumentInt64NullableKeyValuePair"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FileDocumentInt64NullableKeyValuePair"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FileDocument"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FileDocument"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FileDocument"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/FileDocument/delete/{dokument_mapping_id}": {
+      "post": {
+        "tags": [
+          "FileDocument"
+        ],
+        "operationId": "DeleteFileDocument",
+        "parameters": [
+          {
+            "name": "dokument_mapping_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/FileDocument/download/{file_document_id}/{file_document_guid}": {
+      "get": {
+        "tags": [
+          "FileDocument"
+        ],
+        "operationId": "DownloadFileDocument",
+        "parameters": [
+          {
+            "name": "file_document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "file_document_guid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v3/FileDocument/{file_document_id}/{file_document_guid}": {
+      "get": {
+        "tags": [
+          "FileDocument"
+        ],
+        "operationId": "GetFileDocument",
+        "parameters": [
+          {
+            "name": "file_document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "file_document_guid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDocument"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDocument"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDocument"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v3/FileDocument/MergedFileDocument/{ignoreError}": {
+      "post": {
+        "tags": [
+          "FileDocument"
+        ],
+        "summary": "Fügt die Dokumente gemäss Input-Liste als PDF-Datei zusammen und liefert diese als Base64-String zurück.",
+        "operationId": "MergedFileDocument",
+        "parameters": [
+          {
+            "name": "ignoreError",
+            "in": "path",
+            "description": "Wenn `true` werden Fehler beim Laden einzelner Dokumente ignoriert.",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Liste von Dokument Id und Guid.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MergedFileDocumentRequestItemDto"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MergedFileDocumentRequestItemDto"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MergedFileDocumentRequestItemDto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v3/FileDocument/FileDocumentsAsZip/{ignoreError}": {
+      "post": {
+        "tags": [
+          "FileDocument"
+        ],
+        "summary": "Fügt die Dokumente gemäss Input-Liste in einer Zip-Datei zusammen und liefert diese als Base64-String zurück.",
+        "operationId": "FileDocumentsAsZip",
+        "parameters": [
+          {
+            "name": "ignoreError",
+            "in": "path",
+            "description": "Wenn `true` werden Fehler beim Laden einzelner Dokumente ignoriert.",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Liste von Dokument Id und Guid",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MergedFileDocumentRequestItemDto"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MergedFileDocumentRequestItemDto"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MergedFileDocumentRequestItemDto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v3/FileDocument/fileinfo/{file_document_id}/{file_document_guid}": {
+      "get": {
+        "tags": [
+          "FileDocument"
+        ],
+        "operationId": "GetFileInfo",
+        "parameters": [
+          {
+            "name": "file_document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "file_document_guid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDocument"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDocument"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDocument"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -704,12 +1201,14 @@
             "type": "integer",
             "description": "ChangeID of the entity.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "ChangeDate": {
             "type": "string",
             "description": "ChangeDate of the entity.",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "CodeID": {
             "maximum": 9999999999,
@@ -867,13 +1366,15 @@
             "type": "integer",
             "description": "ChangeID of the entity.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "ChangeDate": {
             "type": "string",
             "description": "ChangeDate of the entity.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "EmployeeID": {
             "maximum": 9999999999,
@@ -923,6 +1424,12 @@
             "maxLength": 30,
             "type": "string",
             "description": "Performis database username of the employee",
+            "nullable": true
+          },
+          "UserUPN": {
+            "maxLength": 1024,
+            "type": "string",
+            "description": "UPN of user - will be used to find a performis username for the employee",
             "nullable": true
           },
           "Description": {
@@ -1039,6 +1546,57 @@
         },
         "additionalProperties": false
       },
+      "FileDocument": {
+        "type": "object",
+        "properties": {
+          "FileDocumentId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "FileDocumentGuid": {
+            "type": "string",
+            "nullable": true
+          },
+          "FileName": {
+            "type": "string",
+            "nullable": true
+          },
+          "Extension": {
+            "type": "string",
+            "nullable": true
+          },
+          "MimeType": {
+            "type": "string",
+            "nullable": true
+          },
+          "Data": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "DataBase64": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FileDocumentInt64NullableKeyValuePair": {
+        "type": "object",
+        "properties": {
+          "Key": {
+            "$ref": "#/components/schemas/FileDocument"
+          },
+          "Value": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "MaintenanceWindow": {
         "type": "object",
         "properties": {
@@ -1064,6 +1622,20 @@
           },
           "ClientStartErlaubt": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MergedFileDocumentRequestItemDto": {
+        "type": "object",
+        "properties": {
+          "file_document_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "file_document_guid": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
