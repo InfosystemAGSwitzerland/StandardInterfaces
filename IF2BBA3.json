@@ -162,9 +162,6 @@
           "403": {
             "description": "Requester has insufficient rights"
           },
-          "404": {
-            "description": "No Record found"
-          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -212,26 +209,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/MachineDto"
-                }
+                "$ref": "#/components/schemas/MachineDto"
               }
             },
             "text/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/MachineDto"
-                }
+                "$ref": "#/components/schemas/MachineDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/MachineDto"
-                }
+                "$ref": "#/components/schemas/MachineDto"
               }
             }
           }
@@ -242,10 +230,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MachineDto"
-                  }
+                  "$ref": "#/components/schemas/MachineDto"
                 }
               }
             }
@@ -255,10 +240,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MachineDto"
-                  }
+                  "$ref": "#/components/schemas/MachineDto"
                 }
               }
             }
@@ -288,9 +270,6 @@
           },
           "403": {
             "description": "Requester has insufficient rights"
-          },
-          "404": {
-            "description": "No Record found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -446,9 +425,6 @@
           "403": {
             "description": "Requester has insufficient rights"
           },
-          "404": {
-            "description": "No Record found"
-          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -496,26 +472,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/MachineTypeDto"
-                }
+                "$ref": "#/components/schemas/MachineTypeDto"
               }
             },
             "text/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/MachineTypeDto"
-                }
+                "$ref": "#/components/schemas/MachineTypeDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/MachineTypeDto"
-                }
+                "$ref": "#/components/schemas/MachineTypeDto"
               }
             }
           }
@@ -526,10 +493,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MachineTypeDto"
-                  }
+                  "$ref": "#/components/schemas/MachineTypeDto"
                 }
               }
             }
@@ -539,10 +503,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MachineTypeDto"
-                  }
+                  "$ref": "#/components/schemas/MachineTypeDto"
                 }
               }
             }
@@ -572,9 +533,6 @@
           },
           "403": {
             "description": "Requester has insufficient rights"
-          },
-          "404": {
-            "description": "No Record found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -606,7 +564,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "TODO: Comment."
+        "description": "Data transfer object of a machine's application usage."
       },
       "CounterDto": {
         "required": [
@@ -631,7 +589,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "TODO: Comment."
+        "description": "Data transfer object of a machine's counter."
       },
       "DispositionGroupDto": {
         "required": [
@@ -649,12 +607,12 @@
           }
         },
         "additionalProperties": false,
-        "description": "TODO: Comment."
+        "description": "Data transfer object of a machine's additional disposition group."
       },
       "MachineDriverDto": {
         "type": "object",
         "properties": {
-          "DriverBpAddrID": {
+          "DriverBpID": {
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
@@ -663,23 +621,26 @@
             "nullable": true,
             "example": 57689
           },
-          "ExternalDriverBpAddrID": {
+          "ExternalDriverBpID": {
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "description": "External business partner ID of the driver - may be used instead of performis.Bau.IF2BBA.Core.Dtos.MachineDriverDto.DriverBpAddrID.",
+            "description": "External business partner ID of the driver - may be used instead of performis.Bau.IF2BBA.Core.Dtos.MachineDriverDto.DriverBpID.",
             "nullable": true,
             "example": "ABC-12345"
           }
         },
         "additionalProperties": false,
-        "description": "TODO: Comment."
+        "description": "Data transfer object of a machine's driver."
       },
       "MachineDto": {
         "required": [
+          "Active",
           "Description",
           "IsExternalResource",
-          "MachineGUID"
+          "MachineGUID",
+          "MachineModelCode",
+          "PlacingOnMarket"
         ],
         "type": "object",
         "properties": {
@@ -689,13 +650,15 @@
             "type": "integer",
             "description": "ChangeID of the entity.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "ChangeDate": {
             "type": "string",
             "description": "ChangeDate of the entity.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "MachineID": {
             "maximum": 9999999999,
@@ -718,12 +681,12 @@
             "maxLength": 10,
             "type": "string",
             "description": "Origin of the entity.",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "Active": {
             "type": "boolean",
             "description": "Sets whether or not the machine may be used in LEVA+.",
-            "nullable": true,
             "example": true
           },
           "Description": {
@@ -737,7 +700,6 @@
             "type": "string",
             "description": "Date when the machine was first registered and used in the business. Important for service dates etc.",
             "format": "date",
-            "nullable": true,
             "example": "2022-01-11"
           },
           "MachineTypeID": {
@@ -903,20 +865,20 @@
             "nullable": true,
             "example": "ABC-123451"
           },
-          "RegularDriverBpAddrID": {
+          "RegularDriverBpID": {
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Address number of the regular driver.",
+            "description": "Business partner ID of the regular driver.",
             "format": "int64",
             "nullable": true,
             "example": 12345
           },
-          "ExternalRegularDriverBpAddrID": {
+          "ExternalRegularDriverBpID": {
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "description": "External address number of the regular driver.",
+            "description": "External business partner ID of the regular driver.",
             "nullable": true,
             "example": "ABC-12345"
           },
@@ -938,13 +900,20 @@
             "nullable": true,
             "example": 5679
           },
+          "ExternalStandardTrailerMachineID": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "integer",
+            "description": "The external identification number of the semi-trailer that is usually coupled with this machine.",
+            "format": "int64",
+            "nullable": true
+          },
           "MachineModelCode": {
             "maximum": 45419999,
             "minimum": 45410000,
             "type": "integer",
             "description": "C4541 code of the machine model, e.g. crane.",
             "format": "int64",
-            "nullable": true,
             "example": 45410010
           },
           "BranchCode": {
@@ -982,12 +951,12 @@
             "description": "API key to access location service for the machine.",
             "nullable": true
           },
-          "MachineLocationSyncEnabled": {
+          "IsMachineLocationSyncEnabled": {
             "type": "boolean",
             "description": "Whether or not the machines location is automatically synced.",
             "nullable": true
           },
-          "ManufacturerAPICode": {
+          "ManufacturerApiCode": {
             "maximum": 33069999,
             "minimum": 33060000,
             "type": "integer",
@@ -1006,7 +975,7 @@
           "CostCenterNo": {
             "maxLength": 20,
             "type": "string",
-            "description": "TODO: Comment.",
+            "description": "Number of the cost center this machine is billed internally to.",
             "nullable": true,
             "example": "56789"
           },
@@ -1055,7 +1024,7 @@
             "items": {
               "$ref": "#/components/schemas/CounterDto"
             },
-            "description": "TODO: Comment.",
+            "description": "List of counters of the machine.",
             "nullable": true
           },
           "MachineUsages": {
@@ -1063,12 +1032,12 @@
             "items": {
               "$ref": "#/components/schemas/ApplicationDto"
             },
-            "description": "The applications this machine is used in.",
+            "description": "List of applications this machine is used in.",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "Data transfer object of a LEVA+ `Machine` master data entry."
+        "description": "Data transfer object of a performis Construction Basis `Machine` master data entry."
       },
       "MachineTypeDto": {
         "required": [
@@ -1083,13 +1052,15 @@
             "type": "integer",
             "description": "ChangeID of the entity.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "ChangeDate": {
             "type": "string",
             "description": "ChangeDate of the entity.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "MachineTypeID": {
             "maximum": 9999999999,
@@ -1111,7 +1082,8 @@
             "maxLength": 10,
             "type": "string",
             "description": "Origin of the entity.",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "Active": {
             "type": "boolean",
@@ -1150,32 +1122,32 @@
           }
         },
         "additionalProperties": false,
-        "description": "TODO: Comment."
+        "description": "Data transfer object of a performis Construction Basis `MachineType` master data entry."
       },
       "MaintenanceWindow": {
         "type": "object",
         "properties": {
-          "id": {
+          "Id": {
             "type": "integer",
             "format": "int64",
             "nullable": true
           },
-          "aktiv": {
+          "Aktiv": {
             "type": "boolean"
           },
-          "datumVon": {
+          "DatumVon": {
             "type": "string",
             "format": "date-time"
           },
-          "datumBis": {
+          "DatumBis": {
             "type": "string",
             "format": "date-time"
           },
-          "info": {
+          "Info": {
             "type": "string",
             "nullable": true
           },
-          "clientStartErlaubt": {
+          "ClientStartErlaubt": {
             "type": "boolean"
           }
         },
@@ -1221,12 +1193,12 @@
       "TypeOfDriveDto": {
         "type": "object",
         "properties": {
-          "TypeOfDriveCode": {
+          "TypeOfDrive": {
             "$ref": "#/components/schemas/TypeOfDrive"
           }
         },
         "additionalProperties": false,
-        "description": "Type of drive of a machine."
+        "description": "Data transfer object of a machine's type of drive."
       }
     },
     "securitySchemes": {
