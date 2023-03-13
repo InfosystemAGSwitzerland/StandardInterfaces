@@ -162,9 +162,6 @@
           "403": {
             "description": "Requester has insufficient rights"
           },
-          "404": {
-            "description": "No Record found"
-          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -212,26 +209,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/ServiceOrderDto"
-                }
+                "$ref": "#/components/schemas/ServiceOrderDto"
               }
             },
             "text/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/ServiceOrderDto"
-                }
+                "$ref": "#/components/schemas/ServiceOrderDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/ServiceOrderDto"
-                }
+                "$ref": "#/components/schemas/ServiceOrderDto"
               }
             }
           }
@@ -242,10 +230,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ServiceOrderDto"
-                  }
+                  "$ref": "#/components/schemas/ServiceOrderDto"
                 }
               }
             }
@@ -255,10 +240,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ServiceOrderDto"
-                  }
+                  "$ref": "#/components/schemas/ServiceOrderDto"
                 }
               }
             }
@@ -289,9 +271,6 @@
           "403": {
             "description": "Requester has insufficient rights"
           },
-          "404": {
-            "description": "No Record found"
-          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -304,27 +283,27 @@
       "MaintenanceWindow": {
         "type": "object",
         "properties": {
-          "id": {
+          "Id": {
             "type": "integer",
             "format": "int64",
             "nullable": true
           },
-          "aktiv": {
+          "Aktiv": {
             "type": "boolean"
           },
-          "datumVon": {
+          "DatumVon": {
             "type": "string",
             "format": "date-time"
           },
-          "datumBis": {
+          "DatumBis": {
             "type": "string",
             "format": "date-time"
           },
-          "info": {
+          "Info": {
             "type": "string",
             "nullable": true
           },
-          "clientStartErlaubt": {
+          "ClientStartErlaubt": {
             "type": "boolean"
           }
         },
@@ -332,25 +311,32 @@
       },
       "OrderStatus": {
         "enum": [
-          33190010,
-          33190020,
-          33190030,
-          33190040,
-          33190050,
-          33190099
+          "Erfasst",
+          "Bestaetigt",
+          "InArbeit",
+          "ArbeitAbgeschlossen",
+          "Abgeschlossen",
+          "Inaktiv"
         ],
-        "type": "integer",
-        "description": "C3319 Order status codes.\r\n- `33190010`: Erfasst\r\n- `33190020`: Bestätigt\r\n- `33190030`: In Arbeit\r\n- `33190040`: Arbeit abgeschlossen\r\n- `33190050`: Abgeschlossen\r\n- `33190099`: Inaktiv / Gelöscht",
-        "format": "int64"
+        "type": "string",
+        "description": "C3319 Order status codes.\r\n- `33190010`: Erfasst\r\n- `33190020`: Bestätigt\r\n- `33190030`: In Arbeit\r\n- `33190040`: Arbeit abgeschlossen\r\n- `33190050`: Abgeschlossen\r\n- `33190099`: Inaktiv / Gelöscht"
       },
       "OrderType": {
         "enum": [
-          33180010,
-          33180020
+          "Dienstleistungsauftrag",
+          "Werkstattauftrag"
         ],
-        "type": "integer",
-        "description": "C3318 order type codes.\r\n- `33180020`: Dienstleistungsauftrag\r\n- `33180010`: Werkstattauftrag",
-        "format": "int64"
+        "type": "string",
+        "description": "C3318 order type codes.\r\n- `33180020`: Dienstleistungsauftrag\r\n- `33180010`: Werkstattauftrag"
+      },
+      "PoolJobStatus": {
+        "enum": [
+          "KeinPoolauftrag",
+          "Poolauftrag",
+          "PoolauftragFuerNiederlassung"
+        ],
+        "type": "string",
+        "description": "C3321 PoolJobStatus Codes\r\n- `33210010`: KeinPoolauftrag\r\n- `33210020`: Poolauftrag\r\n- `33210030`: PoolauftragFuerNiederlassung"
       },
       "ProblemDetails": {
         "type": "object",
@@ -381,9 +367,13 @@
       },
       "ServiceOrderDto": {
         "required": [
+          "BranchCode",
           "CompanyNo",
+          "Export",
+          "IsOutcontracting",
           "OrderDate",
           "OrderNo",
+          "PoolJobCode",
           "Title"
         ],
         "type": "object",
@@ -392,13 +382,15 @@
             "type": "integer",
             "description": "ChangeID of the entity.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "ChangeDate": {
             "type": "string",
             "description": "ChangeDate of the entity.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "ExternalServiceOrderID": {
             "maxLength": 50,
@@ -420,7 +412,8 @@
             "maxLength": 10,
             "type": "string",
             "description": "Origin of the entity.",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "OrderNo": {
             "maxLength": 20,
@@ -507,10 +500,38 @@
           },
           "OrderTypeCode": {
             "$ref": "#/components/schemas/OrderType"
+          },
+          "BranchCode": {
+            "maximum": 33179999,
+            "minimum": 33170000,
+            "type": "integer",
+            "description": "Code 3317\r\nIs a required field on the Table, can not be set by the user, default false",
+            "format": "int64"
+          },
+          "Export": {
+            "type": "integer",
+            "description": "Is a required field on the Table, can not be set by the user, default false",
+            "format": "int32"
+          },
+          "IsOutcontracting": {
+            "type": "integer",
+            "description": "Is a required field on the Table, can not be set by the user, default false",
+            "format": "int32"
+          },
+          "PoolJobCode": {
+            "$ref": "#/components/schemas/PoolJobStatus"
+          },
+          "VATSystemCode": {
+            "maximum": 1249999,
+            "minimum": 1240000,
+            "type": "integer",
+            "description": "Code 124\r\nIs not Required, but if not given, will be loaded from the customer",
+            "format": "int64",
+            "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "TODO: Comment."
+        "description": "ServiceOrder Entity"
       }
     },
     "securitySchemes": {
