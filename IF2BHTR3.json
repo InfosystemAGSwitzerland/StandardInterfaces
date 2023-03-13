@@ -84,7 +84,7 @@
           {
             "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineTypeId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalAccessoryId,\r\nexternalAccessoryId).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -93,7 +93,7 @@
           {
             "name": "changesSinceChangeID",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search\r\nparameters (searchString, internalMachineTypeId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search\r\nparameters (searchString, internalAccessoryId,\r\nexternalAccessoryId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -102,9 +102,9 @@
             }
           },
           {
-            "name": "internalMachineTypeID",
+            "name": "internalAccessoryId",
             "in": "query",
-            "description": "Retrieve a specific record by internal machine type ID. Ignores other search options if provided.",
+            "description": "Retrieve a specific record by internal accessory ID. Ignores other search options if provided.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
@@ -113,9 +113,9 @@
             }
           },
           {
-            "name": "externalMachineID",
+            "name": "externalAccessoryId",
             "in": "query",
-            "description": "Retrieve a specific record by external machine type ID. Ignores other search options if provided.",
+            "description": "Retrieve a specific record by external accessory ID. Ignores other search options if provided.",
             "schema": {
               "maxLength": 50,
               "type": "string"
@@ -161,9 +161,6 @@
           },
           "403": {
             "description": "Requester has insufficient rights"
-          },
-          "404": {
-            "description": "No Record found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -212,26 +209,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/AccessoryDto"
-                }
+                "$ref": "#/components/schemas/AccessoryDto"
               }
             },
             "text/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/AccessoryDto"
-                }
+                "$ref": "#/components/schemas/AccessoryDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/AccessoryDto"
-                }
+                "$ref": "#/components/schemas/AccessoryDto"
               }
             }
           }
@@ -242,10 +230,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccessoryDto"
-                  }
+                  "$ref": "#/components/schemas/AccessoryDto"
                 }
               }
             }
@@ -255,10 +240,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AccessoryDto"
-                  }
+                  "$ref": "#/components/schemas/AccessoryDto"
                 }
               }
             }
@@ -289,9 +271,6 @@
           "403": {
             "description": "Requester has insufficient rights"
           },
-          "404": {
-            "description": "No Record found"
-          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -303,16 +282,16 @@
     "schemas": {
       "AccessoryDisplayType": {
         "enum": [
-          "NONE",
-          "IDENTIFICATION",
-          "QUANTITY"
+          "None",
+          "Identification",
+          "Quantity"
         ],
         "type": "string",
         "description": "Possible values for performis.Bau.IF2BHTR.Core.Dtos.AccessoryDto.AccessoryDisplayType property.\r\n- `NONE`: Accessory without identification nor quantity\r\n- `IDENTIFICATION`: Accessory with identification\r\n- `QUANTITY`: Accessory with quantity"
       },
       "AccessoryDto": {
         "required": [
-          "AccessoryType",
+          "AccessoryDisplayType",
           "Description",
           "DispositionGroupCode",
           "IsExternalResource"
@@ -325,13 +304,15 @@
             "type": "integer",
             "description": "ChangeID of the entity.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "ChangeDate": {
             "type": "string",
             "description": "ChangeDate of the entity.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "AccessoryID": {
             "maximum": 9999999999,
@@ -353,7 +334,8 @@
             "maxLength": 10,
             "type": "string",
             "description": "Origin of the entity.",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "Active": {
             "type": "boolean",
@@ -367,7 +349,7 @@
             "description": "Accessory's name.",
             "example": "Wooden wedge"
           },
-          "AccessoryType": {
+          "AccessoryDisplayType": {
             "$ref": "#/components/schemas/AccessoryDisplayType"
           },
           "NumberOfItems": {
@@ -408,7 +390,7 @@
             "maxLength": 20,
             "minLength": 1,
             "type": "string",
-            "description": "TODO: Comment.",
+            "description": "Cost center for accessory",
             "nullable": true
           },
           "OwnerCompanyNo": {
@@ -429,7 +411,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "TODO: Comment."
+        "description": "Data transfer object of a LEVA+ `Accessory` master data entry."
       },
       "DispositionGroupDto": {
         "required": [
@@ -441,38 +423,38 @@
             "maximum": 45429999,
             "minimum": 45420000,
             "type": "integer",
-            "description": "C4542 code of the machine grouping that combines machines of the same type and use\r\n(not necessarily the same model or manufacturer).",
+            "description": "C4542 code of the accessory grouping that combines accessories of the same type and use\r\n(not necessarily the same model or manufacturer).",
             "format": "int64",
             "example": 45420010
           }
         },
         "additionalProperties": false,
-        "description": "TODO: Comment."
+        "description": "Data transfer object of an accessory's additional disposition group."
       },
       "MaintenanceWindow": {
         "type": "object",
         "properties": {
-          "id": {
+          "Id": {
             "type": "integer",
             "format": "int64",
             "nullable": true
           },
-          "aktiv": {
+          "Aktiv": {
             "type": "boolean"
           },
-          "datumVon": {
+          "DatumVon": {
             "type": "string",
             "format": "date-time"
           },
-          "datumBis": {
+          "DatumBis": {
             "type": "string",
             "format": "date-time"
           },
-          "info": {
+          "Info": {
             "type": "string",
             "nullable": true
           },
-          "clientStartErlaubt": {
+          "ClientStartErlaubt": {
             "type": "boolean"
           }
         },
