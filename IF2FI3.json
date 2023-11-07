@@ -5,7 +5,8 @@
     "description": "IF2FI Rest Api",
     "contact": {
       "name": "Infosystem AG",
-      "email": "info@infosystem.ch"
+      "email": "support@infosystem.ch",
+      "url": "https://www.infosystem.ch"
     },
     "version": "v3"
   },
@@ -164,16 +165,6 @@
               }
             }
           },
-          "503": {
-            "description": "Service unavailable due to maintenance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MaintenanceWindow"
-                }
-              }
-            }
-          },
           "401": {
             "description": "Basic Authentication failed"
           },
@@ -185,6 +176,16 @@
           },
           "500": {
             "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
           }
         }
       },
@@ -276,16 +277,6 @@
               }
             }
           },
-          "503": {
-            "description": "Service unavailable due to maintenance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MaintenanceWindow"
-                }
-              }
-            }
-          },
           "401": {
             "description": "Basic Authentication failed"
           },
@@ -297,6 +288,16 @@
           },
           "500": {
             "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
           }
         }
       }
@@ -380,16 +381,6 @@
               }
             }
           },
-          "503": {
-            "description": "Service unavailable due to maintenance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MaintenanceWindow"
-                }
-              }
-            }
-          },
           "401": {
             "description": "Basic Authentication failed"
           },
@@ -401,6 +392,16 @@
           },
           "500": {
             "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
           }
         }
       }
@@ -542,7 +543,8 @@
                   "items": {
                     "$ref": "#/components/schemas/SalesChannelDto"
                   }
-                }
+                },
+                "examples": {}
               }
             }
           },
@@ -552,16 +554,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MaintenanceWindow"
                 }
               }
             }
@@ -577,6 +569,16 @@
           },
           "500": {
             "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
           }
         }
       }
@@ -1099,7 +1101,7 @@
   },
   "security": [
     {
-      "basic": [ ]
+      "basic": []
     }
   ]
 }

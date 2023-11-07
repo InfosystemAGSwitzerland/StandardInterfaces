@@ -5,7 +5,8 @@
     "description": "performis IF2GP | Interface for Business Partner, Contacts and Addresses",
     "contact": {
       "name": "Infosystem AG",
-      "email": "support@infosystem.ch"
+      "email": "support@infosystem.ch",
+      "url": "https://www.infosystem.ch"
     },
     "version": "v3"
   },
@@ -210,6 +211,18 @@
               }
             }
           },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
           "503": {
             "description": "Service unavailable due to maintenance",
             "content": {
@@ -229,18 +242,6 @@
                 }
               }
             }
-          },
-          "401": {
-            "description": "Basic Authentication failed"
-          },
-          "403": {
-            "description": "Requestor has insufficient rights"
-          },
-          "404": {
-            "description": "No Record found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -366,6 +367,18 @@
               }
             }
           },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
           "503": {
             "description": "Service unavailable due to maintenance",
             "content": {
@@ -385,18 +398,6 @@
                 }
               }
             }
-          },
-          "401": {
-            "description": "Basic Authentication failed"
-          },
-          "403": {
-            "description": "Requestor has insufficient rights"
-          },
-          "404": {
-            "description": "No Record found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
@@ -1135,7 +1136,7 @@
   },
   "security": [
     {
-      "basic": [ ]
+      "basic": []
     }
   ]
 }
