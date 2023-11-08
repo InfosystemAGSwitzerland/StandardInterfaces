@@ -35,6 +35,8 @@ All interface are built with .net core/.net and use state of the art OpenAPI des
 All interfaces are built based on Infosystems Web API Standards, following the IETF RFCs regarding restful HTTP APIs.
 
 At the moment, we enable third party developer to use the following modules via REST API:
+- leva+ 
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2LEVA3.json&nocors" target="_blank">See documentation online</a>
 - performis FI - Financial Accounting
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2FI3.json&nocors" target="_blank">See documentation online</a>
 - performis FA - Invoicing
@@ -43,11 +45,11 @@ At the moment, we enable third party developer to use the following modules via 
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BA3.json&nocors" target="_blank">See documentation online</a>
 - performis GP - Business Partner
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2GP3.json&nocors" target="_blank">See documentation online</a>
-- LEVA⁺ - Master Data
+- leva+ - Master Data
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BBA3.json&nocors" target="_blank">See documentation online</a>
-- LEVA⁺ - Disposition
+- leva+ - Scheduling & Distribution
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BHTR3.json&nocors" target="_blank">See documentation online</a>
-- LEVA⁺ - Service
+- leva+ - Workshop
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BWKST3.json&nocors" target="_blank">See documentation online</a>
 
 All interfaces offer the same standard functionality to enable you to quickly learn and interact with them. If required, an API might offer enhanced functionality.
