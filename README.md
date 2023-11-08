@@ -27,9 +27,9 @@
 ## About The Project
 Infosystem AG has a large variety of standard interface for its products. The interface description is publicly available for every party interested 
 in connecting to one of Infosystems products:  
-* performis ERP
-* LEVA⁺
-* ResSys
+* performis
+* leva+
+* ressys
 
 All interface are built with .net core/.net and use state of the art OpenAPI descriptions to enable third-party developer quickstart.<br>
 All interfaces are built based on Infosystems Web API Standards, following the IETF RFCs regarding restful HTTP APIs.
