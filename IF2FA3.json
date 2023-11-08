@@ -5,7 +5,8 @@
     "description": "IF2FA Rest Api",
     "contact": {
       "name": "Infosystem AG",
-      "email": "info@infosystem.ch"
+      "email": "support@infosystem.ch",
+      "url": "https://www.infosystem.ch"
     },
     "version": "v3"
   },
@@ -193,6 +194,15 @@
               }
             }
           },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
           "503": {
             "description": "Service unavailable due to maintenance",
             "content": {
@@ -202,15 +212,6 @@
                 }
               }
             }
-          },
-          "401": {
-            "description": "Basic Authentication failed"
-          },
-          "403": {
-            "description": "Requestor has insufficient rights"
-          },
-          "404": {
-            "description": "No Record found"
           }
         }
       }
@@ -1367,7 +1368,7 @@
   },
   "security": [
     {
-      "basic": [ ]
+      "basic": []
     }
   ]
 }
