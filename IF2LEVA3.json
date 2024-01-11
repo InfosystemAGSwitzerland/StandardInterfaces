@@ -17,13 +17,13 @@
     }
   ],
   "paths": {
-    "/api/v3/base/Accessory": {
+    "/api/v3/master-data/accessories": {
       "get": {
         "summary": "Search for Accessory",
-        "operationId": "base-GetAccessory",
+        "operationId": "GetMasterDataAccessories",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -33,7 +33,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -52,7 +52,7 @@
             }
           },
           {
-            "name": "searchString",
+            "name": "search_string",
             "in": "query",
             "description": "Optional search string for looking up a record within name and searchterm fields.",
             "schema": {
@@ -82,18 +82,18 @@
             }
           },
           {
-            "name": "changesSinceDateTime",
+            "name": "changes_since_datetime",
             "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalAccessoryId,\r\nexternalAccessoryId).",
+            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (search_string, internalAccessoryId,\r\nexternalAccessoryId).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changesSinceChangeID",
+            "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search\r\nparameters (searchString, internalAccessoryId,\r\nexternalAccessoryId).",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search\r\nparameters (search_string, internalAccessoryId,\r\nexternalAccessoryId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -102,7 +102,7 @@
             }
           },
           {
-            "name": "internalAccessoryId",
+            "name": "internal_accessory_id",
             "in": "query",
             "description": "Retrieve a specific record by internal accessory ID. Ignores other search options if provided.",
             "schema": {
@@ -113,7 +113,7 @@
             }
           },
           {
-            "name": "externalAccessoryId",
+            "name": "external_accessory_id",
             "in": "query",
             "description": "Retrieve a specific record by external accessory ID. Ignores other search options if provided.",
             "schema": {
@@ -165,7 +165,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -175,16 +175,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -196,15 +196,15 @@
         },
         "description": "By passing in the appropriate options, the service searches for available accessories in the system.",
         "tags": [
-          "MasterData"
+          "Master Data"
         ]
       },
       "put": {
         "summary": "Modify Accessory",
-        "operationId": "base-PutAccessory",
+        "operationId": "PutMasterDataAccessories",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -214,7 +214,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -290,7 +290,7 @@
             }
           },
           "201": {
-            "description": "CREATED",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -300,7 +300,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Reqeust",
             "content": {
               "application/json": {
                 "schema": {
@@ -310,16 +310,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -331,17 +331,18 @@
         },
         "description": "Updates an existing accessory if internal nor external ID match. Creates an accessory if neither internal or external ID is provided or no matching record could be found.",
         "tags": [
-          "MasterData"
+          "Master Data"
         ]
-      }
+      },
+      "parameters": []
     },
-    "/api/v3/base/Machine": {
+    "/api/v3/master-data/machines": {
       "get": {
         "summary": "Search for Machine",
-        "operationId": "base-GetMachine",
+        "operationId": "GetMasterDataMachines",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -351,7 +352,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -370,7 +371,7 @@
             }
           },
           {
-            "name": "searchString",
+            "name": "search_string",
             "in": "query",
             "description": "Optional search string for looking up a record within name and searchterm fields.",
             "schema": {
@@ -400,18 +401,18 @@
             }
           },
           {
-            "name": "changesSinceDateTime",
+            "name": "changes_since_datetime",
             "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (search_string, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changesSinceChangeID",
+            "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search\r\nparameters (search_string, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -420,7 +421,7 @@
             }
           },
           {
-            "name": "internalMachineID",
+            "name": "internal_machine_id",
             "in": "query",
             "description": "Retrieve a specific record by internal machine ID. Ignores other search options if provided.",
             "schema": {
@@ -431,7 +432,7 @@
             }
           },
           {
-            "name": "externalMachineID",
+            "name": "external_machine_id",
             "in": "query",
             "description": "Retrieve a specific record by external machine ID. Ignores other search options if provided.",
             "schema": {
@@ -455,7 +456,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -465,16 +466,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -486,15 +487,15 @@
         },
         "description": "By passing in the appropriate options, the service searches for available machine(s) in the system.",
         "tags": [
-          "MasterData"
+          "Master Data"
         ]
       },
       "put": {
         "summary": "Modify Machine",
-        "operationId": "base-PutMachine",
+        "operationId": "PutMasterDataMachines",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -504,7 +505,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -555,7 +556,7 @@
             }
           },
           "201": {
-            "description": "CREATED",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -565,7 +566,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -575,16 +576,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -596,17 +597,18 @@
         },
         "description": "Updates an existing machine if internal nor external ID match. Creates a machine if neither internal or external ID is provided or no matching record could be found.",
         "tags": [
-          "MasterData"
+          "Master Data"
         ]
-      }
+      },
+      "parameters": []
     },
-    "/api/v3/base/MachineType": {
+    "/api/v3/master-data/machine-types": {
       "get": {
         "summary": "Search for Machine Type",
-        "operationId": "base-GetMachineType",
+        "operationId": "GetMasterDataMachineTypes",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -616,7 +618,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -635,7 +637,7 @@
             }
           },
           {
-            "name": "searchString",
+            "name": "search_string",
             "in": "query",
             "description": "Optional search string for looking up a record within name and searchterm fields.",
             "schema": {
@@ -665,18 +667,18 @@
             }
           },
           {
-            "name": "changesSinceDateTime",
+            "name": "changes_since_datetime",
             "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineTypeId,\r\nexternalMachineTypeId).",
+            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (search_string, internalMachineTypeId,\r\nexternalMachineTypeId).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changesSinceChangeID",
+            "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search\r\nparameters (searchString, internalMachineTypeId,\r\nexternalMachineTypeId).",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search\r\nparameters (search_string, internalMachineTypeId,\r\nexternalMachineTypeId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -685,7 +687,7 @@
             }
           },
           {
-            "name": "internalMachineTypeID",
+            "name": "internal_machine_type_id",
             "in": "query",
             "description": "Retrieve a specific record by internal machine type ID. Ignores other search options if provided.",
             "schema": {
@@ -696,7 +698,7 @@
             }
           },
           {
-            "name": "externalMachineTypeID",
+            "name": "external_machine_type_id",
             "in": "query",
             "description": "Retrieve a specific record by external machine type ID. Ignores other search options if provided.",
             "schema": {
@@ -720,7 +722,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -730,16 +732,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -751,15 +753,15 @@
         },
         "description": "By passing in the appropriate options, the service searches for available machine type(s) in the system.",
         "tags": [
-          "MasterData"
+          "Master Data"
         ]
       },
       "put": {
         "summary": "Modify Machine Type",
-        "operationId": "base-PutMachineType",
+        "operationId": "PutMasterDataMachineTypes",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -769,7 +771,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -820,7 +822,7 @@
             }
           },
           "201": {
-            "description": "CREATED",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -830,7 +832,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -840,16 +842,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -861,17 +863,15 @@
         },
         "description": "Updates an existing machine type if internal nor external ID match. Creates a machine type if neither internal or external ID is provided or no matching record could be found.",
         "tags": [
-          "MasterData"
+          "Master Data"
         ]
-      }
+      },
+      "parameters": []
     },
-    "/api/v3/base/Surcharge": {
+    "/api/v3/master-data/surcharges": {
       "get": {
         "summary": "Search for Surcharge",
-        "tags": [
-          "MasterData"
-        ],
-        "operationId": "base-GetSurcharge",
+        "operationId": "GetMasterDataSurcharges",
         "responses": {
           "200": {
             "description": "OK",
@@ -887,7 +887,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -897,16 +897,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -918,7 +918,7 @@
         },
         "parameters": [
           {
-            "name": "searchString",
+            "name": "search_string",
             "in": "query",
             "description": "Optional search string for looking up a record within name and searchterm fields.",
             "schema": {
@@ -948,18 +948,18 @@
             }
           },
           {
-            "name": "changesSinceDateTime",
+            "name": "changes_since_datetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changesSinceChangeID",
+            "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -968,7 +968,7 @@
             }
           },
           {
-            "name": "internalSurchargeID",
+            "name": "internal_surcharge_id",
             "in": "query",
             "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
             "schema": {
@@ -979,16 +979,16 @@
             }
           },
           {
-            "name": "externalSurchargeID",
+            "name": "external_surcharge_id",
             "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores searchString parameter if provided)",
+            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
             "schema": {
               "maxLength": 50,
               "type": "string"
             }
           },
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -998,7 +998,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -1017,14 +1017,17 @@
             }
           }
         ],
-        "description": "By passing in the appropriate options, the service searches for available surcharge(s) in the system."
+        "description": "By passing in the appropriate options, the service searches for available surcharge(s) in the system.",
+        "tags": [
+          "Master Data"
+        ]
       },
       "put": {
         "summary": "Modify Surcharge",
-        "operationId": "base-PutSurcharge",
+        "operationId": "PutMasterDataSurcharges",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -1034,7 +1037,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -1085,7 +1088,7 @@
             }
           },
           "201": {
-            "description": "CREATED",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -1095,7 +1098,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -1105,16 +1108,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -1126,14 +1129,15 @@
         },
         "description": "Updates an existing machine type if internal nor external ID match. Creates a machine type if neither internal or external ID is provided or no matching record could be found.",
         "tags": [
-          "MasterData"
+          "Master Data"
         ]
-      }
+      },
+      "parameters": []
     },
-    "/api/v3/scheduling/Job": {
+    "/api/v3/scheduling/jobs": {
       "get": {
         "summary": "Search for Job",
-        "operationId": "scheduling-GetJob",
+        "operationId": "GetSchedulingJobs",
         "responses": {
           "200": {
             "description": "OK",
@@ -1150,7 +1154,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -1160,16 +1164,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -1181,7 +1185,7 @@
         },
         "parameters": [
           {
-            "name": "searchString",
+            "name": "search_string",
             "in": "query",
             "description": "Optional search string for looking up a record within name and searchterm fields.",
             "schema": {
@@ -1211,18 +1215,18 @@
             }
           },
           {
-            "name": "changesSinceDateTime",
+            "name": "changes_since_datetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changesSinceChangeID",
+            "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -1231,7 +1235,7 @@
             }
           },
           {
-            "name": "internalJobID",
+            "name": "internal_job_id",
             "in": "query",
             "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
             "schema": {
@@ -1242,16 +1246,16 @@
             }
           },
           {
-            "name": "externalJobID",
+            "name": "external_job_id",
             "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores searchString parameter if provided)",
+            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
             "schema": {
               "maxLength": 50,
               "type": "string"
             }
           },
           {
-            "name": "IncludeDetails",
+            "name": "include_details",
             "in": "query",
             "schema": {
               "maxLength": 50,
@@ -1261,7 +1265,7 @@
             "description": "Wether or not to retrieve job details with this call"
           },
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -1271,7 +1275,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -1294,9 +1298,10 @@
         "tags": [
           "SchedulingJob"
         ]
-      }
+      },
+      "parameters": []
     },
-    "/api/v3/scheduling/Job/TimeStamp": {
+    "/api/v3/scheduling/jobs/timestamps": {
       "get": {
         "summary": "Search for Job Timestamp",
         "tags": [
@@ -1317,7 +1322,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -1327,16 +1332,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -1346,7 +1351,7 @@
             }
           }
         },
-        "operationId": "scheduling-GetJobTimeStamp",
+        "operationId": "GetSchedulingJobsTimestamps",
         "parameters": [
           {
             "name": "skip",
@@ -1371,18 +1376,18 @@
             }
           },
           {
-            "name": "changesSinceDateTime",
+            "name": "changes_since_datetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changesSinceChangeID",
+            "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -1391,7 +1396,7 @@
             }
           },
           {
-            "name": "internalJobID",
+            "name": "internal_job_id",
             "in": "query",
             "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
             "schema": {
@@ -1402,16 +1407,16 @@
             }
           },
           {
-            "name": "externalJobID",
+            "name": "external_job_id",
             "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores searchString parameter if provided)",
+            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
             "schema": {
               "maxLength": 50,
               "type": "string"
             }
           },
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -1421,7 +1426,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -1445,10 +1450,10 @@
       "parameters": [],
       "put": {
         "summary": "Modify Job Time Stamps",
-        "operationId": "scheduling-PutJobTimeStamp",
+        "operationId": "PutSchedulingJobsTimestamps",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -1458,7 +1463,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -1492,7 +1497,7 @@
             }
           },
           "201": {
-            "description": "CREATED",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -1505,7 +1510,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -1515,16 +1520,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -1561,7 +1566,7 @@
         ]
       }
     },
-    "/api/v3/scheduling/Job/Report": {
+    "/api/v3/scheduling/jobs/reports": {
       "get": {
         "summary": "Search for Job Report",
         "tags": [
@@ -1582,7 +1587,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -1592,16 +1597,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -1611,7 +1616,7 @@
             }
           }
         },
-        "operationId": "scheduling-GetJobReport",
+        "operationId": "GetSchedulingJobsReports",
         "parameters": [
           {
             "name": "skip",
@@ -1636,18 +1641,18 @@
             }
           },
           {
-            "name": "changesSinceDateTime",
+            "name": "changes_since_datetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changesSinceChangeID",
+            "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -1656,7 +1661,7 @@
             }
           },
           {
-            "name": "internalJobID",
+            "name": "internal_job_id",
             "in": "query",
             "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
             "schema": {
@@ -1667,16 +1672,16 @@
             }
           },
           {
-            "name": "externalJobID",
+            "name": "external_job_id",
             "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores searchString parameter if provided)",
+            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
             "schema": {
               "maxLength": 50,
               "type": "string"
             }
           },
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -1686,7 +1691,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -1709,10 +1714,10 @@
       },
       "post": {
         "summary": "Create Job Report",
-        "operationId": "scheduling-PostReport",
+        "operationId": "PostSchedulingJobsReports",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -1722,7 +1727,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -1763,7 +1768,7 @@
             }
           },
           "201": {
-            "description": "CREATED",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -1773,7 +1778,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -1783,16 +1788,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -1806,9 +1811,10 @@
           "SchedulingJob"
         ],
         "description": "Submit a complete job report to leva+. Note: After posting a job report, it can no longer be altered by the interface. Users on the leva+ backend may further process the posted job report and updates to job reports may be received using the GET operation."
-      }
+      },
+      "parameters": []
     },
-    "/api/v3/scheduling/Job/Handover": {
+    "/api/v3/scheduling/jobs/handovers": {
       "get": {
         "summary": "Search for Job Handover",
         "tags": [
@@ -1829,7 +1835,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -1839,16 +1845,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -1858,7 +1864,7 @@
             }
           }
         },
-        "operationId": "scheduling-GetJobHandover",
+        "operationId": "GetSchedulingJobsHandovers",
         "parameters": [
           {
             "name": "skip",
@@ -1883,18 +1889,18 @@
             }
           },
           {
-            "name": "changesSinceDateTime",
+            "name": "changes_since_datetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changesSinceChangeID",
+            "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -1903,7 +1909,7 @@
             }
           },
           {
-            "name": "internalJobID",
+            "name": "internal_job_id",
             "in": "query",
             "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
             "schema": {
@@ -1914,16 +1920,16 @@
             }
           },
           {
-            "name": "externalJobID",
+            "name": "external_job_id",
             "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores searchString parameter if provided)",
+            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
             "schema": {
               "maxLength": 50,
               "type": "string"
             }
           },
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -1933,7 +1939,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -1956,10 +1962,10 @@
       },
       "put": {
         "summary": "Modify Job Handover",
-        "operationId": "scheduling-PutJobHandover",
+        "operationId": "PutSchedulingJobsHandovers",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -1969,7 +1975,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -2000,7 +2006,7 @@
             }
           },
           "201": {
-            "description": "CREATED",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -2010,7 +2016,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -2020,16 +2026,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -2043,9 +2049,10 @@
         "tags": [
           "SchedulingJob"
         ]
-      }
+      },
+      "parameters": []
     },
-    "/api/v3/scheduling/Job/Return": {
+    "/api/v3/scheduling/jobs/returns": {
       "get": {
         "summary": "Search for Job Return",
         "tags": [
@@ -2066,7 +2073,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -2076,16 +2083,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -2095,7 +2102,7 @@
             }
           }
         },
-        "operationId": "scheduling-GetJobReturn",
+        "operationId": "GetSchedulingJobsReturns",
         "parameters": [
           {
             "name": "skip",
@@ -2120,18 +2127,18 @@
             }
           },
           {
-            "name": "changesSinceDateTime",
+            "name": "changes_since_datetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changesSinceChangeID",
+            "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -2140,7 +2147,7 @@
             }
           },
           {
-            "name": "internalJobID",
+            "name": "internal_job_id",
             "in": "query",
             "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
             "schema": {
@@ -2151,16 +2158,16 @@
             }
           },
           {
-            "name": "externalJobID",
+            "name": "external_job_id",
             "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores searchString parameter if provided)",
+            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
             "schema": {
               "maxLength": 50,
               "type": "string"
             }
           },
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -2170,7 +2177,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -2193,10 +2200,10 @@
       },
       "put": {
         "summary": "Modify Job Return",
-        "operationId": "scheduling-PutJobReturn",
+        "operationId": "PutSchedulingJobsReturns",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -2206,7 +2213,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -2237,7 +2244,7 @@
             }
           },
           "201": {
-            "description": "CREATED",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -2247,7 +2254,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -2257,16 +2264,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -2280,9 +2287,10 @@
         "tags": [
           "SchedulingJob"
         ]
-      }
+      },
+      "parameters": []
     },
-    "/api/v3/scheduling/Job/Surcharge": {
+    "/api/v3/scheduling/jobs/surcharges": {
       "get": {
         "summary": "Search for Job Surcharge",
         "tags": [
@@ -2303,7 +2311,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -2313,16 +2321,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -2332,7 +2340,7 @@
             }
           }
         },
-        "operationId": "scheduling-GetJobSurcharge",
+        "operationId": "GetSchedulingJobsSurcharges",
         "parameters": [
           {
             "name": "skip",
@@ -2357,18 +2365,18 @@
             }
           },
           {
-            "name": "changesSinceDateTime",
+            "name": "changes_since_datetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changesSinceChangeID",
+            "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -2377,7 +2385,7 @@
             }
           },
           {
-            "name": "internalJobID",
+            "name": "internal_job_id",
             "in": "query",
             "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
             "schema": {
@@ -2388,16 +2396,16 @@
             }
           },
           {
-            "name": "externalJobID",
+            "name": "external_job_id",
             "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores searchString parameter if provided)",
+            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
             "schema": {
               "maxLength": 50,
               "type": "string"
             }
           },
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -2407,7 +2415,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -2431,10 +2439,10 @@
       "parameters": [],
       "put": {
         "summary": "Modify Job Surchage",
-        "operationId": "scheduling-PutJobSurcharge",
+        "operationId": "PutSchedulingJobsSurcharges",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -2444,7 +2452,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -2478,7 +2486,7 @@
             }
           },
           "201": {
-            "description": "CREATED",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -2491,7 +2499,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -2501,16 +2509,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -2526,7 +2534,7 @@
         ]
       }
     },
-    "/api/v3/scheduling/Job/Form": {
+    "/api/v3/scheduling/jobs/forms": {
       "get": {
         "summary": "Search for Job Form",
         "responses": {
@@ -2544,7 +2552,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -2554,16 +2562,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -2573,7 +2581,7 @@
             }
           }
         },
-        "operationId": "scheduling-GetJobForm",
+        "operationId": "GetSchedulingJobsForms",
         "parameters": [
           {
             "name": "skip",
@@ -2598,18 +2606,18 @@
             }
           },
           {
-            "name": "changesSinceDateTime",
+            "name": "changes_since_datetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changesSinceChangeID",
+            "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -2618,7 +2626,7 @@
             }
           },
           {
-            "name": "internalJobID",
+            "name": "internal_job_id",
             "in": "query",
             "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
             "schema": {
@@ -2629,16 +2637,16 @@
             }
           },
           {
-            "name": "externalJobID",
+            "name": "external_job_id",
             "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores searchString parameter if provided)",
+            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
             "schema": {
               "maxLength": 50,
               "type": "string"
             }
           },
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -2648,7 +2656,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -2675,10 +2683,10 @@
       "parameters": [],
       "put": {
         "summary": "Modify Job Form",
-        "operationId": "scheduling-PutJobForm",
+        "operationId": "PutSchedulingJobsForms",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -2688,7 +2696,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -2722,7 +2730,7 @@
             }
           },
           "201": {
-            "description": "CREATED",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -2735,7 +2743,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -2745,16 +2753,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -2770,7 +2778,7 @@
         ]
       }
     },
-    "/api/v3/scheduling/Job/Problem": {
+    "/api/v3/scheduling/jobs/problems": {
       "get": {
         "summary": "Search for Job Problem",
         "tags": [
@@ -2791,7 +2799,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -2801,16 +2809,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -2820,7 +2828,7 @@
             }
           }
         },
-        "operationId": "scheduling-GetJobProblem",
+        "operationId": "GetSchedulingJobsProblems",
         "parameters": [
           {
             "name": "skip",
@@ -2845,18 +2853,18 @@
             }
           },
           {
-            "name": "changesSinceDateTime",
+            "name": "changes_since_datetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changesSinceChangeID",
+            "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -2865,7 +2873,7 @@
             }
           },
           {
-            "name": "internalJobID",
+            "name": "internal_job_id",
             "in": "query",
             "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
             "schema": {
@@ -2876,16 +2884,16 @@
             }
           },
           {
-            "name": "externalJobID",
+            "name": "external_job_id",
             "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores searchString parameter if provided)",
+            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
             "schema": {
               "maxLength": 50,
               "type": "string"
             }
           },
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -2895,7 +2903,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -2918,10 +2926,10 @@
       },
       "put": {
         "summary": "Modify Job Problem",
-        "operationId": "scheduling-PutJobProblem",
+        "operationId": "PutSchedulingJobsProblems",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -2931,7 +2939,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -2965,7 +2973,7 @@
             }
           },
           "201": {
-            "description": "CREATED",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -2978,7 +2986,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -2988,16 +2996,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -3011,9 +3019,10 @@
         "tags": [
           "SchedulingJob"
         ]
-      }
+      },
+      "parameters": []
     },
-    "/api/v3/scheduling/Job/Document": {
+    "/api/v3/scheduling/jobs/documents": {
       "get": {
         "summary": "Search for Job Document",
         "tags": [
@@ -3034,7 +3043,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -3044,16 +3053,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -3087,18 +3096,18 @@
             }
           },
           {
-            "name": "changesSinceDateTime",
+            "name": "changes_since_datetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changesSinceChangeID",
+            "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -3107,7 +3116,7 @@
             }
           },
           {
-            "name": "internalJobID",
+            "name": "internal_job_id",
             "in": "query",
             "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
             "schema": {
@@ -3118,16 +3127,16 @@
             }
           },
           {
-            "name": "externalJobID",
+            "name": "external_job_id",
             "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores searchString parameter if provided)",
+            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
             "schema": {
               "maxLength": 50,
               "type": "string"
             }
           },
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -3137,7 +3146,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -3156,15 +3165,15 @@
             }
           }
         ],
-        "operationId": "scheduling-GetJobDocument",
+        "operationId": "GetSchedulingJobsDocuments",
         "description": "By passing in the appropriate options, the service searches for job document(s) in the system."
       },
       "put": {
         "summary": "Modify Job Document",
-        "operationId": "scheduling-PutJobDocument",
+        "operationId": "PutSchedulingJobsDocuments",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -3174,7 +3183,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -3208,7 +3217,7 @@
             }
           },
           "201": {
-            "description": "CREATED",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -3221,7 +3230,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -3231,16 +3240,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -3254,9 +3263,10 @@
         "tags": [
           "SchedulingJob"
         ]
-      }
+      },
+      "parameters": []
     },
-    "/api/v3/scheduling/Job/TransportDemand": {
+    "/api/v3/scheduling/jobs/transport-demands": {
       "get": {
         "summary": "Search for Job Transport Demand",
         "tags": [
@@ -3277,7 +3287,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -3287,16 +3297,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -3330,18 +3340,18 @@
             }
           },
           {
-            "name": "changesSinceDateTime",
+            "name": "changes_since_datetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changesSinceChangeID",
+            "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, Searchstring).",
+            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -3350,7 +3360,7 @@
             }
           },
           {
-            "name": "internalJobID",
+            "name": "internal_job_id",
             "in": "query",
             "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
             "schema": {
@@ -3361,16 +3371,16 @@
             }
           },
           {
-            "name": "externalJobID",
+            "name": "external_job_id",
             "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores searchString parameter if provided)",
+            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
             "schema": {
               "maxLength": 50,
               "type": "string"
             }
           },
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -3380,7 +3390,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -3399,15 +3409,15 @@
             }
           }
         ],
-        "operationId": "scheduling-GetJobTransportDemand",
+        "operationId": "GetSchedulingJobsTransportDemands",
         "description": "By passing in the appropriate options, the service searches for job transport demand(s) in the system."
       },
       "put": {
         "summary": "Modify Job Transport Demand",
-        "operationId": "scheduling-PutJobTransportDemand",
+        "operationId": "PutSchedulingJobsTransportDemands",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -3417,7 +3427,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -3451,7 +3461,7 @@
             }
           },
           "201": {
-            "description": "CREATED",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -3464,7 +3474,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -3474,16 +3484,16 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Requester has insufficient rights"
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
+            "description": "Service Unavailable",
             "content": {
               "application/json": {
                 "schema": {
@@ -3497,9 +3507,10 @@
         "tags": [
           "SchedulingJob"
         ]
-      }
+      },
+      "parameters": []
     },
-    "/api/v3/scheduling/Job/BookingActivity": {
+    "/api/v3/scheduling/jobs/booking-activities": {
       "get": {
         "summary": "Your GET endpoint",
         "tags": [
@@ -3510,9 +3521,10 @@
             "description": "OK"
           }
         },
-        "operationId": "scheduling-GetJobBookingActivity",
+        "operationId": "GetSchedulingJobsBookingActivities",
         "description": "By passing in the appropriate options, the service searches for job booking activities in the system."
-      }
+      },
+      "parameters": []
     }
   },
   "components": {
