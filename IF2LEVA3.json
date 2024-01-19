@@ -23,7 +23,7 @@
         "operationId": "GetMasterDataAccessories",
         "parameters": [
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -33,7 +33,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -93,7 +93,7 @@
           {
             "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search\r\nparameters (search_string, internalAccessoryId,\r\nexternalAccessoryId).",
+            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search\r\nparameters (search_string, internalAccessoryId,\r\nexternalAccessoryId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -194,7 +194,7 @@
             }
           }
         },
-        "description": "By passing in the appropriate options, the service searches for available accessories in the system.",
+        "description": "By passing in the appropriate options, the service searches for accessories in the system.",
         "tags": [
           "Master Data"
         ]
@@ -204,7 +204,7 @@
         "operationId": "PutMasterDataAccessories",
         "parameters": [
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -214,7 +214,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -300,7 +300,7 @@
             }
           },
           "400": {
-            "description": "Bad Reqeust",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -329,7 +329,7 @@
             }
           }
         },
-        "description": "Updates an existing accessory if internal nor external ID match. Creates an accessory if neither internal or external ID is provided or no matching record could be found.",
+        "description": "Updates an existing accessory if internal or external ID match.\nCreates an accessory if neither internal or external ID is provided or no matching record could be found.",
         "tags": [
           "Master Data"
         ]
@@ -342,7 +342,7 @@
         "operationId": "GetMasterDataMachines",
         "parameters": [
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -352,7 +352,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -412,7 +412,7 @@
           {
             "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search\r\nparameters (search_string, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search\r\nparameters (search_string, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -485,7 +485,7 @@
             }
           }
         },
-        "description": "By passing in the appropriate options, the service searches for available machine(s) in the system.",
+        "description": "By passing in the appropriate options, the service searches for machines in the system.",
         "tags": [
           "Master Data"
         ]
@@ -495,7 +495,7 @@
         "operationId": "PutMasterDataMachines",
         "parameters": [
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -505,7 +505,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -595,7 +595,7 @@
             }
           }
         },
-        "description": "Updates an existing machine if internal nor external ID match. Creates a machine if neither internal or external ID is provided or no matching record could be found.",
+        "description": "Updates an existing machine if internal or external ID match.\nCreates a machine if neither internal or external ID is provided or no matching record could be found.",
         "tags": [
           "Master Data"
         ]
@@ -608,7 +608,7 @@
         "operationId": "GetMasterDataMachineTypes",
         "parameters": [
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -618,7 +618,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -678,7 +678,7 @@
           {
             "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search\r\nparameters (search_string, internalMachineTypeId,\r\nexternalMachineTypeId).",
+            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search\r\nparameters (search_string, internalMachineTypeId,\r\nexternalMachineTypeId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -751,7 +751,7 @@
             }
           }
         },
-        "description": "By passing in the appropriate options, the service searches for available machine type(s) in the system.",
+        "description": "By passing in the appropriate options, the service searches for available machine types in the system.",
         "tags": [
           "Master Data"
         ]
@@ -761,7 +761,7 @@
         "operationId": "PutMasterDataMachineTypes",
         "parameters": [
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -771,7 +771,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -861,7 +861,7 @@
             }
           }
         },
-        "description": "Updates an existing machine type if internal nor external ID match. Creates a machine type if neither internal or external ID is provided or no matching record could be found.",
+        "description": "Updates an existing machine type if internal or external ID match.\nCreates a machine type if neither internal or external ID is provided or no matching record could be found.",
         "tags": [
           "Master Data"
         ]
@@ -959,7 +959,7 @@
           {
             "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -988,7 +988,7 @@
             }
           },
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -998,7 +998,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -1017,7 +1017,7 @@
             }
           }
         ],
-        "description": "By passing in the appropriate options, the service searches for available surcharge(s) in the system.",
+        "description": "By passing in the appropriate options, the service searches for available surcharges in the system.",
         "tags": [
           "Master Data"
         ]
@@ -1027,7 +1027,7 @@
         "operationId": "PutMasterDataSurcharges",
         "parameters": [
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -1037,7 +1037,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -1127,7 +1127,7 @@
             }
           }
         },
-        "description": "Updates an existing machine type if internal nor external ID match. Creates a machine type if neither internal or external ID is provided or no matching record could be found.",
+        "description": "Updates an existing machine type if internal or external ID match.\nCreates a machine type if neither internal or external ID is provided or no matching record could be found.",
         "tags": [
           "Master Data"
         ]
@@ -1226,7 +1226,7 @@
           {
             "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -1265,7 +1265,7 @@
             "description": "Wether or not to retrieve job details with this call"
           },
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -1275,7 +1275,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -1294,7 +1294,7 @@
             }
           }
         ],
-        "description": "By passing in the appropriate options, the service searches for available job(s) in the system.",
+        "description": "By passing in the appropriate options, the service searches for available jobs in the system.",
         "tags": [
           "SchedulingJob"
         ]
@@ -1387,7 +1387,7 @@
           {
             "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -1416,7 +1416,7 @@
             }
           },
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -1426,7 +1426,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -1445,7 +1445,7 @@
             }
           }
         ],
-        "description": "By passing in the appropriate options, the service searches for available job time stamp(s) in the system."
+        "description": "By passing in the appropriate options, the service searches for available job time stamps in the system."
       },
       "parameters": [],
       "put": {
@@ -1453,7 +1453,7 @@
         "operationId": "PutSchedulingJobsTimestamps",
         "parameters": [
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -1463,7 +1463,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -1560,7 +1560,7 @@
           },
           "description": "New or updated time stamps for JobID."
         },
-        "description": "Updates an existing set of job time stamps for a given internal nor external Job ID.",
+        "description": "Updates an existing set of job time stamps for a given internal or external Job ID.",
         "tags": [
           "SchedulingJob"
         ]
@@ -1652,7 +1652,7 @@
           {
             "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -1681,7 +1681,7 @@
             }
           },
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -1691,7 +1691,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -1710,14 +1710,14 @@
             }
           }
         ],
-        "description": "By passing in the appropriate options, the service searches for job report(s) in the system."
+        "description": "By passing in the appropriate options, the service searches for job reports in the system."
       },
       "post": {
         "summary": "Create Job Report",
         "operationId": "PostSchedulingJobsReports",
         "parameters": [
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -1727,7 +1727,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -1810,7 +1810,7 @@
         "tags": [
           "SchedulingJob"
         ],
-        "description": "Submit a complete job report to leva+. Note: After posting a job report, it can no longer be altered by the interface. Users on the leva+ backend may further process the posted job report and updates to job reports may be received using the GET operation."
+        "description": "Submit a complete job report to leva+.\nAfter posting a job report, it can no longer be altered by the interface. Users on the leva+ backend may further process the posted job report and updates to job reports may be received using the GET operation."
       },
       "parameters": []
     },
@@ -1900,7 +1900,7 @@
           {
             "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -1929,7 +1929,7 @@
             }
           },
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -1939,7 +1939,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -1965,7 +1965,7 @@
         "operationId": "PutSchedulingJobsHandovers",
         "parameters": [
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -1975,7 +1975,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -2045,7 +2045,7 @@
             }
           }
         },
-        "description": "Updates an existing job handover for a given internal nor external Job ID.",
+        "description": "Updates an existing job handover for a given internal or external Job ID.",
         "tags": [
           "SchedulingJob"
         ]
@@ -2138,7 +2138,7 @@
           {
             "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -2167,7 +2167,7 @@
             }
           },
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -2177,7 +2177,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -2203,7 +2203,7 @@
         "operationId": "PutSchedulingJobsReturns",
         "parameters": [
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -2213,7 +2213,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -2283,7 +2283,7 @@
             }
           }
         },
-        "description": "Updates an existing job return for a given internal nor external Job ID.",
+        "description": "Updates an existing job return for a given internal or external Job ID.",
         "tags": [
           "SchedulingJob"
         ]
@@ -2376,7 +2376,7 @@
           {
             "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -2405,7 +2405,7 @@
             }
           },
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -2415,7 +2415,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -2434,7 +2434,7 @@
             }
           }
         ],
-        "description": "By passing in the appropriate options, the service searches for available job surcharges(s) in the system."
+        "description": "By passing in the appropriate options, the service searches for available job surchargess in the system."
       },
       "parameters": [],
       "put": {
@@ -2442,7 +2442,7 @@
         "operationId": "PutSchedulingJobsSurcharges",
         "parameters": [
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -2452,7 +2452,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -2528,7 +2528,7 @@
             }
           }
         },
-        "description": "Updates an existing set of job surcharges for a given internal nor external Job ID.",
+        "description": "Updates an existing set of job surcharges for a given internal or external Job ID.",
         "tags": [
           "SchedulingJob"
         ]
@@ -2617,7 +2617,7 @@
           {
             "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -2646,7 +2646,7 @@
             }
           },
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -2656,7 +2656,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -2675,7 +2675,7 @@
             }
           }
         ],
-        "description": "By passing in the appropriate options, the service searches for job form(s) in the system.",
+        "description": "By passing in the appropriate options, the service searches for job forms in the system.",
         "tags": [
           "SchedulingJob"
         ]
@@ -2686,7 +2686,7 @@
         "operationId": "PutSchedulingJobsForms",
         "parameters": [
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -2696,7 +2696,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -2772,7 +2772,7 @@
             }
           }
         },
-        "description": "Updates an existing set of job job forms for a given internal nor external Job ID.",
+        "description": "Updates an existing set of job job forms for a given internal or external Job ID.",
         "tags": [
           "SchedulingJob"
         ]
@@ -2864,7 +2864,7 @@
           {
             "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -2893,7 +2893,7 @@
             }
           },
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -2903,7 +2903,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -2922,14 +2922,14 @@
             }
           }
         ],
-        "description": "By passing in the appropriate options, the service searches for job problem(s) in the system."
+        "description": "By passing in the appropriate options, the service searches for job problems in the system."
       },
       "put": {
         "summary": "Modify Job Problem",
         "operationId": "PutSchedulingJobsProblems",
         "parameters": [
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -2939,7 +2939,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -3015,7 +3015,7 @@
             }
           }
         },
-        "description": "Updates an existing set of job problems for a given internal nor external Job ID.",
+        "description": "Updates an existing set of job problems for a given internal or external Job ID.",
         "tags": [
           "SchedulingJob"
         ]
@@ -3107,7 +3107,7 @@
           {
             "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -3136,7 +3136,7 @@
             }
           },
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -3146,7 +3146,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -3166,14 +3166,14 @@
           }
         ],
         "operationId": "GetSchedulingJobsDocuments",
-        "description": "By passing in the appropriate options, the service searches for job document(s) in the system."
+        "description": "By passing in the appropriate options, the service searches for job documents in the system."
       },
       "put": {
         "summary": "Modify Job Document",
         "operationId": "PutSchedulingJobsDocuments",
         "parameters": [
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -3183,7 +3183,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -3259,7 +3259,7 @@
             }
           }
         },
-        "description": "Updates an existing set of job documents for a given internal nor external Job ID.",
+        "description": "Updates an existing set of job documents for a given internal or external Job ID.",
         "tags": [
           "SchedulingJob"
         ]
@@ -3351,7 +3351,7 @@
           {
             "name": "changes_since_change_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeID. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -3380,7 +3380,7 @@
             }
           },
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -3390,7 +3390,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -3410,14 +3410,14 @@
           }
         ],
         "operationId": "GetSchedulingJobsTransportDemands",
-        "description": "By passing in the appropriate options, the service searches for job transport demand(s) in the system."
+        "description": "By passing in the appropriate options, the service searches for job transport demands in the system."
       },
       "put": {
         "summary": "Modify Job Transport Demand",
         "operationId": "PutSchedulingJobsTransportDemands",
         "parameters": [
           {
-            "name": "X-Requesting-System",
+            "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -3427,7 +3427,7 @@
             }
           },
           {
-            "name": "X-Requesting-User",
+            "name": "X-RequestingUser",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -3503,7 +3503,7 @@
             }
           }
         },
-        "description": "Updates an existing set of job transport demands for a given internal nor external Job ID.",
+        "description": "Updates an existing set of job transport demands for a given internal or external Job ID.",
         "tags": [
           "SchedulingJob"
         ]
@@ -3746,7 +3746,7 @@
       "Address": {
         "type": "object",
         "additionalProperties": false,
-        "description": "adress format",
+        "description": "address format",
         "x-examples": {
           "example-1": {
             "Street": "Boca Chica Blvd.",
@@ -5268,7 +5268,7 @@
               "ExternalLocationID": "LOC83-931",
               "Description": "Construction Site, Gate 4",
               "TransportRestriction": "limited height 4.5 meteres at gate 3, prefer gate 4 (no height limit)",
-              "Adress": {
+              "Address": {
                 "Street": "Boca Chica Blvd.",
                 "HouseNo": "52448",
                 "POBox": "string",
@@ -5336,7 +5336,7 @@
                   "ExternalLocationID": "LOC83-931",
                   "Description": "Construction Site, Gate 4",
                   "TransportRestriction": "limited height 4.5 meteres at gate 3, prefer gate 4 (no height limit)",
-                  "Adress": {
+                  "Address": {
                     "Street": "Boca Chica Blvd.",
                     "HouseNo": "52448",
                     "POBox": "string",
@@ -5608,7 +5608,7 @@
           },
           "ReportEMailReceivers": {
             "type": "string",
-            "description": "; or , seperated string of e-mail adresses to receive a report copy.\n\nNote: these addresses are set in the order header and proposed to receive a report copy. Wether or not they actually receive a report copy, is controlled by the ReportEMailNotifications submitted with the report.",
+            "description": "; or , seperated string of e-mail addresses to receive a report copy.\n\nNote: these addresses are set in the order header and proposed to receive a report copy. Wether or not they actually receive a report copy, is controlled by the ReportEMailNotifications submitted with the report.",
             "example": "jack.smith@customerdomain.com; sarah.root@customermail.com",
             "nullable": true
           },
@@ -5850,7 +5850,7 @@
                 "ExternalLocationID": "LOC83-931",
                 "Description": "Construction Site, Gate 4",
                 "TransportRestriction": "limited height 4.5 meteres at gate 3, prefer gate 4 (no height limit)",
-                "Adress": {
+                "Address": {
                   "Street": "Boca Chica Blvd.",
                   "HouseNo": "52448",
                   "POBox": "string",
@@ -6486,7 +6486,7 @@
             "ExternalLocationID": "LOC83-931",
             "Description": "Construction Site, Gate 4",
             "TransportRestriction": "limited height 4.5 meteres at gate 3, prefer gate 4 (no height limit)",
-            "Adress": {
+            "Address": {
               "Street": "Boca Chica Blvd.",
               "HouseNo": "52448",
               "POBox": "string",
@@ -6527,7 +6527,7 @@
             "example": "limited height 4.5 meteres at gate 3, prefer gate 4 (no height limit)",
             "nullable": true
           },
-          "Adress": {
+          "Address": {
             "$ref": "#/components/schemas/Address"
           }
         }
