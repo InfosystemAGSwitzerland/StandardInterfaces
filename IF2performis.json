@@ -907,6 +907,34 @@
             }
           }
         },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingSystem",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingUser",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical ID (GUID) for call identification."
+          }
+        ],
         "description": "Updates an existing service record if internal or external ID match.\nCreates a service record if neither internal or external ID is provided or no matching record could be found."
       },
       "delete": {
@@ -952,6 +980,34 @@
             }
           }
         },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingSystem",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingUser",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical ID (GUID) for call identification."
+          }
+        ],
         "description": "Deletes a service record"
       },
       "parameters": []
@@ -1194,6 +1250,34 @@
             }
           }
         },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingSystem",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingUser",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical ID (GUID) for call identification."
+          }
+        ],
         "description": "Updates an existing allowance if internal or external ID match.\nCreates an allowance if neither internal or external ID is provided or no matching record could be found."
       },
       "delete": {
@@ -1239,6 +1323,34 @@
             }
           }
         },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingSystem",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingUser",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical ID (GUID) for call identification."
+          }
+        ],
         "description": "Deletes an allowance"
       },
       "parameters": []
@@ -1481,6 +1593,34 @@
             }
           }
         },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingSystem",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingUser",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical ID (GUID) for call identification."
+          }
+        ],
         "description": "Updates an existing presence time if internal or external ID match.\nCreates a presence time if neither internal or external ID is provided or no matching record could be found."
       },
       "delete": {
@@ -1526,6 +1666,34 @@
             }
           }
         },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingSystem",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingUser",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical ID (GUID) for call identification."
+          }
+        ],
         "description": "Deletes a presence time"
       },
       "parameters": []
@@ -1768,6 +1936,34 @@
             }
           }
         },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingSystem",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingUser",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical ID (GUID) for call identification."
+          }
+        ],
         "description": "Updates an existing absence if internal or external ID match.\nCreates an absence if neither internal or external ID is provided or no matching record could be found."
       },
       "delete": {
@@ -1813,6 +2009,34 @@
             }
           }
         },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingSystem",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingUser",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical ID (GUID) for call identification."
+          }
+        ],
         "description": "Deletes an absence"
       },
       "parameters": []
@@ -2065,6 +2289,34 @@
             }
           }
         },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingSystem",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingUser",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical ID (GUID) for call identification."
+          }
+        ],
         "description": "Updates an existing absence if internal or external ID match.\nCreates an absence if neither internal or external ID is provided or no matching record could be found."
       },
       "delete": {
@@ -2110,6 +2362,34 @@
             }
           }
         },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingSystem",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingUser",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical ID (GUID) for call identification."
+          }
+        ],
         "description": "Deletes a service provider day allowance"
       },
       "parameters": []
@@ -2341,6 +2621,34 @@
             }
           }
         },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingSystem",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-RequestingUser",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical ID (GUID) for call identification."
+          }
+        ],
         "description": "Updates an existing entry if internal or external ID match.\nCreates an entry if neither internal or external ID is provided or no matching record could be found."
       }
     }
@@ -2679,10 +2987,17 @@
           },
           "PersonnellNo": {
             "type": "string",
-            "description": "Id of the \"Leistungsträger\" in the external system",
+            "description": "Id of the human \"Leistungsträger\" in the external system",
             "minLength": 1,
             "maxLength": 50,
             "example": "138"
+          },
+          "MachineNo": {
+            "type": "string",
+            "description": "Id of the machine \"Leistungsträger\" in the external system",
+            "minLength": 1,
+            "maxLength": 50,
+            "example": "139"
           },
           "ServiceProviderDate": {
             "type": "string",
@@ -2911,7 +3226,7 @@
             "format": "int64",
             "minimum": 1,
             "maximum": 9999999,
-            "example": 2860005,
+            "example": 1,
             "description": "Type of the service provider\n1 - Mitarbeiter - Employees\n2 - Maschinen   - Machines\n3 - Kleingeräte - Small devices\n5 - Allgemein   - Universal"
           },
           "Department": {
@@ -3016,6 +3331,13 @@
             "minLength": 1,
             "maxLength": 50,
             "example": "1258"
+          },
+          "MachineNo": {
+            "type": "string",
+            "description": "Id of the machine \"Leistungsträger\" in the external system",
+            "minLength": 1,
+            "maxLength": 50,
+            "example": "139"
           },
           "Description": {
             "type": "string",
