@@ -23,7 +23,7 @@
         "operationId": "GetMasterDataAccessories",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -33,7 +33,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -102,7 +102,7 @@
             }
           },
           {
-            "name": "internal_accessory_id",
+            "name": "accessory_id",
             "in": "query",
             "description": "Retrieve a specific record by internal accessory ID. Ignores other search options if provided.",
             "schema": {
@@ -196,7 +196,7 @@
         },
         "description": "By passing in the appropriate options, the service searches for accessories in the system.",
         "tags": [
-          "Master Data"
+          "MasterData"
         ]
       },
       "put": {
@@ -204,7 +204,7 @@
         "operationId": "PutMasterDataAccessories",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -214,7 +214,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -331,7 +331,7 @@
         },
         "description": "Updates an existing accessory if internal or external ID match.\nCreates an accessory if neither internal or external ID is provided or no matching record could be found.",
         "tags": [
-          "Master Data"
+          "MasterData"
         ]
       },
       "parameters": []
@@ -342,7 +342,7 @@
         "operationId": "GetMasterDataMachines",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -352,7 +352,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -421,7 +421,7 @@
             }
           },
           {
-            "name": "internal_machine_id",
+            "name": "machine_id",
             "in": "query",
             "description": "Retrieve a specific record by internal machine ID. Ignores other search options if provided.",
             "schema": {
@@ -487,7 +487,7 @@
         },
         "description": "By passing in the appropriate options, the service searches for machines in the system.",
         "tags": [
-          "Master Data"
+          "MasterData"
         ]
       },
       "put": {
@@ -495,7 +495,7 @@
         "operationId": "PutMasterDataMachines",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -505,7 +505,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -597,7 +597,7 @@
         },
         "description": "Updates an existing machine if internal or external ID match.\nCreates a machine if neither internal or external ID is provided or no matching record could be found.",
         "tags": [
-          "Master Data"
+          "MasterData"
         ]
       },
       "parameters": []
@@ -608,7 +608,7 @@
         "operationId": "GetMasterDataMachineTypes",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -618,7 +618,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -687,7 +687,7 @@
             }
           },
           {
-            "name": "internal_machine_type_id",
+            "name": "machine_type_id",
             "in": "query",
             "description": "Retrieve a specific record by internal machine type ID. Ignores other search options if provided.",
             "schema": {
@@ -753,7 +753,7 @@
         },
         "description": "By passing in the appropriate options, the service searches for available machine types in the system.",
         "tags": [
-          "Master Data"
+          "MasterData"
         ]
       },
       "put": {
@@ -761,7 +761,7 @@
         "operationId": "PutMasterDataMachineTypes",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -771,7 +771,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -863,7 +863,7 @@
         },
         "description": "Updates an existing machine type if internal or external ID match.\nCreates a machine type if neither internal or external ID is provided or no matching record could be found.",
         "tags": [
-          "Master Data"
+          "MasterData"
         ]
       },
       "parameters": []
@@ -968,7 +968,7 @@
             }
           },
           {
-            "name": "internal_surcharge_id",
+            "name": "surcharge_id",
             "in": "query",
             "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
             "schema": {
@@ -979,16 +979,7 @@
             }
           },
           {
-            "name": "external_surcharge_id",
-            "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
-            "schema": {
-              "maxLength": 50,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -998,7 +989,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -1015,11 +1006,19 @@
               "maxLength": 30,
               "type": "string"
             }
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "external_surcharge_id",
+            "description": "Retrieve specific record by external id. (Ignores other search options if provided)"
           }
         ],
         "description": "By passing in the appropriate options, the service searches for available surcharges in the system.",
         "tags": [
-          "Master Data"
+          "MasterData"
         ]
       },
       "put": {
@@ -1027,7 +1026,7 @@
         "operationId": "PutMasterDataSurcharges",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -1037,7 +1036,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -1127,9 +1126,9 @@
             }
           }
         },
-        "description": "Updates an existing machine type if internal or external ID match.\nCreates a machine type if neither internal or external ID is provided or no matching record could be found.",
+        "description": "Updates an existing surcharge by ID match.\nCreates a surcharge if no ID is provided or no matching record could be found.",
         "tags": [
-          "Master Data"
+          "MasterData"
         ]
       },
       "parameters": []
@@ -1224,34 +1223,14 @@
             }
           },
           {
-            "name": "changes_since_change_id",
+            "name": "job_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
-            "schema": {
-              "maximum": 99999999,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "internal_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
+            "description": "Retrieve specific record by id. (Ignores other search options if provided)",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
               "type": "integer",
               "format": "int64"
-            }
-          },
-          {
-            "name": "external_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
-            "schema": {
-              "maxLength": 50,
-              "type": "string"
             }
           },
           {
@@ -1265,7 +1244,7 @@
             "description": "Wether or not to retrieve job details with this call"
           },
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -1275,7 +1254,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -1385,20 +1364,9 @@
             }
           },
           {
-            "name": "changes_since_change_id",
+            "name": "job_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
-            "schema": {
-              "maximum": 99999999,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "internal_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
+            "description": "Retrieve specific record by id. (Ignores other search options if provided)",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
@@ -1407,16 +1375,7 @@
             }
           },
           {
-            "name": "external_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
-            "schema": {
-              "maxLength": 50,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -1426,7 +1385,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -1453,7 +1412,7 @@
         "operationId": "PutSchedulingJobsTimestamps",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -1463,7 +1422,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -1560,7 +1519,7 @@
           },
           "description": "New or updated time stamps for JobID."
         },
-        "description": "Updates an existing set of job time stamps for a given internal or external Job ID.",
+        "description": "Updates an existing set of job time stamps for a given Job ID.",
         "tags": [
           "SchedulingJob"
         ]
@@ -1650,20 +1609,9 @@
             }
           },
           {
-            "name": "changes_since_change_id",
+            "name": "job_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
-            "schema": {
-              "maximum": 99999999,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "internal_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
+            "description": "Retrieve specific record by id. (Ignores other search options if provided)",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
@@ -1672,16 +1620,7 @@
             }
           },
           {
-            "name": "external_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
-            "schema": {
-              "maxLength": 50,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -1691,7 +1630,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -1717,7 +1656,7 @@
         "operationId": "PostSchedulingJobsReports",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -1727,7 +1666,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -1898,20 +1837,9 @@
             }
           },
           {
-            "name": "changes_since_change_id",
+            "name": "job_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
-            "schema": {
-              "maximum": 99999999,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "internal_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
+            "description": "Retrieve specific record by ID. (Ignores other search options if provided)",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
@@ -1920,16 +1848,7 @@
             }
           },
           {
-            "name": "external_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
-            "schema": {
-              "maxLength": 50,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -1939,7 +1858,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -1965,7 +1884,7 @@
         "operationId": "PutSchedulingJobsHandovers",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -1975,7 +1894,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -2045,7 +1964,7 @@
             }
           }
         },
-        "description": "Updates an existing job handover for a given internal or external Job ID.",
+        "description": "Updates an existing job handover for a given Job ID.",
         "tags": [
           "SchedulingJob"
         ]
@@ -2136,20 +2055,9 @@
             }
           },
           {
-            "name": "changes_since_change_id",
+            "name": "job_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
-            "schema": {
-              "maximum": 99999999,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "internal_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
+            "description": "Retrieve specific record by ID. (Ignores other search options if provided)",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
@@ -2158,16 +2066,7 @@
             }
           },
           {
-            "name": "external_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
-            "schema": {
-              "maxLength": 50,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -2177,7 +2076,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -2203,7 +2102,7 @@
         "operationId": "PutSchedulingJobsReturns",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -2213,7 +2112,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -2283,7 +2182,7 @@
             }
           }
         },
-        "description": "Updates an existing job return for a given internal or external Job ID.",
+        "description": "Updates an existing job return for a given Job ID.",
         "tags": [
           "SchedulingJob"
         ]
@@ -2374,20 +2273,9 @@
             }
           },
           {
-            "name": "changes_since_change_id",
+            "name": "job_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
-            "schema": {
-              "maximum": 99999999,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "internal_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
+            "description": "Retrieve specific record by ID. (Ignores other search options if provided)",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
@@ -2396,16 +2284,7 @@
             }
           },
           {
-            "name": "external_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
-            "schema": {
-              "maxLength": 50,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -2415,7 +2294,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -2442,7 +2321,7 @@
         "operationId": "PutSchedulingJobsSurcharges",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -2452,7 +2331,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -2528,251 +2407,7 @@
             }
           }
         },
-        "description": "Updates an existing set of job surcharges for a given internal or external Job ID.",
-        "tags": [
-          "SchedulingJob"
-        ]
-      }
-    },
-    "/api/v3/scheduling/jobs/forms": {
-      "get": {
-        "summary": "Search for Job Form",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/JobForm"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service Unavailable",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MaintenanceWindow"
-                }
-              }
-            }
-          }
-        },
-        "operationId": "GetSchedulingJobsForms",
-        "parameters": [
-          {
-            "name": "skip",
-            "in": "query",
-            "description": "Number of records to skip for pagination",
-            "schema": {
-              "maximum": 2147483647,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum number of records to return",
-            "schema": {
-              "maximum": 2147483647,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "changes_since_datetime",
-            "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "changes_since_change_id",
-            "in": "query",
-            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
-            "schema": {
-              "maximum": 99999999,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "internal_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
-            "schema": {
-              "maximum": 9999999999,
-              "minimum": 1,
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "external_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
-            "schema": {
-              "maxLength": 50,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-RequestingSystem",
-            "in": "header",
-            "description": "Identifing the system calling the service.",
-            "required": true,
-            "schema": {
-              "maxLength": 50,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-RequestingUser",
-            "in": "header",
-            "description": "Identifing the user calling the service.",
-            "required": true,
-            "schema": {
-              "maxLength": 30,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-Flow-ID",
-            "in": "header",
-            "description": "(Optional) Technical ID (GUID) for Call identification",
-            "schema": {
-              "maxLength": 30,
-              "type": "string"
-            }
-          }
-        ],
-        "description": "By passing in the appropriate options, the service searches for job forms in the system.",
-        "tags": [
-          "SchedulingJob"
-        ]
-      },
-      "parameters": [],
-      "put": {
-        "summary": "Modify Job Form",
-        "operationId": "PutSchedulingJobsForms",
-        "parameters": [
-          {
-            "name": "X-RequestingSystem",
-            "in": "header",
-            "description": "Identifying the system calling the service.",
-            "required": true,
-            "schema": {
-              "maxLength": 50,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-RequestingUser",
-            "in": "header",
-            "description": "Identifying the user calling the service.",
-            "required": true,
-            "schema": {
-              "maxLength": 30,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-Flow-ID",
-            "in": "header",
-            "description": "Optional technical ID (GUID) for call identification.",
-            "schema": {
-              "maxLength": 30,
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/JobForm"
-                  }
-                }
-              }
-            }
-          },
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/JobForm"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service Unavailable",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MaintenanceWindow"
-                }
-              }
-            }
-          }
-        },
-        "description": "Updates an existing set of job job forms for a given internal or external Job ID.",
+        "description": "Updates an existing set of job surcharges for a given Job ID.",
         "tags": [
           "SchedulingJob"
         ]
@@ -2862,20 +2497,9 @@
             }
           },
           {
-            "name": "changes_since_change_id",
+            "name": "job_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
-            "schema": {
-              "maximum": 99999999,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "internal_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
+            "description": "Retrieve specific record by ID. (Ignores other search options if provided)",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
@@ -2884,16 +2508,7 @@
             }
           },
           {
-            "name": "external_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
-            "schema": {
-              "maxLength": 50,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -2903,7 +2518,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -2929,7 +2544,7 @@
         "operationId": "PutSchedulingJobsProblems",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -2939,7 +2554,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -3015,7 +2630,7 @@
             }
           }
         },
-        "description": "Updates an existing set of job problems for a given internal or external Job ID.",
+        "description": "Updates an existing set of job problems for a given Job ID.",
         "tags": [
           "SchedulingJob"
         ]
@@ -3105,20 +2720,9 @@
             }
           },
           {
-            "name": "changes_since_change_id",
+            "name": "job_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
-            "schema": {
-              "maximum": 99999999,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "internal_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
+            "description": "Retrieve specific record by ID. (Ignores other search options if provided)",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
@@ -3127,16 +2731,7 @@
             }
           },
           {
-            "name": "external_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
-            "schema": {
-              "maxLength": 50,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -3146,7 +2741,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -3173,7 +2768,7 @@
         "operationId": "PutSchedulingJobsDocuments",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -3183,7 +2778,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -3259,7 +2854,7 @@
             }
           }
         },
-        "description": "Updates an existing set of job documents for a given internal or external Job ID.",
+        "description": "Updates an existing set of job documents for a given Job ID.",
         "tags": [
           "SchedulingJob"
         ]
@@ -3349,20 +2944,9 @@
             }
           },
           {
-            "name": "changes_since_change_id",
+            "name": "job_id",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
-            "schema": {
-              "maximum": 99999999,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "internal_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
+            "description": "Retrieve specific record by ID. (Ignores other search options if provided)",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
@@ -3371,16 +2955,7 @@
             }
           },
           {
-            "name": "external_job_id",
-            "in": "query",
-            "description": "Retrieve specific record by external id. (Ignores search_string parameter if provided)",
-            "schema": {
-              "maxLength": 50,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifing the system calling the service.",
             "required": true,
@@ -3390,7 +2965,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifing the user calling the service.",
             "required": true,
@@ -3417,7 +2992,7 @@
         "operationId": "PutSchedulingJobsTransportDemands",
         "parameters": [
           {
-            "name": "X-RequestingSystem",
+            "name": "X-Requesting-System",
             "in": "header",
             "description": "Identifying the system calling the service.",
             "required": true,
@@ -3427,7 +3002,7 @@
             }
           },
           {
-            "name": "X-RequestingUser",
+            "name": "X-Requesting-User",
             "in": "header",
             "description": "Identifying the user calling the service.",
             "required": true,
@@ -3503,7 +3078,7 @@
             }
           }
         },
-        "description": "Updates an existing set of job transport demands for a given internal or external Job ID.",
+        "description": "Updates an existing set of job transport demands for a given Job ID.",
         "tags": [
           "SchedulingJob"
         ]
@@ -3518,11 +3093,133 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JobBookingActivity"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
           }
         },
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changes_since_datetime",
+            "in": "query",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "job_id",
+            "in": "query",
+            "description": "Retrieve specific record by ID. (Ignores other search options if provided)",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "(Optional) Technical ID (GUID) for Call identification",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
         "operationId": "GetSchedulingJobsBookingActivities",
-        "description": "By passing in the appropriate options, the service searches for job booking activities in the system."
+        "description": "By passing in the appropriate options, the service searches for job booking activities in the system.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
       },
       "parameters": []
     }
@@ -3965,7 +3662,7 @@
             "type": "integer",
             "maximum": 999999999,
             "minimum": 1,
-            "description": "Performis internal of attribute set ID",
+            "description": "Performis attribute set ID",
             "format": "int32",
             "example": 847209
           },
@@ -5195,9 +4892,9 @@
         "description": "signature details when available. If not provided: a report, handover or return is considered un-signed.",
         "title": "Signature",
         "properties": {
-          "InternalSignatureID": {
+          "SignatureID": {
             "type": "number",
-            "description": "Internal signature ID. leave empty when creating a new signature entry.",
+            "description": "signature ID. leave empty when creating a new signature entry.",
             "nullable": true
           },
           "SignatureTypeCode": {
@@ -5219,7 +4916,7 @@
         ],
         "x-examples": {
           "example-1": {
-            "InternalSignatureID": 0,
+            "SignatureID": 541,
             "SignatureTypeCode": 45680002,
             "SigneeName": "Jerry Miller",
             "SignaturDocumentLink": {
@@ -5252,8 +4949,7 @@
         "x-examples": {
           "example-1": {
             "CompanyNo": 100,
-            "InternalJobID": 37281,
-            "ExternalJobID": "J827109-5",
+            "JobID": 37281,
             "DetailsIncluded": false,
             "ReportEMailReceivers": "jack.smith@customerdomain.com; sarah.root@customermail.com",
             "LanguageIsoCode": "US",
@@ -5264,8 +4960,7 @@
             "JobDateTimeFrom": "2022-12-01T07:00:00",
             "JobDateTimeTo": "2022-12-23T15:00:00",
             "PrimaryJobLocation": {
-              "InternalLocationID": 8392,
-              "ExternalLocationID": "LOC83-931",
+              "LocationID": 8392,
               "Description": "Construction Site, Gate 4",
               "TransportRestriction": "limited height 4.5 meteres at gate 3, prefer gate 4 (no height limit)",
               "Address": {
@@ -5291,16 +4986,42 @@
             "InternalAccessoryID": 509,
             "ExternalAccessoryID": "A509",
             "UseCaseCode": 69510030,
-            "ResourceAvailableNotificaitonInternalEmployeeID": 920,
-            "ResourceAvailableNotificaitonExternalEmployeeID": "E920",
-            "ResourceAvailableNotificationDateTime": "2022-12-23T15:34:05",
+            "ReleasedByInternalEmployeeID": 920,
+            "ReleasedByExternalEmployeeID": "E920",
+            "ReleasedOnDateTime": "2022-12-23T15:34:05",
+            "HandOver": {
+              "HandoverID": 483915,
+              "JobID": 34451,
+              "InternalEmployeeID": 341,
+              "ExternalEmployeeID": "E341",
+              "HandoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
+              "CustomerBriefed": true,
+              "Comment": "customer already knows the machine very well",
+              "CustomerSignature": {
+                "SignatureID": 0,
+                "SignatureTypeCode": 45680002,
+                "SigneeName": "Jerry Miller",
+                "SignaturDocumentLink": {
+                  "FileDocumentInternalID": 4738919,
+                  "FileExternalArchiveID": "DC9301231",
+                  "FileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                }
+              }
+            },
+            "Return": {
+              "ReturnID": 483915,
+              "JobID": 45612,
+              "InternalEmployeeID": 345,
+              "ExternalEmployeeID": "E345",
+              "ReturnStartedDateTime": "2012-04-23T18:25:43.511Z",
+              "Damage": false,
+              "Comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!"
+            },
             "Details": {
               "ScheduleList": [
                 {
-                  "InternalJobScheduleID": 32345,
-                  "ExternalJobScheduleID": "J32345-4-2",
-                  "InternalJobID": 1,
-                  "ExternalJobID": "J827109-5",
+                  "JobScheduleID": 32345,
+                  "JobID": 1,
                   "SortNo": 100,
                   "Description": "Loading",
                   "DateTime": "2022-12-01T07:30:00",
@@ -5311,8 +5032,7 @@
                 {
                   "InternalContactID": 34511,
                   "ExternalContactID": "KK34511",
-                  "InternalJobID": 84721,
-                  "ExternalJobID": "J827109-5",
+                  "JobID": 84721,
                   "Description": "construction site manager",
                   "FullName": "Frank Flintstone",
                   "Phone": "+49 8745 951 18",
@@ -5323,8 +5043,7 @@
               ],
               "BookingActivityList": [
                 {
-                  "InternalBookingActivityID": 82091,
-                  "ExternalBookingActivityID": "BA82091-10",
+                  "BookingActivityID": 82091,
                   "ActivityCode": "45570018",
                   "Activity": "Unloading",
                   "Active": true
@@ -5332,8 +5051,7 @@
               ],
               "LocationList": [
                 {
-                  "InternalLocationID": 8392,
-                  "ExternalLocationID": "LOC83-931",
+                  "LocationID": 8392,
                   "Description": "Construction Site, Gate 4",
                   "TransportRestriction": "limited height 4.5 meteres at gate 3, prefer gate 4 (no height limit)",
                   "Address": {
@@ -5349,231 +5067,175 @@
                     "Longitude": -97.1871375
                   }
                 }
-              ]
-            },
-            "DocumentList": [
-              {
-                "InternalJobDocumentID": 583911,
-                "ExternalJobDocumentID": "Issue-38102",
-                "InternalJobID": 452341,
-                "ExternalJobID": "J827109-5",
-                "JobDocument": {
-                  "FileDocumentInternalID": 4738919,
-                  "FileExternalArchiveID": "DC9301231",
-                  "FileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
-                }
-              }
-            ],
-            "TimeStampList": [
-              {
-                "InternalJobTimestampID": 483915,
-                "ExternalJobTimestampID": "TS289182-5",
-                "InternalJobID": 1,
-                "ExternalJobID": "J827109-5",
-                "Timestamp": "2012-04-23",
-                "TimestampTypeCode": 45560001,
-                "InternalBookingActivityID": 45570005,
-                "ExternalBookingActivityID": "J83719-4-10",
-                "InternalMachineID": 45123,
-                "ExternalMachineID": "MRK8938719",
-                "InternalEmployeeID": 241,
-                "ExternalEmployeeID": "E492",
-                "Comment": "took longer than expected due to mess at the construction site"
-              }
-            ],
-            "ReportList": [
-              {
-                "InternalReportID": 31234,
-                "ExternalReportID": "R93819-3-1",
-                "ReportFromDate": "2022-12-01",
-                "ReportToDate": "2012-12-23",
-                "Comment": "return was delayed due to traffic jam at our gates > not her fault!",
-                "ReportTimeStampList": [
-                  {
-                    "InternalJobReportTimestampID": 483915,
-                    "ExternalJobReportTimestampID": "TS289182-5",
-                    "InternalJobID": 42341,
-                    "ExternalJobID": "J827109-5",
-                    "Timestamp": "2012-04-23T07:31:20",
-                    "TimestampTypeCode": 45560001,
-                    "Source": "MobileApp",
-                    "InternalBookingActivityID": 482012,
-                    "ExternalBookingActivityID": "830181",
-                    "InternalMachineID": 4021,
-                    "ExternalMachineID": "MRK8938719",
-                    "InternalEmployeeID": 214,
-                    "ExternalEmployeeID": "E214",
-                    "Comment": "optional remark on activity, such as why something took longer"
-                  }
-                ],
-                "ReportSurchargeList": [
-                  {
-                    "InternalReportSurchargeID": 483915,
-                    "ExternalReportSurchargeID": "TS289182-5",
-                    "InternalJobSurchargeID": 483915,
-                    "ExternalJobSurchargeID": "TS289182-5",
-                    "InternalJobID": 1,
-                    "ExternalJobID": "J827109-5",
-                    "InternalReportID": 52671,
-                    "ExternalReportID": "J8401-4-RP1",
-                    "DateTime": "2022-12-23T17:25:43",
-                    "Assignment": "RENTAL_HANDOVER",
-                    "Quantity": 23.2
-                  }
-                ],
-                "EMailNotificationList": [
-                  {
-                    "InternalEMailNotificationID": 1,
-                    "ExternalEMailNotificationID": "J827109-5",
-                    "InternalJobID": 45123,
-                    "ExternalJobID": "J827109-5",
-                    "InternalReportID": 48192,
-                    "ExternalReportID": "J4801-5-RP9",
-                    "Sender": "no-reply@mydomain.com",
-                    "SendDateTime": "2022-12-07T06:00:01",
-                    "CreateDateTime": "2022-12-06T08:35:54",
-                    "CreatedByInternalEmployeeID": 498,
-                    "CreatedByExternalEmployeeID": "E948",
-                    "ModifyDateTime": "2022-12-06T12:00:20",
-                    "ModifiedByInternalEmployeeID": 341,
-                    "ModifiedByExternalEmployeeID": "E341"
-                  }
-                ],
-                "Signature": {
-                  "InternalSignatureID": 0,
-                  "SignatureTypeCode": 45680002,
-                  "SigneeName": "Jerry Miller",
-                  "SignaturDocumentLink": {
+              ],
+              "DocumentList": [
+                {
+                  "JobDocumentID": 583911,
+                  "JobID": 452341,
+                  "JobDocument": {
                     "FileDocumentInternalID": 4738919,
                     "FileExternalArchiveID": "DC9301231",
                     "FileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
                   }
-                },
-                "ReportPDF": {
-                  "FileDocumentInternalID": 4738919,
-                  "FileExternalArchiveID": "DC9301231",
-                  "FileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
                 }
-              }
-            ],
-            "HandOver": {
-              "InternalHandoverID": 483915,
-              "ExternalHandoverID": "TS289182-5-HO",
-              "InternalJobID": 34451,
-              "ExternalJobID": "J827109-5",
-              "InternalEmployeeID": 341,
-              "ExternalEmployeeID": "E341",
-              "HandoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
-              "CustomerBriefed": true,
-              "Comment": "customer already knows the machine very well",
-              "CustomerSignature": {
-                "InternalSignatureID": 0,
-                "SignatureTypeCode": 45680002,
-                "SigneeName": "Jerry Miller",
-                "SignaturDocumentLink": {
-                  "FileDocumentInternalID": 4738919,
-                  "FileExternalArchiveID": "DC9301231",
-                  "FileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+              ],
+              "TimeStampList": [
+                {
+                  "JobTimestampID": 483915,
+                  "JobID": 1,
+                  "Timestamp": "2012-04-23",
+                  "TimestampTypeCode": 45560001,
+                  "BookingActivityID": 45570005,
+                  "InternalMachineID": 45123,
+                  "ExternalMachineID": "MRK8938719",
+                  "InternalEmployeeID": 241,
+                  "ExternalEmployeeID": "E492",
+                  "Comment": "took longer than expected due to mess at the construction site"
                 }
-              }
-            },
-            "Return": {
-              "InternalReturnID": 483915,
-              "ExternalReturnID": "TS289182-5-RET",
-              "InternalJobID": 45612,
-              "ExternalJobID": "J827109-5",
-              "InternalEmployeeID": 345,
-              "ExternalEmployeeID": "E345",
-              "ReturnStartedDateTime": "2012-04-23T18:25:43.511Z",
-              "Damage": false,
-              "Comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!"
-            },
-            "SurchargeList": [
-              {
-                "InternalJobSurchargeID": 483915,
-                "ExternalJobSurchargeID": "SC5002-289102",
-                "InternalSurchargeID": 8739145,
-                "ExternalSurchargeID": "SC5002",
-                "InternalJobID": 82916,
-                "ExternalJobID": "J827109-5",
-                "DateTime": "2012-04-23T18:25:43.511Z",
-                "Assignment": "RENTAL_HANDOVER",
-                "Quantity": 23.5,
-                "Comment": "reason for quantity: additional gas can filled on customers request",
-                "InternalReportID": 456223,
-                "ExternalReportID": "J48102-4-SC12"
-              }
-            ],
-            "FormList": [
-              {
-                "WIP": "string"
-              }
-            ],
-            "ProblemList": [
-              {
-                "InternalProblemID": 583911,
-                "ExternalProblemID": "Issue-38102",
-                "InternalJobID": 452341,
-                "ExternalJobID": "J827109-5",
-                "ProblemType": 0,
-                "Description": "various impact dents on the left front side",
-                "ImpactOnConditionBool": false,
-                "VisibleForCustomerBool": true,
-                "CustomersFaultBool": false,
-                "Comment": "string",
-                "SolvedBool": false,
-                "ReportedByInternalEmployeeID": 363,
-                "ReportedByExternalEmployeeID": "E465",
-                "ReportedDateTime": "TS289182-5",
-                "ReportingContext": "LEVA.JOB.HANDOVER",
-                "ReportingContextText": "Custom Job Application",
-                "FixRequiredBool": false
-              }
-            ],
-            "TransportDemandList": [
-              {
-                "TransportDemandPositionID": 2512341,
-                "InternalJobID": 51231,
-                "ExternalJobID": "J30123-2",
-                "Description": "Custom Fluid B028",
-                "Details": "handle with care, keep up-side up at all times",
-                "UnitOfMeasure": "Liter",
-                "DecimalCount": 2,
-                "TransportQuantity": 351.4,
-                "LoadedQuantity": 351.5,
-                "UnloadedQuantity": 351.4,
-                "LoadingDateTime": "2022-12-30T13:30:09",
-                "LoadingCheckmarkBool": false,
-                "UnloadingDateTime": "2019-08-24T14:15:22Z",
-                "UnloadingCheckmarkBool": false,
-                "PickupLocation": {
-                  "Street": "Boca Chica Blvd.",
-                  "HouseNo": "52448",
-                  "POBox": "string",
-                  "AdditionalLine1": "C/O Dr. Maria Smith",
-                  "AdditionalLine2": "Environmental Dept / Building D2",
-                  "Country": "US",
-                  "ZipCode": "TX 78521",
-                  "City": "Brownsville",
-                  "Latitude": 25.9850628,
-                  "Longitude": -97.1871375
-                },
-                "DeliveryLocation": {
-                  "Street": "Boca Chica Blvd.",
-                  "HouseNo": "52448",
-                  "POBox": "string",
-                  "AdditionalLine1": "C/O Dr. Maria Smith",
-                  "AdditionalLine2": "Environmental Dept / Building D2",
-                  "Country": "US",
-                  "ZipCode": "TX 78521",
-                  "City": "Brownsville",
-                  "Latitude": 25.9850628,
-                  "Longitude": -97.1871375
-                },
-                "InternalRentalJobID": 435123,
-                "ExternalRentalJobID": "J312341-2"
-              }
-            ]
+              ],
+              "ReportList": [
+                {
+                  "ReportID": 31234,
+                  "ReportFromDate": "2022-12-01",
+                  "ReportToDate": "2012-12-23",
+                  "Comment": "return was delayed due to traffic jam at our gates > not her fault!",
+                  "ReportTimeStampList": [
+                    {
+                      "JobReportTimestampID": 483915,
+                      "JobID": 42341,
+                      "Timestamp": "2012-04-23T07:31:20",
+                      "TimestampTypeCode": 45560001,
+                      "Source": "MobileApp",
+                      "BookingActivityID": 482012,
+                      "InternalMachineID": 4021,
+                      "ExternalMachineID": "MRK8938719",
+                      "InternalEmployeeID": 214,
+                      "ExternalEmployeeID": "E214",
+                      "Comment": "optional remark on activity, such as why something took longer"
+                    }
+                  ],
+                  "ReportSurchargeList": [
+                    {
+                      "ReportSurchargeID": 483915,
+                      "JobSurchargeID": 483915,
+                      "JobID": 1,
+                      "ReportID": 52671,
+                      "DateTime": "2022-12-23T17:25:43",
+                      "Assignment": "RENTAL_HANDOVER",
+                      "Quantity": 23.2
+                    }
+                  ],
+                  "EMailNotificationList": [
+                    {
+                      "EMailNotificationID": 1,
+                      "JobID": 45123,
+                      "ReportID": 48192,
+                      "Sender": "no-reply@mydomain.com",
+                      "SendDateTime": "2022-12-07T06:00:01",
+                      "CreateDateTime": "2022-12-06T08:35:54",
+                      "CreatedByInternalEmployeeID": 498,
+                      "CreatedByExternalEmployeeID": "E948",
+                      "ModifyDateTime": "2022-12-06T12:00:20",
+                      "ModifiedByInternalEmployeeID": 341,
+                      "ModifiedByExternalEmployeeID": "E341"
+                    }
+                  ],
+                  "Signature": {
+                    "SignatureID": 0,
+                    "SignatureTypeCode": 45680002,
+                    "SigneeName": "Jerry Miller",
+                    "SignaturDocumentLink": {
+                      "FileDocumentInternalID": 4738919,
+                      "FileExternalArchiveID": "DC9301231",
+                      "FileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                    }
+                  },
+                  "ReportPDF": {
+                    "FileDocumentInternalID": 4738919,
+                    "FileExternalArchiveID": "DC9301231",
+                    "FileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                  }
+                }
+              ],
+              "SurchargeList": [
+                {
+                  "JobSurchargeID": 483915,
+                  "SurchargeID": 8739145,
+                  "JobID": 82916,
+                  "DateTime": "2012-04-23T18:25:43.511Z",
+                  "Assignment": "RENTAL_HANDOVER",
+                  "Quantity": 23.5,
+                  "Comment": "reason for quantity: additional gas can filled on customers request",
+                  "ReportID": 456223
+                }
+              ],
+              "FormList": [
+                {
+                  "WIP": "string"
+                }
+              ],
+              "ProblemList": [
+                {
+                  "ProblemID": 583911,
+                  "JobID": 452341,
+                  "ProblemType": 0,
+                  "Description": "various impact dents on the left front side",
+                  "ImpactOnConditionBool": false,
+                  "VisibleForCustomerBool": true,
+                  "CustomersFaultBool": false,
+                  "Comment": "string",
+                  "SolvedBool": false,
+                  "ReportedByInternalEmployeeID": 363,
+                  "ReportedByExternalEmployeeID": "E465",
+                  "ReportedDateTime": "TS289182-5",
+                  "ReportingContext": "LEVA.JOB.HANDOVER",
+                  "ReportingContextText": "Custom Job Application",
+                  "FixRequiredBool": false
+                }
+              ],
+              "TransportDemandList": [
+                {
+                  "TransportDemandPositionID": 2512341,
+                  "JobID": 51231,
+                  "Description": "Custom Fluid B028",
+                  "Details": "handle with care, keep up-side up at all times",
+                  "UnitOfMeasure": "Liter",
+                  "DecimalCount": 2,
+                  "TransportQuantity": 351.4,
+                  "LoadedQuantity": 351.5,
+                  "UnloadedQuantity": 351.4,
+                  "LoadingDateTime": "2022-12-30T13:30:09",
+                  "LoadingCheckmarkBool": false,
+                  "UnloadingDateTime": "2019-08-24T14:15:22Z",
+                  "UnloadingCheckmarkBool": false,
+                  "PickupLocation": {
+                    "Street": "Boca Chica Blvd.",
+                    "HouseNo": "52448",
+                    "POBox": "string",
+                    "AdditionalLine1": "C/O Dr. Maria Smith",
+                    "AdditionalLine2": "Environmental Dept / Building D2",
+                    "Country": "US",
+                    "ZipCode": "TX 78521",
+                    "City": "Brownsville",
+                    "Latitude": 25.9850628,
+                    "Longitude": -97.1871375
+                  },
+                  "DeliveryLocation": {
+                    "Street": "Boca Chica Blvd.",
+                    "HouseNo": "52448",
+                    "POBox": "string",
+                    "AdditionalLine1": "C/O Dr. Maria Smith",
+                    "AdditionalLine2": "Environmental Dept / Building D2",
+                    "Country": "US",
+                    "ZipCode": "TX 78521",
+                    "City": "Brownsville",
+                    "Latitude": 25.9850628,
+                    "Longitude": -97.1871375
+                  },
+                  "RentalJobID": 435123
+                }
+              ]
+            }
           }
         },
         "properties": {
@@ -5586,18 +5248,12 @@
             "example": 100,
             "nullable": true
           },
-          "InternalJobID": {
+          "JobID": {
             "type": "number",
             "maximum": 9999999999,
             "minimum": 1,
             "example": 37281,
-            "description": "internal Job ID of performis / leva+. will be set internally - leave empty if not known.\n\nmust be submitted if external ID is not submitted.",
-            "nullable": true
-          },
-          "ExternalJobID": {
-            "type": "string",
-            "example": "J827109-5",
-            "description": "external Job ID in requesting system. Can be set by the requesting system to identify a specific job. Must be unique!\n\nmust be submitted if internal ID is not submitted.",
+            "description": "Job ID of performis / leva+. will be set internally - leave empty if not known.",
             "nullable": true
           },
           "DetailsIncluded": {
@@ -5710,48 +5366,24 @@
             "description": "Code 6951\nuse IF2BA to retrieve value list.",
             "example": 69510030
           },
-          "ResourceAvailableNotificaitonInternalEmployeeID": {
+          "ReleasedByInternalEmployeeID": {
             "type": "number",
             "description": "internal Employee ID who notified that the machine ressource to be available for scheduling again.",
             "example": 920,
             "nullable": true
           },
-          "ResourceAvailableNotificaitonExternalEmployeeID": {
+          "ReleasedByExternalEmployeeID": {
             "type": "string",
             "description": "external Employee ID who notified that the machine ressource to be available for scheduling again.",
             "example": "E920",
             "nullable": true
           },
-          "ResourceAvailableNotificationDateTime": {
+          "ReleasedOnDateTime": {
             "type": "string",
             "format": "date-time",
             "description": "DateTime of notification on which the machine ressource is made available for scheduling again. (The  maschine is no longer needed on the job)\n\nNULLas long as the resource is still being used.",
             "example": "2022-12-23T15:34:05",
             "nullable": true
-          },
-          "Details": {
-            "$ref": "#/components/schemas/JobDetails"
-          },
-          "DocumentList": {
-            "type": "array",
-            "description": "list of attached documents",
-            "items": {
-              "$ref": "#/components/schemas/JobDocument"
-            }
-          },
-          "TimeStampList": {
-            "type": "array",
-            "description": "list of time stamps on this job",
-            "items": {
-              "$ref": "#/components/schemas/JobTimeStamp"
-            }
-          },
-          "ReportList": {
-            "type": "array",
-            "description": "list of reports on this job",
-            "items": {
-              "$ref": "#/components/schemas/JobReport"
-            }
           },
           "HandOver": {
             "$ref": "#/components/schemas/JobHandOver"
@@ -5759,33 +5391,8 @@
           "Return": {
             "$ref": "#/components/schemas/JobReturn"
           },
-          "SurchargeList": {
-            "type": "array",
-            "description": "surcharges which were added to the job",
-            "items": {
-              "$ref": "#/components/schemas/JobSurcharge"
-            }
-          },
-          "FormList": {
-            "type": "array",
-            "description": "forms that were added to the job",
-            "items": {
-              "$ref": "#/components/schemas/JobForm"
-            }
-          },
-          "ProblemList": {
-            "type": "array",
-            "description": "conditions related to the jobs machine or accessory.",
-            "items": {
-              "$ref": "#/components/schemas/JobProblem"
-            }
-          },
-          "TransportDemandList": {
-            "type": "array",
-            "description": "on ",
-            "items": {
-              "$ref": "#/components/schemas/JobTransportDemand"
-            }
+          "Details": {
+            "$ref": "#/components/schemas/JobDetails"
           }
         },
         "required": [
@@ -5811,10 +5418,8 @@
           "example-1": {
             "ScheduleList": [
               {
-                "InternalJobScheduleID": 32345,
-                "ExternalJobScheduleID": "J32345-4-2",
-                "InternalJobID": 1,
-                "ExternalJobID": "J827109-5",
+                "JobScheduleID": 32345,
+                "JobID": 1,
                 "SortNo": 100,
                 "Description": "Loading",
                 "DateTime": "2022-12-01T07:30:00",
@@ -5825,8 +5430,7 @@
               {
                 "InternalContactID": 34511,
                 "ExternalContactID": "KK34511",
-                "InternalJobID": 84721,
-                "ExternalJobID": "J827109-5",
+                "JobID": 84721,
                 "Description": "construction site manager",
                 "FullName": "Frank Flintstone",
                 "Phone": "+49 8745 951 18",
@@ -5837,8 +5441,7 @@
             ],
             "BookingActivityList": [
               {
-                "InternalBookingActivityID": 82091,
-                "ExternalBookingActivityID": "BA82091-10",
+                "BookingActivityID": 82091,
                 "ActivityCode": "45570018",
                 "Activity": "Unloading",
                 "Active": true
@@ -5846,8 +5449,7 @@
             ],
             "LocationList": [
               {
-                "InternalLocationID": 8392,
-                "ExternalLocationID": "LOC83-931",
+                "LocationID": 8392,
                 "Description": "Construction Site, Gate 4",
                 "TransportRestriction": "limited height 4.5 meteres at gate 3, prefer gate 4 (no height limit)",
                 "Address": {
@@ -5862,6 +5464,173 @@
                   "Latitude": 25.9850628,
                   "Longitude": -97.1871375
                 }
+              }
+            ],
+            "DocumentList": [
+              {
+                "JobDocumentID": 583911,
+                "JobID": 452341,
+                "JobDocument": {
+                  "FileDocumentInternalID": 4738919,
+                  "FileExternalArchiveID": "DC9301231",
+                  "FileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                }
+              }
+            ],
+            "TimeStampList": [
+              {
+                "JobTimestampID": 483915,
+                "JobID": 1,
+                "Timestamp": "2012-04-23",
+                "TimestampTypeCode": 45560001,
+                "BookingActivityID": 45570005,
+                "InternalMachineID": 45123,
+                "ExternalMachineID": "MRK8938719",
+                "InternalEmployeeID": 241,
+                "ExternalEmployeeID": "E492",
+                "Comment": "took longer than expected due to mess at the construction site"
+              }
+            ],
+            "ReportList": [
+              {
+                "ReportID": 31234,
+                "ReportFromDate": "2022-12-01",
+                "ReportToDate": "2012-12-23",
+                "Comment": "return was delayed due to traffic jam at our gates > not her fault!",
+                "ReportTimeStampList": [
+                  {
+                    "JobReportTimestampID": 483915,
+                    "JobID": 42341,
+                    "Timestamp": "2012-04-23T07:31:20",
+                    "TimestampTypeCode": 45560001,
+                    "Source": "MobileApp",
+                    "BookingActivityID": 482012,
+                    "InternalMachineID": 4021,
+                    "ExternalMachineID": "MRK8938719",
+                    "InternalEmployeeID": 214,
+                    "ExternalEmployeeID": "E214",
+                    "Comment": "optional remark on activity, such as why something took longer"
+                  }
+                ],
+                "ReportSurchargeList": [
+                  {
+                    "ReportSurchargeID": 483915,
+                    "JobSurchargeID": 483915,
+                    "JobID": 1,
+                    "ReportID": 52671,
+                    "DateTime": "2022-12-23T17:25:43",
+                    "Assignment": "RENTAL_HANDOVER",
+                    "Quantity": 23.2
+                  }
+                ],
+                "EMailNotificationList": [
+                  {
+                    "EMailNotificationID": 1,
+                    "JobID": 45123,
+                    "ReportID": 48192,
+                    "Sender": "no-reply@mydomain.com",
+                    "SendDateTime": "2022-12-07T06:00:01",
+                    "CreateDateTime": "2022-12-06T08:35:54",
+                    "CreatedByInternalEmployeeID": 498,
+                    "CreatedByExternalEmployeeID": "E948",
+                    "ModifyDateTime": "2022-12-06T12:00:20",
+                    "ModifiedByInternalEmployeeID": 341,
+                    "ModifiedByExternalEmployeeID": "E341"
+                  }
+                ],
+                "Signature": {
+                  "SignatureID": 0,
+                  "SignatureTypeCode": 45680002,
+                  "SigneeName": "Jerry Miller",
+                  "SignaturDocumentLink": {
+                    "FileDocumentInternalID": 4738919,
+                    "FileExternalArchiveID": "DC9301231",
+                    "FileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                  }
+                },
+                "ReportPDF": {
+                  "FileDocumentInternalID": 4738919,
+                  "FileExternalArchiveID": "DC9301231",
+                  "FileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                }
+              }
+            ],
+            "SurchargeList": [
+              {
+                "JobSurchargeID": 483915,
+                "SurchargeID": 8739145,
+                "JobID": 82916,
+                "DateTime": "2012-04-23T18:25:43.511Z",
+                "Assignment": "RENTAL_HANDOVER",
+                "Quantity": 23.5,
+                "Comment": "reason for quantity: additional gas can filled on customers request",
+                "ReportID": 456223
+              }
+            ],
+            "FormList": [
+              {
+                "WIP": "string"
+              }
+            ],
+            "ProblemList": [
+              {
+                "ProblemID": 583911,
+                "JobID": 452341,
+                "ProblemType": 0,
+                "Description": "various impact dents on the left front side",
+                "ImpactOnConditionBool": false,
+                "VisibleForCustomerBool": true,
+                "CustomersFaultBool": false,
+                "Comment": "string",
+                "SolvedBool": false,
+                "ReportedByInternalEmployeeID": 363,
+                "ReportedByExternalEmployeeID": "E465",
+                "ReportedDateTime": "TS289182-5",
+                "ReportingContext": "LEVA.JOB.HANDOVER",
+                "ReportingContextText": "Custom Job Application",
+                "FixRequiredBool": false
+              }
+            ],
+            "TransportDemandList": [
+              {
+                "TransportDemandPositionID": 2512341,
+                "JobID": 51231,
+                "Description": "Custom Fluid B028",
+                "Details": "handle with care, keep up-side up at all times",
+                "UnitOfMeasure": "Liter",
+                "DecimalCount": 2,
+                "TransportQuantity": 351.4,
+                "LoadedQuantity": 351.5,
+                "UnloadedQuantity": 351.4,
+                "LoadingDateTime": "2022-12-30T13:30:09",
+                "LoadingCheckmarkBool": false,
+                "UnloadingDateTime": "2019-08-24T14:15:22Z",
+                "UnloadingCheckmarkBool": false,
+                "PickupLocation": {
+                  "Street": "Boca Chica Blvd.",
+                  "HouseNo": "52448",
+                  "POBox": "string",
+                  "AdditionalLine1": "C/O Dr. Maria Smith",
+                  "AdditionalLine2": "Environmental Dept / Building D2",
+                  "Country": "US",
+                  "ZipCode": "TX 78521",
+                  "City": "Brownsville",
+                  "Latitude": 25.9850628,
+                  "Longitude": -97.1871375
+                },
+                "DeliveryLocation": {
+                  "Street": "Boca Chica Blvd.",
+                  "HouseNo": "52448",
+                  "POBox": "string",
+                  "AdditionalLine1": "C/O Dr. Maria Smith",
+                  "AdditionalLine2": "Environmental Dept / Building D2",
+                  "Country": "US",
+                  "ZipCode": "TX 78521",
+                  "City": "Brownsville",
+                  "Latitude": 25.9850628,
+                  "Longitude": -97.1871375
+                },
+                "RentalJobID": 435123
               }
             ]
           }
@@ -5891,6 +5660,42 @@
             "items": {
               "$ref": "#/components/schemas/JobLocation"
             }
+          },
+          "DocumentList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobDocument"
+            }
+          },
+          "TimeStampList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobTimeStamp"
+            }
+          },
+          "ReportList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobReport"
+            }
+          },
+          "SurchargeList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobSurcharge"
+            }
+          },
+          "ProblemList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobProblem"
+            }
+          },
+          "TransportDemandList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobTransportDemand"
+            }
           }
         }
       },
@@ -5899,31 +5704,18 @@
         "type": "object",
         "description": "a job schedule entry",
         "properties": {
-          "InternalJobScheduleID": {
+          "JobScheduleID": {
             "type": "number",
             "example": 32345,
             "description": "the unique internal identifier for this job schedule entry.",
             "nullable": true
           },
-          "ExternalJobScheduleID": {
-            "type": "string",
-            "example": "J32345-4-2",
-            "description": "the unique external identifier for this job schedule entry if available and used.",
-            "nullable": true
-          },
-          "InternalJobID": {
+          "JobID": {
             "type": "integer",
             "format": "int32",
             "description": "the internal unique identifier for the job onto which the time stamp is assigned",
             "minimum": 1,
             "maximum": 9999999999,
-            "nullable": true
-          },
-          "ExternalJobID": {
-            "type": "string",
-            "format": "int32",
-            "description": "the external unique identifer for the job onto which the time stamp is assigned",
-            "example": "J827109-5",
             "nullable": true
           },
           "SortNo": {
@@ -5951,10 +5743,8 @@
         },
         "x-examples": {
           "example-1": {
-            "InternalJobScheduleID": 32345,
-            "ExternalJobScheduleID": "J32345-4-2",
-            "InternalJobID": 1,
-            "ExternalJobID": "J827109-5",
+            "JobScheduleID": 32345,
+            "JobID": 1,
             "SortNo": 100,
             "Description": "Loading",
             "DateTime": "2022-12-01T07:30:00",
@@ -5979,20 +5769,13 @@
             "description": "external identifier of contact",
             "nullable": true
           },
-          "InternalJobID": {
+          "JobID": {
             "type": "integer",
             "format": "int32",
-            "description": "the internal unique identifier for the job onto which the contact is assigned",
+            "description": "the unique identifier for the job onto which the contact is assigned",
             "minimum": 1,
             "maximum": 9999999999,
             "example": 84721,
-            "nullable": true
-          },
-          "ExternalJobID": {
-            "type": "string",
-            "format": "int32",
-            "description": "external unique identifer for the job onto which the contact is assigned",
-            "example": "J827109-5",
             "nullable": true
           },
           "Description": {
@@ -6031,8 +5814,7 @@
           "example-1": {
             "InternalContactID": 34511,
             "ExternalContactID": "KK34511",
-            "InternalJobID": 84721,
-            "ExternalJobID": "J827109-5",
+            "JobID": 84721,
             "Description": "construction site manager",
             "FullName": "Frank Flintstone",
             "Phone": "+49 8745 951 18",
@@ -6047,16 +5829,10 @@
         "type": "object",
         "description": "job booking activity are the available activities such as \"Loading\", \"Unloading\", (...) which an employee is able to choose from when adding timestamps on the job.",
         "properties": {
-          "InternalBookingActivityID": {
+          "BookingActivityID": {
             "type": "number",
             "example": 82091,
-            "description": "unique internal booking activity. other jobs containend the same activity do not have the same job booking activity id.",
-            "nullable": true
-          },
-          "ExternalBookingActivityID": {
-            "type": "string",
-            "example": "BA82091-10",
-            "description": "external unique job booking activity, if available and used",
+            "description": "unique booking activity. other jobs containend the same activity do not have the same job booking activity id.",
             "nullable": true
           },
           "ActivityCode": {
@@ -6082,8 +5858,7 @@
         ],
         "x-examples": {
           "example-1": {
-            "InternalBookingActivityID": 82091,
-            "ExternalBookingActivityID": "BA82091-10",
+            "BookingActivityID": 82091,
             "ActivityCode": "45570018",
             "Activity": "Unloading",
             "Active": true
@@ -6096,14 +5871,11 @@
         "description": "job time stamp describes who (employee), which resource (machine or accessory), what activity (booking activity), when (timestamp). timestamps form a chronological order from which the effective efforts can be calculated from.\n\nif no job time stamps are provided, there are no recorded efforts on the job and the job status can not be determined.\n\nNOTE: job time stamps may differ from job report timestamps. (job time stamps reflect the internal efforts, while job report timestamps reflect the efforts that the customer will be billed for). Ideally: they match. The reality is, that the backend clerks may be forced to adjust the report quantities to correct various issues (e.g. misheaps)",
         "x-examples": {
           "example-1": {
-            "InternalJobTimestampID": 483915,
-            "ExternalJobTimestampID": "TS289182-5",
-            "InternalJobID": 1,
-            "ExternalJobID": "J827109-5",
+            "JobTimestampID": 483915,
+            "JobID": 1,
             "Timestamp": "2012-04-23",
             "TimestampTypeCode": 45560001,
-            "InternalBookingActivityID": 45570005,
-            "ExternalBookingActivityID": "J83719-4-10",
+            "BookingActivityID": 45570005,
             "InternalMachineID": 45123,
             "ExternalMachineID": "MRK8938719",
             "InternalEmployeeID": 241,
@@ -6112,35 +5884,21 @@
           }
         },
         "properties": {
-          "InternalJobTimestampID": {
+          "JobTimestampID": {
             "type": "integer",
             "format": "int32",
-            "description": "The internal unique identifier for the job timestamp.",
+            "description": "The unique identifier for the job timestamp.",
             "example": 483915,
             "minimum": 1,
             "maximum": 9999999999,
             "nullable": true
           },
-          "ExternalJobTimestampID": {
-            "type": "string",
-            "format": "int32",
-            "description": "The external unique identifer for the job onto which the time stamp is assigned",
-            "example": "TS289182-5",
-            "nullable": true
-          },
-          "InternalJobID": {
+          "JobID": {
             "type": "integer",
             "format": "int32",
-            "description": "The internal unique identifier for the job onto which the time stamp is assigned",
+            "description": "The unique identifier for the job onto which the time stamp is assigned",
             "minimum": 1,
             "maximum": 9999999999,
-            "nullable": true
-          },
-          "ExternalJobID": {
-            "type": "string",
-            "format": "int32",
-            "description": "The external unique identifer for the job onto which the time stamp is assigned",
-            "example": "J827109-5",
             "nullable": true
           },
           "Timestamp": {
@@ -6155,18 +5913,11 @@
             "description": "Code 4556.\nThe type of timestamp (TimestampType).",
             "example": 45560001
           },
-          "InternalBookingActivityID": {
+          "BookingActivityID": {
             "type": "integer",
             "format": "int32",
             "description": "The identifier for resource booking activity.",
             "example": 45570005,
-            "nullable": true
-          },
-          "ExternalBookingActivityID": {
-            "type": "string",
-            "format": "int32",
-            "description": "The identifier for resource booking activity.",
-            "example": "J83719-4-10",
             "nullable": true
           },
           "InternalMachineID": {
@@ -6212,18 +5963,12 @@
         "type": "object",
         "description": "job report on a job.\nthere may be multiple job reports on a single job for different timespans. e.g. daily, weekly or monthly reports.\nNOTE: reporting timeframes of two particular reports shall not overlap or they will be marked with an error on the backend.",
         "properties": {
-          "InternalReportID": {
+          "ReportID": {
             "type": "number",
             "description": "internal unique report id",
             "example": 31234,
             "minimum": 1,
             "maximum": 9999999999,
-            "nullable": true
-          },
-          "ExternalReportID": {
-            "type": "string",
-            "description": "external unique report id if available and used",
-            "example": "R93819-3-1",
             "nullable": true
           },
           "ReportFromDate": {
@@ -6275,22 +6020,18 @@
         ],
         "x-examples": {
           "example-1": {
-            "InternalReportID": 31234,
-            "ExternalReportID": "R93819-3-1",
+            "ReportID": 31234,
             "ReportFromDate": "2022-12-01",
             "ReportToDate": "2012-12-23",
             "Comment": "return was delayed due to traffic jam at our gates > not her fault!",
             "ReportTimeStampList": [
               {
-                "InternalJobReportTimestampID": 483915,
-                "ExternalJobReportTimestampID": "TS289182-5",
-                "InternalJobID": 42341,
-                "ExternalJobID": "J827109-5",
+                "JobReportTimestampID": 483915,
+                "JobID": 42341,
                 "Timestamp": "2012-04-23T07:31:20",
                 "TimestampTypeCode": 45560001,
                 "Source": "MobileApp",
-                "InternalBookingActivityID": 482012,
-                "ExternalBookingActivityID": "830181",
+                "BookingActivityID": 482012,
                 "InternalMachineID": 4021,
                 "ExternalMachineID": "MRK8938719",
                 "InternalEmployeeID": 214,
@@ -6300,14 +6041,10 @@
             ],
             "ReportSurchargeList": [
               {
-                "InternalReportSurchargeID": 483915,
-                "ExternalReportSurchargeID": "TS289182-5",
-                "InternalJobSurchargeID": 483915,
-                "ExternalJobSurchargeID": "TS289182-5",
-                "InternalJobID": 1,
-                "ExternalJobID": "J827109-5",
-                "InternalReportID": 52671,
-                "ExternalReportID": "J8401-4-RP1",
+                "ReportSurchargeID": 483915,
+                "JobSurchargeID": 483915,
+                "JobID": 1,
+                "ReportID": 52671,
                 "DateTime": "2022-12-23T17:25:43",
                 "Assignment": "RENTAL_HANDOVER",
                 "Quantity": 23.2
@@ -6315,12 +6052,9 @@
             ],
             "EMailNotificationList": [
               {
-                "InternalEMailNotificationID": 1,
-                "ExternalEMailNotificationID": "J827109-5",
-                "InternalJobID": 45123,
-                "ExternalJobID": "J827109-5",
-                "InternalReportID": 48192,
-                "ExternalReportID": "J4801-5-RP9",
+                "EMailNotificationID": 1,
+                "JobID": 45123,
+                "ReportID": 48192,
                 "Sender": "no-reply@mydomain.com",
                 "SendDateTime": "2022-12-07T06:00:01",
                 "CreateDateTime": "2022-12-06T08:35:54",
@@ -6332,7 +6066,7 @@
               }
             ],
             "Signature": {
-              "InternalSignatureID": 0,
+              "SignatureID": 547,
               "SignatureTypeCode": 45680002,
               "SigneeName": "Jerry Miller",
               "SignaturDocumentLink": {
@@ -6355,15 +6089,12 @@
         "description": "job report time stamp entry that forms the reported amount of efforts on a job.\n\nNOTE: these entries may differ from job time stamps. they form the amount of effort that are transfered back to the order billing. In some instances they may be different from the actual time stamps that were made on the job.",
         "x-examples": {
           "example-1": {
-            "InternalJobReportTimestampID": 483915,
-            "ExternalJobReportTimestampID": "TS289182-5",
-            "InternalJobID": 42341,
-            "ExternalJobID": "J827109-5",
+            "JobReportTimestampID": 483915,
+            "JobID": 42341,
             "Timestamp": "2012-04-23T07:31:20",
             "TimestampTypeCode": 45560001,
             "Source": "MobileApp",
-            "InternalBookingActivityID": 482012,
-            "ExternalBookingActivityID": "830181",
+            "BookingActivityID": 482012,
             "InternalMachineID": 4021,
             "ExternalMachineID": "MRK8938719",
             "InternalEmployeeID": 214,
@@ -6372,36 +6103,22 @@
           }
         },
         "properties": {
-          "InternalJobReportTimestampID": {
+          "JobReportTimestampID": {
             "type": "integer",
             "format": "int32",
-            "description": "The internal unique identifier for the job timestamp.",
+            "description": "The unique identifier for the job report timestamp.",
             "example": 483915,
             "minimum": 1,
             "maximum": 9999999999,
             "nullable": true
           },
-          "ExternalJobReportTimestampID": {
-            "type": "string",
-            "format": "int32",
-            "description": "The external unique identifer for the job onto which the time stamp is assigned",
-            "example": "TS289182-5",
-            "nullable": true
-          },
-          "InternalJobID": {
+          "JobID": {
             "type": "integer",
             "format": "int32",
-            "description": "The internal unique identifier for the job onto which the time stamp is assigned",
+            "description": "The unique identifier for the job onto which the time stamp is assigned",
             "minimum": 1,
             "maximum": 9999999999,
             "example": 42341,
-            "nullable": true
-          },
-          "ExternalJobID": {
-            "type": "string",
-            "format": "int32",
-            "description": "The external unique identifer for the job onto which the time stamp is assigned",
-            "example": "J827109-5",
             "nullable": true
           },
           "Timestamp": {
@@ -6421,18 +6138,11 @@
             "description": "The type of timestamp (TimestampType).",
             "example": "MobileApp"
           },
-          "InternalBookingActivityID": {
+          "BookingActivityID": {
             "type": "integer",
             "format": "int32",
             "description": "The identifier for resource booking activity.",
             "example": 482012,
-            "nullable": true
-          },
-          "ExternalBookingActivityID": {
-            "type": "string",
-            "format": "int32",
-            "description": "The identifier for resource booking activity.",
-            "example": "830181",
             "nullable": true
           },
           "InternalMachineID": {
@@ -6482,8 +6192,7 @@
         "description": "location information for leva+ (address, additional information such as restrictions, ect.)",
         "x-examples": {
           "example-1": {
-            "InternalLocationID": 8392,
-            "ExternalLocationID": "LOC83-931",
+            "LocationID": 8392,
             "Description": "Construction Site, Gate 4",
             "TransportRestriction": "limited height 4.5 meteres at gate 3, prefer gate 4 (no height limit)",
             "Address": {
@@ -6501,18 +6210,12 @@
           }
         },
         "properties": {
-          "InternalLocationID": {
+          "LocationID": {
             "type": "number",
             "example": 8392,
             "minimum": 1,
             "maximum": 9999999,
-            "description": "internal unique identifier of job location",
-            "nullable": true
-          },
-          "ExternalLocationID": {
-            "type": "string",
-            "example": "LOC83-931",
-            "description": "external unique identifier of job location (if available and used)",
+            "description": "unique identifier of job location",
             "nullable": true
           },
           "Description": {
@@ -6538,77 +6241,46 @@
         "description": "job report (surcharge) defines the surcharge from master data, which is reported on the job.",
         "x-examples": {
           "example-1": {
-            "InternalReportSurchargeID": 483915,
-            "ExternalReportSurchargeID": "TS289182-5",
-            "InternalJobSurchargeID": 483915,
-            "ExternalJobSurchargeID": "TS289182-5",
-            "InternalJobID": 1,
-            "ExternalJobID": "J827109-5",
-            "InternalReportID": 52671,
-            "ExternalReportID": "J8401-4-RP1",
+            "ReportSurchargeID": 483915,
+            "JobSurchargeID": 483915,
+            "JobID": 1,
+            "ReportID": 52671,
             "DateTime": "2022-12-23T17:25:43",
             "Assignment": "RENTAL_HANDOVER",
             "Quantity": 23.2
           }
         },
         "properties": {
-          "InternalReportSurchargeID": {
+          "ReportSurchargeID": {
             "type": "integer",
             "format": "int32",
-            "description": "internal unique identifier for the job report surcharge",
+            "description": "unique identifier for the job report surcharge",
             "example": 483915,
             "minimum": 1,
             "maximum": 9999999999,
             "nullable": true
           },
-          "ExternalReportSurchargeID": {
-            "type": "string",
-            "format": "int32",
-            "description": "external unique identifer for the job report surcharge",
-            "example": "TS289182-5",
-            "nullable": true
-          },
-          "InternalJobSurchargeID": {
+          "JobSurchargeID": {
             "type": "integer",
             "format": "int32",
-            "description": "internal unique identifier for the job surcharge\n\nNOTE: refers to the job surcharge that has already been submitted on the job. If this is set, it means that the submitted surcharge on the job is also reported.\n\nthat way, the backend can mark the surcharge as \"reported with report xy\". otherwise the surcharge on the job may be left without a report link and could therefor be seen as \"not yet reported\".",
+            "description": "unique identifier for the job surcharge\n\nNOTE: refers to the job surcharge that has already been submitted on the job. If this is set, it means that the submitted surcharge on the job is also reported.\n\nthat way, the backend can mark the surcharge as \"reported with report xy\". otherwise the surcharge on the job may be left without a report link and could therefor be seen as \"not yet reported\".",
             "example": 483915,
             "minimum": 1,
             "maximum": 9999999999,
             "nullable": true
           },
-          "ExternalJobSurchargeID": {
-            "type": "string",
-            "format": "int32",
-            "description": "external unique identifier for the job surcharge",
-            "example": "TS289182-5",
-            "nullable": true
-          },
-          "InternalJobID": {
+          "JobID": {
             "type": "integer",
             "format": "int32",
-            "description": "internal unique identifier for the job",
+            "description": "unique identifier for the job",
             "minimum": 1,
             "maximum": 9999999999,
             "nullable": true
           },
-          "ExternalJobID": {
-            "type": "string",
-            "format": "int32",
-            "description": "external unique identifer for the job",
-            "example": "J827109-5",
-            "nullable": true
-          },
-          "InternalReportID": {
+          "ReportID": {
             "type": "number",
-            "description": "internal report ID on which this surcharge is reported",
+            "description": "report ID on which this surcharge is reported",
             "example": 52671,
-            "nullable": true
-          },
-          "ExternalReportID": {
-            "type": "string",
-            "description": "external report ID on which this surcharge is reported",
-            "example": "J8401-4-RP1",
             "nullable": true
           },
           "DateTime": {
@@ -6644,12 +6316,9 @@
         "description": "job report e-mail notification entry which containers a receiver for a job report.\nthe entry is created and submitted with the job report. the backend can process report pdf generation and automatically sends out the report pdf to the receiver given by this entry. It will then be updated with a Sender and SendDateTime when processed.\n\nIf you already sent out the notification, you may submit this entry with sender and senddatetime in order for the backend to acknoledge that.",
         "x-examples": {
           "example-1": {
-            "InternalEMailNotificationID": 1,
-            "ExternalEMailNotificationID": "J827109-5",
-            "InternalJobID": 45123,
-            "ExternalJobID": "J827109-5",
-            "InternalReportID": 48192,
-            "ExternalReportID": "J4801-5-RP9",
+            "EMailNotificationID": 1,
+            "JobID": 45123,
+            "ReportID": 48192,
             "Sender": "no-reply@mydomain.com",
             "SendDateTime": "2022-12-07T06:00:01",
             "CreateDateTime": "2022-12-06T08:35:54",
@@ -6661,49 +6330,29 @@
           }
         },
         "properties": {
-          "InternalEMailNotificationID": {
+          "EMailNotificationID": {
             "type": "integer",
             "format": "int32",
-            "description": "internal email notification entry id",
+            "description": "email notification entry id",
             "minimum": 1,
             "maximum": 9999999999,
             "nullable": true
           },
-          "ExternalEMailNotificationID": {
-            "type": "string",
-            "format": "int32",
-            "description": "external email notification entry id, if available and used",
-            "example": "J827109-5",
-            "nullable": true
-          },
-          "InternalJobID": {
+          "JobID": {
             "type": "integer",
             "format": "int32",
-            "description": "internal unique identifier for the job onto which the notification is assigned",
+            "description": "unique identifier for the job onto which the notification is assigned",
             "minimum": 1,
             "maximum": 9999999999,
             "example": 45123,
             "nullable": true
           },
-          "ExternalJobID": {
-            "type": "string",
-            "format": "int32",
-            "description": "external unique identifier for the job onto which the notification is assigned",
-            "example": "J827109-5",
-            "nullable": true
-          },
-          "InternalReportID": {
+          "ReportID": {
             "type": "number",
-            "description": "internal unique identifier for the report onto which the notification is assigned",
+            "description": "unique identifier for the report onto which the notification is assigned",
             "minimum": 1,
             "maximum": 9999999,
             "example": 48192,
-            "nullable": true
-          },
-          "ExternalReportID": {
-            "type": "string",
-            "description": "external unique identifier for the report onto which the notification is assigned",
-            "example": "J4801-5-RP9",
             "nullable": true
           },
           "Sender": {
@@ -6769,36 +6418,22 @@
         "type": "object",
         "description": "a handover for a rental job. confirms that the resource (machine / accessory) has been handed over to the customer. Additional information such as a comment and signature can be supplied.",
         "properties": {
-          "InternalHandoverID": {
+          "HandoverID": {
             "type": "integer",
             "format": "int32",
-            "description": "internal unique identifier for the hand over",
+            "description": "unique identifier for the hand over",
             "example": 483915,
             "minimum": 1,
             "maximum": 9999999999,
             "nullable": true
           },
-          "ExternalHandoverID": {
-            "type": "string",
-            "format": "int32",
-            "description": "external unique identifier for the hand over",
-            "example": "TS289182-5-HO",
-            "nullable": true
-          },
-          "InternalJobID": {
+          "JobID": {
             "type": "integer",
             "format": "int32",
-            "description": "internal id of the job onto which this handover is assigned to",
+            "description": "id of the job onto which this handover is assigned to",
             "minimum": 1,
             "maximum": 9999999999,
             "example": 34451,
-            "nullable": true
-          },
-          "ExternalJobID": {
-            "type": "string",
-            "format": "int32",
-            "description": "external id of the job onto which this handover is assigned to",
-            "example": "J827109-5",
             "nullable": true
           },
           "InternalEmployeeID": {
@@ -6842,17 +6477,15 @@
         ],
         "x-examples": {
           "example-1": {
-            "InternalHandoverID": 483915,
-            "ExternalHandoverID": "TS289182-5-HO",
-            "InternalJobID": 34451,
-            "ExternalJobID": "J827109-5",
+            "HandoverID": 483915,
+            "JobID": 34451,
             "InternalEmployeeID": 341,
             "ExternalEmployeeID": "E341",
             "HandoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
             "CustomerBriefed": false,
             "Comment": "customer already knows the machine very well",
             "CustomerSignature": {
-              "InternalSignatureID": 0,
+              "SignatureID": 547,
               "SignatureTypeCode": 45680002,
               "SigneeName": "Jerry Miller",
               "SignaturDocumentLink": {
@@ -6869,36 +6502,22 @@
         "type": "object",
         "description": "a return for a rental job. confirms that the resource (machine / accessory) has been returned / picked up. Additional information such as a comment or wether or not the resource has been damaged is submitted.",
         "properties": {
-          "InternalReturnID": {
+          "ReturnID": {
             "type": "integer",
             "format": "int32",
-            "description": "internal unique id of this return",
+            "description": "unique id of this return",
             "example": 483915,
             "minimum": 1,
             "maximum": 9999999999,
             "nullable": true
           },
-          "ExternalReturnID": {
-            "type": "string",
-            "format": "int32",
-            "description": "external unique id of this return",
-            "example": "TS289182-5-RET",
-            "nullable": true
-          },
-          "InternalJobID": {
+          "JobID": {
             "type": "integer",
             "format": "int32",
-            "description": "internal job id onto which this return is assigned",
+            "description": "unique id of job onto which this return is assigned",
             "minimum": 1,
             "maximum": 9999999999,
             "example": 45612,
-            "nullable": true
-          },
-          "ExternalJobID": {
-            "type": "string",
-            "format": "int32",
-            "description": "external job id onto which this return is assigned",
-            "example": "J827109-5",
             "nullable": true
           },
           "InternalEmployeeID": {
@@ -6938,10 +6557,8 @@
         ],
         "x-examples": {
           "example-1": {
-            "InternalReturnID": 483915,
-            "ExternalReturnID": "TS289182-5-RET",
-            "InternalJobID": 45612,
-            "ExternalJobID": "J827109-5",
+            "ReturnID": 483915,
+            "JobID": 45612,
             "InternalEmployeeID": 345,
             "ExternalEmployeeID": "E345",
             "ReturnStartedDateTime": "2012-04-23T18:25:43.511Z",
@@ -6955,52 +6572,32 @@
         "type": "object",
         "description": "surcharge recorded on a job that is either entered by the employee (e.g. gas refilling in liters) or generated by the system (e.g. overtime surcharge).\n\nNOTE: rental specific surcharges may not be submitted on other service jobs such as crane work or transport.",
         "properties": {
-          "InternalJobSurchargeID": {
+          "JobSurchargeID": {
             "type": "integer",
             "format": "int32",
-            "description": "the internal unique identifier for this job surcharge",
+            "description": "the unique identifier for this job surcharge",
             "example": 483915,
             "minimum": 1,
             "maximum": 9999999999,
             "nullable": true,
             "readOnly": true
           },
-          "ExternalJobSurchargeID": {
-            "type": "string",
-            "description": "the external unique identifier for this job surcharge",
-            "example": "SC5002-289102",
-            "nullable": true
-          },
-          "InternalSurchargeID": {
+          "SurchargeID": {
             "type": "integer",
-            "description": "internal unique ID of the surcharge (master data), (internal or external must be supplied)",
+            "description": "unique ID of the surcharge (master data)",
             "example": 8739145,
             "minimum": 1,
             "maximum": 9999999999,
             "format": "int32",
             "nullable": true
           },
-          "ExternalSurchargeID": {
-            "type": "string",
-            "format": "int32",
-            "description": "external unique ID of the surcharge (master data), (internal or external must be supplied)",
-            "example": "SC5002",
-            "nullable": true
-          },
-          "InternalJobID": {
+          "JobID": {
             "type": "integer",
             "format": "int32",
             "minimum": 1,
             "maximum": 9999999999,
             "example": 82916,
-            "description": "internal unique id of job",
-            "nullable": true
-          },
-          "ExternalJobID": {
-            "type": "string",
-            "format": "int32",
-            "description": "external unique id of job",
-            "example": "J827109-5",
+            "description": "unique id of job",
             "nullable": true
           },
           "DateTime": {
@@ -7034,16 +6631,10 @@
             "example": "reason for quantity: additional gas can filled on customers request",
             "maxLength": 2000
           },
-          "InternalReportID": {
+          "ReportID": {
             "type": "number",
-            "description": "internal report id which contains this surcharge entry. surcharges are generally created during the entire job process. reports collect them for invoicing. if a surcharge is not assigned to a report, it is not considered for billing.\n\nWhen the job surcharge id is provided on job report creation, internal and external report ID fields will be filled by the back end.",
+            "description": "report id which contains this surcharge entry. surcharges are generally created during the entire job process. reports collect them for invoicing. if a surcharge is not assigned to a report, it is not considered for billing.\n\nWhen the job surcharge id is provided on job report creation, report ID field will be filled by the back end.",
             "example": 456223,
-            "nullable": true
-          },
-          "ExternalReportID": {
-            "type": "string",
-            "description": "see description of InternalReportID",
-            "example": "J48102-4-SC12",
             "nullable": true
           }
         },
@@ -7054,18 +6645,14 @@
         ],
         "x-examples": {
           "example-1": {
-            "InternalJobSurchargeID": 483915,
-            "ExternalJobSurchargeID": "SC5002-289102",
-            "InternalSurchargeID": 8739145,
-            "ExternalSurchargeID": "SC5002",
-            "InternalJobID": 82916,
-            "ExternalJobID": "J827109-5",
+            "JobSurchargeID": 483915,
+            "SurchargeID": 8739145,
+            "JobID": 82916,
             "DateTime": "2012-04-23T18:25:43.511Z",
             "Assignment": "RENTAL_HANDOVER",
             "Quantity": 23.5,
             "Comment": "reason for quantity: additional gas can filled on customers request",
-            "InternalReportID": 456223,
-            "ExternalReportID": "J48102-4-SC12"
+            "ReportID": 456223
           }
         }
       },
@@ -7075,8 +6662,7 @@
         "description": "Surcharge master data",
         "x-examples": {
           "example-1": {
-            "InternalSurchargeID": 483915,
-            "ExternalSurchargeID": "SC9201",
+            "SurchargeID": 483915,
             "Description": "additional cleaning",
             "PriceUnitOfMeasure": "PCE",
             "SortNo": 1000,
@@ -7096,10 +6682,10 @@
             "nullable": true
           },
           "ExternalSurchargeID": {
-            "type": "string",
             "format": "int32",
             "description": "external unique identifier for surcharge master data entry",
-            "example": "SC9201",
+            "example": "483915EXT",
+            "type": "string",
             "nullable": true
           },
           "Description": {
@@ -7136,31 +6722,14 @@
           }
         }
       },
-      "JobForm": {
-        "title": "JobForm",
-        "type": "object",
-        "description": "a job form is a specific sort of check list on which various attributes are supplied and filled out on handover or returns.\n\nfor example: a rental of a specific machine time may require specific checks or questionaires to be made. the form and it's answered values are stored in this structure",
-        "properties": {
-          "WIP": {
-            "type": "string"
-          }
-        },
-        "x-examples": {
-          "example-1": {
-            "WIP": "work in progress / subject to change"
-          }
-        }
-      },
       "JobProblem": {
         "title": "JobProblem",
         "type": "object",
         "description": "on a job problem specific conditions or issues related to the resource (machine / accessory) are stored.\nthey may be submitted in the initial job to clarify existing issues that can be mentioned on handover, or additional job problems are submitted during handover or return to better clarify wether or not something is caused by the customer.",
         "x-examples": {
           "example-1": {
-            "InternalProblemID": 583911,
-            "ExternalProblemID": "Issue-38102",
-            "InternalJobID": 452341,
-            "ExternalJobID": "J827109-5",
+            "ProblemID": 583911,
+            "JobID": 452341,
             "ProblemType": 0,
             "Description": "various impact dents on the left front side",
             "ImpactOnConditionBool": false,
@@ -7177,32 +6746,19 @@
           }
         },
         "properties": {
-          "InternalProblemID": {
+          "ProblemID": {
             "type": "number",
-            "description": "internal unique id of this problem",
+            "description": "unique id of this problem",
             "example": 583911,
             "nullable": true
           },
-          "ExternalProblemID": {
-            "type": "string",
-            "description": "external unique id of this problem",
-            "example": "Issue-38102",
-            "nullable": true
-          },
-          "InternalJobID": {
+          "JobID": {
             "type": "integer",
             "format": "int32",
-            "description": "internal unique identifier for the job on which this problem is assigned to",
+            "description": "unique identifier for the job on which this problem is assigned to",
             "minimum": 1,
             "maximum": 9999999999,
             "example": 452341,
-            "nullable": true
-          },
-          "ExternalJobID": {
-            "type": "string",
-            "format": "int32",
-            "description": "external unique identifier for the job on which this problem is assigned to",
-            "example": "J827109-5",
             "nullable": true
           },
           "ProblemType": {
@@ -7301,32 +6857,19 @@
         "type": "object",
         "description": "an existing document linked to the job",
         "properties": {
-          "InternalJobDocumentID": {
+          "JobDocumentID": {
             "type": "number",
-            "description": "internal unique id of this job document assignment",
+            "description": "unique id of this job document assignment. note: this is not the document id, but the assignment of a document to a job",
             "example": 583911,
             "nullable": true
           },
-          "ExternalJobDocumentID": {
-            "type": "string",
-            "description": "external unique id of this job document assignment",
-            "example": "Issue-38102",
-            "nullable": true
-          },
-          "InternalJobID": {
+          "JobID": {
             "type": "integer",
             "format": "int32",
-            "description": "internal unique identifier for the job on which this document is assigned to",
+            "description": "unique identifier for the job on which this document is assigned to",
             "minimum": 1,
             "maximum": 9999999999,
             "example": 452341,
-            "nullable": true
-          },
-          "ExternalJobID": {
-            "type": "string",
-            "format": "int32",
-            "description": "external unique identifier for the job on which this document is assigned to",
-            "example": "J827109-5",
             "nullable": true
           },
           "JobDocument": {
@@ -7335,10 +6878,8 @@
         },
         "x-examples": {
           "example-1": {
-            "InternalJobDocumentID": 583911,
-            "ExternalJobDocumentID": "Issue-38102",
-            "InternalJobID": 452341,
-            "ExternalJobID": "J827109-5",
+            "JobDocumentID": 583911,
+            "JobID": 452341,
             "JobDocument": {
               "FileDocumentInternalID": 4738919,
               "FileExternalArchiveID": "DC9301231",
@@ -7355,8 +6896,7 @@
         "x-examples": {
           "example-1": {
             "TransportDemandPositionID": 2512341,
-            "InternalJobID": 51231,
-            "ExternalJobID": "J30123-2",
+            "JobID": 51231,
             "Description": "Custom Fluid B028",
             "Details": "handle with care, keep up-side up at all times",
             "UnitOfMeasure": "Liter",
@@ -7392,8 +6932,7 @@
               "Latitude": 25.9850628,
               "Longitude": -97.1871375
             },
-            "InternalRentalJobID": 435123,
-            "ExternalRentalJobID": "J312341-2"
+            "RentalJobID": 435123
           }
         },
         "properties": {
@@ -7404,18 +6943,12 @@
             "maximum": 9999999999,
             "description": "internal unique id for this job transport demand"
           },
-          "InternalJobID": {
+          "JobID": {
             "type": "number",
             "example": 51231,
             "minimum": 1,
             "maximum": 9999999999,
-            "description": "internal unique job id",
-            "nullable": true
-          },
-          "ExternalJobID": {
-            "type": "string",
-            "example": "J30123-2",
-            "description": "external unique job id",
+            "description": "unique job id",
             "nullable": true
           },
           "Description": {
@@ -7486,16 +7019,10 @@
           "DeliveryLocation": {
             "$ref": "#/components/schemas/Address"
           },
-          "InternalRentalJobID": {
+          "RentalJobID": {
             "type": "number",
             "description": "is set, when the current transport demand (assigned resource) points to a rental job.",
             "example": 435123,
-            "nullable": true
-          },
-          "ExternalRentalJobID": {
-            "type": "string",
-            "description": "is set, when the current transport demand (assigned resource) points to a rental job.",
-            "example": "J312341-2",
             "nullable": true
           }
         }
@@ -7516,7 +7043,7 @@
   ],
   "tags": [
     {
-      "name": "Master Data"
+      "name": "MasterData"
     },
     {
       "name": "SchedulingJob"
