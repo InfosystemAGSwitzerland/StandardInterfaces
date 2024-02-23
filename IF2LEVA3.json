@@ -19,7 +19,7 @@
   "paths": {
     "/api/v3/master-data/accessories": {
       "get": {
-        "summary": "Search for Accessory",
+        "summary": "Search for accessories",
         "operationId": "GetMasterDataAccessories",
         "parameters": [
           {
@@ -43,9 +43,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "Optional technical Id (GUID) for call identification.",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -200,7 +200,7 @@
         ]
       },
       "put": {
-        "summary": "Modify Accessory",
+        "summary": "Modify accessories",
         "operationId": "PutMasterDataAccessories",
         "parameters": [
           {
@@ -224,9 +224,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "Optional technical Id (GUId) for call identification.",
+            "description": "Optional technical ID (GUId) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -356,7 +356,7 @@
             }
           }
         },
-        "description": "Updates an existing accessory if internal or external Id match.\nCreates an accessory if neither internal or external Id is provided or no matching record could be found.",
+        "description": "Updates an existing accessory if internal or external ID match.\nCreates an accessory if neither internal or external ID is provided or no matching record could be found.",
         "tags": [
           "MasterData"
         ]
@@ -365,7 +365,7 @@
     },
     "/api/v3/master-data/machines": {
       "get": {
-        "summary": "Search for Machine",
+        "summary": "Search for machines",
         "operationId": "GetMasterDataMachines",
         "parameters": [
           {
@@ -389,9 +389,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "Optional technical Id (GUID) for call identification.",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -597,7 +597,7 @@
         ]
       },
       "put": {
-        "summary": "Modify Machine",
+        "summary": "Modify machines",
         "operationId": "PutMasterDataMachines",
         "parameters": [
           {
@@ -621,9 +621,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "Optional technical Id (GUID) for call identification.",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -778,7 +778,7 @@
             }
           }
         },
-        "description": "Updates an existing machine if internal or external Id match.\nCreates a machine if neither internal or external Id is provided or no matching record could be found.",
+        "description": "Updates an existing machine if internal or external ID match.\nCreates a machine if neither internal or external ID is provided or no matching record could be found.",
         "tags": [
           "MasterData"
         ]
@@ -787,7 +787,7 @@
     },
     "/api/v3/master-data/machine-types": {
       "get": {
-        "summary": "Search for Machine Type",
+        "summary": "Search for machine types",
         "operationId": "GetMasterDataMachineTypes",
         "parameters": [
           {
@@ -811,9 +811,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "Optional technical Id (GUID) for call identification.",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -958,7 +958,7 @@
         ]
       },
       "put": {
-        "summary": "Modify Machine Type",
+        "summary": "Modify machine types",
         "operationId": "PutMasterDataMachineTypes",
         "parameters": [
           {
@@ -982,9 +982,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "Optional technical Id (GUID) for call identification.",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1078,7 +1078,7 @@
             }
           }
         },
-        "description": "Updates an existing machine type if internal or external Id match.\nCreates a machine type if neither internal or external Id is provided or no matching record could be found.",
+        "description": "Updates an existing machine type if internal or external ID match.\nCreates a machine type if neither internal or external ID is provided or no matching record could be found.",
         "tags": [
           "MasterData"
         ]
@@ -1087,7 +1087,7 @@
     },
     "/api/v3/master-data/surcharges": {
       "get": {
-        "summary": "Search for Surcharge",
+        "summary": "Search for surcharges",
         "operationId": "GetMasterDataSurcharges",
         "responses": {
           "200": {
@@ -1183,7 +1183,7 @@
           {
             "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (Id, searchString).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (surchargeId, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1192,7 +1192,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided changeId. Cannot be used together with search parameter (Id, searchString).",
+            "description": "Get all the entities which were added/edited since the provided changeId. Cannot be used together with search parameter (surchargeId, searchString).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -1232,9 +1232,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "(Optional) Technical Id (GUID) for Call identification",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1255,7 +1255,7 @@
         ]
       },
       "put": {
-        "summary": "Modify Surcharge",
+        "summary": "Modify surcharges",
         "operationId": "PutMasterDataSurcharges",
         "parameters": [
           {
@@ -1279,9 +1279,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "Optional technical Id (GUID) for call identification.",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1373,7 +1373,7 @@
             }
           }
         },
-        "description": "Updates an existing surcharge by Id match.\nCreates a surcharge if no Id is provided or no matching record could be found.",
+        "description": "Updates an existing surcharge by ID match.\nCreates a surcharge if no ID is provided or no matching record could be found.",
         "tags": [
           "MasterData"
         ]
@@ -1382,7 +1382,7 @@
     },
     "/api/v3/scheduling/jobs": {
       "get": {
-        "summary": "Search for Job",
+        "summary": "Search for jobs",
         "operationId": "GetSchedulingJobs",
         "responses": {
           "200": {
@@ -1754,7 +1754,7 @@
           {
             "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (Id, searchString).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1802,9 +1802,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "(Optional) Technical Id (GUID) for Call identification",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1820,7 +1820,7 @@
     },
     "/api/v3/scheduling/jobs/timestamps": {
       "get": {
-        "summary": "Search for Job Timestamp",
+        "summary": "Search for job timestamps",
         "tags": [
           "SchedulingJob"
         ],
@@ -1913,7 +1913,7 @@
           {
             "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (Id, searchString).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1951,9 +1951,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "(Optional) Technical Id (GUID) for Call identification",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1964,7 +1964,7 @@
       },
       "parameters": [],
       "put": {
-        "summary": "Modify Job Time Stamps",
+        "summary": "Modify job time stamps",
         "operationId": "PutSchedulingJobsTimestamps",
         "parameters": [
           {
@@ -1988,9 +1988,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "Optional technical Id (GUID) for call identification.",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -2101,7 +2101,7 @@
     },
     "/api/v3/scheduling/jobs/reports": {
       "get": {
-        "summary": "Search for Job Report",
+        "summary": "Search for job reports",
         "tags": [
           "SchedulingJob"
         ],
@@ -2244,7 +2244,7 @@
           {
             "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (Id, searchString).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2282,9 +2282,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "(Optional) Technical Id (GUID) for Call identification",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -2294,7 +2294,7 @@
         "description": "By passing in the appropriate options, the service searches for job reports in the system."
       },
       "post": {
-        "summary": "Create Job Report",
+        "summary": "Create job reports",
         "operationId": "PostSchedulingJobsReports",
         "parameters": [
           {
@@ -2318,9 +2318,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "Optional technical Id (GUID) for call identification.",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -2463,7 +2463,7 @@
     },
     "/api/v3/scheduling/jobs/handovers": {
       "get": {
-        "summary": "Search for Job Handover",
+        "summary": "Search for job handovers",
         "tags": [
           "SchedulingJob"
         ],
@@ -2563,7 +2563,7 @@
           {
             "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (Id, searchString).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2601,9 +2601,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "(Optional) Technical Id (GUID) for Call identification",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -2613,7 +2613,7 @@
         "description": "By passing in the appropriate options, the service searches for job handover in the system."
       },
       "put": {
-        "summary": "Modify Job Handover",
+        "summary": "Modify job handovers",
         "operationId": "PutSchedulingJobsHandovers",
         "parameters": [
           {
@@ -2637,9 +2637,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "Optional technical Id (GUID) for call identification.",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -2729,7 +2729,7 @@
     },
     "/api/v3/scheduling/jobs/returns": {
       "get": {
-        "summary": "Search for Job Return",
+        "summary": "Search for job returns",
         "tags": [
           "SchedulingJob"
         ],
@@ -2819,7 +2819,7 @@
           {
             "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (Id, searchString).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2857,9 +2857,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "(Optional) Technical Id (GUID) for Call identification",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -2869,7 +2869,7 @@
         "description": "By passing in the appropriate options, the service searches for job return in the system."
       },
       "put": {
-        "summary": "Modify Job Return",
+        "summary": "Modify job returns",
         "operationId": "PutSchedulingJobsReturns",
         "parameters": [
           {
@@ -2893,9 +2893,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "Optional technical Id (GUID) for call identification.",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -2975,7 +2975,7 @@
     },
     "/api/v3/scheduling/jobs/surcharges": {
       "get": {
-        "summary": "Search for Job Surcharge",
+        "summary": "Search for job surcharges",
         "tags": [
           "SchedulingJob"
         ],
@@ -3066,7 +3066,7 @@
           {
             "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (Id, searchString).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -3104,9 +3104,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "(Optional) Technical Id (GUID) for Call identification",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -3117,7 +3117,7 @@
       },
       "parameters": [],
       "put": {
-        "summary": "Modify Job Surchage",
+        "summary": "Modify job surchages",
         "operationId": "PutSchedulingJobsSurcharges",
         "parameters": [
           {
@@ -3141,9 +3141,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "Optional technical Id (GUID) for call identification.",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -3231,7 +3231,7 @@
     },
     "/api/v3/scheduling/jobs/problems": {
       "get": {
-        "summary": "Search for Job Problem",
+        "summary": "Search for job problems",
         "tags": [
           "SchedulingJob"
         ],
@@ -3329,7 +3329,7 @@
           {
             "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (Id, searchString).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -3367,9 +3367,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "(Optional) Technical Id (GUID) for Call identification",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -3379,7 +3379,7 @@
         "description": "By passing in the appropriate options, the service searches for job problems in the system."
       },
       "put": {
-        "summary": "Modify Job Problem",
+        "summary": "Modify job problems",
         "operationId": "PutSchedulingJobsProblems",
         "parameters": [
           {
@@ -3403,9 +3403,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "Optional technical Id (GUID) for call identification.",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -3501,7 +3501,7 @@
     },
     "/api/v3/scheduling/jobs/documents": {
       "get": {
-        "summary": "Search for Job Document",
+        "summary": "Search for job documents",
         "tags": [
           "SchedulingJob"
         ],
@@ -3590,7 +3590,7 @@
           {
             "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (Id, searchString).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -3628,9 +3628,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "(Optional) Technical Id (GUID) for Call identification",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -3641,7 +3641,7 @@
         "description": "By passing in the appropriate options, the service searches for job documents in the system."
       },
       "put": {
-        "summary": "Modify Job Document",
+        "summary": "Modify job documents",
         "operationId": "PutSchedulingJobsDocuments",
         "parameters": [
           {
@@ -3665,9 +3665,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "Optional technical Id (GUID) for call identification.",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -3755,7 +3755,7 @@
     },
     "/api/v3/scheduling/jobs/transport-demands": {
       "get": {
-        "summary": "Search for Job Transport Demand",
+        "summary": "Search for job transport demands",
         "tags": [
           "SchedulingJob"
         ],
@@ -3875,7 +3875,7 @@
           {
             "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (Id, searchString).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -3913,9 +3913,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "(Optional) Technical Id (GUID) for Call identification",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -3926,7 +3926,7 @@
         "description": "By passing in the appropriate options, the service searches for job transport demands in the system."
       },
       "put": {
-        "summary": "Modify Job Transport Demand",
+        "summary": "Modify job transport demands",
         "operationId": "PutSchedulingJobsTransportDemands",
         "parameters": [
           {
@@ -3950,9 +3950,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "Optional technical Id (GUID) for call identification.",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -4071,7 +4071,7 @@
     },
     "/api/v3/scheduling/jobs/booking-activities": {
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Search for booking activities on job",
         "tags": [
           "SchedulingJob"
         ],
@@ -4157,7 +4157,7 @@
           {
             "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (Id, searchString).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -4195,9 +4195,9 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
-            "description": "(Optional) Technical Id (GUID) for Call identification",
+            "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -4665,7 +4665,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Business partner Id of the driver.",
+            "description": "Business partner ID of the driver.",
             "format": "int64",
             "nullable": true,
             "example": 57689
@@ -4674,7 +4674,7 @@
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "description": "External business partner Id of the driver - may be used instead of DriverBpId.",
+            "description": "External business partner ID of the driver - may be used instead of DriverBpId.",
             "nullable": true,
             "example": "ABC-12345"
           }
@@ -4925,7 +4925,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Business partner Id of the regular driver.",
+            "description": "Business partner ID of the regular driver.",
             "format": "int64",
             "nullable": true,
             "example": 12345
@@ -4934,7 +4934,7 @@
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "description": "External business partner Id of the regular driver.",
+            "description": "External business partner ID of the regular driver.",
             "nullable": true,
             "example": "ABC-12345"
           },
@@ -5696,7 +5696,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "example": 37281,
-            "description": "Job Id of performis / leva+. will be set internally - leave empty if not known.",
+            "description": "Job ID of performis / leva+. will be set internally - leave empty if not known.",
             "nullable": true
           },
           "detailsIncluded": {
@@ -5720,13 +5720,13 @@
           "internalEmployeeId": {
             "type": "number",
             "example": 3829,
-            "description": "internal employee Id to which the job is assigned to",
+            "description": "internal employee ID to which the job is assigned to",
             "nullable": true
           },
           "externalEmployeeId": {
             "type": "string",
             "example": "E839",
-            "description": "external employee Id to which the job is assigned to",
+            "description": "external employee ID to which the job is assigned to",
             "nullable": true
           },
           "orderNo": {
@@ -5781,26 +5781,26 @@
           },
           "internalMachineId": {
             "type": "number",
-            "description": "internal maschine Id assigned to job",
+            "description": "internal maschine ID assigned to job",
             "example": 482910,
             "nullable": true
           },
           "externalMachineId": {
             "type": "string",
-            "description": "external machine Id assigned to job",
+            "description": "external machine ID assigned to job",
             "example": "M38019",
             "nullable": true
           },
           "internalAccessoryId": {
             "type": "number",
             "format": "date-time",
-            "description": "internal accessory Id assigned to job",
+            "description": "internal accessory ID assigned to job",
             "example": 509,
             "nullable": true
           },
           "externalAccessoryId": {
             "type": "string",
-            "description": "external accessory Id assigned to job",
+            "description": "external accessory ID assigned to job",
             "example": "A509",
             "nullable": true
           },
@@ -5811,13 +5811,13 @@
           },
           "releasedByInternalEmployeeId": {
             "type": "number",
-            "description": "internal Employee Id who notified that the machine ressource to be available for scheduling again.",
+            "description": "internal Employee ID who notified that the machine ressource to be available for scheduling again.",
             "example": 920,
             "nullable": true
           },
           "releasedByExternalEmployeeId": {
             "type": "string",
-            "description": "external Employee Id who notified that the machine ressource to be available for scheduling again.",
+            "description": "external Employee ID who notified that the machine ressource to be available for scheduling again.",
             "example": "E920",
             "nullable": true
           },
@@ -6722,7 +6722,7 @@
           },
           "reportId": {
             "type": "number",
-            "description": "report Id on which this surcharge is reported",
+            "description": "report ID on which this surcharge is reported",
             "example": 52671,
             "nullable": true
           },
@@ -6820,7 +6820,7 @@
           },
           "createdByInternalEmployeeId": {
             "type": "number",
-            "description": "internal employee Id who added this notification entry",
+            "description": "internal employee ID who added this notification entry",
             "example": 498,
             "minimum": 1,
             "maximum": 9999999,
@@ -7027,7 +7027,7 @@
           },
           "surchargeId": {
             "type": "integer",
-            "description": "unique Id of the surcharge (master data)",
+            "description": "unique ID of the surcharge (master data)",
             "example": 8739145,
             "minimum": 1,
             "maximum": 9999999999,
@@ -7076,7 +7076,7 @@
           },
           "reportId": {
             "type": "number",
-            "description": "report id which contains this surcharge entry. surcharges are generally created during the entire job process. reports collect them for invoicing. if a surcharge is not assigned to a report, it is not considered for billing.\n\nWhen the job surcharge id is provided on job report creation, report Id field will be filled by the back end.",
+            "description": "report id which contains this surcharge entry. surcharges are generally created during the entire job process. reports collect them for invoicing. if a surcharge is not assigned to a report, it is not considered for billing.\n\nWhen the job surcharge id is provided on job report creation, report ID field will be filled by the back end.",
             "example": 456223,
             "nullable": true
           }
