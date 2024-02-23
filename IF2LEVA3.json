@@ -134,7 +134,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "changeID": 84702936,
@@ -241,7 +241,7 @@
                 "$ref": "#/components/schemas/accessory"
               },
               "examples": {
-                "example-1": {
+                "example1": {
                   "value": {
                     "changeID": 84702936,
                     "changeDate": "2012-04-23",
@@ -288,7 +288,7 @@
                   "$ref": "#/components/schemas/accessory"
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": {
                       "changeID": 84702936,
                       "changeDate": "2012-04-23",
@@ -480,7 +480,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "changeID": 1,
@@ -659,7 +659,7 @@
                   "$ref": "#/components/schemas/machine"
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": {
                       "changeID": 1,
                       "changeDate": "2019-08-24T14:15:22Z",
@@ -902,7 +902,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "changeID": 1,
@@ -1020,7 +1020,7 @@
                   "$ref": "#/components/schemas/machineType"
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": {
                       "changeID": 1,
                       "changeDate": "2019-08-24T14:15:22Z",
@@ -1101,7 +1101,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "internalSurchargeID": 483915,
@@ -1317,7 +1317,7 @@
                   "$ref": "#/components/schemas/surcharge"
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": {
                       "internalSurchargeID": 483915,
                       "externalSurchargeID": "483915EXT",
@@ -1397,7 +1397,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "companyNo": 100,
@@ -1836,7 +1836,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "jobTimestampID": 483915,
@@ -2009,7 +2009,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "jobTimestampID": 483915,
@@ -2117,7 +2117,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "reportID": 31234,
@@ -2346,7 +2346,7 @@
                   "$ref": "#/components/schemas/jobReport"
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": {
                       "reportID": 31234,
                       "reportFromDate": "2022-12-01",
@@ -2479,7 +2479,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "handoverID": 483915,
@@ -2655,7 +2655,7 @@
                   "$ref": "#/components/schemas/jobHandOver"
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": {
                       "handoverID": 483915,
                       "jobID": 34451,
@@ -2745,7 +2745,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "returnID": 483915,
@@ -2911,7 +2911,7 @@
                   "$ref": "#/components/schemas/jobReturn"
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": {
                       "returnID": 483915,
                       "jobID": 45612,
@@ -2991,7 +2991,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "jobSurchargeID": 483915,
@@ -3162,7 +3162,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "jobSurchargeID": 483915,
@@ -3247,7 +3247,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "problemID": 583911,
@@ -3424,7 +3424,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "problemID": 583911,
@@ -3517,7 +3517,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "jobDocumentID": 583911,
@@ -3686,7 +3686,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "jobDocumentID": 583911,
@@ -3771,7 +3771,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "transportDemandPositionID": 2512341,
@@ -3971,7 +3971,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "transportDemandPositionID": 2512341,
@@ -4087,7 +4087,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "example1": {
                     "value": [
                       {
                         "bookingActivityID": 82091,
@@ -4228,8 +4228,8 @@
         "title": "AccessoryDisplayType",
         "example": "NONE",
         "x-examples": {
-          "example-1": "NONE",
-          "example-2": "IDENTIFICATION"
+          "example1": "NONE",
+          "example2": "IDENTIFICATION"
         },
         "enum": [
           "NONE",
@@ -4243,7 +4243,7 @@
         "description": "accessory master data",
         "title": "Accessory",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "changeID": 84702936,
             "changeDate": "2012-04-23",
             "accessoryID": 509,
@@ -4268,7 +4268,7 @@
               }
             ]
           },
-          "example-2": {
+          "example2": {
             "changeID": 84702936,
             "changeDate": "2012-04-23",
             "accessoryID": 510,
@@ -4286,7 +4286,7 @@
             "ownerCompanyNo": 100,
             "additionalSchedulingGroupCode": []
           },
-          "example-3": {
+          "example3": {
             "changeID": 84702936,
             "changeDate": "2012-04-23",
             "accessoryID": 511,
@@ -4441,7 +4441,7 @@
         "additionalProperties": false,
         "description": "address format",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "street": "Boca Chica Blvd.",
             "houseNo": "52448",
             "pOBox": null,
@@ -4545,8 +4545,8 @@
         "title": "ApplicationEntry",
         "example": "B_HTR",
         "x-examples": {
-          "example-1": "B_HTR",
-          "example-2": "B_WKST"
+          "example1": "B_HTR",
+          "example2": "B_WKST"
         }
       },
       "application": {
@@ -4554,7 +4554,7 @@
         "additionalProperties": false,
         "description": "application usage that applies to context (machine / accessory or other records)",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "application": "B_HTR"
           }
         },
@@ -4594,7 +4594,7 @@
         "description": "machine's counter",
         "title": "MachineCounter",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "counterTypeCode": 45480010,
             "account": "4711"
           }
@@ -4619,7 +4619,7 @@
         "description": "machine's additional scheduling group",
         "title": "SchedulingGroupCode",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "schedulingGroupCode": 45420010
           }
         }
@@ -4630,7 +4630,7 @@
         "title": "FileDocumentLink",
         "description": "provides a link to a saved document. this structure is used to attach/link previously saved attachments to the application context. e.g. a photo made on a mobile device is saved to performis and then linked/attached to a job as a job document.",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "fileDocumentInternalID": 4738919,
             "fileExternalArchiveID": "DC9301231",
             "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
@@ -4683,7 +4683,7 @@
         "description": "a machine's driver (linking by ID)",
         "title": "MachineDriver",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "driverBpID": 57689,
             "externalDriverBpID": "ABC-12345"
           }
@@ -5190,7 +5190,7 @@
         "title": "maintenanceWindow",
         "description": "information structure for active maintenance windows",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "id": 3511,
             "active": true,
             "fromDateTime": "2019-08-24T14:15:22Z",
@@ -5292,7 +5292,7 @@
           "signatureTypeCode"
         ],
         "x-examples": {
-          "example-1": {
+          "example1": {
             "signatureID": 541,
             "signatureTypeCode": 45680002,
             "signeeName": "Jerry Miller",
@@ -5309,7 +5309,7 @@
         "type": "object",
         "description": "Surcharge master data",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "surchargeID": 483915,
             "description": "additional cleaning",
             "priceUnitOfMeasure": "PCE",
@@ -5382,7 +5382,7 @@
         "title": "TypeOfDrive",
         "example": "B",
         "x-examples": {
-          "example-1": "B"
+          "example1": "B"
         }
       },
       "job": {
@@ -5390,7 +5390,7 @@
         "type": "object",
         "description": "scheduling job. can be of any job (rental, transport, service, ...)\nNOTE: may include or exclude the Details subset based on property DetailsIncluded.",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "companyNo": 100,
             "jobID": 37281,
             "detailsIncluded": false,
@@ -5858,7 +5858,7 @@
         "title": "JobDetails",
         "description": "detail information on a job such as scheduled activities, contacts and locations.\nNOTE: may be empty if not specifically requested (see Job request parameters and properties)",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "scheduleList": [
               {
                 "jobScheduleID": 32345,
@@ -6185,7 +6185,7 @@
           }
         },
         "x-examples": {
-          "example-1": {
+          "example1": {
             "jobScheduleID": 32345,
             "jobID": 1,
             "sortNo": 100,
@@ -6254,7 +6254,7 @@
           }
         },
         "x-examples": {
-          "example-1": {
+          "example1": {
             "internalContactID": 34511,
             "externalContactID": "KK34511",
             "jobID": 84721,
@@ -6300,7 +6300,7 @@
           "activityCode"
         ],
         "x-examples": {
-          "example-1": {
+          "example1": {
             "bookingActivityID": 82091,
             "activityCode": "45570018",
             "activity": "Unloading",
@@ -6313,7 +6313,7 @@
         "type": "object",
         "description": "job time stamp describes who (employee), which resource (machine or accessory), what activity (booking activity), when (timestamp). timestamps form a chronological order from which the effective efforts can be calculated from.\n\nif no job time stamps are provided, there are no recorded efforts on the job and the job status can not be determined.\n\nNOTE: job time stamps may differ from job report timestamps. (job time stamps reflect the internal efforts, while job report timestamps reflect the efforts that the customer will be billed for). Ideally: they match. The reality is, that the backend clerks may be forced to adjust the report quantities to correct various issues (e.g. misheaps)",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "jobTimestampID": 483915,
             "jobID": 1,
             "timestamp": "2012-04-23",
@@ -6462,7 +6462,7 @@
           "comment"
         ],
         "x-examples": {
-          "example-1": {
+          "example1": {
             "reportID": 31234,
             "reportFromDate": "2022-12-01",
             "reportToDate": "2012-12-23",
@@ -6531,7 +6531,7 @@
         "type": "object",
         "description": "job report time stamp entry that forms the reported amount of efforts on a job.\n\nNOTE: these entries may differ from job time stamps. they form the amount of effort that are transfered back to the order billing. In some instances they may be different from the actual time stamps that were made on the job.",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "jobReportTimestampID": 483915,
             "jobID": 42341,
             "timestamp": "2012-04-23T07:31:20",
@@ -6634,7 +6634,7 @@
         "type": "object",
         "description": "location information for leva+ (address, additional information such as restrictions, ect.)",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "locationID": 8392,
             "description": "Construction Site, Gate 4",
             "transportRestriction": "limited height 4.5 meteres at gate 3, prefer gate 4 (no height limit)",
@@ -6683,7 +6683,7 @@
         "type": "object",
         "description": "job report (surcharge) defines the surcharge from master data, which is reported on the job.",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "reportSurchargeID": 483915,
             "jobSurchargeID": 483915,
             "jobID": 1,
@@ -6758,7 +6758,7 @@
         "type": "object",
         "description": "job report e-mail notification entry which containers a receiver for a job report.\nthe entry is created and submitted with the job report. the backend can process report pdf generation and automatically sends out the report pdf to the receiver given by this entry. It will then be updated with a Sender and SendDateTime when processed.\n\nIf you already sent out the notification, you may submit this entry with sender and senddatetime in order for the backend to acknoledge that.",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "eMailNotificationID": 1,
             "jobID": 45123,
             "reportID": 48192,
@@ -6919,7 +6919,7 @@
           "customerBriefed"
         ],
         "x-examples": {
-          "example-1": {
+          "example1": {
             "handoverID": 483915,
             "jobID": 34451,
             "internalEmployeeID": 341,
@@ -6999,7 +6999,7 @@
           "damage"
         ],
         "x-examples": {
-          "example-1": {
+          "example1": {
             "returnID": 483915,
             "jobID": 45612,
             "internalEmployeeID": 345,
@@ -7087,7 +7087,7 @@
           "quantity"
         ],
         "x-examples": {
-          "example-1": {
+          "example1": {
             "jobSurchargeID": 483915,
             "surchargeID": 8739145,
             "jobID": 82916,
@@ -7104,7 +7104,7 @@
         "type": "object",
         "description": "on a job problem specific conditions or issues related to the resource (machine / accessory) are stored.\nthey may be submitted in the initial job to clarify existing issues that can be mentioned on handover, or additional job problems are submitted during handover or return to better clarify wether or not something is caused by the customer.",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "problemID": 583911,
             "jobID": 452341,
             "problemType": 0,
@@ -7254,7 +7254,7 @@
           }
         },
         "x-examples": {
-          "example-1": {
+          "example1": {
             "jobDocumentID": 583911,
             "jobID": 452341,
             "jobDocument": {
@@ -7271,7 +7271,7 @@
         "type": "object",
         "description": "job transport demand clarifies what, how much, needs to go where and when.",
         "x-examples": {
-          "example-1": {
+          "example1": {
             "transportDemandPositionID": 2512341,
             "jobID": 51231,
             "description": "Custom Fluid B028",
