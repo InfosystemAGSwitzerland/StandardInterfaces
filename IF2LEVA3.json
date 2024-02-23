@@ -52,7 +52,7 @@
             }
           },
           {
-            "name": "search_string",
+            "name": "searchString",
             "in": "query",
             "description": "Optional search string for looking up a record within name and searchterm fields.",
             "schema": {
@@ -82,18 +82,18 @@
             }
           },
           {
-            "name": "changes_since_datetime",
+            "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (search_string, internalAccessoryId,\r\nexternalAccessoryId).",
+            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalAccessoryId,\r\nexternalAccessoryId).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changes_since_change_id",
+            "name": "changesSinceChangeID",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search\r\nparameters (search_string, internalAccessoryId,\r\nexternalAccessoryId).",
+            "description": "Get all the entities which were added/edited since the provided changeID. Cannot be used together with search\r\nparameters (searchString, internalAccessoryId,\r\nexternalAccessoryId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -102,7 +102,7 @@
             }
           },
           {
-            "name": "accessory_id",
+            "name": "accessoryID",
             "in": "query",
             "description": "Retrieve a specific record by internal accessory ID. Ignores other search options if provided.",
             "schema": {
@@ -113,7 +113,7 @@
             }
           },
           {
-            "name": "external_accessory_id",
+            "name": "externalAccessoryID",
             "in": "query",
             "description": "Retrieve a specific record by external accessory ID. Ignores other search options if provided.",
             "schema": {
@@ -398,7 +398,7 @@
             }
           },
           {
-            "name": "search_string",
+            "name": "searchString",
             "in": "query",
             "description": "Optional search string for looking up a record within name and searchterm fields.",
             "schema": {
@@ -428,18 +428,18 @@
             }
           },
           {
-            "name": "changes_since_datetime",
+            "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (search_string, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changes_since_change_id",
+            "name": "changesSinceChangeID",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search\r\nparameters (search_string, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited since the provided changeID. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -448,7 +448,7 @@
             }
           },
           {
-            "name": "machine_id",
+            "name": "machineID",
             "in": "query",
             "description": "Retrieve a specific record by internal machine ID. Ignores other search options if provided.",
             "schema": {
@@ -459,7 +459,7 @@
             }
           },
           {
-            "name": "external_machine_id",
+            "name": "externalMachineID",
             "in": "query",
             "description": "Retrieve a specific record by external machine ID. Ignores other search options if provided.",
             "schema": {
@@ -820,7 +820,7 @@
             }
           },
           {
-            "name": "search_string",
+            "name": "searchString",
             "in": "query",
             "description": "Optional search string for looking up a record within name and searchterm fields.",
             "schema": {
@@ -850,18 +850,18 @@
             }
           },
           {
-            "name": "changes_since_datetime",
+            "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (search_string, internalMachineTypeId,\r\nexternalMachineTypeId).",
+            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineTypeId,\r\nexternalMachineTypeId).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changes_since_change_id",
+            "name": "changesSinceChangeID",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search\r\nparameters (search_string, internalMachineTypeId,\r\nexternalMachineTypeId).",
+            "description": "Get all the entities which were added/edited since the provided changeID. Cannot be used together with search\r\nparameters (searchString, internalMachineTypeId,\r\nexternalMachineTypeId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -870,7 +870,7 @@
             }
           },
           {
-            "name": "machine_type_id",
+            "name": "machineTypeID",
             "in": "query",
             "description": "Retrieve a specific record by internal machine type ID. Ignores other search options if provided.",
             "schema": {
@@ -881,7 +881,7 @@
             }
           },
           {
-            "name": "external_machine_type_id",
+            "name": "externalMachineTypeID",
             "in": "query",
             "description": "Retrieve a specific record by external machine type ID. Ignores other search options if provided.",
             "schema": {
@@ -1151,7 +1151,7 @@
         },
         "parameters": [
           {
-            "name": "search_string",
+            "name": "searchString",
             "in": "query",
             "description": "Optional search string for looking up a record within name and searchterm fields.",
             "schema": {
@@ -1181,18 +1181,18 @@
             }
           },
           {
-            "name": "changes_since_datetime",
+            "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "changes_since_change_id",
+            "name": "changesSinceChangeID",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided change_id. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entities which were added/edited since the provided changeID. Cannot be used together with search parameter (ID, searchString).",
             "schema": {
               "maximum": 99999999,
               "minimum": 0,
@@ -1201,7 +1201,7 @@
             }
           },
           {
-            "name": "surcharge_id",
+            "name": "surchargeID",
             "in": "query",
             "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
             "schema": {
@@ -1245,7 +1245,7 @@
               "type": "integer"
             },
             "in": "query",
-            "name": "external_surcharge_id",
+            "name": "externalSurchargeID",
             "description": "Retrieve specific record by external id. (Ignores other search options if provided)"
           }
         ],
@@ -1722,7 +1722,7 @@
         },
         "parameters": [
           {
-            "name": "search_string",
+            "name": "searchString",
             "in": "query",
             "description": "Optional search string for looking up a record within name and searchterm fields.",
             "schema": {
@@ -1752,16 +1752,16 @@
             }
           },
           {
-            "name": "changes_since_datetime",
+            "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "job_id",
+            "name": "jobID",
             "in": "query",
             "description": "Retrieve specific record by id. (Ignores other search options if provided)",
             "schema": {
@@ -1772,7 +1772,7 @@
             }
           },
           {
-            "name": "include_details",
+            "name": "includeDetails",
             "in": "query",
             "schema": {
               "maxLength": 50,
@@ -1911,16 +1911,16 @@
             }
           },
           {
-            "name": "changes_since_datetime",
+            "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "job_id",
+            "name": "jobID",
             "in": "query",
             "description": "Retrieve specific record by id. (Ignores other search options if provided)",
             "schema": {
@@ -2242,16 +2242,16 @@
             }
           },
           {
-            "name": "changes_since_datetime",
+            "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "job_id",
+            "name": "jobID",
             "in": "query",
             "description": "Retrieve specific record by id. (Ignores other search options if provided)",
             "schema": {
@@ -2561,16 +2561,16 @@
             }
           },
           {
-            "name": "changes_since_datetime",
+            "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "job_id",
+            "name": "jobID",
             "in": "query",
             "description": "Retrieve specific record by ID. (Ignores other search options if provided)",
             "schema": {
@@ -2817,16 +2817,16 @@
             }
           },
           {
-            "name": "changes_since_datetime",
+            "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "job_id",
+            "name": "jobID",
             "in": "query",
             "description": "Retrieve specific record by ID. (Ignores other search options if provided)",
             "schema": {
@@ -3064,16 +3064,16 @@
             }
           },
           {
-            "name": "changes_since_datetime",
+            "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "job_id",
+            "name": "jobID",
             "in": "query",
             "description": "Retrieve specific record by ID. (Ignores other search options if provided)",
             "schema": {
@@ -3327,16 +3327,16 @@
             }
           },
           {
-            "name": "changes_since_datetime",
+            "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "job_id",
+            "name": "jobID",
             "in": "query",
             "description": "Retrieve specific record by ID. (Ignores other search options if provided)",
             "schema": {
@@ -3588,16 +3588,16 @@
             }
           },
           {
-            "name": "changes_since_datetime",
+            "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "job_id",
+            "name": "jobID",
             "in": "query",
             "description": "Retrieve specific record by ID. (Ignores other search options if provided)",
             "schema": {
@@ -3873,16 +3873,16 @@
             }
           },
           {
-            "name": "changes_since_datetime",
+            "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "job_id",
+            "name": "jobID",
             "in": "query",
             "description": "Retrieve specific record by ID. (Ignores other search options if provided)",
             "schema": {
@@ -4155,16 +4155,16 @@
             }
           },
           {
-            "name": "changes_since_datetime",
+            "name": "changesSinceDatetime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, search_string).",
+            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (ID, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
             }
           },
           {
-            "name": "job_id",
+            "name": "jobID",
             "in": "query",
             "description": "Retrieve specific record by ID. (Ignores other search options if provided)",
             "schema": {
