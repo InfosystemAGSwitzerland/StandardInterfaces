@@ -93,7 +93,7 @@
               "maxLength": 30
             },
             "in": "header",
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "description": "Optional technical Id (GUID) for call identification."
           },
           {
@@ -278,7 +278,7 @@
               "type": "string"
             },
             "in": "header",
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "description": "Optional technical Id (GUID) for call identification."
           },
           {
@@ -368,7 +368,7 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
@@ -451,8 +451,8 @@
               "minLength": 1
             },
             "in": "query",
-            "name": "personnellNo",
-            "description": "Id of the perfoming unit in the external system - Is only unique togehter with the companyNo"
+            "name": "personnelNo",
+            "description": "Id of the performing unit in the external system - Is only unique togehter with the companyNo"
           },
           {
             "schema": {
@@ -603,7 +603,7 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
@@ -686,8 +686,8 @@
               "minLength": 1
             },
             "in": "query",
-            "name": "personnellNo",
-            "description": "Id of the perfoming unit in the external system - Is only unique togehter with the companyNo"
+            "name": "personnelNo",
+            "description": "Id of the performing unit in the external system - Is only unique togehter with the companyNo"
           },
           {
             "schema": {
@@ -783,7 +783,7 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
@@ -878,8 +878,8 @@
               "minLength": 1
             },
             "in": "query",
-            "name": "personnellNo",
-            "description": "Id of the perfoming unit in the external system - Is only unique togehter with the companyNo"
+            "name": "personnelNo",
+            "description": "Id of the performing unit in the external system - Is only unique togehter with the companyNo"
           },
           {
             "schema": {
@@ -976,7 +976,7 @@
               "type": "string"
             },
             "in": "header",
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "description": "Optional technical Id (GUID) for call identification."
           },
           {
@@ -1058,7 +1058,7 @@
               "type": "string"
             },
             "in": "header",
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "description": "Optional technical Id (GUID) for call identification."
           },
           {
@@ -1153,7 +1153,7 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
@@ -1248,8 +1248,8 @@
               "minLength": 1
             },
             "in": "query",
-            "name": "personnellNo",
-            "description": "Id of the perfoming unit in the external system - Is only unique togehter with the companyNo"
+            "name": "personnelNo",
+            "description": "Id of the performing unit in the external system - Is only unique togehter with the companyNo"
           },
           {
             "schema": {
@@ -1346,7 +1346,7 @@
               "type": "string"
             },
             "in": "header",
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "description": "Optional technical Id (GUID) for call identification."
           },
           {
@@ -1428,7 +1428,7 @@
               "type": "string"
             },
             "in": "header",
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "description": "Optional technical Id (GUID) for call identification."
           },
           {
@@ -1523,7 +1523,7 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
@@ -1618,8 +1618,8 @@
               "minLength": 1
             },
             "in": "query",
-            "name": "personnellNo",
-            "description": "Id of the perfoming unit in the external system - Is only unique togehter with the companyNo"
+            "name": "personnelNo",
+            "description": "Id of the performing unit in the external system - Is only unique togehter with the companyNo"
           },
           {
             "schema": {
@@ -1716,7 +1716,7 @@
               "type": "string"
             },
             "in": "header",
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "description": "Optional technical Id (GUID) for call identification."
           },
           {
@@ -1798,7 +1798,7 @@
               "type": "string"
             },
             "in": "header",
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "description": "Optional technical Id (GUID) for call identification."
           },
           {
@@ -1893,7 +1893,7 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
@@ -1988,8 +1988,8 @@
               "minLength": 1
             },
             "in": "query",
-            "name": "personnellNo",
-            "description": "Id of the perfoming unit in the external system - Is only unique togehter with the companyNo"
+            "name": "personnelNo",
+            "description": "Id of the performing unit in the external system - Is only unique togehter with the companyNo"
           },
           {
             "schema": {
@@ -2086,7 +2086,7 @@
               "type": "string"
             },
             "in": "header",
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "description": "Optional technical Id (GUID) for call identification."
           },
           {
@@ -2168,7 +2168,7 @@
               "type": "string"
             },
             "in": "header",
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "description": "Optional technical Id (GUID) for call identification."
           },
           {
@@ -2273,7 +2273,7 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
@@ -2368,8 +2368,8 @@
               "minLength": 1
             },
             "in": "query",
-            "name": "personnellNo",
-            "description": "Id of the perfoming unit in the external system - Is only unique togehter with the companyNo"
+            "name": "personnelNo",
+            "description": "Id of the performing unit in the external system - Is only unique togehter with the companyNo"
           },
           {
             "schema": {
@@ -2466,7 +2466,7 @@
               "type": "string"
             },
             "in": "header",
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "description": "Optional technical Id (GUID) for call identification."
           },
           {
@@ -2548,7 +2548,7 @@
               "type": "string"
             },
             "in": "header",
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "description": "Optional technical Id (GUID) for call identification."
           },
           {
@@ -2647,7 +2647,7 @@
             }
           },
           {
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
@@ -2825,7 +2825,7 @@
               "type": "string"
             },
             "in": "header",
-            "name": "X-Flow-Id",
+            "name": "X-Flow-ID",
             "description": "Optional technical Id (GUID) for call identification."
           },
           {
@@ -2847,9 +2847,9 @@
       "order": {
         "title": "Order",
         "type": "object",
-        "description": "By passimng the appropriate option the service get",
+        "description": "By passing the appropriate option the service get",
         "properties": {
-          "InternalOrderId": {
+          "internalOrderId": {
             "type": "integer",
             "format": "int64",
             "description": "The order Id uniquely identifies an order in performis. To identify an order, either the performis order Id (OrderId) or the Id of the external system (ExternalOrderId) is required.",
@@ -2857,19 +2857,19 @@
             "minimum": 0,
             "maximum": 9999999999
           },
-          "ExternalOrderId": {
+          "externalOrderId": {
             "type": "string",
             "maxLength": 50,
             "description": "Third-party order Id - This Id must be unique within the origin (Origin field). As Id it is recommended to use either the Primary Key of the foreign system or a GUID (Global Unique Identifier). Attention, if External Ids are used, no performis Ids may be used in parallel, additionally the Origin field is mandatory. E.g. Id \"629c5d97-a225-4b08-877c-e8a802c23014\" for origin \"SAP\". To identify the business partner, either the performis order (OrderId) or the Id of the external system (ExternalOrderId) is required.",
             "example": "629c5d97-a225-4b08-877c-e8a802c23014"
           },
-          "OrderNo": {
+          "orderNo": {
             "type": "string",
             "maxLength": 20,
             "description": "The OrderNo identifies the order to be booked in accounting. This is the actual order no of the order",
             "example": "V005126.10"
           },
-          "CompanyNo": {
+          "companyNo": {
             "type": "integer",
             "format": "int64",
             "example": 27,
@@ -2877,13 +2877,13 @@
             "minimum": 0,
             "maximum": 999999
           },
-          "Description": {
+          "description": {
             "type": "string",
             "maxLength": 100,
             "description": "The Description is a short description / title of the order",
             "example": "Transportauftrag 1151"
           },
-          "InternalBpAddrId": {
+          "internalBpAddrId": {
             "type": "integer",
             "format": "int64",
             "example": 2000070,
@@ -2891,48 +2891,48 @@
             "minimum": 0,
             "maximum": 9999999999
           },
-          "ExternalBpAddrId": {
+          "externalBpAddrId": {
             "type": "string",
             "description": "The ExternalBpAddrId references the business partner addess within the customer system",
             "example": "321687.01"
           },
-          "ResponsiblePerson": {
+          "responsiblePerson": {
             "type": "string",
             "maxLength": 30,
             "example": "John Doe",
             "description": "The person responsable for the order"
           },
-          "OrderType": {
+          "orderType": {
             "type": "string",
             "maxLength": 1,
             "description": "The OrderType identifies the type of the order\nM: Material\nP: Production\nV: Sales\nE: Purchase\nA: Other",
             "example": "V"
           },
-          "Origin": {
+          "origin": {
             "type": "string",
             "maxLength": 10,
             "example": "ISBRW",
             "description": "The system of origin the order"
           },
-          "CostCenterNo": {
+          "costCenterNo": {
             "type": "string",
             "maxLength": 6,
             "example": "200",
             "description": "Cost center of the order"
           },
-          "CostUnitNo": {
+          "costUnitNo": {
             "type": "string",
             "maxLength": 20,
             "example": "13",
             "description": "Cost unit of the order"
           },
-          "SalesChannelNo": {
+          "salesChannelNo": {
             "type": "string",
             "maxLength": 3,
             "description": "Identifies the sale channel",
             "example": "ABC"
           },
-          "OrderStatus": {
+          "orderStatus": {
             "type": "integer",
             "format": "int64",
             "example": 1040500,
@@ -2940,36 +2940,36 @@
             "minimum": 0,
             "maximum": 9999999
           },
-          "AttributeValueSet": {
+          "attributeValueSet": {
             "$ref": "#/components/schemas/attributeValueSetDto"
           },
-          "CaccOrder": {
+          "caccOrder": {
             "type": "boolean",
             "description": "Is it an accounting order?"
           },
-          "ChargingType": {
+          "chargingType": {
             "type": "string",
             "maxLength": 2,
             "description": "Defines whether the order is reallocated\nKT: cost unit\nKS: cost centre\nAU: order",
             "example": "KT"
           },
-          "BudgetCharging": {
+          "budgetCharging": {
             "type": "boolean",
             "description": "Shows whether the order is relevant to the budget"
           },
-          "OrderDate": {
+          "orderDate": {
             "type": "string",
             "format": "date",
             "example": "2023-01-05",
             "description": "Date the order was placed"
           },
-          "Currency": {
+          "currency": {
             "type": "string",
             "example": "CHF",
             "maxLength": 3,
             "description": "Currency as ISO code"
           },
-          "DocumentId": {
+          "documentId": {
             "type": "integer",
             "format": "int64",
             "example": 1234567890,
@@ -2977,31 +2977,31 @@
             "minimum": 0,
             "maximum": 9999999999
           },
-          "DocumentGUID": {
+          "documentGUID": {
             "type": "string",
             "format": "uuid",
             "description": "GUID that identifies the stored \"physical\" document",
             "example": "FDBF257B-2EA6-4734-BF66-ECA38E1C9A0E"
           },
-          "ManualPost": {
+          "manualPost": {
             "type": "boolean",
             "description": "Shows whether the order can be booked in accounting? "
           }
         },
         "required": [
-          "OrderNo",
-          "CompanyNo",
-          "Description",
-          "OrderType",
-          "Origin",
-          "OrderStatus"
+          "orderNo",
+          "companyNo",
+          "description",
+          "orderType",
+          "origin",
+          "orderStatus"
         ]
       },
       "serviceProviderDayDto": {
         "title": "ServiceProviderDay",
         "type": "object",
         "properties": {
-          "ChangeId": {
+          "changeId": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
@@ -3009,13 +3009,13 @@
             "description": "ChangeId of the entity.",
             "example": 123789
           },
-          "ChangeDate": {
+          "changeDate": {
             "type": "string",
             "description": "ChangeDate of the entity.",
             "format": "date-time",
             "example": "2022-05-12 08:00:00"
           },
-          "ServiceProviderDayId": {
+          "serviceProviderDayId": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
@@ -3023,49 +3023,49 @@
             "example": 1234567890,
             "description": "Identifies the \"Leitungsträger-Tag\""
           },
-          "Date": {
+          "date": {
             "type": "string",
             "format": "date",
             "description": "Date of the service",
             "example": "2022-05-12"
           },
-          "TargetHours": {
+          "targetHours": {
             "type": "integer",
             "example": 8,
             "description": "The amount of hours that should be spent on this",
             "format": "int64"
           },
-          "PresenceHours": {
+          "presenceHours": {
             "type": "integer",
             "example": 6,
             "description": "Hours the service provider was present",
             "format": "int64"
           },
-          "HoursOfHoliday": {
+          "hoursOfHoliday": {
             "type": "integer",
             "example": 4,
             "description": "Time off in hours",
             "format": "int64"
           },
-          "AllowancesHours": {
+          "allowancesHours": {
             "type": "integer",
             "example": 4,
             "description": "Hours that are relevant for allowences",
             "format": "int64"
           },
-          "DayOff": {
+          "dayOff": {
             "type": "boolean",
             "description": "Is a day off"
           },
-          "BrealkRuleViolated": {
+          "brealkRuleViolated": {
             "type": "boolean",
             "description": "A work hour rule was violated"
           },
-          "Approved": {
+          "approved": {
             "type": "boolean",
             "description": "The "
           },
-          "ServiceProviderId": {
+          "serviceProviderId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3073,45 +3073,45 @@
             "description": "Id of the \"Leistungsträger\"",
             "example": 7684411397
           },
-          "DayValid": {
+          "dayValid": {
             "type": "boolean",
             "description": "The record was checked by all rules and is valid"
           },
-          "ApprovalUser": {
+          "approvalUser": {
             "type": "string",
             "maxLength": 30,
             "description": "Name of the reviewing authority that approved the record",
             "example": "XYZ"
           },
-          "ApprovalDate": {
+          "approvalDate": {
             "type": "string",
             "format": "date",
             "description": "Date the reviewing authority approved the record",
             "example": "2021-08-24"
           },
-          "DayError": {
+          "dayError": {
             "type": "string",
             "maxLength": 2000,
             "description": "List of all reasons why the recoed could not be validated successfully",
             "example": "Abwesenheitszeit darf nicht grösser als die Sollzeit sein."
           },
-          "RelevantChangeUser": {
+          "relevantChangeUser": {
             "type": "string",
             "maxLength": 30,
             "description": "Name of user who changed relevant information of the record other than the service provider",
             "example": "ADM"
           },
-          "RelevantChangeDate": {
+          "relevantChangeDate": {
             "type": "string",
             "format": "date",
             "description": "Date someone changed relevant information of the record other than the service provider",
             "example": "2021-08-31"
           },
-          "OnHourlyWage": {
+          "onHourlyWage": {
             "type": "boolean",
             "description": "Ist the wage per hour"
           },
-          "OverlapHours": {
+          "overlapHours": {
             "type": "integer",
             "format": "int64",
             "description": "Hours overlapping with other service provider day",
@@ -3119,24 +3119,24 @@
           }
         },
         "required": [
-          "ServiceProviderDayId",
-          "Date",
-          "PresenceHours",
-          "HoursOfHoliday",
-          "AllowancesHours",
-          "DayOff",
-          "BrealkRuleViolated",
-          "Approved",
-          "ServiceProviderId",
-          "DayValid",
-          "OnHourlyWage"
+          "serviceProviderDayId",
+          "date",
+          "presenceHours",
+          "hoursOfHoliday",
+          "allowancesHours",
+          "dayOff",
+          "brealkRuleViolated",
+          "approved",
+          "serviceProviderId",
+          "dayValid",
+          "onHourlyWage"
         ]
       },
       "serviceRecordDto": {
         "title": "ServiceRecord",
         "type": "object",
         "properties": {
-          "ChangeId": {
+          "changeId": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
@@ -3144,13 +3144,13 @@
             "description": "ChangeId of the entity.",
             "example": 8971239429
           },
-          "ChangeDate": {
+          "changeDate": {
             "type": "string",
             "description": "ChangeDate of the entity.",
             "format": "date-time",
             "example": "2020-07-22 09:45:00"
           },
-          "ServiceRecordId": {
+          "serviceRecordId": {
             "type": "integer",
             "format": "int64",
             "maximum": 9999999999,
@@ -3158,7 +3158,7 @@
             "description": "Id of the \"Leistung\"",
             "example": 326479517
           },
-          "CompanyNo": {
+          "companyNo": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
@@ -3166,7 +3166,7 @@
             "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system",
             "example": 37
           },
-          "ServiceProviderId": {
+          "serviceProviderId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3174,53 +3174,53 @@
             "description": "Id of the \"Leistungsträger\"",
             "example": 3366
           },
-          "PersonnellNo": {
+          "personnelNo": {
             "type": "string",
             "description": "Id of the human \"Leistungsträger\" in the external system",
             "minLength": 1,
             "maxLength": 50,
             "example": "138"
           },
-          "MachineNo": {
+          "machineNo": {
             "type": "string",
             "description": "Id of the machine \"Leistungsträger\" in the external system",
             "minLength": 1,
             "maxLength": 50,
             "example": "139"
           },
-          "ServiceProviderDate": {
+          "serviceProviderDate": {
             "type": "string",
             "format": "date",
             "description": "Day on which the service was provided",
             "example": "2023-09-22"
           },
-          "ServiceTypeId": {
+          "serviceTypeId": {
             "type": "integer",
             "minimum": 0,
             "maximum": 9999999999,
             "description": "Id of the \"Leistungsart\"",
             "example": 697
           },
-          "CostCenterNo": {
+          "costCenterNo": {
             "type": "string",
             "maxLength": 6,
             "description": "Cost center identifier",
             "minLength": 1,
             "example": "C68"
           },
-          "CostUnitNo": {
+          "costUnitNo": {
             "type": "string",
             "maxLength": 20,
             "description": "Cost unit identifier",
             "example": "K-68"
           },
-          "OrderNo": {
+          "orderNo": {
             "type": "string",
             "maxLength": 20,
             "description": "The OrderNo identifies the order to be booked in accounting. This is the actual order no of the order",
             "example": "E-3654.12"
           },
-          "Period": {
+          "period": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3228,31 +3228,31 @@
             "description": "Year and month the service was provided\nFormat YYYYMM (e.g. 202401)",
             "example": 202010
           },
-          "Text": {
+          "text": {
             "type": "string",
             "maxLength": 240,
             "description": "Description of the work done",
-            "example": "Stahlträger montieren"
+            "example": "stahlträger montieren"
           },
-          "Quantity": {
+          "quantity": {
             "type": "integer",
             "format": "int64",
             "description": "Amount of hours to get work done",
             "example": 4
           },
-          "TimeFrom": {
+          "timeFrom": {
             "type": "string",
             "format": "time",
             "description": "Work start time",
             "example": "08:00:00"
           },
-          "TimeTo": {
+          "timeTo": {
             "type": "string",
             "format": "time",
             "description": "Work end time",
             "example": "12:45:00"
           },
-          "ServiceProviderDayId": {
+          "serviceProviderDayId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3260,7 +3260,7 @@
             "description": "Id des \"Leistungsträgertag\"",
             "example": 3698521470
           },
-          "C291ServiceStatus": {
+          "c291ServiceStatus": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3268,18 +3268,18 @@
             "description": "State of the service entry\n10 - Provisorisch                - Provisional\n20 - Erfasst                     - Recorded\n25 - Nicht verrechnungsbereit    - Not ready for billing\n30 - Verrechnungsbereit          - Ready for billing\n40 - Verrechnet                  - Billed\n45 - Keine Verrechnung           - No billing",
             "example": 20
           },
-          "Activety": {
+          "activety": {
             "type": "string",
             "example": "Repairs",
             "minLength": 1,
             "maxLength": 200,
             "description": "Description of the work/task done"
           },
-          "Locked": {
+          "locked": {
             "type": "boolean",
             "description": "The service entry is locked for change"
           },
-          "MachineServiceProviderDayId": {
+          "machineServiceProviderDayId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3287,30 +3287,30 @@
             "description": "Id des \"Leistungsträgertag\" of the machine",
             "example": 842697135
           },
-          "Guid": {
+          "guid": {
             "type": "string",
             "format": "uuid",
             "maxLength": 36,
             "description": "Unique global external Id to identify the record ",
             "example": "196F85A1-D8F6-4CB3-A7C1-4961D379AF57"
           },
-          "NoRWPosting": {
+          "noRWPosting": {
             "type": "boolean",
             "description": "No post in accounting"
           },
-          "Origin": {
+          "origin": {
             "type": "string",
             "maxLength": 10,
             "description": "The system of origin the order",
             "example": "B_HTR"
           },
-          "OriginId": {
+          "originId": {
             "type": "string",
             "maxLength": 50,
             "description": " Id of the system of origin the order",
             "example": "319"
           },
-          "C577OriginStatus": {
+          "c577OriginStatus": {
             "type": "integer",
             "minimum": 0,
             "maximum": 9999999,
@@ -3320,27 +3320,27 @@
           }
         },
         "required": [
-          "ServiceRecordId",
-          "CompanyNo",
-          "ServiceProviderId",
-          "PersonnellNo",
-          "ServiceProviderDate",
-          "ServiceTypeId",
-          "Period",
-          "Quantity",
-          "C291ServiceStatus",
-          "Locked",
-          "Guid",
-          "NoRWPosting",
-          "Origin",
-          "OriginId"
+          "serviceRecordId",
+          "companyNo",
+          "serviceProviderId",
+          "personnelNo",
+          "serviceProviderDate",
+          "serviceTypeId",
+          "period",
+          "quantity",
+          "c291ServiceStatus",
+          "locked",
+          "guid",
+          "noRWPosting",
+          "origin",
+          "originId"
         ]
       },
       "serviceProviderDto": {
         "title": "ServiceProvider",
         "type": "object",
         "properties": {
-          "ChangeId": {
+          "changeId": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
@@ -3348,13 +3348,13 @@
             "description": "ChangeId of the entity.",
             "example": 5214698741
           },
-          "ChangeDate": {
+          "changeDate": {
             "type": "string",
             "description": "ChangeDate of the entity.",
             "format": "date-time",
             "example": "2022-04-30 09:30:00"
           },
-          "ServiceProviderId": {
+          "serviceProviderId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3362,13 +3362,13 @@
             "description": "Id of the \"Leistungsträger\"",
             "example": 1265
           },
-          "Inactive": {
+          "inactive": {
             "type": "string",
             "maxLength": 1,
             "example": "Y",
             "description": "Entry is inactive"
           },
-          "CompanyNo": {
+          "companyNo": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
@@ -3376,41 +3376,41 @@
             "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system",
             "example": 20
           },
-          "ShortDescription": {
+          "shortDescription": {
             "type": "string",
             "description": "Short identifier/abbreviation/acronym of the service provider",
             "maxLength": 10,
             "example": "MAU"
           },
-          "Description": {
+          "description": {
             "type": "string",
             "description": "Full decription / Name of the service provider",
             "maxLength": 100,
             "example": "Martin Urfer"
           },
-          "ServiceCompleted": {
+          "serviceCompleted": {
             "type": "string",
             "maxLength": 1,
             "example": "Y",
             "description": "Indicates if the service has been completed"
           },
-          "AllowEditingInClosedPeriod": {
+          "allowEditingInClosedPeriod": {
             "type": "boolean",
             "description": "Indicates if the service provider can be edited even if the period is closed"
           },
-          "Externalid": {
+          "externalid": {
             "type": "string",
             "maxLength": 50,
             "example": "C47C97C0F4B04096855955CB5AD47444",
             "description": "Id of the service provider inm the external system"
           },
-          "Role": {
+          "role": {
             "type": "string",
             "maxLength": 50,
             "example": "Leiter Informatik",
             "description": "Role of the service provider"
           },
-          "C286ServiceProviderType": {
+          "c286ServiceProviderType": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
@@ -3418,32 +3418,32 @@
             "example": 1,
             "description": "Type of the service provider\n1 - Mitarbeiter - Employees\n2 - Maschinen   - Machines\n3 - Kleingeräte - Small devices\n5 - Allgemein   - Universal"
           },
-          "Department": {
+          "department": {
             "type": "string",
             "example": "Werkstatt",
             "maxLength": 200,
             "minLength": 0,
             "description": "Department the service provider is assigned to"
           },
-          "StandardServiceType": {
+          "standardServiceType": {
             "type": "string",
             "example": "295676",
             "description": "Default servie type of the service provider "
           },
-          "BAEmployeeId": {
+          "bAEmployeeId": {
             "type": "integer",
             "minimum": 0,
             "maximum": 9999999999,
             "description": "Identifies the employee",
             "example": 1284
           },
-          "Origin": {
+          "origin": {
             "type": "string",
             "maxLength": 10,
             "example": "25",
             "description": "The system of origin the order"
           },
-          "Originid": {
+          "originid": {
             "type": "number",
             "maximum": 9999999999,
             "minimum": 1,
@@ -3452,23 +3452,23 @@
           }
         },
         "required": [
-          "ServiceProviderId",
-          "Inactive",
-          "CompanyNo",
-          "ShortDescription",
-          "Description",
-          "ServiceCompleted",
-          "AllowEditingInClosedPeriod",
-          "C286ServiceProviderType",
-          "Origin",
-          "Originid"
+          "serviceProviderId",
+          "inactive",
+          "companyNo",
+          "shortDescription",
+          "description",
+          "serviceCompleted",
+          "allowEditingInClosedPeriod",
+          "c286ServiceProviderType",
+          "origin",
+          "originid"
         ]
       },
       "serviceProviderDayAllowanceDto": {
         "title": "ServiceProviderDayAllowance",
         "type": "object",
         "properties": {
-          "ChangeId": {
+          "changeId": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
@@ -3476,13 +3476,13 @@
             "description": "ChangeId of the entity.",
             "example": 369852147
           },
-          "ChangeDate": {
+          "changeDate": {
             "type": "string",
             "description": "ChangeDate of the entity.",
             "format": "date-time",
             "example": "2024-01-27 09:30:00"
           },
-          "ServiceProviderDayAllowanceId": {
+          "serviceProviderDayAllowanceId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3490,7 +3490,7 @@
             "description": "Id of the \"Leistungsträger-Tag-Zulage\"",
             "example": 26873
           },
-          "ServiceProviderDayId": {
+          "serviceProviderDayId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3498,7 +3498,7 @@
             "description": "Id of the \"Leistungsträger-Tag\"",
             "example": 36874
           },
-          "Allowanceid": {
+          "allowanceid": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3506,7 +3506,7 @@
             "description": "Id of the \"Zulage\"",
             "example": 15795
           },
-          "CompanyNo": {
+          "companyNo": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
@@ -3514,39 +3514,39 @@
             "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system",
             "example": 25
           },
-          "PersonnellNo": {
+          "personnelNo": {
             "type": "string",
             "description": "Id of the \"Leistungsträger\" in the external system",
             "minLength": 1,
             "maxLength": 50,
             "example": "1258"
           },
-          "MachineNo": {
+          "machineNo": {
             "type": "string",
             "description": "Id of the machine \"Leistungsträger\" in the external system",
             "minLength": 1,
             "maxLength": 50,
             "example": "139"
           },
-          "Description": {
+          "description": {
             "type": "string",
             "maxLength": 50,
             "example": "Pikett-Dienst",
             "description": "Discribes the details of the allowance"
           },
-          "OrderNo": {
+          "orderNo": {
             "type": "string",
             "maxLength": 20,
             "description": "The OrderNo identifies the order to be booked in accounting. This is the actual order no of the order",
             "example": "K-658-55"
           },
-          "Base": {
+          "base": {
             "type": "integer",
             "format": "int64",
             "description": "Amount of units declared",
             "example": 8
           },
-          "Percentage": {
+          "percentage": {
             "type": "number",
             "format": "double",
             "example": 50,
@@ -3554,30 +3554,30 @@
             "maximum": 100,
             "description": "Percentage rate of base amount being compensated"
           },
-          "Amount": {
+          "amount": {
             "type": "number",
             "description": "Actual amount being compensated\nbase (declared) 8h\npercentage 50%\namount (compensated) 4h",
             "example": 4
           },
-          "Apply": {
+          "apply": {
             "type": "boolean",
             "description": "As all possible allowances are checked and calulated for all service provider days this flag declares if this specific allowance is relevant"
           },
-          "Locked": {
+          "locked": {
             "type": "boolean",
             "description": "The dataset is locked"
           },
-          "Exclude": {
+          "exclude": {
             "type": "boolean",
             "description": "The allowence is not being granted even if would apply"
           },
-          "CostCenterNo": {
+          "costCenterNo": {
             "type": "string",
             "maxLength": 6,
             "description": "Cost center identifier",
             "example": "C-222"
           },
-          "Period": {
+          "period": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3585,13 +3585,13 @@
             "example": 202312,
             "description": "Year and month the service was provided\nFormat YYYYMM (e.g. 202401)"
           },
-          "Origin": {
+          "origin": {
             "type": "string",
             "maxLength": 10,
             "description": "The system of origin the order",
             "example": "25"
           },
-          "OriginId": {
+          "originId": {
             "type": "string",
             "maxLength": 50,
             "description": " Id of the system of origin the order",
@@ -3599,16 +3599,16 @@
           }
         },
         "required": [
-          "ServiceProviderDayAllowanceId",
-          "ServiceProviderDayId",
-          "Allowanceid",
-          "CompanyNo",
-          "PersonnellNo",
-          "Apply",
-          "Locked",
-          "Exclude",
-          "Origin",
-          "OriginId"
+          "serviceProviderDayAllowanceId",
+          "serviceProviderDayId",
+          "allowanceid",
+          "companyNo",
+          "personnelNo",
+          "apply",
+          "locked",
+          "exclude",
+          "origin",
+          "originId"
         ]
       },
       "allowanceDto": {
@@ -3616,194 +3616,194 @@
         "type": "object",
         "description": "",
         "properties": {
-          "ChangeId": {
+          "changeId": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
             "maximum": 9999999999,
             "description": "ChangeId of the entity."
           },
-          "ChangeDate": {
+          "changeDate": {
             "type": "string",
             "description": "ChangeDate of the entity.",
             "format": "date-time"
           },
-          "AllowanceId": {
+          "allowanceId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
             "maximum": 9999999999,
             "description": "Identifies the allowance"
           },
-          "Description": {
+          "description": {
             "type": "string",
             "maxLength": 50,
             "example": "Pikett-Dienst",
             "description": "Discribes the details of the allowance"
           },
-          "NightWork": {
+          "nightWork": {
             "type": "boolean",
             "description": "Does the allowance involve work at night"
           },
-          "NightFrom": {
+          "nightFrom": {
             "type": "string",
             "format": "time",
             "description": "Start date when night work"
           },
-          "NightTo": {
+          "nightTo": {
             "type": "string",
             "format": "time",
             "description": "End date when night work"
           },
-          "HasHoursMoreThan": {
+          "hasHoursMoreThan": {
             "type": "boolean"
           },
-          "HoursMoreThan": {
+          "hoursMoreThan": {
             "type": "number"
           },
-          "HasHoursSurcharge": {
+          "hasHoursSurcharge": {
             "type": "boolean"
           },
-          "HoursSurcharge": {
+          "hoursSurcharge": {
             "type": "number"
           },
-          "FlatRate": {
+          "flatRate": {
             "type": "boolean"
           },
-          "WageSurcharge": {
+          "wageSurcharge": {
             "type": "number"
           },
-          "HasC299SpecialRule": {
+          "hasC299SpecialRule": {
             "type": "boolean"
           },
-          "C299SpecialRule": {
+          "c299SpecialRule": {
             "type": "integer",
             "format": "int64",
             "maximum": 99999999,
             "minimum": 0,
             "example": 21
           },
-          "EntryWithOrder": {
+          "entryWithOrder": {
             "type": "boolean"
           },
-          "CompanyNo": {
+          "companyNo": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
             "maximum": 999999,
             "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system"
           },
-          "Active": {
+          "active": {
             "type": "boolean"
           },
-          "WageTypeHeaderId": {
+          "wageTypeHeaderId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
             "maximum": 9999999999
           },
-          "FlatRateManual": {
+          "flatRateManual": {
             "type": "boolean"
           },
-          "TimeSurchargeManual": {
+          "timeSurchargeManual": {
             "type": "boolean"
           },
-          "FlatRateManualMax": {
+          "flatRateManualMax": {
             "type": "number"
           },
-          "TimeSurchargeManualMax": {
+          "timeSurchargeManualMax": {
             "type": "number"
           },
-          "C297ServiceTypeGroup": {
+          "c297ServiceTypeGroup": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
             "maximum": 9999999
           },
-          "ValueType": {
+          "valueType": {
             "type": "string",
             "maxLength": 1
           },
-          "PZRelevant": {
+          "pZRelevant": {
             "type": "boolean"
           },
-          "IsMonday": {
+          "isMonday": {
             "type": "boolean"
           },
-          "IsTuesday": {
+          "isTuesday": {
             "type": "boolean"
           },
-          "IsWednesday": {
+          "isWednesday": {
             "type": "boolean"
           },
-          "IsThursday": {
+          "isThursday": {
             "type": "boolean"
           },
-          "IsFriday": {
+          "isFriday": {
             "type": "boolean"
           },
-          "IsSaturday": {
+          "isSaturday": {
             "type": "boolean"
           },
-          "IsSunday": {
+          "isSunday": {
             "type": "boolean"
           },
-          "ApplyToPublicHolidays": {
+          "applyToPublicHolidays": {
             "type": "boolean"
           },
-          "IsPublisHoliday": {
+          "isPublisHoliday": {
             "type": "boolean"
           },
-          "Time": {
+          "time": {
             "type": "boolean"
           },
-          "Time1From": {
+          "time1From": {
             "type": "string",
             "format": "date"
           },
-          "Time1To": {
+          "time1To": {
             "type": "string",
             "format": "date"
           },
-          "Time2From": {
+          "time2From": {
             "type": "string",
             "format": "date"
           },
-          "Time2To": {
+          "time2To": {
             "type": "string",
             "format": "date"
           },
-          "KDVWageType": {
+          "kDVWageType": {
             "type": "string",
             "maxLength": 3
           },
-          "NightEven:SaSoPh": {
+          "nightEven:SaSoPh": {
             "type": "boolean"
           },
-          "HoursMoreThanTo": {
+          "hoursMoreThanTo": {
             "type": "number"
           },
-          "Flat:RateQuantity": {
+          "flat:RateQuantity": {
             "type": "number"
           },
-          "C28Unit": {
+          "c28Unit": {
             "type": "integer",
             "minimum": 0,
             "maximum": 999999
           },
-          "ServiceProviderDayId": {
+          "serviceProviderDayId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
             "maximum": 9999999999
           },
-          "BAEmployeeId": {
+          "bAEmployeeId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
             "maximum": 9999999999
           },
-          "ExternalId": {
+          "externalId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3811,36 +3811,36 @@
           }
         },
         "required": [
-          "AllowanceId",
-          "Description",
-          "HasHoursMoreThan",
-          "HasHoursSurcharge",
-          "FlatRate",
-          "WageSurcharge",
-          "HasC299SpecialRule",
-          "EntryWithOrder",
-          "CompanyNo",
-          "Active",
-          "FlatRateManual",
-          "TimeSurchargeManual",
-          "ValueType",
-          "PZRelevant",
-          "IsMonday",
-          "IsTuesday",
-          "IsWednesday",
-          "IsThursday",
-          "IsFriday",
-          "IsSaturday",
-          "IsSunday",
-          "ApplyToPublicHolidays",
-          "Time"
+          "allowanceId",
+          "description",
+          "hasHoursMoreThan",
+          "hasHoursSurcharge",
+          "flatRate",
+          "wageSurcharge",
+          "hasC299SpecialRule",
+          "entryWithOrder",
+          "companyNo",
+          "active",
+          "flatRateManual",
+          "timeSurchargeManual",
+          "valueType",
+          "pZRelevant",
+          "isMonday",
+          "isTuesday",
+          "isWednesday",
+          "isThursday",
+          "isFriday",
+          "isSaturday",
+          "isSunday",
+          "applyToPublicHolidays",
+          "time"
         ]
       },
       "presenceTimeDto": {
         "title": "PresenceTime",
         "type": "object",
         "properties": {
-          "ChangeId": {
+          "changeId": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
@@ -3848,13 +3848,13 @@
             "description": "ChangeId of the entity.",
             "example": 321456987
           },
-          "ChangeDate": {
+          "changeDate": {
             "type": "string",
             "description": "ChangeDate of the entity.",
             "format": "date-time",
             "example": "2023-09-21 09:30:00"
           },
-          "PresenceTimeId": {
+          "presenceTimeId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3862,7 +3862,7 @@
             "description": "Unique identifier of the presence time dataset",
             "example": 65987
           },
-          "CompanyNo": {
+          "companyNo": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
@@ -3870,7 +3870,7 @@
             "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system",
             "example": 20
           },
-          "ServiceProviderId": {
+          "serviceProviderId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3878,38 +3878,38 @@
             "description": "Id of the \"Leistungsträger\"",
             "example": 36547
           },
-          "PersonnellNo": {
+          "personnelNo": {
             "type": "string",
             "description": "Id of the \"Leistungsträger\" in the external system",
             "minLength": 1,
             "maxLength": 50,
             "example": "1287"
           },
-          "PresenceDate": {
+          "presenceDate": {
             "type": "string",
             "format": "date",
             "description": "Date of presence",
             "example": "2022-11-11"
           },
-          "Hours": {
+          "hours": {
             "type": "integer",
             "format": "int64",
             "description": "Hours the service provider was present",
             "example": 4
           },
-          "TimeFrom": {
+          "timeFrom": {
             "type": "string",
             "format": "time",
             "description": "Time the service provider started work",
             "example": "08:00:00"
           },
-          "TimeTo": {
+          "timeTo": {
             "type": "string",
             "format": "time",
             "description": "Time the service provider ended work",
             "example": "12:15:00"
           },
-          "ServiceProviderDayId": {
+          "serviceProviderDayId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3917,17 +3917,17 @@
             "description": "Identifier to the \"Leistungsträger-Tag\"",
             "example": 6584
           },
-          "Locked": {
+          "locked": {
             "type": "boolean",
             "description": "The prsence time resord is locked"
           },
-          "Origin": {
+          "origin": {
             "type": "string",
             "maxLength": 10,
             "description": "The system of origin the order",
             "example": "25"
           },
-          "OriginId": {
+          "originId": {
             "type": "string",
             "maxLength": 50,
             "description": " Id of the system of origin the order",
@@ -3935,24 +3935,24 @@
           }
         },
         "required": [
-          "PresenceTimeId",
-          "CompanyNo",
-          "ServiceProviderId",
-          "PersonnellNo",
-          "PresenceDate",
-          "Hours",
-          "TimeFrom",
-          "ServiceProviderDayId",
-          "Locked",
-          "Origin",
-          "OriginId"
+          "presenceTimeId",
+          "companyNo",
+          "serviceProviderId",
+          "personnelNo",
+          "presenceDate",
+          "hours",
+          "timeFrom",
+          "serviceProviderDayId",
+          "locked",
+          "origin",
+          "originId"
         ]
       },
       "absenceDto": {
         "title": "Absence",
         "type": "object",
         "properties": {
-          "ChangeId": {
+          "changeId": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
@@ -3960,13 +3960,13 @@
             "description": "ChangeId of the entity.",
             "example": 322784
           },
-          "ChangeDate": {
+          "changeDate": {
             "type": "string",
             "description": "ChangeDate of the entity.",
             "format": "date-time",
             "example": "2022-04-25 09:30:00"
           },
-          "AbsenceId": {
+          "absenceId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3974,7 +3974,7 @@
             "description": "Unique identifier of the absence",
             "example": 665588
           },
-          "ServiceProviderId": {
+          "serviceProviderId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3982,7 +3982,7 @@
             "description": "Id of the \"Leistungsträger\"",
             "example": 8715
           },
-          "ServiceProviderType": {
+          "serviceProviderType": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3990,31 +3990,31 @@
             "description": "Type of the service provider\n 1 - Mitarbeiter - Employees\n 2 - Maschinen   - Machines\n 3 - Kleingeräte - Small devices\n 5 - Allgemein   - Universal",
             "example": 2860005
           },
-          "DateOfAbsence": {
+          "dateOfAbsence": {
             "type": "string",
             "format": "date",
             "description": "Date of the absence",
             "example": "2023-12-24"
           },
-          "Hours": {
+          "hours": {
             "type": "integer",
             "format": "int64",
             "description": "Duration of absence in hours",
             "example": 8
           },
-          "TimeFrom": {
+          "timeFrom": {
             "type": "string",
             "format": "time",
-            "description": "Start of absence",
+            "description": "start of absence",
             "example": "08:00:00"
           },
-          "TimeTo": {
+          "timeTo": {
             "type": "string",
             "format": "time",
             "description": "nd of absence",
             "example": "17:00:00"
           },
-          "ServiceProviderDayId": {
+          "serviceProviderDayId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -4022,7 +4022,7 @@
             "description": "Id of the \"Leistungsträger\"",
             "example": 3269
           },
-          "CompanyNo": {
+          "companyNo": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -4030,18 +4030,18 @@
             "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system",
             "example": 25
           },
-          "PersonnellNo": {
+          "personnelNo": {
             "type": "string",
             "description": "Id of the \"Leistungsträger\" in the external system",
             "minLength": 1,
             "maxLength": 50,
             "example": "1258"
           },
-          "Holiday": {
+          "holiday": {
             "type": "boolean",
             "description": "Is the absence due to a holiday?"
           },
-          "C575TimePeriod": {
+          "c575TimePeriod": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -4049,7 +4049,7 @@
             "description": "Predefined time periods\n20 - Ganzer Tag - entire day\n40 - Vormittag - Morning\n60 - Nachmittag - Afternoon",
             "example": 20
           },
-          "AbsenceApplicationId": {
+          "absenceApplicationId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -4057,17 +4057,17 @@
             "description": "Indenties the application for this absence",
             "example": 69874
           },
-          "Locked": {
+          "locked": {
             "type": "boolean",
             "description": "This absence is locked for modification"
           },
-          "Origin": {
+          "origin": {
             "type": "string",
             "maxLength": 10,
             "description": "The system of origin the order",
             "example": "20"
           },
-          "OriginId": {
+          "originId": {
             "type": "string",
             "maxLength": 50,
             "description": " Id of the system of origin the order",
@@ -4075,18 +4075,18 @@
           }
         },
         "required": [
-          "AbsenceId",
-          "ServiceProviderId",
-          "ServiceProviderType",
-          "DateOfAbsence",
-          "Hours",
-          "ServiceProviderDayId",
-          "CompanyNo",
-          "PersonnellNo",
-          "Holiday",
-          "Locked",
-          "Origin",
-          "OriginId"
+          "absenceId",
+          "serviceProviderId",
+          "serviceProviderType",
+          "dateOfAbsence",
+          "hours",
+          "serviceProviderDayId",
+          "companyNo",
+          "personnelNo",
+          "holiday",
+          "locked",
+          "origin",
+          "originId"
         ]
       },
       "entryDto": {
@@ -4094,7 +4094,7 @@
         "type": "object",
         "description": "Represents a company accounting entry",
         "properties": {
-          "CompanyNo": {
+          "companyNo": {
             "type": "integer",
             "minimum": 1,
             "maximum": 999999,
@@ -4102,7 +4102,7 @@
             "format": "int64",
             "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system"
           },
-          "CaccEntryNo": {
+          "caccEntryNo": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
@@ -4110,70 +4110,70 @@
             "example": 12345,
             "description": "Unique identifier of entry in combination with the CompanyNo"
           },
-          "CostCenterNo": {
+          "costCenterNo": {
             "type": "string",
             "maxLength": 6,
             "description": "Cost center identifier",
             "minLength": 1,
             "example": "135"
           },
-          "CostUnitNo": {
+          "costUnitNo": {
             "type": "string",
             "maxLength": 20,
             "description": "Cost unit identifier",
             "example": "6548217"
           },
-          "OrderNo": {
+          "orderNo": {
             "type": "string",
             "maxLength": 20,
             "description": "The OrderNo identifies the order to be booked in accounting. This is the actual order no of the order",
             "example": "4712"
           },
-          "SalesChannel": {
+          "salesChannel": {
             "type": "string",
             "maxLength": 3,
             "example": "20",
             "description": "Identifies the sale channel"
           },
-          "CostType": {
+          "costType": {
             "type": "string",
             "maxLength": 10,
             "example": "4547",
-            "description": "Typ that the item is booked in"
+            "description": "Type that the item is booked in"
           },
-          "Period": {
+          "period": {
             "type": "integer",
             "example": 202401,
             "format": "int64",
             "minimum": 1,
             "maximum": 999999,
-            "description": "Booing period of the entry"
+            "description": "booing period of the entry"
           },
-          "BudgetActual": {
+          "budgetActual": {
             "type": "string",
             "description": "B => Budget / P => Plan / I => Ist / K => Ker",
             "maxLength": 1,
             "example": "I"
           },
-          "Origin": {
+          "origin": {
             "type": "string",
             "maxLength": 10,
             "example": "ISRW",
             "description": "System of origin the order"
           },
-          "OriginId": {
+          "originId": {
             "type": "string",
             "maxLength": 50,
             "description": "Id of the system of origin the order",
             "example": "1023789456"
           },
-          "VoucherType": {
+          "voucherType": {
             "type": "string",
             "maxLength": 4,
             "example": "Budg",
             "description": "Type of booking"
           },
-          "VoucherNo": {
+          "voucherNo": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
@@ -4181,30 +4181,30 @@
             "example": 658421,
             "description": "Booking no / receipt no / voucher no on origin system"
           },
-          "VoucherDate": {
+          "voucherDate": {
             "type": "string",
             "format": "date",
             "example": "2024-02-24",
             "description": "Date of the receipt/voucher"
           },
-          "Text": {
+          "text": {
             "type": "string",
             "maxLength": 1000,
             "example": "Budget 202403",
             "description": "Booking text"
           },
-          "AmountBSC": {
+          "amountBSC": {
             "type": "number",
             "format": "double",
             "description": "Amount of the voucher in the given currency"
           },
-          "Currency": {
+          "currency": {
             "type": "string",
             "maxLength": 3,
             "example": "EUR",
             "description": "Currency ISO code"
           },
-          "Amount": {
+          "amount": {
             "type": "number",
             "example": 2,
             "format": "double",
@@ -4212,14 +4212,14 @@
           }
         },
         "required": [
-          "CompanyNo",
-          "CaccEntryNo",
-          "CostType",
-          "BudgetActual",
-          "Origin",
-          "VoucherDate",
-          "Text",
-          "AmountBSC"
+          "companyNo",
+          "caccEntryNo",
+          "costType",
+          "budgetActual",
+          "origin",
+          "voucherDate",
+          "text",
+          "amountBSC"
         ]
       },
       "codeValueDto": {
@@ -4228,32 +4228,32 @@
         "x-examples": {
           "example-1": {
             "required": [
-              "Code",
-              "CompanyNo",
-              "Text"
+              "code",
+              "companyNo",
+              "text"
             ],
             "type": "object",
             "properties": {
-              "CompanyNo": {
+              "companyNo": {
                 "maximum": 999999,
                 "minimum": 0,
                 "type": "integer",
                 "description": "Company no for which the codevalue is available. 0 = all companies",
                 "format": "int32"
               },
-              "Code": {
+              "code": {
                 "maximum": 99999999,
                 "minimum": 0,
                 "type": "integer",
                 "description": "Id of code",
                 "format": "int32"
               },
-              "Text": {
+              "text": {
                 "maxLength": 100,
                 "type": "string",
                 "description": "Description or title of the codevalue"
               },
-              "Shorttext": {
+              "shorttext": {
                 "maxLength": 12,
                 "type": "string",
                 "description": "Short-description or title of the codevalue",
@@ -4278,12 +4278,12 @@
           "properties": {
             "type": "object",
             "required": [
-              "CompanyNo",
-              "Code",
-              "Text"
+              "companyNo",
+              "code",
+              "text"
             ],
             "properties": {
-              "CompanyNo": {
+              "companyNo": {
                 "type": "object",
                 "required": [
                   "maximum",
@@ -4313,7 +4313,7 @@
                   }
                 }
               },
-              "Code": {
+              "code": {
                 "type": "object",
                 "required": [
                   "maximum",
@@ -4343,7 +4343,7 @@
                   }
                 }
               },
-              "Text": {
+              "text": {
                 "type": "object",
                 "required": [
                   "maxLength",
@@ -4364,7 +4364,7 @@
                   }
                 }
               },
-              "Shorttext": {
+              "shorttext": {
                 "type": "object",
                 "required": [
                   "maxLength",
@@ -4411,45 +4411,45 @@
         "x-examples": {
           "example-1": {
             "required": [
-              "AttributeDefinitionId"
+              "attributeDefinitionId"
             ],
             "type": "object",
             "properties": {
-              "AttributeDefinitionId": {
+              "attributeDefinitionId": {
                 "type": "integer",
                 "description": "Id of attribute definition",
                 "format": "int64"
               },
-              "AttributeDefinitionDescription": {
+              "attributeDefinitionDescription": {
                 "maxLength": 80,
                 "type": "string",
                 "description": "Description of the attribute definition",
                 "nullable": true
               },
-              "StringValue": {
+              "stringValue": {
                 "maxLength": 1000,
                 "type": "string",
-                "description": "A string value",
+                "description": "a string value",
                 "nullable": true
               },
-              "NumberValue": {
+              "numberValue": {
                 "type": "number",
                 "description": "Number or decimal value",
                 "format": "double",
                 "nullable": true
               },
-              "DateValue": {
+              "dateValue": {
                 "type": "string",
                 "description": "Date value",
                 "format": "date-time",
                 "nullable": true
               },
-              "BoolValue": {
+              "boolValue": {
                 "type": "boolean",
-                "description": "A true or false value",
+                "description": "a true or false value",
                 "nullable": true
               },
-              "CodeValues": {
+              "codeValues": {
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/codeValueDto"
@@ -4476,16 +4476,16 @@
           "properties": {
             "type": "object",
             "required": [
-              "AttributeDefinitionId",
-              "AttributeDefinitionDescription",
-              "StringValue",
-              "NumberValue",
-              "DateValue",
-              "BoolValue",
-              "CodeValues"
+              "attributeDefinitionId",
+              "attributeDefinitionDescription",
+              "stringValue",
+              "numberValue",
+              "dateValue",
+              "boolValue",
+              "codeValues"
             ],
             "properties": {
-              "AttributeDefinitionId": {
+              "attributeDefinitionId": {
                 "type": "object",
                 "required": [
                   "type",
@@ -4507,7 +4507,7 @@
                   }
                 }
               },
-              "AttributeDefinitionDescription": {
+              "attributeDefinitionDescription": {
                 "type": "object",
                 "required": [
                   "maxLength",
@@ -4532,7 +4532,7 @@
                   }
                 }
               },
-              "StringValue": {
+              "stringValue": {
                 "type": "object",
                 "required": [
                   "maxLength",
@@ -4557,7 +4557,7 @@
                   }
                 }
               },
-              "NumberValue": {
+              "numberValue": {
                 "type": "object",
                 "required": [
                   "type",
@@ -4583,7 +4583,7 @@
                   }
                 }
               },
-              "DateValue": {
+              "dateValue": {
                 "type": "object",
                 "required": [
                   "type",
@@ -4609,7 +4609,7 @@
                   }
                 }
               },
-              "BoolValue": {
+              "boolValue": {
                 "type": "object",
                 "required": [
                   "type",
@@ -4630,7 +4630,7 @@
                   }
                 }
               },
-              "CodeValues": {
+              "codeValues": {
                 "$ref": "#/components/schemas/codeValueDto"
               }
             }
@@ -4656,24 +4656,24 @@
         "x-examples": {
           "example-1": {
             "required": [
-              "AttributeSetId",
-              "AttributSetDescription"
+              "attributeSetId",
+              "attributSetDescription"
             ],
             "type": "object",
             "properties": {
-              "AttributeSetId": {
+              "attributeSetId": {
                 "maximum": 2147483647,
                 "minimum": 1,
                 "type": "integer",
                 "description": "performis internal of attribute set Id",
                 "format": "int64"
               },
-              "AttributSetDescription": {
+              "attributSetDescription": {
                 "maxLength": 80,
                 "type": "string",
                 "description": "Description / Title of the attribute set"
               },
-              "AttributeValues": {
+              "attributeValues": {
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/attributeValueDto"
@@ -4686,22 +4686,22 @@
             "description": "",
             "x-examples": {
               "example-1": {
-                "AttributeSetId": 1,
-                "AttributSetDescription": "string",
-                "AttributeValues": [
+                "attributeSetId": 1,
+                "attributSetDescription": "string",
+                "attributeValues": [
                   {
-                    "AttributeDefinitionId": 0,
-                    "AttributeDefinitionDescription": "string",
-                    "StringValue": "string",
-                    "NumberValue": 0,
-                    "DateValue": "2019-08-24T14:15:22Z",
-                    "BoolValue": true,
-                    "CodeValues": [
+                    "attributeDefinitionId": 0,
+                    "attributeDefinitionDescription": "string",
+                    "stringValue": "string",
+                    "numberValue": 0,
+                    "dateValue": "2019-08-24T14:15:22Z",
+                    "boolValue": true,
+                    "codeValues": [
                       {
-                        "CompanyNo": 0,
-                        "Code": 0,
-                        "Text": "string",
-                        "Shorttext": "string"
+                        "companyNo": 0,
+                        "code": 0,
+                        "text": "string",
+                        "shorttext": "string"
                       }
                     ]
                   }
@@ -4724,12 +4724,12 @@
           "properties": {
             "type": "object",
             "required": [
-              "AttributeSetId",
-              "AttributSetDescription",
-              "AttributeValues"
+              "attributeSetId",
+              "attributSetDescription",
+              "attributeValues"
             ],
             "properties": {
-              "AttributeSetId": {
+              "attributeSetId": {
                 "type": "object",
                 "required": [
                   "maximum",
@@ -4759,7 +4759,7 @@
                   }
                 }
               },
-              "AttributSetDescription": {
+              "attributSetDescription": {
                 "type": "object",
                 "required": [
                   "maxLength",
@@ -4780,7 +4780,7 @@
                   }
                 }
               },
-              "AttributeValues": {
+              "attributeValues": {
                 "$ref": "#/components/schemas/attributeValueDto"
               }
             }
@@ -4800,84 +4800,84 @@
               "example-1": {
                 "type": "object",
                 "required": [
-                  "AttributeSetId",
-                  "AttributSetDescription",
-                  "AttributeValues"
+                  "attributeSetId",
+                  "attributSetDescription",
+                  "attributeValues"
                 ],
                 "properties": {
-                  "AttributeSetId": {
+                  "attributeSetId": {
                     "type": "number"
                   },
-                  "AttributSetDescription": {
+                  "attributSetDescription": {
                     "type": "string",
                     "minLength": 1
                   },
-                  "AttributeValues": {
+                  "attributeValues": {
                     "type": "array",
                     "uniqueItems": true,
                     "minItems": 1,
                     "items": {
                       "type": "object",
                       "properties": {
-                        "AttributeDefinitionId": {
+                        "attributeDefinitionId": {
                           "type": "number"
                         },
-                        "AttributeDefinitionDescription": {
+                        "attributeDefinitionDescription": {
                           "type": "string",
                           "minLength": 1
                         },
-                        "StringValue": {
+                        "stringValue": {
                           "type": "string",
                           "minLength": 1
                         },
-                        "NumberValue": {
+                        "numberValue": {
                           "type": "number"
                         },
-                        "DateValue": {
+                        "dateValue": {
                           "type": "string",
                           "minLength": 1
                         },
-                        "BoolValue": {
+                        "boolValue": {
                           "type": "boolean"
                         },
-                        "CodeValues": {
+                        "codeValues": {
                           "type": "array",
                           "uniqueItems": true,
                           "minItems": 1,
                           "items": {
                             "type": "object",
                             "properties": {
-                              "CompanyNo": {
+                              "companyNo": {
                                 "type": "number"
                               },
-                              "Code": {
+                              "code": {
                                 "type": "number"
                               },
-                              "Text": {
+                              "text": {
                                 "type": "string",
                                 "minLength": 1
                               },
-                              "Shorttext": {
+                              "shorttext": {
                                 "type": "string",
                                 "minLength": 1
                               }
                             },
                             "required": [
-                              "CompanyNo",
-                              "Code",
-                              "Text",
-                              "Shorttext"
+                              "companyNo",
+                              "code",
+                              "text",
+                              "shorttext"
                             ]
                           }
                         }
                       },
                       "required": [
-                        "AttributeDefinitionId",
-                        "AttributeDefinitionDescription",
-                        "StringValue",
-                        "NumberValue",
-                        "DateValue",
-                        "BoolValue"
+                        "attributeDefinitionId",
+                        "attributeDefinitionDescription",
+                        "stringValue",
+                        "numberValue",
+                        "dateValue",
+                        "boolValue"
                       ]
                     }
                   }
@@ -4898,21 +4898,21 @@
       "error": {
         "type": "object",
         "properties": {
-          "ErrorDateTime": {
+          "errorDateTime": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           },
-          "Context": {
+          "context": {
             "type": "string",
             "nullable": true
           },
-          "ErrorCode": {
+          "errorCode": {
             "type": "integer",
             "format": "int32",
             "readOnly": true
           },
-          "ErrorDescription": {
+          "errorDescription": {
             "type": "string",
             "nullable": true,
             "readOnly": true
@@ -4930,43 +4930,43 @@
         "description": "information structure for active maintenance windows",
         "x-examples": {
           "example-1": {
-            "Id": 3511,
-            "Active": true,
-            "FromDateTime": "2019-08-24T14:15:22Z",
-            "ToDateTime": "2019-08-24T14:15:22Z",
-            "Info": "monthly maintenance for patch installation",
-            "ClientStartAllowed": false
+            "id": 3511,
+            "active": true,
+            "fromDateTime": "2019-08-24T14:15:22Z",
+            "toDateTime": "2019-08-24T14:15:22Z",
+            "info": "monthly maintenance for patch installation",
+            "clientStartAllowed": false
           }
         },
         "properties": {
-          "Id": {
+          "id": {
             "type": "integer",
             "format": "int64",
             "example": 3511,
             "nullable": true,
             "readOnly": true
           },
-          "Active": {
+          "active": {
             "type": "boolean",
             "default": true,
             "description": "usually the API will respond with this structure, when the maintenance window is active and the window has started."
           },
-          "FromDateTime": {
+          "fromDateTime": {
             "type": "string",
             "format": "date-time",
             "description": "start of scheduled maintenance window"
           },
-          "ToDateTime": {
+          "toDateTime": {
             "type": "string",
             "format": "date-time",
             "description": "end of scheduled maintenance window"
           },
-          "Info": {
+          "info": {
             "type": "string",
             "example": "monthly maintenance for patch installation",
             "nullable": true
           },
-          "ClientStartAllowed": {
+          "clientStartAllowed": {
             "type": "boolean",
             "default": false,
             "description": "defines wether or not clients may continue to work while the maintenance window applies."
