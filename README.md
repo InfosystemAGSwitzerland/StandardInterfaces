@@ -35,8 +35,16 @@ All interface are built with .net core/.net and use state of the art OpenAPI des
 All interfaces are built based on Infosystems Web API Standards, following the IETF RFCs regarding restful HTTP APIs.
 
 At the moment, we enable third party developer to use the following modules via REST API:
-- leva+ 
+- leva+
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2LEVA3.json&nocors" target="_blank">See documentation online</a>
+- performis - ERP
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2performis.json&nocors" target="_blank">See documentation online</a>
+- BAF - Business Application Functions
+  - available soon
+- ressys
+  - available soon
+
+Our module-based interfaces:
 - performis FI - Financial Accounting
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2FI3.json&nocors" target="_blank">See documentation online</a>
 - performis FA - Invoicing
@@ -93,7 +101,6 @@ Not freely distributed. All rights reserved Infosystem AG.
 
 Main Contact - [@Infosystem_AG](https://twitter.com/Infosystem_AG) - info@infosystem.ch<br>
 Stefan Jud (Product Owner) - [@Stefan_Jud](https://www.linkedin.com/in/stefan-jud-4ba82b63/)
-
 
 Project Link: [https://github.com/InfosystemAGSwitzerland/StandardInterfaces/](https://github.com/InfosystemAGSwitzerland/StandardInterfaces/)
 
