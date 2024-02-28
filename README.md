@@ -87,6 +87,12 @@ You may use the
 
 None
 
+### Examples
+
+Code value samples:
+- leva+
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Examples/IF2LEVASampleCodes.md" target="_blank">See documentation online</a>
+
 <!-- LICENSE -->
 ## License
 
