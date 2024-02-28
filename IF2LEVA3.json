@@ -1403,14 +1403,14 @@
                         "companyNo": 100,
                         "jobId": 37281,
                         "detailsIncluded": true,
-                        "reportEMailReceivers": "jack.smith@customerdomain.com; sarah.root@customermail.com",
+                        "reportEmailReceivers": "jack.smith@customerdomain.com; sarah.root@customermail.com",
                         "languageIsoCode": "US",
                         "internalEmployeeId": 3829,
                         "externalEmployeeId": "E839",
                         "orderNo": "A827109",
                         "orderTitle": "support on construction site A-51",
-                        "jobDateTimeFrom": "2022-12-01T07:00:00",
-                        "jobDateTimeTo": "2022-12-23T15:00:00",
+                        "jobFromDateTime": "2022-12-01T07:00:00",
+                        "jobToDateTime": "2022-12-23T15:00:00",
                         "primaryJobLocation": {
                           "locationId": 8392,
                           "description": "Construction Site, Gate 4",
@@ -1761,6 +1761,17 @@
             }
           },
           {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since the provided changeId. Cannot be used together with search\r\nparameters (searchString, internalAccessoryId,\r\nexternalAccessoryId).",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
             "name": "jobId",
             "in": "query",
             "description": "Retrieve specific record by id. (Ignores other search options if provided)",
@@ -1908,15 +1919,6 @@
               "minimum": 0,
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "name": "changesSinceDatetime",
-            "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
             }
           },
           {
@@ -2242,15 +2244,6 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
-            "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
             "name": "jobId",
             "in": "query",
             "description": "Retrieve specific record by id. (Ignores other search options if provided)",
@@ -2561,15 +2554,6 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
-            "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
             "name": "jobId",
             "in": "query",
             "description": "Retrieve specific record by Id. (Ignores other search options if provided)",
@@ -2817,15 +2801,6 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
-            "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
             "name": "jobId",
             "in": "query",
             "description": "Retrieve specific record by Id. (Ignores other search options if provided)",
@@ -3061,15 +3036,6 @@
               "minimum": 0,
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "name": "changesSinceDatetime",
-            "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
             }
           },
           {
@@ -3327,15 +3293,6 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
-            "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
             "name": "jobId",
             "in": "query",
             "description": "Retrieve specific record by Id. (Ignores other search options if provided)",
@@ -3585,15 +3542,6 @@
               "minimum": 0,
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "name": "changesSinceDatetime",
-            "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
             }
           },
           {
@@ -3873,15 +3821,6 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
-            "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
             "name": "jobId",
             "in": "query",
             "description": "Retrieve specific record by Id. (Ignores other search options if provided)",
@@ -4155,15 +4094,6 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
-            "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
             "name": "jobId",
             "in": "query",
             "description": "Retrieve specific record by Id. (Ignores other search options if provided)",
@@ -4205,17 +4135,7 @@
           }
         ],
         "operationId": "GetSchedulingJobsBookingActivities",
-        "description": "By passing in the appropriate options, the service searches for job booking activities in the system.",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            }
-          }
-        }
+        "description": "By passing in the appropriate options, the service searches for job booking activities in the system."
       },
       "parameters": []
     }
@@ -5394,14 +5314,14 @@
             "companyNo": 100,
             "jobId": 37281,
             "detailsIncluded": false,
-            "reportEMailReceivers": "jack.smith@customerdomain.com; sarah.root@customermail.com",
+            "reportEmailReceivers": "jack.smith@customerdomain.com; sarah.root@customermail.com",
             "languageIsoCode": "US",
             "internalEmployeeId": 3829,
             "externalEmployeeId": "E839",
             "orderNo": "A827109",
             "orderTitle": "support on construction site A-51",
-            "jobDateTimeFrom": "2022-12-01T07:00:00",
-            "jobDateTimeTo": "2022-12-23T15:00:00",
+            "jobFromDateTime": "2022-12-01T07:00:00",
+            "jobToDateTime": "2022-12-23T15:00:00",
             "primaryJobLocation": {
               "locationId": 8392,
               "description": "Construction Site, Gate 4",
@@ -5705,7 +5625,7 @@
             "description": "reflects the requesting parameter on wether or not the dataset includes the Details property.\n\nunclude the details only, when necessary. Use the requesting parameter to avoid unnecessary loads.",
             "default": false
           },
-          "reportEMailReceivers": {
+          "reportEmailReceivers": {
             "type": "string",
             "description": "; or , seperated string of e-mail addresses to receive a report copy.\n\nNote: these addresses are set in the order header and proposed to receive a report copy. Wether or not they actually receive a report copy, is controlled by the ReportEMailNotifications submitted with the report.",
             "example": "jack.smith@customerdomain.com; sarah.root@customermail.com",
@@ -5737,13 +5657,13 @@
             "type": "string",
             "example": "support on construction site A-51"
           },
-          "jobDateTimeFrom": {
+          "jobFromDateTime": {
             "type": "string",
             "format": "date-time",
             "description": "scheduled start date and time for this job",
             "example": "2022-12-01T07:00:00"
           },
-          "jobDateTimeTo": {
+          "jobToDateTime": {
             "type": "string",
             "format": "date-time",
             "description": "scheduled end date and time for this job",
@@ -5809,25 +5729,6 @@
             "description": "Code 6951\nuse IF2BA to retrieve value list.",
             "example": 69510030
           },
-          "releasedByInternalEmployeeId": {
-            "type": "number",
-            "description": "internal Employee ID who notified that the machine ressource to be available for scheduling again.",
-            "example": 920,
-            "nullable": true
-          },
-          "releasedByExternalEmployeeId": {
-            "type": "string",
-            "description": "external Employee ID who notified that the machine ressource to be available for scheduling again.",
-            "example": "E920",
-            "nullable": true
-          },
-          "releasedOnDateTime": {
-            "type": "string",
-            "format": "date-time",
-            "description": "DateTime of notification on which the machine ressource is made available for scheduling again. (The  maschine is no longer needed on the job)\n\nNULLas long as the resource is still being used.",
-            "example": "2022-12-23T15:34:05",
-            "nullable": true
-          },
           "handOver": {
             "$ref": "#/components/schemas/jobHandOver"
           },
@@ -5843,8 +5744,8 @@
           "detailsIncluded",
           "orderNo",
           "orderTitle",
-          "jobDateTimeFrom",
-          "jobDateTimeTo",
+          "jobFromDateTime",
+          "jobToDateTime",
           "primaryJobLocation",
           "resourceNo",
           "schedulingGroupCode",
@@ -6316,9 +6217,9 @@
           "example1": {
             "jobTimestampId": 483915,
             "jobId": 1,
-            "timestamp": "2012-04-23",
+            "timestamp": "2012-04-23T18:25:43.511Z",
             "timestampTypeCode": 45560001,
-            "bookingActivityId": 45570005,
+            "bookingActivityId": 482012,
             "internalMachineId": 45123,
             "externalMachineId": "MRK8938719",
             "internalEmployeeId": 241,
@@ -6346,9 +6247,9 @@
           },
           "timestamp": {
             "type": "string",
-            "format": "date",
+            "format": "date-time",
             "description": "The timestamp associated with the job.",
-            "example": "2012-04-23"
+            "example": "2012-04-23T18:25:43.511Z"
           },
           "timestampTypeCode": {
             "type": "integer",
@@ -6360,7 +6261,7 @@
             "type": "integer",
             "format": "int32",
             "description": "The identifier for resource booking activity.",
-            "example": 45570005,
+            "example": 482012,
             "nullable": true
           },
           "internalMachineId": {
@@ -6405,6 +6306,65 @@
         "title": "JobReport",
         "type": "object",
         "description": "job report on a job.\nthere may be multiple job reports on a single job for different timespans. e.g. daily, weekly or monthly reports.\nNOTE: reporting timeframes of two particular reports shall not overlap or they will be marked with an error on the backend.",
+        "x-examples": {
+          "example1": {
+            "reportId": 31234,
+            "jobId": 4215,
+            "reportFromDate": "2022-12-01",
+            "reportToDate": "2012-12-23",
+            "comment": "return was delayed due to traffic jam at our gates > not her fault!",
+            "reportTimeStampList": [
+              {
+                "jobReportTimestampId": 483915,
+                "reportId": 31234,
+                "timestamp": "2012-04-23T07:31:20",
+                "timestampTypeCode": 45560001,
+                "source": "MobileApp",
+                "bookingActivityId": 482012,
+                "comment": "optional remark on activity, such as why something took longer"
+              }
+            ],
+            "reportSurchargeList": [
+              {
+                "reportSurchargeId": 483915,
+                "jobSurchargeId": 483915,
+                "reportId": 31234,
+                "dateTime": "2022-12-23T17:25:43",
+                "assignment": "RENTAL_HANDOVER",
+                "quantity": 23.2
+              }
+            ],
+            "eMailNotificationList": [
+              {
+                "eMailNotificationId": 1,
+                "reportId": 31234,
+                "sender": "no-reply@mydomain.com",
+                "sendDateTime": "2022-12-07T06:00:01",
+                "createDateTime": "2022-12-06T08:35:54",
+                "createdByInternalEmployeeId": 498,
+                "createdByExternalEmployeeId": "E948",
+                "modifyDateTime": "2022-12-06T12:00:20",
+                "modifiedByInternalEmployeeId": 341,
+                "modifiedByExternalEmployeeId": "E341"
+              }
+            ],
+            "signature": {
+              "signatureId": 0,
+              "signatureTypeCode": 45680002,
+              "signeeName": "Jerry Miller",
+              "signaturDocumentLink": {
+                "fileDocumentInternalId": 4738919,
+                "fileExternalArchiveId": "DC9301231",
+                "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+              }
+            },
+            "reportPDF": {
+              "fileDocumentInternalId": 4738919,
+              "fileExternalArchiveId": "DC9301231",
+              "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+            }
+          }
+        },
         "properties": {
           "reportId": {
             "type": "number",
@@ -6413,6 +6373,11 @@
             "minimum": 1,
             "maximum": 9999999999,
             "nullable": true
+          },
+          "jobId": {
+            "type": "number",
+            "description": "internal unique job id",
+            "example": 4215
           },
           "reportFromDate": {
             "type": "string",
@@ -6460,71 +6425,7 @@
           "reportFromDate",
           "reportToDate",
           "comment"
-        ],
-        "x-examples": {
-          "example1": {
-            "reportId": 31234,
-            "reportFromDate": "2022-12-01",
-            "reportToDate": "2012-12-23",
-            "comment": "return was delayed due to traffic jam at our gates > not her fault!",
-            "reportTimeStampList": [
-              {
-                "jobReportTimestampId": 483915,
-                "jobId": 42341,
-                "timestamp": "2012-04-23T07:31:20",
-                "timestampTypeCode": 45560001,
-                "source": "MobileApp",
-                "bookingActivityId": 482012,
-                "internalMachineId": 4021,
-                "externalMachineId": "MRK8938719",
-                "internalEmployeeId": 214,
-                "externalEmployeeId": "E214",
-                "comment": "optional remark on activity, such as why something took longer"
-              }
-            ],
-            "reportSurchargeList": [
-              {
-                "reportSurchargeId": 483915,
-                "jobSurchargeId": 483915,
-                "jobId": 1,
-                "reportId": 52671,
-                "dateTime": "2022-12-23T17:25:43",
-                "assignment": "RENTAL_HANDOVER",
-                "quantity": 23.2
-              }
-            ],
-            "eMailNotificationList": [
-              {
-                "eMailNotificationId": 1,
-                "jobId": 45123,
-                "reportId": 48192,
-                "sender": "no-reply@mydomain.com",
-                "sendDateTime": "2022-12-07T06:00:01",
-                "createDateTime": "2022-12-06T08:35:54",
-                "createdByInternalEmployeeId": 498,
-                "createdByExternalEmployeeId": "E948",
-                "modifyDateTime": "2022-12-06T12:00:20",
-                "modifiedByInternalEmployeeId": 341,
-                "modifiedByExternalEmployeeId": "E341"
-              }
-            ],
-            "signature": {
-              "signatureId": 547,
-              "signatureTypeCode": 45680002,
-              "signeeName": "Jerry Miller",
-              "signaturDocumentLink": {
-                "fileDocumentInternalId": 4738919,
-                "fileExternalArchiveId": "DC9301231",
-                "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
-              }
-            },
-            "reportPDF": {
-              "fileDocumentInternalId": 4738919,
-              "fileExternalArchiveId": "DC9301231",
-              "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
-            }
-          }
-        }
+        ]
       },
       "jobReportTimeStamp": {
         "title": "JobReportTimeStamp",
@@ -6533,15 +6434,11 @@
         "x-examples": {
           "example1": {
             "jobReportTimestampId": 483915,
-            "jobId": 42341,
+            "reportId": 31234,
             "timestamp": "2012-04-23T07:31:20",
             "timestampTypeCode": 45560001,
             "source": "MobileApp",
             "bookingActivityId": 482012,
-            "internalMachineId": 4021,
-            "externalMachineId": "MRK8938719",
-            "internalEmployeeId": 214,
-            "externalEmployeeId": "E214",
             "comment": "optional remark on activity, such as why something took longer"
           }
         },
@@ -6555,13 +6452,13 @@
             "maximum": 9999999999,
             "nullable": true
           },
-          "jobId": {
+          "reportId": {
             "type": "integer",
             "format": "int32",
-            "description": "The unique identifier for the job onto which the time stamp is assigned",
+            "description": "The unique identifier for the report onto which the time stamp is assigned",
             "minimum": 1,
             "maximum": 9999999999,
-            "example": 42341,
+            "example": 31234,
             "nullable": true
           },
           "timestamp": {
@@ -6588,33 +6485,6 @@
             "example": 482012,
             "nullable": true
           },
-          "internalMachineId": {
-            "type": "integer",
-            "format": "int32",
-            "description": "The identifier for the machine.",
-            "example": 4021,
-            "nullable": true
-          },
-          "externalMachineId": {
-            "type": "string",
-            "format": "int32",
-            "description": "The external unique identifer for the the machine this job time stamp is assigned to",
-            "example": "MRK8938719",
-            "nullable": true
-          },
-          "internalEmployeeId": {
-            "type": "integer",
-            "format": "int32",
-            "description": "The internal identifier for the employee.",
-            "example": 214
-          },
-          "externalEmployeeId": {
-            "type": "string",
-            "format": "int32",
-            "description": "The external unique identifer for the the employee this job time stamp is assigned to",
-            "example": "E214",
-            "nullable": true
-          },
           "comment": {
             "type": "string",
             "description": "A comment associated with the timestamp.",
@@ -6625,8 +6495,7 @@
         "required": [
           "timestamp",
           "timestampTypeCode",
-          "source",
-          "internalEmployeeId"
+          "source"
         ]
       },
       "jobLocation": {
@@ -6686,8 +6555,7 @@
           "example1": {
             "reportSurchargeId": 483915,
             "jobSurchargeId": 483915,
-            "jobId": 1,
-            "reportId": 52671,
+            "reportId": 31234,
             "dateTime": "2022-12-23T17:25:43",
             "assignment": "RENTAL_HANDOVER",
             "quantity": 23.2
@@ -6712,18 +6580,10 @@
             "maximum": 9999999999,
             "nullable": true
           },
-          "jobId": {
-            "type": "integer",
-            "format": "int32",
-            "description": "unique identifier for the job",
-            "minimum": 1,
-            "maximum": 9999999999,
-            "nullable": true
-          },
           "reportId": {
             "type": "number",
             "description": "report ID on which this surcharge is reported",
-            "example": 52671,
+            "example": 31234,
             "nullable": true
           },
           "dateTime": {
@@ -6760,8 +6620,7 @@
         "x-examples": {
           "example1": {
             "eMailNotificationId": 1,
-            "jobId": 45123,
-            "reportId": 48192,
+            "reportId": 31234,
             "sender": "no-reply@mydomain.com",
             "sendDateTime": "2022-12-07T06:00:01",
             "createDateTime": "2022-12-06T08:35:54",
@@ -6781,21 +6640,12 @@
             "maximum": 9999999999,
             "nullable": true
           },
-          "jobId": {
-            "type": "integer",
-            "format": "int32",
-            "description": "unique identifier for the job onto which the notification is assigned",
-            "minimum": 1,
-            "maximum": 9999999999,
-            "example": 45123,
-            "nullable": true
-          },
           "reportId": {
             "type": "number",
             "description": "unique identifier for the report onto which the notification is assigned",
             "minimum": 1,
             "maximum": 9999999,
-            "example": 48192,
+            "example": 31234,
             "nullable": true
           },
           "sender": {
@@ -6944,6 +6794,18 @@
         "title": "JobReturn",
         "type": "object",
         "description": "a return for a rental job. confirms that the resource (machine / accessory) has been returned / picked up. Additional information such as a comment or wether or not the resource has been damaged is submitted.",
+        "x-examples": {
+          "example1": {
+            "returnId": 483915,
+            "jobId": 45612,
+            "internalEmployeeId": 345,
+            "externalEmployeeId": "E345",
+            "returnStartedDateTime": "2012-04-23T18:25:43.511Z",
+            "jobEndDateTime": "2012-04-22T15:00:00.511Z",
+            "damage": false,
+            "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!"
+          }
+        },
         "properties": {
           "returnId": {
             "type": "integer",
@@ -6982,6 +6844,13 @@
             "example": "2012-04-23T18:25:43.511Z",
             "description": "actual date time at which the return process started\n\nNOTE: this typically marks the end of a rental period."
           },
+          "jobEndDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2012-04-22T15:00:00.511Z",
+            "description": "actual job end date of the rental\n\nNOTE: this could be preceeding the returnStartedDateTime, for example when the rental is left at the return on the evening prior and no employee was able to retrieve it",
+            "nullable": true
+          },
           "damage": {
             "type": "boolean",
             "example": false,
@@ -6997,18 +6866,7 @@
         },
         "required": [
           "damage"
-        ],
-        "x-examples": {
-          "example1": {
-            "returnId": 483915,
-            "jobId": 45612,
-            "internalEmployeeId": 345,
-            "externalEmployeeId": "E345",
-            "returnStartedDateTime": "2012-04-23T18:25:43.511Z",
-            "damage": false,
-            "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!"
-          }
-        }
+        ]
       },
       "jobSurcharge": {
         "title": "JobSurcharge",
