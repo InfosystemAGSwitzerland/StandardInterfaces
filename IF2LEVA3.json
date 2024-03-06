@@ -1924,13 +1924,14 @@
           {
             "name": "jobId",
             "in": "query",
-            "description": "Retrieve specific record by id. (Ignores other search options if provided)",
+            "description": "Required to retrieve records of specific job",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "required": true
           },
           {
             "name": "X-Requesting-System",
@@ -2556,13 +2557,14 @@
           {
             "name": "jobId",
             "in": "query",
-            "description": "Retrieve specific record by Id. (Ignores other search options if provided)",
+            "description": "Required to retrieve records of specific job",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "required": true
           },
           {
             "name": "X-Requesting-System",
@@ -2803,7 +2805,7 @@
           {
             "name": "jobId",
             "in": "query",
-            "description": "Retrieve specific record by Id. (Ignores other search options if provided)",
+            "description": "Required to retrieve records of specific job",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
@@ -3041,13 +3043,14 @@
           {
             "name": "jobId",
             "in": "query",
-            "description": "Retrieve specific record by Id. (Ignores other search options if provided)",
+            "description": "Required to retrieve records of specific job",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "required": true
           },
           {
             "name": "X-Requesting-System",
@@ -3295,13 +3298,14 @@
           {
             "name": "jobId",
             "in": "query",
-            "description": "Retrieve specific record by Id. (Ignores other search options if provided)",
+            "description": "Required to retrieve records of specific job",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "required": true
           },
           {
             "name": "X-Requesting-System",
@@ -3547,13 +3551,14 @@
           {
             "name": "jobId",
             "in": "query",
-            "description": "Retrieve specific record by Id. (Ignores other search options if provided)",
+            "description": "Required to retrieve records of specific job",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "required": true
           },
           {
             "name": "X-Requesting-System",
@@ -3823,13 +3828,14 @@
           {
             "name": "jobId",
             "in": "query",
-            "description": "Retrieve specific record by Id. (Ignores other search options if provided)",
+            "description": "Required to retrieve records of specific job",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "required": true
           },
           {
             "name": "X-Requesting-System",
@@ -4096,13 +4102,14 @@
           {
             "name": "jobId",
             "in": "query",
-            "description": "Retrieve specific record by Id. (Ignores other search options if provided)",
+            "description": "Required to retrieve records of specific job",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "required": true
           },
           {
             "name": "X-Requesting-System",
@@ -6240,10 +6247,7 @@
           "jobId": {
             "type": "integer",
             "format": "int32",
-            "description": "The unique identifier for the job onto which the time stamp is assigned",
-            "minimum": 1,
-            "maximum": 9999999999,
-            "nullable": true
+            "description": "The unique identifier for the job onto which the time stamp is assigned"
           },
           "timestamp": {
             "type": "string",
@@ -6297,6 +6301,7 @@
           }
         },
         "required": [
+          "jobId",
           "timestamp",
           "timestampTypeCode",
           "internalEmployeeId"
@@ -6422,6 +6427,7 @@
           }
         },
         "required": [
+          "jobId",
           "reportFromDate",
           "reportToDate",
           "comment"
@@ -6710,6 +6716,27 @@
         "title": "JobHandOver",
         "type": "object",
         "description": "a handover for a rental job. confirms that the resource (machine / accessory) has been handed over to the customer. Additional information such as a comment and signature can be supplied.",
+        "x-examples": {
+          "example1": {
+            "handoverId": 483915,
+            "jobId": 34451,
+            "internalEmployeeId": 341,
+            "externalEmployeeId": "E341",
+            "handoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
+            "customerBriefed": false,
+            "comment": "customer already knows the machine very well",
+            "customerSignature": {
+              "signatureId": 547,
+              "signatureTypeCode": 45680002,
+              "signeeName": "Jerry Miller",
+              "signaturDocumentLink": {
+                "fileDocumentInternalId": 4738919,
+                "fileExternalArchiveId": "DC9301231",
+                "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+              }
+            }
+          }
+        },
         "properties": {
           "handoverId": {
             "type": "integer",
@@ -6724,10 +6751,7 @@
             "type": "integer",
             "format": "int32",
             "description": "id of the job onto which this handover is assigned to",
-            "minimum": 1,
-            "maximum": 9999999999,
-            "example": 34451,
-            "nullable": true
+            "example": 34451
           },
           "internalEmployeeId": {
             "type": "integer",
@@ -6765,30 +6789,10 @@
           }
         },
         "required": [
+          "jobId",
           "handoverCompletedDateTime",
           "customerBriefed"
-        ],
-        "x-examples": {
-          "example1": {
-            "handoverId": 483915,
-            "jobId": 34451,
-            "internalEmployeeId": 341,
-            "externalEmployeeId": "E341",
-            "handoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
-            "customerBriefed": false,
-            "comment": "customer already knows the machine very well",
-            "customerSignature": {
-              "signatureId": 547,
-              "signatureTypeCode": 45680002,
-              "signeeName": "Jerry Miller",
-              "signaturDocumentLink": {
-                "fileDocumentInternalId": 4738919,
-                "fileExternalArchiveId": "DC9301231",
-                "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
-              }
-            }
-          }
-        }
+        ]
       },
       "jobReturn": {
         "title": "JobReturn",
@@ -6820,10 +6824,7 @@
             "type": "integer",
             "format": "int32",
             "description": "unique id of job onto which this return is assigned",
-            "minimum": 1,
-            "maximum": 9999999999,
-            "example": 45612,
-            "nullable": true
+            "example": 45612
           },
           "internalEmployeeId": {
             "type": "integer",
@@ -6865,6 +6866,7 @@
           }
         },
         "required": [
+          "jobId",
           "damage"
         ]
       },
@@ -6872,6 +6874,18 @@
         "title": "JobSurcharge",
         "type": "object",
         "description": "surcharge recorded on a job that is either entered by the employee (e.g. gas refilling in liters) or generated by the system (e.g. overtime surcharge).\n\nNOTE: rental specific surcharges may not be submitted on other service jobs such as crane work or transport.",
+        "x-examples": {
+          "example1": {
+            "jobSurchargeId": 483915,
+            "surchargeId": 8739145,
+            "jobId": 82916,
+            "dateTime": "2012-04-23T18:25:43.511Z",
+            "assignment": "RENTAL_HANDOVER",
+            "quantity": 23.5,
+            "comment": "reason for quantity: additional gas can filled on customers request",
+            "reportId": 456223
+          }
+        },
         "properties": {
           "jobSurchargeId": {
             "type": "integer",
@@ -6887,10 +6901,7 @@
             "type": "integer",
             "description": "unique ID of the surcharge (master data)",
             "example": 8739145,
-            "minimum": 1,
-            "maximum": 9999999999,
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "jobId": {
             "type": "integer",
@@ -6940,22 +6951,11 @@
           }
         },
         "required": [
+          "surchargeId",
           "dateTime",
           "assignment",
           "quantity"
-        ],
-        "x-examples": {
-          "example1": {
-            "jobSurchargeId": 483915,
-            "surchargeId": 8739145,
-            "jobId": 82916,
-            "dateTime": "2012-04-23T18:25:43.511Z",
-            "assignment": "RENTAL_HANDOVER",
-            "quantity": 23.5,
-            "comment": "reason for quantity: additional gas can filled on customers request",
-            "reportId": 456223
-          }
-        }
+        ]
       },
       "jobProblem": {
         "title": "JobProblem",
@@ -6991,10 +6991,7 @@
             "type": "integer",
             "format": "int32",
             "description": "unique identifier for the job on which this problem is assigned to",
-            "minimum": 1,
-            "maximum": 9999999999,
-            "example": 452341,
-            "nullable": true
+            "example": 452341
           },
           "problemType": {
             "type": "number"
@@ -7075,6 +7072,7 @@
           }
         },
         "required": [
+          "jobId",
           "problemType",
           "description",
           "impactOnConditionBool",
@@ -7091,26 +7089,6 @@
         "title": "JobDocument",
         "type": "object",
         "description": "an existing document linked to the job",
-        "properties": {
-          "jobDocumentId": {
-            "type": "number",
-            "description": "unique id of this job document assignment. note: this is not the document id, but the assignment of a document to a job",
-            "example": 583911,
-            "nullable": true
-          },
-          "jobId": {
-            "type": "integer",
-            "format": "int32",
-            "description": "unique identifier for the job on which this document is assigned to",
-            "minimum": 1,
-            "maximum": 9999999999,
-            "example": 452341,
-            "nullable": true
-          },
-          "jobDocument": {
-            "$ref": "#/components/schemas/fileDocumentLink"
-          }
-        },
         "x-examples": {
           "example1": {
             "jobDocumentId": 583911,
@@ -7122,7 +7100,27 @@
               "externalArchiveURL": "DMS://Documents/Orders/46211232"
             }
           }
-        }
+        },
+        "properties": {
+          "jobDocumentId": {
+            "type": "number",
+            "description": "unique id of this job document assignment. note: this is not the document id, but the assignment of a document to a job",
+            "example": 583911,
+            "nullable": true
+          },
+          "jobId": {
+            "type": "integer",
+            "format": "int32",
+            "description": "unique identifier for the job on which this document is assigned to",
+            "example": 452341
+          },
+          "jobDocument": {
+            "$ref": "#/components/schemas/fileDocumentLink"
+          }
+        },
+        "required": [
+          "jobId"
+        ]
       },
       "jobTransportDemand": {
         "title": "JobTransportDemand",
@@ -7181,10 +7179,7 @@
           "jobId": {
             "type": "number",
             "example": 51231,
-            "minimum": 1,
-            "maximum": 9999999999,
-            "description": "unique job id",
-            "nullable": true
+            "description": "unique job id"
           },
           "description": {
             "type": "string",
@@ -7260,7 +7255,10 @@
             "example": 435123,
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "jobId"
+        ]
       }
     },
     "securitySchemes": {
