@@ -82,9 +82,9 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
+            "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalAccessoryId,\r\nexternalAccessoryId).",
+            "description": "Get all the entities which were added/edited since a specific date/time. Cannot be used together with search\r\nparameters (searchString, accessoryId,\r\nexternalAccessoryId).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -93,7 +93,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided changeId. Cannot be used together with search\r\nparameters (searchString, internalAccessoryId,\r\nexternalAccessoryId).",
+            "description": "Get all the entities which were added/edited since the provided changeId. Cannot be used together with search\r\nparameters (searchString, accessoryId,\r\nexternalAccessoryId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -170,7 +170,8 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/problemDetails"
-                }
+                },
+                "examples": {}
               }
             }
           },
@@ -189,7 +190,8 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/maintenanceWindow"
-                }
+                },
+                "examples": {}
               }
             }
           }
@@ -322,6 +324,32 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/accessory"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "changeId": 84702936,
+                      "changeDate": "2012-04-23",
+                      "accessoryId": 509,
+                      "externalAccessoryId": "A509",
+                      "origin": "BC365",
+                      "active": true,
+                      "description": "Wooden wedge",
+                      "accessoryDisplayType": "NONE",
+                      "numberOfItems": 5,
+                      "identification": "A509-810271",
+                      "branchCode": 45620000,
+                      "isExternalResource": false,
+                      "schedulingGroupCode": 45420010,
+                      "costCenterNo": "310",
+                      "ownerCompanyNo": 100,
+                      "additionalSchedulingGroupCode": [
+                        {
+                          "schedulingGroupCode": 45420010
+                        }
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -428,9 +456,9 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
+            "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited since a specific date/time. Cannot be used together with search\r\nparameters (searchString, machineId,\r\nexternalMachineId).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -439,7 +467,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided changeId. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited since the provided changeId. Cannot be used together with search\r\nparameters (searchString, machineId,\r\nexternalMachineId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -479,85 +507,7 @@
                     "$ref": "#/components/schemas/machine"
                   }
                 },
-                "examples": {
-                  "example1": {
-                    "value": [
-                      {
-                        "changeId": 1,
-                        "changeDate": "2019-08-24T14:15:22Z",
-                        "machineId": 4711,
-                        "externalMachineId": "ABC-4711",
-                        "origin": "string",
-                        "active": true,
-                        "description": "Genie RS-1932, Blue Version",
-                        "placingOnMarket": "2022-01-11",
-                        "machineTypeId": 4711,
-                        "externalMachineTypeId": "ABC4711",
-                        "machineGUId": "87315090-9a06-4edc-8fc5-f9f68972e3c6",
-                        "machineNo": 87315,
-                        "acquisitionDate": "2022-11-25",
-                        "underWarrantyUntil": "2028-11-11",
-                        "manufacturerCode": 45430010,
-                        "masterNumber": "325.752.721",
-                        "chassisNumber": "WMG6315L4FZ010120",
-                        "engineNumber": "D - 0 000 123",
-                        "typeCertificateNumber": "123123",
-                        "licensePlate": "BE 1000",
-                        "wikiUrl": "string",
-                        "ownerCompanyNo": 1235,
-                        "assetNo": "1546",
-                        "ownerBpAddrId": 12345,
-                        "externalOwnerBpAddrId": "ABC-12345",
-                        "locationBpAddrId": 12345,
-                        "externalLocationBpAddrId": "ABC-12345",
-                        "invoiceBpAddrId": 12345,
-                        "externalInvoiceBpAddrId": "ABC-123451",
-                        "regularDriverBpId": 12345,
-                        "externalRegularDriverBpId": "ABC-12345",
-                        "counterGroupCode": 45460010,
-                        "standardTrailerMachineId": 5679,
-                        "externalStandardTrailerMachineId": 0,
-                        "machineModelCode": 45410010,
-                        "branchCode": 45620010,
-                        "isExternalResource": true,
-                        "yearOfManufacture": 2020,
-                        "schedulingGroupCode": 45420010,
-                        "locationApiKey": "string",
-                        "isMachineLocationSyncEnabled": true,
-                        "manufacturerApiCode": 33060010,
-                        "engineType": "Diesel",
-                        "costCenterNo": "56789",
-                        "telematicsDeviceGroupCode": 33360010,
-                        "lastYearlyService": "2023-01-12",
-                        "typeOfDrives": [
-                          "B"
-                        ],
-                        "schedulingGroups": [
-                          {
-                            "schedulingGroupCode": 45420010
-                          }
-                        ],
-                        "machineDrivers": [
-                          {
-                            "driverBpId": 57689,
-                            "externalDriverBpId": "ABC-12345"
-                          }
-                        ],
-                        "machineCounters": [
-                          {
-                            "counterTypeCode": 45480010,
-                            "account": "4711"
-                          }
-                        ],
-                        "machineUsages": [
-                          {
-                            "application": "B_HTR"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                }
+                "examples": {}
               }
             }
           },
@@ -636,7 +586,8 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/machine"
-              }
+              },
+              "examples": {}
             },
             "text/json": {
               "schema": {
@@ -658,83 +609,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/machine"
                 },
-                "examples": {
-                  "example1": {
-                    "value": {
-                      "changeId": 1,
-                      "changeDate": "2019-08-24T14:15:22Z",
-                      "machineId": 4711,
-                      "externalMachineId": "ABC-4711",
-                      "origin": "string",
-                      "active": true,
-                      "description": "Genie RS-1932, Blue Version",
-                      "placingOnMarket": "2022-01-11",
-                      "machineTypeId": 4711,
-                      "externalMachineTypeId": "ABC4711",
-                      "machineGUId": "87315090-9a06-4edc-8fc5-f9f68972e3c6",
-                      "machineNo": 87315,
-                      "acquisitionDate": "2022-11-25",
-                      "underWarrantyUntil": "2028-11-11",
-                      "manufacturerCode": 45430010,
-                      "masterNumber": "325.752.721",
-                      "chassisNumber": "WMG6315L4FZ010120",
-                      "engineNumber": "D - 0 000 123",
-                      "typeCertificateNumber": "123123",
-                      "licensePlate": "BE 1000",
-                      "wikiUrl": "string",
-                      "ownerCompanyNo": 1235,
-                      "assetNo": "1546",
-                      "ownerBpAddrId": 12345,
-                      "externalOwnerBpAddrId": "ABC-12345",
-                      "locationBpAddrId": 12345,
-                      "externalLocationBpAddrId": "ABC-12345",
-                      "invoiceBpAddrId": 12345,
-                      "externalInvoiceBpAddrId": "ABC-123451",
-                      "regularDriverBpId": 12345,
-                      "externalRegularDriverBpId": "ABC-12345",
-                      "counterGroupCode": 45460010,
-                      "standardTrailerMachineId": 5679,
-                      "externalStandardTrailerMachineId": 0,
-                      "machineModelCode": 45410010,
-                      "branchCode": 45620010,
-                      "isExternalResource": true,
-                      "yearOfManufacture": 2020,
-                      "schedulingGroupCode": 45420010,
-                      "locationApiKey": "string",
-                      "isMachineLocationSyncEnabled": true,
-                      "manufacturerApiCode": 33060010,
-                      "engineType": "Diesel",
-                      "costCenterNo": "56789",
-                      "telematicsDeviceGroupCode": 33360010,
-                      "lastYearlyService": "2023-01-12",
-                      "typeOfDrives": [
-                        "B"
-                      ],
-                      "schedulingGroups": [
-                        {
-                          "schedulingGroupCode": 45420010
-                        }
-                      ],
-                      "machineDrivers": [
-                        {
-                          "driverBpId": 57689,
-                          "externalDriverBpId": "ABC-12345"
-                        }
-                      ],
-                      "machineCounters": [
-                        {
-                          "counterTypeCode": 45480010,
-                          "account": "4711"
-                        }
-                      ],
-                      "machineUsages": [
-                        {
-                          "application": "B_HTR"
-                        }
-                      ]
-                    }
-                  }
-                }
+                "examples": {}
               }
             }
           },
@@ -744,7 +619,8 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/machine"
-                }
+                },
+                "examples": {}
               }
             }
           },
@@ -850,9 +726,9 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
+            "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineTypeId,\r\nexternalMachineTypeId).",
+            "description": "Get all the entities which were added/edited since a specific date/time. Cannot be used together with search\r\nparameters (searchString, machineTypeId,\r\nexternalMachineTypeId).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -861,7 +737,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided changeId. Cannot be used together with search\r\nparameters (searchString, internalMachineTypeId,\r\nexternalMachineTypeId).",
+            "description": "Get all the entities which were added/edited since the provided changeId. Cannot be used together with search\r\nparameters (searchString, machineTypeId,\r\nexternalMachineTypeId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -901,24 +777,7 @@
                     "$ref": "#/components/schemas/machineType"
                   }
                 },
-                "examples": {
-                  "example1": {
-                    "value": [
-                      {
-                        "changeId": 1,
-                        "changeDate": "2019-08-24T14:15:22Z",
-                        "machineTypeId": 4711,
-                        "externalMachineTypeId": "ABC4711",
-                        "origin": "string",
-                        "active": true,
-                        "description": "Genie-GS 1432",
-                        "manufacturerSeries": "GS-1432",
-                        "suppliersBusinessBpAddrId": 3244,
-                        "externalSuppliersBusinessBpAddrId": "ABC-12345"
-                      }
-                    ]
-                  }
-                }
+                "examples": {}
               }
             }
           },
@@ -997,6 +856,22 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/machineType"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "changeId": 1,
+                    "changeDate": "2019-08-24T14:15:22Z",
+                    "machineTypeId": 4711,
+                    "externalMachineTypeId": "ABC4711",
+                    "origin": "string",
+                    "active": true,
+                    "description": "Genie-GS 1432",
+                    "manufacturerSeries": "GS-1432",
+                    "suppliersBusinessBpAddrId": 3244,
+                    "externalSuppliersBusinessBpAddrId": "ABC-12345"
+                  }
+                }
               }
             },
             "text/json": {
@@ -1104,7 +979,7 @@
                   "example1": {
                     "value": [
                       {
-                        "internalSurchargeId": 483915,
+                        "surchargeId": 483915,
                         "externalSurchargeId": "483915EXT",
                         "description": "additional cleaning",
                         "priceUnitOfMeasure": "PCE",
@@ -1181,9 +1056,9 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
+            "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (surchargeId, searchString).",
+            "description": "Get all the entites which were added/edited since a specific date/time. Cannot be used together with search parameter (surchargeId, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1294,6 +1169,22 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/machineType"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "changeId": 1,
+                    "changeDate": "2019-08-24T14:15:22Z",
+                    "machineTypeId": 4711,
+                    "externalMachineTypeId": "ABC4711",
+                    "origin": "string",
+                    "active": true,
+                    "description": "Genie-GS 1432",
+                    "manufacturerSeries": "GS-1432",
+                    "suppliersBusinessBpAddrId": 3244,
+                    "externalSuppliersBusinessBpAddrId": "ABC-12345"
+                  }
+                }
               }
             },
             "text/json": {
@@ -1319,7 +1210,7 @@
                 "examples": {
                   "example1": {
                     "value": {
-                      "internalSurchargeId": 483915,
+                      "surchargeId": 483915,
                       "externalSurchargeId": "483915EXT",
                       "description": "additional cleaning",
                       "priceUnitOfMeasure": "PCE",
@@ -1339,6 +1230,20 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/surcharge"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "surchargeId": 483915,
+                      "externalSurchargeId": "483915EXT",
+                      "description": "additional cleaning",
+                      "priceUnitOfMeasure": "PCE",
+                      "sortNo": 1000,
+                      "suggestedQuantity": 1,
+                      "suggestedOnRentalHandover": false,
+                      "suggestedOnRentalReturn": false
+                    }
+                  }
                 }
               }
             }
@@ -1405,7 +1310,7 @@
                         "detailsIncluded": true,
                         "reportEmailReceivers": "jack.smith@customerdomain.com; sarah.root@customermail.com",
                         "languageIsoCode": "US",
-                        "internalEmployeeId": 3829,
+                        "employeeId": 3829,
                         "externalEmployeeId": "E839",
                         "orderNo": "A827109",
                         "orderTitle": "support on construction site A-51",
@@ -1433,42 +1338,11 @@
                         "jobStatusCode": 45550061,
                         "resourceTypeCode": 45500006,
                         "resourceStatusCode": 45540002,
-                        "internalMachineId": 482910,
+                        "machineId": 482910,
                         "externalMachineId": "M38019",
-                        "internalAccessoryId": 509,
+                        "accessoryId": 509,
                         "externalAccessoryId": "A509",
                         "useCaseCode": 69510030,
-                        "releasedByInternalEmployeeId": 920,
-                        "releasedByExternalEmployeeId": "E920",
-                        "releasedOnDateTime": "2022-12-23T15:34:05",
-                        "handOver": {
-                          "handoverId": 483915,
-                          "jobId": 34451,
-                          "internalEmployeeId": 341,
-                          "externalEmployeeId": "E341",
-                          "handoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
-                          "customerBriefed": true,
-                          "comment": "customer already knows the machine very well",
-                          "customerSignature": {
-                            "signatureId": 0,
-                            "signatureTypeCode": 45680002,
-                            "signeeName": "Jerry Miller",
-                            "signaturDocumentLink": {
-                              "fileDocumentInternalId": 4738919,
-                              "fileExternalArchiveId": "DC9301231",
-                              "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
-                            }
-                          }
-                        },
-                        "return": {
-                          "returnId": 483915,
-                          "jobId": 45612,
-                          "internalEmployeeId": 345,
-                          "externalEmployeeId": "E345",
-                          "returnStartedDateTime": "2012-04-23T18:25:43.511Z",
-                          "damage": false,
-                          "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!"
-                        },
                         "details": {
                           "scheduleList": [
                             {
@@ -1482,7 +1356,7 @@
                           ],
                           "contactList": [
                             {
-                              "internalContactId": 34511,
+                              "contactId": 34511,
                               "externalContactId": "KK34511",
                               "jobId": 84721,
                               "description": "construction site manager",
@@ -1525,22 +1399,21 @@
                               "jobDocumentId": 583911,
                               "jobId": 452341,
                               "jobDocument": {
-                                "fileDocumentInternalId": 4738919,
-                                "fileExternalArchiveId": "DC9301231",
-                                "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                                "fileDocumentId": 4738919,
+                                "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                               }
                             }
                           ],
                           "timeStampList": [
                             {
                               "jobTimestampId": 483915,
-                              "jobId": 1,
-                              "timestamp": "2012-04-23",
+                              "jobId": 0,
+                              "timestamp": "2012-04-23T18:25:43.511Z",
                               "timestampTypeCode": 45560001,
-                              "bookingActivityId": 45570005,
-                              "internalMachineId": 45123,
+                              "bookingActivityId": 482012,
+                              "machineId": 45123,
                               "externalMachineId": "MRK8938719",
-                              "internalEmployeeId": 241,
+                              "employeeId": 241,
                               "externalEmployeeId": "E492",
                               "comment": "took longer than expected due to mess at the construction site"
                             }
@@ -1548,21 +1421,18 @@
                           "reportList": [
                             {
                               "reportId": 31234,
+                              "jobId": 4215,
                               "reportFromDate": "2022-12-01",
                               "reportToDate": "2012-12-23",
                               "comment": "return was delayed due to traffic jam at our gates > not her fault!",
                               "reportTimeStampList": [
                                 {
                                   "jobReportTimestampId": 483915,
-                                  "jobId": 42341,
+                                  "reportId": 31234,
                                   "timestamp": "2012-04-23T07:31:20",
                                   "timestampTypeCode": 45560001,
                                   "source": "MobileApp",
                                   "bookingActivityId": 482012,
-                                  "internalMachineId": 4021,
-                                  "externalMachineId": "MRK8938719",
-                                  "internalEmployeeId": 214,
-                                  "externalEmployeeId": "E214",
                                   "comment": "optional remark on activity, such as why something took longer"
                                 }
                               ],
@@ -1570,8 +1440,7 @@
                                 {
                                   "reportSurchargeId": 483915,
                                   "jobSurchargeId": 483915,
-                                  "jobId": 1,
-                                  "reportId": 52671,
+                                  "reportId": 31234,
                                   "dateTime": "2022-12-23T17:25:43",
                                   "assignment": "RENTAL_HANDOVER",
                                   "quantity": 23.2
@@ -1580,32 +1449,36 @@
                               "eMailNotificationList": [
                                 {
                                   "eMailNotificationId": 1,
-                                  "jobId": 45123,
-                                  "reportId": 48192,
+                                  "reportId": 31234,
                                   "sender": "no-reply@mydomain.com",
                                   "sendDateTime": "2022-12-07T06:00:01",
                                   "createDateTime": "2022-12-06T08:35:54",
-                                  "createdByInternalEmployeeId": 498,
+                                  "createdByemployeeId": 498,
                                   "createdByExternalEmployeeId": "E948",
                                   "modifyDateTime": "2022-12-06T12:00:20",
-                                  "modifiedByInternalEmployeeId": 341,
+                                  "modifiedByEmployeeId": 341,
                                   "modifiedByExternalEmployeeId": "E341"
                                 }
                               ],
-                              "signature": {
+                              "customerSignature": {
                                 "signatureId": 0,
-                                "signatureTypeCode": 45680002,
                                 "signeeName": "Jerry Miller",
-                                "signaturDocumentLink": {
-                                  "fileDocumentInternalId": 4738919,
-                                  "fileExternalArchiveId": "DC9301231",
-                                  "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                                "signaturFileDocumentLink": {
+                                  "fileDocumentId": 4738919,
+                                  "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                                 }
                               },
-                              "reportPDF": {
-                                "fileDocumentInternalId": 4738919,
-                                "fileExternalArchiveId": "DC9301231",
-                                "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                              "employeeSignature": {
+                                "signatureId": 0,
+                                "signeeName": "Jerry Miller",
+                                "signaturFileDocumentLink": {
+                                  "fileDocumentId": 4738919,
+                                  "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                                }
+                              },
+                              "reportPdfFileDocumentLink": {
+                                "fileDocumentId": 4738919,
+                                "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                               }
                             }
                           ],
@@ -1632,7 +1505,7 @@
                               "customersFaultBool": false,
                               "comment": "string",
                               "solvedBool": false,
-                              "reportedByInternalEmployeeId": 363,
+                              "reportedByEmployeeId": 363,
                               "reportedByExternalEmployeeId": "E465",
                               "reportedDateTime": "TS289182-5",
                               "reportingContext": "LEVA.JOB.HANDOVER",
@@ -1681,7 +1554,47 @@
                               },
                               "rentalJobId": 435123
                             }
-                          ]
+                          ],
+                          "rentalHandOver": {
+                            "handoverId": 483915,
+                            "jobId": 34451,
+                            "employeeId": 341,
+                            "externalEmployeeId": "E341",
+                            "handoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
+                            "customerBriefed": true,
+                            "comment": "customer already knows the machine very well",
+                            "customerSignature": {
+                              "signatureId": 0,
+                              "signeeName": "Jerry Miller",
+                              "signaturFileDocumentLink": {
+                                "fileDocumentId": 4738919,
+                                "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                              }
+                            }
+                          },
+                          "rentalReturn": {
+                            "returnId": 483915,
+                            "jobId": 45612,
+                            "employeeId": 345,
+                            "externalEmployeeId": "E345",
+                            "returnStartedDateTime": "2012-04-23T18:25:43.511Z",
+                            "jobEndDateTime": "2012-04-22T15:00:00.511Z",
+                            "damage": false,
+                            "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!",
+                            "customerSignature": {
+                              "signatureId": 0,
+                              "signeeName": "Jerry Miller",
+                              "signaturFileDocumentLink": {
+                                "fileDocumentId": 4738919,
+                                "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                              }
+                            }
+                          },
+                          "rentalCompletion": {
+                            "completionId": 483915,
+                            "jobId": 45612,
+                            "completed": false
+                          }
                         }
                       }
                     ]
@@ -1752,9 +1665,9 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
+            "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entites which were added/edited since a specific datetime. Cannot be used together with search parameter (jobId, searchString).",
+            "description": "Get all the entites which were added/edited since a specific date/time. Cannot be used together with search parameter (jobId, searchString).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1763,7 +1676,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided changeId. Cannot be used together with search\r\nparameters (searchString, internalAccessoryId,\r\nexternalAccessoryId).",
+            "description": "Get all the entities which were added/edited since the provided changeId. Cannot be used together with search\r\nparameters (searchString, accessoryId,\r\nexternalAccessoryId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -1851,13 +1764,13 @@
                     "value": [
                       {
                         "jobTimestampId": 483915,
-                        "jobId": 1,
-                        "timestamp": "2012-04-23",
+                        "jobId": 0,
+                        "timestamp": "2012-04-23T18:25:43.511Z",
                         "timestampTypeCode": 45560001,
-                        "bookingActivityId": 45570005,
-                        "internalMachineId": 45123,
+                        "bookingActivityId": 482012,
+                        "machineId": 45123,
                         "externalMachineId": "MRK8938719",
-                        "internalEmployeeId": 241,
+                        "employeeId": 241,
                         "externalEmployeeId": "E492",
                         "comment": "took longer than expected due to mess at the construction site"
                       }
@@ -2016,13 +1929,13 @@
                     "value": [
                       {
                         "jobTimestampId": 483915,
-                        "jobId": 1,
-                        "timestamp": "2012-04-23",
+                        "jobId": 0,
+                        "timestamp": "2012-04-23T18:25:43.511Z",
                         "timestampTypeCode": 45560001,
-                        "bookingActivityId": 45570005,
-                        "internalMachineId": 45123,
+                        "bookingActivityId": 482012,
+                        "machineId": 45123,
                         "externalMachineId": "MRK8938719",
-                        "internalEmployeeId": 241,
+                        "employeeId": 241,
                         "externalEmployeeId": "E492",
                         "comment": "took longer than expected due to mess at the construction site"
                       }
@@ -2040,6 +1953,24 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/jobTimeStamp"
+                  }
+                },
+                "examples": {
+                  "example1": {
+                    "value": [
+                      {
+                        "jobTimestampId": 483915,
+                        "jobId": 0,
+                        "timestamp": "2012-04-23T18:25:43.511Z",
+                        "timestampTypeCode": 45560001,
+                        "bookingActivityId": 482012,
+                        "machineId": 45123,
+                        "externalMachineId": "MRK8938719",
+                        "employeeId": 241,
+                        "externalEmployeeId": "E492",
+                        "comment": "took longer than expected due to mess at the construction site"
+                      }
+                    ]
                   }
                 }
               }
@@ -2083,6 +2014,24 @@
                 "items": {
                   "$ref": "#/components/schemas/jobTimeStamp"
                 }
+              },
+              "examples": {
+                "example1": {
+                  "value": [
+                    {
+                      "jobTimestampId": 483915,
+                      "jobId": 0,
+                      "timestamp": "2012-04-23T18:25:43.511Z",
+                      "timestampTypeCode": 45560001,
+                      "bookingActivityId": 482012,
+                      "machineId": 45123,
+                      "externalMachineId": "MRK8938719",
+                      "employeeId": 241,
+                      "externalEmployeeId": "E492",
+                      "comment": "took longer than expected due to mess at the construction site"
+                    }
+                  ]
+                }
               }
             },
             "application/xml": {
@@ -2094,7 +2043,7 @@
               }
             }
           },
-          "description": "New or updated time stamps for JobId."
+          "description": "Set of job time stamps to assign"
         },
         "description": "Updates an existing set of job time stamps for a given Job Id.",
         "tags": [
@@ -2124,21 +2073,18 @@
                     "value": [
                       {
                         "reportId": 31234,
+                        "jobId": 4215,
                         "reportFromDate": "2022-12-01",
                         "reportToDate": "2012-12-23",
                         "comment": "return was delayed due to traffic jam at our gates > not her fault!",
                         "reportTimeStampList": [
                           {
                             "jobReportTimestampId": 483915,
-                            "jobId": 42341,
+                            "reportId": 31234,
                             "timestamp": "2012-04-23T07:31:20",
                             "timestampTypeCode": 45560001,
                             "source": "MobileApp",
                             "bookingActivityId": 482012,
-                            "internalMachineId": 4021,
-                            "externalMachineId": "MRK8938719",
-                            "internalEmployeeId": 214,
-                            "externalEmployeeId": "E214",
                             "comment": "optional remark on activity, such as why something took longer"
                           }
                         ],
@@ -2146,8 +2092,7 @@
                           {
                             "reportSurchargeId": 483915,
                             "jobSurchargeId": 483915,
-                            "jobId": 1,
-                            "reportId": 52671,
+                            "reportId": 31234,
                             "dateTime": "2022-12-23T17:25:43",
                             "assignment": "RENTAL_HANDOVER",
                             "quantity": 23.2
@@ -2156,32 +2101,36 @@
                         "eMailNotificationList": [
                           {
                             "eMailNotificationId": 1,
-                            "jobId": 45123,
-                            "reportId": 48192,
+                            "reportId": 31234,
                             "sender": "no-reply@mydomain.com",
                             "sendDateTime": "2022-12-07T06:00:01",
                             "createDateTime": "2022-12-06T08:35:54",
-                            "createdByInternalEmployeeId": 498,
+                            "createdByemployeeId": 498,
                             "createdByExternalEmployeeId": "E948",
                             "modifyDateTime": "2022-12-06T12:00:20",
-                            "modifiedByInternalEmployeeId": 341,
+                            "modifiedByEmployeeId": 341,
                             "modifiedByExternalEmployeeId": "E341"
                           }
                         ],
-                        "signature": {
+                        "customerSignature": {
                           "signatureId": 0,
-                          "signatureTypeCode": 45680002,
                           "signeeName": "Jerry Miller",
-                          "signaturDocumentLink": {
-                            "fileDocumentInternalId": 4738919,
-                            "fileExternalArchiveId": "DC9301231",
-                            "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                          "signaturFileDocumentLink": {
+                            "fileDocumentId": 4738919,
+                            "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                           }
                         },
-                        "reportPDF": {
-                          "fileDocumentInternalId": 4738919,
-                          "fileExternalArchiveId": "DC9301231",
-                          "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                        "employeeSignature": {
+                          "signatureId": 0,
+                          "signeeName": "Jerry Miller",
+                          "signaturFileDocumentLink": {
+                            "fileDocumentId": 4738919,
+                            "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                          }
+                        },
+                        "reportPdfFileDocumentLink": {
+                          "fileDocumentId": 4738919,
+                          "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                         }
                       }
                     ]
@@ -2326,6 +2275,72 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/jobReport"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "reportId": 31234,
+                    "jobId": 4215,
+                    "reportFromDate": "2022-12-01",
+                    "reportToDate": "2012-12-23",
+                    "comment": "return was delayed due to traffic jam at our gates > not her fault!",
+                    "reportTimeStampList": [
+                      {
+                        "jobReportTimestampId": 483915,
+                        "reportId": 31234,
+                        "timestamp": "2012-04-23T07:31:20",
+                        "timestampTypeCode": 45560001,
+                        "source": "MobileApp",
+                        "bookingActivityId": 482012,
+                        "comment": "optional remark on activity, such as why something took longer"
+                      }
+                    ],
+                    "reportSurchargeList": [
+                      {
+                        "reportSurchargeId": 483915,
+                        "jobSurchargeId": 483915,
+                        "reportId": 31234,
+                        "dateTime": "2022-12-23T17:25:43",
+                        "assignment": "RENTAL_HANDOVER",
+                        "quantity": 23.2
+                      }
+                    ],
+                    "eMailNotificationList": [
+                      {
+                        "eMailNotificationId": 1,
+                        "reportId": 31234,
+                        "sender": "no-reply@mydomain.com",
+                        "sendDateTime": "2022-12-07T06:00:01",
+                        "createDateTime": "2022-12-06T08:35:54",
+                        "createdByemployeeId": 498,
+                        "createdByExternalEmployeeId": "E948",
+                        "modifyDateTime": "2022-12-06T12:00:20",
+                        "modifiedByEmployeeId": 341,
+                        "modifiedByExternalEmployeeId": "E341"
+                      }
+                    ],
+                    "customerSignature": {
+                      "signatureId": 0,
+                      "signeeName": "Jerry Miller",
+                      "signaturFileDocumentLink": {
+                        "fileDocumentId": 4738919,
+                        "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                      }
+                    },
+                    "employeeSignature": {
+                      "signatureId": 0,
+                      "signeeName": "Jerry Miller",
+                      "signaturFileDocumentLink": {
+                        "fileDocumentId": 4738919,
+                        "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                      }
+                    },
+                    "reportPdfFileDocumentLink": {
+                      "fileDocumentId": 4738919,
+                      "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                    }
+                  }
+                }
               }
             }
           },
@@ -2343,21 +2358,18 @@
                   "example1": {
                     "value": {
                       "reportId": 31234,
+                      "jobId": 4215,
                       "reportFromDate": "2022-12-01",
                       "reportToDate": "2012-12-23",
                       "comment": "return was delayed due to traffic jam at our gates > not her fault!",
                       "reportTimeStampList": [
                         {
                           "jobReportTimestampId": 483915,
-                          "jobId": 42341,
+                          "reportId": 31234,
                           "timestamp": "2012-04-23T07:31:20",
                           "timestampTypeCode": 45560001,
                           "source": "MobileApp",
                           "bookingActivityId": 482012,
-                          "internalMachineId": 4021,
-                          "externalMachineId": "MRK8938719",
-                          "internalEmployeeId": 214,
-                          "externalEmployeeId": "E214",
                           "comment": "optional remark on activity, such as why something took longer"
                         }
                       ],
@@ -2365,8 +2377,7 @@
                         {
                           "reportSurchargeId": 483915,
                           "jobSurchargeId": 483915,
-                          "jobId": 1,
-                          "reportId": 52671,
+                          "reportId": 31234,
                           "dateTime": "2022-12-23T17:25:43",
                           "assignment": "RENTAL_HANDOVER",
                           "quantity": 23.2
@@ -2375,32 +2386,36 @@
                       "eMailNotificationList": [
                         {
                           "eMailNotificationId": 1,
-                          "jobId": 45123,
-                          "reportId": 48192,
+                          "reportId": 31234,
                           "sender": "no-reply@mydomain.com",
                           "sendDateTime": "2022-12-07T06:00:01",
                           "createDateTime": "2022-12-06T08:35:54",
-                          "createdByInternalEmployeeId": 498,
+                          "createdByemployeeId": 498,
                           "createdByExternalEmployeeId": "E948",
                           "modifyDateTime": "2022-12-06T12:00:20",
-                          "modifiedByInternalEmployeeId": 341,
+                          "modifiedByEmployeeId": 341,
                           "modifiedByExternalEmployeeId": "E341"
                         }
                       ],
-                      "signature": {
+                      "customerSignature": {
                         "signatureId": 0,
-                        "signatureTypeCode": 45680002,
                         "signeeName": "Jerry Miller",
-                        "signaturDocumentLink": {
-                          "fileDocumentInternalId": 4738919,
-                          "fileExternalArchiveId": "DC9301231",
-                          "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                        "signaturFileDocumentLink": {
+                          "fileDocumentId": 4738919,
+                          "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                         }
                       },
-                      "reportPDF": {
-                        "fileDocumentInternalId": 4738919,
-                        "fileExternalArchiveId": "DC9301231",
-                        "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                      "employeeSignature": {
+                        "signatureId": 0,
+                        "signeeName": "Jerry Miller",
+                        "signaturFileDocumentLink": {
+                          "fileDocumentId": 4738919,
+                          "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                        }
+                      },
+                      "reportPdfFileDocumentLink": {
+                        "fileDocumentId": 4738919,
+                        "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                       }
                     }
                   }
@@ -2414,6 +2429,72 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/jobReport"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "reportId": 31234,
+                      "jobId": 4215,
+                      "reportFromDate": "2022-12-01",
+                      "reportToDate": "2012-12-23",
+                      "comment": "return was delayed due to traffic jam at our gates > not her fault!",
+                      "reportTimeStampList": [
+                        {
+                          "jobReportTimestampId": 483915,
+                          "reportId": 31234,
+                          "timestamp": "2012-04-23T07:31:20",
+                          "timestampTypeCode": 45560001,
+                          "source": "MobileApp",
+                          "bookingActivityId": 482012,
+                          "comment": "optional remark on activity, such as why something took longer"
+                        }
+                      ],
+                      "reportSurchargeList": [
+                        {
+                          "reportSurchargeId": 483915,
+                          "jobSurchargeId": 483915,
+                          "reportId": 31234,
+                          "dateTime": "2022-12-23T17:25:43",
+                          "assignment": "RENTAL_HANDOVER",
+                          "quantity": 23.2
+                        }
+                      ],
+                      "eMailNotificationList": [
+                        {
+                          "eMailNotificationId": 1,
+                          "reportId": 31234,
+                          "sender": "no-reply@mydomain.com",
+                          "sendDateTime": "2022-12-07T06:00:01",
+                          "createDateTime": "2022-12-06T08:35:54",
+                          "createdByemployeeId": 498,
+                          "createdByExternalEmployeeId": "E948",
+                          "modifyDateTime": "2022-12-06T12:00:20",
+                          "modifiedByEmployeeId": 341,
+                          "modifiedByExternalEmployeeId": "E341"
+                        }
+                      ],
+                      "customerSignature": {
+                        "signatureId": 0,
+                        "signeeName": "Jerry Miller",
+                        "signaturFileDocumentLink": {
+                          "fileDocumentId": 4738919,
+                          "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                        }
+                      },
+                      "employeeSignature": {
+                        "signatureId": 0,
+                        "signeeName": "Jerry Miller",
+                        "signaturFileDocumentLink": {
+                          "fileDocumentId": 4738919,
+                          "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                        }
+                      },
+                      "reportPdfFileDocumentLink": {
+                        "fileDocumentId": 4738919,
+                        "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -2455,9 +2536,9 @@
       },
       "parameters": []
     },
-    "/api/v3/scheduling/jobs/handovers": {
+    "/api/v3/scheduling/jobs/rental-handovers": {
       "get": {
-        "summary": "Search for job handovers",
+        "summary": "Search for job rental handovers",
         "tags": [
           "SchedulingJob"
         ],
@@ -2478,19 +2559,17 @@
                       {
                         "handoverId": 483915,
                         "jobId": 34451,
-                        "internalEmployeeId": 341,
+                        "employeeId": 341,
                         "externalEmployeeId": "E341",
                         "handoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
                         "customerBriefed": true,
                         "comment": "customer already knows the machine very well",
                         "customerSignature": {
                           "signatureId": 0,
-                          "signatureTypeCode": 45680002,
                           "signeeName": "Jerry Miller",
-                          "signaturDocumentLink": {
-                            "fileDocumentInternalId": 4738919,
-                            "fileExternalArchiveId": "DC9301231",
-                            "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                          "signaturFileDocumentLink": {
+                            "fileDocumentId": 4738919,
+                            "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                           }
                         }
                       }
@@ -2530,7 +2609,7 @@
             }
           }
         },
-        "operationId": "GetSchedulingJobsHandovers",
+        "operationId": "GetSchedulingJobsRentalHandovers",
         "parameters": [
           {
             "name": "skip",
@@ -2600,7 +2679,7 @@
       },
       "put": {
         "summary": "Modify job handovers",
-        "operationId": "PutSchedulingJobsHandovers",
+        "operationId": "PutSchedulingJobsRentalHandovers",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -2645,19 +2724,17 @@
                     "value": {
                       "handoverId": 483915,
                       "jobId": 34451,
-                      "internalEmployeeId": 341,
+                      "employeeId": 341,
                       "externalEmployeeId": "E341",
                       "handoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
                       "customerBriefed": true,
                       "comment": "customer already knows the machine very well",
                       "customerSignature": {
                         "signatureId": 0,
-                        "signatureTypeCode": 45680002,
                         "signeeName": "Jerry Miller",
-                        "signaturDocumentLink": {
-                          "fileDocumentInternalId": 4738919,
-                          "fileExternalArchiveId": "DC9301231",
-                          "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                        "signaturFileDocumentLink": {
+                          "fileDocumentId": 4738919,
+                          "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                         }
                       }
                     }
@@ -2706,16 +2783,47 @@
             }
           }
         },
-        "description": "Updates an existing job handover for a given Job Id.",
+        "description": "Sets the job handover for a given Job Id.",
         "tags": [
           "SchedulingJob"
-        ]
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/jobHandOver"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "handoverId": 483915,
+                    "jobId": 34451,
+                    "employeeId": 341,
+                    "externalEmployeeId": "E341",
+                    "handoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
+                    "customerBriefed": true,
+                    "comment": "customer already knows the machine very well",
+                    "customerSignature": {
+                      "signatureId": 0,
+                      "signeeName": "Jerry Miller",
+                      "signaturFileDocumentLink": {
+                        "fileDocumentId": 4738919,
+                        "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": "handover to set on job Id"
+        }
       },
       "parameters": []
     },
-    "/api/v3/scheduling/jobs/returns": {
+    "/api/v3/scheduling/jobs/rental-returns": {
       "get": {
-        "summary": "Search for job returns",
+        "summary": "Search for job rental returns",
         "tags": [
           "SchedulingJob"
         ],
@@ -2736,11 +2844,20 @@
                       {
                         "returnId": 483915,
                         "jobId": 45612,
-                        "internalEmployeeId": 345,
+                        "employeeId": 345,
                         "externalEmployeeId": "E345",
                         "returnStartedDateTime": "2012-04-23T18:25:43.511Z",
+                        "jobEndDateTime": "2012-04-22T15:00:00.511Z",
                         "damage": false,
-                        "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!"
+                        "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!",
+                        "customerSignature": {
+                          "signatureId": 0,
+                          "signeeName": "Jerry Miller",
+                          "signaturFileDocumentLink": {
+                            "fileDocumentId": 4738919,
+                            "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                          }
+                        }
                       }
                     ]
                   }
@@ -2778,7 +2895,7 @@
             }
           }
         },
-        "operationId": "GetSchedulingJobsReturns",
+        "operationId": "GetSchedulingJobsRentalReturns",
         "parameters": [
           {
             "name": "skip",
@@ -2847,7 +2964,7 @@
       },
       "put": {
         "summary": "Modify job returns",
-        "operationId": "PutSchedulingJobsReturns",
+        "operationId": "PutSchedulingJobsRentalReturns",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -2892,11 +3009,20 @@
                     "value": {
                       "returnId": 483915,
                       "jobId": 45612,
-                      "internalEmployeeId": 345,
+                      "employeeId": 345,
                       "externalEmployeeId": "E345",
                       "returnStartedDateTime": "2012-04-23T18:25:43.511Z",
+                      "jobEndDateTime": "2012-04-22T15:00:00.511Z",
                       "damage": false,
-                      "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!"
+                      "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!",
+                      "customerSignature": {
+                        "signatureId": 0,
+                        "signeeName": "Jerry Miller",
+                        "signaturFileDocumentLink": {
+                          "fileDocumentId": 4738919,
+                          "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                        }
+                      }
                     }
                   }
                 }
@@ -2909,6 +3035,28 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/jobReturn"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "returnId": 483915,
+                      "jobId": 45612,
+                      "employeeId": 345,
+                      "externalEmployeeId": "E345",
+                      "returnStartedDateTime": "2012-04-23T18:25:43.511Z",
+                      "jobEndDateTime": "2012-04-22T15:00:00.511Z",
+                      "damage": false,
+                      "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!",
+                      "customerSignature": {
+                        "signatureId": 0,
+                        "signeeName": "Jerry Miller",
+                        "signaturFileDocumentLink": {
+                          "fileDocumentId": 4738919,
+                          "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -2943,10 +3091,290 @@
             }
           }
         },
-        "description": "Updates an existing job return for a given Job Id.",
+        "description": "Sets the rental return for a given Job Id.",
         "tags": [
           "SchedulingJob"
-        ]
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/jobReturn"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "returnId": 483915,
+                    "jobId": 45612,
+                    "employeeId": 345,
+                    "externalEmployeeId": "E345",
+                    "returnStartedDateTime": "2012-04-23T18:25:43.511Z",
+                    "jobEndDateTime": "2012-04-22T15:00:00.511Z",
+                    "damage": false,
+                    "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!",
+                    "customerSignature": {
+                      "signatureId": 0,
+                      "signeeName": "Jerry Miller",
+                      "signaturFileDocumentLink": {
+                        "fileDocumentId": 4738919,
+                        "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": "return to set on job Id"
+        }
+      },
+      "parameters": []
+    },
+    "/api/v3/scheduling/jobs/rental-completions": {
+      "get": {
+        "summary": "Search for job rental completions",
+        "tags": [
+          "SchedulingJob"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/jobCompletion"
+                  }
+                },
+                "examples": {
+                  "example1": {
+                    "value": [
+                      {
+                        "completionId": 483915,
+                        "jobId": 45612,
+                        "completed": false
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "GetSchedulingJobsRentalCompletions",
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "jobId",
+            "in": "query",
+            "description": "Required to retrieve records of specific job",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical ID (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "description": "By passing in the appropriate options, the service searches for job return in the system."
+      },
+      "put": {
+        "summary": "Modify job completion",
+        "operationId": "PutSchedulingJobsRentalCompletions",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical ID (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/jobCompletion"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "completionId": 483915,
+                      "jobId": 45612,
+                      "completed": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/jobCompletion"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "description": "Sets the rental return for a given Job Id.",
+        "tags": [
+          "SchedulingJob"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/jobCompletion"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "completionId": 483915,
+                    "jobId": 45612,
+                    "completed": false
+                  }
+                }
+              }
+            }
+          },
+          "description": "return to set on job Id"
+        }
       },
       "parameters": []
     },
@@ -3082,7 +3510,7 @@
             }
           }
         ],
-        "description": "By passing in the appropriate options, the service searches for available job surchargess in the system."
+        "description": "By passing in the appropriate options, the service searches for job surcharges in the system."
       },
       "parameters": [],
       "put": {
@@ -3192,10 +3620,39 @@
             }
           }
         },
-        "description": "Updates an existing set of job surcharges for a given Job Id.",
+        "description": "Sets the job surcharges for a given Job Id.",
         "tags": [
           "SchedulingJob"
-        ]
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/jobSurcharge"
+                }
+              },
+              "examples": {
+                "example1": {
+                  "value": [
+                    {
+                      "jobSurchargeId": 483915,
+                      "surchargeId": 8739145,
+                      "jobId": 82916,
+                      "dateTime": "2012-04-23T18:25:43.511Z",
+                      "assignment": "RENTAL_HANDOVER",
+                      "quantity": 23.5,
+                      "comment": "reason for quantity: additional gas can filled on customers request",
+                      "reportId": 456223
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "description": "job surcharges to be set on job Id"
+        }
       }
     },
     "/api/v3/scheduling/jobs/problems": {
@@ -3228,7 +3685,7 @@
                         "customersFaultBool": false,
                         "comment": "string",
                         "solvedBool": false,
-                        "reportedByInternalEmployeeId": 363,
+                        "reportedByEmployeeId": 363,
                         "reportedByExternalEmployeeId": "E465",
                         "reportedDateTime": "TS289182-5",
                         "reportingContext": "LEVA.JOB.HANDOVER",
@@ -3397,7 +3854,7 @@
                         "customersFaultBool": false,
                         "comment": "string",
                         "solvedBool": false,
-                        "reportedByInternalEmployeeId": 363,
+                        "reportedByEmployeeId": 363,
                         "reportedByExternalEmployeeId": "E465",
                         "reportedDateTime": "TS289182-5",
                         "reportingContext": "LEVA.JOB.HANDOVER",
@@ -3418,6 +3875,29 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/jobProblem"
+                  }
+                },
+                "examples": {
+                  "example1": {
+                    "value": [
+                      {
+                        "problemId": 583911,
+                        "jobId": 452341,
+                        "problemType": 0,
+                        "description": "various impact dents on the left front side",
+                        "impactOnConditionBool": false,
+                        "visibleForCustomerBool": true,
+                        "customersFaultBool": false,
+                        "comment": "string",
+                        "solvedBool": false,
+                        "reportedByEmployeeId": 363,
+                        "reportedByExternalEmployeeId": "E465",
+                        "reportedDateTime": "TS289182-5",
+                        "reportingContext": "LEVA.JOB.HANDOVER",
+                        "reportingContextText": "Custom Job Application",
+                        "fixRequiredBool": false
+                      }
+                    ]
                   }
                 }
               }
@@ -3453,10 +3933,46 @@
             }
           }
         },
-        "description": "Updates an existing set of job problems for a given Job Id.",
+        "description": "Set the job problems for a given Job Id.",
         "tags": [
           "SchedulingJob"
-        ]
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/jobProblem"
+                }
+              },
+              "examples": {
+                "example1": {
+                  "value": [
+                    {
+                      "problemId": 583911,
+                      "jobId": 452341,
+                      "problemType": 0,
+                      "description": "various impact dents on the left front side",
+                      "impactOnConditionBool": false,
+                      "visibleForCustomerBool": true,
+                      "customersFaultBool": false,
+                      "comment": "string",
+                      "solvedBool": false,
+                      "reportedByEmployeeId": 363,
+                      "reportedByExternalEmployeeId": "E465",
+                      "reportedDateTime": "TS289182-5",
+                      "reportingContext": "LEVA.JOB.HANDOVER",
+                      "reportingContextText": "Custom Job Application",
+                      "fixRequiredBool": false
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "description": "job problems to be set on job Id"
+        }
       },
       "parameters": []
     },
@@ -3484,9 +4000,8 @@
                         "jobDocumentId": 583911,
                         "jobId": 452341,
                         "jobDocument": {
-                          "fileDocumentInternalId": 4738919,
-                          "fileExternalArchiveId": "DC9301231",
-                          "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                          "fileDocumentId": 4738919,
+                          "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                         }
                       }
                     ]
@@ -3645,9 +4160,8 @@
                         "jobDocumentId": 583911,
                         "jobId": 452341,
                         "jobDocument": {
-                          "fileDocumentInternalId": 4738919,
-                          "fileExternalArchiveId": "DC9301231",
-                          "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                          "fileDocumentId": 4738919,
+                          "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                         }
                       }
                     ]
@@ -3664,6 +4178,20 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/jobDocument"
+                  }
+                },
+                "examples": {
+                  "example1": {
+                    "value": [
+                      {
+                        "jobDocumentId": 583911,
+                        "jobId": 452341,
+                        "jobDocument": {
+                          "fileDocumentId": 4738919,
+                          "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                        }
+                      }
+                    ]
                   }
                 }
               }
@@ -3699,10 +4227,37 @@
             }
           }
         },
-        "description": "Updates an existing set of job documents for a given Job Id.",
+        "description": "Sets the job documents that are assigned to a given jobId.",
         "tags": [
           "SchedulingJob"
-        ]
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/jobDocument"
+                }
+              },
+              "examples": {
+                "example1": {
+                  "value": [
+                    {
+                      "jobDocumentId": 583911,
+                      "jobId": 452341,
+                      "jobDocument": {
+                        "fileDocumentId": 4738919,
+                        "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "description": "job documents to be assigned to the job id."
+        }
       },
       "parameters": []
     },
@@ -3870,9 +4425,12 @@
         "operationId": "GetSchedulingJobsTransportDemands",
         "description": "By passing in the appropriate options, the service searches for job transport demands in the system."
       },
+      "parameters": []
+    },
+    "/api/v3/scheduling/jobs/transport-demands-checklist": {
       "put": {
-        "summary": "Modify job transport demands",
-        "operationId": "PutSchedulingJobsTransportDemands",
+        "summary": "Modify job transport demands checklist",
+        "operationId": "PutSchedulingJobsTransportDemandsChecklist",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -3910,55 +4468,16 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/jobTransportDemand"
-                  }
+                  "$ref": "#/components/schemas/jobTransportDemandChecklist"
                 },
                 "examples": {
                   "example1": {
-                    "value": [
-                      {
-                        "transportDemandPositionId": 2512341,
-                        "jobId": 51231,
-                        "description": "Custom Fluid B028",
-                        "details": "handle with care, keep up-side up at all times",
-                        "unitOfMeasure": "Liter",
-                        "decimalCount": 2,
-                        "transportQuantity": 351.4,
-                        "loadedQuantity": 351.5,
-                        "unloadedQuantity": 351.4,
-                        "loadingDateTime": "2022-12-30T13:30:09",
-                        "loadingCheckmarkBool": false,
-                        "unloadingDateTime": "2019-08-24T14:15:22Z",
-                        "unloadingCheckmarkBool": false,
-                        "pickupLocation": {
-                          "street": "Boca Chica Blvd.",
-                          "houseNo": "52448",
-                          "pOBox": "string",
-                          "additionalLine1": "C/O Dr. Maria Smith",
-                          "additionalLine2": "Environmental Dept / Building D2",
-                          "country": "US",
-                          "zipCode": "TX 78521",
-                          "city": "Brownsville",
-                          "latitude": 25.9850628,
-                          "longitude": -97.1871375
-                        },
-                        "deliveryLocation": {
-                          "street": "Boca Chica Blvd.",
-                          "houseNo": "52448",
-                          "pOBox": "string",
-                          "additionalLine1": "C/O Dr. Maria Smith",
-                          "additionalLine2": "Environmental Dept / Building D2",
-                          "country": "US",
-                          "zipCode": "TX 78521",
-                          "city": "Brownsville",
-                          "latitude": 25.9850628,
-                          "longitude": -97.1871375
-                        },
-                        "rentalJobId": 435123
-                      }
-                    ]
+                    "value": {
+                      "transportDemandPositionId": 2512341,
+                      "jobId": 51231,
+                      "loadingCheckmarkBool": false,
+                      "unloadingCheckmarkBool": false
+                    }
                   }
                 }
               }
@@ -3969,9 +4488,16 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/jobTransportDemand"
+                  "$ref": "#/components/schemas/jobTransportDemandChecklist"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "transportDemandPositionId": 2512341,
+                      "jobId": 51231,
+                      "loadingCheckmarkBool": false,
+                      "unloadingCheckmarkBool": false
+                    }
                   }
                 }
               }
@@ -3993,6 +4519,9 @@
           "403": {
             "description": "Forbidden"
           },
+          "404": {
+            "description": "Not Found"
+          },
           "500": {
             "description": "Internal Server Error"
           },
@@ -4007,10 +4536,30 @@
             }
           }
         },
-        "description": "Updates an existing set of job transport demands for a given Job Id.",
+        "description": "Updates an the loaded or unloaded checkmark on an existing set of job transport.",
         "tags": [
           "SchedulingJob"
-        ]
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/jobTransportDemandChecklist"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "transportDemandPositionId": 2512341,
+                    "jobId": 51231,
+                    "loadingCheckmarkBool": true,
+                    "unloadingCheckmarkBool": false
+                  }
+                }
+              }
+            }
+          },
+          "description": "transport demand checklist to be set on given job Id."
+        }
       },
       "parameters": []
     },
@@ -4371,7 +4920,7 @@
           "example1": {
             "street": "Boca Chica Blvd.",
             "houseNo": "52448",
-            "pOBox": null,
+            "pOBox": "string",
             "additionalLine1": "C/O Dr. Maria Smith",
             "additionalLine2": "Environmental Dept / Building D2",
             "country": "US",
@@ -4555,33 +5104,24 @@
         "type": "object",
         "additionalProperties": false,
         "title": "FileDocumentLink",
-        "description": "provides a link to a saved document. this structure is used to attach/link previously saved attachments to the application context. e.g. a photo made on a mobile device is saved to performis and then linked/attached to a job as a job document.",
+        "description": "provides Id and Guid to a saved file. this structure is used to attach previously saved attachments to the application context. e.g. a photo made on a mobile device is saved to performis and then attached to a job as a job document.",
         "x-examples": {
           "example1": {
-            "fileDocumentInternalId": 4738919,
-            "fileExternalArchiveId": "DC9301231",
-            "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+            "fileDocumentId": 4738919,
+            "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
           }
         },
         "properties": {
-          "fileDocumentInternalId": {
+          "fileDocumentId": {
             "type": "integer",
             "format": "int64",
-            "minimum": 1,
-            "maximum": 9999999999,
             "example": 4738919,
-            "nullable": true
-          },
-          "fileExternalArchiveId": {
-            "type": "string",
-            "maxLength": 20,
-            "example": "DC9301231",
-            "nullable": true
+            "description": "internal document Id"
           },
           "fileDocumentGuid": {
             "type": "string",
-            "example": "fa5df08c-f483-4dfc-be0e-9ad8a3127154",
-            "nullable": true
+            "example": "9fbe6d5a-d558-4043-8455-9097e4e36174",
+            "description": "internal Guid of document. Must be provided together with document Id for verification purposes."
           }
         }
       },
@@ -5022,7 +5562,81 @@
         "additionalProperties": false,
         "description": "machine master data",
         "title": "Machine",
-        "x-examples": {}
+        "x-examples": {
+          "example1": {
+            "changeId": 1,
+            "changeDate": "2019-08-24T14:15:22Z",
+            "machineId": 4711,
+            "externalMachineId": "ABC-4711",
+            "origin": "string",
+            "active": true,
+            "description": "Genie RS-1932, Blue Version",
+            "placingOnMarket": "2022-01-11",
+            "machineTypeId": 4711,
+            "externalMachineTypeId": "ABC4711",
+            "machineGUId": "87315090-9a06-4edc-8fc5-f9f68972e3c6",
+            "machineNo": 87315,
+            "acquisitionDate": "2022-11-25",
+            "underWarrantyUntil": "2028-11-11",
+            "manufacturerCode": 45430010,
+            "masterNumber": "325.752.721",
+            "chassisNumber": "WMG6315L4FZ010120",
+            "engineNumber": "D - 0 000 123",
+            "typeCertificateNumber": "123123",
+            "licensePlate": "BE 1000",
+            "wikiUrl": "string",
+            "ownerCompanyNo": 1235,
+            "assetNo": "1546",
+            "ownerBpAddrId": 12345,
+            "externalOwnerBpAddrId": "ABC-12345",
+            "locationBpAddrId": 12345,
+            "externalLocationBpAddrId": "ABC-12345",
+            "invoiceBpAddrId": 12345,
+            "externalInvoiceBpAddrId": "ABC-123451",
+            "regularDriverBpId": 12345,
+            "externalRegularDriverBpId": "ABC-12345",
+            "counterGroupCode": 45460010,
+            "standardTrailerMachineId": 5679,
+            "externalStandardTrailerMachineId": -9223372036854776000,
+            "machineModelCode": 45410010,
+            "branchCode": 45620010,
+            "isExternalResource": true,
+            "yearOfManufacture": 2020,
+            "schedulingGroupCode": 45420010,
+            "locationApiKey": "string",
+            "isMachineLocationSyncEnabled": true,
+            "manufacturerApiCode": 33060010,
+            "engineType": "Diesel",
+            "costCenterNo": "56789",
+            "telematicsDeviceGroupCode": 33360010,
+            "lastYearlyService": "2023-01-12",
+            "typeOfDrives": [
+              "B"
+            ],
+            "schedulingGroups": [
+              {
+                "schedulingGroupCode": 45420010
+              }
+            ],
+            "machineDrivers": [
+              {
+                "driverBpId": 57689,
+                "externalDriverBpId": "ABC-12345"
+              }
+            ],
+            "machineCounters": [
+              {
+                "counterTypeCode": 45480010,
+                "account": "4711"
+              }
+            ],
+            "machineUsages": [
+              {
+                "application": "B_HTR"
+              }
+            ]
+          }
+        }
       },
       "machineType": {
         "required": [
@@ -5109,7 +5723,20 @@
         "additionalProperties": false,
         "description": "machine type master data",
         "title": "MachineType",
-        "x-examples": {}
+        "x-examples": {
+          "example1": {
+            "changeId": 1,
+            "changeDate": "2019-08-24T14:15:22Z",
+            "machineTypeId": 4711,
+            "externalMachineTypeId": "ABC4711",
+            "origin": "string",
+            "active": true,
+            "description": "Genie-GS 1432",
+            "manufacturerSeries": "GS-1432",
+            "suppliersBusinessBpAddrId": 3244,
+            "externalSuppliersBusinessBpAddrId": "ABC-12345"
+          }
+        }
       },
       "maintenanceWindow": {
         "type": "object",
@@ -5189,45 +5816,45 @@
         "additionalProperties": {},
         "title": "problemDetails",
         "description": "",
-        "x-examples": {}
+        "x-examples": {
+          "example1": {
+            "type": "Warning",
+            "title": "Sample Title",
+            "status": -99,
+            "detail": "This is a generic message to provide a sample return of how a message may be returned.",
+            "instance": "TEST",
+            "property1": null,
+            "property2": null
+          }
+        }
       },
       "signature": {
         "type": "object",
         "description": "signature details when available. If not provided: a report, handover or return is considered un-signed.",
         "title": "Signature",
+        "x-examples": {
+          "example1": {
+            "signatureId": 0,
+            "signeeName": "Jerry Miller",
+            "signaturFileDocumentLink": {
+              "fileDocumentId": 4738919,
+              "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+            }
+          }
+        },
         "properties": {
           "signatureId": {
             "type": "number",
             "description": "signature Id. leave empty when creating a new signature entry.",
             "nullable": true
           },
-          "signatureTypeCode": {
-            "type": "number",
-            "description": "Code 4568.\n45680001 - employee\n45680002 - customer (report)\n45680003 - customer (handover)\n45680004 - customer (return)",
-            "example": 45680002
-          },
           "signeeName": {
             "type": "string",
             "description": "Person who is signing the document. Preferably full name.",
             "example": "Jerry Miller"
           },
-          "signaturDocumentLink": {
+          "signaturFileDocumentLink": {
             "$ref": "#/components/schemas/fileDocumentLink"
-          }
-        },
-        "required": [
-          "signatureTypeCode"
-        ],
-        "x-examples": {
-          "example1": {
-            "signatureId": 541,
-            "signatureTypeCode": 45680002,
-            "signeeName": "Jerry Miller",
-            "signaturDocumentLink": {
-              "fileDocumentInternalId": 4738919,
-              "fileExternalArchiveId": "DC9301231",
-              "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
-            }
           }
         }
       },
@@ -5238,6 +5865,7 @@
         "x-examples": {
           "example1": {
             "surchargeId": 483915,
+            "externalSurchargeId": "483915EXT",
             "description": "additional cleaning",
             "priceUnitOfMeasure": "PCE",
             "sortNo": 1000,
@@ -5247,7 +5875,7 @@
           }
         },
         "properties": {
-          "internalSurchargeId": {
+          "surchargeId": {
             "type": "integer",
             "format": "int32",
             "description": "internal unique identifier for surcharge master data entry",
@@ -5323,7 +5951,7 @@
             "detailsIncluded": false,
             "reportEmailReceivers": "jack.smith@customerdomain.com; sarah.root@customermail.com",
             "languageIsoCode": "US",
-            "internalEmployeeId": 3829,
+            "employeeId": 3829,
             "externalEmployeeId": "E839",
             "orderNo": "A827109",
             "orderTitle": "support on construction site A-51",
@@ -5351,42 +5979,11 @@
             "jobStatusCode": 45550061,
             "resourceTypeCode": 45500006,
             "resourceStatusCode": 45540002,
-            "internalMachineId": 482910,
+            "machineId": 482910,
             "externalMachineId": "M38019",
-            "internalAccessoryId": 509,
+            "accessoryId": 509,
             "externalAccessoryId": "A509",
             "useCaseCode": 69510030,
-            "releasedByInternalEmployeeId": 920,
-            "releasedByExternalEmployeeId": "E920",
-            "releasedOnDateTime": "2022-12-23T15:34:05",
-            "handOver": {
-              "handoverId": 483915,
-              "jobId": 34451,
-              "internalEmployeeId": 341,
-              "externalEmployeeId": "E341",
-              "handoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
-              "customerBriefed": true,
-              "comment": "customer already knows the machine very well",
-              "customerSignature": {
-                "signatureId": 0,
-                "signatureTypeCode": 45680002,
-                "signeeName": "Jerry Miller",
-                "signaturDocumentLink": {
-                  "fileDocumentInternalId": 4738919,
-                  "fileExternalArchiveId": "DC9301231",
-                  "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
-                }
-              }
-            },
-            "return": {
-              "returnId": 483915,
-              "jobId": 45612,
-              "internalEmployeeId": 345,
-              "externalEmployeeId": "E345",
-              "returnStartedDateTime": "2012-04-23T18:25:43.511Z",
-              "damage": false,
-              "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!"
-            },
             "details": {
               "scheduleList": [
                 {
@@ -5400,7 +5997,7 @@
               ],
               "contactList": [
                 {
-                  "internalContactId": 34511,
+                  "contactId": 34511,
                   "externalContactId": "KK34511",
                   "jobId": 84721,
                   "description": "construction site manager",
@@ -5443,22 +6040,21 @@
                   "jobDocumentId": 583911,
                   "jobId": 452341,
                   "jobDocument": {
-                    "fileDocumentInternalId": 4738919,
-                    "fileExternalArchiveId": "DC9301231",
-                    "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                    "fileDocumentId": 4738919,
+                    "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                   }
                 }
               ],
               "timeStampList": [
                 {
                   "jobTimestampId": 483915,
-                  "jobId": 1,
-                  "timestamp": "2012-04-23",
+                  "jobId": 0,
+                  "timestamp": "2012-04-23T18:25:43.511Z",
                   "timestampTypeCode": 45560001,
-                  "bookingActivityId": 45570005,
-                  "internalMachineId": 45123,
+                  "bookingActivityId": 482012,
+                  "machineId": 45123,
                   "externalMachineId": "MRK8938719",
-                  "internalEmployeeId": 241,
+                  "employeeId": 241,
                   "externalEmployeeId": "E492",
                   "comment": "took longer than expected due to mess at the construction site"
                 }
@@ -5466,21 +6062,18 @@
               "reportList": [
                 {
                   "reportId": 31234,
+                  "jobId": 4215,
                   "reportFromDate": "2022-12-01",
                   "reportToDate": "2012-12-23",
                   "comment": "return was delayed due to traffic jam at our gates > not her fault!",
                   "reportTimeStampList": [
                     {
                       "jobReportTimestampId": 483915,
-                      "jobId": 42341,
+                      "reportId": 31234,
                       "timestamp": "2012-04-23T07:31:20",
                       "timestampTypeCode": 45560001,
                       "source": "MobileApp",
                       "bookingActivityId": 482012,
-                      "internalMachineId": 4021,
-                      "externalMachineId": "MRK8938719",
-                      "internalEmployeeId": 214,
-                      "externalEmployeeId": "E214",
                       "comment": "optional remark on activity, such as why something took longer"
                     }
                   ],
@@ -5488,8 +6081,7 @@
                     {
                       "reportSurchargeId": 483915,
                       "jobSurchargeId": 483915,
-                      "jobId": 1,
-                      "reportId": 52671,
+                      "reportId": 31234,
                       "dateTime": "2022-12-23T17:25:43",
                       "assignment": "RENTAL_HANDOVER",
                       "quantity": 23.2
@@ -5498,32 +6090,36 @@
                   "eMailNotificationList": [
                     {
                       "eMailNotificationId": 1,
-                      "jobId": 45123,
-                      "reportId": 48192,
+                      "reportId": 31234,
                       "sender": "no-reply@mydomain.com",
                       "sendDateTime": "2022-12-07T06:00:01",
                       "createDateTime": "2022-12-06T08:35:54",
-                      "createdByInternalEmployeeId": 498,
+                      "createdByemployeeId": 498,
                       "createdByExternalEmployeeId": "E948",
                       "modifyDateTime": "2022-12-06T12:00:20",
-                      "modifiedByInternalEmployeeId": 341,
+                      "modifiedByEmployeeId": 341,
                       "modifiedByExternalEmployeeId": "E341"
                     }
                   ],
-                  "signature": {
+                  "customerSignature": {
                     "signatureId": 0,
-                    "signatureTypeCode": 45680002,
                     "signeeName": "Jerry Miller",
-                    "signaturDocumentLink": {
-                      "fileDocumentInternalId": 4738919,
-                      "fileExternalArchiveId": "DC9301231",
-                      "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                    "signaturFileDocumentLink": {
+                      "fileDocumentId": 4738919,
+                      "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                     }
                   },
-                  "reportPDF": {
-                    "fileDocumentInternalId": 4738919,
-                    "fileExternalArchiveId": "DC9301231",
-                    "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                  "employeeSignature": {
+                    "signatureId": 0,
+                    "signeeName": "Jerry Miller",
+                    "signaturFileDocumentLink": {
+                      "fileDocumentId": 4738919,
+                      "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                    }
+                  },
+                  "reportPdfFileDocumentLink": {
+                    "fileDocumentId": 4738919,
+                    "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                   }
                 }
               ],
@@ -5539,11 +6135,6 @@
                   "reportId": 456223
                 }
               ],
-              "formList": [
-                {
-                  "wIP": "string"
-                }
-              ],
               "problemList": [
                 {
                   "problemId": 583911,
@@ -5555,7 +6146,7 @@
                   "customersFaultBool": false,
                   "comment": "string",
                   "solvedBool": false,
-                  "reportedByInternalEmployeeId": 363,
+                  "reportedByEmployeeId": 363,
                   "reportedByExternalEmployeeId": "E465",
                   "reportedDateTime": "TS289182-5",
                   "reportingContext": "LEVA.JOB.HANDOVER",
@@ -5604,7 +6195,47 @@
                   },
                   "rentalJobId": 435123
                 }
-              ]
+              ],
+              "rentalHandOver": {
+                "handoverId": 483915,
+                "jobId": 34451,
+                "employeeId": 341,
+                "externalEmployeeId": "E341",
+                "handoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
+                "customerBriefed": true,
+                "comment": "customer already knows the machine very well",
+                "customerSignature": {
+                  "signatureId": 0,
+                  "signeeName": "Jerry Miller",
+                  "signaturFileDocumentLink": {
+                    "fileDocumentId": 4738919,
+                    "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                  }
+                }
+              },
+              "rentalReturn": {
+                "returnId": 483915,
+                "jobId": 45612,
+                "employeeId": 345,
+                "externalEmployeeId": "E345",
+                "returnStartedDateTime": "2012-04-23T18:25:43.511Z",
+                "jobEndDateTime": "2012-04-22T15:00:00.511Z",
+                "damage": false,
+                "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!",
+                "customerSignature": {
+                  "signatureId": 0,
+                  "signeeName": "Jerry Miller",
+                  "signaturFileDocumentLink": {
+                    "fileDocumentId": 4738919,
+                    "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                  }
+                }
+              },
+              "rentalCompletion": {
+                "completionId": 483915,
+                "jobId": 45612,
+                "completed": false
+              }
             }
           }
         },
@@ -5644,7 +6275,7 @@
             "example": "US",
             "nullable": true
           },
-          "internalEmployeeId": {
+          "employeeId": {
             "type": "number",
             "example": 3829,
             "description": "internal employee ID to which the job is assigned to",
@@ -5706,7 +6337,7 @@
             "description": "Code 4554\nuse IF2BA to retrieve value list.",
             "example": 45540002
           },
-          "internalMachineId": {
+          "machineId": {
             "type": "number",
             "description": "internal maschine ID assigned to job",
             "example": 482910,
@@ -5718,7 +6349,7 @@
             "example": "M38019",
             "nullable": true
           },
-          "internalAccessoryId": {
+          "accessoryId": {
             "type": "number",
             "format": "date-time",
             "description": "internal accessory ID assigned to job",
@@ -5735,12 +6366,6 @@
             "type": "number",
             "description": "Code 6951\nuse IF2BA to retrieve value list.",
             "example": 69510030
-          },
-          "handOver": {
-            "$ref": "#/components/schemas/jobHandOver"
-          },
-          "return": {
-            "$ref": "#/components/schemas/jobReturn"
           },
           "details": {
             "$ref": "#/components/schemas/jobDetails"
@@ -5779,7 +6404,7 @@
             ],
             "contactList": [
               {
-                "internalContactId": 34511,
+                "contactId": 34511,
                 "externalContactId": "KK34511",
                 "jobId": 84721,
                 "description": "construction site manager",
@@ -5822,22 +6447,21 @@
                 "jobDocumentId": 583911,
                 "jobId": 452341,
                 "jobDocument": {
-                  "fileDocumentInternalId": 4738919,
-                  "fileExternalArchiveId": "DC9301231",
-                  "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                  "fileDocumentId": 4738919,
+                  "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                 }
               }
             ],
             "timeStampList": [
               {
                 "jobTimestampId": 483915,
-                "jobId": 1,
-                "timestamp": "2012-04-23",
+                "jobId": 0,
+                "timestamp": "2012-04-23T18:25:43.511Z",
                 "timestampTypeCode": 45560001,
-                "bookingActivityId": 45570005,
-                "internalMachineId": 45123,
+                "bookingActivityId": 482012,
+                "machineId": 45123,
                 "externalMachineId": "MRK8938719",
-                "internalEmployeeId": 241,
+                "employeeId": 241,
                 "externalEmployeeId": "E492",
                 "comment": "took longer than expected due to mess at the construction site"
               }
@@ -5845,21 +6469,18 @@
             "reportList": [
               {
                 "reportId": 31234,
+                "jobId": 4215,
                 "reportFromDate": "2022-12-01",
                 "reportToDate": "2012-12-23",
                 "comment": "return was delayed due to traffic jam at our gates > not her fault!",
                 "reportTimeStampList": [
                   {
                     "jobReportTimestampId": 483915,
-                    "jobId": 42341,
+                    "reportId": 31234,
                     "timestamp": "2012-04-23T07:31:20",
                     "timestampTypeCode": 45560001,
                     "source": "MobileApp",
                     "bookingActivityId": 482012,
-                    "internalMachineId": 4021,
-                    "externalMachineId": "MRK8938719",
-                    "internalEmployeeId": 214,
-                    "externalEmployeeId": "E214",
                     "comment": "optional remark on activity, such as why something took longer"
                   }
                 ],
@@ -5867,8 +6488,7 @@
                   {
                     "reportSurchargeId": 483915,
                     "jobSurchargeId": 483915,
-                    "jobId": 1,
-                    "reportId": 52671,
+                    "reportId": 31234,
                     "dateTime": "2022-12-23T17:25:43",
                     "assignment": "RENTAL_HANDOVER",
                     "quantity": 23.2
@@ -5877,32 +6497,36 @@
                 "eMailNotificationList": [
                   {
                     "eMailNotificationId": 1,
-                    "jobId": 45123,
-                    "reportId": 48192,
+                    "reportId": 31234,
                     "sender": "no-reply@mydomain.com",
                     "sendDateTime": "2022-12-07T06:00:01",
                     "createDateTime": "2022-12-06T08:35:54",
-                    "createdByInternalEmployeeId": 498,
+                    "createdByemployeeId": 498,
                     "createdByExternalEmployeeId": "E948",
                     "modifyDateTime": "2022-12-06T12:00:20",
-                    "modifiedByInternalEmployeeId": 341,
+                    "modifiedByEmployeeId": 341,
                     "modifiedByExternalEmployeeId": "E341"
                   }
                 ],
-                "signature": {
+                "customerSignature": {
                   "signatureId": 0,
-                  "signatureTypeCode": 45680002,
                   "signeeName": "Jerry Miller",
-                  "signaturDocumentLink": {
-                    "fileDocumentInternalId": 4738919,
-                    "fileExternalArchiveId": "DC9301231",
-                    "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                  "signaturFileDocumentLink": {
+                    "fileDocumentId": 4738919,
+                    "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                   }
                 },
-                "reportPDF": {
-                  "fileDocumentInternalId": 4738919,
-                  "fileExternalArchiveId": "DC9301231",
-                  "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+                "employeeSignature": {
+                  "signatureId": 0,
+                  "signeeName": "Jerry Miller",
+                  "signaturFileDocumentLink": {
+                    "fileDocumentId": 4738919,
+                    "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                  }
+                },
+                "reportPdfFileDocumentLink": {
+                  "fileDocumentId": 4738919,
+                  "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                 }
               }
             ],
@@ -5918,11 +6542,6 @@
                 "reportId": 456223
               }
             ],
-            "formList": [
-              {
-                "wIP": "string"
-              }
-            ],
             "problemList": [
               {
                 "problemId": 583911,
@@ -5934,7 +6553,7 @@
                 "customersFaultBool": false,
                 "comment": "string",
                 "solvedBool": false,
-                "reportedByInternalEmployeeId": 363,
+                "reportedByEmployeeId": 363,
                 "reportedByExternalEmployeeId": "E465",
                 "reportedDateTime": "TS289182-5",
                 "reportingContext": "LEVA.JOB.HANDOVER",
@@ -5983,7 +6602,47 @@
                 },
                 "rentalJobId": 435123
               }
-            ]
+            ],
+            "rentalHandOver": {
+              "handoverId": 483915,
+              "jobId": 34451,
+              "employeeId": 341,
+              "externalEmployeeId": "E341",
+              "handoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
+              "customerBriefed": true,
+              "comment": "customer already knows the machine very well",
+              "customerSignature": {
+                "signatureId": 0,
+                "signeeName": "Jerry Miller",
+                "signaturFileDocumentLink": {
+                  "fileDocumentId": 4738919,
+                  "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                }
+              }
+            },
+            "rentalReturn": {
+              "returnId": 483915,
+              "jobId": 45612,
+              "employeeId": 345,
+              "externalEmployeeId": "E345",
+              "returnStartedDateTime": "2012-04-23T18:25:43.511Z",
+              "jobEndDateTime": "2012-04-22T15:00:00.511Z",
+              "damage": false,
+              "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!",
+              "customerSignature": {
+                "signatureId": 0,
+                "signeeName": "Jerry Miller",
+                "signaturFileDocumentLink": {
+                  "fileDocumentId": 4738919,
+                  "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                }
+              }
+            },
+            "rentalCompletion": {
+              "completionId": 483915,
+              "jobId": 45612,
+              "completed": false
+            }
           }
         },
         "type": "object",
@@ -6047,6 +6706,15 @@
             "items": {
               "$ref": "#/components/schemas/jobTransportDemand"
             }
+          },
+          "rentalHandOver": {
+            "$ref": "#/components/schemas/jobHandOver"
+          },
+          "rentalReturn": {
+            "$ref": "#/components/schemas/jobReturn"
+          },
+          "rentalCompletion": {
+            "$ref": "#/components/schemas/jobCompletion"
           }
         }
       },
@@ -6108,7 +6776,7 @@
         "type": "object",
         "description": "a job contact such as \"Contact on Site\", \"Project Manager\", (...) and contact information",
         "properties": {
-          "internalContactId": {
+          "contactId": {
             "type": "number",
             "example": 34511,
             "description": "internal contact id",
@@ -6163,7 +6831,7 @@
         },
         "x-examples": {
           "example1": {
-            "internalContactId": 34511,
+            "contactId": 34511,
             "externalContactId": "KK34511",
             "jobId": 84721,
             "description": "construction site manager",
@@ -6223,13 +6891,13 @@
         "x-examples": {
           "example1": {
             "jobTimestampId": 483915,
-            "jobId": 1,
+            "jobId": -2147483648,
             "timestamp": "2012-04-23T18:25:43.511Z",
             "timestampTypeCode": 45560001,
             "bookingActivityId": 482012,
-            "internalMachineId": 45123,
+            "machineId": 45123,
             "externalMachineId": "MRK8938719",
-            "internalEmployeeId": 241,
+            "employeeId": 241,
             "externalEmployeeId": "E492",
             "comment": "took longer than expected due to mess at the construction site"
           }
@@ -6268,7 +6936,7 @@
             "example": 482012,
             "nullable": true
           },
-          "internalMachineId": {
+          "machineId": {
             "type": "integer",
             "format": "int32",
             "description": "The identifier for the machine.",
@@ -6281,7 +6949,7 @@
             "example": "MRK8938719",
             "nullable": true
           },
-          "internalEmployeeId": {
+          "employeeId": {
             "type": "integer",
             "format": "int32",
             "description": "The internal identifier for the employee.",
@@ -6304,7 +6972,7 @@
           "jobId",
           "timestamp",
           "timestampTypeCode",
-          "internalEmployeeId"
+          "employeeId"
         ]
       },
       "jobReport": {
@@ -6346,27 +7014,32 @@
                 "sender": "no-reply@mydomain.com",
                 "sendDateTime": "2022-12-07T06:00:01",
                 "createDateTime": "2022-12-06T08:35:54",
-                "createdByInternalEmployeeId": 498,
+                "createdByemployeeId": 498,
                 "createdByExternalEmployeeId": "E948",
                 "modifyDateTime": "2022-12-06T12:00:20",
-                "modifiedByInternalEmployeeId": 341,
+                "modifiedByEmployeeId": 341,
                 "modifiedByExternalEmployeeId": "E341"
               }
             ],
-            "signature": {
+            "customerSignature": {
               "signatureId": 0,
-              "signatureTypeCode": 45680002,
               "signeeName": "Jerry Miller",
-              "signaturDocumentLink": {
-                "fileDocumentInternalId": 4738919,
-                "fileExternalArchiveId": "DC9301231",
-                "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+              "signaturFileDocumentLink": {
+                "fileDocumentId": 4738919,
+                "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
               }
             },
-            "reportPDF": {
-              "fileDocumentInternalId": 4738919,
-              "fileExternalArchiveId": "DC9301231",
-              "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+            "employeeSignature": {
+              "signatureId": 0,
+              "signeeName": "Jerry Miller",
+              "signaturFileDocumentLink": {
+                "fileDocumentId": 4738919,
+                "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+              }
+            },
+            "reportPdfFileDocumentLink": {
+              "fileDocumentId": 4738919,
+              "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
             }
           }
         },
@@ -6419,10 +7092,13 @@
               "$ref": "#/components/schemas/jobReportEMailNotification"
             }
           },
-          "signature": {
+          "customerSignature": {
             "$ref": "#/components/schemas/signature"
           },
-          "reportPDF": {
+          "employeeSignature": {
+            "$ref": "#/components/schemas/signature"
+          },
+          "reportPdfFileDocumentLink": {
             "$ref": "#/components/schemas/fileDocumentLink"
           }
         },
@@ -6622,7 +7298,7 @@
       "jobReportEMailNotification": {
         "title": "JobReportEMailNotification",
         "type": "object",
-        "description": "job report e-mail notification entry which containers a receiver for a job report.\nthe entry is created and submitted with the job report. the backend can process report pdf generation and automatically sends out the report pdf to the receiver given by this entry. It will then be updated with a Sender and SendDateTime when processed.\n\nIf you already sent out the notification, you may submit this entry with sender and senddatetime in order for the backend to acknoledge that.",
+        "description": "job report e-mail notification entry which containers a receiver for a job report.\nthe entry is created and submitted with the job report. the backend can process report pdf generation and automatically sends out the report pdf to the receiver given by this entry. It will then be updated with a Sender and sendDateTime when processed.\n\nIf you already sent out the notification, you may submit this entry with sender and sendDateTime in order for the backend to acknoledge that.",
         "x-examples": {
           "example1": {
             "eMailNotificationId": 1,
@@ -6630,10 +7306,10 @@
             "sender": "no-reply@mydomain.com",
             "sendDateTime": "2022-12-07T06:00:01",
             "createDateTime": "2022-12-06T08:35:54",
-            "createdByInternalEmployeeId": 498,
+            "createdByemployeeId": 498,
             "createdByExternalEmployeeId": "E948",
             "modifyDateTime": "2022-12-06T12:00:20",
-            "modifiedByInternalEmployeeId": 341,
+            "modifiedByEmployeeId": 341,
             "modifiedByExternalEmployeeId": "E341"
           }
         },
@@ -6674,7 +7350,7 @@
             "description": "Date and time when the notification was added",
             "example": "2022-12-06T08:35:54"
           },
-          "createdByInternalEmployeeId": {
+          "createdByemployeeId": {
             "type": "number",
             "description": "internal employee ID who added this notification entry",
             "example": 498,
@@ -6695,7 +7371,7 @@
             "example": "2022-12-06T12:00:20",
             "nullable": true
           },
-          "modifiedByInternalEmployeeId": {
+          "modifiedByEmployeeId": {
             "type": "number",
             "format": "float",
             "description": "internal employee id who last modified the entry (in case it is updated later e.g. on backend)",
@@ -6720,19 +7396,17 @@
           "example1": {
             "handoverId": 483915,
             "jobId": 34451,
-            "internalEmployeeId": 341,
+            "employeeId": 341,
             "externalEmployeeId": "E341",
             "handoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
             "customerBriefed": false,
             "comment": "customer already knows the machine very well",
             "customerSignature": {
-              "signatureId": 547,
-              "signatureTypeCode": 45680002,
+              "signatureId": 0,
               "signeeName": "Jerry Miller",
-              "signaturDocumentLink": {
-                "fileDocumentInternalId": 4738919,
-                "fileExternalArchiveId": "DC9301231",
-                "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154"
+              "signaturFileDocumentLink": {
+                "fileDocumentId": 4738919,
+                "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
               }
             }
           }
@@ -6753,7 +7427,7 @@
             "description": "id of the job onto which this handover is assigned to",
             "example": 34451
           },
-          "internalEmployeeId": {
+          "employeeId": {
             "type": "integer",
             "format": "int32",
             "description": "internal unique identifer of the employee that made this handover",
@@ -6802,12 +7476,20 @@
           "example1": {
             "returnId": 483915,
             "jobId": 45612,
-            "internalEmployeeId": 345,
+            "employeeId": 345,
             "externalEmployeeId": "E345",
             "returnStartedDateTime": "2012-04-23T18:25:43.511Z",
             "jobEndDateTime": "2012-04-22T15:00:00.511Z",
             "damage": false,
-            "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!"
+            "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!",
+            "customerSignature": {
+              "signatureId": 0,
+              "signeeName": "Jerry Miller",
+              "signaturFileDocumentLink": {
+                "fileDocumentId": 4738919,
+                "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+              }
+            }
           }
         },
         "properties": {
@@ -6826,7 +7508,7 @@
             "description": "unique id of job onto which this return is assigned",
             "example": 45612
           },
-          "internalEmployeeId": {
+          "employeeId": {
             "type": "integer",
             "format": "int32",
             "description": "internal employee id who made the return",
@@ -6863,11 +7545,53 @@
             "description": "any additional information noted by the employee for this return",
             "example": "very good condition, customer cleaned it and even replaced a missing screen wiper!",
             "nullable": true
+          },
+          "customerSignature": {
+            "$ref": "#/components/schemas/signature"
           }
         },
         "required": [
           "jobId",
           "damage"
+        ]
+      },
+      "jobCompletion": {
+        "title": "JobCompletion",
+        "type": "object",
+        "description": "a completion for a rental job. marks a rental as completed and confirms that there is no further submission of any job data expected (e.g. no further surcharges and all handover, returns and reports are complete)",
+        "x-examples": {
+          "example1": {
+            "completionId": 483915,
+            "jobId": 45612,
+            "completed": false
+          }
+        },
+        "properties": {
+          "completionId": {
+            "type": "integer",
+            "format": "int32",
+            "description": "unique id of this return",
+            "example": 483915,
+            "minimum": 1,
+            "maximum": 9999999999,
+            "nullable": true
+          },
+          "jobId": {
+            "type": "integer",
+            "format": "int32",
+            "description": "unique id of job onto which this return is assigned",
+            "example": 45612
+          },
+          "completed": {
+            "type": "boolean",
+            "example": false,
+            "description": "set when a damage is noticed on return",
+            "default": false
+          }
+        },
+        "required": [
+          "jobId",
+          "completed"
         ]
       },
       "jobSurcharge": {
@@ -6972,7 +7696,7 @@
             "customersFaultBool": false,
             "comment": "string",
             "solvedBool": false,
-            "reportedByInternalEmployeeId": 363,
+            "reportedByEmployeeId": 363,
             "reportedByExternalEmployeeId": "E465",
             "reportedDateTime": "TS289182-5",
             "reportingContext": "LEVA.JOB.HANDOVER",
@@ -7028,7 +7752,7 @@
             "default": false,
             "description": "marked if the problem has been solved"
           },
-          "reportedByInternalEmployeeId": {
+          "reportedByEmployeeId": {
             "type": "integer",
             "format": "int32",
             "description": "internal identifier for the employee.",
@@ -7094,10 +7818,8 @@
             "jobDocumentId": 583911,
             "jobId": 452341,
             "jobDocument": {
-              "fileDocumentInternalId": 4738919,
-              "fileExternalArchiveId": "DC9301231",
-              "fileDocumentGuid": "fa5df08c-f483-4dfc-be0e-9ad8a3127154",
-              "externalArchiveURL": "DMS://Documents/Orders/46211232"
+              "fileDocumentId": 4738919,
+              "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
             }
           }
         },
@@ -7257,6 +7979,49 @@
           }
         },
         "required": [
+          "jobId"
+        ]
+      },
+      "jobTransportDemandChecklist": {
+        "title": "JobTransportDemandChecklist",
+        "type": "object",
+        "description": "Job transport demand checklist clarifies which transport demand has been loaded and or unloaded.\nAny transport from point A to B contains a loading and unloading checkmark that can be set by the user.",
+        "x-examples": {
+          "example1": {
+            "transportDemandPositionId": 2512341,
+            "jobId": 51231,
+            "loadingCheckmarkBool": false,
+            "unloadingCheckmarkBool": false
+          }
+        },
+        "properties": {
+          "transportDemandPositionId": {
+            "type": "number",
+            "example": 2512341,
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "internal unique id for this job transport demand"
+          },
+          "jobId": {
+            "type": "number",
+            "example": 51231,
+            "description": "unique job id"
+          },
+          "loadingCheckmarkBool": {
+            "type": "boolean",
+            "format": "date-time",
+            "default": false,
+            "description": "checkmark wether or not loading has been completed."
+          },
+          "unloadingCheckmarkBool": {
+            "type": "boolean",
+            "format": "date-time",
+            "default": false,
+            "description": "checkmark wether or not unloading has been completed."
+          }
+        },
+        "required": [
+          "transportDemandPositionId",
           "jobId"
         ]
       }

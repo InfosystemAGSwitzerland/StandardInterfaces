@@ -91,7 +91,7 @@ None
 
 Code value samples:
 - leva+
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Examples/IF2LEVASampleCodes.md" target="_blank">See documentation online</a>
+  - <a href="https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Examples/IF2LEVASampleCodes.md" target="_blank">Examples/IF2LEVASampleCodes.md</a>
 
 <!-- LICENSE -->
 ## License
