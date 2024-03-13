@@ -1555,7 +1555,7 @@
                               "rentalJobId": 435123
                             }
                           ],
-                          "rentalHandOver": {
+                          "rentalHandover": {
                             "handoverId": 483915,
                             "jobId": 34451,
                             "employeeId": 341,
@@ -2550,7 +2550,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/jobHandOver"
+                    "$ref": "#/components/schemas/jobHandover"
                   }
                 },
                 "examples": {
@@ -2717,7 +2717,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/jobHandOver"
+                  "$ref": "#/components/schemas/jobHandover"
                 },
                 "examples": {
                   "example1": {
@@ -2748,7 +2748,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/jobHandOver"
+                  "$ref": "#/components/schemas/jobHandover"
                 }
               }
             }
@@ -2791,7 +2791,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/jobHandOver"
+                "$ref": "#/components/schemas/jobHandover"
               },
               "examples": {
                 "example1": {
@@ -2928,7 +2928,8 @@
               "minimum": 1,
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "required": true
           },
           {
             "name": "X-Requesting-System",
@@ -3224,7 +3225,8 @@
               "minimum": 1,
               "type": "integer",
               "format": "int64"
-            }
+            },
+            "required": true
           },
           {
             "name": "X-Requesting-System",
@@ -6196,7 +6198,7 @@
                   "rentalJobId": 435123
                 }
               ],
-              "rentalHandOver": {
+              "rentalHandover": {
                 "handoverId": 483915,
                 "jobId": 34451,
                 "employeeId": 341,
@@ -6603,7 +6605,7 @@
                 "rentalJobId": 435123
               }
             ],
-            "rentalHandOver": {
+            "rentalHandover": {
               "handoverId": 483915,
               "jobId": 34451,
               "employeeId": 341,
@@ -6707,8 +6709,8 @@
               "$ref": "#/components/schemas/jobTransportDemand"
             }
           },
-          "rentalHandOver": {
-            "$ref": "#/components/schemas/jobHandOver"
+          "rentalHandover": {
+            "$ref": "#/components/schemas/jobHandover"
           },
           "rentalReturn": {
             "$ref": "#/components/schemas/jobReturn"
@@ -7388,7 +7390,7 @@
           }
         }
       },
-      "jobHandOver": {
+      "jobHandover": {
         "title": "JobHandOver",
         "type": "object",
         "description": "a handover for a rental job. confirms that the resource (machine / accessory) has been handed over to the customer. Additional information such as a comment and signature can be supplied.",
