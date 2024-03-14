@@ -1459,7 +1459,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "prexenceTime": {
+                    "presenceTime": {
                       "$ref": "#/components/schemas/presenceTimeDto"
                     }
                   }
@@ -3057,7 +3057,7 @@
             "type": "boolean",
             "description": "Is a day off"
           },
-          "brealkRuleViolated": {
+          "breakRuleViolated": {
             "type": "boolean",
             "description": "A work hour rule was violated"
           },
@@ -3125,7 +3125,7 @@
           "hoursOfHoliday",
           "allowancesHours",
           "dayOff",
-          "brealkRuleViolated",
+          "breakRuleViolated",
           "approved",
           "serviceProviderId",
           "dayValid",
@@ -3565,7 +3565,7 @@
           },
           "locked": {
             "type": "boolean",
-            "description": "The dataset is locked"
+            "description": "The dataset is locked for change"
           },
           "exclude": {
             "type": "boolean",
@@ -3919,7 +3919,7 @@
           },
           "locked": {
             "type": "boolean",
-            "description": "The prsence time resord is locked"
+            "description": "The presence time record is locked for all but the origin system"
           },
           "origin": {
             "type": "string",
@@ -4059,7 +4059,7 @@
           },
           "locked": {
             "type": "boolean",
-            "description": "This absence is locked for modification"
+            "description": "This absence is locked for change"
           },
           "origin": {
             "type": "string",
