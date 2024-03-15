@@ -3878,6 +3878,14 @@
             "description": "Id of the \"Leistungsträger\"",
             "example": 36547
           },
+          "serviceProviderDayId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Identifier to the \"Leistungsträger-Tag\"",
+            "example": 6584
+          },
           "personnelNo": {
             "type": "string",
             "description": "Id of the \"Leistungsträger\" in the external system",
@@ -3908,14 +3916,6 @@
             "format": "time",
             "description": "Time the service provider ended work",
             "example": "12:15:00"
-          },
-          "serviceProviderDayId": {
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0,
-            "maximum": 9999999999,
-            "description": "Identifier to the \"Leistungsträger-Tag\"",
-            "example": 6584
           },
           "locked": {
             "type": "boolean",
@@ -3990,6 +3990,14 @@
             "description": "Type of the service provider\n 1 - Mitarbeiter - Employees\n 2 - Maschinen   - Machines\n 3 - Kleingeräte - Small devices\n 5 - Allgemein   - Universal",
             "example": 2860005
           },
+          "serviceProviderDayId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Id of the \"Leistungsträger\"",
+            "example": 3269
+          },
           "dateOfAbsence": {
             "type": "string",
             "format": "date",
@@ -4013,14 +4021,6 @@
             "format": "time",
             "description": "nd of absence",
             "example": "17:00:00"
-          },
-          "serviceProviderDayId": {
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0,
-            "maximum": 9999999999,
-            "description": "Id of the \"Leistungsträger\"",
-            "example": 3269
           },
           "companyNo": {
             "type": "integer",
