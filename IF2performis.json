@@ -16,7 +16,7 @@
       "get": {
         "summary": "Searches for base orders",
         "tags": [
-          "base"
+          "Base"
         ],
         "responses": {
           "200": {
@@ -26,7 +26,162 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/order"
+                    "$ref": "#/components/schemas/orderDto"
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": [
+                      {
+                        "internalOrderId": 123456789,
+                        "externalOrderId": "629c5d97-a225-4b08-877c-e8a802c23014",
+                        "orderNo": "V005126.10",
+                        "companyNo": 27,
+                        "description": "Transportauftrag 1151",
+                        "internalBpAddrId": 2000070,
+                        "externalBpAddrId": "321687.01",
+                        "responsiblePerson": "John Doe",
+                        "orderType": "V",
+                        "origin": "ISBRW",
+                        "costCenterNo": "200",
+                        "costUnitNo": "13",
+                        "salesChannelNo": "ABC",
+                        "orderStatus": 1040500,
+                        "attributeValueSet": {
+                          "required": [
+                            {}
+                          ],
+                          "type": "string",
+                          "properties": {
+                            "attributeSetId": {
+                              "maximum": 0,
+                              "minimum": 0,
+                              "type": "string",
+                              "description": "string",
+                              "format": "string"
+                            },
+                            "attributSetDescription": {
+                              "maxLength": 0,
+                              "type": "string",
+                              "description": "string"
+                            },
+                            "attributeValues": {
+                              "required": [
+                                {}
+                              ],
+                              "type": "string",
+                              "properties": {
+                                "attributeDefinitionId": {
+                                  "type": "string",
+                                  "description": "string",
+                                  "format": "string"
+                                },
+                                "attributeDefinitionDescription": {
+                                  "maxLength": 0,
+                                  "type": "string",
+                                  "description": "string",
+                                  "nullable": true
+                                },
+                                "stringValue": {
+                                  "maxLength": 0,
+                                  "type": "string",
+                                  "description": "string",
+                                  "nullable": true
+                                },
+                                "numberValue": {
+                                  "type": "string",
+                                  "description": "string",
+                                  "format": "string",
+                                  "nullable": true
+                                },
+                                "dateValue": {
+                                  "type": "string",
+                                  "description": "string",
+                                  "format": "string",
+                                  "nullable": true
+                                },
+                                "boolValue": {
+                                  "type": "string",
+                                  "description": "string",
+                                  "nullable": true
+                                },
+                                "codeValues": {
+                                  "required": [
+                                    {}
+                                  ],
+                                  "type": "string",
+                                  "properties": {
+                                    "companyNo": {
+                                      "maximum": 0,
+                                      "minimum": 0,
+                                      "type": "string",
+                                      "description": "string",
+                                      "format": "string"
+                                    },
+                                    "code": {
+                                      "maximum": 0,
+                                      "minimum": 0,
+                                      "type": "string",
+                                      "description": "string",
+                                      "format": "string"
+                                    },
+                                    "text": {
+                                      "maxLength": 0,
+                                      "type": "string",
+                                      "description": "string"
+                                    },
+                                    "shorttext": {
+                                      "maxLength": 0,
+                                      "type": "string",
+                                      "description": "string",
+                                      "nullable": true
+                                    }
+                                  },
+                                  "additionalProperties": true,
+                                  "description": "string"
+                                }
+                              },
+                              "additionalProperties": true,
+                              "description": "string"
+                            }
+                          },
+                          "additionalProperties": true,
+                          "description": "string",
+                          "x-examples": {
+                            "example-1": {
+                              "attributeSetId": 0,
+                              "attributSetDescription": "string",
+                              "attributeValues": [
+                                {
+                                  "attributeDefinitionId": 0,
+                                  "attributeDefinitionDescription": "string",
+                                  "stringValue": "string",
+                                  "numberValue": 0,
+                                  "dateValue": "string",
+                                  "boolValue": true,
+                                  "codeValues": [
+                                    {
+                                      "companyNo": 0,
+                                      "code": 0,
+                                      "text": "string",
+                                      "shorttext": "string"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "caccOrder": true,
+                        "chargingType": "KT",
+                        "budgetCharging": true,
+                        "orderDate": "2023-01-05",
+                        "currency": "CHF",
+                        "documentId": 1234567890,
+                        "documentGUID": "FDBF257B-2EA6-4734-BF66-ECA38E1C9A0E",
+                        "manualPost": true
+                      }
+                    ]
                   }
                 }
               }
@@ -37,7 +192,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -47,9 +202,6 @@
           },
           "403": {
             "description": "Requestor has insufficient rights"
-          },
-          "404": {
-            "description": "No Record found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -141,8 +293,8 @@
               "format": "date-time"
             },
             "in": "query",
-            "name": "changesSinceDatetime",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\\r\\nparameters (searchString, internalOrderId,\\r\\nexternalOrderId)."
+            "name": "changesSinceDateTime",
+            "description": "Get all the entities which were added/edited after a specific datetime. Cannot be used together with search\\r\\nparameters (searchString, internalOrderId,\\r\\nexternalOrderId)."
           },
           {
             "schema": {
@@ -150,7 +302,7 @@
             },
             "in": "query",
             "name": "changesSinceChangeId",
-            "description": "Get all the entities which were added/edited since a specific OrderId. Cannot be used together with search\\r\\nparameters (searchString, internalOrderId,\\r\\nexternalOrderId)."
+            "description": "Get all the entities which were added/edited after a specific change id. Cannot be used together with search\\r\\nparameters (searchString, internalOrderId,\\r\\nexternalOrderId)."
           },
           {
             "schema": {
@@ -201,7 +353,7 @@
         "summary": "Updates an existing base order if internal or external Id match.\nCreates a base order if neither internal or external Id is provided or no matching record could be found",
         "operationId": "putBaseOrders",
         "tags": [
-          "base"
+          "Base"
         ],
         "responses": {
           "200": {
@@ -209,17 +361,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/order"
-                }
-              }
-            }
-          },
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/order"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/orderDto"
+                  }
                 }
               }
             }
@@ -229,7 +374,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -295,186 +440,11 @@
       },
       "parameters": []
     },
-    "/api/v3/service/service-provider-days": {
+    "/api/v3/service-recording/service-provider-days": {
       "get": {
-        "summary": "Searches for service provider days",
+        "summary": "Searches for service provider days and all additional information (if requested)",
         "tags": [
-          "service"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/serviceProviderDayDto"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input, object invalid",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Basic Authentication failed"
-          },
-          "403": {
-            "description": "Requestor has insufficient rights"
-          },
-          "404": {
-            "description": "No Record found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/maintenanceWindow"
-                }
-              }
-            }
-          }
-        },
-        "operationId": "getServiceProviderDays",
-        "parameters": [
-          {
-            "name": "X-Requesting-System",
-            "in": "header",
-            "description": "Identifying the system calling the service.",
-            "required": true,
-            "schema": {
-              "maxLength": 50,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-Requesting-User",
-            "in": "header",
-            "description": "Identifying the user calling the service.",
-            "required": true,
-            "schema": {
-              "maxLength": 30,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-Flow-ID",
-            "in": "header",
-            "description": "Optional technical Id (GUID) for call identification.",
-            "schema": {
-              "maxLength": 30,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-Client-Type",
-            "in": "header",
-            "description": "Optional client type calling the service.",
-            "schema": {
-              "type": "string",
-              "maxLength": 30
-            }
-          },
-          {
-            "name": "searchString",
-            "in": "query",
-            "description": "Optional search string for looking up a record within name and searchterm fields.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "skip",
-            "in": "query",
-            "description": "Number of records to skip for pagination.",
-            "schema": {
-              "maximum": 2147483647,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum number of records to return.",
-            "schema": {
-              "maximum": 2147483647,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "changesSinceDatetime",
-            "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "changesSinceChangeId",
-            "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeId. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
-            "schema": {
-              "maximum": 9999999999,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "schema": {
-              "type": "string",
-              "format": "date"
-            },
-            "in": "query",
-            "name": "servicePerformanceDay",
-            "description": "Date the service was performed"
-          },
-          {
-            "schema": {
-              "type": "string",
-              "maxLength": 50,
-              "minLength": 1
-            },
-            "in": "query",
-            "name": "personnelNo",
-            "description": "Id of the performing unit in the external system - Is only unique togehter with the companyNo"
-          },
-          {
-            "schema": {
-              "type": "integer",
-              "format": "int64",
-              "maximum": 999999,
-              "minimum": 1
-            },
-            "in": "query",
-            "name": "companyNo",
-            "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system"
-          }
-        ],
-        "description": "Returns a service provider day and only the most important additional related information"
-      },
-      "parameters": []
-    },
-    "/api/v3/service/service-provider-days-full": {
-      "get": {
-        "summary": "Searches for service provider days and all additional information",
-        "tags": [
-          "service"
+          "ServiceRecording"
         ],
         "responses": {
           "200": {
@@ -484,10 +454,13 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "servicePerformanceDay": {
-                      "$ref": "#/components/schemas/serviceProviderDayDto"
+                    "servicePerformanceDays": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/serviceProviderDayDto"
+                      }
                     },
-                    "services": {
+                    "serviceRecords": {
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/serviceRecordDto"
@@ -499,13 +472,13 @@
                         "$ref": "#/components/schemas/allowanceDto"
                       }
                     },
-                    "presenceTime": {
+                    "presenceTimes": {
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/presenceTimeDto"
                       }
                     },
-                    "absence": {
+                    "absences": {
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/absenceDto"
@@ -524,22 +497,22 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "servicePerformanceDay": {
+                    "servicePerformanceDays": {
                       "$ref": "#/components/schemas/serviceProviderDayDto"
                     },
-                    "service": {
+                    "services": {
                       "$ref": "#/components/schemas/serviceRecordDto"
                     },
-                    "serviceProvider": {
+                    "serviceProviders": {
                       "$ref": "#/components/schemas/serviceProviderDto"
                     },
-                    "allowance": {
+                    "allowances": {
                       "$ref": "#/components/schemas/allowanceDto"
                     },
-                    "dayAbsence": {
+                    "dayAbsences": {
                       "$ref": "#/components/schemas/serviceProviderDayAllowanceDto"
                     },
-                    "presenceTime": {
+                    "presenceTimes": {
                       "$ref": "#/components/schemas/presenceTimeDto"
                     }
                   }
@@ -552,7 +525,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -562,9 +535,6 @@
           },
           "403": {
             "description": "Requestor has insufficient rights"
-          },
-          "404": {
-            "description": "No Record found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -580,7 +550,7 @@
             }
           }
         },
-        "operationId": "getServiceProviderDaysFull",
+        "operationId": "getServiceProviderDays",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -651,9 +621,9 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
+            "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited after a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -662,7 +632,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeId. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited after the provided change id. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -699,17 +669,25 @@
             "in": "query",
             "name": "companyNo",
             "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system"
+          },
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "name": "includeDetails",
+            "description": "If set to true the service provider day is returned with all related additional information"
           }
         ],
-        "description": "Returns a service provider day and all related information"
+        "description": "Returns a service provider day and all related information  (if requested)"
       },
       "parameters": []
     },
-    "/api/v3/service/serviceRecords": {
+    "/api/v3/service-recording/service-records": {
       "get": {
         "summary": "Searches for service records",
         "tags": [
-          "service"
+          "ServiceRecording"
         ],
         "responses": {
           "200": {
@@ -717,13 +695,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "service": {
-                      "$ref": "#/components/schemas/serviceRecordDto"
-                    }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/serviceRecordDto"
                   }
-                }
+                },
+                "examples": {}
               }
             }
           },
@@ -732,7 +709,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -742,9 +719,6 @@
           },
           "403": {
             "description": "Requestor has insufficient rights"
-          },
-          "404": {
-            "description": "No Record found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -831,9 +805,9 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
+            "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited after a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -842,7 +816,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeId. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited after the provided change id. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -897,9 +871,9 @@
       },
       "put": {
         "summary": "Updates an existing service record if internal or external Id match.\nCreates a service record if neither internal or external Id is provided or no matching record could be found.",
-        "operationId": "putServiceRecord",
+        "operationId": "putServiceRecords",
         "tags": [
-          "service"
+          "ServiceRecording"
         ],
         "responses": {
           "200": {
@@ -907,17 +881,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/serviceRecordDto"
-                }
-              }
-            }
-          },
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/serviceRecordDto"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/serviceRecordDto"
+                  }
                 }
               }
             }
@@ -927,7 +894,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -993,9 +960,9 @@
       },
       "delete": {
         "summary": "Deletes a service record",
-        "operationId": "deleteServiceRecord",
+        "operationId": "deleteServiceRecords",
         "tags": [
-          "service"
+          "ServiceRecording"
         ],
         "responses": {
           "200": {
@@ -1006,7 +973,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -1075,11 +1042,11 @@
       },
       "parameters": []
     },
-    "/api/v3/service/allowance": {
+    "/api/v3/service-recording/allowance-definitions": {
       "get": {
-        "summary": "Searches for allowances",
+        "summary": "Searches for allowance definitions",
         "tags": [
-          "service"
+          "ServiceRecording"
         ],
         "responses": {
           "200": {
@@ -1087,11 +1054,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "allowance": {
-                      "$ref": "#/components/schemas/allowanceDto"
-                    }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/allowanceDto"
                   }
                 }
               }
@@ -1102,7 +1067,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -1112,9 +1077,6 @@
           },
           "403": {
             "description": "Requestor has insufficient rights"
-          },
-          "404": {
-            "description": "No Record found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -1130,7 +1092,7 @@
             }
           }
         },
-        "operationId": "getAllowance",
+        "operationId": "getAllowanceDefinitions",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -1201,9 +1163,9 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
+            "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited after a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1212,7 +1174,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeId. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited after the provided change id. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -1263,13 +1225,13 @@
             "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system"
           }
         ],
-        "description": "Returns all matching allowances"
+        "description": "Returns all matching allowance definitions"
       },
       "put": {
         "summary": "Updates an existing allowance if internal or external Id match.\nCreates an allowance if neither internal or external Id is provided or no matching record could be found.",
-        "operationId": "putAllowance",
+        "operationId": "putAllowances",
         "tags": [
-          "service"
+          "ServiceRecording"
         ],
         "responses": {
           "200": {
@@ -1277,17 +1239,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/allowanceDto"
-                }
-              }
-            }
-          },
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/allowanceDto"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/allowanceDto"
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": [
+                      {
+                        "changeId": 1,
+                        "changeDate": "2019-08-24T14:15:22Z",
+                        "allowanceId": 0,
+                        "description": "Pikett-Dienst",
+                        "nightWork": true,
+                        "nightFrom": "14:15:22Z",
+                        "nightTo": "14:15:22Z",
+                        "hasHoursMoreThan": true,
+                        "hoursMoreThan": 0,
+                        "hasHoursSurcharge": true,
+                        "hoursSurcharge": 0,
+                        "flatRate": true,
+                        "wageSurcharge": 0,
+                        "hasC299SpecialRule": true,
+                        "c299SpecialRule": 21,
+                        "entryWithOrder": true,
+                        "companyNo": 1,
+                        "active": true,
+                        "wageTypeHeaderId": 0,
+                        "flatRateManual": true,
+                        "timeSurchargeManual": true,
+                        "flatRateManualMax": 0,
+                        "timeSurchargeManualMax": 0,
+                        "c297ServiceTypeGroup": 0,
+                        "valueType": "s",
+                        "pZRelevant": true,
+                        "isMonday": true,
+                        "isTuesday": true,
+                        "isWednesday": true,
+                        "isThursday": true,
+                        "isFriday": true,
+                        "isSaturday": true,
+                        "isSunday": true,
+                        "applyToPublicHolidays": true,
+                        "isPublisHoliday": true,
+                        "time": true,
+                        "time1From": "2019-08-24",
+                        "time1To": "2019-08-24",
+                        "time2From": "2019-08-24",
+                        "time2To": "2019-08-24",
+                        "kDVWageType": "str",
+                        "nightEven:SaSoPh": true,
+                        "hoursMoreThanTo": 0,
+                        "flat:RateQuantity": 0,
+                        "c28Unit": 0,
+                        "serviceProviderDayId": 0,
+                        "bAEmployeeId": 0,
+                        "externalId": 0
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -1297,7 +1308,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -1363,9 +1374,9 @@
       },
       "delete": {
         "summary": "Deletes an allowance",
-        "operationId": "deleteAllowance",
+        "operationId": "deleteAllowances",
         "tags": [
-          "service"
+          "ServiceRecording"
         ],
         "responses": {
           "200": {
@@ -1376,7 +1387,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -1445,11 +1456,11 @@
       },
       "parameters": []
     },
-    "/api/v3/service/presenceTime": {
+    "/api/v3/service-recording/presence-times": {
       "get": {
         "summary": "Search presence times",
         "tags": [
-          "service"
+          "ServiceRecording"
         ],
         "responses": {
           "200": {
@@ -1457,11 +1468,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "presenceTime": {
-                      "$ref": "#/components/schemas/presenceTimeDto"
-                    }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/presenceTimeDto"
                   }
                 }
               }
@@ -1472,7 +1481,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -1482,9 +1491,6 @@
           },
           "403": {
             "description": "Requestor has insufficient rights"
-          },
-          "404": {
-            "description": "No Record found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -1500,7 +1506,7 @@
             }
           }
         },
-        "operationId": "getPresenceTime",
+        "operationId": "getPresenceTimes",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -1571,9 +1577,9 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
+            "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited after a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1582,7 +1588,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeId. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited after the provided change id. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -1637,9 +1643,9 @@
       },
       "put": {
         "summary": "Updates an existing presence time if internal or external Id match.\nCreates a presence time if neither internal or external Id is provided or no matching record could be found.",
-        "operationId": "putPresenceTime",
+        "operationId": "putPresenceTimes",
         "tags": [
-          "service"
+          "ServiceRecording"
         ],
         "responses": {
           "200": {
@@ -1647,17 +1653,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/presenceTimeDto"
-                }
-              }
-            }
-          },
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/presenceTimeDto"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/presenceTimeDto"
+                  }
                 }
               }
             }
@@ -1667,7 +1666,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -1733,9 +1732,9 @@
       },
       "delete": {
         "summary": "Deletes a presence time",
-        "operationId": "deletePresenceTime",
+        "operationId": "deletePresenceTimes",
         "tags": [
-          "service"
+          "ServiceRecording"
         ],
         "responses": {
           "200": {
@@ -1746,7 +1745,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -1815,11 +1814,11 @@
       },
       "parameters": []
     },
-    "/api/v3/service/absence": {
+    "/api/v3/service-recording/absences": {
       "get": {
-        "summary": "Search an absence",
+        "summary": "Search absences",
         "tags": [
-          "service"
+          "ServiceRecording"
         ],
         "responses": {
           "200": {
@@ -1827,11 +1826,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "absence": {
-                      "$ref": "#/components/schemas/absenceDto"
-                    }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/absenceDto"
                   }
                 }
               }
@@ -1842,7 +1839,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -1852,9 +1849,6 @@
           },
           "403": {
             "description": "Requestor has insufficient rights"
-          },
-          "404": {
-            "description": "No Record found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -1870,7 +1864,7 @@
             }
           }
         },
-        "operationId": "getAbsence",
+        "operationId": "getAbsences",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -1941,9 +1935,9 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
+            "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited after a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1952,7 +1946,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeId. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited after the provided change id. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -2007,9 +2001,9 @@
       },
       "put": {
         "summary": "Updates an existing absence if internal or external Id match.\nCreates an absence if neither internal or external Id is provided or no matching record could be found.",
-        "operationId": "putAbsence",
+        "operationId": "putAbsences",
         "tags": [
-          "service"
+          "ServiceRecording"
         ],
         "responses": {
           "200": {
@@ -2017,17 +2011,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/absenceDto"
-                }
-              }
-            }
-          },
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/absenceDto"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/absenceDto"
+                  }
                 }
               }
             }
@@ -2037,7 +2024,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -2103,9 +2090,9 @@
       },
       "delete": {
         "summary": "Deletes an absence",
-        "operationId": "deleteAbsence",
+        "operationId": "deleteAbsences",
         "tags": [
-          "service"
+          "ServiceRecording"
         ],
         "responses": {
           "200": {
@@ -2116,7 +2103,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -2185,11 +2172,11 @@
       },
       "parameters": []
     },
-    "/api/v3/service/dayAllowance": {
+    "/api/v3/service-recording/allowances": {
       "get": {
-        "summary": "Search a day allowance",
+        "summary": "Search all allowances",
         "tags": [
-          "service"
+          "ServiceRecording"
         ],
         "responses": {
           "200": {
@@ -2197,11 +2184,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "dayAllowance": {
-                      "$ref": "#/components/schemas/serviceProviderDayAllowanceDto"
-                    }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/serviceProviderDayAllowanceDto"
                   }
                 }
               },
@@ -2222,7 +2207,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -2232,9 +2217,6 @@
           },
           "403": {
             "description": "Requestor has insufficient rights"
-          },
-          "404": {
-            "description": "No Record found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -2250,7 +2232,7 @@
             }
           }
         },
-        "operationId": "getServiceProviderDayAllowance",
+        "operationId": "getServiceProviderAllowances",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -2321,9 +2303,9 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
+            "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited after a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2332,7 +2314,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeId. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited after the provided change id. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -2383,13 +2365,13 @@
             "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system"
           }
         ],
-        "description": "Returns all matching service provider day allowance"
+        "description": "Returns all matching service provider allowances"
       },
       "put": {
         "summary": "Updates an existing day allowance if internal or external Id match.\nCreates a day allowance if neither internal or external Id is provided or no matching record could be found.",
-        "operationId": "putServiceProviderDayAllowance",
+        "operationId": "putServiceProviderDayAllowances",
         "tags": [
-          "service"
+          "ServiceRecording"
         ],
         "responses": {
           "200": {
@@ -2397,17 +2379,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/serviceProviderDayAllowanceDto"
-                }
-              }
-            }
-          },
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/serviceProviderDayAllowanceDto"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/serviceProviderDayAllowanceDto"
+                  }
                 }
               }
             }
@@ -2417,7 +2392,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -2483,9 +2458,9 @@
       },
       "delete": {
         "summary": "Deletes a service provider day allowance",
-        "operationId": "deleteServiceProviderDayAllowance",
+        "operationId": "deleteServiceProviderDayAllowances",
         "tags": [
-          "service"
+          "ServiceRecording"
         ],
         "responses": {
           "200": {
@@ -2496,7 +2471,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -2569,7 +2544,7 @@
       "get": {
         "summary": "Searches for company accounting entries",
         "tags": [
-          "cost accounting"
+          "CostAccounting"
         ],
         "responses": {
           "200": {
@@ -2577,14 +2552,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "entry": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/entryDto"
-                      }
-                    }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/entryDto"
                   }
                 }
               }
@@ -2595,7 +2565,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -2605,9 +2575,6 @@
           },
           "403": {
             "description": "Requestor has insufficient rights"
-          },
-          "404": {
-            "description": "No Record found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -2695,9 +2662,9 @@
             }
           },
           {
-            "name": "changesSinceDatetime",
+            "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited after a specific datetime. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2706,7 +2673,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited since the provided ChangeId. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
+            "description": "Get all the entities which were added/edited after the provided change id. Cannot be used together with search\r\nparameters (searchString, internalMachineId,\r\nexternalMachineId).",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -2742,7 +2709,7 @@
       "put": {
         "summary": "Updates an existing company accounting entry if internal or external Id match.\nCreates acompany accounting entry if neither internal or external Id is provided or no matching record could be found.",
         "tags": [
-          "cost accounting"
+          "CostAccounting"
         ],
         "operationId": "putCaccEntries",
         "responses": {
@@ -2753,20 +2720,13 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "entry": {
-                      "$ref": "#/components/schemas/entryDto"
+                    "entries": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/entryDto"
+                      }
                     }
                   }
-                }
-              }
-            }
-          },
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/entryDto"
                 }
               }
             }
@@ -2776,7 +2736,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -2844,7 +2804,7 @@
   },
   "components": {
     "schemas": {
-      "order": {
+      "orderDto": {
         "title": "Order",
         "type": "object",
         "description": "By passing the appropriate option the service get",
@@ -2912,7 +2872,7 @@
             "type": "string",
             "maxLength": 10,
             "example": "ISBRW",
-            "description": "The system of origin the order"
+            "description": "The system of origin"
           },
           "costCenterNo": {
             "type": "string",
@@ -3006,12 +2966,12 @@
             "format": "int64",
             "minimum": 1,
             "maximum": 9999999999,
-            "description": "ChangeId of the entity.",
+            "description": "Change id of the entity.",
             "example": 123789
           },
           "changeDate": {
             "type": "string",
-            "description": "ChangeDate of the entity.",
+            "description": "Change date of the entity.",
             "format": "date-time",
             "example": "2022-05-12 08:00:00"
           },
@@ -3141,12 +3101,12 @@
             "format": "int64",
             "minimum": 1,
             "maximum": 9999999999,
-            "description": "ChangeId of the entity.",
+            "description": "Change id of the entity.",
             "example": 8971239429
           },
           "changeDate": {
             "type": "string",
-            "description": "ChangeDate of the entity.",
+            "description": "Change date of the entity.",
             "format": "date-time",
             "example": "2020-07-22 09:45:00"
           },
@@ -3246,7 +3206,7 @@
             "description": "Work start time",
             "example": "08:00:00"
           },
-          "timeTo": {
+          "TimeUntil": {
             "type": "string",
             "format": "time",
             "description": "Work end time",
@@ -3268,7 +3228,7 @@
             "description": "State of the service entry\n10 - Provisorisch                - Provisional\n20 - Erfasst                     - Recorded\n25 - Nicht verrechnungsbereit    - Not ready for billing\n30 - Verrechnungsbereit          - Ready for billing\n40 - Verrechnet                  - Billed\n45 - Keine Verrechnung           - No billing",
             "example": 20
           },
-          "activety": {
+          "activity": {
             "type": "string",
             "example": "Repairs",
             "minLength": 1,
@@ -3301,13 +3261,13 @@
           "origin": {
             "type": "string",
             "maxLength": 10,
-            "description": "The system of origin the order",
+            "description": "The system of origin",
             "example": "B_HTR"
           },
           "originId": {
             "type": "string",
             "maxLength": 50,
-            "description": " Id of the system of origin the order",
+            "description": "Id of the system of origin",
             "example": "319"
           },
           "c577OriginStatus": {
@@ -3345,12 +3305,12 @@
             "format": "int64",
             "minimum": 1,
             "maximum": 9999999999,
-            "description": "ChangeId of the entity.",
+            "description": "Change id of the entity.",
             "example": 5214698741
           },
           "changeDate": {
             "type": "string",
-            "description": "ChangeDate of the entity.",
+            "description": "Change date of the entity.",
             "format": "date-time",
             "example": "2022-04-30 09:30:00"
           },
@@ -3441,7 +3401,7 @@
             "type": "string",
             "maxLength": 10,
             "example": "25",
-            "description": "The system of origin the order"
+            "description": "The system of origin"
           },
           "originid": {
             "type": "number",
@@ -3473,12 +3433,12 @@
             "format": "int64",
             "minimum": 1,
             "maximum": 9999999999,
-            "description": "ChangeId of the entity.",
+            "description": "Change id of the entity.",
             "example": 369852147
           },
           "changeDate": {
             "type": "string",
-            "description": "ChangeDate of the entity.",
+            "description": "Change date of the entity.",
             "format": "date-time",
             "example": "2024-01-27 09:30:00"
           },
@@ -3588,13 +3548,13 @@
           "origin": {
             "type": "string",
             "maxLength": 10,
-            "description": "The system of origin the order",
+            "description": "The system of origin",
             "example": "25"
           },
           "originId": {
             "type": "string",
             "maxLength": 50,
-            "description": " Id of the system of origin the order",
+            "description": "Id of the system of origin",
             "example": "1023789456"
           }
         },
@@ -3621,11 +3581,11 @@
             "format": "int64",
             "minimum": 1,
             "maximum": 9999999999,
-            "description": "ChangeId of the entity."
+            "description": "Change id of the entity."
           },
           "changeDate": {
             "type": "string",
-            "description": "ChangeDate of the entity.",
+            "description": "Change date of the entity.",
             "format": "date-time"
           },
           "allowanceId": {
@@ -3845,12 +3805,12 @@
             "format": "int64",
             "minimum": 1,
             "maximum": 9999999999,
-            "description": "ChangeId of the entity.",
+            "description": "Change id of the entity.",
             "example": 321456987
           },
           "changeDate": {
             "type": "string",
-            "description": "ChangeDate of the entity.",
+            "description": "Change date of the entity.",
             "format": "date-time",
             "example": "2023-09-21 09:30:00"
           },
@@ -3900,10 +3860,11 @@
             "example": "2022-11-11"
           },
           "hours": {
-            "type": "integer",
-            "format": "int64",
+            "type": "number",
             "description": "Hours the service provider was present",
-            "example": 4
+            "example": 4.5,
+            "format": "double",
+            "minimum": 0
           },
           "timeFrom": {
             "type": "string",
@@ -3911,7 +3872,7 @@
             "description": "Time the service provider started work",
             "example": "08:00:00"
           },
-          "timeTo": {
+          "timeUntil": {
             "type": "string",
             "format": "time",
             "description": "Time the service provider ended work",
@@ -3924,13 +3885,13 @@
           "origin": {
             "type": "string",
             "maxLength": 10,
-            "description": "The system of origin the order",
+            "description": "The system of origin",
             "example": "25"
           },
           "originId": {
             "type": "string",
             "maxLength": 50,
-            "description": " Id of the system of origin the order",
+            "description": " Id of the system of origin",
             "example": "1023789456"
           }
         },
@@ -3938,11 +3899,11 @@
           "presenceTimeId",
           "companyNo",
           "serviceProviderId",
+          "serviceProviderDayId",
           "personnelNo",
           "presenceDate",
           "hours",
           "timeFrom",
-          "serviceProviderDayId",
           "locked",
           "origin",
           "originId"
@@ -3957,12 +3918,12 @@
             "format": "int64",
             "minimum": 1,
             "maximum": 9999999999,
-            "description": "ChangeId of the entity.",
+            "description": "Change id of the entity.",
             "example": 322784
           },
           "changeDate": {
             "type": "string",
-            "description": "ChangeDate of the entity.",
+            "description": "Change date of the entity.",
             "format": "date-time",
             "example": "2022-04-25 09:30:00"
           },
@@ -4016,7 +3977,7 @@
             "description": "start of absence",
             "example": "08:00:00"
           },
-          "timeTo": {
+          "TimeUntil": {
             "type": "string",
             "format": "time",
             "description": "nd of absence",
@@ -4064,13 +4025,13 @@
           "origin": {
             "type": "string",
             "maxLength": 10,
-            "description": "The system of origin the order",
+            "description": "The system of origin",
             "example": "20"
           },
           "originId": {
             "type": "string",
             "maxLength": 50,
-            "description": " Id of the system of origin the order",
+            "description": "Id of the system of origin",
             "example": "1023789456"
           }
         },
@@ -4894,6 +4855,46 @@
           "description",
           "x-examples"
         ]
+      },
+      "problemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": {},
+        "title": "problemDetails",
+        "description": "",
+        "x-examples": {
+          "example1": {
+            "type": "Warning",
+            "title": "Sample Title",
+            "status": -99,
+            "detail": "This is a generic message to provide a sample return of how a message may be returned.",
+            "instance": "TEST",
+            "property1": null,
+            "property2": null
+          }
+        }
       },
       "error": {
         "type": "object",
