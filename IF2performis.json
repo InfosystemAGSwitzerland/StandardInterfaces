@@ -41,7 +41,7 @@
                     "allowances": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/allowanceDefinitionDto"
+                        "$ref": "#/components/schemas/allowanceDto"
                       }
                     },
                     "presenceTimes": {
@@ -79,10 +79,10 @@
                       "$ref": "#/components/schemas/serviceProviderDto"
                     },
                     "allowances": {
-                      "$ref": "#/components/schemas/allowanceDefinitionDto"
+                      "$ref": "#/components/schemas/allowanceDto"
                     },
                     "dayAbsences": {
-                      "$ref": "#/components/schemas/allowanceDto"
+                      "$ref": "#/components/schemas/absenceDto"
                     },
                     "presenceTimes": {
                       "$ref": "#/components/schemas/presenceTimeDto"
@@ -634,11 +634,11 @@
       },
       "parameters": []
     },
-    "/api/v3/service-recording/allowance-definitions": {
+    "/api/v3/master-data/allowance-definitions": {
       "get": {
         "summary": "Searches for allowance definitions",
         "tags": [
-          "ServiceRecording"
+          "MasterData"
         ],
         "responses": {
           "200": {
@@ -1937,11 +1937,11 @@
       },
       "parameters": []
     },
-    "/api/v3/cacc/entries": {
+    "/api/v3/finance/cacc-entries": {
       "get": {
         "summary": "Searches for company accounting entries",
         "tags": [
-          "CostAccounting"
+          "Finance"
         ],
         "responses": {
           "200": {
@@ -1951,7 +1951,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/entryDto"
+                    "$ref": "#/components/schemas/caccEntryDto"
                   }
                 }
               }
@@ -2106,7 +2106,7 @@
       "put": {
         "summary": "Updates an existing company accounting entry if internal or external Id match.\nCreates acompany accounting entry if neither internal or external Id is provided or no matching record could be found.",
         "tags": [
-          "CostAccounting"
+          "Finance"
         ],
         "operationId": "putCaccEntries",
         "responses": {
@@ -2120,7 +2120,7 @@
                     "entries": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/entryDto"
+                        "$ref": "#/components/schemas/caccEntryDto"
                       }
                     }
                   }
@@ -2202,7 +2202,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/entryDto"
+                  "$ref": "#/components/schemas/caccEntryDto"
                 }
               }
             }
@@ -2210,11 +2210,11 @@
         }
       }
     },
-    "/api/v3/purchase/suppliers": {
+    "/api/v3/master-data/suppliers": {
       "get": {
         "summary": "Get supplier information",
         "tags": [
-          "Purchase"
+          "MasterData"
         ],
         "responses": {
           "200": {
@@ -2667,11 +2667,11 @@
         "description": "Returns all matching purchase orders"
       }
     },
-    "/api/v3/material-management/article": {
+    "/api/v3/master-data/material-management-article": {
       "get": {
         "summary": "Get article information",
         "tags": [
-          "MaterialManagement"
+          "MasterData"
         ],
         "responses": {
           "200": {
@@ -2721,7 +2721,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/articleDto"
+                    "$ref": "#/components/schemas/materialManagementArticle"
                   }
                 }
               }
@@ -2880,11 +2880,11 @@
         "description": "Returns all matching articles"
       }
     },
-    "/api/v3/material-management/article/price": {
+    "/api/v3/master-data/material-management-article/price": {
       "get": {
         "summary": "Get price information",
         "tags": [
-          "MaterialManagement"
+          "MasterData"
         ],
         "responses": {
           "200": {
@@ -3065,7 +3065,7 @@
       "put": {
         "summary": "Put price information",
         "tags": [
-          "MaterialManagement"
+          "MasterData"
         ],
         "operationId": "PutArticlePrices",
         "responses": {
@@ -3398,6 +3398,7 @@
       "serviceProviderDayDto": {
         "title": "ServiceProviderDay",
         "type": "object",
+        "description": "Represents a service provider day entry",
         "properties": {
           "changeId": {
             "type": "integer",
@@ -3517,7 +3518,6 @@
           }
         },
         "required": [
-          "serviceProviderDayId",
           "date",
           "presenceHours",
           "hoursOfHoliday",
@@ -3528,8 +3528,7 @@
           "serviceProviderId",
           "dayValid",
           "onHourlyWage"
-        ],
-        "description": "Represents a service provider day entry"
+        ]
       },
       "serviceRecordDto": {
         "title": "ServiceRecord",
@@ -4000,8 +3999,6 @@
           }
         },
         "required": [
-          "allowanceId",
-          "serviceProviderDayId",
           "allowanceid",
           "companyNo",
           "personnelNo",
@@ -4176,7 +4173,6 @@
           "presenceTimeId",
           "companyNo",
           "serviceProviderId",
-          "serviceProviderDayId",
           "personnelNo",
           "presenceDate",
           "hours",
@@ -4318,7 +4314,6 @@
           "serviceProviderType",
           "dateOfAbsence",
           "hours",
-          "serviceProviderDayId",
           "companyNo",
           "personnelNo",
           "holiday",
@@ -4328,7 +4323,7 @@
         ],
         "description": "Represents an absense entry"
       },
-      "entryDto": {
+      "caccEntryDto": {
         "title": "Entry",
         "type": "object",
         "description": "Represents a company accounting entry",
@@ -5388,10 +5383,10 @@
           "currency"
         ]
       },
-      "articleDto": {
+      "materialManagementArticleDto": {
         "type": "object",
-        "title": "Article",
-        "description": "Represents an article entry",
+        "title": "MaterialManagementArticle",
+        "description": "Represents a (material management) article entry",
         "properties": {
           "changeId": {
             "type": "integer",
