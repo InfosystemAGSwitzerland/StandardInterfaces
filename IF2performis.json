@@ -628,6 +628,26 @@
             "in": "query",
             "description": "Id of the service",
             "name": "servideRecordId"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 10,
+              "example": "B_HTR"
+            },
+            "in": "query",
+            "name": "origin",
+            "description": "The system of origin"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 50,
+              "example": "319"
+            },
+            "in": "query",
+            "name": "originId",
+            "description": "Id of the system of origin"
           }
         ],
         "description": "Deletes a service record"
@@ -971,6 +991,18 @@
             "in": "query",
             "name": "companyNo",
             "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0,
+              "maximum": 9999999999,
+              "example": 1234567890
+            },
+            "in": "query",
+            "name": "serviceProviderId",
+            "description": "Id of the service provider"
           }
         ],
         "description": "Returns all matching presence times"
@@ -1162,6 +1194,26 @@
             "in": "query",
             "name": "presenceTimeId",
             "description": "Unique identifier of the presence time dataset"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 10,
+              "example": "B_HTR"
+            },
+            "in": "query",
+            "name": "origin",
+            "description": "The system of origin"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 50,
+              "example": "319"
+            },
+            "in": "query",
+            "name": "originId",
+            "description": "Id of the system of origin"
           }
         ],
         "description": "Deletes a presence time"
@@ -1540,6 +1592,26 @@
             "in": "query",
             "name": "absenceId",
             "description": "Identifies the absence"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 10,
+              "example": "B_HTR"
+            },
+            "in": "query",
+            "name": "origin",
+            "description": "The system of origin"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 50,
+              "example": "319"
+            },
+            "in": "query",
+            "name": "originId",
+            "description": "Id of the system of origin"
           }
         ],
         "description": "Deletes an absence"
@@ -1931,6 +2003,26 @@
             "in": "query",
             "name": "allowanceId",
             "description": "Identifier of a service provider day allowance"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 10,
+              "example": "B_HTR"
+            },
+            "in": "query",
+            "name": "origin",
+            "description": "The system of origin"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 50,
+              "example": "319"
+            },
+            "in": "query",
+            "name": "originId",
+            "description": "Id of the system of origin"
           }
         ],
         "description": "Deletes a service provider day allowance"
@@ -2721,7 +2813,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/materialManagementArticle"
+                    "$ref": "#/components/schemas/materialManagementArticleDto"
                   }
                 }
               }
@@ -4171,9 +4263,6 @@
         },
         "required": [
           "presenceTimeId",
-          "companyNo",
-          "serviceProviderId",
-          "personnelNo",
           "presenceDate",
           "hours",
           "timeFrom",
