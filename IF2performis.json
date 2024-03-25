@@ -2424,7 +2424,7 @@
               "type": "string"
             },
             "in": "query",
-            "description": "Optional Searches string for looking up a record within name and searchterm fields.",
+            "description": "Optional search string for looking up a record within name and search term fields.",
             "name": "searchString"
           },
           {
@@ -2681,7 +2681,7 @@
               "type": "string"
             },
             "in": "query",
-            "description": "Optional Searches string for looking up a record within name and searchterm fields.",
+            "description": "Optional search string for looking up a record within name and search term fields.",
             "name": "searchString"
           },
           {
@@ -2894,7 +2894,7 @@
               "type": "string"
             },
             "in": "query",
-            "description": "Optional Searches string for looking up a record within name and searchterm fields.",
+            "description": "Optional search string for looking up a record within name and search term fields.",
             "name": "searchString"
           },
           {
@@ -3077,7 +3077,7 @@
               "type": "string"
             },
             "in": "query",
-            "description": "Optional Searches string for looking up a record within name and searchterm fields.",
+            "description": "Optional search string for looking up a record within name and search term fields.",
             "name": "searchString"
           },
           {
@@ -3405,7 +3405,7 @@
               "type": "string"
             },
             "in": "query",
-            "description": "Optional Searches string for looking up a record within name and searchterm fields.",
+            "description": "Optional search string for looking up a record within name and search term fields.",
             "name": "searchString"
           },
           {
