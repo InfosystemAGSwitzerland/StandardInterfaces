@@ -3283,9 +3283,9 @@
                         "articleNo": 27313,
                         "amount": 6,
                         "storageLocationFrom": 35,
-                        "storageSpaceFrom": 3524,
+                        "storagePlaceFrom": 3524,
                         "storageLocationTo": 47,
-                        "storageSpaceTo": 4728
+                        "storagePlaceTo": 4728
                       },
                       {
                         "deliveryNotePos": 2,
@@ -3293,9 +3293,9 @@
                         "articleNo": 27353,
                         "amount": 4,
                         "storageLocationFrom": 55,
-                        "storageSpaceFrom": 551235,
+                        "storagePlaceFrom": 551235,
                         "storageLocationTo": 2,
-                        "storageSpaceTo": 21435
+                        "storagePlaceTo": 21435
                       }
                     ]
                   },
@@ -3314,9 +3314,9 @@
                         "articleNo": 27313,
                         "amount": 5,
                         "storageLocationFrom": 15,
-                        "storageSpaceFrom": 151515,
+                        "storagePlaceFrom": 151515,
                         "storageLocationTo": 61,
-                        "storageSpaceTo": 61112
+                        "storagePlaceTo": 61112
                       }
                     ]
                   }
@@ -3684,7 +3684,7 @@
             "description": "Day on which the service was provided",
             "example": "2023-09-22"
           },
-          "serviceTypeId": {
+          "serviceRecordTypeId": {
             "type": "integer",
             "minimum": 0,
             "maximum": 9999999999,
@@ -3736,7 +3736,7 @@
             "description": "Work start time",
             "example": "08:00:00"
           },
-          "TimeUntil": {
+          "timeUntil": {
             "type": "string",
             "format": "time",
             "description": "Work end time",
@@ -3750,7 +3750,7 @@
             "description": "Id des service provider day",
             "example": 3698521470
           },
-          "c291ServiceStatus": {
+          "c291ServiceRecordStatus": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
@@ -3815,10 +3815,10 @@
           "serviceProviderId",
           "personnelNo",
           "serviceProviderDate",
-          "serviceTypeId",
+          "serviceRecordTypeId",
           "period",
           "quantity",
-          "c291ServiceStatus",
+          "c291ServiceRecordStatus",
           "locked",
           "guid",
           "noRWPosting",
@@ -4339,7 +4339,7 @@
             "description": "start of absence",
             "example": "2023-02-25 08:00:00"
           },
-          "TimeUntil": {
+          "timeUntil": {
             "type": "string",
             "format": "datetime",
             "description": "nd of absence",
@@ -4635,7 +4635,7 @@
             "description": "Category of the supplier",
             "example": 24650001
           },
-          "cxxxSupplierRating": {
+          "c2466SupplierRating": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
@@ -5925,12 +5925,12 @@
                   "description": "Identifier of the delivering storage location",
                   "example": 231
                 },
-                "storageSpaceFrom": {
+                "storagePlaceFrom": {
                   "type": "integer",
                   "format": "Int64",
                   "minimum": 0,
                   "maximum": 9999999999,
-                  "description": "Identifier of the delivering storage space",
+                  "description": "Identifier of the delivering storage place",
                   "example": 23153
                 },
                 "storageLocationTo": {
@@ -5941,12 +5941,12 @@
                   "description": "Identifier of the receiving storage location",
                   "example": 235
                 },
-                "storageSpaceTo": {
+                "storagePlaceTo": {
                   "type": "integer",
                   "format": "Int64",
                   "minimum": 0,
                   "maximum": 9999999999,
-                  "description": "Identifier of the receiving storage space",
+                  "description": "Identifier of the receiving storage place",
                   "example": 23537
                 }
               },
@@ -5956,7 +5956,7 @@
                 "articleNo",
                 "amount",
                 "storageLocationFrom",
-                "storageSpaceFrom"
+                "storagePlaceFrom"
               ]
             }
           }
