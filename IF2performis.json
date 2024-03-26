@@ -4263,6 +4263,7 @@
         },
         "required": [
           "presenceTimeId",
+          "companyNo",
           "presenceDate",
           "hours",
           "timeFrom",
