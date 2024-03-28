@@ -5932,7 +5932,7 @@
         ]
       },
       "codeValueDto": {
-        "description": ".",
+        "description": "",
         "type": "object",
         "title": "CodeValue",
         "x-examples": {
@@ -6115,7 +6115,7 @@
         ]
       },
       "attributeValueDto": {
-        "description": ".",
+        "description": "",
         "type": "object",
         "title": "AttributeValue",
         "x-examples": {
@@ -6361,7 +6361,7 @@
         ]
       },
       "attributeValueSetDto": {
-        "description": ".",
+        "description": "",
         "type": "object",
         "title": "AttributeValueSet",
         "x-examples": {
@@ -6394,7 +6394,7 @@
               }
             },
             "additionalProperties": false,
-            "description": ".",
+            "description": "",
             "x-examples": {
               "example-1": {
                 "attributeSetId": 1,
@@ -6633,7 +6633,7 @@
         },
         "additionalProperties": {},
         "title": "ProblemDetails",
-        "description": ".",
+        "description": "",
         "x-examples": {
           "example1": {
             "type": "Warning",
