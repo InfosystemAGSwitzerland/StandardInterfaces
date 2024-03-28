@@ -26,66 +26,11 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "servicePerformanceDays": {
+                    "serviceProviderDays": {
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/serviceProviderDayDto"
                       }
-                    },
-                    "serviceRecords": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/serviceRecordDto"
-                      }
-                    },
-                    "allowances": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/allowanceDto"
-                      }
-                    },
-                    "presenceTimes": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/presenceTimeDto"
-                      }
-                    },
-                    "absences": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/absenceDto"
-                      }
-                    }
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              },
-              "multipart/form-data": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "servicePerformanceDays": {
-                      "$ref": "#/components/schemas/serviceProviderDayDto"
-                    },
-                    "services": {
-                      "$ref": "#/components/schemas/serviceRecordDto"
-                    },
-                    "serviceProviders": {
-                      "$ref": "#/components/schemas/serviceProviderDto"
-                    },
-                    "allowances": {
-                      "$ref": "#/components/schemas/allowanceDto"
-                    },
-                    "dayAbsences": {
-                      "$ref": "#/components/schemas/absenceDto"
-                    },
-                    "presenceTimes": {
-                      "$ref": "#/components/schemas/presenceTimeDto"
                     }
                   }
                 }
@@ -3607,6 +3552,30 @@
             "format": "int64",
             "description": "Hours overlapping with other service provider day",
             "example": 3
+          },
+          "serviceRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/serviceRecordDto"
+            }
+          },
+          "allowances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/allowanceDto"
+            }
+          },
+          "presenceTimes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/presenceTimeDto"
+            }
+          },
+          "absences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/absenceDto"
+            }
           }
         },
         "required": [
