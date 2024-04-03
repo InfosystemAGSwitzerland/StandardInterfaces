@@ -3,7 +3,7 @@
   "info": {
     "title": "IF2LEVA3 - Preview",
     "version": "v3",
-    "description": "performis IF2LEVA3 | Interface for leva+ base, scheduling and workshop",
+    "description": "performis IF2LEVA3 | Interface for leva+ base, rental and workshop",
     "contact": {
       "name": "Infosystem AG",
       "email": "support@infosystem.ch",
@@ -50,6 +50,15 @@
               "maxLength": 30,
               "type": "string"
             }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            },
+            "description": "Optional technical client type for call identification."
           },
           {
             "name": "searchString",
@@ -229,6 +238,14 @@
             "name": "X-Flow-ID",
             "in": "header",
             "description": "Optional technical ID (GUId) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -426,6 +443,15 @@
             }
           },
           {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            },
+            "description": "Optional technical client type for call identification."
+          },
+          {
             "name": "searchString",
             "in": "query",
             "description": "Optional search string for looking up a record within name and searchterm fields.",
@@ -507,7 +533,85 @@
                     "$ref": "#/components/schemas/machine"
                   }
                 },
-                "examples": {}
+                "examples": {
+                  "example1": {
+                    "value": [
+                      {
+                        "changeId": 1,
+                        "changeDate": "2019-08-24T14:15:22Z",
+                        "machineId": 4711,
+                        "externalMachineId": "ABC-4711",
+                        "origin": "string",
+                        "active": true,
+                        "description": "Genie RS-1932, Blue Version",
+                        "placingOnMarket": "2022-01-11",
+                        "machineTypeId": 4711,
+                        "externalMachineTypeId": "ABC4711",
+                        "machineGUId": "87315090-9a06-4edc-8fc5-f9f68972e3c6",
+                        "machineNo": 87315,
+                        "acquisitionDate": "2022-11-25",
+                        "underWarrantyUntil": "2028-11-11",
+                        "manufacturerCode": 45430010,
+                        "masterNumber": "325.752.721",
+                        "chassisNumber": "WMG6315L4FZ010120",
+                        "engineNumber": "D - 0 000 123",
+                        "typeCertificateNumber": "123123",
+                        "licensePlate": "BE 1000",
+                        "wikiUrl": "string",
+                        "ownerCompanyNo": 1235,
+                        "assetNo": "1546",
+                        "ownerBpAddrId": 12345,
+                        "externalOwnerBpAddrId": "ABC-12345",
+                        "locationBpAddrId": 12345,
+                        "externalLocationBpAddrId": "ABC-12345",
+                        "invoiceBpAddrId": 12345,
+                        "externalInvoiceBpAddrId": "ABC-123451",
+                        "regularDriverBpId": 12345,
+                        "externalRegularDriverBpId": "ABC-12345",
+                        "counterGroupCode": 45460010,
+                        "standardTrailerMachineId": 5679,
+                        "externalStandardTrailerMachineId": 0,
+                        "machineModelCode": 45410010,
+                        "branchCode": 45620010,
+                        "isExternalResource": true,
+                        "yearOfManufacture": 2020,
+                        "schedulingGroupCode": 45420010,
+                        "locationApiKey": "string",
+                        "isMachineLocationSyncEnabled": true,
+                        "manufacturerApiCode": 33060010,
+                        "engineType": "Diesel",
+                        "costCenterNo": "56789",
+                        "telematicsDeviceGroupCode": 33360010,
+                        "lastYearlyService": "2023-01-12",
+                        "typeOfDrives": [
+                          "B"
+                        ],
+                        "schedulingGroups": [
+                          {
+                            "schedulingGroupCode": 45420010
+                          }
+                        ],
+                        "machineDrivers": [
+                          {
+                            "driverBpId": 57689,
+                            "externalDriverBpId": "ABC-12345"
+                          }
+                        ],
+                        "machineCounters": [
+                          {
+                            "counterTypeCode": 45480010,
+                            "account": "4711"
+                          }
+                        ],
+                        "machineUsages": [
+                          {
+                            "application": "B_HTR"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
               }
             }
           },
@@ -578,6 +682,14 @@
               "maxLength": 30,
               "type": "string"
             }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -587,7 +699,83 @@
               "schema": {
                 "$ref": "#/components/schemas/machine"
               },
-              "examples": {}
+              "examples": {
+                "example1": {
+                  "value": {
+                    "changeId": 1,
+                    "changeDate": "2019-08-24T14:15:22Z",
+                    "machineId": 4711,
+                    "externalMachineId": "ABC-4711",
+                    "origin": "string",
+                    "active": true,
+                    "description": "Genie RS-1932, Blue Version",
+                    "placingOnMarket": "2022-01-11",
+                    "machineTypeId": 4711,
+                    "externalMachineTypeId": "ABC4711",
+                    "machineGUId": "87315090-9a06-4edc-8fc5-f9f68972e3c6",
+                    "machineNo": 87315,
+                    "acquisitionDate": "2022-11-25",
+                    "underWarrantyUntil": "2028-11-11",
+                    "manufacturerCode": 45430010,
+                    "masterNumber": "325.752.721",
+                    "chassisNumber": "WMG6315L4FZ010120",
+                    "engineNumber": "D - 0 000 123",
+                    "typeCertificateNumber": "123123",
+                    "licensePlate": "BE 1000",
+                    "wikiUrl": "string",
+                    "ownerCompanyNo": 1235,
+                    "assetNo": "1546",
+                    "ownerBpAddrId": 12345,
+                    "externalOwnerBpAddrId": "ABC-12345",
+                    "locationBpAddrId": 12345,
+                    "externalLocationBpAddrId": "ABC-12345",
+                    "invoiceBpAddrId": 12345,
+                    "externalInvoiceBpAddrId": "ABC-123451",
+                    "regularDriverBpId": 12345,
+                    "externalRegularDriverBpId": "ABC-12345",
+                    "counterGroupCode": 45460010,
+                    "standardTrailerMachineId": 5679,
+                    "externalStandardTrailerMachineId": 0,
+                    "machineModelCode": 45410010,
+                    "branchCode": 45620010,
+                    "isExternalResource": true,
+                    "yearOfManufacture": 2020,
+                    "schedulingGroupCode": 45420010,
+                    "locationApiKey": "string",
+                    "isMachineLocationSyncEnabled": true,
+                    "manufacturerApiCode": 33060010,
+                    "engineType": "Diesel",
+                    "costCenterNo": "56789",
+                    "telematicsDeviceGroupCode": 33360010,
+                    "lastYearlyService": "2023-01-12",
+                    "typeOfDrives": [
+                      "B"
+                    ],
+                    "schedulingGroups": [
+                      {
+                        "schedulingGroupCode": 45420010
+                      }
+                    ],
+                    "machineDrivers": [
+                      {
+                        "driverBpId": 57689,
+                        "externalDriverBpId": "ABC-12345"
+                      }
+                    ],
+                    "machineCounters": [
+                      {
+                        "counterTypeCode": 45480010,
+                        "account": "4711"
+                      }
+                    ],
+                    "machineUsages": [
+                      {
+                        "application": "B_HTR"
+                      }
+                    ]
+                  }
+                }
+              }
             },
             "text/json": {
               "schema": {
@@ -609,7 +797,83 @@
                 "schema": {
                   "$ref": "#/components/schemas/machine"
                 },
-                "examples": {}
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "changeId": 1,
+                      "changeDate": "2019-08-24T14:15:22Z",
+                      "machineId": 4711,
+                      "externalMachineId": "ABC-4711",
+                      "origin": "string",
+                      "active": true,
+                      "description": "Genie RS-1932, Blue Version",
+                      "placingOnMarket": "2022-01-11",
+                      "machineTypeId": 4711,
+                      "externalMachineTypeId": "ABC4711",
+                      "machineGUId": "87315090-9a06-4edc-8fc5-f9f68972e3c6",
+                      "machineNo": 87315,
+                      "acquisitionDate": "2022-11-25",
+                      "underWarrantyUntil": "2028-11-11",
+                      "manufacturerCode": 45430010,
+                      "masterNumber": "325.752.721",
+                      "chassisNumber": "WMG6315L4FZ010120",
+                      "engineNumber": "D - 0 000 123",
+                      "typeCertificateNumber": "123123",
+                      "licensePlate": "BE 1000",
+                      "wikiUrl": "string",
+                      "ownerCompanyNo": 1235,
+                      "assetNo": "1546",
+                      "ownerBpAddrId": 12345,
+                      "externalOwnerBpAddrId": "ABC-12345",
+                      "locationBpAddrId": 12345,
+                      "externalLocationBpAddrId": "ABC-12345",
+                      "invoiceBpAddrId": 12345,
+                      "externalInvoiceBpAddrId": "ABC-123451",
+                      "regularDriverBpId": 12345,
+                      "externalRegularDriverBpId": "ABC-12345",
+                      "counterGroupCode": 45460010,
+                      "standardTrailerMachineId": 5679,
+                      "externalStandardTrailerMachineId": 0,
+                      "machineModelCode": 45410010,
+                      "branchCode": 45620010,
+                      "isExternalResource": true,
+                      "yearOfManufacture": 2020,
+                      "schedulingGroupCode": 45420010,
+                      "locationApiKey": "string",
+                      "isMachineLocationSyncEnabled": true,
+                      "manufacturerApiCode": 33060010,
+                      "engineType": "Diesel",
+                      "costCenterNo": "56789",
+                      "telematicsDeviceGroupCode": 33360010,
+                      "lastYearlyService": "2023-01-12",
+                      "typeOfDrives": [
+                        "B"
+                      ],
+                      "schedulingGroups": [
+                        {
+                          "schedulingGroupCode": 45420010
+                        }
+                      ],
+                      "machineDrivers": [
+                        {
+                          "driverBpId": 57689,
+                          "externalDriverBpId": "ABC-12345"
+                        }
+                      ],
+                      "machineCounters": [
+                        {
+                          "counterTypeCode": 45480010,
+                          "account": "4711"
+                        }
+                      ],
+                      "machineUsages": [
+                        {
+                          "application": "B_HTR"
+                        }
+                      ]
+                    }
+                  }
+                }
               }
             }
           },
@@ -620,7 +884,83 @@
                 "schema": {
                   "$ref": "#/components/schemas/machine"
                 },
-                "examples": {}
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "changeId": 1,
+                      "changeDate": "2019-08-24T14:15:22Z",
+                      "machineId": 4711,
+                      "externalMachineId": "ABC-4711",
+                      "origin": "string",
+                      "active": true,
+                      "description": "Genie RS-1932, Blue Version",
+                      "placingOnMarket": "2022-01-11",
+                      "machineTypeId": 4711,
+                      "externalMachineTypeId": "ABC4711",
+                      "machineGUId": "87315090-9a06-4edc-8fc5-f9f68972e3c6",
+                      "machineNo": 87315,
+                      "acquisitionDate": "2022-11-25",
+                      "underWarrantyUntil": "2028-11-11",
+                      "manufacturerCode": 45430010,
+                      "masterNumber": "325.752.721",
+                      "chassisNumber": "WMG6315L4FZ010120",
+                      "engineNumber": "D - 0 000 123",
+                      "typeCertificateNumber": "123123",
+                      "licensePlate": "BE 1000",
+                      "wikiUrl": "string",
+                      "ownerCompanyNo": 1235,
+                      "assetNo": "1546",
+                      "ownerBpAddrId": 12345,
+                      "externalOwnerBpAddrId": "ABC-12345",
+                      "locationBpAddrId": 12345,
+                      "externalLocationBpAddrId": "ABC-12345",
+                      "invoiceBpAddrId": 12345,
+                      "externalInvoiceBpAddrId": "ABC-123451",
+                      "regularDriverBpId": 12345,
+                      "externalRegularDriverBpId": "ABC-12345",
+                      "counterGroupCode": 45460010,
+                      "standardTrailerMachineId": 5679,
+                      "externalStandardTrailerMachineId": 0,
+                      "machineModelCode": 45410010,
+                      "branchCode": 45620010,
+                      "isExternalResource": true,
+                      "yearOfManufacture": 2020,
+                      "schedulingGroupCode": 45420010,
+                      "locationApiKey": "string",
+                      "isMachineLocationSyncEnabled": true,
+                      "manufacturerApiCode": 33060010,
+                      "engineType": "Diesel",
+                      "costCenterNo": "56789",
+                      "telematicsDeviceGroupCode": 33360010,
+                      "lastYearlyService": "2023-01-12",
+                      "typeOfDrives": [
+                        "B"
+                      ],
+                      "schedulingGroups": [
+                        {
+                          "schedulingGroupCode": 45420010
+                        }
+                      ],
+                      "machineDrivers": [
+                        {
+                          "driverBpId": 57689,
+                          "externalDriverBpId": "ABC-12345"
+                        }
+                      ],
+                      "machineCounters": [
+                        {
+                          "counterTypeCode": 45480010,
+                          "account": "4711"
+                        }
+                      ],
+                      "machineUsages": [
+                        {
+                          "application": "B_HTR"
+                        }
+                      ]
+                    }
+                  }
+                }
               }
             }
           },
@@ -694,6 +1034,15 @@
               "maxLength": 30,
               "type": "string"
             }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            },
+            "description": "Optional technical client type for call identification."
           },
           {
             "name": "searchString",
@@ -777,7 +1126,24 @@
                     "$ref": "#/components/schemas/machineType"
                   }
                 },
-                "examples": {}
+                "examples": {
+                  "example1": {
+                    "value": [
+                      {
+                        "changeId": 1,
+                        "changeDate": "2019-08-24T14:15:22Z",
+                        "machineTypeId": 4711,
+                        "externalMachineTypeId": "ABC4711",
+                        "origin": "string",
+                        "active": true,
+                        "description": "Genie-GS 1432",
+                        "manufacturerSeries": "GS-1432",
+                        "suppliersBusinessBpAddrId": 3244,
+                        "externalSuppliersBusinessBpAddrId": "ABC-12345"
+                      }
+                    ]
+                  }
+                }
               }
             }
           },
@@ -844,6 +1210,14 @@
             "name": "X-Flow-ID",
             "in": "header",
             "description": "Optional technical ID (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -919,6 +1293,22 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/machineType"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "changeId": 1,
+                      "changeDate": "2019-08-24T14:15:22Z",
+                      "machineTypeId": 4711,
+                      "externalMachineTypeId": "ABC4711",
+                      "origin": "string",
+                      "active": true,
+                      "description": "Genie-GS 1432",
+                      "manufacturerSeries": "GS-1432",
+                      "suppliersBusinessBpAddrId": 3244,
+                      "externalSuppliersBusinessBpAddrId": "ABC-12345"
+                    }
+                  }
                 }
               }
             }
@@ -1116,6 +1506,15 @@
             }
           },
           {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            },
+            "description": "Optional technical client type for call identification."
+          },
+          {
             "schema": {
               "type": "integer"
             },
@@ -1157,6 +1556,14 @@
             "name": "X-Flow-ID",
             "in": "header",
             "description": "Optional technical ID (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1285,10 +1692,403 @@
       },
       "parameters": []
     },
-    "/api/v3/scheduling/jobs": {
+    "/api/v3/master-data/customers": {
+      "get": {
+        "summary": "Search for customers",
+        "operationId": "GetMasterDataCustomers",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/customer"
+                  }
+                },
+                "examples": {
+                  "example1": {
+                    "value": [
+                      {
+                        "changeId": 0,
+                        "changeDate": "2019-08-24T14:15:22Z",
+                        "bpAddrId": 0,
+                        "externalBpAddrId": "string",
+                        "origin": "string",
+                        "customerId": 1,
+                        "externalCustomerId": "string",
+                        "c3341CustomerStatus": 33410000,
+                        "modifyUser": "string",
+                        "modifyDate": "2019-08-24T14:15:22Z",
+                        "isConsortium": true,
+                        "companyAccounts": [
+                          {
+                            "active": true,
+                            "companyNo": 1,
+                            "customerNo": "string",
+                            "currency": "str",
+                            "salesChannel": "str",
+                            "cashPayment": true,
+                            "privateSurcharge": true,
+                            "c4504ChargingType": 45040000,
+                            "c1502ChargingPeriodicity": 15020000,
+                            "notes": "string",
+                            "c4570PriceCategory": 45700000,
+                            "c27PaymentTerms": 270000,
+                            "paymentTerms": "string",
+                            "costUnit": "string",
+                            "chargingBpAddrId": 1,
+                            "chargingExternalBpAddrId": "string",
+                            "chargingCustomerId": "string",
+                            "shippingBpAddrId": 1,
+                            "shippingExternalBpAddrId": "string",
+                            "c126ExportInformation": 1260000,
+                            "c3305SalesArea": 33050000,
+                            "yourRef": "string",
+                            "customerSalesReward": [
+                              {
+                                "year": "string",
+                                "rate": 0
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Optional search string for looking up a record within name and searchterm fields.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entites which were added/edited since a specific date/time. Cannot be used together with search parameter (customerId, searchString).",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since the provided changeId. Cannot be used together with search parameter (customerId, searchString).",
+            "schema": {
+              "maximum": 99999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "customerId",
+            "in": "query",
+            "description": "Retrieve specific record by internal id. (Ignores other search options if provided)",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "customerNo",
+            "in": "query",
+            "description": "Retrieve specific record by customer number. (Ignores other search options if provided)",
+            "schema": {
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical ID (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            },
+            "description": "Optional technical client type for call identification."
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "externalCustomerId",
+            "description": "Retrieve specific record by external id. (Ignores other search options if provided)"
+          }
+        ],
+        "description": "By passing in the appropriate options, the service searches for available customers in the system.",
+        "tags": [
+          "MasterData"
+        ]
+      },
+      "parameters": []
+    },
+    "/api/v3/master-data/project-structures": {
+      "get": {
+        "summary": "Search for project structures",
+        "operationId": "GetMasterDataProjectStructures",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/projectStructure"
+                  }
+                },
+                "examples": {
+                  "example1": {
+                    "value": [
+                      {
+                        "changeId": 0,
+                        "changeDate": "2019-08-24T14:15:22Z",
+                        "origin": "string",
+                        "active": true,
+                        "modifyUser": "string",
+                        "modifyDate": "2019-08-24T14:15:22Z",
+                        "description": "string",
+                        "identification": "string",
+                        "type": "PROJECT",
+                        "customerId": 0,
+                        "externalCustomerId": "string",
+                        "currency": "str",
+                        "startDate": "2019-08-24T14:15:22Z",
+                        "endDate": "2019-08-24T14:15:22Z",
+                        "parent": "string"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Optional search string for looking up a record within name and searchterm fields.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entites which were added/edited since a specific date/time. Cannot be used together with search parameter (customerId, searchString).",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since the provided changeId. Cannot be used together with search parameter (customerId, searchString).",
+            "schema": {
+              "maximum": 99999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical ID (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            },
+            "description": "Optional technical client type for call identification."
+          }
+        ],
+        "description": "By passing in the appropriate options, the service searches for available project structures in the system.",
+        "tags": [
+          "MasterData"
+        ]
+      },
+      "parameters": []
+    },
+    "/api/v3/rental/jobs": {
       "get": {
         "summary": "Search for jobs",
-        "operationId": "GetSchedulingJobs",
+        "operationId": "GetRentalJobs",
         "responses": {
           "200": {
             "description": "OK",
@@ -1301,305 +2101,7 @@
                     "$ref": "#/components/schemas/job"
                   }
                 },
-                "examples": {
-                  "example1": {
-                    "value": [
-                      {
-                        "companyNo": 100,
-                        "jobId": 37281,
-                        "detailsIncluded": true,
-                        "reportEmailReceivers": "jack.smith@customerdomain.com; sarah.root@customermail.com",
-                        "languageIsoCode": "US",
-                        "employeeId": 3829,
-                        "externalEmployeeId": "E839",
-                        "orderNo": "A827109",
-                        "orderTitle": "support on construction site A-51",
-                        "jobFromDateTime": "2022-12-01T07:00:00",
-                        "jobToDateTime": "2022-12-23T15:00:00",
-                        "primaryJobLocation": {
-                          "locationId": 8392,
-                          "description": "Construction Site, Gate 4",
-                          "transportRestriction": "limited height 4.5 meteres at gate 3, prefer gate 4 (no height limit)",
-                          "address": {
-                            "street": "Boca Chica Blvd.",
-                            "houseNo": "52448",
-                            "pOBox": "string",
-                            "additionalLine1": "C/O Dr. Maria Smith",
-                            "additionalLine2": "Environmental Dept / Building D2",
-                            "country": "US",
-                            "zipCode": "TX 78521",
-                            "city": "Brownsville",
-                            "latitude": 25.9850628,
-                            "longitude": -97.1871375
-                          }
-                        },
-                        "resourceNo": 84739,
-                        "schedulingGroupCode": 45420018,
-                        "jobStatusCode": 45550061,
-                        "resourceTypeCode": 45500006,
-                        "resourceStatusCode": 45540002,
-                        "machineId": 482910,
-                        "externalMachineId": "M38019",
-                        "accessoryId": 509,
-                        "externalAccessoryId": "A509",
-                        "useCaseCode": 69510030,
-                        "details": {
-                          "scheduleList": [
-                            {
-                              "jobScheduleId": 32345,
-                              "jobId": 1,
-                              "sortNo": 100,
-                              "description": "Loading",
-                              "dateTime": "2022-12-01T07:30:00",
-                              "isOccupied": true
-                            }
-                          ],
-                          "contactList": [
-                            {
-                              "contactId": 34511,
-                              "externalContactId": "KK34511",
-                              "jobId": 84721,
-                              "description": "construction site manager",
-                              "fullName": "Frank Flintstone",
-                              "phone": "+49 8745 951 18",
-                              "eMail": "ff@customerdomain.com",
-                              "isCustomer": true,
-                              "isContactOnLocation": true
-                            }
-                          ],
-                          "bookingActivityList": [
-                            {
-                              "bookingActivityId": 82091,
-                              "activityCode": "45570018",
-                              "activity": "Unloading",
-                              "active": true
-                            }
-                          ],
-                          "locationList": [
-                            {
-                              "locationId": 8392,
-                              "description": "Construction Site, Gate 4",
-                              "transportRestriction": "limited height 4.5 meteres at gate 3, prefer gate 4 (no height limit)",
-                              "address": {
-                                "street": "Boca Chica Blvd.",
-                                "houseNo": "52448",
-                                "pOBox": "string",
-                                "additionalLine1": "C/O Dr. Maria Smith",
-                                "additionalLine2": "Environmental Dept / Building D2",
-                                "country": "US",
-                                "zipCode": "TX 78521",
-                                "city": "Brownsville",
-                                "latitude": 25.9850628,
-                                "longitude": -97.1871375
-                              }
-                            }
-                          ],
-                          "documentList": [
-                            {
-                              "jobDocumentId": 583911,
-                              "jobId": 452341,
-                              "jobDocument": {
-                                "fileDocumentId": 4738919,
-                                "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                              }
-                            }
-                          ],
-                          "timeStampList": [
-                            {
-                              "jobTimestampId": 483915,
-                              "jobId": 0,
-                              "timestamp": "2012-04-23T18:25:43.511Z",
-                              "timestampTypeCode": 45560001,
-                              "bookingActivityId": 482012,
-                              "machineId": 45123,
-                              "externalMachineId": "MRK8938719",
-                              "employeeId": 241,
-                              "externalEmployeeId": "E492",
-                              "comment": "took longer than expected due to mess at the construction site"
-                            }
-                          ],
-                          "reportList": [
-                            {
-                              "reportId": 31234,
-                              "jobId": 4215,
-                              "reportFromDate": "2022-12-01",
-                              "reportToDate": "2012-12-23",
-                              "comment": "return was delayed due to traffic jam at our gates > not her fault!",
-                              "reportTimeStampList": [
-                                {
-                                  "jobReportTimestampId": 483915,
-                                  "reportId": 31234,
-                                  "timestamp": "2012-04-23T07:31:20",
-                                  "timestampTypeCode": 45560001,
-                                  "source": "MobileApp",
-                                  "bookingActivityId": 482012,
-                                  "comment": "optional remark on activity, such as why something took longer"
-                                }
-                              ],
-                              "reportSurchargeList": [
-                                {
-                                  "reportSurchargeId": 483915,
-                                  "jobSurchargeId": 483915,
-                                  "reportId": 31234,
-                                  "dateTime": "2022-12-23T17:25:43",
-                                  "assignment": "RENTAL_HANDOVER",
-                                  "quantity": 23.2
-                                }
-                              ],
-                              "eMailNotificationList": [
-                                {
-                                  "eMailNotificationId": 1,
-                                  "reportId": 31234,
-                                  "sender": "no-reply@mydomain.com",
-                                  "sendDateTime": "2022-12-07T06:00:01",
-                                  "createDateTime": "2022-12-06T08:35:54",
-                                  "createdByemployeeId": 498,
-                                  "createdByExternalEmployeeId": "E948",
-                                  "modifyDateTime": "2022-12-06T12:00:20",
-                                  "modifiedByEmployeeId": 341,
-                                  "modifiedByExternalEmployeeId": "E341"
-                                }
-                              ],
-                              "customerSignature": {
-                                "signatureId": 0,
-                                "signeeName": "Jerry Miller",
-                                "signaturFileDocumentLink": {
-                                  "fileDocumentId": 4738919,
-                                  "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                                }
-                              },
-                              "employeeSignature": {
-                                "signatureId": 0,
-                                "signeeName": "Jerry Miller",
-                                "signaturFileDocumentLink": {
-                                  "fileDocumentId": 4738919,
-                                  "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                                }
-                              },
-                              "reportPdfFileDocumentLink": {
-                                "fileDocumentId": 4738919,
-                                "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                              }
-                            }
-                          ],
-                          "surchargeList": [
-                            {
-                              "jobSurchargeId": 483915,
-                              "surchargeId": 8739145,
-                              "jobId": 82916,
-                              "dateTime": "2012-04-23T18:25:43.511Z",
-                              "assignment": "RENTAL_HANDOVER",
-                              "quantity": 23.5,
-                              "comment": "reason for quantity: additional gas can filled on customers request",
-                              "reportId": 456223
-                            }
-                          ],
-                          "problemList": [
-                            {
-                              "problemId": 583911,
-                              "jobId": 452341,
-                              "problemType": 0,
-                              "description": "various impact dents on the left front side",
-                              "impactOnConditionBool": false,
-                              "visibleForCustomerBool": true,
-                              "customersFaultBool": false,
-                              "comment": "string",
-                              "solvedBool": false,
-                              "reportedByEmployeeId": 363,
-                              "reportedByExternalEmployeeId": "E465",
-                              "reportedDateTime": "TS289182-5",
-                              "reportingContext": "LEVA.JOB.HANDOVER",
-                              "reportingContextText": "Custom Job Application",
-                              "fixRequiredBool": false
-                            }
-                          ],
-                          "transportDemandList": [
-                            {
-                              "transportDemandPositionId": 2512341,
-                              "jobId": 51231,
-                              "description": "Custom Fluid B028",
-                              "details": "handle with care, keep up-side up at all times",
-                              "unitOfMeasure": "Liter",
-                              "decimalCount": 2,
-                              "transportQuantity": 351.4,
-                              "loadedQuantity": 351.5,
-                              "unloadedQuantity": 351.4,
-                              "loadingDateTime": "2022-12-30T13:30:09",
-                              "loadingCheckmarkBool": false,
-                              "unloadingDateTime": "2019-08-24T14:15:22Z",
-                              "unloadingCheckmarkBool": false,
-                              "pickupLocation": {
-                                "street": "Boca Chica Blvd.",
-                                "houseNo": "52448",
-                                "pOBox": "string",
-                                "additionalLine1": "C/O Dr. Maria Smith",
-                                "additionalLine2": "Environmental Dept / Building D2",
-                                "country": "US",
-                                "zipCode": "TX 78521",
-                                "city": "Brownsville",
-                                "latitude": 25.9850628,
-                                "longitude": -97.1871375
-                              },
-                              "deliveryLocation": {
-                                "street": "Boca Chica Blvd.",
-                                "houseNo": "52448",
-                                "pOBox": "string",
-                                "additionalLine1": "C/O Dr. Maria Smith",
-                                "additionalLine2": "Environmental Dept / Building D2",
-                                "country": "US",
-                                "zipCode": "TX 78521",
-                                "city": "Brownsville",
-                                "latitude": 25.9850628,
-                                "longitude": -97.1871375
-                              },
-                              "rentalJobId": 435123
-                            }
-                          ],
-                          "rentalHandover": {
-                            "handoverId": 483915,
-                            "jobId": 34451,
-                            "employeeId": 341,
-                            "externalEmployeeId": "E341",
-                            "handoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
-                            "customerBriefed": true,
-                            "comment": "customer already knows the machine very well",
-                            "customerSignature": {
-                              "signatureId": 0,
-                              "signeeName": "Jerry Miller",
-                              "signaturFileDocumentLink": {
-                                "fileDocumentId": 4738919,
-                                "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                              }
-                            }
-                          },
-                          "rentalReturn": {
-                            "returnId": 483915,
-                            "jobId": 45612,
-                            "employeeId": 345,
-                            "externalEmployeeId": "E345",
-                            "returnStartedDateTime": "2012-04-23T18:25:43.511Z",
-                            "jobEndDateTime": "2012-04-22T15:00:00.511Z",
-                            "damage": false,
-                            "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!",
-                            "customerSignature": {
-                              "signatureId": 0,
-                              "signeeName": "Jerry Miller",
-                              "signaturFileDocumentLink": {
-                                "fileDocumentId": 4738919,
-                                "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                              }
-                            }
-                          },
-                          "rentalCompletion": {
-                            "completionId": 483915,
-                            "jobId": 45612,
-                            "completed": false
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
+                "examples": {}
               }
             }
           },
@@ -1733,20 +2235,28 @@
               "maxLength": 30,
               "type": "string"
             }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
           }
         ],
         "description": "By passing in the appropriate options, the service searches for available jobs in the system.",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ]
       },
       "parameters": []
     },
-    "/api/v3/scheduling/jobs/timestamps": {
+    "/api/v3/rental/jobs/timestamps": {
       "get": {
         "summary": "Search for job timestamps",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "responses": {
           "200": {
@@ -1810,7 +2320,7 @@
             }
           }
         },
-        "operationId": "GetSchedulingJobsTimestamps",
+        "operationId": "GetRentalJobTimestamps",
         "parameters": [
           {
             "name": "skip",
@@ -1874,6 +2384,14 @@
               "maxLength": 30,
               "type": "string"
             }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
           }
         ],
         "description": "By passing in the appropriate options, the service searches for available job time stamps in the system."
@@ -1881,7 +2399,7 @@
       "parameters": [],
       "put": {
         "summary": "Modify job time stamps",
-        "operationId": "PutSchedulingJobsTimestamps",
+        "operationId": "PutRentalJobTimestamps",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -1907,6 +2425,14 @@
             "name": "X-Flow-ID",
             "in": "header",
             "description": "Optional technical ID (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -2047,15 +2573,15 @@
         },
         "description": "Updates an existing set of job time stamps for a given Job Id.",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ]
       }
     },
-    "/api/v3/scheduling/jobs/reports": {
+    "/api/v3/rental/jobs/reports": {
       "get": {
         "summary": "Search for job reports",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "responses": {
           "200": {
@@ -2116,7 +2642,6 @@
                           "signatureId": 0,
                           "signeeName": "Jerry Miller",
                           "signaturFileDocumentLink": {
-                            "fileDocumentId": 4738919,
                             "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                           }
                         },
@@ -2124,12 +2649,10 @@
                           "signatureId": 0,
                           "signeeName": "Jerry Miller",
                           "signaturFileDocumentLink": {
-                            "fileDocumentId": 4738919,
                             "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                           }
                         },
                         "reportPdfFileDocumentLink": {
-                          "fileDocumentId": 4738919,
                           "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                         }
                       }
@@ -2169,7 +2692,7 @@
             }
           }
         },
-        "operationId": "GetSchedulingJobsReports",
+        "operationId": "GetRentalJobReports",
         "parameters": [
           {
             "name": "skip",
@@ -2232,13 +2755,21 @@
               "maxLength": 30,
               "type": "string"
             }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
           }
         ],
         "description": "By passing in the appropriate options, the service searches for job reports in the system."
       },
       "post": {
         "summary": "Create job reports",
-        "operationId": "PostSchedulingJobsReports",
+        "operationId": "PostRentalJobReports",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -2264,6 +2795,14 @@
             "name": "X-Flow-ID",
             "in": "header",
             "description": "Optional technical ID (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -2323,7 +2862,6 @@
                       "signatureId": 0,
                       "signeeName": "Jerry Miller",
                       "signaturFileDocumentLink": {
-                        "fileDocumentId": 4738919,
                         "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                       }
                     },
@@ -2331,12 +2869,10 @@
                       "signatureId": 0,
                       "signeeName": "Jerry Miller",
                       "signaturFileDocumentLink": {
-                        "fileDocumentId": 4738919,
                         "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                       }
                     },
                     "reportPdfFileDocumentLink": {
-                      "fileDocumentId": 4738919,
                       "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                     }
                   }
@@ -2401,7 +2937,6 @@
                         "signatureId": 0,
                         "signeeName": "Jerry Miller",
                         "signaturFileDocumentLink": {
-                          "fileDocumentId": 4738919,
                           "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                         }
                       },
@@ -2409,12 +2944,10 @@
                         "signatureId": 0,
                         "signeeName": "Jerry Miller",
                         "signaturFileDocumentLink": {
-                          "fileDocumentId": 4738919,
                           "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                         }
                       },
                       "reportPdfFileDocumentLink": {
-                        "fileDocumentId": 4738919,
                         "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                       }
                     }
@@ -2477,7 +3010,6 @@
                         "signatureId": 0,
                         "signeeName": "Jerry Miller",
                         "signaturFileDocumentLink": {
-                          "fileDocumentId": 4738919,
                           "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                         }
                       },
@@ -2485,12 +3017,10 @@
                         "signatureId": 0,
                         "signeeName": "Jerry Miller",
                         "signaturFileDocumentLink": {
-                          "fileDocumentId": 4738919,
                           "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                         }
                       },
                       "reportPdfFileDocumentLink": {
-                        "fileDocumentId": 4738919,
                         "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                       }
                     }
@@ -2530,17 +3060,17 @@
           }
         },
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "description": "Submit a complete job report to leva+.\nAfter posting a job report, it can no longer be altered by the interface. Users on the leva+ backend may further process the posted job report and updates to job reports may be received using the GET operation."
       },
       "parameters": []
     },
-    "/api/v3/scheduling/jobs/rental-handovers": {
+    "/api/v3/rental/jobs/rental-handovers": {
       "get": {
         "summary": "Search for job rental handovers",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "responses": {
           "200": {
@@ -2568,7 +3098,6 @@
                           "signatureId": 0,
                           "signeeName": "Jerry Miller",
                           "signaturFileDocumentLink": {
-                            "fileDocumentId": 4738919,
                             "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                           }
                         }
@@ -2609,7 +3138,7 @@
             }
           }
         },
-        "operationId": "GetSchedulingJobsRentalHandovers",
+        "operationId": "GetRentalJobRentalHandovers",
         "parameters": [
           {
             "name": "skip",
@@ -2673,13 +3202,21 @@
               "maxLength": 30,
               "type": "string"
             }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
           }
         ],
         "description": "By passing in the appropriate options, the service searches for job handover in the system."
       },
       "put": {
         "summary": "Modify job handovers",
-        "operationId": "PutSchedulingJobsRentalHandovers",
+        "operationId": "PutRentalJobRentalHandovers",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -2709,6 +3246,14 @@
               "maxLength": 30,
               "type": "string"
             }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2733,7 +3278,6 @@
                         "signatureId": 0,
                         "signeeName": "Jerry Miller",
                         "signaturFileDocumentLink": {
-                          "fileDocumentId": 4738919,
                           "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                         }
                       }
@@ -2749,6 +3293,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/jobHandover"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "handoverId": 483915,
+                      "jobId": 34451,
+                      "employeeId": 341,
+                      "externalEmployeeId": "E341",
+                      "handoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
+                      "customerBriefed": true,
+                      "comment": "customer already knows the machine very well",
+                      "customerSignature": {
+                        "signatureId": 0,
+                        "signeeName": "Jerry Miller",
+                        "signaturFileDocumentLink": {
+                          "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -2785,7 +3349,7 @@
         },
         "description": "Sets the job handover for a given Job Id.",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "requestBody": {
           "content": {
@@ -2807,7 +3371,6 @@
                       "signatureId": 0,
                       "signeeName": "Jerry Miller",
                       "signaturFileDocumentLink": {
-                        "fileDocumentId": 4738919,
                         "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                       }
                     }
@@ -2821,11 +3384,11 @@
       },
       "parameters": []
     },
-    "/api/v3/scheduling/jobs/rental-returns": {
+    "/api/v3/rental/jobs/rental-returns": {
       "get": {
         "summary": "Search for job rental returns",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "responses": {
           "200": {
@@ -2854,7 +3417,6 @@
                           "signatureId": 0,
                           "signeeName": "Jerry Miller",
                           "signaturFileDocumentLink": {
-                            "fileDocumentId": 4738919,
                             "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                           }
                         }
@@ -2895,7 +3457,7 @@
             }
           }
         },
-        "operationId": "GetSchedulingJobsRentalReturns",
+        "operationId": "GetRentalJobRentalReturns",
         "parameters": [
           {
             "name": "skip",
@@ -2959,13 +3521,21 @@
               "maxLength": 30,
               "type": "string"
             }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
           }
         ],
         "description": "By passing in the appropriate options, the service searches for job return in the system."
       },
       "put": {
         "summary": "Modify job returns",
-        "operationId": "PutSchedulingJobsRentalReturns",
+        "operationId": "PutRentalJobRentalReturns",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -2995,6 +3565,14 @@
               "maxLength": 30,
               "type": "string"
             }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3020,7 +3598,6 @@
                         "signatureId": 0,
                         "signeeName": "Jerry Miller",
                         "signaturFileDocumentLink": {
-                          "fileDocumentId": 4738919,
                           "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                         }
                       }
@@ -3052,7 +3629,6 @@
                         "signatureId": 0,
                         "signeeName": "Jerry Miller",
                         "signaturFileDocumentLink": {
-                          "fileDocumentId": 4738919,
                           "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                         }
                       }
@@ -3094,7 +3670,7 @@
         },
         "description": "Sets the rental return for a given Job Id.",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "requestBody": {
           "content": {
@@ -3117,7 +3693,6 @@
                       "signatureId": 0,
                       "signeeName": "Jerry Miller",
                       "signaturFileDocumentLink": {
-                        "fileDocumentId": 4738919,
                         "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                       }
                     }
@@ -3131,11 +3706,11 @@
       },
       "parameters": []
     },
-    "/api/v3/scheduling/jobs/rental-completions": {
+    "/api/v3/rental/jobs/rental-completions": {
       "get": {
         "summary": "Search for job rental completions",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "responses": {
           "200": {
@@ -3192,7 +3767,7 @@
             }
           }
         },
-        "operationId": "GetSchedulingJobsRentalCompletions",
+        "operationId": "GetRentalJobRentalCompletions",
         "parameters": [
           {
             "name": "skip",
@@ -3256,13 +3831,21 @@
               "maxLength": 30,
               "type": "string"
             }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
           }
         ],
         "description": "By passing in the appropriate options, the service searches for job return in the system."
       },
       "put": {
         "summary": "Modify job completion",
-        "operationId": "PutSchedulingJobsRentalCompletions",
+        "operationId": "PutRentalJobRentalCompletions",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -3288,6 +3871,14 @@
             "name": "X-Flow-ID",
             "in": "header",
             "description": "Optional technical ID (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -3320,6 +3911,15 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/jobCompletion"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "completionId": 483915,
+                      "jobId": 45612,
+                      "completed": false
+                    }
+                  }
                 }
               }
             }
@@ -3356,7 +3956,7 @@
         },
         "description": "Sets the rental return for a given Job Id.",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "requestBody": {
           "content": {
@@ -3380,11 +3980,11 @@
       },
       "parameters": []
     },
-    "/api/v3/scheduling/jobs/surcharges": {
+    "/api/v3/rental/jobs/surcharges": {
       "get": {
         "summary": "Search for job surcharges",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "responses": {
           "200": {
@@ -3446,7 +4046,7 @@
             }
           }
         },
-        "operationId": "GetSchedulingJobsSurcharges",
+        "operationId": "GetRentalJobsSurcharges",
         "parameters": [
           {
             "name": "skip",
@@ -3517,7 +4117,7 @@
       "parameters": [],
       "put": {
         "summary": "Modify job surchages",
-        "operationId": "PutSchedulingJobsSurcharges",
+        "operationId": "PutRentalJobsSurcharges",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -3588,6 +4188,22 @@
                   "items": {
                     "$ref": "#/components/schemas/jobSurcharge"
                   }
+                },
+                "examples": {
+                  "example1": {
+                    "value": [
+                      {
+                        "jobSurchargeId": 483915,
+                        "surchargeId": 8739145,
+                        "jobId": 82916,
+                        "dateTime": "2012-04-23T18:25:43.511Z",
+                        "assignment": "RENTAL_HANDOVER",
+                        "quantity": 23.5,
+                        "comment": "reason for quantity: additional gas can filled on customers request",
+                        "reportId": 456223
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -3624,7 +4240,7 @@
         },
         "description": "Sets the job surcharges for a given Job Id.",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "requestBody": {
           "content": {
@@ -3657,11 +4273,11 @@
         }
       }
     },
-    "/api/v3/scheduling/jobs/problems": {
+    "/api/v3/rental/jobs/problems": {
       "get": {
         "summary": "Search for job problems",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "responses": {
           "200": {
@@ -3730,7 +4346,7 @@
             }
           }
         },
-        "operationId": "GetSchedulingJobsProblems",
+        "operationId": "GetRentalJobsProblems",
         "parameters": [
           {
             "name": "skip",
@@ -3800,7 +4416,7 @@
       },
       "put": {
         "summary": "Modify job problems",
-        "operationId": "PutSchedulingJobsProblems",
+        "operationId": "PutRentalJobsProblems",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -3937,7 +4553,7 @@
         },
         "description": "Set the job problems for a given Job Id.",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "requestBody": {
           "content": {
@@ -3978,11 +4594,11 @@
       },
       "parameters": []
     },
-    "/api/v3/scheduling/jobs/documents": {
+    "/api/v3/rental/jobs/documents": {
       "get": {
         "summary": "Search for job documents",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "responses": {
           "200": {
@@ -4001,8 +4617,8 @@
                       {
                         "jobDocumentId": 583911,
                         "jobId": 452341,
+                        "jobDocumentName": "string",
                         "jobDocument": {
-                          "fileDocumentId": 4738919,
                           "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                         }
                       }
@@ -4105,14 +4721,22 @@
               "maxLength": 30,
               "type": "string"
             }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
           }
         ],
-        "operationId": "GetSchedulingJobsDocuments",
+        "operationId": "GetRentalJobDocuments",
         "description": "By passing in the appropriate options, the service searches for job documents in the system."
       },
       "put": {
         "summary": "Modify job documents",
-        "operationId": "PutSchedulingJobsDocuments",
+        "operationId": "PutRentalJobDocuments",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -4142,6 +4766,14 @@
               "maxLength": 30,
               "type": "string"
             }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4161,8 +4793,8 @@
                       {
                         "jobDocumentId": 583911,
                         "jobId": 452341,
+                        "jobDocumentName": "string",
                         "jobDocument": {
-                          "fileDocumentId": 4738919,
                           "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                         }
                       }
@@ -4188,8 +4820,8 @@
                       {
                         "jobDocumentId": 583911,
                         "jobId": 452341,
+                        "jobDocumentName": "string",
                         "jobDocument": {
-                          "fileDocumentId": 4738919,
                           "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                         }
                       }
@@ -4231,7 +4863,7 @@
         },
         "description": "Sets the job documents that are assigned to a given jobId.",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "requestBody": {
           "content": {
@@ -4248,8 +4880,8 @@
                     {
                       "jobDocumentId": 583911,
                       "jobId": 452341,
+                      "jobDocumentName": "string",
                       "jobDocument": {
-                        "fileDocumentId": 4738919,
                         "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
                       }
                     }
@@ -4263,11 +4895,11 @@
       },
       "parameters": []
     },
-    "/api/v3/scheduling/jobs/transport-demands": {
+    "/api/v3/rental/jobs/transport-positions": {
       "get": {
-        "summary": "Search for job transport demands",
+        "summary": "Search for job transport positions",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "responses": {
           "200": {
@@ -4280,52 +4912,7 @@
                     "$ref": "#/components/schemas/jobTransportDemand"
                   }
                 },
-                "examples": {
-                  "example1": {
-                    "value": [
-                      {
-                        "transportDemandPositionId": 2512341,
-                        "jobId": 51231,
-                        "description": "Custom Fluid B028",
-                        "details": "handle with care, keep up-side up at all times",
-                        "unitOfMeasure": "Liter",
-                        "decimalCount": 2,
-                        "transportQuantity": 351.4,
-                        "loadedQuantity": 351.5,
-                        "unloadedQuantity": 351.4,
-                        "loadingDateTime": "2022-12-30T13:30:09",
-                        "loadingCheckmarkBool": false,
-                        "unloadingDateTime": "2019-08-24T14:15:22Z",
-                        "unloadingCheckmarkBool": false,
-                        "pickupLocation": {
-                          "street": "Boca Chica Blvd.",
-                          "houseNo": "52448",
-                          "pOBox": "string",
-                          "additionalLine1": "C/O Dr. Maria Smith",
-                          "additionalLine2": "Environmental Dept / Building D2",
-                          "country": "US",
-                          "zipCode": "TX 78521",
-                          "city": "Brownsville",
-                          "latitude": 25.9850628,
-                          "longitude": -97.1871375
-                        },
-                        "deliveryLocation": {
-                          "street": "Boca Chica Blvd.",
-                          "houseNo": "52448",
-                          "pOBox": "string",
-                          "additionalLine1": "C/O Dr. Maria Smith",
-                          "additionalLine2": "Environmental Dept / Building D2",
-                          "country": "US",
-                          "zipCode": "TX 78521",
-                          "city": "Brownsville",
-                          "latitude": 25.9850628,
-                          "longitude": -97.1871375
-                        },
-                        "rentalJobId": 435123
-                      }
-                    ]
-                  }
-                }
+                "examples": {}
               }
             }
           },
@@ -4422,17 +5009,25 @@
               "maxLength": 30,
               "type": "string"
             }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
           }
         ],
-        "operationId": "GetSchedulingJobsTransportDemands",
-        "description": "By passing in the appropriate options, the service searches for job transport demands in the system."
+        "operationId": "GetRentalJobTransportPositions",
+        "description": "By passing in the appropriate options, the service searches for job transport positions in the system."
       },
       "parameters": []
     },
-    "/api/v3/scheduling/jobs/transport-demands-checklist": {
+    "/api/v3/rental/jobs/transport-positions-checklist": {
       "put": {
-        "summary": "Modify job transport demands checklist",
-        "operationId": "PutSchedulingJobsTransportDemandsChecklist",
+        "summary": "Modify job transport positions",
+        "operationId": "PutRentalJobTransportPositionChecklists",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -4462,6 +5057,14 @@
               "maxLength": 30,
               "type": "string"
             }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4472,16 +5075,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/jobTransportDemandChecklist"
                 },
-                "examples": {
-                  "example1": {
-                    "value": {
-                      "transportDemandPositionId": 2512341,
-                      "jobId": 51231,
-                      "loadingCheckmarkBool": false,
-                      "unloadingCheckmarkBool": false
-                    }
-                  }
-                }
+                "examples": {}
               }
             }
           },
@@ -4492,16 +5086,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/jobTransportDemandChecklist"
                 },
-                "examples": {
-                  "example1": {
-                    "value": {
-                      "transportDemandPositionId": 2512341,
-                      "jobId": 51231,
-                      "loadingCheckmarkBool": false,
-                      "unloadingCheckmarkBool": false
-                    }
-                  }
-                }
+                "examples": {}
               }
             }
           },
@@ -4538,9 +5123,9 @@
             }
           }
         },
-        "description": "Updates an the loaded or unloaded checkmark on an existing set of job transport.",
+        "description": "Updates an the loaded or unloaded checkmark on an existing set of job transport positions.",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "requestBody": {
           "content": {
@@ -4548,28 +5133,19 @@
               "schema": {
                 "$ref": "#/components/schemas/jobTransportDemandChecklist"
               },
-              "examples": {
-                "example1": {
-                  "value": {
-                    "transportDemandPositionId": 2512341,
-                    "jobId": 51231,
-                    "loadingCheckmarkBool": true,
-                    "unloadingCheckmarkBool": false
-                  }
-                }
-              }
+              "examples": {}
             }
           },
-          "description": "transport demand checklist to be set on given job Id."
+          "description": "transport position checklist to be set on given job Id."
         }
       },
       "parameters": []
     },
-    "/api/v3/scheduling/jobs/booking-activities": {
+    "/api/v3/rental/jobs/booking-activities": {
       "get": {
         "summary": "Search for booking activities on job",
         "tags": [
-          "SchedulingJob"
+          "RentalJob"
         ],
         "responses": {
           "200": {
@@ -4690,9 +5266,17 @@
               "maxLength": 30,
               "type": "string"
             }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
           }
         ],
-        "operationId": "GetSchedulingJobsBookingActivities",
+        "operationId": "GetRentalJobBookingActivities",
         "description": "By passing in the appropriate options, the service searches for job booking activities in the system."
       },
       "parameters": []
@@ -4951,7 +5535,7 @@
           "pOBox": {
             "maxLength": 50,
             "type": "string",
-            "description": "he post office box of the address. The P.O. Box should be transferred including the country-specific text component. For example, for Switzerland \\\"Postfach 12\\\" in England \\\"PO Box 12\\\".",
+            "description": "the post office box of the address. The P.O. Box should be transferred including the country-specific text component. For example, for Switzerland \\\"Postfach 12\\\" in England \\\"PO Box 12\\\".",
             "nullable": true
           },
           "additionalLine1": {
@@ -5046,6 +5630,370 @@
           "application"
         ]
       },
+      "customer": {
+        "title": "Customer",
+        "type": "object",
+        "additionalProperties": false,
+        "description": "The customer dto.",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "description": "Change id of the entry.",
+            "format": "int64"
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time"
+          },
+          "bpAddrId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Address id of the customer.",
+            "format": "int64"
+          },
+          "externalBpAddrId": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "External address id of the customer.",
+            "nullable": true
+          },
+          "origin": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string",
+            "description": "Origin of the customer (used together with origin id). Customers created in leva+ will have the origin \"leva+\". They will not have an origin id."
+          },
+          "customerId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Technical identification number of the customer.",
+            "format": "int64"
+          },
+          "externalCustomerId": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "External id of the customer - set if the customer was created in a third party system.",
+            "nullable": true
+          },
+          "c3341CustomerStatus": {
+            "maximum": 33419999,
+            "minimum": 33410000,
+            "type": "integer",
+            "description": "Status of the customer. Only customers with the status \"33410030 = customer\" may be used for orders.",
+            "format": "int32",
+            "nullable": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "minLength": 1,
+            "type": "string",
+            "description": "User which modified the entity."
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entity was last modified.",
+            "format": "date-time"
+          },
+          "isConsortium": {
+            "type": "boolean",
+            "description": "Defines whether or not this customer is a consortium.",
+            "nullable": true
+          },
+          "companyAccounts": {
+            "description": "List of company accounts this customer is assigned to.",
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/companyAccount"
+            }
+          }
+        },
+        "required": [
+          "changeId",
+          "changeDate",
+          "bpAddrId",
+          "origin",
+          "customerId",
+          "modifyUser",
+          "modifyDate"
+        ],
+        "x-examples": {
+          "example1": {
+            "changeId": -9223372036854776000,
+            "changeDate": "2019-08-24T14:15:22Z",
+            "bpAddrId": 0,
+            "externalBpAddrId": "string",
+            "origin": "string",
+            "customerId": 1,
+            "externalCustomerId": "string",
+            "c3341CustomerStatus": 33410000,
+            "modifyUser": "string",
+            "modifyDate": "2019-08-24T14:15:22Z",
+            "isConsortium": true,
+            "companyAccounts": [
+              {
+                "active": true,
+                "companyNo": 1,
+                "customerNo": "string",
+                "currency": "str",
+                "salesChannel": "str",
+                "cashPayment": true,
+                "privateSurcharge": true,
+                "c4504ChargingType": 45040000,
+                "c1502ChargingPeriodicity": 15020000,
+                "notes": "string",
+                "c4570PriceCategory": 45700000,
+                "c27PaymentTerms": 270000,
+                "paymentTerms": "string",
+                "costUnit": "string",
+                "chargingBpAddrId": 1,
+                "chargingExternalBpAddrId": "string",
+                "chargingCustomerId": "string",
+                "shippingBpAddrId": 1,
+                "shippingExternalBpAddrId": "string",
+                "c126ExportInformation": 1260000,
+                "c3305SalesArea": 33050000,
+                "yourRef": "string",
+                "customerSalesReward": [
+                  {
+                    "year": "strings",
+                    "rate": 0
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "companyAccount": {
+        "title": "CompanyAccount",
+        "type": "object",
+        "additionalProperties": false,
+        "description": "The company account dto.",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "description": "Is this entry active or not."
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The number of the company that this entry is assigned to.",
+            "format": "int64"
+          },
+          "customerNo": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Identification number of the customer."
+          },
+          "currency": {
+            "maxLength": 3,
+            "minLength": 1,
+            "type": "string",
+            "description": "Default currency in ISO 4217 Code (3 digit letter)."
+          },
+          "salesChannel": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "Sales channel of the customer.",
+            "nullable": true
+          },
+          "cashPayment": {
+            "type": "boolean",
+            "description": "Defines whether or not the customer pays cash."
+          },
+          "privateSurcharge": {
+            "type": "boolean",
+            "description": "Defines whether or not the customer pays a B2C surcharge."
+          },
+          "c4504ChargingType": {
+            "maximum": 45049999,
+            "minimum": 45040000,
+            "type": "integer",
+            "description": "Defines how the customer pays the bill (single or collective invoice).",
+            "format": "int64",
+            "nullable": true
+          },
+          "c1502ChargingPeriodicity": {
+            "maximum": 15029999,
+            "minimum": 15020000,
+            "type": "integer",
+            "description": "Defines the periodicity of invoicing.",
+            "format": "int64",
+            "nullable": true
+          },
+          "notes": {
+            "maxLength": 4000,
+            "minLength": 1,
+            "type": "string",
+            "description": "Internal notes about the customer.",
+            "nullable": true
+          },
+          "c4570PriceCategory": {
+            "maximum": 45709999,
+            "minimum": 45700000,
+            "type": "integer",
+            "description": "Defines if a customer has a price category.",
+            "format": "int64",
+            "nullable": true
+          },
+          "c27PaymentTerms": {
+            "maximum": 279999,
+            "minimum": 270000,
+            "type": "integer",
+            "description": "Code of the payment terms.",
+            "format": "int64",
+            "nullable": true
+          },
+          "paymentTerms": {
+            "maxLength": 30,
+            "minLength": 1,
+            "type": "string",
+            "description": "Shortname of the payment terms.",
+            "nullable": true
+          },
+          "costUnit": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string",
+            "description": "Cost unit of customer.",
+            "nullable": true
+          },
+          "chargingBpAddrId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal address number of the customer which is charged for the services.",
+            "format": "int64",
+            "nullable": true
+          },
+          "chargingExternalBpAddrId": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "External address number of the customer which is charged for the services.",
+            "nullable": true
+          },
+          "chargingCustomerId": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "External address id of the customer which is charged for the services.",
+            "nullable": true
+          },
+          "shippingBpAddrId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Address number of the customer invoice shipping address.",
+            "format": "int64",
+            "nullable": true
+          },
+          "shippingExternalBpAddrId": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "External address number of the customer invoice shipping address.",
+            "nullable": true
+          },
+          "c126ExportInformation": {
+            "maximum": 1269999,
+            "minimum": 1260000,
+            "type": "integer",
+            "description": "Code (C126) of the export identifier.",
+            "format": "int64",
+            "nullable": true
+          },
+          "c3305SalesArea": {
+            "maximum": 33059999,
+            "minimum": 33050000,
+            "type": "integer",
+            "description": "Sales area of the customer.",
+            "format": "int64",
+            "nullable": true
+          },
+          "yourRef": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Default reference of the customer. Is printed on the invoice.",
+            "nullable": true
+          },
+          "customerSalesReward": {
+            "description": "Sales reward programm for customer. Per year, a rate configures the payback reward for the customer.",
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/salesReward"
+            }
+          }
+        },
+        "required": [
+          "active",
+          "companyNo",
+          "customerNo",
+          "currency",
+          "cashPayment",
+          "privateSurcharge"
+        ],
+        "x-examples": {
+          "example1": {
+            "active": true,
+            "companyNo": 1,
+            "customerNo": "string",
+            "currency": "str",
+            "salesChannel": "str",
+            "cashPayment": true,
+            "privateSurcharge": true,
+            "c4504ChargingType": 45040000,
+            "c1502ChargingPeriodicity": 15020000,
+            "notes": "string",
+            "c4570PriceCategory": 45700000,
+            "c27PaymentTerms": 270000,
+            "paymentTerms": "string",
+            "costUnit": "string",
+            "chargingBpAddrId": 1,
+            "chargingExternalBpAddrId": "string",
+            "chargingCustomerId": "string",
+            "shippingBpAddrId": 1,
+            "shippingExternalBpAddrId": "string",
+            "c126ExportInformation": 1260000,
+            "c3305SalesArea": 33050000,
+            "yourRef": "string",
+            "customerSalesReward": [
+              {
+                "year": "string",
+                "rate": 0
+              }
+            ]
+          }
+        }
+      },
+      "fileDocumentLink": {
+        "type": "object",
+        "additionalProperties": false,
+        "title": "FileDocumentLink",
+        "description": "provides Id and Guid to a saved file. this structure is used to attach previously saved attachments to the application context. e.g. a photo made on a mobile device is saved to performis and then attached to a job as a job document.",
+        "x-examples": {
+          "example1": {
+            "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
+          }
+        },
+        "properties": {
+          "fileDocumentGuid": {
+            "type": "string",
+            "example": "9fbe6d5a-d558-4043-8455-9097e4e36174",
+            "description": "internal Guid of document. Must be provided together with document Id for verification purposes."
+          }
+        }
+      },
       "machineCounter": {
         "required": [
           "counterTypeCode"
@@ -5075,55 +6023,6 @@
           "example1": {
             "counterTypeCode": 45480010,
             "account": "4711"
-          }
-        }
-      },
-      "schedulingGroupCode": {
-        "required": [
-          "schedulingGroupCode"
-        ],
-        "type": "object",
-        "properties": {
-          "schedulingGroupCode": {
-            "maximum": 45429999,
-            "minimum": 45420000,
-            "type": "integer",
-            "description": "C4542 code of the machine grouping that combines machines of the same type and use\r\n(not necessarily the same model or manufacturer).",
-            "format": "int64",
-            "example": 45420010
-          }
-        },
-        "additionalProperties": false,
-        "description": "machine's additional scheduling group",
-        "title": "SchedulingGroupCode",
-        "x-examples": {
-          "example1": {
-            "schedulingGroupCode": 45420010
-          }
-        }
-      },
-      "fileDocumentLink": {
-        "type": "object",
-        "additionalProperties": false,
-        "title": "FileDocumentLink",
-        "description": "provides Id and Guid to a saved file. this structure is used to attach previously saved attachments to the application context. e.g. a photo made on a mobile device is saved to performis and then attached to a job as a job document.",
-        "x-examples": {
-          "example1": {
-            "fileDocumentId": 4738919,
-            "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-          }
-        },
-        "properties": {
-          "fileDocumentId": {
-            "type": "integer",
-            "format": "int64",
-            "example": 4738919,
-            "description": "internal document Id"
-          },
-          "fileDocumentGuid": {
-            "type": "string",
-            "example": "9fbe6d5a-d558-4043-8455-9097e4e36174",
-            "description": "internal Guid of document. Must be provided together with document Id for verification purposes."
           }
         }
       },
@@ -5743,7 +6642,7 @@
       "maintenanceWindow": {
         "type": "object",
         "additionalProperties": false,
-        "title": "maintenanceWindow",
+        "title": "MaintenanceWindow",
         "description": "information structure for active maintenance windows",
         "x-examples": {
           "example1": {
@@ -5816,17 +6715,198 @@
           }
         },
         "additionalProperties": {},
-        "title": "problemDetails",
+        "title": "ProblemDetails",
         "description": "",
         "x-examples": {
           "example1": {
-            "type": "Warning",
-            "title": "Sample Title",
-            "status": -99,
-            "detail": "This is a generic message to provide a sample return of how a message may be returned.",
-            "instance": "TEST",
+            "type": "string",
+            "title": "string",
+            "status": -2147483648,
+            "detail": "string",
+            "instance": "string",
             "property1": null,
             "property2": null
+          }
+        }
+      },
+      "projectStructure": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "The project structure that describes a general project. Projects may originate from various sources.",
+        "title": "ProjectStructure",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "description": "Change id of the entity.",
+            "format": "int64",
+            "nullable": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entity.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "origin": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string",
+            "description": "Origin of the entity."
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Is this entity active or not."
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "minLength": 1,
+            "type": "string",
+            "description": "User which modified the entity last."
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entity was last modified.",
+            "format": "date-time"
+          },
+          "description": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Title of the project or order."
+          },
+          "identification": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Identification (order no or project no).",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/projectStructureType"
+          },
+          "customerId": {
+            "type": "integer",
+            "description": "Customer id of the project or order.",
+            "format": "int64",
+            "nullable": true
+          },
+          "externalCustomerId": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "External customer id of the project or order.",
+            "nullable": true
+          },
+          "currency": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "Currency in ISO 4217 Code (3 digit letter).",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Start date of the project or order.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "description": "End date of the project or order.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "parent": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Identifikation string of the parent object. If the object is the root - no parent is given.",
+            "nullable": true
+          }
+        },
+        "required": [
+          "origin",
+          "active",
+          "modifyUser",
+          "modifyDate",
+          "description",
+          "type"
+        ],
+        "x-examples": {
+          "example1": {
+            "changeId": -9223372036854776000,
+            "changeDate": "2019-08-24T14:15:22Z",
+            "origin": "string",
+            "active": true,
+            "modifyUser": "string",
+            "modifyDate": "2019-08-24T14:15:22Z",
+            "description": "string",
+            "identification": "string",
+            "type": "PROJECT",
+            "customerId": -9223372036854776000,
+            "externalCustomerId": "string",
+            "currency": "str",
+            "startDate": "2019-08-24T14:15:22Z",
+            "endDate": "2019-08-24T14:15:22Z",
+            "parent": "string"
+          }
+        }
+      },
+      "projectStructureType": {
+        "enum": [
+          "PROJECT",
+          "ORDER"
+        ],
+        "type": "string",
+        "description": "Defines what type the entry is. While projects are only structural and will never have cost directly associated, orders are used to render services and charge assigned customer. It is possible to create an order without assigning it to a parent project.",
+        "x-examples": {
+          "example1": "PROJECT",
+          "example2": "ORDER"
+        },
+        "title": "ProjectStructureType"
+      },
+      "salesReward": {
+        "type": "object",
+        "properties": {
+          "year": {
+            "maxLength": 2100,
+            "minLength": 1000,
+            "type": "string",
+            "description": "The year the sales reward applies to.",
+            "nullable": true
+          },
+          "rate": {
+            "maximum": 99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Rate of the sales reward the customer receives.",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Sales reward program for customer. Per year, a rate configures the payback reward for the customer.",
+        "title": "SalesReward",
+        "x-examples": {}
+      },
+      "schedulingGroupCode": {
+        "required": [
+          "schedulingGroupCode"
+        ],
+        "type": "object",
+        "properties": {
+          "schedulingGroupCode": {
+            "maximum": 45429999,
+            "minimum": 45420000,
+            "type": "integer",
+            "description": "C4542 code of the machine grouping that combines machines of the same type and use\r\n(not necessarily the same model or manufacturer).",
+            "format": "int64",
+            "example": 45420010
+          }
+        },
+        "additionalProperties": false,
+        "description": "machine's additional scheduling group",
+        "title": "SchedulingGroupCode",
+        "x-examples": {
+          "example1": {
+            "schedulingGroupCode": 45420010
           }
         }
       },
@@ -5839,7 +6919,6 @@
             "signatureId": 0,
             "signeeName": "Jerry Miller",
             "signaturFileDocumentLink": {
-              "fileDocumentId": 4738919,
               "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
             }
           }
@@ -5945,302 +7024,8 @@
       "job": {
         "title": "Job",
         "type": "object",
-        "description": "scheduling job. can be of any job (rental, transport, service, ...)\nNOTE: may include or exclude the Details subset based on property DetailsIncluded.",
-        "x-examples": {
-          "example1": {
-            "companyNo": 100,
-            "jobId": 37281,
-            "detailsIncluded": false,
-            "reportEmailReceivers": "jack.smith@customerdomain.com; sarah.root@customermail.com",
-            "languageIsoCode": "US",
-            "employeeId": 3829,
-            "externalEmployeeId": "E839",
-            "orderNo": "A827109",
-            "orderTitle": "support on construction site A-51",
-            "jobFromDateTime": "2022-12-01T07:00:00",
-            "jobToDateTime": "2022-12-23T15:00:00",
-            "primaryJobLocation": {
-              "locationId": 8392,
-              "description": "Construction Site, Gate 4",
-              "transportRestriction": "limited height 4.5 meteres at gate 3, prefer gate 4 (no height limit)",
-              "address": {
-                "street": "Boca Chica Blvd.",
-                "houseNo": "52448",
-                "pOBox": "string",
-                "additionalLine1": "C/O Dr. Maria Smith",
-                "additionalLine2": "Environmental Dept / Building D2",
-                "country": "US",
-                "zipCode": "TX 78521",
-                "city": "Brownsville",
-                "latitude": 25.9850628,
-                "longitude": -97.1871375
-              }
-            },
-            "resourceNo": 84739,
-            "schedulingGroupCode": 45420018,
-            "jobStatusCode": 45550061,
-            "resourceTypeCode": 45500006,
-            "resourceStatusCode": 45540002,
-            "machineId": 482910,
-            "externalMachineId": "M38019",
-            "accessoryId": 509,
-            "externalAccessoryId": "A509",
-            "useCaseCode": 69510030,
-            "details": {
-              "scheduleList": [
-                {
-                  "jobScheduleId": 32345,
-                  "jobId": 1,
-                  "sortNo": 100,
-                  "description": "Loading",
-                  "dateTime": "2022-12-01T07:30:00",
-                  "isOccupied": true
-                }
-              ],
-              "contactList": [
-                {
-                  "contactId": 34511,
-                  "externalContactId": "KK34511",
-                  "jobId": 84721,
-                  "description": "construction site manager",
-                  "fullName": "Frank Flintstone",
-                  "phone": "+49 8745 951 18",
-                  "eMail": "ff@customerdomain.com",
-                  "isCustomer": true,
-                  "isContactOnLocation": true
-                }
-              ],
-              "bookingActivityList": [
-                {
-                  "bookingActivityId": 82091,
-                  "activityCode": "45570018",
-                  "activity": "Unloading",
-                  "active": true
-                }
-              ],
-              "locationList": [
-                {
-                  "locationId": 8392,
-                  "description": "Construction Site, Gate 4",
-                  "transportRestriction": "limited height 4.5 meteres at gate 3, prefer gate 4 (no height limit)",
-                  "address": {
-                    "street": "Boca Chica Blvd.",
-                    "houseNo": "52448",
-                    "pOBox": "string",
-                    "additionalLine1": "C/O Dr. Maria Smith",
-                    "additionalLine2": "Environmental Dept / Building D2",
-                    "country": "US",
-                    "zipCode": "TX 78521",
-                    "city": "Brownsville",
-                    "latitude": 25.9850628,
-                    "longitude": -97.1871375
-                  }
-                }
-              ],
-              "documentList": [
-                {
-                  "jobDocumentId": 583911,
-                  "jobId": 452341,
-                  "jobDocument": {
-                    "fileDocumentId": 4738919,
-                    "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                  }
-                }
-              ],
-              "timeStampList": [
-                {
-                  "jobTimestampId": 483915,
-                  "jobId": 0,
-                  "timestamp": "2012-04-23T18:25:43.511Z",
-                  "timestampTypeCode": 45560001,
-                  "bookingActivityId": 482012,
-                  "machineId": 45123,
-                  "externalMachineId": "MRK8938719",
-                  "employeeId": 241,
-                  "externalEmployeeId": "E492",
-                  "comment": "took longer than expected due to mess at the construction site"
-                }
-              ],
-              "reportList": [
-                {
-                  "reportId": 31234,
-                  "jobId": 4215,
-                  "reportFromDate": "2022-12-01",
-                  "reportToDate": "2012-12-23",
-                  "comment": "return was delayed due to traffic jam at our gates > not her fault!",
-                  "reportTimeStampList": [
-                    {
-                      "jobReportTimestampId": 483915,
-                      "reportId": 31234,
-                      "timestamp": "2012-04-23T07:31:20",
-                      "timestampTypeCode": 45560001,
-                      "source": "MobileApp",
-                      "bookingActivityId": 482012,
-                      "comment": "optional remark on activity, such as why something took longer"
-                    }
-                  ],
-                  "reportSurchargeList": [
-                    {
-                      "reportSurchargeId": 483915,
-                      "jobSurchargeId": 483915,
-                      "reportId": 31234,
-                      "dateTime": "2022-12-23T17:25:43",
-                      "assignment": "RENTAL_HANDOVER",
-                      "quantity": 23.2
-                    }
-                  ],
-                  "eMailNotificationList": [
-                    {
-                      "eMailNotificationId": 1,
-                      "reportId": 31234,
-                      "sender": "no-reply@mydomain.com",
-                      "sendDateTime": "2022-12-07T06:00:01",
-                      "createDateTime": "2022-12-06T08:35:54",
-                      "createdByemployeeId": 498,
-                      "createdByExternalEmployeeId": "E948",
-                      "modifyDateTime": "2022-12-06T12:00:20",
-                      "modifiedByEmployeeId": 341,
-                      "modifiedByExternalEmployeeId": "E341"
-                    }
-                  ],
-                  "customerSignature": {
-                    "signatureId": 0,
-                    "signeeName": "Jerry Miller",
-                    "signaturFileDocumentLink": {
-                      "fileDocumentId": 4738919,
-                      "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                    }
-                  },
-                  "employeeSignature": {
-                    "signatureId": 0,
-                    "signeeName": "Jerry Miller",
-                    "signaturFileDocumentLink": {
-                      "fileDocumentId": 4738919,
-                      "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                    }
-                  },
-                  "reportPdfFileDocumentLink": {
-                    "fileDocumentId": 4738919,
-                    "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                  }
-                }
-              ],
-              "surchargeList": [
-                {
-                  "jobSurchargeId": 483915,
-                  "surchargeId": 8739145,
-                  "jobId": 82916,
-                  "dateTime": "2012-04-23T18:25:43.511Z",
-                  "assignment": "RENTAL_HANDOVER",
-                  "quantity": 23.5,
-                  "comment": "reason for quantity: additional gas can filled on customers request",
-                  "reportId": 456223
-                }
-              ],
-              "problemList": [
-                {
-                  "problemId": 583911,
-                  "jobId": 452341,
-                  "problemType": 0,
-                  "description": "various impact dents on the left front side",
-                  "impactOnConditionBool": false,
-                  "visibleForCustomerBool": true,
-                  "customersFaultBool": false,
-                  "comment": "string",
-                  "solvedBool": false,
-                  "reportedByEmployeeId": 363,
-                  "reportedByExternalEmployeeId": "E465",
-                  "reportedDateTime": "TS289182-5",
-                  "reportingContext": "LEVA.JOB.HANDOVER",
-                  "reportingContextText": "Custom Job Application",
-                  "fixRequiredBool": false
-                }
-              ],
-              "transportDemandList": [
-                {
-                  "transportDemandPositionId": 2512341,
-                  "jobId": 51231,
-                  "description": "Custom Fluid B028",
-                  "details": "handle with care, keep up-side up at all times",
-                  "unitOfMeasure": "Liter",
-                  "decimalCount": 2,
-                  "transportQuantity": 351.4,
-                  "loadedQuantity": 351.5,
-                  "unloadedQuantity": 351.4,
-                  "loadingDateTime": "2022-12-30T13:30:09",
-                  "loadingCheckmarkBool": false,
-                  "unloadingDateTime": "2019-08-24T14:15:22Z",
-                  "unloadingCheckmarkBool": false,
-                  "pickupLocation": {
-                    "street": "Boca Chica Blvd.",
-                    "houseNo": "52448",
-                    "pOBox": "string",
-                    "additionalLine1": "C/O Dr. Maria Smith",
-                    "additionalLine2": "Environmental Dept / Building D2",
-                    "country": "US",
-                    "zipCode": "TX 78521",
-                    "city": "Brownsville",
-                    "latitude": 25.9850628,
-                    "longitude": -97.1871375
-                  },
-                  "deliveryLocation": {
-                    "street": "Boca Chica Blvd.",
-                    "houseNo": "52448",
-                    "pOBox": "string",
-                    "additionalLine1": "C/O Dr. Maria Smith",
-                    "additionalLine2": "Environmental Dept / Building D2",
-                    "country": "US",
-                    "zipCode": "TX 78521",
-                    "city": "Brownsville",
-                    "latitude": 25.9850628,
-                    "longitude": -97.1871375
-                  },
-                  "rentalJobId": 435123
-                }
-              ],
-              "rentalHandover": {
-                "handoverId": 483915,
-                "jobId": 34451,
-                "employeeId": 341,
-                "externalEmployeeId": "E341",
-                "handoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
-                "customerBriefed": true,
-                "comment": "customer already knows the machine very well",
-                "customerSignature": {
-                  "signatureId": 0,
-                  "signeeName": "Jerry Miller",
-                  "signaturFileDocumentLink": {
-                    "fileDocumentId": 4738919,
-                    "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                  }
-                }
-              },
-              "rentalReturn": {
-                "returnId": 483915,
-                "jobId": 45612,
-                "employeeId": 345,
-                "externalEmployeeId": "E345",
-                "returnStartedDateTime": "2012-04-23T18:25:43.511Z",
-                "jobEndDateTime": "2012-04-22T15:00:00.511Z",
-                "damage": false,
-                "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!",
-                "customerSignature": {
-                  "signatureId": 0,
-                  "signeeName": "Jerry Miller",
-                  "signaturFileDocumentLink": {
-                    "fileDocumentId": 4738919,
-                    "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                  }
-                }
-              },
-              "rentalCompletion": {
-                "completionId": 483915,
-                "jobId": 45612,
-                "completed": false
-              }
-            }
-          }
-        },
+        "description": "job can be of any type (rental, transport, service, ...)\nNOTE: may include or exclude the Details subset based on property DetailsIncluded.",
+        "x-examples": {},
         "properties": {
           "companyNo": {
             "maximum": 999999,
@@ -6259,11 +7044,11 @@
             "description": "Job ID of performis / leva+. will be set internally - leave empty if not known.",
             "nullable": true
           },
-          "detailsIncluded": {
-            "type": "boolean",
-            "example": true,
-            "description": "reflects the requesting parameter on wether or not the dataset includes the Details property.\n\nunclude the details only, when necessary. Use the requesting parameter to avoid unnecessary loads.",
-            "default": false
+          "changeDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "date of last change on job",
+            "nullable": true
           },
           "reportEmailReceivers": {
             "type": "string",
@@ -6271,22 +7056,10 @@
             "example": "jack.smith@customerdomain.com; sarah.root@customermail.com",
             "nullable": true
           },
-          "languageIsoCode": {
-            "type": "string",
-            "description": "two digit language code (639-1)",
-            "example": "US",
-            "nullable": true
-          },
           "employeeId": {
             "type": "number",
             "example": 3829,
             "description": "internal employee ID to which the job is assigned to",
-            "nullable": true
-          },
-          "externalEmployeeId": {
-            "type": "string",
-            "example": "E839",
-            "description": "external employee ID to which the job is assigned to",
             "nullable": true
           },
           "orderNo": {
@@ -6297,13 +7070,13 @@
             "type": "string",
             "example": "support on construction site A-51"
           },
-          "jobFromDateTime": {
+          "jobDateTimeFrom": {
             "type": "string",
             "format": "date-time",
             "description": "scheduled start date and time for this job",
             "example": "2022-12-01T07:00:00"
           },
-          "jobToDateTime": {
+          "jobDateTimeTo": {
             "type": "string",
             "format": "date-time",
             "description": "scheduled end date and time for this job",
@@ -6313,8 +7086,7 @@
             "$ref": "#/components/schemas/jobLocation"
           },
           "resourceNo": {
-            "type": "number",
-            "format": "date-time",
+            "type": "integer",
             "description": "the resource demand number to which this job is assigned to.\n\neach order can have multiple resource demands. they are numbered 0001 onwards and are unique within the order. (similar to order-line position no., but for resource demands)",
             "example": 84739
           },
@@ -6378,8 +7150,8 @@
           "detailsIncluded",
           "orderNo",
           "orderTitle",
-          "jobFromDateTime",
-          "jobToDateTime",
+          "jobDateTimeFrom",
+          "jobDateTimeTo",
           "primaryJobLocation",
           "resourceNo",
           "schedulingGroupCode",
@@ -6392,261 +7164,7 @@
       "jobDetails": {
         "title": "JobDetails",
         "description": "detail information on a job such as scheduled activities, contacts and locations.\nNOTE: may be empty if not specifically requested (see Job request parameters and properties)",
-        "x-examples": {
-          "example1": {
-            "scheduleList": [
-              {
-                "jobScheduleId": 32345,
-                "jobId": 1,
-                "sortNo": 100,
-                "description": "Loading",
-                "dateTime": "2022-12-01T07:30:00",
-                "isOccupied": true
-              }
-            ],
-            "contactList": [
-              {
-                "contactId": 34511,
-                "externalContactId": "KK34511",
-                "jobId": 84721,
-                "description": "construction site manager",
-                "fullName": "Frank Flintstone",
-                "phone": "+49 8745 951 18",
-                "eMail": "ff@customerdomain.com",
-                "isCustomer": true,
-                "isContactOnLocation": true
-              }
-            ],
-            "bookingActivityList": [
-              {
-                "bookingActivityId": 82091,
-                "activityCode": "45570018",
-                "activity": "Unloading",
-                "active": true
-              }
-            ],
-            "locationList": [
-              {
-                "locationId": 8392,
-                "description": "Construction Site, Gate 4",
-                "transportRestriction": "limited height 4.5 meteres at gate 3, prefer gate 4 (no height limit)",
-                "address": {
-                  "street": "Boca Chica Blvd.",
-                  "houseNo": "52448",
-                  "pOBox": "string",
-                  "additionalLine1": "C/O Dr. Maria Smith",
-                  "additionalLine2": "Environmental Dept / Building D2",
-                  "country": "US",
-                  "zipCode": "TX 78521",
-                  "city": "Brownsville",
-                  "latitude": 25.9850628,
-                  "longitude": -97.1871375
-                }
-              }
-            ],
-            "documentList": [
-              {
-                "jobDocumentId": 583911,
-                "jobId": 452341,
-                "jobDocument": {
-                  "fileDocumentId": 4738919,
-                  "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                }
-              }
-            ],
-            "timeStampList": [
-              {
-                "jobTimestampId": 483915,
-                "jobId": 0,
-                "timestamp": "2012-04-23T18:25:43.511Z",
-                "timestampTypeCode": 45560001,
-                "bookingActivityId": 482012,
-                "machineId": 45123,
-                "externalMachineId": "MRK8938719",
-                "employeeId": 241,
-                "externalEmployeeId": "E492",
-                "comment": "took longer than expected due to mess at the construction site"
-              }
-            ],
-            "reportList": [
-              {
-                "reportId": 31234,
-                "jobId": 4215,
-                "reportFromDate": "2022-12-01",
-                "reportToDate": "2012-12-23",
-                "comment": "return was delayed due to traffic jam at our gates > not her fault!",
-                "reportTimeStampList": [
-                  {
-                    "jobReportTimestampId": 483915,
-                    "reportId": 31234,
-                    "timestamp": "2012-04-23T07:31:20",
-                    "timestampTypeCode": 45560001,
-                    "source": "MobileApp",
-                    "bookingActivityId": 482012,
-                    "comment": "optional remark on activity, such as why something took longer"
-                  }
-                ],
-                "reportSurchargeList": [
-                  {
-                    "reportSurchargeId": 483915,
-                    "jobSurchargeId": 483915,
-                    "reportId": 31234,
-                    "dateTime": "2022-12-23T17:25:43",
-                    "assignment": "RENTAL_HANDOVER",
-                    "quantity": 23.2
-                  }
-                ],
-                "eMailNotificationList": [
-                  {
-                    "eMailNotificationId": 1,
-                    "reportId": 31234,
-                    "sender": "no-reply@mydomain.com",
-                    "sendDateTime": "2022-12-07T06:00:01",
-                    "createDateTime": "2022-12-06T08:35:54",
-                    "createdByemployeeId": 498,
-                    "createdByExternalEmployeeId": "E948",
-                    "modifyDateTime": "2022-12-06T12:00:20",
-                    "modifiedByEmployeeId": 341,
-                    "modifiedByExternalEmployeeId": "E341"
-                  }
-                ],
-                "customerSignature": {
-                  "signatureId": 0,
-                  "signeeName": "Jerry Miller",
-                  "signaturFileDocumentLink": {
-                    "fileDocumentId": 4738919,
-                    "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                  }
-                },
-                "employeeSignature": {
-                  "signatureId": 0,
-                  "signeeName": "Jerry Miller",
-                  "signaturFileDocumentLink": {
-                    "fileDocumentId": 4738919,
-                    "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                  }
-                },
-                "reportPdfFileDocumentLink": {
-                  "fileDocumentId": 4738919,
-                  "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                }
-              }
-            ],
-            "surchargeList": [
-              {
-                "jobSurchargeId": 483915,
-                "surchargeId": 8739145,
-                "jobId": 82916,
-                "dateTime": "2012-04-23T18:25:43.511Z",
-                "assignment": "RENTAL_HANDOVER",
-                "quantity": 23.5,
-                "comment": "reason for quantity: additional gas can filled on customers request",
-                "reportId": 456223
-              }
-            ],
-            "problemList": [
-              {
-                "problemId": 583911,
-                "jobId": 452341,
-                "problemType": 0,
-                "description": "various impact dents on the left front side",
-                "impactOnConditionBool": false,
-                "visibleForCustomerBool": true,
-                "customersFaultBool": false,
-                "comment": "string",
-                "solvedBool": false,
-                "reportedByEmployeeId": 363,
-                "reportedByExternalEmployeeId": "E465",
-                "reportedDateTime": "TS289182-5",
-                "reportingContext": "LEVA.JOB.HANDOVER",
-                "reportingContextText": "Custom Job Application",
-                "fixRequiredBool": false
-              }
-            ],
-            "transportDemandList": [
-              {
-                "transportDemandPositionId": 2512341,
-                "jobId": 51231,
-                "description": "Custom Fluid B028",
-                "details": "handle with care, keep up-side up at all times",
-                "unitOfMeasure": "Liter",
-                "decimalCount": 2,
-                "transportQuantity": 351.4,
-                "loadedQuantity": 351.5,
-                "unloadedQuantity": 351.4,
-                "loadingDateTime": "2022-12-30T13:30:09",
-                "loadingCheckmarkBool": false,
-                "unloadingDateTime": "2019-08-24T14:15:22Z",
-                "unloadingCheckmarkBool": false,
-                "pickupLocation": {
-                  "street": "Boca Chica Blvd.",
-                  "houseNo": "52448",
-                  "pOBox": "string",
-                  "additionalLine1": "C/O Dr. Maria Smith",
-                  "additionalLine2": "Environmental Dept / Building D2",
-                  "country": "US",
-                  "zipCode": "TX 78521",
-                  "city": "Brownsville",
-                  "latitude": 25.9850628,
-                  "longitude": -97.1871375
-                },
-                "deliveryLocation": {
-                  "street": "Boca Chica Blvd.",
-                  "houseNo": "52448",
-                  "pOBox": "string",
-                  "additionalLine1": "C/O Dr. Maria Smith",
-                  "additionalLine2": "Environmental Dept / Building D2",
-                  "country": "US",
-                  "zipCode": "TX 78521",
-                  "city": "Brownsville",
-                  "latitude": 25.9850628,
-                  "longitude": -97.1871375
-                },
-                "rentalJobId": 435123
-              }
-            ],
-            "rentalHandover": {
-              "handoverId": 483915,
-              "jobId": 34451,
-              "employeeId": 341,
-              "externalEmployeeId": "E341",
-              "handoverCompletedDateTime": "2012-04-23T18:25:43.511Z",
-              "customerBriefed": true,
-              "comment": "customer already knows the machine very well",
-              "customerSignature": {
-                "signatureId": 0,
-                "signeeName": "Jerry Miller",
-                "signaturFileDocumentLink": {
-                  "fileDocumentId": 4738919,
-                  "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                }
-              }
-            },
-            "rentalReturn": {
-              "returnId": 483915,
-              "jobId": 45612,
-              "employeeId": 345,
-              "externalEmployeeId": "E345",
-              "returnStartedDateTime": "2012-04-23T18:25:43.511Z",
-              "jobEndDateTime": "2012-04-22T15:00:00.511Z",
-              "damage": false,
-              "comment": "very good condition, customer cleaned it and even replaced a missing screen wiper!",
-              "customerSignature": {
-                "signatureId": 0,
-                "signeeName": "Jerry Miller",
-                "signaturFileDocumentLink": {
-                  "fileDocumentId": 4738919,
-                  "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
-                }
-              }
-            },
-            "rentalCompletion": {
-              "completionId": 483915,
-              "jobId": 45612,
-              "completed": false
-            }
-          }
-        },
+        "x-examples": {},
         "type": "object",
         "properties": {
           "scheduleList": {
@@ -6703,7 +7221,7 @@
               "$ref": "#/components/schemas/jobProblem"
             }
           },
-          "transportDemandList": {
+          "transportPositionList": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/jobTransportDemand"
@@ -7027,7 +7545,6 @@
               "signatureId": 0,
               "signeeName": "Jerry Miller",
               "signaturFileDocumentLink": {
-                "fileDocumentId": 4738919,
                 "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
               }
             },
@@ -7035,12 +7552,10 @@
               "signatureId": 0,
               "signeeName": "Jerry Miller",
               "signaturFileDocumentLink": {
-                "fileDocumentId": 4738919,
                 "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
               }
             },
             "reportPdfFileDocumentLink": {
-              "fileDocumentId": 4738919,
               "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
             }
           }
@@ -7407,7 +7922,6 @@
               "signatureId": 0,
               "signeeName": "Jerry Miller",
               "signaturFileDocumentLink": {
-                "fileDocumentId": 4738919,
                 "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
               }
             }
@@ -7488,7 +8002,6 @@
               "signatureId": 0,
               "signeeName": "Jerry Miller",
               "signaturFileDocumentLink": {
-                "fileDocumentId": 4738919,
                 "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
               }
             }
@@ -7819,8 +8332,8 @@
           "example1": {
             "jobDocumentId": 583911,
             "jobId": 452341,
+            "jobDocumentName": "string",
             "jobDocument": {
-              "fileDocumentId": 4738919,
               "fileDocumentGuid": "9fbe6d5a-d558-4043-8455-9097e4e36174"
             }
           }
@@ -7838,6 +8351,11 @@
             "description": "unique identifier for the job on which this document is assigned to",
             "example": 452341
           },
+          "jobDocumentName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The name of the document."
+          },
           "jobDocument": {
             "$ref": "#/components/schemas/fileDocumentLink"
           }
@@ -7846,25 +8364,24 @@
           "jobId"
         ]
       },
-      "jobTransportDemand": {
-        "title": "JobTransportDemand",
+      "jobTransportPosition": {
+        "title": "JobTransportPosition",
         "type": "object",
-        "description": "job transport demand clarifies what, how much, needs to go where and when.",
+        "description": "job transport positions clarifies what, how much, needs to go where and when.",
         "x-examples": {
           "example1": {
             "transportDemandPositionId": 2512341,
             "jobId": 51231,
             "description": "Custom Fluid B028",
-            "details": "handle with care, keep up-side up at all times",
             "unitOfMeasure": "Liter",
             "decimalCount": 2,
             "transportQuantity": 351.4,
             "loadedQuantity": 351.5,
             "unloadedQuantity": 351.4,
             "loadingDateTime": "2022-12-30T13:30:09",
-            "loadingCheckmarkBool": false,
+            "loadingCompleted": false,
             "unloadingDateTime": "2019-08-24T14:15:22Z",
-            "unloadingCheckmarkBool": false,
+            "unloadingCompleted": false,
             "pickupLocation": {
               "street": "Boca Chica Blvd.",
               "houseNo": "52448",
@@ -7910,12 +8427,6 @@
             "example": "Custom Fluid B028",
             "description": "description of good"
           },
-          "details": {
-            "type": "string",
-            "example": "handle with care, keep up-side up at all times",
-            "description": "additional detail / information",
-            "nullable": true
-          },
           "unitOfMeasure": {
             "type": "string",
             "example": "Liter",
@@ -7950,7 +8461,7 @@
             "description": "Planned loading date and time.",
             "example": "2022-12-30T13:30:09"
           },
-          "loadingCheckmarkBool": {
+          "loadingCompleted": {
             "type": "boolean",
             "format": "date-time",
             "default": false,
@@ -7961,7 +8472,7 @@
             "format": "date-time",
             "description": "Planned unloading date and time."
           },
-          "unloadingCheckmarkBool": {
+          "unloadingCompleted": {
             "type": "boolean",
             "format": "date-time",
             "default": false,
@@ -7984,38 +8495,38 @@
           "jobId"
         ]
       },
-      "jobTransportDemandChecklist": {
-        "title": "JobTransportDemandChecklist",
+      "jobTransportPositionChecklist": {
+        "title": "JobTransportPositionChecklist",
         "type": "object",
-        "description": "Job transport demand checklist clarifies which transport demand has been loaded and or unloaded.\nAny transport from point A to B contains a loading and unloading checkmark that can be set by the user.",
+        "description": "Job transport position checklist clarifies which position has been loaded and or unloaded.\nAny transport from point A to B contains a loading and unloading checkmark that can be set by the user.",
         "x-examples": {
           "example1": {
-            "transportDemandPositionId": 2512341,
+            "transportPositionId": 2512341,
             "jobId": 51231,
-            "loadingCheckmarkBool": false,
-            "unloadingCheckmarkBool": false
+            "loadingCompleted": false,
+            "unloadingCompleted": false
           }
         },
         "properties": {
-          "transportDemandPositionId": {
+          "transportPositionId": {
             "type": "number",
             "example": 2512341,
             "minimum": 1,
             "maximum": 9999999999,
-            "description": "internal unique id for this job transport demand"
+            "description": "internal unique id for this job transport position"
           },
           "jobId": {
             "type": "number",
             "example": 51231,
             "description": "unique job id"
           },
-          "loadingCheckmarkBool": {
+          "loadingCompleted": {
             "type": "boolean",
             "format": "date-time",
             "default": false,
             "description": "checkmark wether or not loading has been completed."
           },
-          "unloadingCheckmarkBool": {
+          "unloadingCompleted": {
             "type": "boolean",
             "format": "date-time",
             "default": false,
@@ -8023,7 +8534,7 @@
           }
         },
         "required": [
-          "transportDemandPositionId",
+          "transportPositionId",
           "jobId"
         ]
       }
@@ -8046,7 +8557,7 @@
       "name": "MasterData"
     },
     {
-      "name": "SchedulingJob"
+      "name": "RentalJob"
     }
   ]
 }
