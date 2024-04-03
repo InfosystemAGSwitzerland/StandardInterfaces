@@ -193,7 +193,7 @@
             },
             "in": "query",
             "name": "origin",
-            "description": "Get all the entities of a certain origin"
+            "description": "Get all the entities of a certain origin."
           }
         ]
       }
@@ -293,8 +293,8 @@
               "type": "string"
             },
             "in": "query",
-            "description": "Optional search string for looking up a record within name and search term fields.",
-            "name": "searchString"
+            "name": "searchString",
+            "description": "Optional search string for looking up a record within name and search term fields."
           },
           {
             "schema": {
@@ -325,7 +325,7 @@
             },
             "in": "query",
             "name": "changesSinceDatetime",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\\r\\nparameters (searchString, internalOrderId,\\r\\nexternalOrderId)."
+            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\\r\\nparameters (searchString, orderId,\\r\\nexternalOrderId)."
           },
           {
             "schema": {
@@ -333,7 +333,7 @@
             },
             "in": "query",
             "name": "changesSinceChangeId",
-            "description": "Get all the entities which were added/edited since a specific OrderId. Cannot be used together with search\\r\\nparameters (searchString, internalOrderId,\\r\\nexternalOrderId)."
+            "description": "Get all the entities which were added/edited since a specific orderId. Cannot be used together with search\\r\\nparameters (searchString, orderId,\\r\\nexternalOrderId)."
           },
           {
             "schema": {
@@ -343,7 +343,7 @@
               "maximum": 9999999999
             },
             "in": "query",
-            "name": "internalOrderId",
+            "name": "orderId",
             "description": "Retrieve a specific record by internal order Id. Ignores other search options if provided."
           },
           {
@@ -363,7 +363,7 @@
             },
             "in": "query",
             "name": "orderType",
-            "description": "Get all the entities of a certain order type (M: Material P: Production V: Sales E: Purchase A: Other)"
+            "description": "Get all the entities of a certain order type. (M: Material P: Production V: Sales E: Purchase A: Other)"
           },
           {
             "schema": {
@@ -373,13 +373,13 @@
             },
             "in": "query",
             "name": "origin",
-            "description": "Get all the entities of a certain origin"
+            "description": "Get all the entities of a certain origin."
           }
         ],
         "description": "Returns all matching orders"
       },
       "put": {
-        "summary": "Updates an existing base order if internal or external Id match.\nCreates a base order if neither internal or external Id is provided or no matching record could be found",
+        "summary": "Updates an existing base order if internal or external Id match.\nCreates a base order if neither internal or external Id is provided or no matching record could be found.",
         "operationId": "putBaseOrders",
         "tags": [
           "MasterData"
@@ -670,7 +670,7 @@
           "externalFixedAssetNo": {
             "type": "string",
             "maxLength": 50,
-            "description": "Third-party fixed asset number - This Id must be unique within the origin (Origin field). As Id it is recommended to use either the Primary Key of the foreign system or a GUID (Global Unique Identifier). Attention, if External Ids are used, no performis Ids may be used in parallel, additionally the Origin field is mandatory. E.g. Id \"629c5d97-a225-4b08-877c-e8a802c23014\" for origin \"SAP\". To identify the fixed asset, either the performis fixed asset no (fixedAssetNo) or the Id of the external system (externalFixedAssetNo) is required.",
+            "description": "Third-party fixed asset number - This Id must be unique within the origin (origin field). As Id it is recommended to use either the Primary Key of the foreign system or a GUID (Global Unique Identifier). Attention, if External Ids are used, no performis Ids may be used in parallel, additionally the origin field is mandatory. E.g. Id \"629c5d97-a225-4b08-877c-e8a802c23014\" for origin \"SAP\". To identify the fixed asset, either the performis fixed asset no (fixedAssetNo) or the Id of the external system (externalFixedAssetNo) is required.",
             "example": "aasd9lkj-jklajsd"
           },
           "companyNo": {
@@ -678,7 +678,7 @@
             "format": "int64",
             "minimum": 1,
             "maximum": 999999,
-            "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system",
+            "description": "The companyNo identifies the customer via the corresponding number in the mandate system",
             "example": 20
           },
           "description": {
@@ -712,20 +712,26 @@
       "order": {
         "title": "Order",
         "type": "object",
-        "description": "By passing the appropriate option the service get",
+        "description": "By passing the appropriate option the service get.",
         "properties": {
-          "internalOrderId": {
+          "orderId": {
             "type": "integer",
             "format": "int64",
-            "description": "The order Id uniquely identifies an order in performis. To identify an order, either the performis order Id (OrderId) or the Id of the external system (ExternalOrderId) is required.",
+            "description": "The order Id uniquely identifies an order in performis. To identify an order, either the performis order Id (orderId) or the Id of the external system (externalOrderId) is required.",
             "example": 123456789,
             "minimum": 0,
             "maximum": 9999999999
           },
+          "origin": {
+            "type": "string",
+            "maxLength": 10,
+            "example": "ISBRW",
+            "description": "The system of origin the order"
+          },
           "externalOrderId": {
             "type": "string",
             "maxLength": 50,
-            "description": "Third-party order Id - This Id must be unique within the origin (Origin field). As Id it is recommended to use either the Primary Key of the foreign system or a GUID (Global Unique Identifier). Attention, if External Ids are used, no performis Ids may be used in parallel, additionally the Origin field is mandatory. E.g. Id \"629c5d97-a225-4b08-877c-e8a802c23014\" for origin \"SAP\". To identify the business partner, either the performis order (OrderId) or the Id of the external system (ExternalOrderId) is required.",
+            "description": "Third-party order Id - This Id must be unique within the origin (origin field). As Id it is recommended to use either the Primary Key of the foreign system or a GUID (Global Unique Identifier). Attention, if External Ids are used, no performis Ids may be used in parallel, additionally the origin field is mandatory. E.g. Id \"629c5d97-a225-4b08-877c-e8a802c23014\" for origin \"SAP\". To identify the business partner, either the performis order (orderId) or the Id of the external system (externalOrderId) is required.",
             "example": "629c5d97-a225-4b08-877c-e8a802c23014"
           },
           "orderNo": {
@@ -738,73 +744,67 @@
             "type": "integer",
             "format": "int64",
             "example": 27,
-            "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system",
+            "description": "The companyNo identifies the customer via the corresponding number in the mandate system.",
             "minimum": 0,
             "maximum": 999999
           },
           "description": {
             "type": "string",
             "maxLength": 100,
-            "description": "The Description is a short description / title of the order",
+            "description": "The description is a short description / title of the order",
             "example": "Transportauftrag 1151"
           },
-          "internalBpAddrId": {
+          "orderType": {
+            "type": "string",
+            "maxLength": 1,
+            "description": "The orderType identifies the type of the order.\nM: Material\nP: Production\nV: Sales\nE: Purchase\nA: Other",
+            "example": "V"
+          },
+          "orderStatus": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1040500,
+            "description": "Code that indentfies the current state of the order.\n1040100: Recorded\n1040150: In delivery\n1040170: Partially delivered\n1040480: Delivered\n1040490: Ready for invoicing\n1040500: Completed/invoiced\n1040600: Deleted",
+            "minimum": 0,
+            "maximum": 9999999
+          },
+          "bpAddrId": {
             "type": "integer",
             "format": "int64",
             "example": 2000070,
-            "description": "The BpAddrId references the business partner addess within performis",
+            "description": "The bpAddrId references the business partner addess within performis.",
             "minimum": 0,
             "maximum": 9999999999
           },
           "externalBpAddrId": {
             "type": "string",
             "maxLength": 50,
-            "description": "The ExternalBpAddrId references the business partner addess within the customer system",
+            "description": "The externalBpAddrId references the business partner addess within the customer system.",
             "example": "321687.01"
           },
           "responsiblePerson": {
             "type": "string",
             "maxLength": 30,
             "example": "John Doe",
-            "description": "The person responsable for the order"
-          },
-          "orderType": {
-            "type": "string",
-            "maxLength": 1,
-            "description": "The OrderType identifies the type of the order\nM: Material\nP: Production\nV: Sales\nE: Purchase\nA: Other",
-            "example": "V"
-          },
-          "origin": {
-            "type": "string",
-            "maxLength": 10,
-            "example": "ISBRW",
-            "description": "The system of origin the order"
+            "description": "The person responsable for the order."
           },
           "costCenterNo": {
             "type": "string",
             "maxLength": 6,
             "example": "200",
-            "description": "Cost center of the order"
+            "description": "Cost center of the order."
           },
           "costUnitNo": {
             "type": "string",
             "maxLength": 20,
             "example": "13",
-            "description": "Cost unit of the order"
+            "description": "Cost unit of the order."
           },
           "salesChannelNo": {
             "type": "string",
             "maxLength": 3,
-            "description": "Identifies the sale channel",
+            "description": "Identifies the sale channel.",
             "example": "ABC"
-          },
-          "orderStatus": {
-            "type": "integer",
-            "format": "int64",
-            "example": 1040500,
-            "description": "Code that indentfies the current state of the order\n1040100: Recorded\n1040150: In delivery\n1040170: Partially delivered\n1040480: Delivered\n1040490: Ready for invoicing\n1040500: Completed/invoiced\n1040600: Deleted",
-            "minimum": 0,
-            "maximum": 9999999
           },
           "attributeValueSet": {
             "$ref": "#/components/schemas/attributeValueSet"
@@ -816,40 +816,26 @@
           "chargingType": {
             "type": "string",
             "maxLength": 2,
-            "description": "Defines whether the order is reallocated\nKT: cost unit\nKS: cost centre\nAU: order",
+            "description": "Defines whether the order is reallocated.\nKT: cost unit\nKS: cost centre\nAU: order",
             "example": "KT"
           },
           "budgetCharging": {
             "type": "boolean",
-            "description": "Shows whether the order is relevant to the budget"
+            "description": "Shows whether the order is relevant to the budget."
           },
           "orderDate": {
             "type": "string",
             "format": "date",
             "example": "2023-01-05",
-            "description": "Date the order was placed"
+            "description": "Date the order was placed."
           },
           "currency": {
             "type": "string",
             "example": "CHF",
             "maxLength": 3,
-            "description": "Currency as ISO code"
+            "description": "Currency as ISO code."
           },
-          "documentId": {
-            "type": "integer",
-            "format": "int64",
-            "example": 1234567890,
-            "description": "Id that identifies the stored \"physical\" document",
-            "minimum": 0,
-            "maximum": 9999999999
-          },
-          "documentGUID": {
-            "type": "string",
-            "format": "uuid",
-            "description": "GUID that identifies the stored \"physical\" document",
-            "example": "FDBF257B-2EA6-4734-BF66-ECA38E1C9A0E"
-          },
-          "isManualPost": {
+          "isManualPostable": {
             "type": "boolean",
             "description": "Shows whether the order can be booked in accounting? "
           }
@@ -862,16 +848,16 @@
           "origin",
           "orderStatus",
           "isCaccOrder",
-          "isManualPost"
+          "isManualPostable"
         ],
         "x-examples": {
           "example-1": {
-            "internalOrderId": 123456789,
+            "orderId": 123456789,
             "externalOrderId": "629c5d97-a225-4b08-877c-e8a802c23014",
             "orderNo": "V005126.10",
             "companyNo": 27,
             "description": "Transportauftrag 1151",
-            "internalBpAddrId": 2000070,
+            "bpAddrId": 2000070,
             "externalBpAddrId": "321687.01",
             "responsiblePerson": "John Doe",
             "orderType": "V",
@@ -1004,9 +990,7 @@
             "budgetCharging": true,
             "orderDate": "2023-01-05",
             "currency": "CHF",
-            "documentId": 1234567890,
-            "documentGUID": "FDBF257B-2EA6-4734-BF66-ECA38E1C9A0E",
-            "manualPost": true
+            "isManualPostable": true
           }
         }
       },
@@ -1033,18 +1017,18 @@
                 "maximum": 99999999,
                 "minimum": 0,
                 "type": "integer",
-                "description": "Id of code",
+                "description": "Id of code.",
                 "format": "int32"
               },
               "text": {
                 "maxLength": 100,
                 "type": "string",
-                "description": "Description or title of the codevalue"
+                "description": "Description or title of the codevalue."
               },
               "shorttext": {
                 "maxLength": 12,
                 "type": "string",
-                "description": "Short-description or title of the codevalue",
+                "description": "Short-description or title of the codevalue.",
                 "nullable": true
               }
             },
@@ -1205,36 +1189,36 @@
             "properties": {
               "attributeDefinitionId": {
                 "type": "integer",
-                "description": "Id of attribute definition",
+                "description": "Id of attribute definition.",
                 "format": "int64"
               },
               "attributeDefinitionDescription": {
                 "maxLength": 80,
                 "type": "string",
-                "description": "Description of the attribute definition",
+                "description": "Description of the attribute definition.",
                 "nullable": true
               },
               "stringValue": {
                 "maxLength": 1000,
                 "type": "string",
-                "description": "a string value",
+                "description": "a string value.",
                 "nullable": true
               },
               "numberValue": {
                 "type": "number",
-                "description": "Number or decimal value",
+                "description": "Number or decimal value.",
                 "format": "double",
                 "nullable": true
               },
               "dateValue": {
                 "type": "string",
-                "description": "Date value",
+                "description": "Date value.",
                 "format": "date-time",
                 "nullable": true
               },
               "boolValue": {
                 "type": "boolean",
-                "description": "a true or false value",
+                "description": "a true or false value.",
                 "nullable": true
               },
               "codeValues": {
@@ -1242,7 +1226,7 @@
                 "items": {
                   "$ref": "#/components/schemas/codeValue"
                 },
-                "description": "Gets or Sets CodeValue",
+                "description": "Gets or Sets CodeValue.",
                 "nullable": true
               }
             },
@@ -1453,20 +1437,20 @@
                 "maximum": 2147483647,
                 "minimum": 1,
                 "type": "integer",
-                "description": "performis internal of attribute set Id",
+                "description": "performis internal of attribute set Id.",
                 "format": "int64"
               },
               "attributSetDescription": {
                 "maxLength": 80,
                 "type": "string",
-                "description": "Description / Title of the attribute set"
+                "description": "Description / Title of the attribute set."
               },
               "attributeValues": {
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/attributeValue"
                 },
-                "description": "Gets or Sets AttributeValues",
+                "description": "Gets or Sets AttributeValues.",
                 "nullable": true
               }
             },
@@ -1727,7 +1711,7 @@
         "type": "object",
         "additionalProperties": false,
         "title": "MaintenanceWindow",
-        "description": "information structure for active maintenance windows",
+        "description": "information structure for active maintenance windows.",
         "x-examples": {
           "example-1": {
             "id": 3511,
@@ -1754,16 +1738,16 @@
           "fromDateTime": {
             "type": "string",
             "format": "date-time",
-            "description": "start of scheduled maintenance window"
+            "description": "start of scheduled maintenance window."
           },
           "toDateTime": {
             "type": "string",
             "format": "date-time",
-            "description": "end of scheduled maintenance window"
+            "description": "end of scheduled maintenance window."
           },
           "info": {
             "type": "string",
-            "example": "monthly maintenance for patch installation",
+            "example": "monthly maintenance for patch installation.",
             "nullable": true
           },
           "clientStartAllowed": {
