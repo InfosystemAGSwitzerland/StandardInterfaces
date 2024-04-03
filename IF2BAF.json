@@ -8,7 +8,7 @@
       "email": "support@infosystem.ch",
       "url": "https://www.infosystem.ch"
     },
-    "description": "IF2performis Rest API"
+    "description": "IF2BAF Rest API"
   },
   "paths": {
     "/api/v3/master-data/fixed-assets": {
@@ -40,7 +40,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/fixedAssetDto"
+                    "$ref": "#/components/schemas/fixedAsset"
                   }
                 }
               }
@@ -122,7 +122,7 @@
               "type": "string"
             },
             "in": "query",
-            "description": "Optional Searches string for looking up a record within name and searchterm fields.",
+            "description": "Optional search string for looking up a record within name and search term fields.",
             "name": "searchString"
           },
           {
@@ -154,7 +154,7 @@
             },
             "in": "query",
             "name": "changesSinceDateTime",
-            "description": "Get all the entities which were added/edited after a specific date and time. Cannot be used together with search\\r\\nparameters (searchString, internalOrderId,\\r\\nexternalOrderId)."
+            "description": "Get all the entities which were added/edited after a specific date and time. Cannot be used together with search\\r\\nparameters (searchString, fixedAssetNo, externalFixedAssetNo)."
           },
           {
             "schema": {
@@ -162,7 +162,7 @@
             },
             "in": "query",
             "name": "changesSinceChangeId",
-            "description": "Get all the entities which were added/edited after a specific change id. Cannot be used together with search\\r\\nparameters (searchString, internalOrderId,\\r\\nexternalOrderId)."
+            "description": "Get all the entities which were added/edited after a specific change id. Cannot be used together with search\\r\\nparameters (searchString, fixedAssetNo, externalFixedAssetNo)."
           },
           {
             "schema": {
@@ -198,11 +198,11 @@
         ]
       }
     },
-    "/api/v3/base/orders": {
+    "/api/v3/master-data/orders": {
       "get": {
         "summary": "Searches for base orders",
         "tags": [
-          "base"
+          "MasterData"
         ],
         "responses": {
           "200": {
@@ -212,7 +212,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/orderDto"
+                    "$ref": "#/components/schemas/order"
                   }
                 }
               }
@@ -293,7 +293,7 @@
               "type": "string"
             },
             "in": "query",
-            "description": "Optional Searches string for looking up a record within name and searchterm fields.",
+            "description": "Optional search string for looking up a record within name and search term fields.",
             "name": "searchString"
           },
           {
@@ -348,10 +348,8 @@
           },
           {
             "schema": {
-              "type": "integer",
-              "format": "int64",
-              "minimum": 1,
-              "maximum": 9999999999
+              "type": "string",
+              "maxLength": 50
             },
             "in": "query",
             "name": "externalOrderId",
@@ -384,7 +382,7 @@
         "summary": "Updates an existing base order if internal or external Id match.\nCreates a base order if neither internal or external Id is provided or no matching record could be found",
         "operationId": "putBaseOrders",
         "tags": [
-          "base"
+          "MasterData"
         ],
         "responses": {
           "200": {
@@ -394,7 +392,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/orderDto"
+                    "$ref": "#/components/schemas/order"
                   }
                 }
               }
@@ -474,7 +472,7 @@
   },
   "components": {
     "schemas": {
-      "fixedAssetDto": {
+      "fixedAsset": {
         "type": "object",
         "title": "fixedAsset",
         "x-examples": {
@@ -696,7 +694,7 @@
             "example": "C-222"
           },
           "attributeValueSet": {
-            "$ref": "#/components/schemas/attributeValueSetDto"
+            "$ref": "#/components/schemas/attributeValueSet"
           }
         },
         "required": [
@@ -711,7 +709,7 @@
           "description"
         ]
       },
-      "orderDto": {
+      "order": {
         "title": "Order",
         "type": "object",
         "description": "By passing the appropriate option the service get",
@@ -760,6 +758,7 @@
           },
           "externalBpAddrId": {
             "type": "string",
+            "maxLength": 50,
             "description": "The ExternalBpAddrId references the business partner addess within the customer system",
             "example": "321687.01"
           },
@@ -808,9 +807,9 @@
             "maximum": 9999999
           },
           "attributeValueSet": {
-            "$ref": "#/components/schemas/attributeValueSetDto"
+            "$ref": "#/components/schemas/attributeValueSet"
           },
-          "caccOrder": {
+          "isCaccOrder": {
             "type": "boolean",
             "description": "Is it an accounting order?"
           },
@@ -850,7 +849,7 @@
             "description": "GUID that identifies the stored \"physical\" document",
             "example": "FDBF257B-2EA6-4734-BF66-ECA38E1C9A0E"
           },
-          "manualPost": {
+          "isManualPost": {
             "type": "boolean",
             "description": "Shows whether the order can be booked in accounting? "
           }
@@ -861,7 +860,9 @@
           "description",
           "orderType",
           "origin",
-          "orderStatus"
+          "orderStatus",
+          "isCaccOrder",
+          "isManualPost"
         ],
         "x-examples": {
           "example-1": {
@@ -1009,7 +1010,7 @@
           }
         }
       },
-      "codeValueDto": {
+      "codeValue": {
         "description": "",
         "type": "object",
         "x-examples": {
@@ -1192,7 +1193,7 @@
         ],
         "title": ""
       },
-      "attributeValueDto": {
+      "attributeValue": {
         "description": "",
         "type": "object",
         "x-examples": {
@@ -1239,7 +1240,7 @@
               "codeValues": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/codeValueDto"
+                  "$ref": "#/components/schemas/codeValue"
                 },
                 "description": "Gets or Sets CodeValue",
                 "nullable": true
@@ -1418,7 +1419,7 @@
                 }
               },
               "codeValues": {
-                "$ref": "#/components/schemas/codeValueDto"
+                "$ref": "#/components/schemas/codeValue"
               }
             }
           },
@@ -1437,7 +1438,7 @@
           "description"
         ]
       },
-      "attributeValueSetDto": {
+      "attributeValueSet": {
         "description": "",
         "type": "object",
         "x-examples": {
@@ -1463,7 +1464,7 @@
               "attributeValues": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/attributeValueDto"
+                  "$ref": "#/components/schemas/attributeValue"
                 },
                 "description": "Gets or Sets AttributeValues",
                 "nullable": true
@@ -1568,7 +1569,7 @@
                 }
               },
               "attributeValues": {
-                "$ref": "#/components/schemas/attributeValueDto"
+                "$ref": "#/components/schemas/attributeValue"
               }
             }
           },
