@@ -689,7 +689,7 @@
           },
           "costCenterNo": {
             "type": "string",
-            "maxLength": 6,
+            "maxLength": 20,
             "description": "Cost center identifier",
             "example": "C-222"
           },
@@ -790,7 +790,7 @@
           },
           "costCenterNo": {
             "type": "string",
-            "maxLength": 6,
+            "maxLength": 20,
             "example": "200",
             "description": "Cost center of the order."
           },
@@ -811,7 +811,7 @@
           },
           "isCaccOrder": {
             "type": "boolean",
-            "description": "Is it an accounting order?"
+            "description": "Is it a cost accounting order?"
           },
           "chargingType": {
             "type": "string",
