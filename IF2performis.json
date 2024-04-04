@@ -29,7 +29,7 @@
                     "serviceProviderDays": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/serviceProviderDayDto"
+                        "$ref": "#/components/schemas/serviceProviderDay"
                       }
                     }
                   }
@@ -214,7 +214,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/serviceRecordDto"
+                    "$ref": "#/components/schemas/serviceRecord"
                   }
                 },
                 "examples": {}
@@ -400,7 +400,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/serviceRecordDto"
+                    "$ref": "#/components/schemas/serviceRecord"
                   }
                 }
               }
@@ -480,7 +480,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/serviceRecordDto"
+                  "$ref": "#/components/schemas/serviceRecord"
                 }
               }
             }
@@ -613,7 +613,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/allowanceDefinitionDto"
+                    "$ref": "#/components/schemas/allowanceDefinition"
                   }
                 }
               }
@@ -769,7 +769,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/presenceTimeDto"
+                    "$ref": "#/components/schemas/presenceTime"
                   }
                 }
               }
@@ -966,7 +966,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/presenceTimeDto"
+                    "$ref": "#/components/schemas/presenceTime"
                   }
                 }
               }
@@ -1046,7 +1046,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/presenceTimeDto"
+                  "$ref": "#/components/schemas/presenceTime"
                 }
               }
             }
@@ -1179,7 +1179,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/absenceDto"
+                    "$ref": "#/components/schemas/absence"
                   }
                 }
               }
@@ -1364,7 +1364,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/absenceDto"
+                    "$ref": "#/components/schemas/absence"
                   }
                 }
               }
@@ -1444,7 +1444,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/absenceDto"
+                  "$ref": "#/components/schemas/absence"
                 }
               }
             }
@@ -1577,7 +1577,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/allowanceDto"
+                    "$ref": "#/components/schemas/allowance"
                   }
                 }
               }
@@ -1749,7 +1749,7 @@
             "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system."
           }
         ],
-        "description": "Returns all matching service provider allowances."
+        "description": "Returns all matching allowances."
       },
       "put": {
         "summary": "Updates an existing day allowance if internal or external Id match.\nCreates a day allowance if neither internal or external Id is provided or no matching record could be found.",
@@ -1765,7 +1765,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/allowanceDto"
+                    "$ref": "#/components/schemas/allowance"
                   }
                 }
               }
@@ -1845,7 +1845,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/allowanceDto"
+                  "$ref": "#/components/schemas/allowance"
                 }
               }
             }
@@ -1853,7 +1853,7 @@
         }
       },
       "delete": {
-        "summary": "Deletes a service provider day allowance",
+        "summary": "Deletes an allowance",
         "operationId": "deleteAllowances",
         "tags": [
           "ServiceRecording"
@@ -1937,7 +1937,7 @@
             },
             "in": "query",
             "name": "allowanceId",
-            "description": "Identifier of a service provider day allowance."
+            "description": "Identifier of an allowance."
           },
           {
             "schema": {
@@ -1960,7 +1960,7 @@
             "description": "Id of the system of origin."
           }
         ],
-        "description": "Deletes a service provider day allowance."
+        "description": "Deletes an allowance."
       },
       "parameters": []
     },
@@ -1978,7 +1978,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/caccEntryDto"
+                    "$ref": "#/components/schemas/caccEntry"
                   }
                 }
               }
@@ -2147,7 +2147,7 @@
                     "entries": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/caccEntryDto"
+                        "$ref": "#/components/schemas/caccEntry"
                       }
                     }
                   }
@@ -2229,7 +2229,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/caccEntryDto"
+                  "$ref": "#/components/schemas/caccEntry"
                 }
               }
             }
@@ -2278,7 +2278,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/supplierDto"
+                    "$ref": "#/components/schemas/supplier"
                   }
                 }
               }
@@ -2490,7 +2490,7 @@
                       {
                         "posnr": 1,
                         "c2455PositionType": 24550001,
-                        "articleNo": 808909,
+                        "articleId": 808909,
                         "text": "Dienstleistung 80t Kran",
                         "coefficientLameLime": 1,
                         "coefficientLimeLame": 1,
@@ -2535,7 +2535,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/purchaseOrderDto"
+                    "$ref": "#/components/schemas/purchaseOrder"
                   }
                 }
               }
@@ -2694,7 +2694,7 @@
         "description": "Returns all matching purchase orders."
       }
     },
-    "/api/v3/master-data/material-management-article": {
+    "/api/v3/master-data/material-management-articles": {
       "get": {
         "summary": "Get article information",
         "tags": [
@@ -2713,7 +2713,7 @@
                     "active": true,
                     "modifyUser": "STJ",
                     "modifyDate": "2024-01-30T11:46:59",
-                    "articleNo": 83930,
+                    "articleId": 83930,
                     "description": "UTTO VT 0W-20  Achsen/ Bremsöl WB 102.",
                     "shortDescription": "UTTO VT 0W-20-WB 102",
                     "articleType": "Werkstatt",
@@ -2748,7 +2748,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/materialManagementArticleDto"
+                    "$ref": "#/components/schemas/materialManagementArticle"
                   }
                 }
               }
@@ -2879,7 +2879,7 @@
               "maximum": 9999999999
             },
             "in": "query",
-            "name": "articleNo",
+            "name": "articleId",
             "description": "Retrieve a specific record by internal article number. Ignores other search options if provided."
           },
           {
@@ -2894,6 +2894,26 @@
           },
           {
             "schema": {
+              "type": "string",
+              "example": "C47C97C0F4B04096855955CB5AD47444",
+              "maxLength": 50
+            },
+            "in": "query",
+            "name": "externalArticleId",
+            "description": "Id of the article in the external system."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 20,
+              "example": "15523"
+            },
+            "in": "query",
+            "name": "articleNo",
+            "description": "User article number"
+          },
+          {
+            "schema": {
               "type": "integer",
               "format": "int64",
               "minimum": 1,
@@ -2902,12 +2922,20 @@
             "in": "query",
             "name": "companyNo",
             "description": "Retrieve a specific record by company number and external article number. Ignores other search options if provided."
+          },
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "name": "includeDetails",
+            "description": "If set to true the service provider day is returned with all related additional information."
           }
         ],
         "description": "Returns all matching articles."
       }
     },
-    "/api/v3/master-data/material-management-article/price": {
+    "/api/v3/master-data/material-management-article-prices": {
       "get": {
         "summary": "Get price information",
         "tags": [
@@ -2920,7 +2948,7 @@
               "application/json": {
                 "example": [
                   {
-                    "articleNo": 71212,
+                    "articleId": 71212,
                     "companyNo": 100,
                     "c407PriceType": 4070001,
                     "validFrom": "2024-01-30",
@@ -2931,7 +2959,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/priceDto"
+                    "$ref": "#/components/schemas/materialManagementArticlePrice"
                   }
                 }
               }
@@ -3009,14 +3037,6 @@
           },
           {
             "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "description": "Optional search string for looking up a record within name and search term fields.",
-            "name": "searchString"
-          },
-          {
-            "schema": {
               "type": "integer",
               "format": "int32",
               "minimum": 0,
@@ -3056,14 +3076,14 @@
           },
           {
             "schema": {
-              "type": "integer",
+              "type": "array",
               "format": "int64",
               "minimum": 1,
               "maximum": 9999999999
             },
             "in": "query",
-            "name": "articleNo",
-            "description": "Retrieve a specific record by internal article number. Ignores other search options if provided."
+            "name": "articleId",
+            "description": "Retrieves a list of articles by internal article ids. Ignores other search options if provided."
           },
           {
             "schema": {
@@ -3074,17 +3094,6 @@
             "in": "query",
             "name": "origin",
             "description": "Get all the entities of a certain origin."
-          },
-          {
-            "schema": {
-              "type": "integer",
-              "format": "int64",
-              "minimum": 1,
-              "maximum": 999999
-            },
-            "in": "query",
-            "name": "companyNo",
-            "description": "Retrieve a specific record by company number and external article number. Ignores other search options if provided."
           }
         ],
         "description": "Returns all matching article prices."
@@ -3103,7 +3112,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/priceDto"
+                    "$ref": "#/components/schemas/materialManagementArticlePrice"
                   }
                 }
               }
@@ -3183,7 +3192,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/priceDto"
+                  "$ref": "#/components/schemas/materialManagementArticlePrice"
                 }
               }
             }
@@ -3215,7 +3224,7 @@
                       {
                         "deliveryNotePos": 1,
                         "orderNoPos": 1,
-                        "articleNo": 27313,
+                        "articleId": 27313,
                         "amount": 6,
                         "storageLocationFrom": 35,
                         "storagePlaceFrom": 3524,
@@ -3225,7 +3234,7 @@
                       {
                         "deliveryNotePos": 2,
                         "orderNoPos": 5,
-                        "articleNo": 27353,
+                        "articleId": 27353,
                         "amount": 4,
                         "storageLocationFrom": 55,
                         "storagePlaceFrom": 551235,
@@ -3246,7 +3255,7 @@
                       {
                         "deliveryNotePos": 1,
                         "orderNoPos": 1,
-                        "articleNo": 27313,
+                        "articleId": 27313,
                         "amount": 5,
                         "storageLocationFrom": 15,
                         "storagePlaceFrom": 151515,
@@ -3259,7 +3268,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/deliveryNoteDto"
+                    "$ref": "#/components/schemas/deliveryNote"
                   }
                 }
               }
@@ -3422,7 +3431,7 @@
   },
   "components": {
     "schemas": {
-      "serviceProviderDayDto": {
+      "serviceProviderDay": {
         "title": "ServiceProviderDay",
         "type": "object",
         "description": "Represents a service provider day entry.",
@@ -3546,25 +3555,25 @@
           "serviceRecords": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/serviceRecordDto"
+              "$ref": "#/components/schemas/serviceRecord"
             }
           },
           "allowances": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/allowanceDto"
+              "$ref": "#/components/schemas/allowance"
             }
           },
           "presenceTimes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/presenceTimeDto"
+              "$ref": "#/components/schemas/presenceTime"
             }
           },
           "absences": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/absenceDto"
+              "$ref": "#/components/schemas/absence"
             }
           }
         },
@@ -3581,7 +3590,7 @@
           "onHourlyWage"
         ]
       },
-      "serviceRecordDto": {
+      "serviceRecord": {
         "title": "ServiceRecord",
         "type": "object",
         "properties": {
@@ -3786,7 +3795,7 @@
         ],
         "description": "Represents a service record entry."
       },
-      "serviceProviderDto": {
+      "serviceProvider": {
         "title": "ServiceProvider",
         "type": "object",
         "properties": {
@@ -3848,11 +3857,11 @@
             "type": "boolean",
             "description": "Indicates if the service provider can be edited even if the period is closed."
           },
-          "externalid": {
+          "externalId": {
             "type": "string",
             "maxLength": 50,
             "example": "C47C97C0F4B04096855955CB5AD47444",
-            "description": "Id of the service provider inm the external system."
+            "description": "Id of the service provider in the external system."
           },
           "role": {
             "type": "string",
@@ -3915,7 +3924,7 @@
         ],
         "description": "Represents a service provider entry."
       },
-      "allowanceDto": {
+      "allowance": {
         "title": "Allowance",
         "type": "object",
         "properties": {
@@ -3938,7 +3947,7 @@
             "format": "int64",
             "minimum": 0,
             "maximum": 9999999999,
-            "description": "Id of the service provider day allowance.",
+            "description": "Id of the allowance.",
             "example": 26873
           },
           "serviceProviderDayId": {
@@ -3967,7 +3976,7 @@
           },
           "personnelNo": {
             "type": "string",
-            "description": "Id of the service provider in the external system.",
+            "description": "Id of the person/(human) service provider in the external system.",
             "minLength": 1,
             "maxLength": 50,
             "example": "1258"
@@ -4061,7 +4070,7 @@
         ],
         "description": "Represents an allowance entry."
       },
-      "allowanceDefinitionDto": {
+      "allowanceDefinition": {
         "title": "AllowanceDefinition",
         "type": "object",
         "description": "Represents an allowance definition entry.",
@@ -4109,7 +4118,7 @@
           "externalId": {
             "type": "string",
             "maxLength": 50,
-            "description": "Id of the service provider inm the external system.",
+            "description": "Id of the allowance definition in the external system.",
             "example": "C47C97C0F4B04096855955CB5AD47444"
           }
         },
@@ -4120,7 +4129,7 @@
           "active"
         ]
       },
-      "presenceTimeDto": {
+      "presenceTime": {
         "title": "PresenceTime",
         "type": "object",
         "description": "Represents a presence time entry.",
@@ -4173,7 +4182,7 @@
           },
           "personnelNo": {
             "type": "string",
-            "description": "Id of the service provider in the external system.",
+            "description": "Id of the person/(human) service provider in the external system.",
             "minLength": 1,
             "maxLength": 50,
             "example": "1287"
@@ -4231,7 +4240,7 @@
           "originId"
         ]
       },
-      "absenceDto": {
+      "absence": {
         "title": "Absence",
         "type": "object",
         "properties": {
@@ -4315,7 +4324,7 @@
           },
           "personnelNo": {
             "type": "string",
-            "description": "Id of the service provider in the external system.",
+            "description": "Id of the person/(human) service provider in the external system.",
             "minLength": 1,
             "maxLength": 50,
             "example": "1258"
@@ -4372,7 +4381,7 @@
         ],
         "description": "Represents an absense entry."
       },
-      "caccEntryDto": {
+      "caccEntry": {
         "title": "Entry",
         "type": "object",
         "description": "Represents a company accounting entry.",
@@ -4505,7 +4514,7 @@
           "amountBSC"
         ]
       },
-      "supplierDto": {
+      "supplier": {
         "type": "object",
         "title": "Supplier",
         "description": "Represents a supplier entry.",
@@ -4763,7 +4772,7 @@
           "pickupBpAddrID"
         ]
       },
-      "purchaseOrderDto": {
+      "purchaseOrder": {
         "type": "object",
         "title": "PurchaseOrder",
         "description": "Represents a purchase order entry.",
@@ -4930,7 +4939,7 @@
           "exchangeRate": {
             "type": "number",
             "format": "double",
-            "minimum": 1e-06,
+            "minimum": 0.000001,
             "maximum": 99999999.999999,
             "description": "Exchange rate used for purchase when not in own currency.",
             "example": 0.954
@@ -5069,7 +5078,7 @@
                   "description": "Type of the position\n1: article\n2: amount\n3: text.",
                   "example": 3
                 },
-                "articleNo": {
+                "articleId": {
                   "type": "integer",
                   "format": "Int64",
                   "minimum": 1,
@@ -5394,7 +5403,7 @@
               "required": [
                 "posnr",
                 "c2455PositionType",
-                "articleNo",
+                "articleId",
                 "text",
                 "price",
                 "distributeBool",
@@ -5432,7 +5441,7 @@
           "currency"
         ]
       },
-      "materialManagementArticleDto": {
+      "materialManagementArticle": {
         "type": "object",
         "title": "MaterialManagementArticle",
         "description": "Represents a (material management) article entry.",
@@ -5451,12 +5460,6 @@
             "description": "ChangeDate of the entry.",
             "example": "2022-04-25 09:30:00"
           },
-          "origin": {
-            "type": "string",
-            "maxLength": 10,
-            "description": "The system of origin the order.",
-            "example": "ISBRW"
-          },
           "active": {
             "type": "boolean",
             "default": true,
@@ -5474,13 +5477,39 @@
             "description": "Gets or Sets ModifyDate.",
             "example": "2024-01-30T11:46:59"
           },
-          "articleNo": {
+          "articleId": {
             "type": "integer",
             "format": "Int64",
             "minimum": 1,
             "maximum": 9999999999,
             "description": "Unique identifier of the article.",
             "example": 236596874
+          },
+          "origin": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "The system of origin the order.",
+            "example": "ISBRW"
+          },
+          "externalArticleId": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Id of the article in the external system.",
+            "example": "C47C97C0F4B04096855955CB5AD47444"
+          },
+          "articleNo": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "User article number",
+            "example": "15523"
+          },
+          "companyNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 999999,
+            "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system.",
+            "example": 37
           },
           "description": {
             "type": "string",
@@ -5521,6 +5550,22 @@
             "maxLength": 2,
             "description": "ISO code of the coutry of origin.",
             "example": "CH"
+          },
+          "storageLocation": {
+            "type": "integer",
+            "format": "Int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Identifier of the delivering storage location.",
+            "example": 231
+          },
+          "storagePlace": {
+            "type": "integer",
+            "format": "Int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Identifier of the delivering storage place.",
+            "example": 23153
           },
           "c28UoM": {
             "type": "integer",
@@ -5607,7 +5652,7 @@
             }
           },
           "units": {
-            "type": "object",
+            "type": "array",
             "nullable": true,
             "properties": {
               "c408UnitType": {
@@ -5629,7 +5674,7 @@
               "coefficientUnitTypeUnit": {
                 "type": "number",
                 "format": "double",
-                "minimum": 1e-06,
+                "minimum": 0.000001,
                 "maximum": 9999999.999999,
                 "description": "Amount in the unit set as standard on the article.",
                 "example": 100
@@ -5637,7 +5682,7 @@
               "coefficientUnitUnitType": {
                 "type": "number",
                 "format": "double",
-                "minimum": 1e-06,
+                "minimum": 0.000001,
                 "maximum": 9999999.999999,
                 "description": "Amount in the target unit.",
                 "example": 1.5
@@ -5645,7 +5690,7 @@
             }
           },
           "vat": {
-            "type": "array",
+            "type": "object",
             "items": {
               "type": "object",
               "properties": {
@@ -5703,14 +5748,48 @@
           }
         },
         "required": [
-          "articleNo"
+          "articleId"
         ]
       },
-      "priceDto": {
+      "materialManagementArticlePrice": {
         "type": "object",
-        "title": "Price",
+        "title": "MaterialManagementArticlePrice",
         "properties": {
-          "articleNo": {
+          "changeId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "ChangeId of the entry.",
+            "example": 322784
+          },
+          "changeDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ChangeDate of the entry.",
+            "example": "2022-04-25 09:30:00"
+          },
+          "priceId": {
+            "type": "integer",
+            "format": "Int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Supplier identifier of the article price.",
+            "example": 32667843
+          },
+          "origin": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "The system of origin the order.",
+            "example": "ISBRW"
+          },
+          "externalPriceId": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Indentificaion of the article price in the external system.",
+            "example": "C47C97C0F4B04096855955CB5AD47444"
+          },
+          "articleId": {
             "type": "integer",
             "format": "Int64",
             "minimum": 1,
@@ -5718,13 +5797,17 @@
             "description": "Supplier identifier of the article.",
             "example": 32667843
           },
-          "companyNo": {
-            "type": "integer",
-            "format": "Int64",
-            "minimum": 0,
-            "maximum": 999999,
-            "description": "Company no for which the codevalue is available. 0 = all companies.",
-            "example": 25
+          "externalArticleId": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Id of the article in the external system.",
+            "example": "C47C97C0F4B04096855955CB5AD47444"
+          },
+          "articleNo": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "User article number",
+            "example": "15523"
           },
           "c407PriceType": {
             "type": "integer",
@@ -5737,7 +5820,7 @@
           "validFrom": {
             "type": "string",
             "format": "datetime",
-            "description": "Date from which the proce entry is valid.",
+            "description": "Date from which the price entry is valid.",
             "example": "2024-03-13"
           },
           "price": {
@@ -5747,25 +5830,17 @@
             "maximum": 99999999.9999,
             "description": "Unit price in the given currency.",
             "example": 1268.25
-          },
-          "currency": {
-            "type": "string",
-            "maxLength": 3,
-            "description": "Currency as ISO code.",
-            "example": "CHF"
           }
         },
         "required": [
-          "articleNo",
-          "companyNo",
+          "articleId",
           "c407PriceType",
           "validFrom",
-          "price",
-          "currency"
+          "price"
         ],
         "description": "Represents a article price entry."
       },
-      "deliveryNoteDto": {
+      "deliveryNote": {
         "type": "object",
         "title": "DeliveryNote",
         "description": "Represents a delivery note entry.",
@@ -5861,7 +5936,7 @@
                   "description": "Position of article on the placed order.",
                   "example": 10.1
                 },
-                "articleNo": {
+                "articleId": {
                   "type": "integer",
                   "format": "Int64",
                   "minimum": 1,
@@ -5913,7 +5988,7 @@
               "required": [
                 "deliveryNotePos",
                 "orderNoPos",
-                "articleNo",
+                "articleId",
                 "amount",
                 "storageLocationFrom",
                 "storagePlaceFrom"
@@ -5931,7 +6006,7 @@
           "pos"
         ]
       },
-      "codeValueDto": {
+      "codeValue": {
         "description": "",
         "type": "object",
         "title": "CodeValue",
@@ -6114,7 +6189,7 @@
           "properties"
         ]
       },
-      "attributeValueDto": {
+      "attributeValue": {
         "description": "",
         "type": "object",
         "title": "AttributeValue",
@@ -6162,7 +6237,7 @@
               "codeValues": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/codeValueDto"
+                  "$ref": "#/components/schemas/codeValue"
                 },
                 "description": "Gets or Sets CodeValue.",
                 "nullable": true
@@ -6341,7 +6416,7 @@
                 }
               },
               "codeValues": {
-                "$ref": "#/components/schemas/codeValueDto"
+                "$ref": "#/components/schemas/codeValue"
               }
             }
           },
@@ -6360,7 +6435,7 @@
           "description"
         ]
       },
-      "attributeValueSetDto": {
+      "attributeValueSet": {
         "description": "",
         "type": "object",
         "title": "AttributeValueSet",
@@ -6387,7 +6462,7 @@
               "attributeValues": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/attributeValueDto"
+                  "$ref": "#/components/schemas/attributeValue"
                 },
                 "description": "Gets or Sets AttributeValues.",
                 "nullable": true
@@ -6492,7 +6567,7 @@
                 }
               },
               "attributeValues": {
-                "$ref": "#/components/schemas/attributeValueDto"
+                "$ref": "#/components/schemas/attributeValue"
               }
             }
           },
