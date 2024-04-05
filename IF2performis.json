@@ -29,7 +29,7 @@
                     "serviceProviderDays": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/serviceProviderDay"
+                        "$ref": "#/components/schemas/serviceRecordingServiceProviderDay"
                       }
                     }
                   }
@@ -214,7 +214,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/serviceRecord"
+                    "$ref": "#/components/schemas/serviceRecordingServiceRecord"
                   }
                 },
                 "examples": {}
@@ -400,7 +400,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/serviceRecord"
+                    "$ref": "#/components/schemas/serviceRecordingServiceRecord"
                   }
                 }
               }
@@ -480,7 +480,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/serviceRecord"
+                  "$ref": "#/components/schemas/serviceRecordingServiceRecord"
                 }
               }
             }
@@ -769,7 +769,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/presenceTime"
+                    "$ref": "#/components/schemas/serviceRecordingPresenceTime"
                   }
                 }
               }
@@ -966,7 +966,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/presenceTime"
+                    "$ref": "#/components/schemas/serviceRecordingPresenceTime"
                   }
                 }
               }
@@ -1046,7 +1046,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/presenceTime"
+                  "$ref": "#/components/schemas/serviceRecordingPresenceTime"
                 }
               }
             }
@@ -1179,7 +1179,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/absence"
+                    "$ref": "#/components/schemas/serviceRecordingAbsence"
                   }
                 }
               }
@@ -1364,7 +1364,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/absence"
+                    "$ref": "#/components/schemas/serviceRecordingAbsence"
                   }
                 }
               }
@@ -1444,7 +1444,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/absence"
+                  "$ref": "#/components/schemas/serviceRecordingAbsence"
                 }
               }
             }
@@ -1577,7 +1577,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/allowance"
+                    "$ref": "#/components/schemas/serviceRecordingAllowance"
                   }
                 }
               }
@@ -1765,7 +1765,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/allowance"
+                    "$ref": "#/components/schemas/serviceRecordingAllowance"
                   }
                 }
               }
@@ -1845,7 +1845,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/allowance"
+                  "$ref": "#/components/schemas/serviceRecordingAllowance"
                 }
               }
             }
@@ -1978,7 +1978,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/caccEntry"
+                    "$ref": "#/components/schemas/finanaceCaccEntry"
                   }
                 }
               }
@@ -2147,7 +2147,7 @@
                     "entries": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/caccEntry"
+                        "$ref": "#/components/schemas/finanaceCaccEntry"
                       }
                     }
                   }
@@ -2229,7 +2229,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/caccEntry"
+                  "$ref": "#/components/schemas/finanaceCaccEntry"
                 }
               }
             }
@@ -2278,7 +2278,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/supplier"
+                    "$ref": "#/components/schemas/purchaseSupplier"
                   }
                 }
               }
@@ -2436,7 +2436,7 @@
         "description": "Returns all matching suppliers."
       }
     },
-    "/api/v3/purchase/purchase-orders": {
+    "/api/v3/purchase/orders": {
       "get": {
         "summary": "Get purchase order information",
         "tags": [
@@ -2730,12 +2730,10 @@
                     "measurements": null,
                     "units": null,
                     "usage": null,
-                    "vat": [
-                      {
+                    "vat": {
                         "taxSystem": "AT",
                         "c83VATType": 830001
-                      }
-                    ],
+                    },
                     "translations": [
                       {
                         "language": "HU",
@@ -3268,7 +3266,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/deliveryNote"
+                    "$ref": "#/components/schemas/materialManagementDeliveryNote"
                   }
                 }
               }
@@ -3431,7 +3429,7 @@
   },
   "components": {
     "schemas": {
-      "serviceProviderDay": {
+      "serviceRecordingServiceProviderDay": {
         "title": "ServiceProviderDay",
         "type": "object",
         "description": "Represents a service provider day entry.",
@@ -3555,25 +3553,25 @@
           "serviceRecords": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/serviceRecord"
+              "$ref": "#/components/schemas/serviceRecordingServiceRecord"
             }
           },
           "allowances": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/allowance"
+              "$ref": "#/components/schemas/serviceRecordingAllowance"
             }
           },
           "presenceTimes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/presenceTime"
+              "$ref": "#/components/schemas/serviceRecordingPresenceTime"
             }
           },
           "absences": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/absence"
+              "$ref": "#/components/schemas/serviceRecordingAbsence"
             }
           }
         },
@@ -3590,7 +3588,7 @@
           "onHourlyWage"
         ]
       },
-      "serviceRecord": {
+      "serviceRecordingServiceRecord": {
         "title": "ServiceRecord",
         "type": "object",
         "properties": {
@@ -3795,7 +3793,7 @@
         ],
         "description": "Represents a service record entry."
       },
-      "serviceProvider": {
+      "serviceRecordingServiceProvider": {
         "title": "ServiceProvider",
         "type": "object",
         "properties": {
@@ -3924,7 +3922,7 @@
         ],
         "description": "Represents a service provider entry."
       },
-      "allowance": {
+      "serviceRecordingAllowance": {
         "title": "Allowance",
         "type": "object",
         "properties": {
@@ -4129,7 +4127,7 @@
           "active"
         ]
       },
-      "presenceTime": {
+      "serviceRecordingPresenceTime": {
         "title": "PresenceTime",
         "type": "object",
         "description": "Represents a presence time entry.",
@@ -4240,7 +4238,7 @@
           "originId"
         ]
       },
-      "absence": {
+      "serviceRecordingAbsence": {
         "title": "Absence",
         "type": "object",
         "properties": {
@@ -4381,7 +4379,7 @@
         ],
         "description": "Represents an absense entry."
       },
-      "caccEntry": {
+      "finanaceCaccEntry": {
         "title": "Entry",
         "type": "object",
         "description": "Represents a company accounting entry.",
@@ -4514,7 +4512,7 @@
           "amountBSC"
         ]
       },
-      "supplier": {
+      "purchaseSupplier": {
         "type": "object",
         "title": "Supplier",
         "description": "Represents a supplier entry.",
@@ -5840,7 +5838,7 @@
         ],
         "description": "Represents a article price entry."
       },
-      "deliveryNote": {
+      "materialManagementDeliveryNote": {
         "type": "object",
         "title": "DeliveryNote",
         "description": "Represents a delivery note entry.",
