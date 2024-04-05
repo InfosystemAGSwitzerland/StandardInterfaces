@@ -2237,7 +2237,7 @@
         }
       }
     },
-    "/api/v3/master-data/suppliers": {
+    "/api/v3/master-data/purchase/suppliers": {
       "get": {
         "summary": "Get supplier information",
         "tags": [
@@ -2694,7 +2694,7 @@
         "description": "Returns all matching purchase orders."
       }
     },
-    "/api/v3/master-data/material-management-articles": {
+    "/api/v3/master-data/material-management/articles": {
       "get": {
         "summary": "Get article information",
         "tags": [
@@ -2935,7 +2935,7 @@
         "description": "Returns all matching articles."
       }
     },
-    "/api/v3/master-data/material-management-article-prices": {
+    "/api/v3/master-data/material-management/articles/prices": {
       "get": {
         "summary": "Get price information",
         "tags": [
