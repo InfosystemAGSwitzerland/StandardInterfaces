@@ -158,7 +158,8 @@
           },
           {
             "schema": {
-              "type": "string"
+              "type": "integer",
+              "format": "int64"
             },
             "in": "query",
             "name": "changesSinceChangeId",
@@ -189,7 +190,7 @@
             "schema": {
               "type": "string",
               "example": "ISBRW",
-              "maxLength": 10
+              "maxLength": 200
             },
             "in": "query",
             "name": "origin",
@@ -324,12 +325,13 @@
               "format": "date-time"
             },
             "in": "query",
-            "name": "changesSinceDatetime",
+            "name": "changesSinceDateTime",
             "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\\r\\nparameters (searchString, orderId,\\r\\nexternalOrderId)."
           },
           {
             "schema": {
-              "type": "string"
+              "type": "integer",
+              "format": "int64"
             },
             "in": "query",
             "name": "changesSinceChangeId",
@@ -349,7 +351,7 @@
           {
             "schema": {
               "type": "string",
-              "maxLength": 50
+              "maxLength": 200
             },
             "in": "query",
             "name": "externalOrderId",
@@ -369,7 +371,7 @@
             "schema": {
               "type": "string",
               "example": "ISBRW",
-              "maxLength": 10
+              "maxLength": 200
             },
             "in": "query",
             "name": "origin",
@@ -633,7 +635,7 @@
           },
           "origin": {
             "type": "string",
-            "maxLength": 10,
+            "maxLength": 200,
             "description": "The system of origin the order",
             "example": "B_HTR"
           },
@@ -675,7 +677,7 @@
           },
           "companyNo": {
             "type": "integer",
-            "format": "int64",
+            "format": "int32",
             "minimum": 1,
             "maximum": 999999,
             "description": "The companyNo identifies the customer via the corresponding number in the mandate system",
@@ -724,13 +726,13 @@
           },
           "origin": {
             "type": "string",
-            "maxLength": 10,
+            "maxLength": 200,
             "example": "ISBRW",
             "description": "The system of origin the order"
           },
           "externalOrderId": {
             "type": "string",
-            "maxLength": 50,
+            "maxLength": 200,
             "description": "Third-party order Id - This Id must be unique within the origin (origin field). As Id it is recommended to use either the Primary Key of the foreign system or a GUID (Global Unique Identifier). Attention, if External Ids are used, no performis Ids may be used in parallel, additionally the origin field is mandatory. E.g. Id \"629c5d97-a225-4b08-877c-e8a802c23014\" for origin \"SAP\". To identify the business partner, either the performis order (orderId) or the Id of the external system (externalOrderId) is required.",
             "example": "629c5d97-a225-4b08-877c-e8a802c23014"
           },
@@ -742,7 +744,7 @@
           },
           "companyNo": {
             "type": "integer",
-            "format": "int64",
+            "format": "int32",
             "example": 27,
             "description": "The companyNo identifies the customer via the corresponding number in the mandate system.",
             "minimum": 0,
@@ -842,6 +844,7 @@
           "origin",
           "orderStatus",
           "isCaccOrder",
+          "budgetCharging",
           "isManualPostable"
         ],
         "x-examples": {
