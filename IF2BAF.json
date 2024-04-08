@@ -128,7 +128,7 @@
           {
             "schema": {
               "type": "integer",
-              "format": "int32",
+              "format": "int64",
               "minimum": 0,
               "maximum": 2147483647
             },
@@ -139,7 +139,7 @@
           {
             "schema": {
               "type": "integer",
-              "format": "int32",
+              "format": "int64",
               "minimum": 0,
               "maximum": 2147483647
             },
@@ -300,7 +300,7 @@
           {
             "schema": {
               "type": "integer",
-              "format": "int32",
+              "format": "int64",
               "minimum": 0,
               "maximum": 2147483647
             },
@@ -311,7 +311,7 @@
           {
             "schema": {
               "type": "integer",
-              "format": "int32",
+              "format": "int64",
               "minimum": 0,
               "maximum": 2147483647
             },
@@ -526,7 +526,7 @@
                       "description": "string",
                       "nullable": true
                     },
-                    "stringValue": {
+                    "textValue": {
                       "maxLength": 0,
                       "type": "string",
                       "description": "string",
@@ -599,7 +599,7 @@
                     {
                       "attributeDefinitionId": 0,
                       "attributeDefinitionDescription": "string",
-                      "stringValue": "string",
+                      "textValue": "string",
                       "numberValue": 0,
                       "dateValue": "string",
                       "boolValue": true,
@@ -677,7 +677,7 @@
           },
           "companyNo": {
             "type": "integer",
-            "format": "int32",
+            "format": "int64",
             "minimum": 1,
             "maximum": 999999,
             "description": "The companyNo identifies the customer via the corresponding number in the mandate system",
@@ -744,7 +744,7 @@
           },
           "companyNo": {
             "type": "integer",
-            "format": "int32",
+            "format": "int64",
             "example": 27,
             "description": "The companyNo identifies the customer via the corresponding number in the mandate system.",
             "minimum": 0,
@@ -846,821 +846,146 @@
           "isCaccOrder",
           "budgetCharging",
           "isManualPostable"
-        ],
-        "x-examples": {
-          "example-1": {
-            "orderId": 123456789,
-            "externalOrderId": "629c5d97-a225-4b08-877c-e8a802c23014",
-            "orderNo": "V005126.10",
-            "companyNo": 27,
-            "description": "Transportauftrag 1151",
-            "bpAddrId": 2000070,
-            "responsiblePerson": "John Doe",
-            "orderType": "V",
-            "origin": "ISBRW",
-            "costCenterNo": "200",
-            "costUnitNo": "13",
-            "salesChannelNo": "ABC",
-            "orderStatus": 1040500,
-            "attributeValueSet": {
-              "required": [
-                {}
-              ],
-              "type": "string",
-              "properties": {
-                "attributeSetId": {
-                  "maximum": 0,
-                  "minimum": 0,
-                  "type": "string",
-                  "description": "string",
-                  "format": "string"
-                },
-                "attributSetDescription": {
-                  "maxLength": 0,
-                  "type": "string",
-                  "description": "string"
-                },
-                "attributeValues": {
-                  "required": [
-                    {}
-                  ],
-                  "type": "string",
-                  "properties": {
-                    "attributeDefinitionId": {
-                      "type": "string",
-                      "description": "string",
-                      "format": "string"
-                    },
-                    "attributeDefinitionDescription": {
-                      "maxLength": 0,
-                      "type": "string",
-                      "description": "string"
-                    },
-                    "stringValue": {
-                      "maxLength": 0,
-                      "type": "string",
-                      "description": "string"
-                    },
-                    "numberValue": {
-                      "type": "string",
-                      "description": "string",
-                      "format": "string"
-                    },
-                    "dateValue": {
-                      "type": "string",
-                      "description": "string",
-                      "format": "string"
-                    },
-                    "boolValue": {
-                      "type": "string",
-                      "description": "string"
-                    },
-                    "codeValues": {
-                      "required": [
-                        {}
-                      ],
-                      "type": "string",
-                      "properties": {
-                        "companyNo": {
-                          "maximum": 0,
-                          "minimum": 0,
-                          "type": "string",
-                          "description": "string",
-                          "format": "string"
-                        },
-                        "code": {
-                          "maximum": 0,
-                          "minimum": 0,
-                          "type": "string",
-                          "description": "string",
-                          "format": "string"
-                        },
-                        "text": {
-                          "maxLength": 0,
-                          "type": "string",
-                          "description": "string"
-                        },
-                        "shorttext": {
-                          "maxLength": 0,
-                          "type": "string",
-                          "description": "string"
-                        }
-                      },
-                      "additionalProperties": true,
-                      "description": "string"
-                    }
-                  },
-                  "additionalProperties": true,
-                  "description": "string"
-                }
-              },
-              "additionalProperties": true,
-              "description": "string",
-              "x-examples": {
-                "example-1": {
-                  "attributeSetId": 0,
-                  "attributSetDescription": "string",
-                  "attributeValues": [
-                    {
-                      "attributeDefinitionId": 0,
-                      "attributeDefinitionDescription": "string",
-                      "stringValue": "string",
-                      "numberValue": 0,
-                      "dateValue": "string",
-                      "boolValue": true,
-                      "codeValues": [
-                        {
-                          "companyNo": 0,
-                          "code": 0,
-                          "text": "string",
-                          "shorttext": "string"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              }
-            },
-            "caccOrder": true,
-            "chargingType": "KT",
-            "budgetCharging": true,
-            "orderDate": "2023-01-05",
-            "currency": "CHF",
-            "isManualPostable": true
-          }
-        }
+        ]
       },
       "codeValue": {
         "description": "",
         "type": "object",
-        "x-examples": {
-          "example-1": {
-            "required": [
-              "code",
-              "companyNo",
-              "text"
-            ],
-            "type": "object",
-            "properties": {
-              "companyNo": {
-                "maximum": 999999,
-                "minimum": 0,
-                "type": "integer",
-                "description": "Company no for which the codevalue is available. 0 = all companies",
-                "format": "int32"
-              },
-              "code": {
-                "maximum": 99999999,
-                "minimum": 0,
-                "type": "integer",
-                "description": "Id of code.",
-                "format": "int32"
-              },
-              "text": {
-                "maxLength": 100,
-                "type": "string",
-                "description": "Description or title of the codevalue."
-              },
-              "shorttext": {
-                "maxLength": 12,
-                "type": "string",
-                "description": "Short-description or title of the codevalue.",
-                "nullable": true
-              }
-            },
-            "additionalProperties": false,
-            "description": ""
-          }
-        },
         "properties": {
-          "required": {
-            "type": "array",
-            "items": {
-              "type": "object"
-            }
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Company no for which the codevalue is available. 0 = all companies",
+            "format": "int32"
           },
-          "type": {
+          "code": {
+            "maximum": 99999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "ID of code",
+            "format": "int32"
+          },
+          "text": {
             "type": "string",
-            "minLength": 1
+            "description": "Description or title of the codevalue",
+            "nullable": true
           },
-          "properties": {
-            "type": "object",
-            "required": [
-              "companyNo",
-              "code",
-              "text"
-            ],
-            "properties": {
-              "companyNo": {
-                "type": "object",
-                "required": [
-                  "maximum",
-                  "minimum",
-                  "type",
-                  "description",
-                  "format"
-                ],
-                "properties": {
-                  "maximum": {
-                    "type": "number"
-                  },
-                  "minimum": {
-                    "type": "number"
-                  },
-                  "type": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "description": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "format": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                }
-              },
-              "code": {
-                "type": "object",
-                "required": [
-                  "maximum",
-                  "minimum",
-                  "type",
-                  "description",
-                  "format"
-                ],
-                "properties": {
-                  "maximum": {
-                    "type": "number"
-                  },
-                  "minimum": {
-                    "type": "number"
-                  },
-                  "type": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "description": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "format": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                }
-              },
-              "text": {
-                "type": "object",
-                "required": [
-                  "maxLength",
-                  "type",
-                  "description"
-                ],
-                "properties": {
-                  "maxLength": {
-                    "type": "number"
-                  },
-                  "type": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "description": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                }
-              },
-              "shorttext": {
-                "type": "object",
-                "required": [
-                  "maxLength",
-                  "type",
-                  "description",
-                  "nullable"
-                ],
-                "properties": {
-                  "maxLength": {
-                    "type": "number"
-                  },
-                  "type": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "description": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "nullable": {
-                    "type": "boolean"
-                  }
-                }
-              }
-            }
-          },
-          "additionalProperties": {
-            "type": "boolean"
-          },
-          "description": {
-            "type": "string"
+          "shorttext": {
+            "maxLength": 12,
+            "type": "string",
+            "description": "Short-description or title of the codevalue",
+            "nullable": true
           }
         },
         "required": [
-          "required",
-          "type",
-          "properties"
-        ],
-        "title": ""
+          "code",
+          "companyNo"
+        ]
       },
       "attributeValue": {
         "description": "",
         "type": "object",
-        "x-examples": {
-          "example-1": {
-            "required": [
-              "attributeDefinitionId"
-            ],
-            "type": "object",
-            "properties": {
-              "attributeDefinitionId": {
-                "type": "integer",
-                "description": "Id of attribute definition.",
-                "format": "int64"
-              },
-              "attributeDefinitionDescription": {
-                "maxLength": 80,
-                "type": "string",
-                "description": "Description of the attribute definition.",
-                "nullable": true
-              },
-              "stringValue": {
-                "maxLength": 1000,
-                "type": "string",
-                "description": "a string value.",
-                "nullable": true
-              },
-              "numberValue": {
-                "type": "number",
-                "description": "Number or decimal value.",
-                "format": "double",
-                "nullable": true
-              },
-              "dateValue": {
-                "type": "string",
-                "description": "Date value.",
-                "format": "date-time",
-                "nullable": true
-              },
-              "boolValue": {
-                "type": "boolean",
-                "description": "a true or false value.",
-                "nullable": true
-              },
-              "codeValues": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/codeValue"
-                },
-                "description": "Gets or Sets CodeValue.",
-                "nullable": true
-              }
-            },
-            "additionalProperties": false,
-            "description": ""
-          }
-        },
         "properties": {
-          "required": {
-            "type": "array",
-            "items": {
-              "type": "object"
-            }
+          "attributeValueId":{
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "performis internal of attribute value Id",
+            "format": "int64"
           },
-          "type": {
+          "attributeDefinitionId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "performis internal of attribute definition Id",
+            "format": "int64"
+          },
+          "modifyUser": {
             "type": "string",
-            "minLength": 1
+            "maxLength": 30,
+            "description": "Name of user who changed relevant information of the record",
+            "example": "STJ"
           },
-          "properties": {
-            "type": "object",
-            "required": [
-              "attributeDefinitionId",
-              "attributeDefinitionDescription",
-              "stringValue",
-              "numberValue",
-              "dateValue",
-              "boolValue",
-              "codeValues"
-            ],
-            "properties": {
-              "attributeDefinitionId": {
-                "type": "object",
-                "required": [
-                  "type",
-                  "description",
-                  "format"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "description": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "format": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                }
-              },
-              "attributeDefinitionDescription": {
-                "type": "object",
-                "required": [
-                  "maxLength",
-                  "type",
-                  "description",
-                  "nullable"
-                ],
-                "properties": {
-                  "maxLength": {
-                    "type": "number"
-                  },
-                  "type": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "description": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "nullable": {
-                    "type": "boolean"
-                  }
-                }
-              },
-              "stringValue": {
-                "type": "object",
-                "required": [
-                  "maxLength",
-                  "type",
-                  "description",
-                  "nullable"
-                ],
-                "properties": {
-                  "maxLength": {
-                    "type": "number"
-                  },
-                  "type": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "description": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "nullable": {
-                    "type": "boolean"
-                  }
-                }
-              },
-              "numberValue": {
-                "type": "object",
-                "required": [
-                  "type",
-                  "description",
-                  "format",
-                  "nullable"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "description": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "format": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "nullable": {
-                    "type": "boolean"
-                  }
-                }
-              },
-              "dateValue": {
-                "type": "object",
-                "required": [
-                  "type",
-                  "description",
-                  "format",
-                  "nullable"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "description": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "format": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "nullable": {
-                    "type": "boolean"
-                  }
-                }
-              },
-              "boolValue": {
-                "type": "object",
-                "required": [
-                  "type",
-                  "description",
-                  "nullable"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "description": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "nullable": {
-                    "type": "boolean"
-                  }
-                }
-              },
-              "codeValues": {
-                "$ref": "#/components/schemas/codeValue"
-              }
-            }
+          "modifyDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date someone changed relevant information of the record",
+            "example": "2021-08-31 10:23:10"
           },
-          "additionalProperties": {
-            "type": "boolean"
+          "sortNo": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "maximum": 9999,
+              "description": "Position within the attribute value set",
+              "example": 3
           },
-          "description": {
-            "type": "string"
+          "textValue": {
+            "type": "string",
+            "maxLength": 1000,
+            "description": "A string value"
+          },
+          "numberValue": {
+            "type": "number",
+            "format": "double",
+            "description": "Number or decimal value"
+          },
+          "dateValue": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date value"
+          },
+          "boolValue": {
+            "type": "boolean",
+            "description": "A true or false value"
+          },
+          "codes": {
+            "type": "array",
+            "$ref": "#/components/schemas/codeValue"
           }
         },
         "required": [
-          "required",
-          "type",
-          "properties",
-          "additionalProperties",
-          "description"
+          "attributeDefinitionId"
         ]
       },
       "attributeValueSet": {
         "description": "",
         "type": "object",
-        "x-examples": {
-          "example-1": {
-            "required": [
-              "attributeSetId",
-              "attributSetDescription"
-            ],
-            "type": "object",
-            "properties": {
-              "attributeSetId": {
-                "maximum": 2147483647,
-                "minimum": 1,
-                "type": "integer",
-                "description": "performis internal of attribute set Id.",
-                "format": "int64"
-              },
-              "attributSetDescription": {
-                "maxLength": 80,
-                "type": "string",
-                "description": "Description / Title of the attribute set."
-              },
-              "attributeValues": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/attributeValue"
-                },
-                "description": "Gets or Sets AttributeValues.",
-                "nullable": true
-              }
-            },
-            "additionalProperties": false,
-            "description": "",
-            "x-examples": {
-              "example-1": {
-                "attributeSetId": 1,
-                "attributSetDescription": "string",
-                "attributeValues": [
-                  {
-                    "attributeDefinitionId": 0,
-                    "attributeDefinitionDescription": "string",
-                    "stringValue": "string",
-                    "numberValue": 0,
-                    "dateValue": "2019-08-24T14:15:22Z",
-                    "boolValue": true,
-                    "codeValues": [
-                      {
-                        "companyNo": 0,
-                        "code": 0,
-                        "text": "string",
-                        "shorttext": "string"
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          }
-        },
-        "properties": {
-          "required": {
-            "type": "array",
-            "items": {
-              "type": "object"
-            }
-          },
-          "type": {
-            "type": "string",
-            "minLength": 1
-          },
           "properties": {
-            "type": "object",
-            "required": [
-              "attributeSetId",
-              "attributSetDescription",
-              "attributeValues"
-            ],
-            "properties": {
-              "attributeSetId": {
-                "type": "object",
-                "required": [
-                  "maximum",
-                  "minimum",
-                  "type",
-                  "description",
-                  "format"
-                ],
-                "properties": {
-                  "maximum": {
-                    "type": "number"
-                  },
-                  "minimum": {
-                    "type": "number"
-                  },
-                  "type": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "description": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "format": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                }
-              },
-              "attributSetDescription": {
-                "type": "object",
-                "required": [
-                  "maxLength",
-                  "type",
-                  "description"
-                ],
-                "properties": {
-                  "maxLength": {
-                    "type": "number"
-                  },
-                  "type": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "description": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                }
-              },
-              "attributeValues": {
-                "$ref": "#/components/schemas/attributeValue"
-              }
-            }
+          "attributeSetId": {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer",
+              "description": "performis internal of attribute set Id",
+              "format": "int64"
           },
-          "additionalProperties": {
-            "type": "boolean"
+          "attributeValueId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "performis internal of attribute Id",
+            "format": "int64"
           },
-          "description": {
-            "type": "string"
+          "modifyUser": {
+            "type": "string",
+            "maxLength": 30,
+            "description": "Name of user who changed relevant information of the record",
+            "example": "STJ"
           },
-          "x-examples": {
-            "type": "object",
-            "required": [
-              "example-1"
-            ],
-            "properties": {
-              "example-1": {
-                "type": "object",
-                "required": [
-                  "attributeSetId",
-                  "attributSetDescription",
-                  "attributeValues"
-                ],
-                "properties": {
-                  "attributeSetId": {
-                    "type": "number"
-                  },
-                  "attributSetDescription": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "attributeValues": {
-                    "type": "array",
-                    "uniqueItems": true,
-                    "minItems": 1,
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "attributeDefinitionId": {
-                          "type": "number"
-                        },
-                        "attributeDefinitionDescription": {
-                          "type": "string",
-                          "minLength": 1
-                        },
-                        "stringValue": {
-                          "type": "string",
-                          "minLength": 1
-                        },
-                        "numberValue": {
-                          "type": "number"
-                        },
-                        "dateValue": {
-                          "type": "string",
-                          "minLength": 1
-                        },
-                        "boolValue": {
-                          "type": "boolean"
-                        },
-                        "codeValues": {
-                          "type": "array",
-                          "uniqueItems": true,
-                          "minItems": 1,
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "companyNo": {
-                                "type": "number"
-                              },
-                              "code": {
-                                "type": "number"
-                              },
-                              "text": {
-                                "type": "string",
-                                "minLength": 1
-                              },
-                              "shorttext": {
-                                "type": "string",
-                                "minLength": 1
-                              }
-                            },
-                            "required": [
-                              "companyNo",
-                              "code",
-                              "text",
-                              "shorttext"
-                            ]
-                          }
-                        }
-                      },
-                      "required": [
-                        "attributeDefinitionId",
-                        "attributeDefinitionDescription",
-                        "stringValue",
-                        "numberValue",
-                        "dateValue",
-                        "boolValue"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
+          "modifyDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date someone changed relevant information of the record",
+            "example": "2021-08-31 10:23:10"
+          },
+          "attributeValues": {
+            "type": "array",
+            "$ref": "#/components/schemas/attributeValue"
           }
         },
         "required": [
-          "required",
-          "type",
-          "properties",
-          "additionalProperties",
-          "description",
-          "x-examples"
+          "attributeValueId"
         ]
       },
       "problemDetails": {
@@ -1676,7 +1001,7 @@
           },
           "status": {
             "type": "integer",
-            "format": "int32",
+            "format": "int64",
             "nullable": true
           },
           "detail": {
