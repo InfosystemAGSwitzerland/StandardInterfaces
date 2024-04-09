@@ -2262,9 +2262,9 @@
                     "externalSupplierId": "098ljljasd-08980",
                     "isLocked": false,
                     "supplierNo": 98098,
-                    "c2465SupplierCategory": 24650001,
+                    "supplierCategoryCode": 24650001,
                     "ourCustomerNo": "79967",
-                    "c27PaymentTerms": 270001,
+                    "paymentTermsCode": 270001,
                     "orderPrintCopies": 0,
                     "orderPrintPrices": false,
                     "orderType": "E-mail",
@@ -2391,7 +2391,7 @@
             },
             "in": "query",
             "name": "changesSinceDateTime",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\\r\\nparameters (searchString, internalOrderId,\\r\\nexternalOrderId)."
+            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search parameters (searchString, internalOrderId, externalOrderId)."
           },
           {
             "schema": {
@@ -2399,7 +2399,7 @@
             },
             "in": "query",
             "name": "changesSinceChangeId",
-            "description": "Get all the entities which were added/edited since a specific OrderId. Cannot be used together with search\\r\\nparameters (searchString, internalOrderId,\\r\\nexternalOrderId)."
+            "description": "Get all the entities which were added/edited since a specific OrderId. Cannot be used together with search parameters (searchString, internalOrderId, externalOrderId)."
           },
           {
             "schema": {
@@ -2458,8 +2458,8 @@
                     "purchaseOrderNo": "BE2024.011",
                     "companyNo": 100,
                     "supplierID": 568,
-                    "c2462PurchaseOrderType": 24500001,
-                    "c2452PurchaseOrderState": 24520004,
+                    "purchaseOrderTypeCode": 24500001,
+                    "purchaseOrderStateCode": 24520004,
                     "currency": "CHF",
                     "isPurchaseOrderSent": true,
                     "purchaseOrderSendDate": "2023-12-13",
@@ -2470,8 +2470,8 @@
                     "desadvDate": "2023-12-15",
                     "desadvNo": "A18.223232",
                     "storageId": 253,
-                    "c2464DeliveryPlace": 24640001,
-                    "c2463FreightType": 24630001,
+                    "deliveryPlaceCode": 24640001,
+                    "freightTypeCode": 24630001,
                     "exchangeRate": 1,
                     "incotermPlace": "Zurich",
                     "plantDeliveryDateRequested": "2023-12-15",
@@ -2489,7 +2489,7 @@
                     "pos": [
                       {
                         "posnr": 1,
-                        "c2455PositionType": 24550001,
+                        "positionTypeCode": 24550001,
                         "articleId": 808909,
                         "text": "Dienstleistung 80t Kran",
                         "coefficientLameLime": 1,
@@ -2499,18 +2499,18 @@
                         "totalQuantityLAME": 1,
                         "totalQuantityLIME": 1,
                         "totalQuantityLIPE": 1,
-                        "c28Lime": 280001,
+                        "limeCode": 280001,
                         "lime": "PCE",
-                        "c28Lipe": 280002,
+                        "lipeCode": 280002,
                         "lipe": "HRS",
                         "price": 120,
                         "distributeBool": true,
-                        "c2456DistributionKey": 24560001,
-                        "c23Mvat": 230101,
+                        "distributionKeyCode": 24560001,
+                        "mvatCode": 230101,
                         "storageId": 11,
                         "storageLocationId": 1,
-                        "c2463FreightType": 24630001,
-                        "c2459PriceOrigin": 24590001,
+                        "freightTypeCode": 24630001,
+                        "priceOriginCode": 24590001,
                         "salesChannel": null,
                         "orderNo": "A876808",
                         "deliveryDateRequested": "2023-12-15",
@@ -2648,7 +2648,7 @@
             },
             "in": "query",
             "name": "changesSinceDateTime",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\\r\\nparameters (searchString, internalOrderId,\\r\\nexternalOrderId)."
+            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search parameters (searchString, internalOrderId, externalOrderId)."
           },
           {
             "schema": {
@@ -2656,7 +2656,7 @@
             },
             "in": "query",
             "name": "changesSinceChangeId",
-            "description": "Get all the entities which were added/edited since a specific OrderId. Cannot be used together with search\\r\\nparameters (searchString, internalOrderId,\\r\\nexternalOrderId)."
+            "description": "Get all the entities which were added/edited since a specific OrderId. Cannot be used together with search parameters (searchString, internalOrderId, externalOrderId)."
           },
           {
             "schema": {
@@ -2709,7 +2709,7 @@
                   {
                     "articleId": 71212,
                     "companyNo": 100,
-                    "c407PriceType": 4070001,
+                    "priceTypeCode": 4070001,
                     "validFrom": "2024-01-30",
                     "price": 67.56,
                     "currency": "EUR"
@@ -2823,7 +2823,7 @@
             },
             "in": "query",
             "name": "changesSinceDateTime",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\\r\\nparameters (searchString, internalOrderId,\\r\\nexternalOrderId)."
+            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search parameters (searchString, internalOrderId, externalOrderId)."
           },
           {
             "schema": {
@@ -2831,7 +2831,7 @@
             },
             "in": "query",
             "name": "changesSinceChangeId",
-            "description": "Get all the entities which were added/edited since a specific OrderId. Cannot be used together with search\\r\\nparameters (searchString, internalOrderId,\\r\\nexternalOrderId)."
+            "description": "Get all the entities which were added/edited since a specific OrderId. Cannot be used together with search parameters (searchString, internalOrderId, externalOrderId)."
           },
           {
             "schema": {
@@ -2973,7 +2973,7 @@
                 "example": [
                   {
                     "deliveryNoteNo": 4798,
-                    "c412EntryType": 4120021,
+                    "entryTypeCode": 4120021,
                     "deliveryDate": "2024-01-31",
                     "companyNo": 100,
                     "storageLocationFrom": 25,
@@ -3004,7 +3004,7 @@
                   },
                   {
                     "deliveryNoteNo": 4801,
-                    "c412EntryType": 4120030,
+                    "entryTypeCode": 4120030,
                     "deliveryDate": "2024-01-31",
                     "companyNo": 100,
                     "storageLocationFrom": 101,
@@ -3140,7 +3140,7 @@
             },
             "in": "query",
             "name": "changesSinceDateTime",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\\r\\nparameters (searchString, internalOrderId,\\r\\nexternalOrderId)."
+            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search parameters (searchString, internalOrderId, externalOrderId)."
           },
           {
             "schema": {
@@ -3148,7 +3148,7 @@
             },
             "in": "query",
             "name": "changesSinceChangeId",
-            "description": "Get all the entities which were added/edited since a specific OrderId. Cannot be used together with search\\r\\nparameters (searchString, internalOrderId,\\r\\nexternalOrderId)."
+            "description": "Get all the entities which were added/edited since a specific OrderId. Cannot be used together with search parameters (searchString, internalOrderId, externalOrderId)."
           },
           {
             "schema": {
@@ -3477,13 +3477,13 @@
             "description": "Id des service provider day.",
             "example": 3698521470
           },
-          "c291ServiceRecordStatus": {
+          "serviceRecordStatusCode": {
             "type": "integer",
             "format": "int64",
-            "minimum": 0,
-            "maximum": 9999999,
-            "description": "State of the service entry\n10 - Provisorisch                - Provisional\n20 - Erfasst                     - Recorded\n25 - Nicht verrechnungsbereit    - Not ready for billing\n30 - Verrechnungsbereit          - Ready for billing\n40 - Verrechnet                  - Billed\n45 - Keine Verrechnung           - No billing.",
-            "example": 20
+            "minimum": 2910001,
+            "maximum": 2919999,
+            "description": "C291 - State of the service entry\n10 - Provisorisch                - Provisional\n20 - Erfasst                     - Recorded\n25 - Nicht verrechnungsbereit    - Not ready for billing\n30 - Verrechnungsbereit          - Ready for billing\n40 - Verrechnet                  - Billed\n45 - Keine Verrechnung           - No billing.",
+            "example": 2910020
           },
           "activity": {
             "type": "string",
@@ -3527,13 +3527,13 @@
             "description": "Id of the system of origin.",
             "example": "319"
           },
-          "c577OriginStatus": {
+          "originStatusCode": {
             "type": "integer",
-            "minimum": 0,
-            "maximum": 9999999,
+            "minimum": 5770001,
+            "maximum": 5779999,
             "format": "int64",
-            "description": "Status of the origin\n100 - nicht freigegeben     - not approved \n200 - teilweise freigegeben - partially approved\n500 - freigegeben           - approved.",
-            "example": 100
+            "description": "C577 - Status of the origin\n100 - nicht freigegeben     - not approved \n200 - teilweise freigegeben - partially approved\n500 - freigegeben           - approved.",
+            "example": 5770100
           }
         },
         "required": [
@@ -3628,13 +3628,13 @@
             "example": "Leiter Informatik",
             "description": "Role of the service provider."
           },
-          "c286ServiceProviderType": {
+          "serviceProviderTypeCode": {
             "type": "integer",
             "format": "int64",
-            "minimum": 1,
-            "maximum": 9999999,
-            "example": 1,
-            "description": "Type of the service provider\n1 - Mitarbeiter - Employees\n2 - Maschinen   - Machines\n3 - Kleingeräte - Small devices\n5 - Allgemein   - Universal."
+            "minimum": 2860001,
+            "maximum": 2869999,
+            "example": 2860003,
+            "description": "C286 - Type of the service provider\n1 - Mitarbeiter - Employees\n2 - Maschinen   - Machines\n3 - Kleingeräte - Small devices\n5 - Allgemein   - Universal."
           },
           "department": {
             "type": "string",
@@ -4092,13 +4092,13 @@
             "type": "boolean",
             "description": "Is the absence due to a holiday?."
           },
-          "c575TimePeriod": {
+          "timePeriodCode": {
             "type": "integer",
             "format": "int64",
-            "minimum": 0,
-            "maximum": 9999999,
-            "description": "Predefined time periods\n20 - Ganzer Tag - entire day\n40 - Vormittag - Morning\n60 - Nachmittag - Afternoon.",
-            "example": 20
+            "minimum": 5750001,
+            "maximum": 5759999,
+            "description": "C575 - Predefined time periods\n20 - Ganzer Tag - entire day\n40 - Vormittag - Morning\n60 - Nachmittag - Afternoon.",
+            "example": 5750020
           },
           "absenceApplicationId": {
             "type": "integer",
@@ -4319,13 +4319,13 @@
           "modifyUser": {
             "type": "string",
             "maxLength": 30,
-            "description": "Gets or Sets ModifyUser.",
+            "description": "User which last modified the entry.",
             "example": "STJ"
           },
           "modifyDate": {
             "type": "string",
             "format": "date-time",
-            "description": "Gets or Sets ModifyDate.",
+            "description": "Date the entry was last modified",
             "example": "2024-01-30T11:46:59"
           },
           "supplierId": {
@@ -4355,21 +4355,21 @@
             "description": "Supplier No.",
             "example": 322784
           },
-          "c2465SupplierCategory": {
+          "supplierCategoryCode": {
             "type": "integer",
             "format": "int64",
-            "minimum": 1,
-            "maximum": 99999999,
-            "description": "Category of the supplier.",
+            "minimum": 24650001,
+            "maximum": 24659999,
+            "description": "C2465 - Category of the supplier.",
             "example": 24650001
           },
-          "c2466SupplierRating": {
+          "supplierRatingCode": {
             "type": "integer",
             "format": "int64",
-            "minimum": 1,
-            "maximum": 99999999,
-            "description": "User code to set the rating of the supplier.",
-            "example": 9990003
+            "minimum": 24660001,
+            "maximum": 24669999,
+            "description": "C2466 - User code to set the rating of the supplier.",
+            "example": 24660003
           },
           "ourCustomerNo": {
             "type": "string",
@@ -4377,12 +4377,12 @@
             "description": "Our customer identification with the supplier.",
             "example": "K2711"
           },
-          "c27PaymentTerms": {
+          "paymentTermsCode": {
             "type": "integer",
             "format": "int64",
-            "minimum": 1,
-            "maximum": 99999999,
-            "description": "Payment terms with the supplier.",
+            "minimum": 270001,
+            "maximum": 279999,
+            "description": "C27 - Payment terms with the supplier.",
             "example": 270004
           },
           "orderPrintCopies": {
@@ -4397,12 +4397,12 @@
             "type": "boolean",
             "description": "Are the prices printed on the order."
           },
-          "c2462OrderType": {
+          "orderTypeCode": {
             "type": "integer",
             "format": "int64",
-            "minimum": 1,
-            "maximum": 99999999,
-            "description": "Type of order, by post / by e-mail / by telephone / by fax / Internet / etc.",
+            "minimum": 24620001,
+            "maximum": 24629999,
+            "description": "C2462 - Type of order, by post / by e-mail / by telephone / by fax / Internet / etc.",
             "example": 24620003
           },
           "confirmationPeriod": {
@@ -4448,21 +4448,21 @@
             "description": "Country of tax system as ISO code.",
             "example": "AT"
           },
-          "c2463IncoTermsFreightType": {
+          "incoTermsFreightTypeCode": {
             "type": "integer",
             "format": "int64",
-            "minimum": 1,
-            "maximum": 99999999,
-            "description": "Incoterms define the responsibilities of exporters and importers in the arrangement of shipments and the transfer of liability involved at various stages of the transaction.\nFreight type e.g. lorry, post, truck, courier, collection etc.",
-            "example": 2463002
+            "minimum": 24630001,
+            "maximum": 24639999,
+            "description": "C2463 - Incoterms define the responsibilities of exporters and importers in the arrangement of shipments and the transfer of liability involved at various stages of the transaction.\nFreight type e.g. lorry, post, truck, courier, collection etc.",
+            "example": 24630002
           },
-          "c2467IncoTerms": {
+          "incoTermsCode": {
             "type": "integer",
             "format": "int64",
-            "minimum": 1,
-            "maximum": 99999999,
-            "description": "Incoterms define the responsibilities of exporters and importers in the arrangement of shipments and the transfer of liability involved at various stages of the transaction.",
-            "example": 2467001
+            "minimum": 24670001,
+            "maximum": 24679999,
+            "description": "C2467 - Incoterms define the responsibilities of exporters and importers in the arrangement of shipments and the transfer of liability involved at various stages of the transaction.",
+            "example": 24670001
           },
           "deliveryDuration": {
             "type": "integer",
@@ -4564,13 +4564,13 @@
           "modifyUser": {
             "type": "string",
             "maxLength": 30,
-            "description": "Gets or Sets ModifyUser.",
+            "description": "User which last modified the entry.",
             "example": "STJ"
           },
           "modifyDate": {
             "type": "string",
             "format": "date-time",
-            "description": "Gets or Sets ModifyDate.",
+            "description": "Date the entry was last modified",
             "example": "2024-01-30T11:46:59"
           },
           "purchaseOrderNo": {
@@ -4595,20 +4595,20 @@
             "description": "Internal ID of the entry.",
             "example": 322784
           },
-          "c2462PurchaseOrderType": {
+          "purchaseOrderTypeCode": {
             "type": "integer",
             "format": "int64",
-            "minimum": 0,
-            "maximum": 99999999,
-            "description": "How was the order placed? Post, eMail,...",
+            "minimum": 24620001,
+            "maximum": 24629999,
+            "description": "C2462 - How was the order placed? Post, eMail,...",
             "example": 24620001
           },
-          "c2452PurchaseOrderState": {
+          "purchaseOrderStateCode": {
             "type": "integer",
             "format": "int64",
-            "minimum": 0,
-            "maximum": 99999999,
-            "description": "State of the order e.g. recorded, placed, partially delivered,...",
+            "minimum": 24520001,
+            "maximum": 24529999,
+            "description": "C2452 - State of the order e.g. recorded, placed, partially delivered,...",
             "example": 24520002
           },
           "currency": {
@@ -4679,21 +4679,21 @@
             "description": "Identifier of the storage location.",
             "example": 231
           },
-          "c2464DeliveryLocation": {
+          "deliveryLocationCode": {
             "type": "integer",
             "format": "int64",
-            "minimum": 0,
-            "maximum": 99999999,
-            "description": "Where is the purchase delivered? Delivery address, pickup addess,...",
-            "example": 2464002
+            "minimum": 24640001,
+            "maximum": 24649999,
+            "description": "C2464 - Where is the purchase delivered? Delivery address, pickup addess,...",
+            "example": 24640002
           },
-          "c2463FreightType": {
+          "freightTypeCode": {
             "type": "integer",
             "format": "int64",
-            "minimum": 0,
-            "maximum": 99999999,
-            "description": "How is the purchase delivered? Pick up, lorry, post,...",
-            "example": 2464010
+            "minimum": 24630001,
+            "maximum": 24639999,
+            "description": "C2463 - How is the purchase delivered? Pick up, lorry, post,...",
+            "example": 24630010
           },
           "exchangeRate": {
             "type": "number",
@@ -4703,13 +4703,13 @@
             "description": "Exchange rate used for purchase when not in own currency.",
             "example": 0.954
           },
-          "c2467Incoterm": {
+          "incotermCode": {
             "type": "integer",
             "format": "int64",
-            "minimum": 0,
-            "maximum": 99999999,
-            "description": "INCO terms applying for this order.",
-            "example": 2467002
+            "minimum": 24670001,
+            "maximum": 24679999,
+            "description": "C2467 - INCO terms applying for this order.",
+            "example": 24670002
           },
           "incotermPlace": {
             "type": "string",
@@ -4800,15 +4800,16 @@
             "example": "Please inform us of any price changes in writing at the e-mail address purchase@memor.ch. Thank you very much."
           },
           "attributeValueSet": {
-            "type": "object"
+            "type": "object",
+            "$ref": "#/components/schemas/attributeValueSet"
           },
-          "c402Dispogroup": {
+          "dispogroupCode": {
             "type": "integer",
             "format": "int64",
-            "minimum": 0,
-            "maximum": 99999999,
-            "description": "Dispo group.",
-            "example": 5
+            "minimum": 4020001,
+            "maximum": 4029999,
+            "description": "C402 - Dispo group.",
+            "example": 4020005
           },
           "yourRef": {
             "type": "string",
@@ -4829,13 +4830,13 @@
                   "description": "Item number. Format and conditions via company settings.",
                   "example": 2.2
                 },
-                "c2455PositionType": {
+                "positionTypeCode": {
                   "type": "integer",
                   "format": "int64",
-                  "minimum": 0,
-                  "maximum": 99999999,
-                  "description": "Type of the position\n1: article\n2: amount\n3: text.",
-                  "example": 3
+                  "minimum": 24550001,
+                  "maximum": 24559999,
+                  "description": "C2455 - Type of the position\n1: article\n2: amount\n3: text.",
+                  "example": 24550003
                 },
                 "articleId": {
                   "type": "integer",
@@ -4907,12 +4908,12 @@
                   "description": "Total quantity in price units.",
                   "example": 200
                 },
-                "c28Lime": {
+                "limeCode": {
                   "type": "integer",
                   "format": "int64",
-                  "minimum": 0,
-                  "maximum": 99999999,
-                  "description": "Delivery unit code.",
+                  "minimum": 280001,
+                  "maximum": 289999,
+                  "description": "C28 - Delivery unit code.",
                   "example": 280005
                 },
                 "lime": {
@@ -4921,13 +4922,13 @@
                   "maxLength": 40,
                   "example": "pallet"
                 },
-                "c28Lipe": {
+                "lipeCode": {
                   "type": "integer",
                   "format": "int64",
-                  "minimum": 0,
-                  "maximum": 99999999,
-                  "description": "Price unit code.",
-                  "example": 1
+                  "minimum": 280001,
+                  "maximum": 289999,
+                  "description": "C28 - Price unit code.",
+                  "example": 280002
                 },
                 "lipe": {
                   "type": "string",
@@ -4935,12 +4936,12 @@
                   "maxLength": 40,
                   "example": "pcs"
                 },
-                "c2458Preisart": {
+                "preisartCode": {
                   "type": "integer",
                   "format": "int64",
-                  "minimum": 0,
-                  "maximum": 99999999,
-                  "description": "Pricetype\n1: Normal price\n2: Special offer price.",
+                  "minimum": 24580001,
+                  "maximum": 24589999,
+                  "description": "C2458 - Pricetype\n1: Normal price\n2: Special offer price.",
                   "example": 24580002
                 },
                 "price": {
@@ -4955,20 +4956,20 @@
                   "type": "boolean",
                   "description": "Cost distribution to this item."
                 },
-                "c2456DistributionKey": {
+                "distributionKeyCode": {
                   "type": "integer",
                   "format": "int64",
-                  "minimum": 0,
-                  "maximum": 99999999,
-                  "description": "Positions are split\n1: manually\n2: by amount\n3: by quantity.",
+                  "minimum": 24560001,
+                  "maximum": 24569999,
+                  "description": "C2456 - Positions are split\n1: manually\n2: by amount\n3: by quantity.",
                   "example": 24560001
                 },
-                "c23Mvat": {
+                "mvatCode": {
                   "type": "integer",
                   "format": "int64",
-                  "minimum": 0,
-                  "maximum": 99999999,
-                  "description": "Type of applied tax (vat, input tax).",
+                  "minimum": 230001,
+                  "maximum": 239999,
+                  "description": "C23 - Type of applied tax (vat, input tax).",
                   "example": 230006
                 },
                 "discountPercent": {
@@ -5019,20 +5020,20 @@
                   "description": "Identifier of the storage location.",
                   "example": 231
                 },
-                "c2463FreightType": {
+                "freightTypeCode": {
                   "type": "integer",
                   "format": "int64",
-                  "minimum": 0,
-                  "maximum": 99999999,
-                  "description": "How is the purchase delivered? Pick up, lorry, post,...",
+                  "minimum": 24630001,
+                  "maximum": 24639999,
+                  "description": "C2463 - How is the purchase delivered? Pick up, lorry, post,...",
                   "example": 24630005
                 },
-                "c2459PriceOrigin": {
+                "priceOriginCode": {
                   "type": "integer",
                   "format": "int64",
-                  "minimum": 0,
-                  "maximum": 99999999,
-                  "description": "Origin of the price information\n1: Set manually\n2: Supplier article price\n3: Supplier article scale price\n4: Current materials purchase price.",
+                  "minimum": 24590001,
+                  "maximum": 24599999,
+                  "description": "C2459 - Origin of the price information\n1: Set manually\n2: Supplier article price\n3: Supplier article scale price\n4: Current materials purchase price.",
                   "example": 24590002
                 },
                 "assetNo": {
@@ -5105,7 +5106,7 @@
                 "tariffCode": {
                   "type": "string",
                   "maxLength": 20,
-                  "description": "Customs tariff number.",
+                  "description": "C28 - Customs tariff number.",
                   "example": "12412"
                 },
                 "desadvDate": {
@@ -5258,12 +5259,12 @@
             "description": "User article number",
             "example": "15523"
           },
-          "c407PriceType": {
+          "priceTypeCode": {
             "type": "integer",
             "format": "int64",
-            "minimum": 1,
-            "maximum": 99999999,
-            "description": "Type of price (standard, avarage, last purchase price).",
+            "minimum": 4070001,
+            "maximum": 4079999,
+            "description": "C4074 - Type of price (standard, avarage, last purchase price).",
             "example": 4070002
           },
           "validFrom": {
@@ -5308,13 +5309,13 @@
             "description": "Unique identifier of the delivery note given by the supplier.",
             "example": "dn240318001"
           },
-          "c412EntryType": {
+          "entryTypeCode": {
             "type": "integer",
             "format": "int64",
-            "minimum": 0,
-            "maximum": 9999999,
-            "description": "Trigger of teh delivery note (purchase, retuning itmes,...).",
-            "example": 412004
+            "minimum": 4120001,
+            "maximum": 4129999,
+            "description": "C412 - Trigger of teh delivery note (purchase, retuning itmes,...).",
+            "example": 4120004
           },
           "deliveryDate": {
             "type": "string",
@@ -5494,7 +5495,7 @@
         "description": "",
         "type": "object",
         "properties": {
-          "attributeValueId":{
+          "attributeValueId": {
             "maximum": 2147483647,
             "minimum": 1,
             "type": "integer",
@@ -5549,7 +5550,9 @@
           },
           "codes": {
             "type": "array",
-            "$ref": "#/components/schemas/codeValue"
+            "items": {
+              "$ref": "#/components/schemas/codeValue"
+            }
           }
         },
         "required": [
@@ -5588,7 +5591,9 @@
           },
           "attributeValues": {
             "type": "array",
-            "$ref": "#/components/schemas/attributeValue"
+            "items": {
+              "$ref": "#/components/schemas/attributeValue"
+            }
           }
         },
         "required": [
