@@ -140,7 +140,7 @@
           {
             "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited after a specific datetime. Cannot be used together with search\r\nparameters (searchString).",
+            "description": "Get all entries since the specified date time.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -149,7 +149,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited after the provided change id. Cannot be used together with search\r\nparameters (searchString).",
+            "description": "Get all entries since the specified change id.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -324,7 +324,7 @@
           {
             "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited after a specific datetime.  Cannot be used together with search\r\nparameters (searchString).",
+            "description": "Get all entries since the specified date time.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -333,7 +333,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited after the provided change id.  Cannot be used together with search\r\nparameters (searchString).",
+            "description": "Get all entries since the specified change id.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -722,7 +722,7 @@
           {
             "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited after a specific datetime.  Cannot be used together with search\r\nparameters (searchString).",
+            "description": "Get all entries since the specified date time.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -731,7 +731,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited after the provided change id.  Cannot be used together with search\r\nparameters (searchString).",
+            "description": "Get all entries since the specified change id.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -878,7 +878,7 @@
           {
             "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited after a specific datetime.  Cannot be used together with search\r\nparameters (searchString).",
+            "description": "Get all entries since the specified date time.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -887,7 +887,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited after the provided change id.  Cannot be used together with search\r\nparameters (searchString).",
+            "description": "Get all entries since the specified change id.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -1288,7 +1288,7 @@
           {
             "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited after a specific datetime.  Cannot be used together with search\r\nparameters (searchString).",
+            "description": "Get all entries since the specified date time.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1297,7 +1297,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited after the provided change id.  Cannot be used together with search\r\nparameters (searchString).",
+            "description": "Get all entries since the specified change id.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -1689,7 +1689,7 @@
           {
             "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited after a specific datetime. Cannot be used together with search\r\nparameters (searchString).",
+            "description": "Get all entries since the specified date time.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -1698,7 +1698,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited after the provided change id. Cannot be used together with search\r\nparameters (searchString).",
+            "description": "Get all entries since the specified change id.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -2088,7 +2088,7 @@
           {
             "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all the entities which were added/edited after a specific datetime. Cannot be used together with search\r\nparameters (searchString, caccEntryNo).",
+            "description": "Get all entries since the specified date time.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -2097,7 +2097,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all the entities which were added/edited after the provided change id. Cannot be used together with search\r\nparameters (searchString, caccEntryNo).",
+            "description": "Get all entries since the specified change id.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -2391,7 +2391,7 @@
             },
             "in": "query",
             "name": "changesSinceDateTime",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search parameters (searchString, internalOrderId, externalOrderId)."
+            "description": "Get all entries since the specified date time."
           },
           {
             "schema": {
@@ -2399,7 +2399,7 @@
             },
             "in": "query",
             "name": "changesSinceChangeId",
-            "description": "Get all the entities which were added/edited since a specific OrderId. Cannot be used together with search parameters (searchString, internalOrderId, externalOrderId)."
+            "description": "Get all entries since the specified change id."
           },
           {
             "schema": {
@@ -2648,7 +2648,7 @@
             },
             "in": "query",
             "name": "changesSinceDateTime",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search parameters (searchString, internalOrderId, externalOrderId)."
+            "description": "Get all entries since the specified date time."
           },
           {
             "schema": {
@@ -2656,7 +2656,7 @@
             },
             "in": "query",
             "name": "changesSinceChangeId",
-            "description": "Get all the entities which were added/edited since a specific OrderId. Cannot be used together with search parameters (searchString, internalOrderId, externalOrderId)."
+            "description": "Get all entries since the specified change id."
           },
           {
             "schema": {
@@ -2692,271 +2692,6 @@
           }
         ],
         "description": "Returns all matching purchase orders."
-      }
-    },
-    "/api/v3/master-data/material-management/articles/prices": {
-      "get": {
-        "summary": "Get price information",
-        "tags": [
-          "MasterData"
-        ],
-        "responses": {
-          "200": {
-            "description": "Price information.",
-            "content": {
-              "application/json": {
-                "example": [
-                  {
-                    "articleId": 71212,
-                    "companyNo": 100,
-                    "priceTypeCode": 4070001,
-                    "validFrom": "2024-01-30",
-                    "price": 67.56,
-                    "currency": "EUR"
-                  }
-                ],
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/materialManagementArticlePrice"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input, object invalid",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Basic Authentication failed"
-          },
-          "403": {
-            "description": "Requestor has insufficient rights"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/maintenanceWindow"
-                }
-              }
-            }
-          }
-        },
-        "operationId": "getArticlePrices",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "maxLength": 50
-            },
-            "in": "header",
-            "name": "X-Requesting-System",
-            "description": "Identifying the system calling the service.",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string",
-              "maxLength": 30
-            },
-            "in": "header",
-            "name": "X-Requesting-User",
-            "description": "Identifying the user calling the service.",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string",
-              "maxLength": 30
-            },
-            "in": "header",
-            "name": "X-Flow-ID",
-            "description": "Optional technical Id (GUID) for call identification."
-          },
-          {
-            "schema": {
-              "type": "string",
-              "maxLength": 30
-            },
-            "in": "header",
-            "name": "X-Client-Type",
-            "description": "Optional client type calling the service."
-          },
-          {
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "minimum": 0,
-              "maximum": 2147483647
-            },
-            "in": "query",
-            "name": "skip",
-            "description": "Number of records to skip for pagination."
-          },
-          {
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "minimum": 0,
-              "maximum": 2147483647
-            },
-            "in": "query",
-            "name": "limit",
-            "description": "Maximum number of records to return."
-          },
-          {
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            },
-            "in": "query",
-            "name": "changesSinceDateTime",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search parameters (searchString, internalOrderId, externalOrderId)."
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "changesSinceChangeId",
-            "description": "Get all the entities which were added/edited since a specific OrderId. Cannot be used together with search parameters (searchString, internalOrderId, externalOrderId)."
-          },
-          {
-            "schema": {
-              "type": "array",
-              "format": "int64",
-              "minimum": 1,
-              "maximum": 9999999999
-            },
-            "in": "query",
-            "name": "articleId",
-            "description": "Retrieves a list of articles by internal article ids. Ignores other search options if provided."
-          },
-          {
-            "schema": {
-              "type": "string",
-              "example": "ISBRW",
-              "maxLength": 10
-            },
-            "in": "query",
-            "name": "origin",
-            "description": "Get all the entities of a certain origin."
-          }
-        ],
-        "description": "Returns all matching article prices."
-      },
-      "put": {
-        "summary": "Put price information",
-        "tags": [
-          "MasterData"
-        ],
-        "operationId": "PutArticlePrices",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/materialManagementArticlePrice"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input, object invalid",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/problemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Basic Authentication failed"
-          },
-          "403": {
-            "description": "Requestor has insufficient rights"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/maintenanceWindow"
-                }
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "X-Requesting-System",
-            "description": "Identifying the system calling the service.",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "X-Requesting-User",
-            "description": "Identifying the user calling the service.",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "X-Flow-ID",
-            "description": "Optional technical Id (GUID) for call identification."
-          },
-          {
-            "schema": {
-              "type": "string",
-              "maxLength": 30
-            },
-            "in": "header",
-            "name": "X-Client-Type",
-            "description": "Optional client type calling the service."
-          }
-        ],
-        "description": "Updates an existing entry if internal or external Id match.\nCreates an entry if neither internal or external Id is provided or no matching record could be found.",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/materialManagementArticlePrice"
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/api/v3/material-management/delivery-notes": {
@@ -3140,7 +2875,7 @@
             },
             "in": "query",
             "name": "changesSinceDateTime",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search parameters (searchString, internalOrderId, externalOrderId)."
+            "description": "Get all entries since the specified date time."
           },
           {
             "schema": {
@@ -3148,7 +2883,7 @@
             },
             "in": "query",
             "name": "changesSinceChangeId",
-            "description": "Get all the entities which were added/edited since a specific OrderId. Cannot be used together with search parameters (searchString, internalOrderId, externalOrderId)."
+            "description": "Get all entries since the specified change id."
           },
           {
             "schema": {
@@ -5200,95 +4935,6 @@
           "supplierID",
           "currency"
         ]
-      },
-      "materialManagementArticlePrice": {
-        "type": "object",
-        "title": "MaterialManagementArticlePrice",
-        "properties": {
-          "changeId": {
-            "type": "integer",
-            "format": "int64",
-            "minimum": 1,
-            "maximum": 9999999999,
-            "description": "ChangeId of the entry.",
-            "example": 322784
-          },
-          "changeDate": {
-            "type": "string",
-            "format": "date-time",
-            "description": "ChangeDate of the entry.",
-            "example": "2022-04-25 09:30:00"
-          },
-          "priceId": {
-            "type": "integer",
-            "format": "Int64",
-            "minimum": 1,
-            "maximum": 9999999999,
-            "description": "Supplier identifier of the article price.",
-            "example": 32667843
-          },
-          "origin": {
-            "type": "string",
-            "maxLength": 10,
-            "description": "The system of origin the order.",
-            "example": "ISBRW"
-          },
-          "externalPriceId": {
-            "type": "string",
-            "maxLength": 50,
-            "description": "Indentificaion of the article price in the external system.",
-            "example": "C47C97C0F4B04096855955CB5AD47444"
-          },
-          "articleId": {
-            "type": "integer",
-            "format": "Int64",
-            "minimum": 1,
-            "maximum": 9999999999,
-            "description": "Supplier identifier of the article.",
-            "example": 32667843
-          },
-          "externalArticleId": {
-            "type": "string",
-            "maxLength": 50,
-            "description": "Id of the article in the external system.",
-            "example": "C47C97C0F4B04096855955CB5AD47444"
-          },
-          "articleNo": {
-            "type": "string",
-            "maxLength": 20,
-            "description": "User article number",
-            "example": "15523"
-          },
-          "priceTypeCode": {
-            "type": "integer",
-            "format": "int64",
-            "minimum": 4070001,
-            "maximum": 4079999,
-            "description": "C4074 - Type of price (standard, avarage, last purchase price).",
-            "example": 4070002
-          },
-          "validFrom": {
-            "type": "string",
-            "format": "datetime",
-            "description": "Date from which the price entry is valid.",
-            "example": "2024-03-13"
-          },
-          "price": {
-            "type": "number",
-            "format": "double",
-            "minimum": 0,
-            "maximum": 99999999.9999,
-            "description": "Unit price in the given currency.",
-            "example": 1268.25
-          }
-        },
-        "required": [
-          "articleId",
-          "c407PriceType",
-          "validFrom",
-          "price"
-        ],
-        "description": "Represents a article price entry."
       },
       "materialManagementDeliveryNote": {
         "type": "object",
