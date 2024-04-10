@@ -707,41 +707,6 @@
           "isManualPostable"
         ]
       },
-      "codeValue": {
-        "description": "",
-        "type": "object",
-        "properties": {
-          "companyNo": {
-            "maximum": 999999,
-            "minimum": 0,
-            "type": "integer",
-            "description": "Company no for which the codevalue is available. 0 = all companies",
-            "format": "int32"
-          },
-          "code": {
-            "maximum": 99999999,
-            "minimum": 0,
-            "type": "integer",
-            "description": "ID of code",
-            "format": "int32"
-          },
-          "text": {
-            "type": "string",
-            "description": "Description or title of the codevalue",
-            "nullable": true
-          },
-          "shorttext": {
-            "maxLength": 12,
-            "type": "string",
-            "description": "Short-description or title of the codevalue",
-            "nullable": true
-          }
-        },
-        "required": [
-          "code",
-          "companyNo"
-        ]
-      },
       "attributeValue": {
         "description": "",
         "type": "object",
@@ -750,26 +715,26 @@
             "maximum": 2147483647,
             "minimum": 1,
             "type": "integer",
-            "description": "performis internal of attribute value Id",
+            "description": "Internal of attribute value Id",
             "format": "int64"
           },
           "attributeDefinitionId": {
             "maximum": 2147483647,
             "minimum": 1,
             "type": "integer",
-            "description": "performis internal of attribute definition Id",
+            "description": "Internal of attribute definition Id",
             "format": "int64"
           },
           "modifyUser": {
             "type": "string",
             "maxLength": 30,
-            "description": "Name of user who changed relevant information of the record",
+            "description": "Name of user who changed relevant information of the entry",
             "example": "STJ"
           },
           "modifyDate": {
             "type": "string",
             "format": "date-time",
-            "description": "Date someone changed relevant information of the record",
+            "description": "Date someone changed relevant information of the entry",
             "example": "2021-08-31 10:23:10"
           },
           "sortNo": {
@@ -780,6 +745,14 @@
               "description": "Position within the attribute value set",
               "example": 3
           },
+          "companyNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 999999,
+            "description": "Company identification of the entry.",
+            "example": 37
+          },
           "textValue": {
             "type": "string",
             "maxLength": 1000,
@@ -787,7 +760,7 @@
           },
           "numberValue": {
             "type": "number",
-            "format": "double",
+            "format": "decimal",
             "description": "Number or decimal value"
           },
           "dateValue": {
@@ -801,7 +774,17 @@
           },
           "codes": {
             "type": "array",
-            "$ref": "#/components/schemas/codeValue"
+            "items": {
+              "properties": {
+                "code": {
+                  "minimum": 10000,
+                  "maximum": 99999999,
+                  "type": "integer",
+                  "description": "ID of code",
+                  "format": "int64"
+                }
+              }
+            }
           }
         },
         "required": [
@@ -813,34 +796,36 @@
         "type": "object",
           "properties": {
           "attributeSetId": {
-              "maximum": 2147483647,
+              "maximum": 9999999999,
               "minimum": 1,
               "type": "integer",
-              "description": "performis internal of attribute set Id",
+              "description": "Internal of attribute set Id",
               "format": "int64"
           },
           "attributeValueId": {
-            "maximum": 2147483647,
+            "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "performis internal of attribute Id",
+            "description": "Internal of attribute Id",
             "format": "int64"
           },
           "modifyUser": {
             "type": "string",
             "maxLength": 30,
-            "description": "Name of user who changed relevant information of the record",
+            "description": "Name of user who changed relevant information of the entry",
             "example": "STJ"
           },
           "modifyDate": {
             "type": "string",
             "format": "date-time",
-            "description": "Date someone changed relevant information of the record",
+            "description": "Date someone changed relevant information of the entry",
             "example": "2021-08-31 10:23:10"
           },
           "attributeValues": {
             "type": "array",
-            "$ref": "#/components/schemas/attributeValue"
+            "items": {
+              "$ref": "#/components/schemas/attributeValue"
+            }
           }
         },
         "required": [
