@@ -40,7 +40,7 @@ At the moment, we enable third party developer to use the following modules via 
 - performis - ERP
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2performis.json&nocors" target="_blank">See documentation online</a>
 - BAF - Business Application Functions
-  - available soon
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BAF.json&nocors" target="_blank">See documentation online</a>
 - ressys
   - available soon
 
