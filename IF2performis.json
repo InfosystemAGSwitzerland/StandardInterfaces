@@ -118,7 +118,7 @@
           {
             "name": "skip",
             "in": "query",
-            "description": "Number of records to skip for pagination.",
+            "description": "Number of entries  to skip  for pagination.",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -129,7 +129,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Maximum number of records to return.",
+            "description": "Maximum number of entries to return.",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -302,7 +302,7 @@
           {
             "name": "skip",
             "in": "query",
-            "description": "Number of records to skip for pagination.",
+            "description": "Number of entries  to skip  for pagination.",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -313,7 +313,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Maximum number of records to return.",
+            "description": "Maximum number of entries to return.",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -613,7 +613,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/allowanceDefinition"
+                    "$ref": "#/components/schemas/serviceRecordingallowanceDefinition"
                   }
                 }
               }
@@ -700,7 +700,7 @@
           {
             "name": "skip",
             "in": "query",
-            "description": "Number of records to skip for pagination.",
+            "description": "Number of entries  to skip  for pagination.",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -711,7 +711,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Maximum number of records to return.",
+            "description": "Maximum number of entries to return.",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -856,7 +856,7 @@
           {
             "name": "skip",
             "in": "query",
-            "description": "Number of records to skip for pagination.",
+            "description": "Number of entries  to skip  for pagination.",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -867,7 +867,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Maximum number of records to return.",
+            "description": "Maximum number of entries to return.",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -1266,7 +1266,7 @@
           {
             "name": "skip",
             "in": "query",
-            "description": "Number of records to skip for pagination.",
+            "description": "Number of entries  to skip  for pagination.",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -1277,7 +1277,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Maximum number of records to return.",
+            "description": "Maximum number of entries to return.",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -1667,7 +1667,7 @@
           {
             "name": "skip",
             "in": "query",
-            "description": "Number of records to skip for pagination.",
+            "description": "Number of entries  to skip  for pagination.",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -1678,7 +1678,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Maximum number of records to return.",
+            "description": "Maximum number of entries to return.",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -2066,7 +2066,7 @@
           {
             "name": "skip",
             "in": "query",
-            "description": "Number of records to skip for pagination.",
+            "description": "Number of entries  to skip  for pagination.",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -2077,7 +2077,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Maximum number of records to return.",
+            "description": "Maximum number of entries to return.",
             "schema": {
               "maximum": 2147483647,
               "minimum": 0,
@@ -2289,7 +2289,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -2371,7 +2371,7 @@
             },
             "in": "query",
             "name": "skip",
-            "description": "Number of records to skip for pagination."
+            "description": "Number of entries  to skip  for pagination."
           },
           {
             "schema": {
@@ -2382,7 +2382,7 @@
             },
             "in": "query",
             "name": "limit",
-            "description": "Maximum number of records to return."
+            "description": "Maximum number of entries to return."
           },
           {
             "schema": {
@@ -2410,7 +2410,7 @@
             },
             "in": "query",
             "name": "supplierId",
-            "description": "Retrieve a specific record by supplier ID. Ignores other search options if provided."
+            "description": "Filters entries of the supplier ID."
           },
           {
             "schema": {
@@ -2420,7 +2420,7 @@
             },
             "in": "query",
             "name": "externalSupplierId",
-            "description": "Retrieve a specific record by external supplier ID. Ignores other search options if provided."
+            "description": "Filters entries of the external supplier ID."
           },
           {
             "schema": {
@@ -2546,7 +2546,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -2628,7 +2628,7 @@
             },
             "in": "query",
             "name": "skip",
-            "description": "Number of records to skip for pagination."
+            "description": "Number of entries  to skip  for pagination."
           },
           {
             "schema": {
@@ -2639,7 +2639,7 @@
             },
             "in": "query",
             "name": "limit",
-            "description": "Maximum number of records to return."
+            "description": "Maximum number of entries to return."
           },
           {
             "schema": {
@@ -2667,7 +2667,7 @@
             },
             "in": "query",
             "name": "purchaseOrderNo",
-            "description": "Retrieve a specific record by purchase order number and company number. Ignores other search options if provided."
+            "description": "Filters entries of the purchase order number and company number."
           },
           {
             "schema": {
@@ -2688,7 +2688,7 @@
             },
             "in": "query",
             "name": "companyNo",
-            "description": "Retrieve a specific record by company number and purchase order number. Ignores other search options if provided."
+            "description": "Filters entries of the company number and purchase order number."
           }
         ],
         "description": "Returns all matching purchase orders."
@@ -2773,7 +2773,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error"
+                  "$ref": "#/components/schemas/problemDetails"
                 }
               }
             }
@@ -2855,7 +2855,7 @@
             },
             "in": "query",
             "name": "skip",
-            "description": "Number of records to skip for pagination."
+            "description": "Number of entries  to skip  for pagination."
           },
           {
             "schema": {
@@ -2866,7 +2866,7 @@
             },
             "in": "query",
             "name": "limit",
-            "description": "Maximum number of records to return."
+            "description": "Maximum number of entries to return."
           },
           {
             "schema": {
@@ -2894,7 +2894,7 @@
             },
             "in": "query",
             "name": "deliveryNoteNo",
-            "description": "Retrieve a specific record by delivery note number and company number. Ignores other search options if provided."
+            "description": "Filters entries of the delivery note number."
           },
           {
             "schema": {
@@ -2915,12 +2915,460 @@
             },
             "in": "query",
             "name": "companyNo",
-            "description": "Retrieve a specific record by company number and delivery note number. Ignores other search options if provided."
+            "description": "Filters entries of the company number."
           }
         ],
         "description": "Returns all matching delivery notes."
       },
       "parameters": []
+    },
+    "/api/v3/master-data/material-management/articles": {
+      "get": {
+        "summary": "Get article information",
+        "tags": [
+          "MasterData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Article information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/materialManagementArticle"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getMaterialManagementArticles",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 50
+            },
+            "in": "header",
+            "name": "X-Requesting-System",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Requesting-User",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical Id (GUID) for call identification."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Client-Type",
+            "description": "Optional client type calling the service."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0,
+              "maximum": 2147483647
+            },
+            "in": "query",
+            "name": "skip",
+            "description": "Number of entries to skip for pagination."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0,
+              "maximum": 2147483647
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "Maximum number of entries to return."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query",
+            "name": "changesSinceDateTime",
+            "description": "Get all entries since the specified date time."
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "changesSinceChangeId",
+            "description": "Get all entries since the specified change id."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "maximum": 9999999999
+            },
+            "in": "query",
+            "name": "articleId",
+            "description": "Get a specific entry by internal article number."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "ISBRW",
+              "maxLength": 200
+            },
+            "in": "query",
+            "name": "origin",
+            "description": "Get all the entities of a certain origin."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "C47C97C0F4B04096855955CB5AD47444",
+              "maxLength": 200
+            },
+            "in": "query",
+            "name": "externalArticleId",
+            "description": "Id of the article in the external system."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 20,
+              "example": "15523"
+            },
+            "in": "query",
+            "name": "articleNo",
+            "description": "Filters entries of the specified article number. The same article number can be used in several companies. Also use the company number to get a specific article."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "maximum": 999999
+            },
+            "in": "query",
+            "name": "companyNo",
+            "description": "Filters entries of the specified company number."
+          }
+        ],
+        "description": "Returns all matching articles."
+      }
+    },
+    "/api/v3/master-data/material-management/articles/prices": {
+      "get": {
+        "summary": "Get price information",
+        "tags": [
+          "MasterData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Price information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/materialManagementArticlePrice"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getArticlePrices",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 50
+            },
+            "in": "header",
+            "name": "X-Requesting-System",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Requesting-User",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical Id (GUID) for call identification."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Client-Type",
+            "description": "Optional client type calling the service."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0,
+              "maximum": 2147483647
+            },
+            "in": "query",
+            "name": "skip",
+            "description": "Number of entries to skip for pagination."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0,
+              "maximum": 2147483647
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "Maximum number of entries to return."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query",
+            "name": "changesSinceDateTime",
+            "description": "Get all entries since the specified date time."
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "changesSinceChangeId",
+            "description": "Get all entries since the specified change id."
+          },
+          {
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "int64",
+                "minimum": 1,
+                "maximum": 9999999999
+              }
+            },
+            "in": "query",
+            "name": "articleId",
+            "description": "Gets a list of articles by internal article ids.",
+            "example": [
+              1,
+              21,
+              321
+            ]
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "ISBRW",
+              "maxLength": 200
+            },
+            "in": "query",
+            "name": "origin",
+            "description": "Get all the entries of a certain origin."
+          }
+        ],
+        "description": "Returns all matching article prices."
+      },
+      "put": {
+        "summary": "Put price information",
+        "tags": [
+          "MasterData"
+        ],
+        "operationId": "PutArticlePrices",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/materialManagementArticlePrice"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Requesting-System",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Requesting-User",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical Id (GUID) for call identification."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Client-Type",
+            "description": "Optional client type calling the service."
+          }
+        ],
+        "description": "Updates an existing entry if internal or external Id match.\nCreates an entry if neither internal or external Id is provided or no matching entry could be found.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/materialManagementArticlePrice"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -3564,7 +4012,7 @@
         ],
         "description": "Represents an allowance entry."
       },
-      "allowanceDefinition": {
+      "serviceRecordingallowanceDefinition": {
         "title": "AllowanceDefinition",
         "type": "object",
         "description": "Represents an allowance definition entry.",
@@ -5102,43 +5550,355 @@
           "pos"
         ]
       },
+      "materialManagementArticle": {
+        "type": "object",
+        "title": "MaterialManagementArticle",
+        "description": "Represents a (material management) article entry.",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "ChangeId of the entry.",
+            "example": 322784,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ChangeDate of the entry.",
+            "example": "2022-04-25 09:30:00",
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Is this entry active or not?"
+          },
+          "modifyUser": {
+            "type": "string",
+            "maxLength": 30,
+            "description": "User who last modified the entry.",
+            "example": "STJ",
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date the entry was last modified.",
+            "example": "2024-01-30T11:46:59",
+            "readOnly": true
+          },
+          "articleId": {
+            "type": "integer",
+            "format": "Int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Unique identifier of the article.",
+            "example": 236596874
+          },
+          "origin": {
+            "type": "string",
+            "maxLength": 200,
+            "description": "The entry's system of origin.",
+            "example": "ISBRW"
+          },
+          "externalArticleId": {
+            "type": "string",
+            "maxLength": 200,
+            "description": "Id of the article in the external system.",
+            "example": "C47C97C0F4B04096855955CB5AD47444"
+          },
+          "articleNo": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "Article number for identification by the users.",
+            "example": "A123.456-B"
+          },
+          "companyNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 999999,
+            "description": "Company identification of the entry.",
+            "example": 37
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 300,
+            "description": "Article description for external usage.",
+            "example": "UTTO VT 0W-20  Achsen/ Bremsöl WB 102"
+          },
+          "shortDescription": {
+            "type": "string",
+            "maxLength": 80,
+            "nullable": false,
+            "description": "Article description for internal usage.",
+            "example": "UTTO VT 0W-20-WB 102"
+          },
+          "stockUnitCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 280001,
+            "maximum": 289999,
+            "nullable": false,
+            "description": "C28 - Stock unit code.",
+            "example": 280003
+          },
+          "priceUnitCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 280001,
+            "maximum": 289999,
+            "nullable": false,
+            "description": "C28 - Price unit code.",
+            "example": 280003
+          },
+          "conversionFactorStockUnitPriceUnit": {
+            "type": "number",
+            "format": "decimal",
+            "minimum": 0.000001,
+            "maximum": 9999999.999999,
+            "description": "The conversion factor to convert StockUnit to PriceUnit e.g. 1 (stockUnitCode).",
+            "example": 1
+          },
+          "conversionFactorPriceUnitStockUnit": {
+            "type": "number",
+            "format": "decimal",
+            "minimum": 0.000001,
+            "maximum": 9999999.999999,
+            "description": "The conversion factor to convert PriceUnit to StockUnit e.g. 12 (priceUnitCode).",
+            "example": 12
+          },
+          "stockManagement": {
+            "type": "boolean",
+            "description": "Is the stock level managed on a quantity basis?"
+          },
+          "inventoryManagement": {
+            "type": "boolean",
+            "description": "Is the stock level managed on an inventory basis?"
+          },
+          "articleGroupCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 4590001,
+            "maximum": 4599999,
+            "description": "C459 - Article group code.",
+            "example": 4590003
+          },
+          "ean": {
+            "type": "string",
+            "maxLength": 13,
+            "description": "EAN of the article.",
+            "example": "7610900129966",
+            "nullable": true
+          },
+          "customsTariffNo": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "Customs tariff number.",
+            "nullable": true
+          },
+          "countryOfOrigin": {
+            "type": "string",
+            "maxLength": 2,
+            "description": "ISO code of the country of origin.",
+            "example": "CH"
+          },
+          "vat": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "taxSystem": {
+                  "type": "string",
+                  "maxLength": 2,
+                  "description": "Country of tax system as ISO code.",
+                  "example": "AT"
+                },
+                "vatTypeCode": {
+                  "type": "integer",
+                  "format": "int64",
+                  "minimum": 830001,
+                  "maximum": 839999,
+                  "description": "C83 - Tax type (normal rate, reduced rate,...).",
+                  "example": 830002
+                }
+              },
+              "required": [
+                "taxSystem",
+                "vatTypeCode"
+              ]
+            }
+          },
+          "localizations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "language": {
+                  "type": "string",
+                  "maxLength": 2,
+                  "description": "Language as ISO code.",
+                  "example": "EN"
+                },
+                "description": {
+                  "type": "string",
+                  "maxLength": 300,
+                  "description": "Full description in the given language.",
+                  "example": "Cardboard box - length = 100mm; width = 50mm; height = 20mm"
+                },
+                "shortDescription": {
+                  "type": "string",
+                  "maxLength": 80,
+                  "description": "Short description in the given language.",
+                  "example": "Cardboard box - (l*w*h) 100*50*20mm"
+                }
+              },
+              "required": [
+                "language",
+                "description",
+                "shortDescription"
+              ]
+            }
+          },
+          "attributeValueSet": {
+            "$ref": "#/components/schemas/attributeValueSet"
+          }
+        },
+        "required": [
+          "articleNo",
+          "companyNo",
+          "description",
+          "shortDescription"
+        ]
+      },
+      "materialManagementArticlePrice": {
+        "type": "object",
+        "title": "MaterialManagementArticlePrice",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "ChangeId of the entry.",
+            "example": 322784
+          },
+          "changeDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ChangeDate of the entry.",
+            "example": "2022-04-25 09:30:00"
+          },
+          "priceId": {
+            "type": "integer",
+            "format": "Int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Internal identifier of the article price.",
+            "example": 32667843
+          },
+          "origin": {
+            "type": "string",
+            "maxLength": 200,
+            "description": "The entry's system of origin.",
+            "example": "ISBRW"
+          },
+          "externalPriceId": {
+            "type": "string",
+            "maxLength": 200,
+            "description": "Indentificaion of the article price in the external system.",
+            "example": "C47C97C0F4B04096855955CB5AD47444"
+          },
+          "articleId": {
+            "type": "integer",
+            "format": "Int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Unique identifier of the article.",
+            "example": 32667843
+          },
+          "externalArticleId": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Id of the article in the external system.",
+            "example": "C47C97C0F4B04096855955CB5AD47444"
+          },
+          "articleNo": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "Article number for identification by the users.",
+            "example": "A123.456-B"
+          },
+          "priceTypeCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 4070001,
+            "maximum": 4079999,
+            "description": "C4074 - Type of price (standard, avarage, last purchase price).",
+            "example": 4070002
+          },
+          "validFrom": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Date from which the price entry is valid.",
+            "example": "2024-03-13"
+          },
+          "price": {
+            "type": "number",
+            "format": "decimal",
+            "minimum": 0,
+            "maximum": 99999999.9999,
+            "description": "Unit price in the given currency.",
+            "example": 1268.25
+          }
+        },
+        "required": [
+          "articleId",
+          "c407PriceType",
+          "validFrom",
+          "price"
+        ],
+        "description": "Represents a article price entry."
+      },
       "attributeValue": {
         "description": "",
         "type": "object",
         "properties": {
-          "attributeValueId":{
+          "attributeValueId": {
             "maximum": 2147483647,
             "minimum": 1,
             "type": "integer",
-            "description": "Internal of attribute value Id",
+            "description": "Internal identification of attribute value.",
             "format": "int64"
           },
           "attributeDefinitionId": {
             "maximum": 2147483647,
             "minimum": 1,
             "type": "integer",
-            "description": "Internal of attribute definition Id",
+            "description": "Internal identification of attribute definition.",
             "format": "int64"
           },
           "modifyUser": {
             "type": "string",
             "maxLength": 30,
-            "description": "Name of user who changed relevant information of the entry",
+            "description": "User who last modified the entry.",
             "example": "STJ"
           },
           "modifyDate": {
             "type": "string",
             "format": "date-time",
-            "description": "Date someone changed relevant information of the entry",
+            "description": "Date the entry was last modified.",
             "example": "2021-08-31 10:23:10"
           },
           "sortNo": {
-              "type": "integer",
-              "format": "int64",
-              "minimum": 1,
-              "maximum": 9999,
-              "description": "Position within the attribute value set",
-              "example": 3
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999,
+            "description": "Position within the attribute value set",
+            "example": 3
           },
           "companyNo": {
             "type": "integer",
@@ -5189,31 +5949,31 @@
       "attributeValueSet": {
         "description": "",
         "type": "object",
-          "properties": {
+        "properties": {
           "attributeSetId": {
-              "maximum": 9999999999,
-              "minimum": 1,
-              "type": "integer",
-              "description": "Internal of attribute set Id",
-              "format": "int64"
-          },
-          "attributeValueId": {
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Internal of attribute Id",
+            "description": "Internal identification of attribute set.",
+            "format": "int64"
+          },
+          "attributeValueSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal identification of attribute value set.",
             "format": "int64"
           },
           "modifyUser": {
             "type": "string",
             "maxLength": 30,
-            "description": "Name of user who changed relevant information of the entry",
+            "description": "User who last modified the entry.",
             "example": "STJ"
           },
           "modifyDate": {
             "type": "string",
             "format": "date-time",
-            "description": "Date someone changed relevant information of the entry",
+            "description": "Date the entry was last modified.",
             "example": "2021-08-31 10:23:10"
           },
           "attributeValues": {
@@ -5224,7 +5984,7 @@
           }
         },
         "required": [
-          "attributeValueId"
+          "attributeSetId"
         ]
       },
       "problemDetails": {
@@ -5266,34 +6026,6 @@
             "property2": null
           }
         }
-      },
-      "error": {
-        "type": "object",
-        "properties": {
-          "errorDateTime": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true
-          },
-          "context": {
-            "type": "string",
-            "nullable": true
-          },
-          "errorCode": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "errorDescription": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          }
-        },
-        "additionalProperties": false,
-        "title": "Error",
-        "description": "description structure for error.",
-        "x-examples": {}
       },
       "maintenanceWindow": {
         "type": "object",
