@@ -36,7 +36,7 @@ All interfaces are built based on Infosystems Web API Standards, following the I
 
 At the moment, we enable third party developer to use the following modules via REST API:
 - leva+
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2LEVA3.json&nocors" target="_blank">See documentation online</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2leva.json&nocors" target="_blank">See documentation online</a>
 - performis - ERP
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2performis.json&nocors" target="_blank">See documentation online</a>
 - BAF - Business Application Functions
@@ -46,19 +46,19 @@ At the moment, we enable third party developer to use the following modules via 
 
 Our module-based interfaces:
 - performis FI - Financial Accounting
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2FI3.json&nocors" target="_blank">See documentation online</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Module-Based/IF2FI3.json&nocors" target="_blank">See documentation online</a>
 - performis FA - Invoicing
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2FA3.json&nocors" target="_blank">See documentation online</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Module-Based/IF2FA3.json&nocors" target="_blank">See documentation online</a>
 - performis BA - Base module
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BA3.json&nocors" target="_blank">See documentation online</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Module-Based/IF2BA3.json&nocors" target="_blank">See documentation online</a>
 - performis GP - Business Partner
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2GP3.json&nocors" target="_blank">See documentation online</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Module-Based/IF2GP3.json&nocors" target="_blank">See documentation online</a>
 - leva+ - Master Data
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BBA3.json&nocors" target="_blank">See documentation online</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Module-Based/IF2BBA3.json&nocors" target="_blank">See documentation online</a>
 - leva+ - Scheduling & Distribution
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BHTR3.json&nocors" target="_blank">See documentation online</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Module-Based/IF2BHTR3.json&nocors" target="_blank">See documentation online</a>
 - leva+ - Workshop
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BWKST3.json&nocors" target="_blank">See documentation online</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Module-Based/IF2BWKST3.json&nocors" target="_blank">See documentation online</a>
 
 All interfaces offer the same standard functionality to enable you to quickly learn and interact with them. If required, an API might offer enhanced functionality.
 
