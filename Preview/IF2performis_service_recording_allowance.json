@@ -1,0 +1,657 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "IF2performis",
+    "version": "v3",
+    "contact": {
+      "name": "Infosystem AG",
+      "email": "support@infosystem.ch",
+      "url": "https://www.infosystem.ch"
+    },
+    "description": "IF2performis Rest API"
+  },
+  "servers": [],
+  "paths": {
+    "/api/v3/service-recording/allowances": {
+      "get": {
+        "summary": "Search all allowances",
+        "tags": [
+          "ServiceRecording"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/serviceRecordingAllowance"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getAllowances",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Client-Type",
+            "description": "Optional client type calling the service."
+          },
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Optional search string for looking up a record within name and searchterm fields.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries  to skip  for pagination.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries since the specified date time.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries since the specified change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1234567890,
+              "minimum": 0,
+              "maximum": 9999999999
+            },
+            "in": "query",
+            "name": "serviceProviderDayId",
+            "description": "Key to fetch all allowances from the given day/performance/performing unit."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "in": "query",
+            "name": "servicePerformanceDay",
+            "description": "Date the service was performed."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 50,
+              "minLength": 1
+            },
+            "in": "query",
+            "name": "personnelNo",
+            "description": "Id of the performing unit in the external system - Is only unique togehter with the companyNo."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "maximum": 999999,
+              "minimum": 1
+            },
+            "in": "query",
+            "name": "companyNo",
+            "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system."
+          }
+        ],
+        "description": "Returns all matching allowances."
+      },
+      "put": {
+        "summary": "Updates an existing day allowance if internal or external Id match.\nCreates a day allowance if neither internal or external Id is provided or no matching record could be found.",
+        "operationId": "putAllowances",
+        "tags": [
+          "ServiceRecording"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/serviceRecordingAllowance"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Requesting-System",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Requesting-User",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical Id (GUID) for call identification."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Client-Type",
+            "description": "Optional client type calling the service."
+          }
+        ],
+        "description": "Updates an existing absence if internal or external Id match.\nCreates an absence if neither internal or external Id is provided or no matching record could be found.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/serviceRecordingAllowance"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes an allowance",
+        "operationId": "deleteAllowances",
+        "tags": [
+          "ServiceRecording"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK."
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Requesting-System",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Requesting-User",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical Id (GUID) for call identification."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Client-Type",
+            "description": "Optional client type calling the service."
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "allowanceId",
+            "description": "Identifier of an allowance."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 10,
+              "example": "B_HTR"
+            },
+            "in": "query",
+            "name": "origin",
+            "description": "The system of origin."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 50,
+              "example": "319"
+            },
+            "in": "query",
+            "name": "originId",
+            "description": "Id of the system of origin."
+          }
+        ],
+        "description": "Deletes an allowance."
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "serviceRecordingAllowance": {
+        "title": "Allowance",
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Change id of the entry.",
+            "example": 369852147
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "example": "2024-01-27 09:30:00"
+          },
+          "allowanceId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Id of the allowance.",
+            "example": 26873
+          },
+          "serviceProviderDayId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Id of the service provider day.",
+            "example": 36874
+          },
+          "allowanceid": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Id of the allowance.",
+            "example": 15795
+          },
+          "companyNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 999999,
+            "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system.",
+            "example": 25
+          },
+          "personnelNo": {
+            "type": "string",
+            "description": "Id of the person/(human) service provider in the external system.",
+            "minLength": 1,
+            "maxLength": 50,
+            "example": "1258"
+          },
+          "machineNo": {
+            "type": "string",
+            "description": "Id of the machine service provider in the external system.",
+            "minLength": 1,
+            "maxLength": 50,
+            "example": "139"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 50,
+            "example": "Pikett-Dienst",
+            "description": "Discribes the details of the allowance."
+          },
+          "orderNo": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "The OrderNo identifies the order to be booked in accounting. This is the actual order no of the order.",
+            "example": "K-658-55"
+          },
+          "base": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Amount of units declared.",
+            "example": 8
+          },
+          "percentage": {
+            "type": "number",
+            "format": "double",
+            "example": 50,
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Percentage rate of base amount being compensated."
+          },
+          "amount": {
+            "type": "number",
+            "description": "Actual amount being compensated\nbase (declared) 8h\npercentage 50%\namount (compensated) 4h.",
+            "example": 4
+          },
+          "apply": {
+            "type": "boolean",
+            "description": "As all possible allowances are checked and calulated for all service provider days this flag declares if this specific allowance is relevant."
+          },
+          "locked": {
+            "type": "boolean",
+            "description": "The dataset is locked for change."
+          },
+          "exclude": {
+            "type": "boolean",
+            "description": "The allowence is not being granted even if would apply."
+          },
+          "costCenterNo": {
+            "type": "string",
+            "maxLength": 6,
+            "description": "Cost center identifier.",
+            "example": "C-222"
+          },
+          "period": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 999999,
+            "example": 202312,
+            "description": "Year and month the service was provided\nFormat YYYYMM (e.g. 202401)."
+          },
+          "origin": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "The system of origin.",
+            "example": "25"
+          },
+          "originId": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Id of the system of origin.",
+            "example": "1023789456"
+          }
+        },
+        "required": [
+          "allowanceid",
+          "companyNo",
+          "personnelNo",
+          "apply",
+          "locked",
+          "exclude",
+          "origin",
+          "originId"
+        ],
+        "description": "Represents an allowance entry."
+      },
+      "problemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": {},
+        "title": "ProblemDetails",
+        "description": "",
+        "x-examples": {
+          "example1": {
+            "type": "Warning",
+            "title": "Sample Title",
+            "status": -99,
+            "detail": "This is a generic message to provide a sample return of how a message may be returned.",
+            "instance": "TEST",
+            "property1": null,
+            "property2": null
+          }
+        }
+      },
+      "maintenanceWindow": {
+        "type": "object",
+        "additionalProperties": false,
+        "title": "MaintenanceWindow",
+        "description": "information structure for active maintenance windows.",
+        "x-examples": {
+          "example-1": {
+            "id": 3511,
+            "active": true,
+            "fromDateTime": "2019-08-24T14:15:22Z",
+            "toDateTime": "2019-08-24T14:15:22Z",
+            "info": "monthly maintenance for patch installation",
+            "clientStartAllowed": false
+          }
+        },
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 3511,
+            "nullable": true,
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "default": true,
+            "description": "usually the API will respond with this structure, when the maintenance window is active and the window has started."
+          },
+          "fromDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "start of scheduled maintenance window."
+          },
+          "toDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "end of scheduled maintenance window."
+          },
+          "info": {
+            "type": "string",
+            "example": "monthly maintenance for patch installation",
+            "nullable": true
+          },
+          "clientStartAllowed": {
+            "type": "boolean",
+            "default": false,
+            "description": "defines wether or not clients may continue to work while the maintenance window applies."
+          }
+        }
+      }
+    }
+  }
+}

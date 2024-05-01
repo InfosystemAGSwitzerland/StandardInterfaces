@@ -1,0 +1,1060 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "IF2performis",
+    "version": "v3",
+    "contact": {
+      "name": "Infosystem AG",
+      "email": "support@infosystem.ch",
+      "url": "https://www.infosystem.ch"
+    },
+    "description": "IF2performis Rest API"
+  },
+  "servers": [],
+  "paths": {
+    "/api/v3/service-recording/service-provider-days": {
+      "get": {
+        "summary": "Searches for service provider days and all additional information (if requested)",
+        "tags": [
+          "ServiceRecording"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "serviceProviderDays": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/serviceRecordingServiceProviderDay"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getServiceProviderDays",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Client-Type",
+            "description": "Optional client type calling the service."
+          },
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Optional search string for looking up a record within name and searchterm fields.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries  to skip  for pagination.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries since the specified date time.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries since the specified change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "in": "query",
+            "name": "servicePerformanceDay",
+            "description": "Date the service was performed."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 50,
+              "minLength": 1
+            },
+            "in": "query",
+            "name": "personnelNo",
+            "description": "Id of the performing unit in the external system - Is only unique togehter with the companyNo."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "maximum": 999999,
+              "minimum": 1
+            },
+            "in": "query",
+            "name": "companyNo",
+            "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system."
+          },
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "name": "includeDetails",
+            "description": "If set to true the service provider day is returned with all related additional information."
+          }
+        ],
+        "description": "Returns a service provider day and all related information  (if requested)."
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "serviceRecordingServiceProviderDay": {
+        "title": "ServiceProviderDay",
+        "type": "object",
+        "description": "Represents a service provider day entry.",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Change id of the entry.",
+            "example": 123789
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "example": "2022-05-12 08:00:00"
+          },
+          "serviceProviderDayId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "example": 1234567890,
+            "description": "Identifies the service provider day."
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date of the service.",
+            "example": "2022-05-12"
+          },
+          "targetHours": {
+            "type": "number",
+            "example": 8,
+            "description": "The amount of hours that should be spent on this.",
+            "format": "double"
+          },
+          "presenceHours": {
+            "type": "number",
+            "example": 6,
+            "description": "Hours the service provider was present.",
+            "format": "double"
+          },
+          "hoursOfHoliday": {
+            "type": "number",
+            "example": 4,
+            "description": "Time off in hours.",
+            "format": "double"
+          },
+          "allowancesHours": {
+            "type": "number",
+            "example": 4,
+            "description": "Hours that are relevant for allowences.",
+            "format": "double"
+          },
+          "dayOff": {
+            "type": "boolean",
+            "description": "Is a day off."
+          },
+          "breakRuleViolated": {
+            "type": "boolean",
+            "description": "A work hour rule was violated."
+          },
+          "approved": {
+            "type": "boolean",
+            "description": "The service provider day was approved by the authorized user."
+          },
+          "serviceProviderId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Id of the service provider.",
+            "example": 7684411397
+          },
+          "dayValid": {
+            "type": "boolean",
+            "description": "The record was checked by all rules and is valid."
+          },
+          "approvalUser": {
+            "type": "string",
+            "maxLength": 30,
+            "description": "Name of the reviewing authority that approved the record.",
+            "example": "XYZ"
+          },
+          "approvalDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Date the reviewing authority approved the record.",
+            "example": "2021-08-24"
+          },
+          "dayError": {
+            "type": "string",
+            "maxLength": 2000,
+            "description": "List of all reasons why the recoed could not be validated successfully.",
+            "example": "Abwesenheitszeit darf nicht grösser als die Sollzeit sein."
+          },
+          "relevantChangeUser": {
+            "type": "string",
+            "maxLength": 30,
+            "description": "Name of user who changed relevant information of the record other than the service provider.",
+            "example": "ADM"
+          },
+          "relevantChangeDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Date someone changed relevant information of the record other than the service provider.",
+            "example": "2021-08-31"
+          },
+          "onHourlyWage": {
+            "type": "boolean",
+            "description": "Ist the wage per hour."
+          },
+          "overlapHours": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Hours overlapping with other service provider day.",
+            "example": 3
+          },
+          "serviceRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/serviceRecordingServiceRecord"
+            }
+          },
+          "allowances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/serviceRecordingAllowance"
+            }
+          },
+          "presenceTimes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/serviceRecordingPresenceTime"
+            }
+          },
+          "absences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/serviceRecordingAbsence"
+            }
+          }
+        },
+        "required": [
+          "date",
+          "presenceHours",
+          "hoursOfHoliday",
+          "allowancesHours",
+          "dayOff",
+          "breakRuleViolated",
+          "approved",
+          "serviceProviderId",
+          "dayValid",
+          "onHourlyWage"
+        ]
+      },
+      "serviceRecordingServiceRecord": {
+        "title": "ServiceRecord",
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Change id of the entry.",
+            "example": 8971239429
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "example": "2020-07-22 09:45:00"
+          },
+          "serviceRecordId": {
+            "type": "integer",
+            "format": "int64",
+            "maximum": 9999999999,
+            "minimum": 0,
+            "description": "Id of the service.",
+            "example": 326479517
+          },
+          "companyNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 999999,
+            "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system.",
+            "example": 37
+          },
+          "serviceProviderId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Id of the service provider.",
+            "example": 3366
+          },
+          "personnelNo": {
+            "type": "string",
+            "description": "Id of the human service provider in the external system.",
+            "minLength": 1,
+            "maxLength": 50,
+            "example": "138"
+          },
+          "machineNo": {
+            "type": "string",
+            "description": "Id of the machine service provider in the external system.",
+            "minLength": 1,
+            "maxLength": 50,
+            "example": "139"
+          },
+          "serviceProviderDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Day on which the service was provided.",
+            "example": "2023-09-22"
+          },
+          "serviceRecordTypeId": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Id of the service type.",
+            "example": 697
+          },
+          "costCenterNo": {
+            "type": "string",
+            "maxLength": 6,
+            "description": "Cost center identifier.",
+            "minLength": 1,
+            "example": "C68"
+          },
+          "costUnitNo": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "Cost unit identifier.",
+            "example": "K-68"
+          },
+          "orderNo": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "The OrderNo identifies the order to be booked in accounting. This is the actual order no of the order.",
+            "example": "E-3654.12"
+          },
+          "period": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 999999,
+            "description": "Year and month the service was provided\nFormat YYYYMM (e.g. 202401).",
+            "example": 202010
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 240,
+            "description": "Description of the work done.",
+            "example": "Stahlträger montieren"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Amount of hours to get work done.",
+            "example": 4
+          },
+          "timeFrom": {
+            "type": "string",
+            "format": "time",
+            "description": "Work start time.",
+            "example": "08:00:00"
+          },
+          "timeUntil": {
+            "type": "string",
+            "format": "time",
+            "description": "Work end time.",
+            "example": "12:45:00"
+          },
+          "serviceProviderDayId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Id des service provider day.",
+            "example": 3698521470
+          },
+          "serviceRecordStatusCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 2910001,
+            "maximum": 2919999,
+            "description": "C291 - State of the service entry\n10 - Provisorisch                - Provisional\n20 - Erfasst                     - Recorded\n25 - Nicht verrechnungsbereit    - Not ready for billing\n30 - Verrechnungsbereit          - Ready for billing\n40 - Verrechnet                  - Billed\n45 - Keine Verrechnung           - No billing.",
+            "example": 2910020
+          },
+          "activity": {
+            "type": "string",
+            "example": "Repairs",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "Description of the work/task done."
+          },
+          "locked": {
+            "type": "boolean",
+            "description": "The service entry is locked for change."
+          },
+          "machineServiceProviderDayId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Id des service provider day of the machine.",
+            "example": 842697135
+          },
+          "guid": {
+            "type": "string",
+            "format": "uuid",
+            "maxLength": 36,
+            "description": "Unique global external Id to identify the record .",
+            "example": "196F85A1-D8F6-4CB3-A7C1-4961D379AF57"
+          },
+          "noRWPosting": {
+            "type": "boolean",
+            "description": "No post in accounting."
+          },
+          "origin": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "The system of origin.",
+            "example": "B_HTR"
+          },
+          "originId": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Id of the system of origin.",
+            "example": "319"
+          },
+          "originStatusCode": {
+            "type": "integer",
+            "minimum": 5770001,
+            "maximum": 5779999,
+            "format": "int64",
+            "description": "C577 - Status of the origin\n100 - nicht freigegeben     - not approved \n200 - teilweise freigegeben - partially approved\n500 - freigegeben           - approved.",
+            "example": 5770100
+          }
+        },
+        "required": [
+          "serviceRecordId",
+          "companyNo",
+          "serviceProviderId",
+          "personnelNo",
+          "serviceProviderDate",
+          "serviceRecordTypeId",
+          "period",
+          "quantity",
+          "c291ServiceRecordStatus",
+          "locked",
+          "guid",
+          "noRWPosting",
+          "origin",
+          "originId"
+        ],
+        "description": "Represents a service record entry."
+      },
+      "serviceRecordingAllowance": {
+        "title": "Allowance",
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Change id of the entry.",
+            "example": 369852147
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "example": "2024-01-27 09:30:00"
+          },
+          "allowanceId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Id of the allowance.",
+            "example": 26873
+          },
+          "serviceProviderDayId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Id of the service provider day.",
+            "example": 36874
+          },
+          "allowanceid": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Id of the allowance.",
+            "example": 15795
+          },
+          "companyNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 999999,
+            "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system.",
+            "example": 25
+          },
+          "personnelNo": {
+            "type": "string",
+            "description": "Id of the person/(human) service provider in the external system.",
+            "minLength": 1,
+            "maxLength": 50,
+            "example": "1258"
+          },
+          "machineNo": {
+            "type": "string",
+            "description": "Id of the machine service provider in the external system.",
+            "minLength": 1,
+            "maxLength": 50,
+            "example": "139"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 50,
+            "example": "Pikett-Dienst",
+            "description": "Discribes the details of the allowance."
+          },
+          "orderNo": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "The OrderNo identifies the order to be booked in accounting. This is the actual order no of the order.",
+            "example": "K-658-55"
+          },
+          "base": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Amount of units declared.",
+            "example": 8
+          },
+          "percentage": {
+            "type": "number",
+            "format": "double",
+            "example": 50,
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Percentage rate of base amount being compensated."
+          },
+          "amount": {
+            "type": "number",
+            "description": "Actual amount being compensated\nbase (declared) 8h\npercentage 50%\namount (compensated) 4h.",
+            "example": 4
+          },
+          "apply": {
+            "type": "boolean",
+            "description": "As all possible allowances are checked and calulated for all service provider days this flag declares if this specific allowance is relevant."
+          },
+          "locked": {
+            "type": "boolean",
+            "description": "The dataset is locked for change."
+          },
+          "exclude": {
+            "type": "boolean",
+            "description": "The allowence is not being granted even if would apply."
+          },
+          "costCenterNo": {
+            "type": "string",
+            "maxLength": 6,
+            "description": "Cost center identifier.",
+            "example": "C-222"
+          },
+          "period": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 999999,
+            "example": 202312,
+            "description": "Year and month the service was provided\nFormat YYYYMM (e.g. 202401)."
+          },
+          "origin": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "The system of origin.",
+            "example": "25"
+          },
+          "originId": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Id of the system of origin.",
+            "example": "1023789456"
+          }
+        },
+        "required": [
+          "allowanceid",
+          "companyNo",
+          "personnelNo",
+          "apply",
+          "locked",
+          "exclude",
+          "origin",
+          "originId"
+        ],
+        "description": "Represents an allowance entry."
+      },
+      "serviceRecordingPresenceTime": {
+        "title": "PresenceTime",
+        "type": "object",
+        "description": "Represents a presence time entry.",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Change id of the entry.",
+            "example": 321456987
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "example": "2023-09-21 09:30:00"
+          },
+          "presenceTimeId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Unique identifier of the presence time dataset.",
+            "example": 65987
+          },
+          "companyNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 999999,
+            "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system.",
+            "example": 20
+          },
+          "serviceProviderId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Id of the service provider.",
+            "example": 36547
+          },
+          "serviceProviderDayId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Identifier to the service provider day.",
+            "example": 6584
+          },
+          "personnelNo": {
+            "type": "string",
+            "description": "Id of the person/(human) service provider in the external system.",
+            "minLength": 1,
+            "maxLength": 50,
+            "example": "1287"
+          },
+          "presenceDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Date of presence.",
+            "example": "2022-11-11"
+          },
+          "hours": {
+            "type": "number",
+            "description": "Hours the service provider was present.",
+            "example": 4.5,
+            "format": "double",
+            "minimum": 0
+          },
+          "timeFrom": {
+            "type": "string",
+            "format": "time",
+            "description": "Time the service provider started work.",
+            "example": "08:00:00"
+          },
+          "timeUntil": {
+            "type": "string",
+            "format": "time",
+            "description": "Time the service provider ended work.",
+            "example": "12:15:00"
+          },
+          "locked": {
+            "type": "boolean",
+            "description": "The presence time record is locked for all but the origin system."
+          },
+          "origin": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "The system of origin.",
+            "example": "25"
+          },
+          "originId": {
+            "type": "string",
+            "maxLength": 50,
+            "description": " Id of the system of origin.",
+            "example": "1023789456"
+          }
+        },
+        "required": [
+          "presenceTimeId",
+          "companyNo",
+          "presenceDate",
+          "hours",
+          "timeFrom",
+          "locked",
+          "origin",
+          "originId"
+        ]
+      },
+      "serviceRecordingAbsence": {
+        "title": "Absence",
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Change id of the entry.",
+            "example": 322784
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "example": "2022-04-25 09:30:00"
+          },
+          "absenceId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Unique identifier of the absence.",
+            "example": 665588
+          },
+          "serviceProviderId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Id of the service provider.",
+            "example": 8715
+          },
+          "serviceProviderType": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Type of the service provider\n 1 - Mitarbeiter - Employees\n 2 - Maschinen   - Machines\n 3 - Kleingeräte - Small devices\n 5 - Allgemein   - Universal.",
+            "example": 2860005
+          },
+          "serviceProviderDayId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Id of the service provider.",
+            "example": 3269
+          },
+          "dateOfAbsence": {
+            "type": "string",
+            "format": "date",
+            "description": "Date of the absence.",
+            "example": "2023-12-24"
+          },
+          "hours": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Duration of absence in hours.",
+            "example": 8
+          },
+          "timeFrom": {
+            "type": "string",
+            "format": "datetime",
+            "description": "start of absence.",
+            "example": "2023-02-25 08:00:00"
+          },
+          "timeUntil": {
+            "type": "string",
+            "format": "datetime",
+            "description": "nd of absence.",
+            "example": "2023-02-25 17:00:00"
+          },
+          "companyNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 999999,
+            "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system.",
+            "example": 25
+          },
+          "personnelNo": {
+            "type": "string",
+            "description": "Id of the person/(human) service provider in the external system.",
+            "minLength": 1,
+            "maxLength": 50,
+            "example": "1258"
+          },
+          "holiday": {
+            "type": "boolean",
+            "description": "Is the absence due to a holiday?."
+          },
+          "timePeriodCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 5750001,
+            "maximum": 5759999,
+            "description": "C575 - Predefined time periods\n20 - Ganzer Tag - entire day\n40 - Vormittag - Morning\n60 - Nachmittag - Afternoon.",
+            "example": 5750020
+          },
+          "absenceApplicationId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Indenties the application for this absence.",
+            "example": 69874
+          },
+          "locked": {
+            "type": "boolean",
+            "description": "This absence is locked for change."
+          },
+          "origin": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "The system of origin.",
+            "example": "20"
+          },
+          "originId": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Id of the system of origin.",
+            "example": "1023789456"
+          }
+        },
+        "required": [
+          "absenceId",
+          "serviceProviderId",
+          "serviceProviderType",
+          "dateOfAbsence",
+          "hours",
+          "companyNo",
+          "personnelNo",
+          "holiday",
+          "locked",
+          "origin",
+          "originId"
+        ],
+        "description": "Represents an absense entry."
+      },
+      "problemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": {},
+        "title": "ProblemDetails",
+        "description": "",
+        "x-examples": {
+          "example1": {
+            "type": "Warning",
+            "title": "Sample Title",
+            "status": -99,
+            "detail": "This is a generic message to provide a sample return of how a message may be returned.",
+            "instance": "TEST",
+            "property1": null,
+            "property2": null
+          }
+        }
+      },
+      "maintenanceWindow": {
+        "type": "object",
+        "additionalProperties": false,
+        "title": "MaintenanceWindow",
+        "description": "information structure for active maintenance windows.",
+        "x-examples": {
+          "example-1": {
+            "id": 3511,
+            "active": true,
+            "fromDateTime": "2019-08-24T14:15:22Z",
+            "toDateTime": "2019-08-24T14:15:22Z",
+            "info": "monthly maintenance for patch installation",
+            "clientStartAllowed": false
+          }
+        },
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 3511,
+            "nullable": true,
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "default": true,
+            "description": "usually the API will respond with this structure, when the maintenance window is active and the window has started."
+          },
+          "fromDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "start of scheduled maintenance window."
+          },
+          "toDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "end of scheduled maintenance window."
+          },
+          "info": {
+            "type": "string",
+            "example": "monthly maintenance for patch installation",
+            "nullable": true
+          },
+          "clientStartAllowed": {
+            "type": "boolean",
+            "default": false,
+            "description": "defines wether or not clients may continue to work while the maintenance window applies."
+          }
+        }
+      }
+    }
+  }
+}

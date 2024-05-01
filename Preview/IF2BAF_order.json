@@ -1,0 +1,643 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "IF2BAF",
+    "version": "v3",
+    "contact": {
+      "name": "Infosystem AG",
+      "email": "support@infosystem.ch",
+      "url": "https://www.infosystem.ch"
+    },
+    "description": "IF2BAF Rest API"
+  },
+  "paths": {
+    "/api/v3/master-data/orders": {
+      "get": {
+        "summary": "Searches for base orders",
+        "tags": [
+          "MasterData"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/order"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getBaseOrders",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 50
+            },
+            "in": "header",
+            "name": "X-Requesting-System",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Requesting-User",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical Id (GUID) for call identification."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Client-Type",
+            "description": "Optional client type calling the service."
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "searchString",
+            "description": "Optional search string for looking up a record within name and search term fields."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0,
+              "maximum": 2147483647
+            },
+            "in": "query",
+            "name": "skip",
+            "description": "Number of records to skip for pagination."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0,
+              "maximum": 2147483647
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "Maximum number of records to return."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query",
+            "name": "changesSinceDateTime",
+            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\\r\\nparameters (searchString, orderId,\\r\\nexternalOrderId)."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "in": "query",
+            "name": "changesSinceChangeId",
+            "description": "Get all the entities which were added/edited since a specific orderId. Cannot be used together with search\\r\\nparameters (searchString, orderId,\\r\\nexternalOrderId)."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "maximum": 9999999999
+            },
+            "in": "query",
+            "name": "orderId",
+            "description": "Retrieve a specific record by internal order Id. Ignores other search options if provided."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "in": "query",
+            "name": "externalOrderId",
+            "description": "Retrieve a specific record by external order Id. Ignores other search options if provided."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "V",
+              "maxLength": 1
+            },
+            "in": "query",
+            "name": "orderType",
+            "description": "Get all the entities of a certain order type. (M: Material P: Production V: Sales E: Purchase A: Other)"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "ISBRW",
+              "maxLength": 200
+            },
+            "in": "query",
+            "name": "origin",
+            "description": "Get all the entities of a certain origin."
+          }
+        ],
+        "description": "Returns all matching orders"
+      },
+      "put": {
+        "summary": "Updates an existing base order if internal or external Id match.\nCreates a base order if neither internal or external Id is provided or no matching record could be found.",
+        "operationId": "putBaseOrders",
+        "tags": [
+          "MasterData"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/order"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Requesting-System",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Requesting-User",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical Id (GUID) for call identification."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Client-Type",
+            "description": "Optional client type calling the service."
+          }
+        ],
+        "description": "Updates an existing order if internal or external Id match.\nCreates an order if neither internal or external Id is provided or no matching record could be found."
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "order": {
+        "title": "Order",
+        "type": "object",
+        "description": "By passing the appropriate option the service get.",
+        "properties": {
+          "orderId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The order Id uniquely identifies an order in performis. To identify an order, either the performis order Id (orderId) or the Id of the external system (externalOrderId) is required.",
+            "example": 123456789,
+            "minimum": 0,
+            "maximum": 9999999999
+          },
+          "origin": {
+            "type": "string",
+            "maxLength": 200,
+            "example": "ISBRW",
+            "description": "The system of origin the order"
+          },
+          "externalOrderId": {
+            "type": "string",
+            "maxLength": 200,
+            "description": "Third-party order Id - This Id must be unique within the origin (origin field). As Id it is recommended to use either the Primary Key of the foreign system or a GUID (Global Unique Identifier). Attention, if External Ids are used, no performis Ids may be used in parallel, additionally the origin field is mandatory. E.g. Id \"629c5d97-a225-4b08-877c-e8a802c23014\" for origin \"SAP\". To identify the business partner, either the performis order (orderId) or the Id of the external system (externalOrderId) is required.",
+            "example": "629c5d97-a225-4b08-877c-e8a802c23014"
+          },
+          "orderNo": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "The OrderNo identifies the order to be booked in accounting. This is the actual order no of the order",
+            "example": "V005126.10"
+          },
+          "companyNo": {
+            "type": "integer",
+            "format": "int64",
+            "example": 27,
+            "description": "The companyNo identifies the customer via the corresponding number in the mandate system.",
+            "minimum": 0,
+            "maximum": 999999
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "The description is a short description / title of the order",
+            "example": "Transportauftrag 1151"
+          },
+          "orderType": {
+            "type": "string",
+            "maxLength": 1,
+            "description": "The orderType identifies the type of the order.\nM: Material\nP: Production\nV: Sales\nE: Purchase\nA: Other",
+            "example": "V"
+          },
+          "orderStatus": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1040500,
+            "description": "Code that indentfies the current state of the order.\n1040100: Recorded\n1040150: In delivery\n1040170: Partially delivered\n1040480: Delivered\n1040490: Ready for invoicing\n1040500: Completed/invoiced\n1040600: Deleted",
+            "minimum": 0,
+            "maximum": 9999999
+          },
+          "bpAddrId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 2000070,
+            "description": "The bpAddrId references the business partner addess within performis.",
+            "minimum": 0,
+            "maximum": 9999999999
+          },
+          "responsiblePerson": {
+            "type": "string",
+            "maxLength": 30,
+            "example": "John Doe",
+            "description": "The person responsable for the order."
+          },
+          "costCenterNo": {
+            "type": "string",
+            "maxLength": 20,
+            "example": "200",
+            "description": "Cost center of the order."
+          },
+          "costUnitNo": {
+            "type": "string",
+            "maxLength": 20,
+            "example": "13",
+            "description": "Cost unit of the order."
+          },
+          "salesChannelNo": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Identifies the sale channel.",
+            "example": "ABC"
+          },
+          "attributeValueSet": {
+            "$ref": "#/components/schemas/attributeValueSet"
+          },
+          "isCaccOrder": {
+            "type": "boolean",
+            "description": "Is it a cost accounting order?"
+          },
+          "chargingType": {
+            "type": "string",
+            "maxLength": 2,
+            "description": "Defines whether the order is reallocated.\nKT: cost unit\nKS: cost centre\nAU: order",
+            "example": "KT"
+          },
+          "budgetCharging": {
+            "type": "boolean",
+            "description": "Shows whether the order is relevant to the budget."
+          },
+          "orderDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2023-01-05",
+            "description": "Date the order was placed."
+          },
+          "currency": {
+            "type": "string",
+            "example": "CHF",
+            "maxLength": 3,
+            "description": "Currency as ISO code."
+          },
+          "isManualPostable": {
+            "type": "boolean",
+            "description": "Shows whether the order can be booked in accounting? "
+          }
+        },
+        "required": [
+          "orderNo",
+          "companyNo",
+          "description",
+          "orderType",
+          "origin",
+          "orderStatus",
+          "isCaccOrder",
+          "budgetCharging",
+          "isManualPostable"
+        ]
+      },
+      "attributeValue": {
+        "description": "",
+        "type": "object",
+        "properties": {
+          "attributeValueId":{
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal of attribute value Id",
+            "format": "int64"
+          },
+          "attributeDefinitionId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal of attribute definition Id",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "type": "string",
+            "maxLength": 30,
+            "description": "Name of user who changed relevant information of the entry",
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date someone changed relevant information of the entry",
+            "example": "2021-08-31 10:23:10"
+          },
+          "sortNo": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "maximum": 9999,
+              "description": "Position within the attribute value set",
+              "example": 3
+          },
+          "companyNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 999999,
+            "description": "Company identification of the entry.",
+            "example": 37
+          },
+          "textValue": {
+            "type": "string",
+            "maxLength": 1000,
+            "description": "A string value"
+          },
+          "numberValue": {
+            "type": "number",
+            "format": "decimal",
+            "description": "Number or decimal value"
+          },
+          "dateValue": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date value"
+          },
+          "boolValue": {
+            "type": "boolean",
+            "description": "A true or false value"
+          },
+          "codes": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "code": {
+                  "minimum": 10000,
+                  "maximum": 99999999,
+                  "type": "integer",
+                  "description": "ID of code",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "attributeDefinitionId"
+        ]
+      },
+      "attributeValueSet": {
+        "description": "",
+        "type": "object",
+          "properties": {
+          "attributeSetId": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "description": "Internal of attribute set Id",
+              "format": "int64"
+          },
+          "attributeValueId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal of attribute Id",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "type": "string",
+            "maxLength": 30,
+            "description": "Name of user who changed relevant information of the entry",
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date someone changed relevant information of the entry",
+            "example": "2021-08-31 10:23:10"
+          },
+          "attributeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/attributeValue"
+            }
+          }
+        },
+        "required": [
+          "attributeValueId"
+        ]
+      },
+      "problemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": {},
+        "title": "problemDetails",
+        "description": "",
+        "x-examples": {
+          "example1": {
+            "type": "Warning",
+            "title": "Sample Title",
+            "status": -99,
+            "detail": "This is a generic message to provide a sample return of how a message may be returned.",
+            "instance": "TEST",
+            "property1": null,
+            "property2": null
+          }
+        }
+      },
+      "maintenanceWindow": {
+        "type": "object",
+        "additionalProperties": false,
+        "title": "MaintenanceWindow",
+        "description": "information structure for active maintenance windows.",
+        "x-examples": {
+          "example-1": {
+            "id": 3511,
+            "active": true,
+            "fromDateTime": "2019-08-24T14:15:22Z",
+            "toDateTime": "2019-08-24T14:15:22Z",
+            "info": "monthly maintenance for patch installation",
+            "clientStartAllowed": false
+          }
+        },
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 3511,
+            "nullable": true,
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "default": true,
+            "description": "usually the API will respond with this structure, when the maintenance window is active and the window has started."
+          },
+          "fromDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "start of scheduled maintenance window."
+          },
+          "toDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "end of scheduled maintenance window."
+          },
+          "info": {
+            "type": "string",
+            "example": "monthly maintenance for patch installation.",
+            "nullable": true
+          },
+          "clientStartAllowed": {
+            "type": "boolean",
+            "default": false,
+            "description": "defines wether or not clients may continue to work while the maintenance window applies."
+          }
+        }
+      }
+    }
+  }
+}
