@@ -1,0 +1,393 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "IF2performis",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Infosystem AG",
+      "email": "support@infosystem.ch",
+      "url": "https://www.infosystem.ch"
+    },
+    "description": "IF2performis Rest API"
+  },
+  "servers": [],
+  "paths": {
+    "/api/v1/finance/open-items/payment-status": {
+      "get": {
+        "summary": "Get open item payment status information",
+        "tags": [
+          "Finance"
+        ],
+        "responses": {
+          "200": {
+            "description": "open item payment status information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/paymentStatus"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getfinanceopen-items/payment-status",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 50
+            },
+            "in": "header",
+            "name": "X-Requesting-System",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Requesting-User",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical Id (GUID) for call identification."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Client-Type",
+            "description": "Optional client type calling the service."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            "in": "query",
+            "name": "skip",
+            "description": "Number of entries to skip for pagination."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0,
+              "maximum": 1000,
+              "default": 1000
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "Maximum number of entries to return."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query",
+            "name": "changesSinceDateTime",
+            "description": "Get all entries since the specified date time"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "changesSinceChangeId",
+            "description": "Get all entries since the specified change id"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 20,
+              "example": "15523"
+            },
+            "in": "query",
+            "name": "openItemNo",
+            "description": "Get the entry with the specified open item number."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 20,
+              "example": "15523"
+            },
+            "in": "query",
+            "name": "invoiceNo",
+            "description": "Get all entrieswith the specified invoice number."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "maximum": 999999
+            },
+            "in": "query",
+            "name": "companyNo",
+            "description": "Get all entries with the specified company number."
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "paymentStatus": {
+        "type": "object",
+        "title": "paymentStatus",
+        "description": "Information about the payment status of an open item.",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "description": "Change identification of the entry.",
+            "format": "int64",
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "example": "2019-08-24T14:15:22Z",
+            "readOnly": true
+          },
+          "modifyUser": {
+            "type": "string",
+            "maxLength": 30,
+            "minLength": 1,
+            "description": "User who last modified the entry.",
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date the entry was last modified",
+            "example": "2024-01-30T11:46:59"
+          },
+          "invoiceNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Invoice number of the open item.",
+            "example": 322784
+          },
+          "openItemNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "open item number.",
+            "example": 322784
+          },
+          "companyNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 999999,
+            "description": "Company identification of the entry.",
+            "example": 100
+          },
+          "clearingAccountNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Account to clear the open item against.",
+            "example": 322784
+          },
+          "entryDate": {
+            "type": "string",
+            "format": "date",
+            "description": "entry date for the posting.",
+            "example": "2024-03-15"
+          },
+          "period": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 999999,
+            "description": "Period for the posting in the format YYYYMM.",
+            "example": 202403
+          },
+          "valueDate": {
+            "type": "string",
+            "format": "date",
+            "description": "value date for the posting.",
+            "example": "2024-03-15"
+          },
+          "taxDate": {
+            "type": "string",
+            "format": "date",
+            "description": "tax date for the posting.",
+            "example": "2024-03-15"
+          },
+          "paidAmount": {
+            "type": "number",
+            "format": "decimal",
+            "minimum": 0.0001,
+            "maximum": 99999999.9999,
+            "description": "Amount paid for the open item.",
+            "example": 100
+          },
+          "openAmount": {
+            "type": "number",
+            "format": "decimal",
+            "minimum": 0.0001,
+            "maximum": 99999999.9999,
+            "description": "Amount still open after the payment. This amount might be above 0 even if the open item was fully paid, if a discount was applied.",
+            "example": 100
+          },
+          "closeOpenItem": {
+            "type": "boolean",
+            "description": "Is the open item after this posting cleared?"
+          }
+        },
+        "required": [
+          "clearingAccount",
+          "entryDate",
+          "period",
+          "paidAmount",
+          "openAmount",
+          "closeOpenItem"
+        ]
+      },
+      "problemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": {},
+        "title": "ProblemDetails",
+        "description": "",
+        "x-examples": {
+          "example1": {
+            "type": "Warning",
+            "title": "Sample Title",
+            "status": -99,
+            "detail": "This is a generic message to provide a sample return of how a message may be returned.",
+            "instance": "TEST",
+            "property1": null,
+            "property2": null
+          }
+        }
+      },
+      "maintenanceWindow": {
+        "type": "object",
+        "additionalProperties": false,
+        "title": "MaintenanceWindow",
+        "description": "information structure for active maintenance windows.",
+        "x-examples": {
+          "example-1": {
+            "id": 3511,
+            "active": true,
+            "fromDateTime": "2019-08-24T14:15:22Z",
+            "toDateTime": "2019-08-24T14:15:22Z",
+            "info": "monthly maintenance for patch installation",
+            "clientStartAllowed": false
+          }
+        },
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 3511,
+            "nullable": true,
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "default": true,
+            "description": "usually the API will respond with this structure, when the maintenance window is active and the window has started."
+          },
+          "fromDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "start of scheduled maintenance window."
+          },
+          "toDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "end of scheduled maintenance window."
+          },
+          "info": {
+            "type": "string",
+            "example": "monthly maintenance for patch installation",
+            "nullable": true
+          },
+          "clientStartAllowed": {
+            "type": "boolean",
+            "default": false,
+            "description": "defines wether or not clients may continue to work while the maintenance window applies."
+          }
+        }
+      }
+    }
+  }
+}

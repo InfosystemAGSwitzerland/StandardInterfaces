@@ -1,0 +1,564 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "IF2performis",
+    "version": "v1",
+    "contact": {
+      "name": "Infosystem AG",
+      "email": "support@infosystem.ch",
+      "url": "https://www.infosystem.ch"
+    },
+    "description": "IF2performis Rest API"
+  },
+  "servers": [],
+  "paths": {
+    "/api/v1/master-data/purchase/suppliers": {
+      "get": {
+        "summary": "Get supplier information",
+        "tags": [
+          "MasterData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Supplier information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/purchaseSupplier"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getMasterDataPurchaseSuppliers",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 50
+            },
+            "in": "header",
+            "name": "X-Requesting-System",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Requesting-User",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical Id (GUID) for call identification."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Client-Type",
+            "description": "Optional client type calling the service."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            "in": "query",
+            "name": "skip",
+            "description": "Number of entries to skip for pagination."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0,
+              "maximum": 1000,
+              "default": 1000
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "Maximum number of entries to return."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query",
+            "name": "changesSinceDateTime",
+            "description": "Get all entries since the specified date time."
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "changesSinceChangeId",
+            "description": "Get all entries since the specified change id."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "maximum": 9999999999
+            },
+            "in": "query",
+            "name": "supplierId",
+            "description": "Get the entry with the specified supplier id."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "098ljljasd-08980",
+              "maxLength": 200
+            },
+            "in": "query",
+            "name": "externalSupplierId",
+            "description": "Get all entries with the specified external supplier id - should be used with an origin."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "MYERP",
+              "maxLength": 200
+            },
+            "in": "query",
+            "name": "origin",
+            "description": "Get all entries with the specified origin."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 10,
+              "example": "15523"
+            },
+            "in": "query",
+            "name": "supplierNo",
+            "description": "Get all entries with the specified supplier number - only unique with company no."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "maximum": 999999
+            },
+            "in": "query",
+            "name": "companyNo",
+            "description": "Get all entries of the specified company number."
+          }
+        ],
+        "description": "Returns all matching suppliers."
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "purchaseSupplier": {
+        "type": "object",
+        "title": "Supplier",
+        "description": "Represents a supplier entry.",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "description": "Change identification of the entry.",
+            "format": "int64",
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "example": "2019-08-24T14:15:22Z",
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Is this entry active or not?",
+            "default": true
+          },
+          "modifyUser": {
+            "type": "string",
+            "maxLength": 30,
+            "minLength": 1,
+            "description": "User who last modified the entry.",
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date the entry was last modified",
+            "example": "2024-01-30T11:46:59"
+          },
+          "supplierId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Technical identification of the entry.",
+            "example": 322784
+          },
+          "businessPartnerAddressId": {
+            "type": "integer",
+            "format": "int64",
+            "maximum": 2147483647,
+            "minimum": 1,
+            "description": "Business partner address id of the entry."
+          },
+          "externalSupplierId": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "description": "External id of the entry - may be used instead of the technical identification.",
+            "example": "S-35-50932"
+          },
+          "origin": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "description": "Origin of the entry.",
+            "example": "MYERP",
+            "readOnly": true
+          },
+          "companyNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 999999,
+            "description": "Company identification of the entry.",
+            "example": 100
+          },
+          "supplierNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Supplier number of the entry.",
+            "example": 322784
+          },
+          "isLocked": {
+            "type": "boolean",
+            "description": "Is supplier locked for purchasing?",
+            "default": false
+          },
+          "supplierCategoryCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 24650001,
+            "maximum": 24659999,
+            "description": "C2465 - Category of the supplier.",
+            "example": 24650001
+          },
+          "supplierRatingCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 24660001,
+            "maximum": 24669999,
+            "description": "C2466 - User code to set the rating of the supplier.",
+            "example": 24660003
+          },
+          "ourCustomerNo": {
+            "type": "string",
+            "maxLength": 10,
+            "minLength": 1,
+            "description": "Our customer identification with the supplier.",
+            "example": "K2711"
+          },
+          "paymentTermsCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 270001,
+            "maximum": 279999,
+            "description": "C27 - Payment terms with the supplier.",
+            "example": 270004
+          },
+          "printoutCopyQuantity": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 99,
+            "description": "Quantity of the purchase order printout copies.",
+            "example": 2
+          },
+          "printPrices": {
+            "type": "boolean",
+            "description": "Are the purchase prices shown on the purchase order document?"
+          },
+          "orderChannelCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 24620001,
+            "maximum": 24629999,
+            "description": "C2462 - order channel, how to order from this supplier e.g. by post,by email, by telephone, by fax, by internet",
+            "example": 24620003
+          },
+          "confirmationPeriod": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 999,
+            "description": "Number of days until an order confirmation expected.",
+            "example": 10
+          },
+          "reminderConfirmationPeriod": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 999,
+            "description": "Number of days until a reminder is generated for order confirmation - after confirmation period.",
+            "example": 10
+          },
+          "reminderDeliveryPeriod": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 999,
+            "description": "Number of days until a reminder is generated for a missed delivery.",
+            "example": 5
+          },
+          "currency": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Currency ISO code.",
+            "example": "EUR"
+          },
+          "landedCostsInPercentage": {
+            "type": "number",
+            "format": "decimal",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Landed costs are additional charges or costs incurred for the purchase order.",
+            "example": 1.75
+          },
+          "vatCode": {
+            "type": "integer",
+            "format": "int64",
+            "maximum": 239999,
+            "minimum": 230001,
+            "description": "Default input tax applied for the suppliers invoices.",
+            "example": 230101
+          },
+          "freightTypeCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 24630001,
+            "maximum": 24639999,
+            "description": "C2463 - Freight type e.g. lorry, post, truck, courier, collection etc.",
+            "example": 24630002
+          },
+          "incoTermsCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 24670001,
+            "maximum": 24679999,
+            "description": "C2467 - Incoterms define the responsibilities of exporters and importers in the arrangement of shipments and the transfer of liability involved at various stages of the transaction.",
+            "example": 24670001
+          },
+          "incoTermsLocation": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 1,
+            "description": "Location for the incoterms.",
+            "example": "At warehouse Wien"
+          },
+          "deliveryDuration": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999,
+            "description": "Delivery time for order proposal calculations and warning in the order programme (e.g. 5 days delivery time no longer works for tomorrow) Specification in whole days.",
+            "example": 14
+          },
+          "deliveryDays": {
+            "type": "string",
+            "minLength": 7,
+            "maxLength": 7,
+            "description": "Delivery days from dropdown box (multiselect) for delivery date proposal, default Monday - Friday checked. Bitmap, starting with Monday (1st digit) 0=not selected, 1=selected.",
+            "example": "1111100"
+          },
+          "invoiceBusinessPartnerAddressId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 2147483647,
+            "description": "Business partner address id for invoicing.",
+            "example": 236571
+          },
+          "pickupBusinessPartnerAddressId": {
+            "type": "integer",
+            "format": "int64",
+            "maximum": 2147483647,
+            "minimum": 1,
+            "description": "Business partner address id for pickup.",
+            "example": 22
+          },
+          "notes": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 0,
+            "description": "Supplier related notes and remarks.",
+            "example": "Every year in early summer, the supplier runs a promotion on all metal goods. Internal task recorded in the info centre so that we can place a bulk order for screws and fasteners."
+          },
+          "automaticCompletion": {
+            "type": "boolean",
+            "description": "Default for the automatic completion of purchase orders with this supplier"
+          }
+        },
+        "required": [
+          "BusinessPartnerAddressId",
+          "origin",
+          "active",
+          "supplierId",
+          "externalSupplierId",
+          "supplierNo",
+          "supplierCategoryCode",
+          "ourCustomerNo",
+          "paymentTermsCode",
+          "printPrices",
+          "currency",
+          "deliveryDays",
+          "invoiceBusinessPartnerAddressId",
+          "pickupBusinessPartnerAddressId",
+          "automaticCompletion"
+        ]
+      },
+      "problemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": {},
+        "title": "ProblemDetails",
+        "description": "",
+        "x-examples": {
+          "example1": {
+            "type": "Warning",
+            "title": "Sample Title",
+            "status": -99,
+            "detail": "This is a generic message to provide a sample return of how a message may be returned.",
+            "instance": "TEST",
+            "property1": null,
+            "property2": null
+          }
+        }
+      },
+      "maintenanceWindow": {
+        "type": "object",
+        "additionalProperties": false,
+        "title": "MaintenanceWindow",
+        "description": "information structure for active maintenance windows.",
+        "x-examples": {
+          "example-1": {
+            "id": 3511,
+            "active": true,
+            "fromDateTime": "2019-08-24T14:15:22Z",
+            "toDateTime": "2019-08-24T14:15:22Z",
+            "info": "monthly maintenance for patch installation",
+            "clientStartAllowed": false
+          }
+        },
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 3511,
+            "nullable": true,
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "default": true,
+            "description": "usually the API will respond with this structure, when the maintenance window is active and the window has started."
+          },
+          "fromDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "start of scheduled maintenance window."
+          },
+          "toDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "end of scheduled maintenance window."
+          },
+          "info": {
+            "type": "string",
+            "example": "monthly maintenance for patch installation",
+            "nullable": true
+          },
+          "clientStartAllowed": {
+            "type": "boolean",
+            "default": false,
+            "description": "defines wether or not clients may continue to work while the maintenance window applies."
+          }
+        }
+      }
+    }
+  }
+}

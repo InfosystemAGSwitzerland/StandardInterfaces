@@ -1,0 +1,1116 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "IF2performis",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Infosystem AG",
+      "email": "support@infosystem.ch",
+      "url": "https://www.infosystem.ch"
+    },
+    "description": "IF2performis Rest API"
+  },
+  "servers": [],
+  "paths": {
+    "/api/v1/purchase/orders": {
+      "get": {
+        "summary": "Get purchase order information",
+        "tags": [
+          "Purchase"
+        ],
+        "responses": {
+          "200": {
+            "description": "Purchase order information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/purchaseOrder"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getPurchaseOrders",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 50
+            },
+            "in": "header",
+            "name": "X-Requesting-System",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Requesting-User",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical id (GUID) for call identification."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Client-Type",
+            "description": "Optional client type calling the service."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            "in": "query",
+            "name": "skip",
+            "description": "Number of entries to skip for pagination."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0,
+              "maximum": 1000,
+              "default": 100
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "Maximum number of entries to return."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query",
+            "name": "changesSinceDateTime",
+            "description": "Get all entries which were added or edited since the date time specified."
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "changesSinceChangeId",
+            "description": "Get all entries which were added or edited since the change id specified."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "maximum": 9999999999
+            },
+            "in": "query",
+            "name": "purchaseOrderId",
+            "description": "Get the entry with the specified purchase order id."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "ISBRW",
+              "maxLength": 200
+            },
+            "in": "query",
+            "name": "origin",
+            "description": "Get the entries with the specified origin."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "C47C97C0F4B04096855955CB5AD47444",
+              "maxLength": 200
+            },
+            "in": "query",
+            "name": "externalPurchaseOrderId",
+            "description": "Get the entries with the specified external purchase order id - should be used with an origin."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 20,
+              "example": "15523"
+            },
+            "in": "query",
+            "name": "purchaseOrderNo",
+            "description": "Get the entries with the specified purchase order number - only unique with company number."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "maximum": 999999
+            },
+            "in": "query",
+            "name": "companyNo",
+            "description": "Get the entries with the specified company number."
+          },
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "name": "includeDetails",
+            "description": "Defines if order positions are included in the response."
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "purchaseOrder": {
+        "type": "object",
+        "title": "PurchaseOrder",
+        "description": "Represents a purchase order entry.",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "description": "Change identification of the entry.",
+            "format": "int64",
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "example": "2019-08-24T14:15:22Z",
+            "readOnly": true
+          },
+          "modifyUser": {
+            "type": "string",
+            "maxLength": 30,
+            "minLength": 1,
+            "description": "User who last modified the entry.",
+            "example": "STJ",
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last modification date of the entry.",
+            "example": "2024-01-30T11:46:59",
+            "readOnly": true
+          },
+          "purchaseOrderId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Technical identification of the entry.",
+            "example": 322784
+          },
+          "companyNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 999999,
+            "description": "Company identification of the entry.",
+            "example": 100
+          },
+          "purchaseOrderNo": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20,
+            "description": "Purchase order number of the entry.",
+            "example": "B24.1234"
+          },
+          "externalPurchseOrderId": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "description": "External id of the entry - may be used instead of the technical identification.",
+            "example": "S-35-50932"
+          },
+          "origin": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "description": "Origin of the entry.",
+            "example": "MYERP",
+            "readOnly": true
+          },
+          "supplierID": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Id of the supplier of the entry.",
+            "example": 322784
+          },
+          "purchaseOrderTypeCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 24620001,
+            "maximum": 24629999,
+            "description": "C2462 - How was the order placed? Post, eMail,...",
+            "example": 24620001
+          },
+          "purchaseOrderStateCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 24520001,
+            "maximum": 24529999,
+            "description": "C2452 - State of the order e.g. recorded, placed, partially delivered,...",
+            "example": 24520002
+          },
+          "currency": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Currency ISO code.",
+            "example": "CHF"
+          },
+          "exchangeRate": {
+            "type": "number",
+            "format": "double",
+            "minimum": 0.000001,
+            "maximum": 99999999.999999,
+            "description": "Exchange rate used for purchase when not in own currency.",
+            "example": 0.954
+          },
+          "isPurchaseOrderSent": {
+            "type": "boolean",
+            "description": "Flag if the purchase order was been sent."
+          },
+          "purchaseOrderSendDate": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Date the purchase order was sent.",
+            "example": "2024-03-01"
+          },
+          "deliveryDateRequested": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Requested delivery date, if no confirmation, this is written to the delivery date.",
+            "example": "2024-03-15"
+          },
+          "deliveryDate": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Confirmed delivery date. Equals requested delivery date if not confirmed.",
+            "example": "2024-03-17"
+          },
+          "priceDate": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Date of the price information the purchase is based on.",
+            "example": "2024-02-25"
+          },
+          "orderConfirmationDateRequested": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Date the supplier should confirm the order.",
+            "example": "2024-01-05"
+          },
+          "orderConfirmationDate": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Date the order was confirmed.",
+            "example": "2024-01-05"
+          },
+          "orderConfirmationNo": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Order confirmation no from the supplier.",
+            "example": "A18.223232"
+          },
+          "storageId": {
+            "type": "integer",
+            "format": "Int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Identifier of the storage.",
+            "example": 2315
+          },
+          "storageAreaId": {
+            "type": "integer",
+            "format": "Int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Identifier of the storage area.",
+            "example": 231
+          },
+          "shippingAddressCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 24640001,
+            "maximum": 24649999,
+            "description": "C2464 - Where is the purchase delivered? (24640001 - pickup address, 24640002 - shipping address)",
+            "example": 24640002
+          },
+          "shippingBusinessPartnerAdresssId": {
+            "type": "integer",
+            "format": "Int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Unique identifier of the shipping business partner address (Requried for shippings).",
+            "example": 3215
+          },
+          "pickupBusinessPartnerAdresssId": {
+            "type": "integer",
+            "format": "Int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Unique identifier of the pickup business partner address (Requried for pickups).",
+            "example": 3216
+          },
+          "pickupBusinessPartnerId": {
+            "type": "integer",
+            "format": "Int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Unique identifier of the contact person at the pickup address.",
+            "example": 2345
+          },
+          "shippingTypeCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 24630001,
+            "maximum": 24639999,
+            "description": "C2463 - How is the purchase shipped? Pick up, lorry, post,...",
+            "example": 24630010
+          },
+          "incoTermsCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 24670001,
+            "maximum": 24679999,
+            "description": "C2467 - Incoterms define the responsibilities of exporters and importers in the arrangement of shipments and the transfer of liability involved at various stages of the transaction.",
+            "example": 24670002
+          },
+          "incoTermsLocation": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Location for the incoterms.",
+            "example": "Zürich"
+          },
+          "destinationDeliveryDateRequested": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Requested destination delivery date, e.g. date of transfer of responsibility.",
+            "example": "2024-05-06"
+          },
+          "destinationDeliveryDate": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Destination delivery date, e.g. date of transfer of responsibility.",
+            "example": "2024-05-05"
+          },
+          "ordererBusinessPartnerAdresssId": {
+            "type": "integer",
+            "format": "Int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Unique identifier of the business partner address of the orderer.",
+            "example": 1394
+          },
+          "ordererBusinessPartnerId": {
+            "type": "integer",
+            "format": "Int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Unique identifier of the orderer.",
+            "example": 3264
+          },
+          "supplierBusinessPartnerAdresssId": {
+            "type": "integer",
+            "format": "Int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Unique identifier of the supplier business partner address.",
+            "example": 3215
+          },
+          "supplierBusinessPartnerId": {
+            "type": "integer",
+            "format": "Int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Unique identifier of the contact person at the supplier.",
+            "example": 2345
+          },
+          "supplierNotes": {
+            "type": "string",
+            "maxLength": 2000,
+            "description": "Supplier related notes and remarks",
+            "example": "Every year in early summer, the supplier runs a promotion on all metal goods. Internal task recorded in the info centre so that we can place a bulk order for screws and fasteners."
+          },
+          "internalRemarks": {
+            "type": "string",
+            "maxLength": 2000,
+            "description": "Internal remarks about the supplier.",
+            "example": "Promised delivery dates are never met."
+          },
+          "externalRemarks": {
+            "type": "string",
+            "maxLength": 2000,
+            "description": "Remarks added to the supplier order.",
+            "example": "Please let us know the delivery dates in more detail."
+          },
+          "openingText": {
+            "type": "string",
+            "maxLength": 4000,
+            "description": "Text opening the supplier order.",
+            "example": "You have received the following order. Please check the items and confirm the delivery by means of an order confirmation."
+          },
+          "footerText": {
+            "type": "string",
+            "maxLength": 4000,
+            "description": "Final remarks concerning the order put in the footer of the order.",
+            "example": "Please inform us of any price changes in writing at the e-mail address purchase@memor.ch. Thank you very much."
+          },
+          "attributeValueSet": {
+            "$ref": "#/components/schemas/attributeValueSet"
+          },
+          "materialRequirementsPlanningGroupCode": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 4020001,
+            "maximum": 4029999,
+            "description": "C402 - Material requirements planning (MRP) group.",
+            "example": 4020005
+          },
+          "reference": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "Reference that helps reidentify the purchase.",
+            "example": "E24-26873-F3"
+          },
+          "originOrderNo": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "Order number of the associated sales or production order.",
+            "example": "V24.1234"
+          },
+          "automaticCompletion": {
+            "type": "boolean",
+            "description": "Is the purchase order automatically completed once it has been fully delivered and invoiced?"
+          },
+          "positions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "positionId": {
+                  "type": "integer",
+                  "format": "Int64",
+                  "minimum": 1,
+                  "maximum": 9999999999,
+                  "description": "Unique id of the order position.",
+                  "example": 123456
+                },
+                "positionNr": {
+                  "type": "number",
+                  "format": "decimal",
+                  "minimum": 0,
+                  "maximum": 9999.999,
+                  "description": "Item number. Format and conditions via company settings.",
+                  "example": 2.2
+                },
+                "modifyUser": {
+                  "type": "string",
+                  "maxLength": 30,
+                  "minLength": 1,
+                  "description": "User who last modified the entry.",
+                  "example": "STJ"
+                },
+                "modifyDate": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Date the entry was last modified",
+                  "example": "2024-01-30T11:46:59"
+                },
+                "positionTypeCode": {
+                  "type": "integer",
+                  "format": "int64",
+                  "minimum": 24550001,
+                  "maximum": 24559999,
+                  "description": "C2455 - Type of the position\n1: article\n2: amount\n3: text.",
+                  "example": 24550003
+                },
+                "articleId": {
+                  "type": "integer",
+                  "format": "Int64",
+                  "minimum": 1,
+                  "maximum": 9999999999,
+                  "description": "Unique identifier of the article.",
+                  "example": 365972
+                },
+                "text": {
+                  "type": "string",
+                  "maxLength": 2000,
+                  "description": "Text of the position.",
+                  "example": "WD-40"
+                },
+                "conversionFactorStockUnitDeliveryUnit": {
+                  "type": "number",
+                  "format": "decimal",
+                  "minimum": 0,
+                  "maximum": 9999999.999999,
+                  "description": "Coefficient stock unit -> delivery unit.",
+                  "example": 1
+                },
+                "conversionFactorDeliveryUnitStockUnit": {
+                  "type": "number",
+                  "format": "decimal",
+                  "minimum": 0,
+                  "maximum": 9999999.999999,
+                  "description": "Coefficient delivery unit -> stock unit.",
+                  "example": 1
+                },
+                "conversionFactorDeliveryUnitPriceUnit": {
+                  "type": "number",
+                  "format": "decimal",
+                  "minimum": 0,
+                  "maximum": 9999999.999999,
+                  "description": "Coefficient delivery unit -> price unit.",
+                  "example": 2
+                },
+                "conversionFactorPriceUnitDeliveryUnit": {
+                  "type": "number",
+                  "format": "decimal",
+                  "minimum": 0,
+                  "maximum": 9999999.999999,
+                  "description": "Coefficient price unit -> delivery unit.",
+                  "example": 0.5
+                },
+                "orderQuantityStockUnit": {
+                  "type": "number",
+                  "format": "decimal",
+                  "minimum": -9999999999.9999,
+                  "maximum": 9999999999.9999,
+                  "description": "Order quantity in stock units.",
+                  "example": 1000
+                },
+                "orderQuantityDeliverUnit": {
+                  "type": "number",
+                  "format": "decimal",
+                  "minimum": -9999999999.9999,
+                  "maximum": 9999999999.9999,
+                  "description": "Order quantity in delivery units.",
+                  "example": 100
+                },
+                "orderQuantityPriceUnit": {
+                  "type": "number",
+                  "format": "decimal",
+                  "minimum": -9999999999.9999,
+                  "maximum": 9999999999.9999,
+                  "description": "Order quantity in price units.",
+                  "example": 200
+                },
+                "deliveryUnitCode": {
+                  "type": "integer",
+                  "format": "int64",
+                  "minimum": 280001,
+                  "maximum": 289999,
+                  "description": "C28 - Delivery unit code.",
+                  "example": 280005
+                },
+                "priceUnitCode": {
+                  "type": "integer",
+                  "format": "int64",
+                  "minimum": 280001,
+                  "maximum": 289999,
+                  "description": "C28 - Price unit code.",
+                  "example": 280002
+                },
+                "priceTypeCode": {
+                  "type": "integer",
+                  "format": "int64",
+                  "minimum": 24580001,
+                  "maximum": 24589999,
+                  "description": "C2458 - Pricetype\n1: Normal price\n2: Special offer price.",
+                  "example": 24580002
+                },
+                "price": {
+                  "type": "number",
+                  "format": "decimal",
+                  "minimum": 0,
+                  "maximum": 9999999999.9999,
+                  "description": "Price per unit.",
+                  "example": 2568.25
+                },
+                "priceIncludesVat": {
+                  "type": "boolean",
+                  "description": "Vat is in price included."
+                },
+                "inputTaxCode": {
+                  "type": "integer",
+                  "format": "int64",
+                  "minimum": 230001,
+                  "maximum": 239999,
+                  "description": "C23 - Type of applied tax (vat, input tax).",
+                  "example": 230006
+                },
+                "discountPercentage": {
+                  "type": "number",
+                  "format": "decimal",
+                  "minimum": 0,
+                  "maximum": 999.99,
+                  "description": "Discount in percent.",
+                  "example": 2.5
+                },
+                "surchargePercentage": {
+                  "type": "number",
+                  "format": "decimal",
+                  "minimum": 0,
+                  "maximum": 999.99,
+                  "description": "Surcharge in percent.",
+                  "example": 3.2
+                },
+                "discountAmount": {
+                  "type": "number",
+                  "format": "decimal",
+                  "minimum": -1000000000000000000,
+                  "maximum": 1000000000000000000,
+                  "description": "Discount in money.",
+                  "example": 3658.51
+                },
+                "surchargeAmount": {
+                  "type": "number",
+                  "format": "decimal",
+                  "minimum": -1000000000000000000,
+                  "maximum": 1000000000000000000,
+                  "description": "Surcharge in money.",
+                  "example": 5026.73
+                },
+                "storageId": {
+                  "type": "integer",
+                  "format": "Int64",
+                  "minimum": 0,
+                  "maximum": 9999999999,
+                  "description": "Identifier of the storage - Overrides values in header.",
+                  "example": 2315
+                },
+                "storageAreaId": {
+                  "type": "integer",
+                  "format": "Int64",
+                  "minimum": 0,
+                  "maximum": 9999999999,
+                  "description": "Identifier of the storage location - Overrides values in header.",
+                  "example": 231
+                },
+                "shippingTypeCode": {
+                  "type": "integer",
+                  "format": "int64",
+                  "minimum": 24630001,
+                  "maximum": 24639999,
+                  "description": "C2463 - How is the purchase delivered? Pick up, lorry, post,...  - Overrides values in header",
+                  "example": 24630005
+                },
+                "priceOriginCode": {
+                  "type": "integer",
+                  "format": "int64",
+                  "minimum": 24590001,
+                  "maximum": 24599999,
+                  "description": "C2459 - Origin of the price information\n1: Set manually\n2: Supplier article price\n3: Supplier article scale price\n4: Current materials purchase price.",
+                  "example": 24590002
+                },
+                "accountNo": {
+                  "type": "string",
+                  "maxLength": 10,
+                  "description": "Identifier of the expense account.",
+                  "example": 321.2
+                },
+                "assetNo": {
+                  "type": "string",
+                  "maxLength": 20,
+                  "description": "Identifier of the asset the order is placed for.",
+                  "example": "digger 254"
+                },
+                "costCenterNo": {
+                  "type": "string",
+                  "maxLength": 20,
+                  "description": "Cost center responsible for the order.",
+                  "example": "2-563.7"
+                },
+                "costUnitNo": {
+                  "type": "string",
+                  "maxLength": 20,
+                  "description": "Cost unit responsible for the order.",
+                  "example": "6-7.25"
+                },
+                "salesChannelNo": {
+                  "type": "string",
+                  "maxLength": 3,
+                  "description": "Identifies the sale channel.",
+                  "example": 449
+                },
+                "orderNo": {
+                  "type": "string",
+                  "maxLength": 20,
+                  "description": "Identifier of the accounting order for posting expense.",
+                  "example": "20240315.02"
+                },
+                "attributeValueSet": {
+                  "$ref": "#/components/schemas/attributeValueSet"
+                },
+                "deliveryDateRequested": {
+                  "type": "string",
+                  "format": "datetime",
+                  "description": "Requested delivery date, if no confirmation, this is written to the delivery date. - Overrides value from the header.",
+                  "example": "2024-04-21"
+                },
+                "deliveryDate": {
+                  "type": "string",
+                  "format": "datetime",
+                  "description": "Confirmed delivery date. Equals requested delivery date if not confirmed. - Overrides value from the header.",
+                  "example": "2024-04-30"
+                },
+                "destinationDeliveryDateRequested": {
+                  "type": "string",
+                  "format": "datetime",
+                  "description": "Requested destination delivery date, e.g. date of transfer of responsibility. - Overrides value from the header.",
+                  "example": "2024-04-21"
+                },
+                "destinationDeliveryDate": {
+                  "type": "string",
+                  "format": "datetime",
+                  "description": "Destination delivery date, e.g. date of transfer of responsibility. - Overrides value from the header.",
+                  "example": "2024-04-30"
+                },
+                "countryOfOrigin": {
+                  "type": "string",
+                  "maxLength": 2,
+                  "description": "ISO code of country of origin.",
+                  "example": "CN"
+                },
+                "tariffCode": {
+                  "type": "string",
+                  "maxLength": 20,
+                  "description": "C28 - Customs tariff number.",
+                  "example": "12412"
+                },
+                "orderConfirmationDate": {
+                  "type": "string",
+                  "format": "datetime",
+                  "description": "Date the order was confirmed. - Overrides value from the header.",
+                  "example": "2024-01-05"
+                },
+                "orderConfirmationNo": {
+                  "type": "string",
+                  "maxLength": 40,
+                  "description": "Order confirmation no from the supplier. - Overrides value from the header.",
+                  "example": "A23.98709"
+                },
+                "orderConfirmationDateRequested": {
+                  "type": "string",
+                  "format": "datetime",
+                  "description": "Date the supplier should confirm the order. - Overrides value from the header.",
+                  "example": "2024-05-04"
+                },
+                "fullyChargedBool": {
+                  "type": "boolean",
+                  "description": "Indicates whether the purchase position has been fully booked or whether it is still partially open."
+                },
+                "netAmount": {
+                  "type": "number",
+                  "format": "deciaml",
+                  "minimum": -1000000000000000000,
+                  "maximum": 1000000000000000000,
+                  "description": "Net amount (gross - tax) of the order position.",
+                  "example": 2159.53
+                },
+                "grossAmount": {
+                  "type": "number",
+                  "format": "deciaml",
+                  "minimum": -1000000000000000000,
+                  "maximum": 1000000000000000000,
+                  "description": "Total cost of order position.",
+                  "example": 2436.85
+                },
+                "taxAmount": {
+                  "type": "number",
+                  "format": "decimal",
+                  "minimum": -1000000000000000000,
+                  "maximum": 1000000000000000000,
+                  "description": "Amount of taxes for the order position.",
+                  "example": 277.32
+                },
+                "printBool": {
+                  "type": "boolean",
+                  "description": "Determines whether an item is printed on the order document or not."
+                }
+              },
+              "required": [
+                "positionTypeCode",
+                "printBool"
+              ]
+            }
+          }
+        },
+        "required": [
+          "origin",
+          "active",
+          "purchaseOrderNo",
+          "companyNo",
+          "supplierID",
+          "currency"
+        ]
+      },
+      "attributeValue": {
+        "description": "",
+        "type": "object",
+        "properties": {
+          "attributeValueId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal identification of attribute value.",
+            "format": "int64"
+          },
+          "attributeDefinitionId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal identification of attribute definition.",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "type": "string",
+            "maxLength": 30,
+            "description": "User who last modified the entry.",
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date the entry was last modified.",
+            "example": "2021-08-31 10:23:10"
+          },
+          "sortNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999,
+            "description": "Position within the attribute value set",
+            "example": 3
+          },
+          "companyNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 999999,
+            "description": "Company identification of the entry.",
+            "example": 37
+          },
+          "textValue": {
+            "type": "string",
+            "maxLength": 1000,
+            "description": "A string value"
+          },
+          "numberValue": {
+            "type": "number",
+            "format": "decimal",
+            "description": "Number or decimal value"
+          },
+          "dateValue": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date value"
+          },
+          "boolValue": {
+            "type": "boolean",
+            "description": "A true or false value"
+          },
+          "codes": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "code": {
+                  "minimum": 10000,
+                  "maximum": 99999999,
+                  "type": "integer",
+                  "description": "ID of code",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "attributeDefinitionId"
+        ]
+      },
+      "attributeValueSet": {
+        "description": "",
+        "type": "object",
+        "properties": {
+          "attributeSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal identification of attribute set.",
+            "format": "int64"
+          },
+          "attributeValueSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal identification of attribute value set.",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "type": "string",
+            "maxLength": 30,
+            "description": "User who last modified the entry.",
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date the entry was last modified.",
+            "example": "2021-08-31 10:23:10"
+          },
+          "attributeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/attributeValue"
+            }
+          }
+        },
+        "required": [
+          "attributeSetId"
+        ]
+      },
+      "problemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": {},
+        "title": "ProblemDetails",
+        "description": "",
+        "x-examples": {
+          "example1": {
+            "type": "Warning",
+            "title": "Sample Title",
+            "status": -99,
+            "detail": "This is a generic message to provide a sample return of how a message may be returned.",
+            "instance": "TEST",
+            "property1": null,
+            "property2": null
+          }
+        }
+      },
+      "maintenanceWindow": {
+        "type": "object",
+        "additionalProperties": false,
+        "title": "MaintenanceWindow",
+        "description": "information structure for active maintenance windows.",
+        "x-examples": {
+          "example-1": {
+            "id": 3511,
+            "active": true,
+            "fromDateTime": "2019-08-24T14:15:22Z",
+            "toDateTime": "2019-08-24T14:15:22Z",
+            "info": "monthly maintenance for patch installation",
+            "clientStartAllowed": false
+          }
+        },
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 3511,
+            "nullable": true,
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "default": true,
+            "description": "usually the API will respond with this structure, when the maintenance window is active and the window has started."
+          },
+          "fromDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "start of scheduled maintenance window."
+          },
+          "toDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "end of scheduled maintenance window."
+          },
+          "info": {
+            "type": "string",
+            "example": "monthly maintenance for patch installation",
+            "nullable": true
+          },
+          "clientStartAllowed": {
+            "type": "boolean",
+            "default": false,
+            "description": "defines wether or not clients may continue to work while the maintenance window applies."
+          }
+        }
+      }
+    }
+  }
+}

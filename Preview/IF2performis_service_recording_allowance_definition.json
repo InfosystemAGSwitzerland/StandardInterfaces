@@ -1,0 +1,325 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "IF2performis",
+    "version": "v3",
+    "contact": {
+      "name": "Infosystem AG",
+      "email": "support@infosystem.ch",
+      "url": "https://www.infosystem.ch"
+    },
+    "description": "IF2performis Rest API"
+  },
+  "servers": [],
+  "paths": {
+    "/api/v3/master-data/service-recording/allowance-definitions": {
+      "get": {
+        "summary": "Searches for allowance definitions",
+        "tags": [
+          "MasterData"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/serviceRecordingallowanceDefinition"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getAllowanceDefinitions",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Client-Type",
+            "description": "Optional client type calling the service."
+          },
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Optional search string for looking up a record within name and searchterm fields.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries  to skip  for pagination.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries since the specified date time.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries since the specified change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "maximum": 999999,
+              "minimum": 1
+            },
+            "in": "query",
+            "name": "companyNo",
+            "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system."
+          }
+        ],
+        "description": "Returns all matching allowance definitions."
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "serviceRecordingallowanceDefinition": {
+        "title": "AllowanceDefinition",
+        "type": "object",
+        "description": "Represents an allowance definition entry.",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Change id of the entry.",
+            "example": 98764321
+          },
+          "changeDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Change date of the entry.",
+            "example": "2023-12-31 09:05:00"
+          },
+          "allowanceId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "description": "Identifies the allowance.",
+            "example": 321198745
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Discribes the details of the allowance.",
+            "example": "Pikett-Dienst"
+          },
+          "companyNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 999999,
+            "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system."
+          },
+          "active": {
+            "type": "boolean",
+            "default": true,
+            "description": "usually the API will respond with this structure, when the maintenance window is active and the window has started."
+          },
+          "externalId": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Id of the allowance definition in the external system.",
+            "example": "C47C97C0F4B04096855955CB5AD47444"
+          }
+        },
+        "required": [
+          "allowanceId",
+          "description",
+          "companyNo",
+          "active"
+        ]
+      },
+      "problemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": {},
+        "title": "ProblemDetails",
+        "description": "",
+        "x-examples": {
+          "example1": {
+            "type": "Warning",
+            "title": "Sample Title",
+            "status": -99,
+            "detail": "This is a generic message to provide a sample return of how a message may be returned.",
+            "instance": "TEST",
+            "property1": null,
+            "property2": null
+          }
+        }
+      },
+      "maintenanceWindow": {
+        "type": "object",
+        "additionalProperties": false,
+        "title": "MaintenanceWindow",
+        "description": "information structure for active maintenance windows.",
+        "x-examples": {
+          "example-1": {
+            "id": 3511,
+            "active": true,
+            "fromDateTime": "2019-08-24T14:15:22Z",
+            "toDateTime": "2019-08-24T14:15:22Z",
+            "info": "monthly maintenance for patch installation",
+            "clientStartAllowed": false
+          }
+        },
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 3511,
+            "nullable": true,
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "default": true,
+            "description": "usually the API will respond with this structure, when the maintenance window is active and the window has started."
+          },
+          "fromDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "start of scheduled maintenance window."
+          },
+          "toDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "end of scheduled maintenance window."
+          },
+          "info": {
+            "type": "string",
+            "example": "monthly maintenance for patch installation",
+            "nullable": true
+          },
+          "clientStartAllowed": {
+            "type": "boolean",
+            "default": false,
+            "description": "defines wether or not clients may continue to work while the maintenance window applies."
+          }
+        }
+      }
+    }
+  }
+}
