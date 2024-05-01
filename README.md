@@ -34,7 +34,7 @@ in connecting to one of Infosystems products:
 All interface are built with .net core/.net and use state of the art OpenAPI descriptions to enable third-party developer quickstart.<br>
 All interfaces are built based on Infosystems Web API Standards, following the IETF RFCs regarding restful HTTP APIs.
 
-<b>Interfaces</b>
+<b>Interfaces</b><br>
 At the moment, we enable third party developer to use the following modules via REST API:
 - leva+
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2leva.json&nocors" target="_blank"><b>Current</b> version documentation</a>
@@ -52,7 +52,7 @@ At the moment, we enable third party developer to use the following modules via 
   - available soon
 
 
-<b>Our module-based interfaces</b>
+<b>Module-based interfaces</b><br>
 Please use the product based services if available.
 - performis FI - Financial Accounting
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Module-Based/IF2FI3.json&nocors" target="_blank">See documentation online</a>
