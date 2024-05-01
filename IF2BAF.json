@@ -1,209 +1,148 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.0.1",
   "info": {
-    "title": "IF2BAF",
-    "version": "v3",
+    "title": "if2baf api",
+    "description": "if2baf api",
     "contact": {
       "name": "Infosystem AG",
-      "email": "support@infosystem.ch",
-      "url": "https://www.infosystem.ch"
+      "email": "info@infosystem.ch"
     },
-    "description": "IF2BAF Rest API"
+    "version": "v1"
   },
   "paths": {
-    "/api/v3/master-data/fixed-assets": {
+    "/api/v1/master-data/orders": {
       "get": {
-        "summary": "Get a list of fixed assets",
         "tags": [
-          "MasterData"
+          "Orders"
         ],
-        "responses": {
-          "200": {
-            "description": "List of fixed assets",
-            "content": {
-              "application/json": {
-                "example": [
-                  {
-                    "changeID": 520057,
-                    "changeDate": "2024-01-30T14:46:59",
-                    "origin": "BBA",
-                    "active": true,
-                    "modifyUser": "STJ",
-                    "modifyDate": "2024-01-30T11:46:59",
-                    "fixedAssetNo": "4040000.001",
-                    "externalFixedAssetNo": "aasd9lkj-jklajsd",
-                    "companyNo": 100,
-                    "description": "Kran, 100t",
-                    "costCenterNo": "3657"
-                  }
-                ],
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/fixedAsset"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input, object invalid",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/problemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Basic Authentication failed"
-          },
-          "403": {
-            "description": "Requestor has insufficient rights"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/maintenanceWindow"
-                }
-              }
-            }
-          }
-        },
-        "operationId": "getFixedAssets",
-        "description": "Returns all fixed assets",
+        "summary": "Searches for base orders.",
+        "description": "Returns all matching orders.",
         "parameters": [
           {
-            "schema": {
-              "type": "string",
-              "maxLength": 50
-            },
-            "in": "header",
             "name": "X-Requesting-System",
+            "in": "header",
             "description": "Identifying the system calling the service.",
-            "required": true
-          },
-          {
+            "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 30
-            },
-            "in": "header",
-            "name": "X-Requesting-User",
-            "description": "Identifying the user calling the service.",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string",
-              "maxLength": 30
-            },
-            "in": "header",
-            "name": "X-Flow-ID",
-            "description": "Optional technical Id (GUID) for call identification."
-          },
-          {
-            "schema": {
-              "type": "string",
-              "maxLength": 30
-            },
-            "in": "header",
-            "name": "X-Client-Type",
-            "description": "Optional client type calling the service."
-          },
-          {
-            "schema": {
+              "maxLength": 50,
               "type": "string"
-            },
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "searchString",
             "in": "query",
             "description": "Optional search string for looking up a record within name and search term fields.",
-            "name": "searchString"
-          },
-          {
             "schema": {
-              "type": "integer",
-              "format": "int64",
-              "minimum": 0,
-              "maximum": 2147483647
-            },
-            "in": "query",
-            "name": "skip",
-            "description": "Number of records to skip for pagination."
+              "type": "string"
+            }
           },
           {
-            "schema": {
-              "type": "integer",
-              "format": "int64",
-              "minimum": 0,
-              "maximum": 2147483647
-            },
+            "name": "changesSinceDateTime",
             "in": "query",
-            "name": "limit",
-            "description": "Maximum number of records to return."
-          },
-          {
+            "description": "Get all the entities which were added/edited after a specific datetime.",
             "schema": {
               "type": "string",
               "format": "date-time"
-            },
-            "in": "query",
-            "name": "changesSinceDateTime",
-            "description": "Get all the entities which were added/edited after a specific date and time. Cannot be used together with search\\r\\nparameters (searchString, fixedAssetNo, externalFixedAssetNo)."
+            }
           },
           {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all the entities which were added/edited after the provided change id.",
             "schema": {
               "type": "integer",
               "format": "int64"
-            },
-            "in": "query",
-            "name": "changesSinceChangeId",
-            "description": "Get all the entities which were added/edited after a specific change id. Cannot be used together with search\\r\\nparameters (searchString, fixedAssetNo, externalFixedAssetNo)."
+            }
           },
           {
+            "name": "orderId",
+            "in": "query",
+            "description": "Retrieve a specific record by internal order id.",
             "schema": {
-              "type": "integer",
-              "format": "int64",
+              "maximum": 9999999999,
               "minimum": 1,
-              "maximum": 9999999999
-            },
-            "in": "query",
-            "name": "fixedAssetNo",
-            "description": "Retrieve a specific record by internal fixed asset. Ignores other search options if provided."
+              "type": "integer",
+              "format": "int64"
+            }
           },
           {
-            "schema": {
-              "type": "string",
-              "maxLength": 50,
-              "example": "aasd9lkj-jklajsd"
-            },
+            "name": "externalOrderId",
             "in": "query",
-            "name": "externalFixedAssetNo",
-            "description": "Retrieve a specific record by external fixed asset. Ignores other search options if provided."
+            "description": "Retrieve a specific record by external order id.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
           },
           {
-            "schema": {
-              "type": "string",
-              "example": "ISBRW",
-              "maxLength": 200
-            },
+            "name": "orderType",
             "in": "query",
+            "description": "Get all the entities of a certain order type. (M: Material P: Production V: Sales E: Purchase A: Other)",
+            "schema": {
+              "maxLength": 1,
+              "type": "string"
+            }
+          },
+          {
             "name": "origin",
-            "description": "Get all the entities of a certain origin."
+            "in": "query",
+            "description": "Get all the entities of a certain origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
           }
-        ]
-      }
-    },
-    "/api/v3/master-data/orders": {
-      "get": {
-        "summary": "Searches for base orders",
-        "tags": [
-          "MasterData"
         ],
         "responses": {
           "200": {
@@ -213,7 +152,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/order"
+                    "$ref": "#/components/schemas/Order"
                   }
                 }
               }
@@ -224,7 +163,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/problemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -239,163 +178,80 @@
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/maintenanceWindow"
-                }
-              }
-            }
+            "description": "Service unavailable due to maintenance"
           }
-        },
-        "operationId": "getBaseOrders",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "maxLength": 50
-            },
-            "in": "header",
-            "name": "X-Requesting-System",
-            "description": "Identifying the system calling the service.",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string",
-              "maxLength": 30
-            },
-            "in": "header",
-            "name": "X-Requesting-User",
-            "description": "Identifying the user calling the service.",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string",
-              "maxLength": 30
-            },
-            "in": "header",
-            "name": "X-Flow-ID",
-            "description": "Optional technical Id (GUID) for call identification."
-          },
-          {
-            "schema": {
-              "type": "string",
-              "maxLength": 30
-            },
-            "in": "header",
-            "name": "X-Client-Type",
-            "description": "Optional client type calling the service."
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "searchString",
-            "description": "Optional search string for looking up a record within name and search term fields."
-          },
-          {
-            "schema": {
-              "type": "integer",
-              "format": "int64",
-              "minimum": 0,
-              "maximum": 2147483647
-            },
-            "in": "query",
-            "name": "skip",
-            "description": "Number of records to skip for pagination."
-          },
-          {
-            "schema": {
-              "type": "integer",
-              "format": "int64",
-              "minimum": 0,
-              "maximum": 2147483647
-            },
-            "in": "query",
-            "name": "limit",
-            "description": "Maximum number of records to return."
-          },
-          {
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            },
-            "in": "query",
-            "name": "changesSinceDateTime",
-            "description": "Get all the entities which were added/edited since a specific datetime. Cannot be used together with search\\r\\nparameters (searchString, orderId,\\r\\nexternalOrderId)."
-          },
-          {
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            },
-            "in": "query",
-            "name": "changesSinceChangeId",
-            "description": "Get all the entities which were added/edited since a specific orderId. Cannot be used together with search\\r\\nparameters (searchString, orderId,\\r\\nexternalOrderId)."
-          },
-          {
-            "schema": {
-              "type": "integer",
-              "format": "int64",
-              "minimum": 1,
-              "maximum": 9999999999
-            },
-            "in": "query",
-            "name": "orderId",
-            "description": "Retrieve a specific record by internal order Id. Ignores other search options if provided."
-          },
-          {
-            "schema": {
-              "type": "string",
-              "maxLength": 200
-            },
-            "in": "query",
-            "name": "externalOrderId",
-            "description": "Retrieve a specific record by external order Id. Ignores other search options if provided."
-          },
-          {
-            "schema": {
-              "type": "string",
-              "example": "V",
-              "maxLength": 1
-            },
-            "in": "query",
-            "name": "orderType",
-            "description": "Get all the entities of a certain order type. (M: Material P: Production V: Sales E: Purchase A: Other)"
-          },
-          {
-            "schema": {
-              "type": "string",
-              "example": "ISBRW",
-              "maxLength": 200
-            },
-            "in": "query",
-            "name": "origin",
-            "description": "Get all the entities of a certain origin."
-          }
-        ],
-        "description": "Returns all matching orders"
+        }
       },
       "put": {
-        "summary": "Updates an existing base order if internal or external Id match.\nCreates a base order if neither internal or external Id is provided or no matching record could be found.",
-        "operationId": "putBaseOrders",
         "tags": [
-          "MasterData"
+          "Orders"
         ],
+        "summary": "Updates an existing base order if either internal or external id match. Creates a base order if neither internal nor external id is provided or no matching record could be found.",
+        "description": "Updates an existing order if either internal or external id match. Creates an order if neither internal nor external id is provided or no matching record could be found.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The order to update or create.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/order"
-                  }
+                  "$ref": "#/components/schemas/Order"
                 }
               }
             }
@@ -405,7 +261,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/problemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -420,259 +276,262 @@
             "description": "Internal Server Error"
           },
           "503": {
-            "description": "Service unavailable due to maintenance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/maintenanceWindow"
-                }
-              }
-            }
+            "description": "Service unavailable due to maintenance"
           }
-        },
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "X-Requesting-System",
-            "description": "Identifying the system calling the service.",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "X-Requesting-User",
-            "description": "Identifying the user calling the service.",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "X-Flow-ID",
-            "description": "Optional technical Id (GUID) for call identification."
-          },
-          {
-            "schema": {
-              "type": "string",
-              "maxLength": 30
-            },
-            "in": "header",
-            "name": "X-Client-Type",
-            "description": "Optional client type calling the service."
-          }
-        ],
-        "description": "Updates an existing order if internal or external Id match.\nCreates an order if neither internal or external Id is provided or no matching record could be found."
-      },
-      "parameters": []
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "fixedAsset": {
+      "AttributeValue": {
+        "required": [
+          "attributeDefinitionId"
+        ],
         "type": "object",
-        "title": "fixedAsset",
         "properties": {
-          "changeID": {
-            "type": "integer",
-            "format": "int64",
-            "minimum": 1,
+          "attributeValueId": {
             "maximum": 9999999999,
-            "description": "Change id of the entity.",
-            "example": 8971239429
-          },
-          "changeDate": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Change date of the entity.",
-            "example": "2020-07-22 09:45:00"
-          },
-          "origin": {
-            "type": "string",
-            "maxLength": 200,
-            "description": "The system of origin the order",
-            "example": "B_HTR"
-          },
-          "originId": {
-            "type": "integer",
-            "format": "int64",
             "minimum": 1,
-            "maximum": 9999999999,
-            "description": " Id of the system of origin the order",
-            "example": 319
+            "type": "integer",
+            "description": "Internal identification of attribute value.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
           },
-          "active": {
-            "type": "boolean",
-            "description": "Entry is active"
+          "attributeDefinitionId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal identification of attribute definition.",
+            "format": "int64"
           },
           "modifyUser": {
-            "type": "string",
             "maxLength": 30,
-            "description": "Name of user who changed relevant information of the record",
-            "example": "STJ"
+            "type": "string",
+            "description": "User who last modified the entry.",
+            "nullable": true,
+            "readOnly": true
           },
           "modifyDate": {
             "type": "string",
+            "description": "Date the entry was last modified.",
             "format": "date-time",
-            "description": "Date someone changed relevant information of the record",
-            "example": "2021-08-31 10:23:10"
+            "nullable": true,
+            "readOnly": true
           },
-          "fixedAssetNo": {
-            "type": "string",
-            "maxLength": 16,
-            "description": "The fixed asset number uniquely identifies a fixed asset in performis. To identify a fixed asset, either the performis fixed asset no (fixedAssetNo) or the Id of the external system (externalFixedAssetNo) is required.",
-            "example": "123456789"
-          },
-          "externalFixedAssetNo": {
-            "type": "string",
-            "maxLength": 50,
-            "description": "Third-party fixed asset number - This Id must be unique within the origin (origin field). As Id it is recommended to use either the Primary Key of the foreign system or a GUID (Global Unique Identifier). Attention, if External Ids are used, no performis Ids may be used in parallel, additionally the origin field is mandatory. E.g. Id \"629c5d97-a225-4b08-877c-e8a802c23014\" for origin \"SAP\". To identify the fixed asset, either the performis fixed asset no (fixedAssetNo) or the Id of the external system (externalFixedAssetNo) is required.",
-            "example": "aasd9lkj-jklajsd"
+          "sortNo": {
+            "maximum": 9999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Position within the attribute value set.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
           },
           "companyNo": {
-            "type": "integer",
-            "format": "int64",
-            "minimum": 1,
             "maximum": 999999,
-            "description": "The companyNo identifies the customer via the corresponding number in the mandate system",
-            "example": 20
+            "minimum": 1,
+            "type": "integer",
+            "description": "Company identification of the entry.",
+            "format": "int64",
+            "nullable": true
           },
-          "description": {
+          "textValue": {
+            "maxLength": 1000,
             "type": "string",
-            "maxLength": 100,
-            "description": "Full decription / Name of the service provider",
-            "example": "Kran, 100t"
+            "description": "A string value.\r\nWhether Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.TextValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.NumberValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.DateValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.BoolValue or Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
+            "nullable": true
           },
-          "costCenterNo": {
+          "numberValue": {
+            "type": "number",
+            "description": "Number or decimal value.\r\nWhether Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.TextValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.NumberValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.DateValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.BoolValue or Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
+            "format": "double",
+            "nullable": true
+          },
+          "dateValue": {
             "type": "string",
-            "maxLength": 20,
-            "description": "Cost center identifier",
-            "example": "C-222"
+            "description": "Date value.\r\nWhether Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.TextValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.NumberValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.DateValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.BoolValue or Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
+            "format": "date-time",
+            "nullable": true
           },
-          "attributeValueSet": {
-            "$ref": "#/components/schemas/attributeValueSet"
+          "boolValue": {
+            "type": "boolean",
+            "description": "A true or false value.\r\nWhether Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.TextValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.NumberValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.DateValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.BoolValue or Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
+            "nullable": true
+          },
+          "codeValue": {
+            "type": "integer",
+            "description": "Code value.\r\nWhether Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.TextValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.NumberValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.DateValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.BoolValue or Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
+            "format": "int64",
+            "nullable": true
           }
         },
-        "required": [
-          "changeID",
-          "changeDate",
-          "origin",
-          "modifyUser",
-          "modifyDate",
-          "fixedAssetNo",
-          "externalFixedAssetNo",
-          "companyNo",
-          "description"
-        ]
+        "additionalProperties": false,
+        "description": "The DTO for an attribute value."
       },
-      "order": {
-        "title": "Order",
+      "AttributeValueSet": {
+        "required": [
+          "attributeSetId"
+        ],
         "type": "object",
-        "description": "By passing the appropriate option the service get.",
         "properties": {
-          "orderId": {
+          "attributeSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
             "type": "integer",
+            "description": "Internal identification of attribute set.",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "User who last modified the entry.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "attributeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttributeValue"
+            },
+            "description": "A list of attribute values.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for an attribute value set."
+      },
+      "Order": {
+        "required": [
+          "budgetCharging",
+          "companyNo",
+          "description",
+          "isCostAccountingOrder",
+          "isManualPostable",
+          "orderNo",
+          "orderStatus",
+          "orderType"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Change identification of the entry.",
             "format": "int64",
-            "description": "The order Id uniquely identifies an order in performis. To identify an order, either the performis order Id (orderId) or the Id of the external system (externalOrderId) is required.",
-            "example": 123456789,
+            "nullable": true,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "orderId": {
+            "maximum": 9999999999,
             "minimum": 0,
-            "maximum": 9999999999
+            "type": "integer",
+            "description": "Technical identification of the entry.",
+            "format": "int64",
+            "nullable": true
           },
           "origin": {
-            "type": "string",
             "maxLength": 200,
-            "example": "ISBRW",
-            "description": "The system of origin the order"
+            "type": "string",
+            "description": "The system of the origin of the order.",
+            "nullable": true,
+            "readOnly": true
           },
           "externalOrderId": {
-            "type": "string",
             "maxLength": 200,
-            "description": "Third-party order Id - This Id must be unique within the origin (origin field). As Id it is recommended to use either the Primary Key of the foreign system or a GUID (Global Unique Identifier). Attention, if External Ids are used, no performis Ids may be used in parallel, additionally the origin field is mandatory. E.g. Id \"629c5d97-a225-4b08-877c-e8a802c23014\" for origin \"SAP\". To identify the business partner, either the performis order (orderId) or the Id of the external system (externalOrderId) is required.",
-            "example": "629c5d97-a225-4b08-877c-e8a802c23014"
+            "type": "string",
+            "description": "Third-party order id - This id must be unique within the origin (origin field).\r\nAs id it is recommended to use either the primary key of the foreign system or a GUID (Global Unique Identifier).",
+            "nullable": true
           },
           "orderNo": {
-            "type": "string",
             "maxLength": 20,
-            "description": "The OrderNo identifies the order to be booked in accounting. This is the actual order no of the order",
-            "example": "V005126.10"
+            "minLength": 1,
+            "type": "string",
+            "description": "Identifies the order to be booked in accounting. This is the actual order number of the order."
           },
           "companyNo": {
-            "type": "integer",
-            "format": "int64",
-            "example": 27,
-            "description": "The companyNo identifies the customer via the corresponding number in the mandate system.",
+            "maximum": 999999,
             "minimum": 0,
-            "maximum": 999999
+            "type": "integer",
+            "description": "Company identification of the entry.",
+            "format": "int64"
           },
           "description": {
-            "type": "string",
             "maxLength": 100,
-            "description": "The description is a short description / title of the order",
-            "example": "Transportauftrag 1151"
+            "minLength": 1,
+            "type": "string",
+            "description": "The description is a short description / title of the order."
           },
           "orderType": {
-            "type": "string",
             "maxLength": 1,
-            "description": "The orderType identifies the type of the order.\nM: Material\nP: Production\nV: Sales\nE: Purchase\nA: Other",
-            "example": "V"
+            "minLength": 1,
+            "type": "string",
+            "description": "Identifies the type of the order."
           },
           "orderStatus": {
+            "maximum": 1049999,
+            "minimum": 1040001,
             "type": "integer",
-            "format": "int64",
-            "example": 1040500,
-            "description": "Code that indentfies the current state of the order.\n1040100: Recorded\n1040150: In delivery\n1040170: Partially delivered\n1040480: Delivered\n1040490: Ready for invoicing\n1040500: Completed/invoiced\n1040600: Deleted",
-            "minimum": 0,
-            "maximum": 9999999
+            "description": "Code that identifies the current status of the order.",
+            "format": "int64"
           },
-          "bpAddrId": {
-            "type": "integer",
-            "format": "int64",
-            "example": 2000070,
-            "description": "The bpAddrId references the business partner addess within performis.",
+          "businessPartnerAddressId": {
+            "maximum": 9999999999,
             "minimum": 0,
-            "maximum": 9999999999
+            "type": "integer",
+            "description": "Reference to the business partner address within performis.",
+            "format": "int64",
+            "nullable": true
           },
           "responsiblePerson": {
-            "type": "string",
             "maxLength": 30,
-            "example": "John Doe",
-            "description": "The person responsable for the order."
+            "type": "string",
+            "description": "Name or designation of the person responsible.",
+            "nullable": true
           },
           "costCenterNo": {
-            "type": "string",
             "maxLength": 20,
-            "example": "200",
-            "description": "Cost center of the order."
+            "type": "string",
+            "description": "Cost center number of the order.",
+            "nullable": true
           },
           "costUnitNo": {
-            "type": "string",
             "maxLength": 20,
-            "example": "13",
-            "description": "Cost unit of the order."
+            "type": "string",
+            "description": "Cost unit number of the order.",
+            "nullable": true
           },
           "salesChannelNo": {
-            "type": "string",
             "maxLength": 3,
+            "type": "string",
             "description": "Identifies the sale channel.",
-            "example": "ABC"
+            "nullable": true
           },
-          "attributeValueSet": {
-            "$ref": "#/components/schemas/attributeValueSet"
-          },
-          "isCaccOrder": {
+          "isCostAccountingOrder": {
             "type": "boolean",
             "description": "Is it a cost accounting order?"
           },
           "chargingType": {
-            "type": "string",
             "maxLength": 2,
-            "description": "Defines whether the order is reallocated.\nKT: cost unit\nKS: cost centre\nAU: order",
-            "example": "KT"
+            "type": "string",
+            "description": "Defines whether the order is reallocated. KT: cost unit KS: cost centre AU: order",
+            "nullable": true
           },
           "budgetCharging": {
             "type": "boolean",
@@ -680,159 +539,28 @@
           },
           "orderDate": {
             "type": "string",
+            "description": "Date the order was placed.",
             "format": "date",
-            "example": "2023-01-05",
-            "description": "Date the order was placed."
+            "nullable": true
           },
           "currency": {
-            "type": "string",
-            "example": "CHF",
             "maxLength": 3,
-            "description": "Currency as ISO code."
+            "type": "string",
+            "description": "Currency as ISO code.",
+            "nullable": true
           },
           "isManualPostable": {
             "type": "boolean",
-            "description": "Shows whether the order can be booked in accounting? "
+            "description": "Shows whether the order can be booked in accounting?"
+          },
+          "attributeValueSet": {
+            "$ref": "#/components/schemas/AttributeValueSet"
           }
         },
-        "required": [
-          "orderNo",
-          "companyNo",
-          "description",
-          "orderType",
-          "origin",
-          "orderStatus",
-          "isCaccOrder",
-          "budgetCharging",
-          "isManualPostable"
-        ]
+        "additionalProperties": false,
+        "description": "The DTO for an order."
       },
-      "attributeValue": {
-        "description": "",
-        "type": "object",
-        "properties": {
-          "attributeValueId":{
-            "maximum": 2147483647,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Internal of attribute value Id",
-            "format": "int64"
-          },
-          "attributeDefinitionId": {
-            "maximum": 2147483647,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Internal of attribute definition Id",
-            "format": "int64"
-          },
-          "modifyUser": {
-            "type": "string",
-            "maxLength": 30,
-            "description": "Name of user who changed relevant information of the entry",
-            "example": "STJ"
-          },
-          "modifyDate": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Date someone changed relevant information of the entry",
-            "example": "2021-08-31 10:23:10"
-          },
-          "sortNo": {
-              "type": "integer",
-              "format": "int64",
-              "minimum": 1,
-              "maximum": 9999,
-              "description": "Position within the attribute value set",
-              "example": 3
-          },
-          "companyNo": {
-            "type": "integer",
-            "format": "int64",
-            "minimum": 1,
-            "maximum": 999999,
-            "description": "Company identification of the entry.",
-            "example": 37
-          },
-          "textValue": {
-            "type": "string",
-            "maxLength": 1000,
-            "description": "A string value"
-          },
-          "numberValue": {
-            "type": "number",
-            "format": "decimal",
-            "description": "Number or decimal value"
-          },
-          "dateValue": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Date value"
-          },
-          "boolValue": {
-            "type": "boolean",
-            "description": "A true or false value"
-          },
-          "codes": {
-            "type": "array",
-            "items": {
-              "properties": {
-                "code": {
-                  "minimum": 10000,
-                  "maximum": 99999999,
-                  "type": "integer",
-                  "description": "ID of code",
-                  "format": "int64"
-                }
-              }
-            }
-          }
-        },
-        "required": [
-          "attributeDefinitionId"
-        ]
-      },
-      "attributeValueSet": {
-        "description": "",
-        "type": "object",
-          "properties": {
-          "attributeSetId": {
-              "maximum": 9999999999,
-              "minimum": 1,
-              "type": "integer",
-              "description": "Internal of attribute set Id",
-              "format": "int64"
-          },
-          "attributeValueId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Internal of attribute Id",
-            "format": "int64"
-          },
-          "modifyUser": {
-            "type": "string",
-            "maxLength": 30,
-            "description": "Name of user who changed relevant information of the entry",
-            "example": "STJ"
-          },
-          "modifyDate": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Date someone changed relevant information of the entry",
-            "example": "2021-08-31 10:23:10"
-          },
-          "attributeValues": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/attributeValue"
-            }
-          }
-        },
-        "required": [
-          "attributeValueId"
-        ]
-      },
-      "problemDetails": {
+      "ProblemDetails": {
         "type": "object",
         "properties": {
           "type": {
@@ -845,7 +573,7 @@
           },
           "status": {
             "type": "integer",
-            "format": "int64",
+            "format": "int32",
             "nullable": true
           },
           "detail": {
@@ -857,71 +585,21 @@
             "nullable": true
           }
         },
-        "additionalProperties": {},
-        "title": "problemDetails",
-        "description": "",
-        "x-examples": {
-          "example1": {
-            "type": "Warning",
-            "title": "Sample Title",
-            "status": -99,
-            "detail": "This is a generic message to provide a sample return of how a message may be returned.",
-            "instance": "TEST",
-            "property1": null,
-            "property2": null
-          }
-        }
-      },
-      "maintenanceWindow": {
-        "type": "object",
-        "additionalProperties": false,
-        "title": "MaintenanceWindow",
-        "description": "information structure for active maintenance windows.",
-        "x-examples": {
-          "example-1": {
-            "id": 3511,
-            "active": true,
-            "fromDateTime": "2019-08-24T14:15:22Z",
-            "toDateTime": "2019-08-24T14:15:22Z",
-            "info": "monthly maintenance for patch installation",
-            "clientStartAllowed": false
-          }
-        },
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64",
-            "example": 3511,
-            "nullable": true,
-            "readOnly": true
-          },
-          "active": {
-            "type": "boolean",
-            "default": true,
-            "description": "usually the API will respond with this structure, when the maintenance window is active and the window has started."
-          },
-          "fromDateTime": {
-            "type": "string",
-            "format": "date-time",
-            "description": "start of scheduled maintenance window."
-          },
-          "toDateTime": {
-            "type": "string",
-            "format": "date-time",
-            "description": "end of scheduled maintenance window."
-          },
-          "info": {
-            "type": "string",
-            "example": "monthly maintenance for patch installation.",
-            "nullable": true
-          },
-          "clientStartAllowed": {
-            "type": "boolean",
-            "default": false,
-            "description": "defines wether or not clients may continue to work while the maintenance window applies."
-          }
-        }
+        "additionalProperties": { }
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Please enter a valid token",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
-  }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
 }

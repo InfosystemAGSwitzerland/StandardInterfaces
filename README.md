@@ -36,30 +36,35 @@ All interfaces are built based on Infosystems Web API Standards, following the I
 
 At the moment, we enable third party developer to use the following modules via REST API:
 - leva+
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2LEVA3.json&nocors" target="_blank">Current version documentation</a>
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2LEVA3%20-%20Preview.json&nocors" target="_blank"><b>Preview</b> version documentation</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2leva.json&nocors" target="_blank">Current version documentation</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2leva%20-%20Preview.json&nocors" target="_blank"><b>Preview</b> version documentation</a>
+  
 - performis - ERP
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2performis.json&nocors" target="_blank"><b>Preview</b> version documentation</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2performis.json&nocors" target="_blank"><b>Current</b> version documentation</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis-Preview.json&nocors" target="_blank"><b>Preview</b> version documentation</a>
+  
 - BAF - Business Application Functions
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BAF.json&nocors" target="_blank"><b>Preview</b> version documentation</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BAF.json&nocors" target="_blank"><b>Current</b> version documentation</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2BAF%20-%20Preview.json&nocors" target="_blank"><b>Preview</b> version documentation</a>
+  
 - ressys
   - available soon
 
 Our module-based interfaces:
 - performis FI - Financial Accounting
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2FI3.json&nocors" target="_blank">See documentation online</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Module-Based/IF2FI3.json&nocors" target="_blank">See documentation online</a>
 - performis FA - Invoicing
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2FA3.json&nocors" target="_blank">See documentation online</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Module-Based/IF2FA3.json&nocors" target="_blank">See documentation online</a>
 - performis BA - Base module
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BA3.json&nocors" target="_blank">See documentation online</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Module-Based/IF2BA3.json&nocors" target="_blank">See documentation online</a>
 - performis GP - Business Partner
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2GP3.json&nocors" target="_blank">See documentation online</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Module-Based/IF2GP3.json&nocors" target="_blank">See documentation online</a>
 - leva+ - Master Data
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BBA3.json&nocors" target="_blank">See documentation online</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Module-Based/IF2BBA3.json&nocors" target="_blank">See documentation online</a>
 - leva+ - Scheduling & Distribution
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BHTR3.json&nocors" target="_blank">See documentation online</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Module-Based/IF2BHTR3.json&nocors" target="_blank">See documentation online</a>
 - leva+ - Workshop
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BWKST3.json&nocors" target="_blank">See documentation online</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Module-Based/IF2BWKST3.json&nocors" target="_blank">See documentation online</a>
 
 All interfaces offer the same standard functionality to enable you to quickly learn and interact with them. If required, an API might offer enhanced functionality.
 
@@ -72,8 +77,6 @@ To see a graphical representation of the interface, please use the OpenAPI onlin
 All interfaces are built with:
 * [.net](https://dotnet.microsoft.com/en-us/)
 * [OpenAPI](https://swagger.io/specification/)
-* [Angular](https://angular.io/)
-* [Bootstrap](https://getbootstrap.com)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -81,8 +84,7 @@ All interfaces are built with:
 ## Getting Started
 
 Clone the github repository and load the OpenAPI files into your favorite API tester.
-Speak with us for access to a test environment.
-You may use the 
+Speak with Infosystem about access to a test environment.
 
 ### Prerequisites
 
@@ -96,11 +98,9 @@ Code value samples:
 
 <!-- LICENSE -->
 ## License
-
-Not freely distributed. All rights reserved Infosystem AG.
+All rights reserved Infosystem AG.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- CONTACT -->
