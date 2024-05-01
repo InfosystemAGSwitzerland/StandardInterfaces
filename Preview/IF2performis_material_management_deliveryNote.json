@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "IF2performis",
-    "version": "v3",
+    "version": "v1",
     "contact": {
       "name": "Infosystem AG",
       "email": "support@infosystem.ch",
@@ -12,7 +12,7 @@
   },
   "servers": [],
   "paths": {
-    "/api/v3/material-management/delivery-notes": {
+    "/api/v1/material-management/delivery-notes": {
       "get": {
         "summary": "Get delivery information",
         "tags": [
