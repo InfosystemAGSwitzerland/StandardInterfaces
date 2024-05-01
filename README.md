@@ -36,10 +36,13 @@ All interfaces are built based on Infosystems Web API Standards, following the I
 
 At the moment, we enable third party developer to use the following modules via REST API:
 - leva+
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2LEVA3.json&nocors" target="_blank">Current version documentation</a>
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2LEVA3%20-%20Preview.json&nocors" target="_blank"><b>Preview</b> version documentation</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2leva.json&nocors" target="_blank">Current version documentation</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2leva%20-%20Preview.json&nocors" target="_blank"><b>Preview</b> version documentation</a>
+  
 - performis - ERP
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2performis.json&nocors" target="_blank"><b>Preview</b> version documentation</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2performis.json&nocors" target="_blank"><b>Current</b> version documentation</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis-Preview.json&nocors" target="_blank"><b>Preview</b> version documentation</a>
+  
 - BAF - Business Application Functions
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BAF.json&nocors" target="_blank"><b>Preview</b> version documentation</a>
 - ressys
