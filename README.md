@@ -34,9 +34,10 @@ in connecting to one of Infosystems products:
 All interface are built with .net core/.net and use state of the art OpenAPI descriptions to enable third-party developer quickstart.<br>
 All interfaces are built based on Infosystems Web API Standards, following the IETF RFCs regarding restful HTTP APIs.
 
+<b>Interfaces</b>
 At the moment, we enable third party developer to use the following modules via REST API:
 - leva+
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2leva.json&nocors" target="_blank">Current version documentation</a>
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2leva.json&nocors" target="_blank"><b>Current</b> version documentation</a>
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2leva%20-%20Preview.json&nocors" target="_blank"><b>Preview</b> version documentation</a>
   
 - performis - ERP
@@ -50,7 +51,9 @@ At the moment, we enable third party developer to use the following modules via 
 - ressys
   - available soon
 
-Our module-based interfaces:
+
+<b>Our module-based interfaces</b>
+Please use the product based services if available.
 - performis FI - Financial Accounting
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Module-Based/IF2FI3.json&nocors" target="_blank">See documentation online</a>
 - performis FA - Invoicing
