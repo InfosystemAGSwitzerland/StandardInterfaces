@@ -124,7 +124,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Leva.Manager.AssetResource.Interface.Machine.Machine"
+                    "$ref": "#/components/schemas/Machine"
                   }
                 }
               }
@@ -135,7 +135,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -266,7 +266,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Leva.Manager.Sales.Interface.Customer.Customer"
+                    "$ref": "#/components/schemas/Customer"
                   }
                 }
               }
@@ -277,7 +277,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -381,7 +381,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.ProjectStructure.ProjectStructure"
+                    "$ref": "#/components/schemas/ProjectStructure"
                   }
                 }
               }
@@ -392,7 +392,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -506,7 +506,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.Job"
+                    "$ref": "#/components/schemas/Job"
                   }
                 }
               }
@@ -517,7 +517,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -583,7 +583,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobTimeStamp"
+                    "$ref": "#/components/schemas/JobTimeStamp"
                   }
                 }
               }
@@ -594,7 +594,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -648,7 +648,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobTimeStamp"
+                  "$ref": "#/components/schemas/JobTimeStamp"
                 }
               }
             },
@@ -656,7 +656,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobTimeStamp"
+                  "$ref": "#/components/schemas/JobTimeStamp"
                 }
               }
             },
@@ -664,7 +664,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobTimeStamp"
+                  "$ref": "#/components/schemas/JobTimeStamp"
                 }
               }
             }
@@ -678,7 +678,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobTimeStamp"
+                    "$ref": "#/components/schemas/JobTimeStamp"
                   }
                 }
               }
@@ -689,7 +689,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -755,7 +755,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobReport"
+                    "$ref": "#/components/schemas/JobReport"
                   }
                 }
               }
@@ -766,7 +766,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -818,17 +818,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobReport"
+                "$ref": "#/components/schemas/JobReport"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobReport"
+                "$ref": "#/components/schemas/JobReport"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobReport"
+                "$ref": "#/components/schemas/JobReport"
               }
             }
           }
@@ -839,7 +839,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobReport"
+                  "$ref": "#/components/schemas/JobReport"
                 }
               }
             }
@@ -849,7 +849,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -939,7 +939,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobBookingActivity"
+                    "$ref": "#/components/schemas/JobBookingActivity"
                   }
                 }
               }
@@ -950,7 +950,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -1040,7 +1040,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobHandover"
+                    "$ref": "#/components/schemas/JobHandover"
                   }
                 }
               }
@@ -1051,7 +1051,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -1103,17 +1103,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobHandover"
+                "$ref": "#/components/schemas/JobHandover"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobHandover"
+                "$ref": "#/components/schemas/JobHandover"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobHandover"
+                "$ref": "#/components/schemas/JobHandover"
               }
             }
           }
@@ -1124,7 +1124,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobHandover"
+                  "$ref": "#/components/schemas/JobHandover"
                 }
               }
             }
@@ -1134,7 +1134,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobHandover"
+                  "$ref": "#/components/schemas/JobHandover"
                 }
               }
             }
@@ -1144,7 +1144,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -1234,7 +1234,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobReturn"
+                    "$ref": "#/components/schemas/JobReturn"
                   }
                 }
               }
@@ -1245,7 +1245,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -1297,17 +1297,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobReturn"
+                "$ref": "#/components/schemas/JobReturn"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobReturn"
+                "$ref": "#/components/schemas/JobReturn"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobReturn"
+                "$ref": "#/components/schemas/JobReturn"
               }
             }
           }
@@ -1318,7 +1318,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobReturn"
+                  "$ref": "#/components/schemas/JobReturn"
                 }
               }
             }
@@ -1328,7 +1328,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobReturn"
+                  "$ref": "#/components/schemas/JobReturn"
                 }
               }
             }
@@ -1338,7 +1338,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -1428,7 +1428,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobCompletion"
+                    "$ref": "#/components/schemas/JobCompletion"
                   }
                 }
               }
@@ -1439,7 +1439,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -1491,17 +1491,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobCompletion"
+                "$ref": "#/components/schemas/JobCompletion"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobCompletion"
+                "$ref": "#/components/schemas/JobCompletion"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobCompletion"
+                "$ref": "#/components/schemas/JobCompletion"
               }
             }
           }
@@ -1512,7 +1512,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobCompletion"
+                  "$ref": "#/components/schemas/JobCompletion"
                 }
               }
             }
@@ -1522,7 +1522,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobCompletion"
+                  "$ref": "#/components/schemas/JobCompletion"
                 }
               }
             }
@@ -1532,7 +1532,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -1622,7 +1622,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobTransportPosition"
+                    "$ref": "#/components/schemas/JobTransportPosition"
                   }
                 }
               }
@@ -1633,7 +1633,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -1687,17 +1687,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobTransportPositionChecklist"
+                "$ref": "#/components/schemas/JobTransportPositionChecklist"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobTransportPositionChecklist"
+                "$ref": "#/components/schemas/JobTransportPositionChecklist"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobTransportPositionChecklist"
+                "$ref": "#/components/schemas/JobTransportPositionChecklist"
               }
             }
           }
@@ -1708,7 +1708,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobTransportPositionChecklist"
+                  "$ref": "#/components/schemas/JobTransportPositionChecklist"
                 }
               }
             }
@@ -1718,7 +1718,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -1808,7 +1808,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobDocument"
+                    "$ref": "#/components/schemas/JobDocument"
                   }
                 }
               }
@@ -1819,7 +1819,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -1873,7 +1873,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobDocument"
+                  "$ref": "#/components/schemas/JobDocument"
                 }
               }
             },
@@ -1881,7 +1881,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobDocument"
+                  "$ref": "#/components/schemas/JobDocument"
                 }
               }
             },
@@ -1889,7 +1889,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobDocument"
+                  "$ref": "#/components/schemas/JobDocument"
                 }
               }
             }
@@ -1903,7 +1903,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobDocument"
+                    "$ref": "#/components/schemas/JobDocument"
                   }
                 }
               }
@@ -1914,7 +1914,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -1925,7 +1925,1001 @@
   },
   "components": {
     "schemas": {
-      "Leva.Manager.AssetResource.Interface.Machine.Machine": {
+      "Address": {
+        "required": [
+          "city",
+          "country",
+          "zipCode"
+        ],
+        "type": "object",
+        "properties": {
+          "street": {
+            "maxLength": 43,
+            "type": "string",
+            "description": "Street name without house number.",
+            "nullable": true
+          },
+          "houseNo": {
+            "maxLength": 12,
+            "type": "string",
+            "description": "House number.",
+            "nullable": true
+          },
+          "poBox": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "The post office box of the address. The P.O. Box should be transferred including the country-specific text component. For example, for Switzerland \"Postfach 12\" in England \"PO Box 12\".",
+            "nullable": true
+          },
+          "additionalLine1": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Additional line of an address which is neither a street nor a post office box. For example, \"c/o Samuel Schnelli\" or \"Office Samuel Schnelli\".",
+            "nullable": true
+          },
+          "additionalLine2": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Extended additional component of an address that is neither a street nor a post office box. For example, \"Floor 12\" or \"Building 15\".",
+            "nullable": true
+          },
+          "country": {
+            "maxLength": 2,
+            "minLength": 1,
+            "type": "string",
+            "description": "Country in ISO code (ISO 3166)."
+          },
+          "zipCode": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string",
+            "description": "Zip code of the address in country-specific format. Mandatory together with the country code and the city. For example, \"EC1A 1AA\" for London, England or \"9500\" for Wil, Switzerland."
+          },
+          "city": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string",
+            "description": "City."
+          },
+          "latitude": {
+            "maximum": 90,
+            "minimum": -90,
+            "type": "number",
+            "description": "Location latitude.",
+            "format": "double",
+            "nullable": true
+          },
+          "longitude": {
+            "maximum": 180,
+            "minimum": -180,
+            "type": "number",
+            "description": "Location longitude.",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Address format."
+      },
+      "CompanyAccount": {
+        "required": [
+          "active",
+          "cashPayment",
+          "companyNo",
+          "currency",
+          "customerNo",
+          "privateSurcharge"
+        ],
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "description": "Is this entry active or not."
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The number of the company that this entry is assigned to.",
+            "format": "int64"
+          },
+          "customerNo": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Identification number of the customer."
+          },
+          "currency": {
+            "maxLength": 3,
+            "minLength": 1,
+            "type": "string",
+            "description": "Default currency in ISO 4217 Code (3 digit letter)."
+          },
+          "salesChannel": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "Sales channel of the customer.",
+            "nullable": true
+          },
+          "cashPayment": {
+            "type": "boolean",
+            "description": "Defines whether or not the customer pays cash."
+          },
+          "privateSurcharge": {
+            "type": "boolean",
+            "description": "Defines whether or not the customer pays a B2C surcharge."
+          },
+          "c4504ChargingType": {
+            "maximum": 45049999,
+            "minimum": 45040000,
+            "type": "integer",
+            "description": "Defines how the customer pays the bill (single or collective invoice).",
+            "format": "int64",
+            "nullable": true
+          },
+          "c1502ChargingPeriodicity": {
+            "maximum": 15029999,
+            "minimum": 15020000,
+            "type": "integer",
+            "description": "Defines the periodicity of invoicing.",
+            "format": "int64",
+            "nullable": true
+          },
+          "notes": {
+            "maxLength": 4000,
+            "minLength": 1,
+            "type": "string",
+            "description": "Internal notes about the customer.",
+            "nullable": true
+          },
+          "c4570PriceCategory": {
+            "maximum": 45709999,
+            "minimum": 45700000,
+            "type": "integer",
+            "description": "Defines if a customer has a price category.",
+            "format": "int64",
+            "nullable": true
+          },
+          "c27PaymentTerms": {
+            "maximum": 279999,
+            "minimum": 270000,
+            "type": "integer",
+            "description": "Code of the payment terms.",
+            "format": "int64",
+            "nullable": true
+          },
+          "paymentTerms": {
+            "maxLength": 30,
+            "minLength": 1,
+            "type": "string",
+            "description": "Shortname of the payment terms.",
+            "nullable": true
+          },
+          "costUnit": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string",
+            "description": "Cost unit of customer.",
+            "nullable": true
+          },
+          "chargingBusinessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal address number of the customer which is charged for the services.",
+            "format": "int64",
+            "nullable": true
+          },
+          "chargingCustomerId": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "External address id of the customer which is charged for the services.",
+            "nullable": true
+          },
+          "shippingBusinessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Address number of the customer invoice shipping address.",
+            "format": "int64",
+            "nullable": true
+          },
+          "c126ExportInformation": {
+            "maximum": 1269999,
+            "minimum": 1260000,
+            "type": "integer",
+            "description": "Code (C126) of the export identifier.",
+            "format": "int64",
+            "nullable": true
+          },
+          "c3305SalesArea": {
+            "maximum": 33059999,
+            "minimum": 33050000,
+            "type": "integer",
+            "description": "Sales area of the customer.",
+            "format": "int64",
+            "nullable": true
+          },
+          "yourRef": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Default reference of the customer. Is printed on the invoice.",
+            "nullable": true
+          },
+          "customerSalesReward": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SalesReward"
+            },
+            "description": "Sales reward programm for customer. Per year, a rate configures the payback reward for the customer.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The company account dto."
+      },
+      "Customer": {
+        "required": [
+          "businessPartnerAddressId",
+          "changeDate",
+          "changeId",
+          "customerId",
+          "modifyDate",
+          "modifyUser",
+          "origin"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "description": "Change id of the entry.",
+            "format": "int64"
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time"
+          },
+          "businessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Address id of the customer.",
+            "format": "int64"
+          },
+          "origin": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string",
+            "description": "Origin of the customer (used together with origin id). Customers created in leva+ will have the origin \"leva+\". They will not have an origin id."
+          },
+          "customerId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Technical identification number of the customer.",
+            "format": "int64"
+          },
+          "externalCustomerId": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "External id of the customer - set if the customer was created in a third party system.",
+            "nullable": true
+          },
+          "c3341CustomerStatus": {
+            "maximum": 33419999,
+            "minimum": 33410000,
+            "type": "integer",
+            "description": "Status of the customer. Only customers with the status \"33410030 = customer\" may be used for orders.",
+            "format": "int32",
+            "nullable": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "minLength": 1,
+            "type": "string",
+            "description": "User which modified the entity."
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entity was last modified.",
+            "format": "date-time"
+          },
+          "isConsortium": {
+            "type": "boolean",
+            "description": "Defines whether or not this customer is a consortium.",
+            "nullable": true
+          },
+          "companyAccounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompanyAccount"
+            },
+            "description": "List of company accounts this customer is assigned to.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The customer dto."
+      },
+      "FileDocumentLink": {
+        "type": "object",
+        "properties": {
+          "fileDocumentGuid": {
+            "type": "string",
+            "description": "Internal guid of the document.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Provides the guid to a saved file. This structure is used to attach previously saved attachments to the application context. e.g. a photo made on a mobile device is saved to performis and then attached to a job as a job document."
+      },
+      "Job": {
+        "required": [
+          "jobDateTimeFrom",
+          "jobDateTimeTo",
+          "jobStatusCode",
+          "orderNo",
+          "orderTitle",
+          "resourceNo",
+          "resourceStatusCode",
+          "resourceTypeCode",
+          "schedulingGroupCode",
+          "useCaseCode"
+        ],
+        "type": "object",
+        "properties": {
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The number of the company that this entry is assigned to.",
+            "format": "int64",
+            "nullable": true
+          },
+          "jobId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Job id of performis/leva+. Will be set internally - leave empty if not known.",
+            "format": "int64",
+            "nullable": true
+          },
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Change identifier of the entity.",
+            "format": "int64",
+            "nullable": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entity.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "reportEmailReceivers": {
+            "type": "string",
+            "description": "Seperated string of e-mail addresses to receive a report copy.",
+            "nullable": true
+          },
+          "employeeId": {
+            "type": "integer",
+            "description": "Internal employee id to which the job is assigned to.",
+            "format": "int64",
+            "nullable": true
+          },
+          "orderNo": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The order number."
+          },
+          "orderTitle": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The order title."
+          },
+          "jobDateTimeFrom": {
+            "type": "string",
+            "description": "Scheduled start date and time for this job.",
+            "format": "date-time"
+          },
+          "jobDateTimeTo": {
+            "type": "string",
+            "description": "Scheduled end date and time for this job.",
+            "format": "date-time"
+          },
+          "resourceNo": {
+            "type": "integer",
+            "description": "The resource demand number to which this job is assigned to. Each order can have multiple resource demands. They are numbered 0001 onwards and are unique within the order (similar to order-line position no., but for resource demands).",
+            "format": "int64"
+          },
+          "schedulingGroupCode": {
+            "type": "integer",
+            "description": "Code 4542 use IF2BA to retrieve value list.",
+            "format": "int64"
+          },
+          "jobStatusCode": {
+            "type": "integer",
+            "description": "Code 4555 use IF2BA to retrieve value list.",
+            "format": "int64"
+          },
+          "resourceTypeCode": {
+            "type": "integer",
+            "description": "Code 4550 use IF2BA to retrieve value list.",
+            "format": "int64"
+          },
+          "resourceStatusCode": {
+            "type": "integer",
+            "description": "Code 4554 use IF2BA to retrieve value list.",
+            "format": "int64"
+          },
+          "machineId": {
+            "type": "integer",
+            "description": "Internal maschine id assigned to this job.",
+            "format": "int64",
+            "nullable": true
+          },
+          "accessoryId": {
+            "type": "integer",
+            "description": "External accessory id assigned to this job.",
+            "format": "int64",
+            "nullable": true
+          },
+          "useCaseCode": {
+            "type": "integer",
+            "description": "Code 6951 use IF2BA to retrieve value list.",
+            "format": "int64",
+            "example": 69510030
+          },
+          "customerId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Technical identification number of the customer.",
+            "format": "int64",
+            "nullable": true
+          },
+          "serviceTypeCode": {
+            "maximum": 69540003,
+            "minimum": 69540001,
+            "type": "integer",
+            "description": "Code 6954 use IF2BA to retrieve value list.",
+            "format": "int64",
+            "nullable": true
+          },
+          "details": {
+            "$ref": "#/components/schemas/JobDetails"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for the rental jobs."
+      },
+      "JobBookingActivity": {
+        "required": [
+          "activityCode"
+        ],
+        "type": "object",
+        "properties": {
+          "bookingActivityId": {
+            "type": "integer",
+            "description": "Unique booking activity id. Other jobs containing the same activity do not have the same job booking activity id.",
+            "format": "int64"
+          },
+          "activityCode": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Code 4557. Use IF2BA to retrieve code values for activities."
+          },
+          "activity": {
+            "maxLength": 150,
+            "type": "string",
+            "description": "Text of activity if specified.  NOTE: This may contain free-text for the activity. If the job requires a special activity e.g. 'Assist customer on demand' a planner might replace the regular activity text with anything else (non-translated custom input).",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Usually set to `true`. if set to `false`, the booking activity has been revoked from the job and the employee should no longer be able to submit timestamps on that activity."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Job booking activities are the available activities such as 'Loading', 'Unloading', (...) which an employee is able to choose from when adding timestamps on the job."
+      },
+      "JobCompletion": {
+        "required": [
+          "completed",
+          "jobId"
+        ],
+        "type": "object",
+        "properties": {
+          "completionId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique id of this completion.",
+            "format": "int64",
+            "nullable": true
+          },
+          "jobId": {
+            "type": "integer",
+            "description": "Unique id of job to which this completion is assigned.",
+            "format": "int64"
+          },
+          "completed": {
+            "type": "boolean",
+            "description": "Marks a rental job as completed."
+          }
+        },
+        "additionalProperties": false,
+        "description": "A completion for a rental job. Marks a rental as completed and confirms that there is no further submission of any job data expected (e.g. no further surcharges and all handover, returns and reports are complete)."
+      },
+      "JobDetails": {
+        "type": "object",
+        "properties": {
+          "timeStampList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobTimeStamp"
+            },
+            "description": "List of time stamps.",
+            "nullable": true
+          },
+          "reportList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobReport"
+            },
+            "description": "List of reports.",
+            "nullable": true
+          },
+          "bookingActivityList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobBookingActivity"
+            },
+            "description": "List of booking activities.",
+            "nullable": true
+          },
+          "transportPositionList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobTransportPosition"
+            },
+            "description": "List of transport positions.",
+            "nullable": true
+          },
+          "documentList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobDocument"
+            },
+            "description": "List of job documents.",
+            "nullable": true
+          },
+          "jobHandover": {
+            "$ref": "#/components/schemas/JobHandover"
+          },
+          "jobReturn": {
+            "$ref": "#/components/schemas/JobReturn"
+          },
+          "jobCompletion": {
+            "$ref": "#/components/schemas/JobCompletion"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Detail information on a job such as scheduled activities, contacts and locations."
+      },
+      "JobDocument": {
+        "required": [
+          "jobDocumentName",
+          "jobId"
+        ],
+        "type": "object",
+        "properties": {
+          "jobDocumentId": {
+            "type": "integer",
+            "description": "Unique id of this job document assignment.",
+            "format": "int64",
+            "nullable": true
+          },
+          "jobId": {
+            "type": "integer",
+            "description": "Unique id for the job to which this document is assigned to.",
+            "format": "int64"
+          },
+          "jobDocumentName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The name of the document."
+          },
+          "jobDocument": {
+            "$ref": "#/components/schemas/FileDocumentLink"
+          }
+        },
+        "additionalProperties": false,
+        "description": "An existing document linked to the job."
+      },
+      "JobHandover": {
+        "required": [
+          "customerBriefed",
+          "handoverCompletedDateTime",
+          "jobId"
+        ],
+        "type": "object",
+        "properties": {
+          "handoverId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier for the hand over.",
+            "format": "int64",
+            "nullable": true
+          },
+          "jobId": {
+            "type": "integer",
+            "description": "Id of the job to which this handover is assigned.",
+            "format": "int64"
+          },
+          "employeeId": {
+            "type": "integer",
+            "description": "Internal unique identifer of the employee that created this handover.",
+            "format": "int64",
+            "nullable": true
+          },
+          "handoverCompletedDateTime": {
+            "type": "string",
+            "description": "Date and time at which the handover is completed.  NOTE: this timestamp typically marks the actual beginning of the rental period.",
+            "format": "date-time"
+          },
+          "customerBriefed": {
+            "type": "boolean",
+            "description": "Wether or not the customer was explicitly briefed on the machine/accessory."
+          },
+          "comment": {
+            "maxLength": 2000,
+            "type": "string",
+            "description": "Any remarks made by the employee that should be noted on this handover.",
+            "nullable": true
+          },
+          "customerSignature": {
+            "$ref": "#/components/schemas/Signature"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A handover for a rental job. Confirms that the resource (machine/accessory) has been handed over to the customer. Additional information such as a comment and signature can be supplied."
+      },
+      "JobReport": {
+        "required": [
+          "comment",
+          "jobId",
+          "reportFromDate",
+          "reportToDate"
+        ],
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal unique report id.",
+            "format": "int64",
+            "nullable": true
+          },
+          "jobId": {
+            "type": "integer",
+            "description": "Internal unique job id.",
+            "format": "int64"
+          },
+          "reportFromDate": {
+            "type": "string",
+            "description": "Begin of reporting time span.",
+            "format": "date-time"
+          },
+          "reportToDate": {
+            "type": "string",
+            "description": "End of reporting time span.",
+            "format": "date-time"
+          },
+          "comment": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Additional comments on the report (usually visible on report) and for backoffice."
+          },
+          "reportTimeStampList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobReportTimeStamp"
+            },
+            "description": "List of report time stamps.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for the rental job report.\r\nThis file is going to be extended / autogenerated from the IF2LEVA definition at some point in the future.\r\nTherefore it is not fully documented."
+      },
+      "JobReportTimeStamp": {
+        "required": [
+          "source",
+          "timeStamp",
+          "timeStampTypeCode"
+        ],
+        "type": "object",
+        "properties": {
+          "jobReportTimeStampId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The unique identifier for the job report time stamp.",
+            "format": "int64",
+            "nullable": true
+          },
+          "timeStamp": {
+            "type": "string",
+            "description": "The time stamp associated with the job.",
+            "format": "date-time"
+          },
+          "timeStampTypeCode": {
+            "type": "integer",
+            "description": "Code 4556. The type of the time stamp (TimeStampType).",
+            "format": "int64"
+          },
+          "source": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Source identifier of entry origin."
+          },
+          "bookingActivityId": {
+            "type": "integer",
+            "description": "The identifier for resource booking activity.",
+            "format": "int64",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "description": "A comment associated with the time stamp.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for the rental job report time stamp.\r\nThis file is going to be extended / autogenerated from the IF2LEVA definition at some point in the future.\r\nTherefore it is not fully documented."
+      },
+      "JobReturn": {
+        "required": [
+          "damage",
+          "jobId"
+        ],
+        "type": "object",
+        "properties": {
+          "returnId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique id of this return.",
+            "format": "int64",
+            "nullable": true
+          },
+          "jobId": {
+            "type": "integer",
+            "description": "Unique id of job to which this return is assigned.",
+            "format": "int64"
+          },
+          "employeeId": {
+            "type": "integer",
+            "description": "Internal employee id who made the return.",
+            "format": "int64",
+            "nullable": true
+          },
+          "returnStartedDateTime": {
+            "type": "string",
+            "description": "Actual date time at which the return process started.",
+            "format": "date-time"
+          },
+          "jobEndDateTime": {
+            "type": "string",
+            "description": "Actual job end date of the rental.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "damage": {
+            "type": "boolean",
+            "description": "Set when damage is noticed on return."
+          },
+          "comment": {
+            "maxLength": 2000,
+            "type": "string",
+            "description": "Any additional information noted by the employee for this return.",
+            "nullable": true
+          },
+          "customerSignature": {
+            "$ref": "#/components/schemas/Signature"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A return for a rental job. Confirms that the resource (machine/accessory) has been returned/picked up. Additional information such as a comment or whether or not the resource has been damaged is submitted."
+      },
+      "JobTimeStamp": {
+        "required": [
+          "jobId",
+          "timeStamp",
+          "timeStampTypeCode"
+        ],
+        "type": "object",
+        "properties": {
+          "jobTimeStampId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The unique identifier for the job timestamp.",
+            "format": "int64",
+            "nullable": true
+          },
+          "jobId": {
+            "type": "integer",
+            "description": "The unique identifier for the job onto which the time stamp is assigned.",
+            "format": "int64"
+          },
+          "timeStamp": {
+            "type": "string",
+            "description": "The timestamp associated with the job.",
+            "format": "date-time"
+          },
+          "timeStampTypeCode": {
+            "type": "integer",
+            "description": "Code 4556. The type of timestamp (TimestampType).",
+            "format": "int64"
+          },
+          "bookingActivityId": {
+            "type": "integer",
+            "description": "The identifier for resource booking activity.",
+            "format": "int64",
+            "nullable": true
+          },
+          "machineId": {
+            "type": "integer",
+            "description": "The identifier for the machine.",
+            "format": "int64",
+            "nullable": true
+          },
+          "employeeId": {
+            "type": "integer",
+            "description": "The internal identifier for the employee.",
+            "format": "int64",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "description": "A comment associated with the timestamp.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for the rental job time stamps.\r\nThis file is going to be extended / autogenerated from the IF2LEVA definition at some point in the future.\r\nTherefore it is not fully documented."
+      },
+      "JobTransportPosition": {
+        "required": [
+          "jobId"
+        ],
+        "type": "object",
+        "properties": {
+          "transportPositionId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Înternal unique id for this job transport position.",
+            "format": "int64",
+            "nullable": true
+          },
+          "jobId": {
+            "type": "integer",
+            "description": "Unique job id.",
+            "format": "int64"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of good.",
+            "nullable": true
+          },
+          "unitOfMeasure": {
+            "type": "string",
+            "description": "Unit of measurement in wich the quantity is transported.",
+            "nullable": true
+          },
+          "decimalCount": {
+            "type": "integer",
+            "description": "Amount of decimals in quantity allowed for this unit of measurement.",
+            "format": "int32",
+            "nullable": true
+          },
+          "transportQuantity": {
+            "type": "number",
+            "description": "The transport quantity.",
+            "format": "double",
+            "nullable": true
+          },
+          "loadedQuantity": {
+            "type": "number",
+            "description": "Loaded quantity can be different from the transport quantity. Use-case is under or over-delivery.",
+            "format": "double",
+            "nullable": true
+          },
+          "unloadedQuantity": {
+            "type": "number",
+            "description": "Unloaded quantity can be different from the transport quantity. Use-case is under or over-delivery.",
+            "format": "double",
+            "nullable": true
+          },
+          "loadingDateTime": {
+            "type": "string",
+            "description": "Planned loading date and time.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "loadingCompleted": {
+            "type": "boolean",
+            "description": "Indicates whether the loading was completed."
+          },
+          "unloadingDateTime": {
+            "type": "string",
+            "description": "Planned unloading date and time.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "unloadingCompleted": {
+            "type": "boolean",
+            "description": "Indicates whether the unloading was completed."
+          },
+          "rentalJobId": {
+            "type": "integer",
+            "description": "Is set, when the current transport demand (assigned resource) points to a rental job.",
+            "format": "int64",
+            "nullable": true
+          },
+          "pickupLocation": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "deliveryLocation": {
+            "$ref": "#/components/schemas/Address"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Job transport position specifies what, how much, needs to go where and when."
+      },
+      "JobTransportPositionChecklist": {
+        "required": [
+          "jobId",
+          "transportPositionId"
+        ],
+        "type": "object",
+        "properties": {
+          "transportPositionId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal unique id for this job transport position.",
+            "format": "int64"
+          },
+          "jobId": {
+            "type": "integer",
+            "description": "Unique job id.",
+            "format": "int64"
+          },
+          "loadingCompleted": {
+            "type": "boolean",
+            "description": "Indicates whether the loading was completed."
+          },
+          "unloadingCompleted": {
+            "type": "boolean",
+            "description": "Indicates whether the unloading was completed."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Job transport position checklist specifies which transport demand has been loaded and or unloaded. Any transport from point A to B contains a loading and unloading completed status that can be set by the user."
+      },
+      "Machine": {
         "required": [
           "active",
           "description",
@@ -2165,42 +3159,42 @@
           "typeOfDrives": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Leva.Manager.AssetResource.Interface.Machine.TypeOfDrive"
+              "$ref": "#/components/schemas/TypeOfDrive"
             },
             "nullable": true
           },
           "schedulingGroups": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Leva.Manager.AssetResource.Interface.Machine.SchedulingGroup"
+              "$ref": "#/components/schemas/SchedulingGroup"
             },
             "nullable": true
           },
           "drivers": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Leva.Manager.AssetResource.Interface.Machine.MachineDriver"
+              "$ref": "#/components/schemas/MachineDriver"
             },
             "nullable": true
           },
           "counters": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Leva.Manager.AssetResource.Interface.Machine.MachineCounter"
+              "$ref": "#/components/schemas/MachineCounter"
             },
             "nullable": true
           },
           "usages": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Leva.Manager.AssetResource.Interface.Machine.MachineUsage"
+              "$ref": "#/components/schemas/MachineUsage"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Leva.Manager.AssetResource.Interface.Machine.MachineCounter": {
+      "MachineCounter": {
         "required": [
           "counterTypeCode"
         ],
@@ -2220,7 +3214,7 @@
         },
         "additionalProperties": false
       },
-      "Leva.Manager.AssetResource.Interface.Machine.MachineDriver": {
+      "MachineDriver": {
         "type": "object",
         "properties": {
           "driverBpId": {
@@ -2233,7 +3227,7 @@
         },
         "additionalProperties": false
       },
-      "Leva.Manager.AssetResource.Interface.Machine.MachineUsage": {
+      "MachineUsage": {
         "type": "object",
         "properties": {
           "application": {
@@ -2243,799 +3237,34 @@
         },
         "additionalProperties": false
       },
-      "Leva.Manager.AssetResource.Interface.Machine.SchedulingGroup": {
+      "ProblemDetails": {
         "type": "object",
         "properties": {
-          "schedulingGroupCode": {
-            "type": "integer",
-            "format": "int64"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Leva.Manager.AssetResource.Interface.Machine.TypeOfDrive": {
-        "type": "object",
-        "properties": {
-          "typeOfDrive": {
-            "$ref": "#/components/schemas/Leva.Manager.AssetResource.Interface.Machine.TypeOfDriveEnum"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Leva.Manager.AssetResource.Interface.Machine.TypeOfDriveEnum": {
-        "enum": [
-          "B",
-          "H",
-          "D",
-          "E"
-        ],
-        "type": "string"
-      },
-      "Leva.Manager.Fulfillment.Interface.Job.Address": {
-        "required": [
-          "city",
-          "country",
-          "zipCode"
-        ],
-        "type": "object",
-        "properties": {
-          "street": {
-            "maxLength": 43,
+          "type": {
             "type": "string",
-            "description": "Street name without house number.",
             "nullable": true
           },
-          "houseNo": {
-            "maxLength": 12,
+          "title": {
             "type": "string",
-            "description": "House number.",
             "nullable": true
           },
-          "poBox": {
-            "maxLength": 50,
-            "type": "string",
-            "description": "The post office box of the address. The P.O. Box should be transferred including the country-specific text component. For example, for Switzerland \"Postfach 12\" in England \"PO Box 12\".",
-            "nullable": true
-          },
-          "additionalLine1": {
-            "maxLength": 50,
-            "type": "string",
-            "description": "Additional line of an address which is neither a street nor a post office box. For example, \"c/o Samuel Schnelli\" or \"Office Samuel Schnelli\".",
-            "nullable": true
-          },
-          "additionalLine2": {
-            "maxLength": 200,
-            "type": "string",
-            "description": "Extended additional component of an address that is neither a street nor a post office box. For example, \"Floor 12\" or \"Building 15\".",
-            "nullable": true
-          },
-          "country": {
-            "maxLength": 2,
-            "minLength": 1,
-            "type": "string",
-            "description": "Country in ISO code (ISO 3166)."
-          },
-          "zipCode": {
-            "maxLength": 20,
-            "minLength": 1,
-            "type": "string",
-            "description": "Zip code of the address in country-specific format. Mandatory together with the country code and the city. For example, \"EC1A 1AA\" for London, England or \"9500\" for Wil, Switzerland."
-          },
-          "city": {
-            "maxLength": 40,
-            "minLength": 1,
-            "type": "string",
-            "description": "City."
-          },
-          "latitude": {
-            "maximum": 90,
-            "minimum": -90,
-            "type": "number",
-            "description": "Location latitude.",
-            "format": "double",
-            "nullable": true
-          },
-          "longitude": {
-            "maximum": 180,
-            "minimum": -180,
-            "type": "number",
-            "description": "Location longitude.",
-            "format": "double",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Address format."
-      },
-      "Leva.Manager.Fulfillment.Interface.Job.FileDocumentLink": {
-        "type": "object",
-        "properties": {
-          "fileDocumentGuid": {
-            "type": "string",
-            "description": "Internal guid of the document.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Provides the guid to a saved file. This structure is used to attach previously saved attachments to the application context. e.g. a photo made on a mobile device is saved to performis and then attached to a job as a job document."
-      },
-      "Leva.Manager.Fulfillment.Interface.Job.Job": {
-        "required": [
-          "jobDateTimeFrom",
-          "jobDateTimeTo",
-          "jobStatusCode",
-          "orderNo",
-          "orderTitle",
-          "resourceNo",
-          "resourceStatusCode",
-          "resourceTypeCode",
-          "schedulingGroupCode",
-          "useCaseCode"
-        ],
-        "type": "object",
-        "properties": {
-          "companyNo": {
-            "maximum": 999999,
-            "minimum": 1,
+          "status": {
             "type": "integer",
-            "description": "The number of the company that this entry is assigned to.",
-            "format": "int64",
-            "nullable": true
-          },
-          "jobId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Job id of performis/leva+. Will be set internally - leave empty if not known.",
-            "format": "int64",
-            "nullable": true
-          },
-          "changeId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Change identifier of the entity.",
-            "format": "int64",
-            "nullable": true
-          },
-          "changeDate": {
-            "type": "string",
-            "description": "Change date of the entity.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "reportEmailReceivers": {
-            "type": "string",
-            "description": "Seperated string of e-mail addresses to receive a report copy.",
-            "nullable": true
-          },
-          "employeeId": {
-            "type": "integer",
-            "description": "Internal employee id to which the job is assigned to.",
-            "format": "int64",
-            "nullable": true
-          },
-          "orderNo": {
-            "minLength": 1,
-            "type": "string",
-            "description": "The order number."
-          },
-          "orderTitle": {
-            "minLength": 1,
-            "type": "string",
-            "description": "The order title."
-          },
-          "jobDateTimeFrom": {
-            "type": "string",
-            "description": "Scheduled start date and time for this job.",
-            "format": "date-time"
-          },
-          "jobDateTimeTo": {
-            "type": "string",
-            "description": "Scheduled end date and time for this job.",
-            "format": "date-time"
-          },
-          "resourceNo": {
-            "type": "integer",
-            "description": "The resource demand number to which this job is assigned to. Each order can have multiple resource demands. They are numbered 0001 onwards and are unique within the order (similar to order-line position no., but for resource demands).",
-            "format": "int64"
-          },
-          "schedulingGroupCode": {
-            "type": "integer",
-            "description": "Code 4542 use IF2BA to retrieve value list.",
-            "format": "int64"
-          },
-          "jobStatusCode": {
-            "type": "integer",
-            "description": "Code 4555 use IF2BA to retrieve value list.",
-            "format": "int64"
-          },
-          "resourceTypeCode": {
-            "type": "integer",
-            "description": "Code 4550 use IF2BA to retrieve value list.",
-            "format": "int64"
-          },
-          "resourceStatusCode": {
-            "type": "integer",
-            "description": "Code 4554 use IF2BA to retrieve value list.",
-            "format": "int64"
-          },
-          "machineId": {
-            "type": "integer",
-            "description": "Internal maschine id assigned to this job.",
-            "format": "int64",
-            "nullable": true
-          },
-          "accessoryId": {
-            "type": "integer",
-            "description": "External accessory id assigned to this job.",
-            "format": "int64",
-            "nullable": true
-          },
-          "useCaseCode": {
-            "type": "integer",
-            "description": "Code 6951 use IF2BA to retrieve value list.",
-            "format": "int64",
-            "example": 69510030
-          },
-          "customerId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Technical identification number of the customer.",
-            "format": "int64",
-            "nullable": true
-          },
-          "details": {
-            "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobDetails"
-          }
-        },
-        "additionalProperties": false,
-        "description": "The DTO for the rental jobs."
-      },
-      "Leva.Manager.Fulfillment.Interface.Job.JobBookingActivity": {
-        "required": [
-          "activityCode"
-        ],
-        "type": "object",
-        "properties": {
-          "bookingActivityId": {
-            "type": "integer",
-            "description": "Unique booking activity id. Other jobs containing the same activity do not have the same job booking activity id.",
-            "format": "int64"
-          },
-          "activityCode": {
-            "minLength": 1,
-            "type": "string",
-            "description": "Code 4557. Use IF2BA to retrieve code values for activities."
-          },
-          "activity": {
-            "maxLength": 150,
-            "type": "string",
-            "description": "Text of activity if specified.  NOTE: This may contain free-text for the activity. If the job requires a special activity e.g. 'Assist customer on demand' a planner might replace the regular activity text with anything else (non-translated custom input).",
-            "nullable": true
-          },
-          "active": {
-            "type": "boolean",
-            "description": "Usually set to `true`. if set to `false`, the booking activity has been revoked from the job and the employee should no longer be able to submit timestamps on that activity."
-          }
-        },
-        "additionalProperties": false,
-        "description": "Job booking activities are the available activities such as 'Loading', 'Unloading', (...) which an employee is able to choose from when adding timestamps on the job."
-      },
-      "Leva.Manager.Fulfillment.Interface.Job.JobCompletion": {
-        "required": [
-          "completed",
-          "jobId"
-        ],
-        "type": "object",
-        "properties": {
-          "completionId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Unique id of this completion.",
-            "format": "int64",
-            "nullable": true
-          },
-          "jobId": {
-            "type": "integer",
-            "description": "Unique id of job to which this completion is assigned.",
-            "format": "int64"
-          },
-          "completed": {
-            "type": "boolean",
-            "description": "Marks a rental job as completed."
-          }
-        },
-        "additionalProperties": false,
-        "description": "A completion for a rental job. Marks a rental as completed and confirms that there is no further submission of any job data expected (e.g. no further surcharges and all handover, returns and reports are complete)."
-      },
-      "Leva.Manager.Fulfillment.Interface.Job.JobDetails": {
-        "type": "object",
-        "properties": {
-          "timeStampList": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobTimeStamp"
-            },
-            "description": "List of time stamps.",
-            "nullable": true
-          },
-          "reportList": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobReport"
-            },
-            "description": "List of reports.",
-            "nullable": true
-          },
-          "bookingActivityList": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobBookingActivity"
-            },
-            "description": "List of booking activities.",
-            "nullable": true
-          },
-          "transportPositionList": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobTransportPosition"
-            },
-            "description": "List of transport positions.",
-            "nullable": true
-          },
-          "documentList": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobDocument"
-            },
-            "description": "List of job documents.",
-            "nullable": true
-          },
-          "jobHandover": {
-            "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobHandover"
-          },
-          "jobReturn": {
-            "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobReturn"
-          },
-          "jobCompletion": {
-            "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobCompletion"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Detail information on a job such as scheduled activities, contacts and locations."
-      },
-      "Leva.Manager.Fulfillment.Interface.Job.JobDocument": {
-        "required": [
-          "jobDocumentName",
-          "jobId"
-        ],
-        "type": "object",
-        "properties": {
-          "jobDocumentId": {
-            "type": "integer",
-            "description": "Unique id of this job document assignment.",
-            "format": "int64",
-            "nullable": true
-          },
-          "jobId": {
-            "type": "integer",
-            "description": "Unique id for the job to which this document is assigned to.",
-            "format": "int64"
-          },
-          "jobDocumentName": {
-            "minLength": 1,
-            "type": "string",
-            "description": "The name of the document."
-          },
-          "jobDocument": {
-            "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.FileDocumentLink"
-          }
-        },
-        "additionalProperties": false,
-        "description": "An existing document linked to the job."
-      },
-      "Leva.Manager.Fulfillment.Interface.Job.JobHandover": {
-        "required": [
-          "customerBriefed",
-          "handoverCompletedDateTime",
-          "jobId"
-        ],
-        "type": "object",
-        "properties": {
-          "handoverId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Unique identifier for the hand over.",
-            "format": "int64",
-            "nullable": true
-          },
-          "jobId": {
-            "type": "integer",
-            "description": "Id of the job to which this handover is assigned.",
-            "format": "int64"
-          },
-          "employeeId": {
-            "type": "integer",
-            "description": "Internal unique identifer of the employee that created this handover.",
-            "format": "int64",
-            "nullable": true
-          },
-          "handoverCompletedDateTime": {
-            "type": "string",
-            "description": "Date and time at which the handover is completed.  NOTE: this timestamp typically marks the actual beginning of the rental period.",
-            "format": "date-time"
-          },
-          "customerBriefed": {
-            "type": "boolean",
-            "description": "Wether or not the customer was explicitly briefed on the machine/accessory."
-          },
-          "comment": {
-            "maxLength": 2000,
-            "type": "string",
-            "description": "Any remarks made by the employee that should be noted on this handover.",
-            "nullable": true
-          },
-          "customerSignature": {
-            "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.Signature"
-          }
-        },
-        "additionalProperties": false,
-        "description": "A handover for a rental job. Confirms that the resource (machine/accessory) has been handed over to the customer. Additional information such as a comment and signature can be supplied."
-      },
-      "Leva.Manager.Fulfillment.Interface.Job.JobReport": {
-        "required": [
-          "comment",
-          "jobId",
-          "reportFromDate",
-          "reportToDate"
-        ],
-        "type": "object",
-        "properties": {
-          "reportId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Internal unique report id.",
-            "format": "int64",
-            "nullable": true
-          },
-          "jobId": {
-            "type": "integer",
-            "description": "Internal unique job id.",
-            "format": "int64"
-          },
-          "reportFromDate": {
-            "type": "string",
-            "description": "Begin of reporting time span.",
-            "format": "date-time"
-          },
-          "reportToDate": {
-            "type": "string",
-            "description": "End of reporting time span.",
-            "format": "date-time"
-          },
-          "comment": {
-            "minLength": 1,
-            "type": "string",
-            "description": "Additional comments on the report (usually visible on report) and for backoffice."
-          },
-          "reportTimeStampList": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.JobReportTimeStamp"
-            },
-            "description": "List of report time stamps.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "The DTO for the rental job report.\r\nThis file is going to be extended / autogenerated from the IF2LEVA definition at some point in the future.\r\nTherefore it is not fully documented."
-      },
-      "Leva.Manager.Fulfillment.Interface.Job.JobReportTimeStamp": {
-        "required": [
-          "source",
-          "timeStamp",
-          "timeStampTypeCode"
-        ],
-        "type": "object",
-        "properties": {
-          "jobReportTimeStampId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "The unique identifier for the job report time stamp.",
-            "format": "int64",
-            "nullable": true
-          },
-          "timeStamp": {
-            "type": "string",
-            "description": "The time stamp associated with the job.",
-            "format": "date-time"
-          },
-          "timeStampTypeCode": {
-            "type": "integer",
-            "description": "Code 4556. The type of the time stamp (TimeStampType).",
-            "format": "int64"
-          },
-          "source": {
-            "minLength": 1,
-            "type": "string",
-            "description": "Source identifier of entry origin."
-          },
-          "bookingActivityId": {
-            "type": "integer",
-            "description": "The identifier for resource booking activity.",
-            "format": "int64",
-            "nullable": true
-          },
-          "comment": {
-            "type": "string",
-            "description": "A comment associated with the time stamp.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "The DTO for the rental job report time stamp.\r\nThis file is going to be extended / autogenerated from the IF2LEVA definition at some point in the future.\r\nTherefore it is not fully documented."
-      },
-      "Leva.Manager.Fulfillment.Interface.Job.JobReturn": {
-        "required": [
-          "damage",
-          "jobId"
-        ],
-        "type": "object",
-        "properties": {
-          "returnId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Unique id of this return.",
-            "format": "int64",
-            "nullable": true
-          },
-          "jobId": {
-            "type": "integer",
-            "description": "Unique id of job to which this return is assigned.",
-            "format": "int64"
-          },
-          "employeeId": {
-            "type": "integer",
-            "description": "Internal employee id who made the return.",
-            "format": "int64",
-            "nullable": true
-          },
-          "returnStartedDateTime": {
-            "type": "string",
-            "description": "Actual date time at which the return process started.",
-            "format": "date-time"
-          },
-          "jobEndDateTime": {
-            "type": "string",
-            "description": "Actual job end date of the rental.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "damage": {
-            "type": "boolean",
-            "description": "Set when damage is noticed on return."
-          },
-          "comment": {
-            "maxLength": 2000,
-            "type": "string",
-            "description": "Any additional information noted by the employee for this return.",
-            "nullable": true
-          },
-          "customerSignature": {
-            "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.Signature"
-          }
-        },
-        "additionalProperties": false,
-        "description": "A return for a rental job. Confirms that the resource (machine/accessory) has been returned/picked up. Additional information such as a comment or whether or not the resource has been damaged is submitted."
-      },
-      "Leva.Manager.Fulfillment.Interface.Job.JobTimeStamp": {
-        "required": [
-          "jobId",
-          "timeStamp",
-          "timeStampTypeCode"
-        ],
-        "type": "object",
-        "properties": {
-          "jobTimeStampId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "The unique identifier for the job timestamp.",
-            "format": "int64",
-            "nullable": true
-          },
-          "jobId": {
-            "type": "integer",
-            "description": "The unique identifier for the job onto which the time stamp is assigned.",
-            "format": "int64"
-          },
-          "timeStamp": {
-            "type": "string",
-            "description": "The timestamp associated with the job.",
-            "format": "date-time"
-          },
-          "timeStampTypeCode": {
-            "type": "integer",
-            "description": "Code 4556. The type of timestamp (TimestampType).",
-            "format": "int64"
-          },
-          "bookingActivityId": {
-            "type": "integer",
-            "description": "The identifier for resource booking activity.",
-            "format": "int64",
-            "nullable": true
-          },
-          "machineId": {
-            "type": "integer",
-            "description": "The identifier for the machine.",
-            "format": "int64",
-            "nullable": true
-          },
-          "employeeId": {
-            "type": "integer",
-            "description": "The internal identifier for the employee.",
-            "format": "int64",
-            "nullable": true
-          },
-          "comment": {
-            "type": "string",
-            "description": "A comment associated with the timestamp.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "The DTO for the rental job time stamps.\r\nThis file is going to be extended / autogenerated from the IF2LEVA definition at some point in the future.\r\nTherefore it is not fully documented."
-      },
-      "Leva.Manager.Fulfillment.Interface.Job.JobTransportPosition": {
-        "required": [
-          "jobId"
-        ],
-        "type": "object",
-        "properties": {
-          "transportPositionId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Înternal unique id for this job transport position.",
-            "format": "int64",
-            "nullable": true
-          },
-          "jobId": {
-            "type": "integer",
-            "description": "Unique job id.",
-            "format": "int64"
-          },
-          "description": {
-            "type": "string",
-            "description": "Description of good.",
-            "nullable": true
-          },
-          "unitOfMeasure": {
-            "type": "string",
-            "description": "Unit of measurement in wich the quantity is transported.",
-            "nullable": true
-          },
-          "decimalCount": {
-            "type": "integer",
-            "description": "Amount of decimals in quantity allowed for this unit of measurement.",
             "format": "int32",
             "nullable": true
           },
-          "transportQuantity": {
-            "type": "number",
-            "description": "The transport quantity.",
-            "format": "double",
-            "nullable": true
-          },
-          "loadedQuantity": {
-            "type": "number",
-            "description": "Loaded quantity can be different from the transport quantity. Use-case is under or over-delivery.",
-            "format": "double",
-            "nullable": true
-          },
-          "unloadedQuantity": {
-            "type": "number",
-            "description": "Unloaded quantity can be different from the transport quantity. Use-case is under or over-delivery.",
-            "format": "double",
-            "nullable": true
-          },
-          "loadingDateTime": {
+          "detail": {
             "type": "string",
-            "description": "Planned loading date and time.",
-            "format": "date-time",
             "nullable": true
           },
-          "loadingCompleted": {
-            "type": "boolean",
-            "description": "Indicates whether the loading was completed."
-          },
-          "unloadingDateTime": {
+          "instance": {
             "type": "string",
-            "description": "Planned unloading date and time.",
-            "format": "date-time",
             "nullable": true
-          },
-          "unloadingCompleted": {
-            "type": "boolean",
-            "description": "Indicates whether the unloading was completed."
-          },
-          "rentalJobId": {
-            "type": "integer",
-            "description": "Is set, when the current transport demand (assigned resource) points to a rental job.",
-            "format": "int64",
-            "nullable": true
-          },
-          "pickupLocation": {
-            "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.Address"
-          },
-          "deliveryLocation": {
-            "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.Address"
           }
         },
-        "additionalProperties": false,
-        "description": "Job transport position specifies what, how much, needs to go where and when."
+        "additionalProperties": { }
       },
-      "Leva.Manager.Fulfillment.Interface.Job.JobTransportPositionChecklist": {
-        "required": [
-          "jobId",
-          "transportPositionId"
-        ],
-        "type": "object",
-        "properties": {
-          "transportPositionId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Internal unique id for this job transport position.",
-            "format": "int64"
-          },
-          "jobId": {
-            "type": "integer",
-            "description": "Unique job id.",
-            "format": "int64"
-          },
-          "loadingCompleted": {
-            "type": "boolean",
-            "description": "Indicates whether the loading was completed."
-          },
-          "unloadingCompleted": {
-            "type": "boolean",
-            "description": "Indicates whether the unloading was completed."
-          }
-        },
-        "additionalProperties": false,
-        "description": "Job transport position checklist specifies which transport demand has been loaded and or unloaded. Any transport from point A to B contains a loading and unloading completed status that can be set by the user."
-      },
-      "Leva.Manager.Fulfillment.Interface.Job.Signature": {
-        "type": "object",
-        "properties": {
-          "signatureId": {
-            "type": "integer",
-            "description": "Signature id. Leave empty when creating a new signature entry.",
-            "format": "int64",
-            "nullable": true
-          },
-          "signeeName": {
-            "maxLength": 100,
-            "type": "string",
-            "description": "Person who is signing the document. Preferably full name.",
-            "nullable": true
-          },
-          "signaturFileDocumentLink": {
-            "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.Job.FileDocumentLink"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Signature details when available. If not provided: a report, handover or return is considered unsigned."
-      },
-      "Leva.Manager.Fulfillment.Interface.ProjectStructure.ProjectStructure": {
+      "ProjectStructure": {
         "required": [
           "active",
           "description",
@@ -3092,7 +3321,7 @@
             "nullable": true
           },
           "type": {
-            "$ref": "#/components/schemas/Leva.Manager.Fulfillment.Interface.ProjectStructure.ProjectStructureType"
+            "$ref": "#/components/schemas/ProjectStructureType"
           },
           "customerId": {
             "type": "integer",
@@ -3129,7 +3358,7 @@
         "additionalProperties": false,
         "description": "The project structure that describes a general project. Projects may originate from various sources."
       },
-      "Leva.Manager.Fulfillment.Interface.ProjectStructure.ProjectStructureType": {
+      "ProjectStructureType": {
         "enum": [
           "PROJECT",
           "ORDER"
@@ -3137,251 +3366,7 @@
         "type": "string",
         "description": "Defines what type the entry is. While projects are only structural and will never have cost directly associated, orders are used to render services and charge assigned customer. It is possible to create an order without assigning it to a parent project."
       },
-      "Leva.Manager.Sales.Interface.Customer.CompanyAccount": {
-        "required": [
-          "active",
-          "cashPayment",
-          "companyNo",
-          "currency",
-          "customerNo",
-          "privateSurcharge"
-        ],
-        "type": "object",
-        "properties": {
-          "active": {
-            "type": "boolean",
-            "description": "Is this entry active or not."
-          },
-          "companyNo": {
-            "maximum": 999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "The number of the company that this entry is assigned to.",
-            "format": "int64"
-          },
-          "customerNo": {
-            "maxLength": 50,
-            "minLength": 1,
-            "type": "string",
-            "description": "Identification number of the customer."
-          },
-          "currency": {
-            "maxLength": 3,
-            "minLength": 1,
-            "type": "string",
-            "description": "Default currency in ISO 4217 Code (3 digit letter)."
-          },
-          "salesChannel": {
-            "maxLength": 3,
-            "type": "string",
-            "description": "Sales channel of the customer.",
-            "nullable": true
-          },
-          "cashPayment": {
-            "type": "boolean",
-            "description": "Defines whether or not the customer pays cash."
-          },
-          "privateSurcharge": {
-            "type": "boolean",
-            "description": "Defines whether or not the customer pays a B2C surcharge."
-          },
-          "c4504ChargingType": {
-            "maximum": 45049999,
-            "minimum": 45040000,
-            "type": "integer",
-            "description": "Defines how the customer pays the bill (single or collective invoice).",
-            "format": "int64",
-            "nullable": true
-          },
-          "c1502ChargingPeriodicity": {
-            "maximum": 15029999,
-            "minimum": 15020000,
-            "type": "integer",
-            "description": "Defines the periodicity of invoicing.",
-            "format": "int64",
-            "nullable": true
-          },
-          "notes": {
-            "maxLength": 4000,
-            "minLength": 1,
-            "type": "string",
-            "description": "Internal notes about the customer.",
-            "nullable": true
-          },
-          "c4570PriceCategory": {
-            "maximum": 45709999,
-            "minimum": 45700000,
-            "type": "integer",
-            "description": "Defines if a customer has a price category.",
-            "format": "int64",
-            "nullable": true
-          },
-          "c27PaymentTerms": {
-            "maximum": 279999,
-            "minimum": 270000,
-            "type": "integer",
-            "description": "Code of the payment terms.",
-            "format": "int64",
-            "nullable": true
-          },
-          "paymentTerms": {
-            "maxLength": 30,
-            "minLength": 1,
-            "type": "string",
-            "description": "Shortname of the payment terms.",
-            "nullable": true
-          },
-          "costUnit": {
-            "maxLength": 20,
-            "minLength": 1,
-            "type": "string",
-            "description": "Cost unit of customer.",
-            "nullable": true
-          },
-          "chargingBusinessPartnerAddressId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Internal address number of the customer which is charged for the services.",
-            "format": "int64",
-            "nullable": true
-          },
-          "chargingCustomerId": {
-            "maxLength": 50,
-            "minLength": 1,
-            "type": "string",
-            "description": "External address id of the customer which is charged for the services.",
-            "nullable": true
-          },
-          "shippingBusinessPartnerAddressId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Address number of the customer invoice shipping address.",
-            "format": "int64",
-            "nullable": true
-          },
-          "c126ExportInformation": {
-            "maximum": 1269999,
-            "minimum": 1260000,
-            "type": "integer",
-            "description": "Code (C126) of the export identifier.",
-            "format": "int64",
-            "nullable": true
-          },
-          "c3305SalesArea": {
-            "maximum": 33059999,
-            "minimum": 33050000,
-            "type": "integer",
-            "description": "Sales area of the customer.",
-            "format": "int64",
-            "nullable": true
-          },
-          "yourRef": {
-            "maxLength": 50,
-            "minLength": 1,
-            "type": "string",
-            "description": "Default reference of the customer. Is printed on the invoice.",
-            "nullable": true
-          },
-          "customerSalesReward": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Leva.Manager.Sales.Interface.Customer.SalesReward"
-            },
-            "description": "Sales reward programm for customer. Per year, a rate configures the payback reward for the customer.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "The company account dto."
-      },
-      "Leva.Manager.Sales.Interface.Customer.Customer": {
-        "required": [
-          "businessPartnerAddressId",
-          "changeDate",
-          "changeId",
-          "customerId",
-          "modifyDate",
-          "modifyUser",
-          "origin"
-        ],
-        "type": "object",
-        "properties": {
-          "changeId": {
-            "type": "integer",
-            "description": "Change id of the entry.",
-            "format": "int64"
-          },
-          "changeDate": {
-            "type": "string",
-            "description": "Change date of the entry.",
-            "format": "date-time"
-          },
-          "businessPartnerAddressId": {
-            "maximum": 9999999999,
-            "minimum": 0,
-            "type": "integer",
-            "description": "Address id of the customer.",
-            "format": "int64"
-          },
-          "origin": {
-            "maxLength": 10,
-            "minLength": 1,
-            "type": "string",
-            "description": "Origin of the customer (used together with origin id). Customers created in leva+ will have the origin \"leva+\". They will not have an origin id."
-          },
-          "customerId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Technical identification number of the customer.",
-            "format": "int64"
-          },
-          "externalCustomerId": {
-            "maxLength": 50,
-            "minLength": 1,
-            "type": "string",
-            "description": "External id of the customer - set if the customer was created in a third party system.",
-            "nullable": true
-          },
-          "c3341CustomerStatus": {
-            "maximum": 33419999,
-            "minimum": 33410000,
-            "type": "integer",
-            "description": "Status of the customer. Only customers with the status \"33410030 = customer\" may be used for orders.",
-            "format": "int32",
-            "nullable": true
-          },
-          "modifyUser": {
-            "maxLength": 30,
-            "minLength": 1,
-            "type": "string",
-            "description": "User which modified the entity."
-          },
-          "modifyDate": {
-            "type": "string",
-            "description": "Date the entity was last modified.",
-            "format": "date-time"
-          },
-          "isConsortium": {
-            "type": "boolean",
-            "description": "Defines whether or not this customer is a consortium.",
-            "nullable": true
-          },
-          "companyAccounts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Leva.Manager.Sales.Interface.Customer.CompanyAccount"
-            },
-            "description": "List of company accounts this customer is assigned to.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "The customer dto."
-      },
-      "Leva.Manager.Sales.Interface.Customer.SalesReward": {
+      "SalesReward": {
         "type": "object",
         "properties": {
           "year": {
@@ -3403,32 +3388,55 @@
         "additionalProperties": false,
         "description": "Sales reward program for customer. Per year, a rate configures the payback reward for the customer."
       },
-      "Microsoft.AspNetCore.Mvc.ProblemDetails": {
+      "SchedulingGroup": {
         "type": "object",
         "properties": {
-          "type": {
-            "type": "string",
-            "nullable": true
-          },
-          "title": {
-            "type": "string",
-            "nullable": true
-          },
-          "status": {
+          "schedulingGroupCode": {
             "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "detail": {
-            "type": "string",
-            "nullable": true
-          },
-          "instance": {
-            "type": "string",
-            "nullable": true
+            "format": "int64"
           }
         },
-        "additionalProperties": { }
+        "additionalProperties": false
+      },
+      "Signature": {
+        "type": "object",
+        "properties": {
+          "signatureId": {
+            "type": "integer",
+            "description": "Signature id. Leave empty when creating a new signature entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "signeeName": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Person who is signing the document. Preferably full name.",
+            "nullable": true
+          },
+          "signaturFileDocumentLink": {
+            "$ref": "#/components/schemas/FileDocumentLink"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Signature details when available. If not provided: a report, handover or return is considered unsigned."
+      },
+      "TypeOfDrive": {
+        "type": "object",
+        "properties": {
+          "typeOfDrive": {
+            "$ref": "#/components/schemas/TypeOfDriveEnum"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TypeOfDriveEnum": {
+        "enum": [
+          "B",
+          "H",
+          "D",
+          "E"
+        ],
+        "type": "string"
       }
     },
     "securitySchemes": {
