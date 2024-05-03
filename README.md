@@ -53,7 +53,7 @@ At the moment, we enable third party developer to use the following modules via 
     - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_service_recording_service_provider.json&nocors" target="_blank"><b>Preview</b> Service Recording - Service Provider</a>
     - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_service_recording_service_provider_day.json&nocors" target="_blank"><b>Preview</b> Service Recording - Service Provider Day</a>
     - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_service_recording_service_record.json&nocors" target="_blank"><b>Preview</b> Service Recording - Service Record</a>
-    - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/if2performis-finance-open-item-payment-status.json&nocors" target="_blank"><b>Preview</b> Finance - Payment Status</a>
+    - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis-finance-open-item-payment-status.json&nocors" target="_blank"><b>Preview</b> Finance - Payment Status</a>
   
 - BAF - Business Application Functions
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BAF.json&nocors" target="_blank"><b>Current</b> version documentation</a>
