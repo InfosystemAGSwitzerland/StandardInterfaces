@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "IF2performis",
-    "version": "v3",
+    "version": "v1",
     "contact": {
       "name": "Infosystem AG",
       "email": "support@infosystem.ch",
@@ -12,9 +12,9 @@
   },
   "servers": [],
   "paths": {
-    "/api/v3/service-recording/allowances": {
+    "/api/v1/service-recording/allowances": {
       "get": {
-        "summary": "Search all allowances",
+        "summary": "Get, put and delete allowances",
         "tags": [
           "ServiceRecording"
         ],
@@ -97,21 +97,13 @@
             }
           },
           {
+            "name": "X-Client-Type",
             "schema": {
               "type": "string",
               "maxLength": 30
             },
             "in": "header",
-            "name": "X-Client-Type",
             "description": "Optional client type calling the service."
-          },
-          {
-            "name": "searchString",
-            "in": "query",
-            "description": "Optional search string for looking up a record within name and searchterm fields.",
-            "schema": {
-              "type": "string"
-            }
           },
           {
             "name": "skip",
@@ -129,10 +121,11 @@
             "in": "query",
             "description": "Maximum number of entries to return.",
             "schema": {
-              "maximum": 2147483647,
+              "maximum": 10000,
               "minimum": 0,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "default": 1000
             }
           },
           {
@@ -156,6 +149,7 @@
             }
           },
           {
+            "name": "serviceProviderDayId",
             "schema": {
               "type": "integer",
               "format": "int64",
@@ -164,29 +158,31 @@
               "maximum": 9999999999
             },
             "in": "query",
-            "name": "serviceProviderDayId",
             "description": "Key to fetch all allowances from the given day/performance/performing unit."
           },
           {
+            "name": "serviceProviderId",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1234567890,
+              "minimum": 0,
+              "maximum": 9999999999
+            },
+            "in": "query",
+            "description": "Identifies the service provider who gets the allowance."
+          },
+          {
+            "name": "allowanceDate",
             "schema": {
               "type": "string",
               "format": "date"
             },
             "in": "query",
-            "name": "servicePerformanceDay",
-            "description": "Date the service was performed."
+            "description": "Date of the allowance."
           },
           {
-            "schema": {
-              "type": "string",
-              "maxLength": 50,
-              "minLength": 1
-            },
-            "in": "query",
-            "name": "personnelNo",
-            "description": "Id of the performing unit in the external system - Is only unique togehter with the companyNo."
-          },
-          {
+            "name": "companyNo",
             "schema": {
               "type": "integer",
               "format": "int64",
@@ -194,8 +190,7 @@
               "minimum": 1
             },
             "in": "query",
-            "name": "companyNo",
-            "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system."
+            "description": "Identifies the company of the allowances."
           }
         ],
         "description": "Returns all matching allowances."
@@ -387,26 +382,6 @@
             "in": "query",
             "name": "allowanceId",
             "description": "Identifier of an allowance."
-          },
-          {
-            "schema": {
-              "type": "string",
-              "maxLength": 10,
-              "example": "B_HTR"
-            },
-            "in": "query",
-            "name": "origin",
-            "description": "The system of origin."
-          },
-          {
-            "schema": {
-              "type": "string",
-              "maxLength": 50,
-              "example": "319"
-            },
-            "in": "query",
-            "name": "originId",
-            "description": "Id of the system of origin."
           }
         ],
         "description": "Deletes an allowance."
@@ -437,7 +412,7 @@
           "allowanceId": {
             "type": "integer",
             "format": "int64",
-            "minimum": 0,
+            "minimum": 1,
             "maximum": 9999999999,
             "description": "Id of the allowance.",
             "example": 26873
@@ -445,17 +420,31 @@
           "serviceProviderDayId": {
             "type": "integer",
             "format": "int64",
-            "minimum": 0,
+            "minimum": 1,
             "maximum": 9999999999,
             "description": "Id of the service provider day.",
             "example": 36874
           },
-          "allowanceid": {
+          "serviceProviderId": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999999999,
+            "description": "Id of the service provider.",
+            "example": 555
+          },
+          "allowanceDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Date of the allowance.",
+            "example": "2024-5-15"
+          },
+          "allowanceDefinitionId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
             "maximum": 9999999999,
-            "description": "Id of the allowance.",
+            "description": "Id of the allowance definition.",
             "example": 15795
           },
           "companyNo": {
@@ -463,28 +452,8 @@
             "format": "int64",
             "minimum": 1,
             "maximum": 999999,
-            "description": "The CompanyNo identifies the customer via the corresponding number in the mandate system.",
+            "description": "Identifies the company of the allowance.",
             "example": 25
-          },
-          "personnelNo": {
-            "type": "string",
-            "description": "Id of the person/(human) service provider in the external system.",
-            "minLength": 1,
-            "maxLength": 50,
-            "example": "1258"
-          },
-          "machineNo": {
-            "type": "string",
-            "description": "Id of the machine service provider in the external system.",
-            "minLength": 1,
-            "maxLength": 50,
-            "example": "139"
-          },
-          "description": {
-            "type": "string",
-            "maxLength": 50,
-            "example": "Pikett-Dienst",
-            "description": "Discribes the details of the allowance."
           },
           "orderNo": {
             "type": "string",
@@ -492,50 +461,43 @@
             "description": "The OrderNo identifies the order to be booked in accounting. This is the actual order no of the order.",
             "example": "K-658-55"
           },
-          "base": {
-            "type": "integer",
-            "format": "int64",
-            "description": "Amount of units declared.",
-            "example": 8
+          "baseValue": {
+            "type": "number",
+            "format": "decimal",
+            "description": "Base value for the calculation.",
+            "example": 8.33333
           },
           "percentage": {
             "type": "number",
-            "format": "double",
+            "format": "decimal",
             "example": 50,
             "minimum": 0,
             "maximum": 100,
-            "description": "Percentage rate of base amount being compensated."
+            "description": "Percentage rate for the calculation.."
           },
           "amount": {
             "type": "number",
-            "description": "Actual amount being compensated\nbase (declared) 8h\npercentage 50%\namount (compensated) 4h.",
-            "example": 4
+            "format": "decimal",
+            "description": "Amount of the allowance.",
+            "example": 4.25
           },
           "apply": {
             "type": "boolean",
-            "description": "As all possible allowances are checked and calulated for all service provider days this flag declares if this specific allowance is relevant."
+            "description": "Shows whether the allowance is applied or not."
           },
           "locked": {
             "type": "boolean",
-            "description": "The dataset is locked for change."
+            "description": "Shows whether the allowance is locked for changes."
           },
           "exclude": {
             "type": "boolean",
-            "description": "The allowence is not being granted even if would apply."
+            "description": "Shows if the allowance is excluded from use."
           },
           "costCenterNo": {
             "type": "string",
             "maxLength": 6,
             "description": "Cost center identifier.",
             "example": "C-222"
-          },
-          "period": {
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0,
-            "maximum": 999999,
-            "example": 202312,
-            "description": "Year and month the service was provided\nFormat YYYYMM (e.g. 202401)."
           },
           "origin": {
             "type": "string",
@@ -551,9 +513,7 @@
           }
         },
         "required": [
-          "allowanceid",
-          "companyNo",
-          "personnelNo",
+          "allowanceId",
           "apply",
           "locked",
           "exclude",

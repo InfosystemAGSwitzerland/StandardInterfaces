@@ -190,12 +190,12 @@
             "description": "Change date of the entry.",
             "example": "2023-12-31 09:05:00"
           },
-          "allowanceId": {
+          "allowanceDefinitionId": {
             "type": "integer",
             "format": "int64",
             "minimum": 0,
             "maximum": 9999999999,
-            "description": "Identifies the allowance.",
+            "description": "Identifies the allowance definition.",
             "example": 321198745
           },
           "description": {
