@@ -5,8 +5,7 @@
     "description": "IF2FA Rest Api",
     "contact": {
       "name": "Infosystem AG",
-      "email": "support@infosystem.ch",
-      "url": "https://www.infosystem.ch"
+      "email": "info@infosystem.ch"
     },
     "version": "v3"
   },
@@ -24,9 +23,7 @@
             "in": "query",
             "description": "Optional search string for looking up a record within name and searchterm fields.",
             "schema": {
-              "type": "string",
-              "description": "Optional search string for looking up a record within name and searchterm fields.",
-              "nullable": true
+              "type": "string"
             }
           },
           {
@@ -35,9 +32,7 @@
             "description": "Number of records to skip for pagination",
             "schema": {
               "type": "integer",
-              "description": "Number of records to skip for pagination",
-              "format": "int32",
-              "nullable": true
+              "format": "int32"
             }
           },
           {
@@ -46,9 +41,7 @@
             "description": "Maximum number of records to return",
             "schema": {
               "type": "integer",
-              "description": "Maximum number of records to return",
-              "format": "int32",
-              "nullable": true
+              "format": "int32"
             }
           },
           {
@@ -57,9 +50,7 @@
             "description": "Get all the entites which were added/edited since a specific datetime.",
             "schema": {
               "type": "string",
-              "description": "Get all the entites which were added/edited since a specific datetime.",
-              "format": "date-time",
-              "nullable": true
+              "format": "date-time"
             }
           },
           {
@@ -70,9 +61,7 @@
               "maximum": 9999999999,
               "minimum": 0,
               "type": "integer",
-              "description": "Get all the entities which were added/edited since the provided ChangeID.",
-              "format": "int32",
-              "nullable": true
+              "format": "int32"
             }
           },
           {
@@ -83,9 +72,7 @@
               "maximum": 9999999999,
               "minimum": 1,
               "type": "integer",
-              "description": "Retrieve specific invoice record by internal id.",
-              "format": "int64",
-              "nullable": true
+              "format": "int64"
             }
           },
           {
@@ -96,9 +83,7 @@
               "maximum": 9999999999,
               "minimum": 1,
               "type": "integer",
-              "description": "Retrieve specific invoice record by internal number (usually together with company number and voucher type).",
-              "format": "int64",
-              "nullable": true
+              "format": "int64"
             }
           },
           {
@@ -109,9 +94,7 @@
               "maximum": 999999,
               "minimum": 1,
               "type": "integer",
-              "description": "The company number, identifying a specific company.",
-              "format": "int32",
-              "nullable": true
+              "format": "int32"
             }
           },
           {
@@ -120,20 +103,24 @@
             "description": "VoucherType is used to identify invoices from different systems.",
             "schema": {
               "maxLength": 4,
-              "type": "string",
-              "description": "VoucherType is used to identify invoices from different systems.",
-              "nullable": true
+              "type": "string"
             }
           },
           {
             "name": "externalInvoiceID",
             "in": "query",
-            "description": "",
+            "description": "Retrieve specific invoice record by external id.",
             "schema": {
               "maxLength": 50,
-              "type": "string",
-              "description": "",
-              "nullable": true
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludeReversedInvoice",
+            "in": "query",
+            "description": "Excluded reversed invoices.",
+            "schema": {
+              "type": "boolean"
             }
           },
           {
@@ -143,8 +130,7 @@
             "required": true,
             "schema": {
               "maxLength": 50,
-              "type": "string",
-              "description": "Identifing the system calling the service."
+              "type": "string"
             }
           },
           {
@@ -154,8 +140,7 @@
             "required": true,
             "schema": {
               "maxLength": 30,
-              "type": "string",
-              "description": "Identifing the user calling the service."
+              "type": "string"
             }
           },
           {
@@ -164,9 +149,7 @@
             "description": "(Optional) Technical ID (GUID) for Call identification",
             "schema": {
               "maxLength": 30,
-              "type": "string",
-              "description": "(Optional) Technical ID (GUID) for Call identification",
-              "nullable": true
+              "type": "string"
             }
           }
         ],
@@ -194,15 +177,6 @@
               }
             }
           },
-          "401": {
-            "description": "Basic Authentication failed"
-          },
-          "403": {
-            "description": "Requestor has insufficient rights"
-          },
-          "404": {
-            "description": "No Record found"
-          },
           "503": {
             "description": "Service unavailable due to maintenance",
             "content": {
@@ -212,6 +186,15 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "404": {
+            "description": "No Record found"
           }
         }
       }
@@ -219,98 +202,172 @@
   },
   "components": {
     "schemas": {
-      "InvoiceTypeEnum": {
+      "AccountTypeEnum": {
         "enum": [
-          "I",
-          "IR",
-          "C",
-          "CC"
+          "GL",
+          "AP",
+          "AR"
         ],
         "type": "string",
-        "description": "Types:   I = Invoice, IR = Invoice Reversal, C = Creditmemo, CC = Cancelled Creditmemo"
+        "description": "Types:   * GL - General Ledger   * AP - Account Payable   * AR - Account Receivable"
       },
-      "DayOfWeek": {
-        "enum": [
-          "Sunday",
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday"
-        ],
-        "type": "string"
-      },
-      "DateOnly": {
-        "type": "object",
-        "properties": {
-          "Year": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "Month": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "Day": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "DayOfWeek": {
-            "$ref": "#/components/schemas/DayOfWeek"
-          },
-          "DayOfYear": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "DayNumber": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CodeValueDto": {
+      "AdditionalFieldDto": {
         "required": [
-          "Code",
-          "CompanyNo",
-          "Text"
+          "Content",
+          "Field"
         ],
         "type": "object",
         "properties": {
-          "CompanyNo": {
-            "maximum": 999999,
-            "minimum": 0,
-            "type": "integer",
-            "description": "Company no for which the codevalue is available. 0 = all companies",
-            "format": "int32"
-          },
-          "Code": {
+          "Field": {
             "maximum": 99999999,
             "minimum": 0,
             "type": "integer",
-            "description": "ID of code",
+            "description": "Performis code for Field type. C1504",
             "format": "int32"
           },
-          "Text": {
-            "maxLength": 100,
+          "Content": {
+            "maxLength": 4000,
+            "minLength": 1,
             "type": "string",
-            "description": "Description or title of the codevalue"
-          },
-          "Shorttext": {
-            "maxLength": 12,
-            "type": "string",
-            "description": "Short-description or title of the codevalue",
-            "nullable": true
+            "description": "Value of the content type."
           }
         },
         "additionalProperties": false,
-        "description": "CodeValueDto"
+        "description": "DocumentAdditionalFieldDto"
+      },
+      "AddressDto": {
+        "required": [
+          "City",
+          "Country",
+          "ShortAddress",
+          "ZipCode"
+        ],
+        "type": "object",
+        "properties": {
+          "BpAddrID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Performis Address ID - This ID uniquely identifies an address in performis. For example, ID \"629\" for address \"Infosystem AG, Wil\". To identify the address, either the performis address ID (BpAddrID) or the ID of the external system (ExternalBpAddrID) is required.",
+            "format": "int64"
+          },
+          "ExternalBpAddrID": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Third-party address ID - This ID must be unique within the origin (Origin field). As ID it is recommended to use either the Primary Key of the foreign system or a GUID (Global Unique Identifier). For example, ID \"629c5d97-a225-4b08-877c-e8a802c23014\" for origin \"ERP\".  To identify the address, either the performis address ID (BpAddrID) or the ID of the external system (ExternalBpAddrID) is required.",
+            "nullable": true
+          },
+          "Origin": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Origin of the business partner, name of the third-party system. Business partners and addresses with an origin can't be edited in performis.",
+            "nullable": true
+          },
+          "Active": {
+            "type": "boolean",
+            "description": "true = active, false = deleted.",
+            "nullable": true
+          },
+          "ShortAddress": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Short address - Short form of the address. It is generated automatically if not supplied. The short address is used in performis to identify the address. For example, the Wiler address of Infosystem AG is abbreviated as: \"Infosystem AG, Wil\"."
+          },
+          "OverridePartnerName": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "If the name of the company on the address differs from that of the business partner, the name of the business partner can be overridden in this field. For example, if Infosystem AG is operating in German-speaking Switzerland as Infosystem AG, the name on the business partner will also be the same. For the Lausanne address, however, the name is overridden as \"Infosystem SA\".",
+            "nullable": true
+          },
+          "OverridePartnerNameAddition": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "If the name addition of the company on the address differs from that of the business partner, the name suffix of the business partner can be overridden in this field.",
+            "nullable": true
+          },
+          "Street": {
+            "maxLength": 43,
+            "type": "string",
+            "description": "Street name without house number.",
+            "nullable": true
+          },
+          "HouseNo": {
+            "maxLength": 12,
+            "type": "string",
+            "description": "House number",
+            "nullable": true
+          },
+          "POBox": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "he post office box of the address. The P.O. Box should be transferred including the country-specific text component. For example, for Switzerland \"Postfach 12\" in England \"PO Box 12\".",
+            "nullable": true
+          },
+          "AdditionalLine1": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Additional line of an address which is neither a street nor a post office box. For example, \"c/o Samuel Schnelli\" or \"Office Samuel Schnelli\".",
+            "nullable": true
+          },
+          "AdditionalLine2": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Extended additional component of an address that is neither a street nor a post office box. For example, \"Floor 12\" or \"Building 15\".",
+            "nullable": true
+          },
+          "Country": {
+            "maxLength": 2,
+            "minLength": 1,
+            "type": "string",
+            "description": "Country in ISO code (ISO 3166)"
+          },
+          "ZipCode": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string",
+            "description": "Zipcode of the address in country-specific format. Mandatory together with the country code and the city. For example, \"EC1A 1AA\" for London, England or \"9500\" for Wil, Switzerland."
+          },
+          "City": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string",
+            "description": "City"
+          },
+          "Language": {
+            "maxLength": 2,
+            "type": "string",
+            "description": "Language code in ISO-639-1",
+            "nullable": true
+          },
+          "SearchTerms": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Additional search terms under which this address is found. This is often used to use well-known abbreviations as search terms. For example, \"IS\" for Infosystem AG or \"MS\" for Microsoft.",
+            "nullable": true
+          },
+          "Latitude": {
+            "maximum": 90,
+            "minimum": -90,
+            "type": "number",
+            "description": "Location latitude",
+            "format": "double",
+            "nullable": true
+          },
+          "Longitude": {
+            "maximum": 180,
+            "minimum": -180,
+            "type": "number",
+            "description": "Location longitude",
+            "format": "double",
+            "nullable": true
+          },
+          "AttributeValueSet": {
+            "$ref": "#/components/schemas/AttributeValueSetDto"
+          }
+        },
+        "additionalProperties": false,
+        "description": "AddressDto"
       },
       "AttributeValueDto": {
         "required": [
@@ -384,6 +441,7 @@
           },
           "AttributSetDescription": {
             "maxLength": 80,
+            "minLength": 1,
             "type": "string",
             "description": "Description / Title of the attribute set"
           },
@@ -399,135 +457,272 @@
         "additionalProperties": false,
         "description": "AttributeValueSetDto"
       },
-      "AddressDto": {
+      "CodeValueDto": {
         "required": [
-          "City",
-          "Country",
-          "ShortAddress",
-          "ZipCode"
+          "Code",
+          "CompanyNo",
+          "Text"
         ],
         "type": "object",
         "properties": {
-          "BpAddrID": {
+          "CompanyNo": {
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Company no for which the codevalue is available. 0 = all companies",
+            "format": "int32"
+          },
+          "Code": {
+            "maximum": 99999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "ID of code",
+            "format": "int32"
+          },
+          "Text": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "description": "Description or title of the codevalue"
+          },
+          "Shorttext": {
+            "maxLength": 12,
+            "type": "string",
+            "description": "Short-description or title of the codevalue",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "CodeValueDto"
+      },
+      "DocumentInfoDto": {
+        "required": [
+          "DocumentID",
+          "DocumentType"
+        ],
+        "type": "object",
+        "properties": {
+          "DocumentType": {
+            "$ref": "#/components/schemas/DocumentTypeEnum"
+          },
+          "DocumentName": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Name of the document",
+            "nullable": true
+          },
+          "DocumentID": {
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Performis Address ID - This ID uniquely identifies an address in performis. For example, ID \"629\" for address \"Infosystem AG, Wil\". To identify the address, either the performis address ID (BpAddrID) or the ID of the external system (ExternalBpAddrID) is required.",
+            "description": "Internal Document ID",
             "format": "int64"
           },
-          "ExternalBpAddrID": {
+          "DocumentGUID": {
             "maxLength": 50,
             "type": "string",
-            "description": "Third-party address ID - This ID must be unique within the origin (Origin field). As ID it is recommended to use either the Primary Key of the foreign system or a GUID (Global Unique Identifier). For example, ID \"629c5d97-a225-4b08-877c-e8a802c23014\" for origin \"ERP\".  To identify the address, either the performis address ID (BpAddrID) or the ID of the external system (ExternalBpAddrID) is required.",
+            "description": "Document GUID. Use this GUID to read the document contents with GET path/document",
+            "format": "uuid"
+          },
+          "ExternalDocumentID": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "External document ID of a third-party archive system.",
+            "nullable": true
+          },
+          "SequenceNo": {
+            "maximum": 99999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Order in which this document is attached (printed) or displayed",
+            "format": "int32",
+            "nullable": true
+          },
+          "IssuedBool": {
+            "type": "boolean",
+            "description": "Wether or not the document has been issued (printed) yet",
+            "nullable": true
+          },
+          "CopyCount": {
+            "maximum": 99,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Amount of copies to be issued",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "DocumentInfoDto"
+      },
+      "DocumentTypeEnum": {
+        "enum": [
+          "MainDocument",
+          "InvoiceDocument",
+          "PaymentDocument",
+          "AdditionalDocument"
+        ],
+        "type": "string",
+        "description": "DocumentType:   \r\nMD = MainDocument       - Maindocument containing the invoice and payment documents, \r\nID = InvoiceDocument    - Invoice documents,\r\nPD = PaymentDocument    - Payment document (e.g. PayInSlip, QR-ESR, Bill of Exchange),\r\nAD = AdditionalDocument - Additional documents"
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "ErrorDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "Context": {
+            "type": "string",
+            "nullable": true
+          },
+          "ErrorCode": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "ErrorDescription": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceDto": {
+        "type": "object",
+        "properties": {
+          "ChangeID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "ChangeID of the entity.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "ChangeDate": {
+            "type": "string",
+            "description": "ChangeDate of the entity.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "InvoiceID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique, internal identifier for Invoice",
+            "format": "int64"
+          },
+          "InvoiceNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Invoice document number",
+            "format": "int64",
+            "nullable": true
+          },
+          "CompanyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique internal identifier for Company in which the invoice was created",
+            "format": "int32",
+            "nullable": true
+          },
+          "InvoiceRunID": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique internal identifier of invoicing run",
+            "format": "int64",
+            "nullable": true
+          },
+          "InvoiceType": {
+            "$ref": "#/components/schemas/InvoiceTypeEnum"
+          },
+          "ExternalInvoiceID": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Third party system identification - External Invoice ID (Origin ID), for example a supplier/vendor invoice number",
             "nullable": true
           },
           "Origin": {
             "maxLength": 10,
             "type": "string",
-            "description": "Origin of the business partner, name of the third-party system. Business partners and addresses with an origin can't be edited in performis.",
+            "description": "Origin of the external invoice, name of the third-party system.",
             "nullable": true
-          },
-          "Active": {
-            "type": "boolean",
-            "description": "true = active, false = deleted.",
-            "nullable": true
-          },
-          "ShortAddress": {
-            "maxLength": 50,
-            "type": "string",
-            "description": "Short address - Short form of the address. It is generated automatically if not supplied. The short address is used in performis to identify the address. For example, the Wiler address of Infosystem AG is abbreviated as: \"Infosystem AG, Wil\"."
-          },
-          "OverridePartnerName": {
-            "maxLength": 50,
-            "type": "string",
-            "description": "If the name of the company on the address differs from that of the business partner, the name of the business partner can be overridden in this field. For example, if Infosystem AG is operating in German-speaking Switzerland as Infosystem AG, the name on the business partner will also be the same. For the Lausanne address, however, the name is overridden as \"Infosystem SA\".",
-            "nullable": true
-          },
-          "OverridePartnerNameAddition": {
-            "maxLength": 50,
-            "type": "string",
-            "description": "If the name addition of the company on the address differs from that of the business partner, the name suffix of the business partner can be overridden in this field.",
-            "nullable": true
-          },
-          "Street": {
-            "maxLength": 43,
-            "type": "string",
-            "description": "Street name without house number.",
-            "nullable": true
-          },
-          "HouseNo": {
-            "maxLength": 12,
-            "type": "string",
-            "description": "House number",
-            "nullable": true
-          },
-          "POBox": {
-            "maxLength": 50,
-            "type": "string",
-            "description": "he post office box of the address. The P.O. Box should be transferred including the country-specific text component. For example, for Switzerland \"Postfach 12\" in England \"PO Box 12\".",
-            "nullable": true
-          },
-          "AdditionalLine1": {
-            "maxLength": 50,
-            "type": "string",
-            "description": "Additional line of an address which is neither a street nor a post office box. For example, \"c/o Samuel Schnelli\" or \"Office Samuel Schnelli\".",
-            "nullable": true
-          },
-          "AdditionalLine2": {
-            "maxLength": 200,
-            "type": "string",
-            "description": "Extended additional component of an address that is neither a street nor a post office box. For example, \"Floor 12\" or \"Building 15\".",
-            "nullable": true
-          },
-          "Country": {
-            "maxLength": 2,
-            "type": "string",
-            "description": "Country in ISO code (ISO 3166)"
-          },
-          "ZipCode": {
-            "maxLength": 20,
-            "type": "string",
-            "description": "Zipcode of the address in country-specific format. Mandatory together with the country code and the city. For example, \"EC1A 1AA\" for London, England or \"9500\" for Wil, Switzerland."
-          },
-          "City": {
-            "maxLength": 40,
-            "type": "string",
-            "description": "City"
           },
           "Language": {
             "maxLength": 2,
             "type": "string",
-            "description": "Language code in ISO-639-1",
+            "description": "language code in ISO-639-1",
             "nullable": true
           },
-          "SearchTerms": {
-            "maxLength": 500,
+          "InvoiceDate": {
             "type": "string",
-            "description": "Additional search terms under which this address is found. This is often used to use well-known abbreviations as search terms. For example, \"IS\" for Infosystem AG or \"MS\" for Microsoft.",
+            "description": "invoice performance date",
+            "format": "date",
             "nullable": true
           },
-          "Latitude": {
-            "maximum": 90,
-            "minimum": -90,
-            "type": "number",
-            "description": "Location latitude",
-            "format": "double",
+          "InvoiceCurrency": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "Invoice Currency in ISO 4217 Code (3 digit letter)",
             "nullable": true
           },
-          "Longitude": {
-            "maximum": 180,
-            "minimum": -180,
-            "type": "number",
-            "description": "Location longitude",
-            "format": "double",
+          "LastChangeDateTime": {
+            "type": "string",
+            "description": "Date and time at which Invoice has last changed",
+            "format": "date-time",
             "nullable": true
           },
-          "AttributeValueSet": {
-            "$ref": "#/components/schemas/AttributeValueSetDto"
+          "InvoiceReceipient": {
+            "$ref": "#/components/schemas/InvoiceReceipientDto"
+          },
+          "InvoicingOffice": {
+            "$ref": "#/components/schemas/InvoicingOfficeDto"
+          },
+          "PostingInformation": {
+            "$ref": "#/components/schemas/PostingInformationDto"
+          },
+          "AdditionalFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdditionalFieldDto"
+            },
+            "description": "Gets or Sets AdditionalFields",
+            "nullable": true
+          },
+          "Payments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentDto"
+            },
+            "description": "Gets or Sets Payments",
+            "nullable": true
+          },
+          "Positions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PositionDto"
+            },
+            "description": "Gets or Sets Positions",
+            "nullable": true
+          },
+          "Documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentInfoDto"
+            },
+            "description": "Gets or Sets Documents",
+            "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "AddressDto"
+        "description": "InvoiceDto"
       },
       "InvoiceReceipientDto": {
         "required": [
@@ -546,12 +741,23 @@
           },
           "InvoiceAddress": {
             "maxLength": 500,
+            "minLength": 1,
             "type": "string",
             "description": "Invoice address. Can be different from receipient. Some invoices only contain an InvoiceAddress"
           }
         },
         "additionalProperties": false,
         "description": "Invoice Receipient Dto"
+      },
+      "InvoiceTypeEnum": {
+        "enum": [
+          "I",
+          "IR",
+          "C",
+          "CC"
+        ],
+        "type": "string",
+        "description": "Types:   I = Invoice, IR = Invoice Reversal, C = Creditmemo, CC = Cancelled Creditmemo"
       },
       "InvoicingOfficeDto": {
         "type": "object",
@@ -577,123 +783,34 @@
         "additionalProperties": false,
         "description": "InvoicingOfficeDto"
       },
-      "PostingInformationDto": {
-        "required": [
-          "PostedBool",
-          "PostingDate",
-          "PostingPeriod",
-          "ReversalBool",
-          "ValueDate",
-          "VATInclBool"
-        ],
+      "MaintenanceWindow": {
         "type": "object",
         "properties": {
-          "PostedBool": {
-            "type": "boolean",
-            "description": "Wether or not this invoice document has been posted yet"
-          },
-          "ReversalInvoiceID": {
-            "maximum": 9999999999,
-            "minimum": 1,
+          "Id": {
             "type": "integer",
-            "description": "In case the document is a reversal: this (internal) ID refers to the invoice which is reversed",
-            "format": "int32",
+            "format": "int64",
             "nullable": true
           },
-          "ExternalReversalInvoiceID": {
-            "maxLength": 50,
+          "Aktiv": {
+            "type": "boolean"
+          },
+          "DatumVon": {
             "type": "string",
-            "description": "In case the document is a reversal: this (internal) ID refers to the invoice which is reversed",
-            "nullable": true
+            "format": "date-time"
           },
-          "ReversalBool": {
-            "type": "boolean",
-            "description": "Wether or not this invoice document is a reversal of another invoice refered to in ReversalInvoiceID"
-          },
-          "VATInclBool": {
-            "type": "boolean",
-            "description": "Wether or not invoice positions include VAT. TRUE = positions include VAT, FALSE = positions VAT is excluded"
-          },
-          "PostingDate": {
-            "$ref": "#/components/schemas/DateOnly"
-          },
-          "PostingPeriod": {
-            "maximum": 999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "performis period in which invoice is posted. Usually in format YYYYPP where YYYY = Year and PP = Posting Period. Often, but not necessarely, inline with months.",
-            "format": "int32"
-          },
-          "ValueDate": {
-            "$ref": "#/components/schemas/DateOnly"
-          },
-          "VoucherType": {
-            "maxLength": 4,
+          "DatumBis": {
             "type": "string",
-            "description": "invoice type, e.g. a credit note has a vouchertype of \"GU\" while an invoice might have \"RG\" as vouchertype.",
-            "nullable": true
+            "format": "date-time"
           },
-          "PostingTitle": {
-            "maxLength": 100,
+          "Info": {
             "type": "string",
-            "description": "The invoice title.",
             "nullable": true
           },
-          "PostingText": {
-            "maxLength": 240,
-            "type": "string",
-            "description": "manual posting text for the invoice",
-            "nullable": true
-          },
-          "EInvoicingSystem": {
-            "maximum": 99999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "E-invoice system code type used to send the invoice. c1512",
-            "format": "int32",
-            "nullable": true
-          },
-          "EInvoicingReference": {
-            "maxLength": 40,
-            "type": "string",
-            "description": "E-invoice reference",
-            "nullable": true
+          "ClientStartErlaubt": {
+            "type": "boolean"
           }
         },
-        "additionalProperties": false,
-        "description": "PostingInformationDto"
-      },
-      "AdditionalFieldDto": {
-        "required": [
-          "Content",
-          "Field"
-        ],
-        "type": "object",
-        "properties": {
-          "Field": {
-            "maximum": 99999999,
-            "minimum": 0,
-            "type": "integer",
-            "description": "Performis code for Field type. C1504",
-            "format": "int32"
-          },
-          "Content": {
-            "maxLength": 4000,
-            "type": "string",
-            "description": "Value of the content type."
-          }
-        },
-        "additionalProperties": false,
-        "description": "DocumentAdditionalFieldDto"
-      },
-      "AccountTypeEnum": {
-        "enum": [
-          "GL",
-          "AP",
-          "AR"
-        ],
-        "type": "string",
-        "description": "Types:   * GL - General Ledger   * AP - Account Payable   * AR - Account Receivable"
+        "additionalProperties": false
       },
       "PaymentDto": {
         "type": "object",
@@ -724,7 +841,10 @@
             "nullable": true
           },
           "Expiry1": {
-            "$ref": "#/components/schemas/DateOnly"
+            "type": "string",
+            "description": "Date of first discount expiration",
+            "format": "date",
+            "nullable": true
           },
           "Discount1": {
             "type": "number",
@@ -733,7 +853,10 @@
             "nullable": true
           },
           "Expiry2": {
-            "$ref": "#/components/schemas/DateOnly"
+            "type": "string",
+            "description": "Date of second discount expiration",
+            "format": "date",
+            "nullable": true
           },
           "Discount2": {
             "type": "number",
@@ -742,7 +865,10 @@
             "nullable": true
           },
           "Expiry3": {
-            "$ref": "#/components/schemas/DateOnly"
+            "type": "string",
+            "description": "Date of third discount expiration",
+            "format": "date",
+            "nullable": true
           },
           "Discount3": {
             "type": "number",
@@ -1034,7 +1160,13 @@
           "Text": {
             "maxLength": 4000,
             "type": "string",
-            "description": "Text",
+            "description": "Text. May contain RTF.",
+            "nullable": true
+          },
+          "Plaintext": {
+            "maxLength": 4000,
+            "type": "string",
+            "description": "Plaintext without any RTF markup.",
             "nullable": true
           },
           "ArticleNo": {
@@ -1091,6 +1223,14 @@
             "format": "int32",
             "nullable": true
           },
+          "SortNo": {
+            "maximum": 99999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "SortNo",
+            "format": "int32",
+            "nullable": true
+          },
           "AdditionalFields": {
             "type": "array",
             "items": {
@@ -1103,259 +1243,114 @@
         "additionalProperties": false,
         "description": "PositionDto"
       },
-      "DocumentTypeEnum": {
-        "enum": [
-          "MainDocument",
-          "InvoiceDocument",
-          "PaymentDocument",
-          "AdditionalDocument"
-        ],
-        "type": "string",
-        "description": "DocumentType:   \r\nMD = MainDocument       - Maindocument containing the invoice and payment documents, \r\nID = InvoiceDocument    - Invoice documents,\r\nPD = PaymentDocument    - Payment document (e.g. PayInSlip, QR-ESR, Bill of Exchange),\r\nAD = AdditionalDocument - Additional documents"
-      },
-      "DocumentInfoDto": {
+      "PostingInformationDto": {
         "required": [
-          "DocumentID",
-          "DocumentType"
+          "PostedBool",
+          "PostingDate",
+          "PostingPeriod",
+          "ReversalBool",
+          "ValueDate",
+          "VATInclBool"
         ],
         "type": "object",
         "properties": {
-          "DocumentType": {
-            "$ref": "#/components/schemas/DocumentTypeEnum"
-          },
-          "DocumentName": {
-            "maxLength": 50,
-            "type": "string",
-            "description": "Name of the document",
-            "nullable": true
-          },
-          "DocumentID": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Internal Document ID",
-            "format": "int64"
-          },
-          "DocumentGUID": {
-            "maxLength": 50,
-            "type": "string",
-            "description": "Document GUID. Use this GUID to read the document contents with GET path/document",
-            "nullable": true
-          },
-          "ExternalDocumentID": {
-            "maxLength": 50,
-            "type": "string",
-            "description": "External document ID of a third-party archive system.",
-            "nullable": true
-          },
-          "SequenceNo": {
-            "maximum": 99999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Order in which this document is attached (printed) or displayed",
-            "format": "int32",
-            "nullable": true
-          },
-          "IssuedBool": {
+          "PostedBool": {
             "type": "boolean",
-            "description": "Wether or not the document has been issued (printed) yet",
-            "nullable": true
+            "description": "Wether or not this invoice document has been posted yet"
           },
-          "CopyCount": {
-            "maximum": 99,
+          "ReversalInvoiceID": {
+            "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Amount of copies to be issued",
+            "description": "In case the document is a reversal: this (internal) ID refers to the invoice which is reversed",
             "format": "int32",
             "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "DocumentInfoDto"
-      },
-      "InvoiceDto": {
-        "type": "object",
-        "properties": {
-          "ChangeID": {
+          },
+          "ReversalInvoiceNo": {
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "ChangeID of the entity.",
-            "format": "int64",
+            "description": "In case the document is a reversal: this (internal) ID refers to the invoice which is reversed",
+            "format": "int32",
             "nullable": true
           },
-          "ChangeDate": {
+          "ExternalReversalInvoiceID": {
+            "maxLength": 50,
             "type": "string",
-            "description": "ChangeDate of the entity.",
-            "format": "date-time",
+            "description": "In case the document is a reversal: this (internal) ID refers to the invoice which is reversed",
             "nullable": true
           },
-          "InvoiceID": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Unique, internal identifier for Invoice",
-            "format": "int64"
+          "ReversalBool": {
+            "type": "boolean",
+            "description": "Wether or not this invoice document is a reversal of another invoice refered to in ReversalInvoiceID"
           },
-          "InvoiceNo": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Invoice document number",
-            "format": "int64",
+          "ReversalReason": {
+            "type": "string",
+            "description": "Reversal reason",
             "nullable": true
           },
-          "CompanyNo": {
+          "VATInclBool": {
+            "type": "boolean",
+            "description": "Wether or not invoice positions include VAT. TRUE = positions include VAT, FALSE = positions VAT is excluded"
+          },
+          "PostingDate": {
+            "type": "string",
+            "description": "invoice posting date",
+            "format": "date"
+          },
+          "PostingPeriod": {
             "maximum": 999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Unique internal identifier for Company in which the invoice was created",
+            "description": "performis period in which invoice is posted. Usually in format YYYYPP where YYYY = Year and PP = Posting Period. Often, but not necessarely, inline with months.",
+            "format": "int32"
+          },
+          "ValueDate": {
+            "type": "string",
+            "description": "invoice value date",
+            "format": "date"
+          },
+          "VoucherType": {
+            "maxLength": 4,
+            "type": "string",
+            "description": "invoice type, e.g. a credit note has a vouchertype of \"GU\" while an invoice might have \"RG\" as vouchertype.",
+            "nullable": true
+          },
+          "PostingTitle": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "The invoice title.",
+            "nullable": true
+          },
+          "PostingText": {
+            "maxLength": 240,
+            "type": "string",
+            "description": "Manual posting text for the invoice. May contain RTF.",
+            "nullable": true
+          },
+          "PostingPlaintext": {
+            "maxLength": 240,
+            "type": "string",
+            "description": "Manual posting text for the invoice. Plaintext without any RTF markup.",
+            "nullable": true
+          },
+          "EInvoicingSystem": {
+            "maximum": 99999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "E-invoice system code type used to send the invoice. c1512",
             "format": "int32",
             "nullable": true
           },
-          "InvoiceRunID": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Unique internal identifier of invoicing run",
-            "format": "int64",
-            "nullable": true
-          },
-          "InvoiceType": {
-            "$ref": "#/components/schemas/InvoiceTypeEnum"
-          },
-          "ExternalInvoiceID": {
-            "maxLength": 20,
+          "EInvoicingReference": {
+            "maxLength": 40,
             "type": "string",
-            "description": "Third party system identification - External Invoice ID (Origin ID), for example a supplier/vendor invoice number",
-            "nullable": true
-          },
-          "Origin": {
-            "maxLength": 10,
-            "type": "string",
-            "description": "Origin of the external invoice, name of the third-party system.",
-            "nullable": true
-          },
-          "Language": {
-            "maxLength": 2,
-            "type": "string",
-            "description": "language code in ISO-639-1",
-            "nullable": true
-          },
-          "InvoiceDate": {
-            "$ref": "#/components/schemas/DateOnly"
-          },
-          "InvoiceCurrency": {
-            "maxLength": 3,
-            "type": "string",
-            "description": "Invoice Currency in ISO 4217 Code (3 digit letter)",
-            "nullable": true
-          },
-          "LastChangeDateTime": {
-            "type": "string",
-            "description": "Date and time at which Invoice has last changed",
-            "format": "date-time",
-            "nullable": true
-          },
-          "InvoiceReceipient": {
-            "$ref": "#/components/schemas/InvoiceReceipientDto"
-          },
-          "InvoicingOffice": {
-            "$ref": "#/components/schemas/InvoicingOfficeDto"
-          },
-          "PostingInformation": {
-            "$ref": "#/components/schemas/PostingInformationDto"
-          },
-          "AdditionalFields": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AdditionalFieldDto"
-            },
-            "description": "Gets or Sets AdditionalFields",
-            "nullable": true
-          },
-          "Payments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaymentDto"
-            },
-            "description": "Gets or Sets Payments",
-            "nullable": true
-          },
-          "Positions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PositionDto"
-            },
-            "description": "Gets or Sets Positions",
-            "nullable": true
-          },
-          "Documents": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DocumentInfoDto"
-            },
-            "description": "Gets or Sets Documents",
+            "description": "E-invoice reference",
             "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "InvoiceDto"
-      },
-      "Error": {
-        "type": "object",
-        "properties": {
-          "ErrorDateTime": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true
-          },
-          "Context": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "ErrorCode": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "ErrorDescription": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "MaintenanceWindow": {
-        "type": "object",
-        "properties": {
-          "Id": {
-            "type": "integer",
-            "format": "int64",
-            "nullable": true
-          },
-          "Aktiv": {
-            "type": "boolean"
-          },
-          "DatumVon": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "DatumBis": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "Info": {
-            "type": "string",
-            "nullable": true
-          },
-          "ClientStartErlaubt": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false
+        "description": "PostingInformationDto"
       }
     },
     "securitySchemes": {
@@ -1368,7 +1363,7 @@
   },
   "security": [
     {
-      "basic": []
+      "basic": [ ]
     }
   ]
 }
