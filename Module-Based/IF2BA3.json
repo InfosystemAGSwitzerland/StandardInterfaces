@@ -5,8 +5,7 @@
     "description": "IF2BA Rest Api",
     "contact": {
       "name": "Infosystem AG",
-      "email": "support@infosystem.ch",
-      "url": "https://www.infosystem.ch"
+      "email": "info@infosystem.ch"
     },
     "version": "v3"
   },
@@ -153,6 +152,16 @@
               }
             }
           },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
           "401": {
             "description": "Basic Authentication failed"
           },
@@ -164,16 +173,6 @@
           },
           "500": {
             "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MaintenanceWindow"
-                }
-              }
-            }
           }
         }
       }
@@ -321,15 +320,6 @@
               }
             }
           },
-          "401": {
-            "description": "Basic Authentication failed"
-          },
-          "403": {
-            "description": "Requestor has insufficient rights"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          },
           "503": {
             "description": "Service unavailable due to maintenance",
             "content": {
@@ -339,6 +329,15 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -430,15 +429,6 @@
               }
             }
           },
-          "401": {
-            "description": "Basic Authentication failed"
-          },
-          "403": {
-            "description": "Requestor has insufficient rights"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          },
           "503": {
             "description": "Service unavailable due to maintenance",
             "content": {
@@ -448,6 +438,15 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -488,8 +487,7 @@
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/FileDocument"
-                },
-                "examples": {}
+                }
               },
               "application/json": {
                 "schema": {
@@ -735,7 +733,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "text/plain": {
                 "schema": {
@@ -784,7 +782,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "text/plain": {
                 "schema": {
@@ -839,7 +837,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "text/plain": {
                 "schema": {
@@ -913,7 +911,7 @@
         },
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "text/plain": {
                 "schema": {
@@ -982,7 +980,7 @@
         },
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "text/plain": {
                 "schema": {
@@ -1029,7 +1027,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "text/plain": {
                 "schema": {
@@ -1307,49 +1305,6 @@
         "additionalProperties": false,
         "description": "CodeValueDto"
       },
-      "DateOnly": {
-        "type": "object",
-        "properties": {
-          "Year": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "Month": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "Day": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "DayOfWeek": {
-            "$ref": "#/components/schemas/DayOfWeek"
-          },
-          "DayOfYear": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "DayNumber": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "DayOfWeek": {
-        "enum": [
-          "Sunday",
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday"
-        ],
-        "type": "string"
-      },
       "EmployeeDto": {
         "required": [
           "Active",
@@ -1458,10 +1413,16 @@
             "nullable": true
           },
           "EntryDate": {
-            "$ref": "#/components/schemas/DateOnly"
+            "type": "string",
+            "description": "Date when employee entered company in format: YYYY-MM-DD",
+            "format": "date",
+            "nullable": true
           },
           "LeavingDate": {
-            "$ref": "#/components/schemas/DateOnly"
+            "type": "string",
+            "description": "Date when employee left company in format: YYYY-MM-DD",
+            "format": "date",
+            "nullable": true
           },
           "BPIDEmployee": {
             "maximum": 9999999999,
@@ -1714,7 +1675,7 @@
   },
   "security": [
     {
-      "basic": []
+      "basic": [ ]
     }
   ]
 }
