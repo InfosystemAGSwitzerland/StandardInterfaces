@@ -5,8 +5,7 @@
     "description": "IF2FI Rest Api",
     "contact": {
       "name": "Infosystem AG",
-      "email": "support@infosystem.ch",
-      "url": "https://www.infosystem.ch"
+      "email": "info@infosystem.ch"
     },
     "version": "v3"
   },
@@ -165,6 +164,16 @@
               }
             }
           },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
           "401": {
             "description": "Basic Authentication failed"
           },
@@ -176,16 +185,6 @@
           },
           "500": {
             "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MaintenanceWindow"
-                }
-              }
-            }
           }
         }
       },
@@ -277,6 +276,16 @@
               }
             }
           },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
           "401": {
             "description": "Basic Authentication failed"
           },
@@ -288,16 +297,6 @@
           },
           "500": {
             "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MaintenanceWindow"
-                }
-              }
-            }
           }
         }
       }
@@ -381,6 +380,16 @@
               }
             }
           },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
           "401": {
             "description": "Basic Authentication failed"
           },
@@ -392,16 +401,6 @@
           },
           "500": {
             "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MaintenanceWindow"
-                }
-              }
-            }
           }
         }
       }
@@ -543,8 +542,7 @@
                   "items": {
                     "$ref": "#/components/schemas/SalesChannelDto"
                   }
-                },
-                "examples": {}
+                }
               }
             }
           },
@@ -554,6 +552,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
                 }
               }
             }
@@ -569,16 +577,6 @@
           },
           "500": {
             "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MaintenanceWindow"
-                }
-              }
-            }
           }
         }
       }
@@ -599,13 +597,15 @@
             "type": "integer",
             "description": "ChangeID of the entity.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "ChangeDate": {
             "type": "string",
             "description": "ChangeDate of the entity.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "BpAddrID": {
             "maximum": 9999999999,
@@ -650,7 +650,10 @@
             "nullable": true
           },
           "LastCreditReport": {
-            "$ref": "#/components/schemas/DateOnly"
+            "type": "string",
+            "description": "Date of last Credit Report",
+            "format": "date",
+            "nullable": true
           },
           "Annotation": {
             "maxLength": 1000,
@@ -672,9 +675,9 @@
       "AccountReceivableDto": {
         "required": [
           "Active",
+          "CompanyNo",
           "Currency",
-          "PaymentTerms",
-          "SummaryAccount"
+          "PaymentTerms"
         ],
         "type": "object",
         "properties": {
@@ -698,6 +701,7 @@
           },
           "Currency": {
             "maxLength": 3,
+            "minLength": 1,
             "type": "string",
             "description": "Currency (ISO 4217)"
           },
@@ -710,11 +714,10 @@
             "nullable": true
           },
           "SummaryAccount": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "General ledger summay account for this subledger account.",
-            "format": "int64"
+            "maxLength": 20,
+            "type": "string",
+            "description": "General ledger summary account for this subledger account, if not provided the company default will be used.",
+            "nullable": true
           },
           "PaymentTerms": {
             "maximum": 9999999999,
@@ -791,11 +794,9 @@
             "nullable": true
           },
           "PaymentAccount": {
-            "maximum": 9999999999,
-            "minimum": 0,
-            "type": "integer",
+            "maxLength": 20,
+            "type": "string",
             "description": "Payment account, if not provided the company default will be used.",
-            "format": "int64",
             "nullable": true
           },
           "InterestType": {
@@ -872,49 +873,6 @@
         "additionalProperties": false,
         "description": "CreditLimitDto"
       },
-      "DateOnly": {
-        "type": "object",
-        "properties": {
-          "Year": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "Month": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "Day": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "DayOfWeek": {
-            "$ref": "#/components/schemas/DayOfWeek"
-          },
-          "DayOfYear": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "DayNumber": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "DayOfWeek": {
-        "enum": [
-          "Sunday",
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday"
-        ],
-        "type": "string"
-      },
       "DunningKeyDto": {
         "required": [
           "DunningRating"
@@ -963,7 +921,10 @@
             "nullable": true
           },
           "DunningBlockedUntil": {
-            "$ref": "#/components/schemas/DateOnly"
+            "type": "string",
+            "description": "No dunning until this date",
+            "format": "date",
+            "nullable": true
           },
           "DunningGroup": {
             "maximum": 9999999999,
@@ -1040,13 +1001,15 @@
             "type": "integer",
             "description": "ChangeID of the entity.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "ChangeDate": {
             "type": "string",
             "description": "ChangeDate of the entity.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "SalesChannelID": {
             "maximum": 9999999999,
@@ -1101,7 +1064,7 @@
   },
   "security": [
     {
-      "basic": []
+      "basic": [ ]
     }
   ]
 }
