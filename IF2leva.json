@@ -1,25 +1,28 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "if2leva+ api",
-    "description": "if2leva+ api",
+    "title": "IF2leva+ API",
+    "description": "Interface to access leva+ modules",
     "contact": {
       "name": "Infosystem AG",
+      "url": "https://www.infosystem.ch",
       "email": "info@infosystem.ch"
     },
     "version": "v1"
   },
   "paths": {
-    "/api/v1/master-data/machines": {
+    "/api/v1/master-data/accessories": {
       "get": {
         "tags": [
           "MasterData"
         ],
-        "summary": "GetMasterDataMachines",
+        "summary": "Returns a list of accessories filtered by the provided parameters.",
+        "description": "By passing in the appropriate options, the service searches for accessories in the system.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifying the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -29,6 +32,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifying the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -38,6 +42,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -46,6 +51,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -54,6 +60,7 @@
           {
             "name": "searchString",
             "in": "query",
+            "description": "The search string (searches in case-insensitive in description).",
             "schema": {
               "type": "string"
             }
@@ -61,6 +68,7 @@
           {
             "name": "skip",
             "in": "query",
+            "description": "Number of records to skip for pagination.",
             "schema": {
               "maximum": 100000,
               "minimum": 0,
@@ -71,6 +79,7 @@
           {
             "name": "changesSinceDateTime",
             "in": "query",
+            "description": "Get all the entries which were added/edited since a specific date/time.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -79,6 +88,162 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
+            "description": "Get all the entries which were added/edited since the provided change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "accessoryId",
+            "in": "query",
+            "description": "Retrieve a specific record by internal accessory id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "externalAccessoryId",
+            "in": "query",
+            "description": "Retrieve a specific record by external accessory id.",
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Accessory"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/master-data/machines": {
+      "get": {
+        "tags": [
+          "MasterData"
+        ],
+        "summary": "Returns a list of machines filtered by the provided parameters.",
+        "description": "By passing in the appropriate options, the service searches for machines in the system.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "The search string (searches in case-insensitive in description).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entries which were added/edited since a specific date/time.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all the entries which were added/edited since the provided change id.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -89,6 +254,7 @@
           {
             "name": "machineId",
             "in": "query",
+            "description": "Retrieve a specific record by internal machine id.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -99,6 +265,7 @@
           {
             "name": "externalMachineId",
             "in": "query",
+            "description": "Retrieve a specific record by external machine id.",
             "schema": {
               "maxLength": 50,
               "type": "string"
@@ -107,6 +274,7 @@
           {
             "name": "limit",
             "in": "query",
+            "description": "Maximum number of records to return.",
             "schema": {
               "maximum": 100,
               "minimum": 0,
@@ -139,20 +307,32 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/api/v1/master-data/customers": {
+    "/api/v1/master-data/equipment-types": {
       "get": {
         "tags": [
           "MasterData"
         ],
-        "summary": "GetMasterDataCustomers",
+        "summary": "Search for equipment types.",
+        "description": "By passing in the appropriate options, the service searches for available equipment types in the system.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifying the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -162,6 +342,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifying the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -171,6 +352,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -179,6 +361,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -187,6 +370,7 @@
           {
             "name": "searchString",
             "in": "query",
+            "description": "Optional search string for looking up a record within name and searchterm fields.",
             "schema": {
               "type": "string"
             }
@@ -194,6 +378,7 @@
           {
             "name": "skip",
             "in": "query",
+            "description": "Number of records to skip for pagination.",
             "schema": {
               "maximum": 100000,
               "minimum": 0,
@@ -204,6 +389,7 @@
           {
             "name": "changesSinceDateTime",
             "in": "query",
+            "description": "Get all the entries which were added/edited since a specific date/time.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -212,6 +398,162 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
+            "description": "Get all the entries which were added/edited since the provided change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "equipmentTypeId",
+            "in": "query",
+            "description": "Retrieve a specific record by internal equipment type id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "externalEquipmentTypeId",
+            "in": "query",
+            "description": "Retrieve a specific record by external equipment type id.",
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Machine"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/master-data/customers": {
+      "get": {
+        "tags": [
+          "MasterData"
+        ],
+        "summary": "Retrieves a filtered list of customers.",
+        "description": "By passing in the appropriate options, the service searches for customers in the system.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Optional search string for looking up a record within the customer number.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since a specific datetime.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since the provided change id.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -222,6 +564,7 @@
           {
             "name": "customerId",
             "in": "query",
+            "description": "Retrieve a specific record by internal customer id.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
@@ -232,6 +575,7 @@
           {
             "name": "externalCustomerId",
             "in": "query",
+            "description": "Retrieve a specific record by external customer id.",
             "schema": {
               "maxLength": 50,
               "type": "string"
@@ -240,6 +584,7 @@
           {
             "name": "customerNo",
             "in": "query",
+            "description": "Retrieve a specific record by customer number.",
             "schema": {
               "maxLength": 50,
               "minLength": 1,
@@ -249,6 +594,7 @@
           {
             "name": "limit",
             "in": "query",
+            "description": "Maximum number of records to return.",
             "schema": {
               "maximum": 100,
               "minimum": 0,
@@ -281,6 +627,25 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -290,11 +655,13 @@
         "tags": [
           "MasterData"
         ],
-        "summary": "GetMasterDataProjectStructures",
+        "summary": "Search for project-structures",
+        "description": "By passing in the appropriate options, the service searches for project-structures in the system.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifying the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -304,6 +671,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifying the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -313,6 +681,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -321,6 +690,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -329,6 +699,7 @@
           {
             "name": "searchString",
             "in": "query",
+            "description": "Optional search string for looking up a record within the description.",
             "schema": {
               "type": "string"
             }
@@ -336,6 +707,7 @@
           {
             "name": "skip",
             "in": "query",
+            "description": "Number of records to skip for pagination.",
             "schema": {
               "maximum": 100000,
               "minimum": 0,
@@ -346,6 +718,7 @@
           {
             "name": "changesSinceDateTime",
             "in": "query",
+            "description": "Get all the entries which were added/edited since a specific datetime.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -354,6 +727,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
+            "description": "Get all the entries which were added/edited since the provided change id.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -364,6 +738,7 @@
           {
             "name": "limit",
             "in": "query",
+            "description": "Maximum number of records to return.",
             "schema": {
               "maximum": 100,
               "minimum": 0,
@@ -396,20 +771,41 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/api/v1/rental/jobs": {
+    "/api/v1/master-data/surcharges": {
       "get": {
         "tags": [
-          "RentalJob"
+          "MasterData"
         ],
-        "summary": "GetRentalJobs",
+        "summary": "Search for surcharges.",
+        "description": "By passing in the appropriate options, the service searches for available surcharges in the system.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifying the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -419,6 +815,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifying the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -428,6 +825,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -436,6 +834,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -444,6 +843,7 @@
           {
             "name": "skip",
             "in": "query",
+            "description": "Number of records to skip for pagination.",
             "schema": {
               "maximum": 100000,
               "minimum": 0,
@@ -454,6 +854,7 @@
           {
             "name": "changesSinceDateTime",
             "in": "query",
+            "description": "Get all the entities which were added/edited since a specific datetime.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -462,6 +863,161 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
+            "description": "Get all the entities which were added/edited since the provided change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "surchargeId",
+            "in": "query",
+            "description": "Retrieve specific record by internal id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Optional search string for looking up a record within name and searchterm fields.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Customer"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/rental/jobs": {
+      "get": {
+        "tags": [
+          "RentalJob"
+        ],
+        "summary": "Returns a list of rental jobs filtered by the provided parameters.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entries which were added/edited since a specific date/time.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all the entries which were added/edited since the provided change id.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -472,6 +1028,7 @@
           {
             "name": "jobId",
             "in": "query",
+            "description": "Retrieve specific record by id.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -482,6 +1039,7 @@
           {
             "name": "includeDetails",
             "in": "query",
+            "description": "If `true` then details are also returned (Default = false).",
             "schema": {
               "type": "boolean"
             }
@@ -489,6 +1047,7 @@
           {
             "name": "limit",
             "in": "query",
+            "description": "Maximum number of records to return.",
             "schema": {
               "maximum": 100,
               "minimum": 0,
@@ -521,6 +1080,25 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -530,11 +1108,12 @@
         "tags": [
           "RentalJob"
         ],
-        "summary": "GetRentalJobTimestamps",
+        "summary": "Search for job timestamps.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifing the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -544,6 +1123,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifing the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -553,6 +1133,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -561,6 +1142,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -569,6 +1151,7 @@
           {
             "name": "jobId",
             "in": "query",
+            "description": "Required to retrieve records of specific job.",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -598,6 +1181,16 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
           }
         }
       },
@@ -605,11 +1198,12 @@
         "tags": [
           "RentalJob"
         ],
-        "summary": "PutRentalJobTimestamps",
+        "summary": "Modify job time stamps.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifing the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -619,6 +1213,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifing the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -628,6 +1223,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -636,6 +1232,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -643,6 +1240,7 @@
           }
         ],
         "requestBody": {
+          "description": "Set of job time stamps to assign",
           "content": {
             "application/json": {
               "schema": {
@@ -693,6 +1291,16 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
           }
         }
       }
@@ -702,11 +1310,12 @@
         "tags": [
           "RentalJob"
         ],
-        "summary": "GetRentalJobReports",
+        "summary": "Search for job reports.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifing the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -716,6 +1325,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifing the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -725,6 +1335,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -733,6 +1344,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -741,6 +1353,7 @@
           {
             "name": "jobId",
             "in": "query",
+            "description": "Retrieve specific record by job id.",
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -770,6 +1383,25 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -777,11 +1409,12 @@
         "tags": [
           "RentalJob"
         ],
-        "summary": "PostRentalJobReports",
+        "summary": "Create job reports.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifing the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -791,6 +1424,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifing the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -800,6 +1434,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -808,6 +1443,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -815,6 +1451,7 @@
           }
         ],
         "requestBody": {
+          "description": "Submit a complete report. Reports can not be altered by the interface after creation. Once a report is created it needs to be processed or deleted within leva+.",
           "content": {
             "application/json": {
               "schema": {
@@ -853,6 +1490,25 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -862,11 +1518,13 @@
         "tags": [
           "RentalJob"
         ],
-        "summary": "GetRentalJobBookingActivities",
+        "summary": "Retrieve booking activities for a job.",
+        "description": "By passing in the appropriate options, the service searches for job booking activities in the system.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifing the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -876,6 +1534,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifing the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -885,6 +1544,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -893,6 +1553,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -901,6 +1562,7 @@
           {
             "name": "skip",
             "in": "query",
+            "description": "Number of records to skip for pagination.",
             "schema": {
               "maximum": 100000,
               "minimum": 0,
@@ -911,6 +1573,7 @@
           {
             "name": "jobId",
             "in": "query",
+            "description": "Required to retrieve records of a specific job.",
             "required": true,
             "schema": {
               "maximum": 9999999999,
@@ -922,6 +1585,7 @@
           {
             "name": "limit",
             "in": "query",
+            "description": "Maximum number of records to return.",
             "schema": {
               "maximum": 100,
               "minimum": 0,
@@ -954,6 +1618,25 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -963,11 +1646,13 @@
         "tags": [
           "RentalJob"
         ],
-        "summary": "GetRentalJobRentalHandovers",
+        "summary": "Search for job rental handovers.",
+        "description": "By passing in the appropriate options, the service searches for job handover in the system.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifing the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -977,6 +1662,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifing the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -986,6 +1672,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -994,6 +1681,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1002,6 +1690,7 @@
           {
             "name": "skip",
             "in": "query",
+            "description": "Number of records to skip for pagination.",
             "schema": {
               "maximum": 100000,
               "minimum": 0,
@@ -1012,6 +1701,7 @@
           {
             "name": "jobId",
             "in": "query",
+            "description": "Required to retrieve records of specific job.",
             "required": true,
             "schema": {
               "maximum": 9999999999,
@@ -1023,6 +1713,7 @@
           {
             "name": "limit",
             "in": "query",
+            "description": "Maximum number of records to return.",
             "schema": {
               "maximum": 100,
               "minimum": 0,
@@ -1055,6 +1746,25 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -1062,11 +1772,13 @@
         "tags": [
           "RentalJob"
         ],
-        "summary": "PutRentalJobRentalHandovers",
+        "summary": "Modify job handovers.",
+        "description": "Sets the job handover for a given Job id.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifing the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -1076,6 +1788,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifing the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -1085,6 +1798,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1093,6 +1807,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1100,6 +1815,7 @@
           }
         ],
         "requestBody": {
+          "description": "Handover to set on job id.",
           "content": {
             "application/json": {
               "schema": {
@@ -1148,6 +1864,25 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -1157,11 +1892,13 @@
         "tags": [
           "RentalJob"
         ],
-        "summary": "GetRentalJobRentalReturns",
+        "summary": "Search for job rental returns.",
+        "description": "By passing in the appropriate options, the service searches for job returns in the system.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifing the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -1171,6 +1908,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifing the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -1180,6 +1918,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1188,6 +1927,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1196,6 +1936,7 @@
           {
             "name": "skip",
             "in": "query",
+            "description": "Number of records to skip for pagination.",
             "schema": {
               "maximum": 100000,
               "minimum": 0,
@@ -1206,6 +1947,7 @@
           {
             "name": "jobId",
             "in": "query",
+            "description": "Required to retrieve records of specific job.",
             "required": true,
             "schema": {
               "maximum": 9999999999,
@@ -1217,6 +1959,7 @@
           {
             "name": "limit",
             "in": "query",
+            "description": "Maximum number of records to return.",
             "schema": {
               "maximum": 100,
               "minimum": 0,
@@ -1249,6 +1992,25 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -1256,11 +2018,13 @@
         "tags": [
           "RentalJob"
         ],
-        "summary": "PutRentalJobRentalReturns",
+        "summary": "Modify job returns.",
+        "description": "Sets the rental return for a given job id.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifing the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -1270,6 +2034,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifing the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -1279,6 +2044,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1287,6 +2053,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1294,6 +2061,7 @@
           }
         ],
         "requestBody": {
+          "description": "return to set on job id.",
           "content": {
             "application/json": {
               "schema": {
@@ -1342,6 +2110,25 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -1351,11 +2138,13 @@
         "tags": [
           "RentalJob"
         ],
-        "summary": "GetRentalJobRentalCompletions",
+        "summary": "Search for job rental completions.",
+        "description": "By passing in the appropriate options, the service searches for job completions in the system.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifing the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -1365,6 +2154,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifing the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -1374,6 +2164,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1382,6 +2173,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1390,6 +2182,7 @@
           {
             "name": "skip",
             "in": "query",
+            "description": "Number of records to skip for pagination",
             "schema": {
               "maximum": 100000,
               "minimum": 0,
@@ -1400,6 +2193,7 @@
           {
             "name": "jobId",
             "in": "query",
+            "description": "Required to retrieve records of specific job.",
             "required": true,
             "schema": {
               "maximum": 9999999999,
@@ -1411,6 +2205,7 @@
           {
             "name": "limit",
             "in": "query",
+            "description": "Maximum number of records to return",
             "schema": {
               "maximum": 100,
               "minimum": 0,
@@ -1443,6 +2238,25 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -1450,11 +2264,13 @@
         "tags": [
           "RentalJob"
         ],
-        "summary": "PutRentalJobRentalCompletions",
+        "summary": "Modify job completion",
+        "description": "Sets the rental return for a given job id.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifing the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -1464,6 +2280,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifing the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -1473,6 +2290,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1481,6 +2299,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1488,6 +2307,7 @@
           }
         ],
         "requestBody": {
+          "description": "return to set on job Id",
           "content": {
             "application/json": {
               "schema": {
@@ -1536,6 +2356,25 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -1545,11 +2384,13 @@
         "tags": [
           "RentalJob"
         ],
-        "summary": "GetRentalJobTransportPositions",
+        "summary": "Search for job transport positions.",
+        "description": "By passing in the appropriate options, the service searches for job transport positions in the system.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifing the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -1559,6 +2400,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifing the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -1568,6 +2410,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1576,6 +2419,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1584,6 +2428,7 @@
           {
             "name": "skip",
             "in": "query",
+            "description": "Number of records to skip for pagination.",
             "schema": {
               "maximum": 100000,
               "minimum": 0,
@@ -1594,6 +2439,7 @@
           {
             "name": "jobId",
             "in": "query",
+            "description": "Required to retrieve records of specific job.",
             "required": true,
             "schema": {
               "maximum": 9999999999,
@@ -1605,6 +2451,7 @@
           {
             "name": "limit",
             "in": "query",
+            "description": "Maximum number of records to return.",
             "schema": {
               "maximum": 100,
               "minimum": 0,
@@ -1637,6 +2484,25 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -1646,11 +2512,13 @@
         "tags": [
           "RentalJob"
         ],
-        "summary": "PutRentalJobTransportPositionChecklists",
+        "summary": "Modify job transport positions checklist",
+        "description": "Updates the loaded or unloaded status on an existing set of job transport.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifing the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -1660,6 +2528,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifing the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -1669,6 +2538,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1677,6 +2547,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1684,6 +2555,7 @@
           }
         ],
         "requestBody": {
+          "description": "transport demand checklist to be set on given job id.",
           "content": {
             "application/json": {
               "schema": {
@@ -1722,6 +2594,28 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -1731,11 +2625,13 @@
         "tags": [
           "RentalJob"
         ],
-        "summary": "GetRentalJobDocuments",
+        "summary": "Search for job documents.",
+        "description": "By passing in the appropriate options, the service searches for job documents in the system.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifing the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -1745,6 +2641,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifing the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -1754,6 +2651,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1762,6 +2660,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1770,6 +2669,7 @@
           {
             "name": "skip",
             "in": "query",
+            "description": "Number of records to skip for pagination.",
             "schema": {
               "maximum": 100000,
               "minimum": 0,
@@ -1780,6 +2680,7 @@
           {
             "name": "jobId",
             "in": "query",
+            "description": "Required to retrieve records of specific job.",
             "required": true,
             "schema": {
               "maximum": 9999999999,
@@ -1791,6 +2692,7 @@
           {
             "name": "limit",
             "in": "query",
+            "description": "Maximum number of records to return.",
             "schema": {
               "maximum": 100,
               "minimum": 0,
@@ -1823,6 +2725,25 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -1830,11 +2751,13 @@
         "tags": [
           "RentalJob"
         ],
-        "summary": "PutRentalJobDocuments",
+        "summary": "Modify job documents.",
+        "description": "Sets the job documents that are assigned to their respected job ids.",
         "parameters": [
           {
             "name": "X-Requesting-System",
             "in": "header",
+            "description": "Identifing the system calling the service.",
             "required": true,
             "schema": {
               "maxLength": 50,
@@ -1844,6 +2767,7 @@
           {
             "name": "X-Requesting-User",
             "in": "header",
+            "description": "Identifing the user calling the service.",
             "required": true,
             "schema": {
               "maxLength": 30,
@@ -1853,6 +2777,7 @@
           {
             "name": "X-Flow-ID",
             "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1861,6 +2786,7 @@
           {
             "name": "X-Client-Type",
             "in": "header",
+            "description": "Identifying the client type calling the service.",
             "schema": {
               "maxLength": 30,
               "type": "string"
@@ -1868,6 +2794,7 @@
           }
         ],
         "requestBody": {
+          "description": "Job documents to be assigned to the job id.",
           "content": {
             "application/json": {
               "schema": {
@@ -1918,6 +2845,25 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -1925,6 +2871,129 @@
   },
   "components": {
     "schemas": {
+      "Accessory": {
+        "required": [
+          "accessoryDisplayType",
+          "description",
+          "isExternalResource",
+          "schedulingGroupCode"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The id when the entity was last changed.",
+            "format": "int64",
+            "nullable": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "The date and time when the entity was last changed.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "accessoryId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Technical identification number of the accessory.",
+            "format": "int64",
+            "nullable": true
+          },
+          "externalAccessoryId": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "External technical identification number of the accessory - may be used instead of Leva.Manager.AssetResource.Interface.Accessory.Accessory.AccessoryId.",
+            "nullable": true
+          },
+          "origin": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Origin of the entity.",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Is this accessory active or not."
+          },
+          "description": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "Accessory's name."
+          },
+          "accessoryDisplayType": {
+            "$ref": "#/components/schemas/AccessoryDisplayType"
+          },
+          "numberOfItems": {
+            "type": "integer",
+            "description": "The exact number of available accessories. Required when Leva.Manager.AssetResource.Interface.Accessory.Accessory.AccessoryDisplayType is set to \"QUANTITY\".",
+            "format": "int64",
+            "nullable": true
+          },
+          "identification": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Identification or serial number of the accessory. Required when Leva.Manager.AssetResource.Interface.Accessory.Accessory.AccessoryDisplayType is set to \"IDENTIFICATION\".",
+            "nullable": true
+          },
+          "branchCode": {
+            "maximum": 45629999,
+            "minimum": 45620000,
+            "type": "integer",
+            "description": "C4562 identification code of the branch to which the machine belongs to.",
+            "format": "int64",
+            "nullable": true
+          },
+          "isExternalResource": {
+            "type": "boolean",
+            "description": "A value indicating whether the resource is external."
+          },
+          "schedulingGroupCode": {
+            "maximum": 45429999,
+            "minimum": 45420000,
+            "type": "integer",
+            "description": "C4542 code of the accessory's scheduling group that combines accessories of the same type and use (not necessarily the same model or manufacturer but can fullfil the same job requirements).",
+            "format": "int64"
+          },
+          "costCenterNo": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string",
+            "description": "Cost center number for the accessory.",
+            "nullable": true
+          },
+          "ownerCompanyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The number of the company that owns the accessory.",
+            "format": "int64",
+            "nullable": true
+          },
+          "additionalSchedulingGroupCodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SchedulingGroup"
+            },
+            "description": "A list of additional scheduling groups. A scheduling group combines accessories of the same type and use (not necessarily the same model or manufacturer).",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Accessory master data."
+      },
+      "AccessoryDisplayType": {
+        "enum": [
+          "NONE",
+          "IDENTIFICATION",
+          "QUANTITY"
+        ],
+        "type": "string",
+        "description": "Possible type values: - 'NONE': Accessory without identification nor quantity - 'IDENTIFICATION': Accessory with identification - 'QUANTITY': Accessory with quantity."
+      },
       "Address": {
         "required": [
           "city",
@@ -2265,8 +3334,6 @@
           "orderNo",
           "orderTitle",
           "resourceNo",
-          "resourceStatusCode",
-          "resourceTypeCode",
           "schedulingGroupCode",
           "useCaseCode"
         ],
@@ -2351,12 +3418,14 @@
           "resourceTypeCode": {
             "type": "integer",
             "description": "Code 4550 use IF2BA to retrieve value list.",
-            "format": "int64"
+            "format": "int64",
+            "nullable": true
           },
           "resourceStatusCode": {
             "type": "integer",
             "description": "Code 4554 use IF2BA to retrieve value list.",
-            "format": "int64"
+            "format": "int64",
+            "nullable": true
           },
           "machineId": {
             "type": "integer",
@@ -2932,11 +4001,13 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
+            "description": "Change id of the entity.",
             "format": "int64",
             "nullable": true
           },
           "changeDate": {
             "type": "string",
+            "description": "Change date of the entity.",
             "format": "date-time",
             "nullable": true
           },
@@ -2944,14 +4015,18 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
+            "description": "Internal technical key for the machine.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 4711
           },
           "externalMachineId": {
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "nullable": true
+            "description": "External technical key for machine - may be used instead of Leva.Manager.AssetResource.Interface.Machine.Machine.MachineId.",
+            "nullable": true,
+            "example": "ABC-4711"
           },
           "origin": {
             "maxLength": 10,
@@ -2959,208 +4034,275 @@
             "nullable": true
           },
           "active": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Sets whether or not the machine may be used in leva+.",
+            "example": true
           },
           "description": {
             "maxLength": 200,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Description (e.g. name, type, number) of the machine.",
+            "example": "Genie RS-1932, Blue Version"
           },
           "placingOnMarket": {
             "type": "string",
-            "format": "date-time"
+            "description": "Date when the machine was first registered and used in the business. Important for service dates etc.",
+            "format": "date-time",
+            "example": "2022-01-11"
           },
           "equipmentTypeId": {
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
+            "description": "Identification number for Leva.Manager.AssetResource.Interface.Machine.EquipmentType.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 4711
           },
           "machineGuid": {
             "maxLength": 36,
             "minLength": 1,
             "type": "string",
-            "nullable": true
+            "description": "Unique identifier for a machine. Used for communication with third party systems.",
+            "nullable": true,
+            "example": "87315090-9a06-4edc-8fc5-f9f68972e3c6"
           },
           "machineNo": {
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
+            "description": "Identification number for a single machine.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 87315
           },
           "acquisitionDate": {
             "type": "string",
+            "description": "The date the machine was acquired.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "example": "2022-11-25"
           },
           "underWarrantyUntil": {
             "type": "string",
+            "description": "The warranty expiry date.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "example": "2028-11-11"
           },
           "manufacturerCode": {
             "maximum": 45439999,
             "minimum": 45430000,
             "type": "integer",
+            "description": "C4543 code of the machine manufacturer.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 45430010
           },
           "masterNumber": {
             "maxLength": 100,
             "type": "string",
-            "nullable": true
+            "description": "A master number is used to assign and identify the vehicle.",
+            "nullable": true,
+            "example": "325.752.721"
           },
           "chassisNumber": {
             "maxLength": 100,
             "type": "string",
-            "nullable": true
+            "description": "Chassis number of this vehicle.",
+            "nullable": true,
+            "example": "WMG6315L4FZ010120"
           },
           "engineNumber": {
             "maxLength": 100,
             "type": "string",
-            "nullable": true
+            "description": "The number on the engine.",
+            "nullable": true,
+            "example": "D - 0 000 123"
           },
           "typeCertificateNumber": {
             "maxLength": 100,
             "type": "string",
-            "nullable": true
+            "description": "Official number for identification of the vehicle type by external entities.",
+            "nullable": true,
+            "example": "123123"
           },
           "licensePlate": {
             "maxLength": 20,
             "type": "string",
-            "nullable": true
+            "description": "Number on the licence plate.",
+            "nullable": true,
+            "example": "BE 1000"
           },
           "wikiUrl": {
             "maxLength": 200,
             "type": "string",
+            "description": "URL to information portal.",
             "nullable": true
           },
           "ownerCompanyNo": {
             "maximum": 999999,
             "minimum": 1,
             "type": "integer",
+            "description": "Number of the holder company.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 1235
           },
           "assetNo": {
             "maxLength": 16,
             "type": "string",
-            "nullable": true
+            "description": "Accounting asset number.",
+            "nullable": true,
+            "example": "1546"
           },
           "ownerBusinessPartnerAddressId": {
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
+            "description": "Address number of the owner.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 12345
           },
           "locationBusinessPartnerAddressId": {
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
+            "description": "Address number of the location.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 12345
           },
           "invoiceBusinessPartnerAddressId": {
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
+            "description": "Address number of the customer to invoice.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 12345
           },
           "regularDriverBusinessPartnerId": {
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
+            "description": "Business partner ID of the regular driver.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 12345
           },
           "counterGroupCode": {
             "maximum": 45469999,
             "minimum": 45460000,
             "type": "integer",
+            "description": "C4546 code of the counter group.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 45460010
           },
           "standardTrailerMachineId": {
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
+            "description": "The identification number of the semi-trailer that is usually coupled with this machine.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 5679
           },
           "machineModelCode": {
             "maximum": 45419999,
             "minimum": 45410000,
             "type": "integer",
-            "format": "int64"
+            "description": "C4541 code of the machine model, e.g. crane.",
+            "format": "int64",
+            "example": 45410010
           },
           "branchCode": {
             "maximum": 45629999,
             "minimum": 45620000,
             "type": "integer",
+            "description": "C4562 identification code of the branch to which the machine belongs.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 45620010
           },
           "isExternalResource": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Is this machine an external resource?"
           },
           "yearOfManufacture": {
             "type": "integer",
+            "description": "The year in which the machine was built.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 2020
           },
           "schedulingGroupCode": {
             "maximum": 45429999,
             "minimum": 45420000,
             "type": "integer",
+            "description": "C4542 code of the machine scheduling type.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 45420010
           },
           "locationApiKey": {
             "maxLength": 50,
             "type": "string",
+            "description": "API key to access location service for the machine.",
             "nullable": true
           },
           "isMachineLocationSyncEnabled": {
             "type": "boolean",
+            "description": "Whether or not the machine's location is automatically synced.",
             "nullable": true
           },
           "manufacturerApiCode": {
             "maximum": 33069999,
             "minimum": 33060000,
             "type": "integer",
+            "description": "C3306 code of the used location API connector.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 33060010
           },
           "engineType": {
             "maxLength": 200,
             "type": "string",
-            "nullable": true
+            "description": "What type of engine does the machine have.",
+            "nullable": true,
+            "example": "Diesel"
           },
           "costCenterNo": {
             "maxLength": 20,
             "type": "string",
-            "nullable": true
+            "description": "Number of the cost center this machine is billed internally to.",
+            "nullable": true,
+            "example": "56789"
           },
           "telematicsDeviceGroupCode": {
             "maximum": 33369999,
             "minimum": 33360000,
             "type": "integer",
+            "description": "C3336 code defining which telematics system the machine uses.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 33360010
           },
           "lastYearlyService": {
             "type": "string",
-            "nullable": true
+            "description": "Date of the machine's last yearly service.",
+            "nullable": true,
+            "example": "2023-01-12"
           },
           "typeOfDrives": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TypeOfDrive"
             },
+            "description": "List of type of drives of the machine.",
             "nullable": true
           },
           "schedulingGroups": {
@@ -3168,6 +4310,7 @@
             "items": {
               "$ref": "#/components/schemas/SchedulingGroup"
             },
+            "description": "List of additional scheduling groups. A scheduling group combines machines of the same type and use\r\n(not necessarily the same model or manufacturer). (E.g. a 20m boom, might be sold as 12m boom).",
             "nullable": true
           },
           "drivers": {
@@ -3175,6 +4318,7 @@
             "items": {
               "$ref": "#/components/schemas/MachineDriver"
             },
+            "description": "List of the business partner IDs of the driver/s that can use this machine.",
             "nullable": true
           },
           "counters": {
@@ -3182,6 +4326,7 @@
             "items": {
               "$ref": "#/components/schemas/MachineCounter"
             },
+            "description": "List of counters of the machine.",
             "nullable": true
           },
           "usages": {
@@ -3189,10 +4334,12 @@
             "items": {
               "$ref": "#/components/schemas/MachineUsage"
             },
+            "description": "List of applications this machine is used in.",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Machine entity."
       },
       "MachineCounter": {
         "required": [
@@ -3204,15 +4351,20 @@
             "maximum": 45489999,
             "minimum": 45480000,
             "type": "integer",
-            "format": "int64"
+            "description": "C4548 code of the counter type used in the machine, e.g. km, hours of operation.",
+            "format": "int64",
+            "example": 45480010
           },
           "account": {
             "maxLength": 10,
             "type": "string",
-            "nullable": true
+            "description": "Account to post the counters against.",
+            "nullable": true,
+            "example": "4711"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Entity \"Machine Counter\"."
       },
       "MachineDriver": {
         "type": "object",
@@ -3221,18 +4373,53 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
+            "description": "Business partner ID of the driver.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 57689
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Entity \"Machine Driver\" for query operations."
       },
       "MachineUsage": {
         "type": "object",
         "properties": {
           "application": {
             "type": "string",
+            "description": "The application this machine is used in.",
             "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Entity \"Machine Usage\"."
+      },
+      "MaintenanceWindow": {
+        "type": "object",
+        "properties": {
+          "maintenanceWindowId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "fromDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "untilDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "info": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientStartAllowed": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -3393,10 +4580,13 @@
         "properties": {
           "schedulingGroupCode": {
             "type": "integer",
-            "format": "int64"
+            "description": "C4542 code of the resource grouping that combines resources of the same type and use\r\n(not necessarily the same model or manufacturer).",
+            "format": "int64",
+            "example": 45420010
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Resource scheduling group entity."
       },
       "Signature": {
         "type": "object",
@@ -3427,7 +4617,8 @@
             "$ref": "#/components/schemas/TypeOfDriveEnum"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Entity \"Machine Type of Drive\"."
       },
       "TypeOfDriveEnum": {
         "enum": [
@@ -3436,7 +4627,8 @@
           "D",
           "E"
         ],
-        "type": "string"
+        "type": "string",
+        "description": "Typ of drive values.\r\n- `B`: Petrol\r\n- `H`: Hybrid\r\n- `D`: Diesel\r\n- `E`: Electric"
       }
     },
     "securitySchemes": {
