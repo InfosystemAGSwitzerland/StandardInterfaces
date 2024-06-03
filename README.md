@@ -43,9 +43,7 @@ At the moment, we enable third party developer to use the following modules via 
 - performis - ERP
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2performis.json&nocors" target="_blank"><b>Current</b> version documentation</a>
   - Preview
-    - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_finance_cost_accounting_entry.json&nocors" target="_blank"><b>Preview</b> Finance - Cost Accounting Entry</a>
     - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_material_management_deliveryNote.json&nocors" target="_blank"><b>Preview</b> Material Management - Delivery Note</a>
-    - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_purchase_order.json&nocors" target="_blank"><b>Preview</b> Purchase - Order</a>
     - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_purchase_supplier.json&nocors" target="_blank"><b>Preview</b> Purchase - Supplier</a>
     - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_service_recording_absence.json&nocors" target="_blank"><b>Preview</b> Service Recording - Absence</a>
     - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_service_recording_allowance.json&nocors" target="_blank"><b>Preview</b> Service Recording - Allowance</a>
