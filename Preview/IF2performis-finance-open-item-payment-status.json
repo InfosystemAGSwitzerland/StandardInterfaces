@@ -14,13 +14,13 @@
   "paths": {
     "/api/v1/finance/open-items/payment-status": {
       "get": {
-        "summary": "Get open item payment status information",
+        "summary": "Get open item payment status information.",
         "tags": [
           "Finance"
         ],
         "responses": {
           "200": {
-            "description": "open item payment status information.",
+            "description": "Open item payment status information.",
             "content": {
               "application/json": {
                 "schema": {
@@ -62,7 +62,7 @@
             }
           }
         },
-        "operationId": "getfinanceopen-items/payment-status",
+        "operationId": "GetFinanceOpenItemsPaymentStatus",
         "parameters": [
           {
             "schema": {
@@ -132,7 +132,7 @@
             },
             "in": "query",
             "name": "changesSinceDateTime",
-            "description": "Get all entries since the specified date time"
+            "description": "Get all entries since the specified date time."
           },
           {
             "schema": {
@@ -140,7 +140,7 @@
             },
             "in": "query",
             "name": "changesSinceChangeId",
-            "description": "Get all entries since the specified change id"
+            "description": "Get all entries since the specified change id."
           },
           {
             "schema": {
@@ -150,7 +150,7 @@
             },
             "in": "query",
             "name": "openItemNo",
-            "description": "Get the entry with the specified open item number."
+            "description": "Get the entry with the specified open item number. Open Item no and company no may be used to identify an opem item."
           },
           {
             "schema": {
@@ -159,19 +159,131 @@
               "example": "15523"
             },
             "in": "query",
-            "name": "invoiceNo",
-            "description": "Get all entrieswith the specified invoice number."
+            "name": "voucherNo",
+            "description": "Get all entries with the specified voucher number. Voucher no, voucher type and company no may be used together to identify an open item."
           },
           {
             "schema": {
-              "type": "integer",
-              "format": "int64",
-              "minimum": 1,
-              "maximum": 999999
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4,
+              "example": "FA"
+            },
+            "in": "query",
+            "name": "voucherType",
+            "description": "Get all entrie swith the specified voucher type. Voucher no, voucher type and company no may be used together to identify an open item."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 10
             },
             "in": "query",
             "name": "companyNo",
-            "description": "Get all entries with the specified company number."
+            "description": "Get all entries with the specified company number. Voucher no, voucher type and company no may be used together to identify an open item. Open Item no and company no may be used to identify an opem item."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 10
+            },
+            "in": "query",
+            "name": "financialInterfaceId",
+            "description": "Get the entry with the specified financial interface id."
+          }
+        ]
+      },
+      "put": {
+        "summary": "Set the status of an open item payment status.",
+        "description": "To settle an opem item, provide an identification for the open item which is either:\n- Open Item No & Company No\n- Voucher No, Voucher Type & Company No\n- Financial Interface Id\nProvide the amount which is still open. If the amount is not equal to 0 you may choose, if the item will still be closed with the flag closeOpenItem. This allows to pay an item only partly but keep the open item open or to pay the item partly but close it nevertheless as a discount was applied.\n",
+        "tags": [
+          "Finance"
+        ],
+        "responses": {
+          "200": {
+            "description": "Open item payment status information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/paymentStatus"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/problemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/maintenanceWindow"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "PutFinanceOpenItemsPaymentStatus",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 50
+            },
+            "in": "header",
+            "name": "X-Requesting-System",
+            "description": "Identifying the system calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Requesting-User",
+            "description": "Identifying the user calling the service.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Flow-ID",
+            "description": "Optional technical Id (GUID) for call identification."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 30
+            },
+            "in": "header",
+            "name": "X-Client-Type",
+            "description": "Optional client type calling the service."
           }
         ]
       }
@@ -181,7 +293,7 @@
     "schemas": {
       "paymentStatus": {
         "type": "object",
-        "title": "paymentStatus",
+        "title": "PaymentStatus",
         "description": "Information about the payment status of an open item.",
         "properties": {
           "changeId": {
@@ -202,15 +314,17 @@
             "maxLength": 30,
             "minLength": 1,
             "description": "User who last modified the entry.",
-            "example": "STJ"
+            "example": "STJ",
+            "readOnly": true
           },
           "modifyDate": {
             "type": "string",
             "format": "date-time",
-            "description": "Date the entry was last modified",
-            "example": "2024-01-30T11:46:59"
+            "description": "Date the entry was last modified.",
+            "example": "2024-01-30T11:46:59",
+            "readOnly": true
           },
-          "invoiceNo": {
+          "voucherNo": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
@@ -218,12 +332,19 @@
             "description": "Invoice number of the open item.",
             "example": 322784
           },
+          "voucherType": {
+            "type": "string",
+            "maxLength": 4,
+            "minLength": 1,
+            "description": "Type of voucher e.g. FA for invoice.",
+            "example": "FA"
+          },
           "openItemNo": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
             "maximum": 9999999999,
-            "description": "open item number.",
+            "description": "Open item number.",
             "example": 322784
           },
           "companyNo": {
@@ -234,19 +355,20 @@
             "description": "Company identification of the entry.",
             "example": 100
           },
-          "clearingAccountNo": {
+          "financialInterfaceId": {
             "type": "integer",
             "format": "int64",
             "minimum": 1,
             "maximum": 9999999999,
-            "description": "Account to clear the open item against.",
+            "description": "Unique identifier of the open item trough all modules.",
             "example": 322784
           },
           "entryDate": {
             "type": "string",
             "format": "date",
-            "description": "entry date for the posting.",
-            "example": "2024-03-15"
+            "description": "Entry date for the open item.",
+            "example": "2024-03-15",
+            "readOnly": true
           },
           "period": {
             "type": "integer",
@@ -254,39 +376,57 @@
             "minimum": 1,
             "maximum": 999999,
             "description": "Period for the posting in the format YYYYMM.",
-            "example": 202403
+            "example": 202403,
+            "readOnly": true
           },
-          "valueDate": {
-            "type": "string",
-            "format": "date",
-            "description": "value date for the posting.",
-            "example": "2024-03-15"
-          },
-          "taxDate": {
-            "type": "string",
-            "format": "date",
-            "description": "tax date for the posting.",
-            "example": "2024-03-15"
-          },
-          "paidAmount": {
+          "totalAmount": {
             "type": "number",
             "format": "decimal",
             "minimum": 0.0001,
             "maximum": 99999999.9999,
-            "description": "Amount paid for the open item.",
-            "example": 100
+            "description": "Total amount of the open item.",
+            "example": 100,
+            "readOnly": true
           },
           "openAmount": {
             "type": "number",
             "format": "decimal",
             "minimum": 0.0001,
             "maximum": 99999999.9999,
-            "description": "Amount still open after the payment. This amount might be above 0 even if the open item was fully paid, if a discount was applied.",
+            "description": "Amount still open after the payment. If the open item was paid with a discount, the amount has to be set to 0 to close the open item.",
             "example": 100
           },
-          "closeOpenItem": {
-            "type": "boolean",
-            "description": "Is the open item after this posting cleared?"
+          "openItemCriterion1": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 10000,
+            "maximum": 99999999,
+            "description": "Open item criterion - used to categorise open items.",
+            "example": 63700001
+          },
+          "openItemCriterion2": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 10000,
+            "maximum": 99999999,
+            "description": "Open item criterion - used to categorise open items.",
+            "example": 6370000
+          },
+          "openItemCriterion3": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 10000,
+            "maximum": 99999999,
+            "description": "Open item criterion - used to categorise open items.",
+            "example": 63700001
+          },
+          "openItemCriterion4": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 10000,
+            "maximum": 99999999,
+            "description": "Open item criterion - used to categorise open items.",
+            "example": 63700001
           }
         },
         "required": [
