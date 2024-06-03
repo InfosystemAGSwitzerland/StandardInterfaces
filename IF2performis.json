@@ -10,6 +10,287 @@
     "version": "v1"
   },
   "paths": {
+    "/api/v1/finance/cost-accounting/entries": {
+      "get": {
+        "tags": [
+          "Finance"
+        ],
+        "summary": "Searches for cost accounting entries.",
+        "description": "Returns all matching cost accounting entries.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries  to skip  for pagination.",
+            "schema": {
+              "maximum": 1000000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries since the specified date time.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries since the specified change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Get the entries of the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "entryId",
+            "in": "query",
+            "description": "Unique identifier of the entry.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "entryNo",
+            "in": "query",
+            "description": "Entry number of the cost accounting entry. May be used together with the company number.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "externalEntryId",
+            "in": "query",
+            "description": "External entry id of the cost accounting entry.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 10000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 10000
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CostAccountingEntry"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Finance"
+        ],
+        "summary": "Creates a cost accounting entries.",
+        "description": "Creates a cost accounting entries.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A list of cost accounting entries to persist.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CostAccountingEntry"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CostAccountingEntry"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/v1/master-data/material-management/articles": {
       "get": {
         "tags": [
@@ -54,17 +335,6 @@
             "schema": {
               "maxLength": 30,
               "type": "string"
-            }
-          },
-          {
-            "name": "skip",
-            "in": "query",
-            "description": "Number of entries to skip for pagination.",
-            "schema": {
-              "maximum": 100000,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
             }
           },
           {
@@ -135,6 +405,17 @@
             }
           },
           {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "Maximum number of entries to return.",
@@ -171,17 +452,24 @@
               }
             }
           },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Requestor has insufficient rights"
           },
           "500": {
             "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance"
           }
         }
       }
@@ -233,17 +521,6 @@
             }
           },
           {
-            "name": "skip",
-            "in": "query",
-            "description": "Number of entries to skip for pagination.",
-            "schema": {
-              "maximum": 100000,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
             "name": "changesSinceDateTime",
             "in": "query",
             "description": "Get all entries since the specified date time.",
@@ -283,6 +560,17 @@
             }
           },
           {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "Maximum number of entries to return.",
@@ -319,17 +607,24 @@
               }
             }
           },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Requestor has insufficient rights"
           },
           "500": {
             "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance"
           }
         }
       },
@@ -432,17 +727,24 @@
               }
             }
           },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Requestor has insufficient rights"
           },
           "500": {
             "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance"
           }
         }
       }
@@ -491,17 +793,6 @@
             "schema": {
               "maxLength": 30,
               "type": "string"
-            }
-          },
-          {
-            "name": "skip",
-            "in": "query",
-            "description": "Number of entries to skip for pagination.",
-            "schema": {
-              "maximum": 100000,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
             }
           },
           {
@@ -573,6 +864,17 @@
             }
           },
           {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "Maximum number of entries to return.",
@@ -609,6 +911,197 @@
               }
             }
           },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/purchasing/orders": {
+      "get": {
+        "tags": [
+          "Purchasing"
+        ],
+        "summary": "Get purchase order information.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the date time specified.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the change id specified.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "purchaseOrderId",
+            "in": "query",
+            "description": "Get the entry with the specified purchase order id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "Get the entries with the specified origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "externalPurchaseOrderId",
+            "in": "query",
+            "description": "Get the entries with the specified external purchase order id - should be used with an origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "purchaseOrderNo",
+            "in": "query",
+            "description": "Get the entries with the specified purchase order number - only unique with company number.",
+            "schema": {
+              "maxLength": 20,
+              "type": "string"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Get the entries with the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "includeDetails",
+            "in": "query",
+            "description": "Defines if order positions are included in the response.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Purchase order information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PurchaseOrder"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "401": {
             "description": "Basic Authentication failed"
           },
@@ -627,7 +1120,7 @@
     "/api/v1/service-recording/presence-times": {
       "get": {
         "tags": [
-          "PresenceTimes"
+          "ServiceRecording"
         ],
         "summary": "Search presence times.",
         "description": "Returns all matching presence times.",
@@ -679,31 +1172,9 @@
             }
           },
           {
-            "name": "skip",
-            "in": "query",
-            "description": "Number of records to skip for pagination.",
-            "schema": {
-              "maximum": 2147483647,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum number of records to return.",
-            "schema": {
-              "maximum": 2147483647,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
             "name": "changesSinceDateTime",
             "in": "query",
-            "description": "Get all entries since the specified date time",
+            "description": "Get all entries since the specified date time.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -712,7 +1183,7 @@
           {
             "name": "changesSinceChangeId",
             "in": "query",
-            "description": "Get all entries since the specified change id",
+            "description": "Get all entries since the specified change id.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -771,6 +1242,29 @@
               "type": "integer",
               "format": "int64"
             }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
           }
         ],
         "responses": {
@@ -797,23 +1291,30 @@
               }
             }
           },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Requestor has insufficient rights"
           },
           "500": {
             "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance"
           }
         }
       },
       "put": {
         "tags": [
-          "PresenceTimes"
+          "ServiceRecording"
         ],
         "summary": "Updates an existing presence time if internal or external Id match. Creates a presence time if neither internal or external Id is provided or no matching record could be found.",
         "description": "Updates an existing presence time if internal or external Id match. Creates a presence time if neither internal or external Id is provided or no matching record could be found.",
@@ -910,23 +1411,30 @@
               }
             }
           },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Requestor has insufficient rights"
           },
           "500": {
             "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance"
           }
         }
       },
       "delete": {
         "tags": [
-          "PresenceTimes"
+          "ServiceRecording"
         ],
         "summary": "Deletes a presence time either by presenceTimeId\"/> or origin and originId.",
         "description": "Deletes a presence time",
@@ -1006,8 +1514,599 @@
               }
             }
           },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/service-recording/service-providers": {
+      "get": {
+        "tags": [
+          "ServiceRecording"
+        ],
+        "summary": "Get service providers.",
+        "description": "Returns all matching service providers.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries since the specified date time.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries since the specified change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "serviceProviderId",
+            "in": "query",
+            "description": "Get the entry with the specified sercice provider id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "Get all entries with the specified origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "originId",
+            "in": "query",
+            "description": "Get all entries with the specified external service provider id - should be used with an origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "employeeId",
+            "in": "query",
+            "description": "Get all entries with the specified employee id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Get all entries with the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Service providers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceRecordingServiceProvider"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/service-recording/service-records": {
+      "get": {
+        "tags": [
+          "ServiceRecording"
+        ],
+        "summary": "Searches for service records.",
+        "description": "Returns all matching service records.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries since the specified date time.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries since the specified change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "serviceProviderDayId",
+            "in": "query",
+            "description": "Get the entries with the specified sercice provider day id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "serviceRecordDate",
+            "in": "query",
+            "description": "Get the entries with the date specified.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "serviceProviderId",
+            "in": "query",
+            "description": "Get the entries with the specified sercice provider id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "personnelNo",
+            "in": "query",
+            "description": "Get the entries for the employee with the specified personnel number.",
+            "schema": {
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Get the entries with the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries  to skip  for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceRecordingServiceRecord"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ServiceRecording"
+        ],
+        "summary": "Updates an existing service record if internal or external Id match. Creates a service record if neither internal or external Id is provided or no matching record could be found.",
+        "description": "Updates an existing service record if internal or external Id match. Creates a service record if neither internal or external Id is provided or no matching record could be found.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A list of service records to update or create.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ServiceRecordingServiceRecord"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ServiceRecordingServiceRecord"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ServiceRecordingServiceRecord"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceRecordingServiceRecord"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ServiceRecording"
+        ],
+        "summary": "Deletes a service record.",
+        "description": "Deletes a service record.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "serviceRecordId",
+            "in": "query",
+            "description": "Id of the service record.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "The system of origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "originId",
+            "in": "query",
+            "description": "Id of the system of origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The service record was deleted successfully."
           },
           "401": {
             "description": "Basic Authentication failed"
@@ -1027,46 +2126,74 @@
   },
   "components": {
     "schemas": {
-      "AttributeValue": {
+      "CostAccountingEntry": {
         "required": [
-          "attributeDefinitionId"
+          "amountBSC",
+          "budgetOrActual",
+          "companyNo",
+          "costType",
+          "entryDate",
+          "origin",
+          "period",
+          "voucherNo"
         ],
         "type": "object",
         "properties": {
-          "attributeValueId": {
-            "maximum": 2147483647,
+          "changeId": {
+            "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Internal identification of attribute value.",
+            "description": "Change identification of the entry.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true,
+            "example": 322784
           },
-          "attributeDefinitionId": {
-            "maximum": 2147483647,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Internal identification of attribute definition.",
-            "format": "int64"
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true,
+            "example": "2024-08-24T14:15:22Z"
           },
           "modifyUser": {
             "maxLength": 30,
             "type": "string",
             "description": "User who last modified the entry.",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
           },
           "modifyDate": {
             "type": "string",
             "description": "Date the entry was last modified.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
-          "sortNo": {
-            "maximum": 9999,
+          "entryId": {
+            "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Position within the attribute value set.",
+            "description": "Unique identifier of the entry.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "example": 12345
+          },
+          "externalEntryId": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Id of the entry in the external system.",
+            "nullable": true,
+            "example": "C47C97C0F4B04096855955CB5AD47444"
+          },
+          "origin": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string",
+            "description": "The entry's system of origin.",
+            "example": "ISBRW"
           },
           "companyNo": {
             "maximum": 999999,
@@ -1074,85 +2201,157 @@
             "type": "integer",
             "description": "Company identification of the entry.",
             "format": "int64",
-            "nullable": true
+            "example": 37
           },
-          "textValue": {
+          "entryNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Identifier of entry in combination with the CompanyNo. Not unique.",
+            "format": "int64",
+            "nullable": true,
+            "example": 12345
+          },
+          "costCenterNo": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string",
+            "description": "Cost center identifier. Either costCenterNo, costUnitNo or orderNo may be used at once.",
+            "nullable": true,
+            "example": "135"
+          },
+          "costUnitNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Cost unit identifier. Either costCenterNo, costUnitNo or orderNo may be used at once.",
+            "nullable": true,
+            "example": "6548217"
+          },
+          "orderNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Order no identifier. Either costCenterNo, costUnitNo or orderNo may be used at once.",
+            "nullable": true,
+            "example": "4712"
+          },
+          "salesChannel": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "Identifies the sales channel. May be used together with costCenterNo, CostUnitNo or orderNo.",
+            "nullable": true,
+            "example": "20"
+          },
+          "costType": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string",
+            "description": "Cost type of the entry.",
+            "example": "4547"
+          },
+          "period": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Accounting period of the entry.",
+            "format": "int64",
+            "example": 202401
+          },
+          "budgetOrActual": {
+            "maxLength": 1,
+            "minLength": 1,
+            "type": "string",
+            "description": "B => Budget / I => Actual / P => Plan / K => Shortterm income statement",
+            "example": "I"
+          },
+          "voucherType": {
+            "maxLength": 4,
+            "type": "string",
+            "description": "Voucher type from financial accounting.",
+            "nullable": true,
+            "example": "INV"
+          },
+          "voucherNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Voucher number from financial accounting.",
+            "format": "int64",
+            "example": 658421
+          },
+          "entryDate": {
+            "type": "string",
+            "description": "Date of the entry.",
+            "format": "date",
+            "example": "2024-08-24"
+          },
+          "text": {
             "maxLength": 1000,
             "type": "string",
-            "description": "A string value.",
-            "nullable": true
+            "description": "Entry text.",
+            "nullable": true,
+            "example": "Budget 202403"
           },
-          "numberValue": {
+          "amountBSC": {
             "type": "number",
-            "description": "Number or decimal value.",
-            "format": "double"
+            "description": "Amount of the entry in balance sheet currency.",
+            "format": "double",
+            "example": 18000.65
           },
-          "dateValue": {
-            "type": "string",
-            "description": "Date value.",
-            "format": "date-time",
-            "nullable": true
+          "quantity": {
+            "type": "number",
+            "description": "Quantity in the unit defined on the cost type.",
+            "format": "double",
+            "nullable": true,
+            "example": 2.1234
           },
-          "boolValue": {
+          "isMarkedForDeletion": {
             "type": "boolean",
-            "description": "A true or false value.",
-            "nullable": true
+            "description": "Is the entry going to be deleted in the next cost accounting processing?"
           },
-          "codeValue": {
-            "type": "integer",
-            "description": "Code value.",
-            "format": "int64",
-            "nullable": true
+          "isProcessed": {
+            "type": "boolean",
+            "description": "Is the entry processed and will therefore be shown in reports?"
+          },
+          "generated": {
+            "maxLength": 1,
+            "type": "string",
+            "description": "Defines the type of system generated entries. E => Debit bookings for combined cc & cu entries / F => Fix cost entries / K => Short term income statement / V => Cost allocation / Z => Additional entries / B => Credit bookings for allocations / T => Debit bookings for allocations",
+            "nullable": true,
+            "example": "U"
           }
         },
         "additionalProperties": false,
-        "description": "The attribute value."
+        "description": "Represents a entry in the cost accounting."
       },
-      "AttributeValueSet": {
-        "required": [
-          "attributeSetId"
-        ],
+      "MaintenanceWindow": {
         "type": "object",
         "properties": {
-          "attributeSetId": {
-            "maximum": 9999999999,
-            "minimum": 1,
+          "maintenanceWindowId": {
             "type": "integer",
-            "description": "Internal identification of attribute set.",
-            "format": "int64"
-          },
-          "attributeValueSetId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Internal identification of attribute value set.",
             "format": "int64",
-            "nullable": true
-          },
-          "modifyUser": {
-            "maxLength": 30,
-            "type": "string",
-            "description": "User who last modified the entry.",
-            "nullable": true
-          },
-          "modifyDate": {
-            "type": "string",
-            "description": "Date the entry was last modified.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "attributeValues": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AttributeValue"
-            },
-            "description": "A list of attribute values.",
             "nullable": true,
             "readOnly": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "fromDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "untilDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "info": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientStartAllowed": {
+            "type": "boolean"
           }
         },
-        "additionalProperties": false,
-        "description": "The attribute value set."
+        "additionalProperties": false
       },
       "MaterialManagementArticle": {
         "required": [
@@ -1289,6 +2488,14 @@
             "format": "int64",
             "nullable": true
           },
+          "articleGroupId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the article group.",
+            "format": "int64",
+            "nullable": true
+          },
           "ean": {
             "maxLength": 13,
             "type": "string",
@@ -1326,7 +2533,7 @@
             "readOnly": true
           },
           "attributeValueSet": {
-            "$ref": "#/components/schemas/AttributeValueSet"
+            "$ref": "#/components/schemas/MaterialManagementAttributeValueSet"
           }
         },
         "additionalProperties": false,
@@ -1476,13 +2683,143 @@
         "additionalProperties": false,
         "description": "Represents a (material management) article vat entry."
       },
+      "MaterialManagementAttributeValue": {
+        "required": [
+          "attributeDefinitionId",
+          "modifyUser"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeValueId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal identification of attribute value.",
+            "format": "int64",
+            "nullable": true
+          },
+          "attributeDefinitionId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal identification of attribute definition.",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "User who last modified the entry.",
+            "nullable": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sortNo": {
+            "maximum": 9999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Position within the attribute value set.",
+            "format": "int64",
+            "nullable": true
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Company identification of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "textValue": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "A string value.",
+            "nullable": true
+          },
+          "numberValue": {
+            "type": "number",
+            "description": "Number or decimal value.",
+            "format": "double",
+            "nullable": true
+          },
+          "dateValue": {
+            "type": "string",
+            "description": "Date value.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "boolValue": {
+            "type": "boolean",
+            "description": "A true or false value.",
+            "nullable": true
+          },
+          "codeValue": {
+            "type": "integer",
+            "description": "Code value.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The attribute value."
+      },
+      "MaterialManagementAttributeValueSet": {
+        "required": [
+          "attributeSetId",
+          "modifyUser"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal identification of attribute set.",
+            "format": "int64"
+          },
+          "attributeValueSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal identification of attribute value set.",
+            "format": "int64",
+            "nullable": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "User who last modified the entry.",
+            "nullable": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "attributeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MaterialManagementAttributeValue"
+            },
+            "description": "A list of attribute values.",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The attribute value set."
+      },
       "PresenceTime": {
         "required": [
           "companyNo",
           "hours",
           "locked",
-          "origin",
           "originId",
+          "personnelNo",
           "presenceDate",
           "timeFrom"
         ],
@@ -1492,15 +2829,17 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Change id of the entity.",
+            "description": "Change identification of the entity.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "changeDate": {
             "type": "string",
             "description": "Change date of the entity.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "presenceTimeId": {
             "maximum": 9999999999,
@@ -1567,15 +2906,16 @@
           },
           "origin": {
             "maxLength": 10,
-            "minLength": 1,
             "type": "string",
-            "description": "The system of origin."
+            "description": "The system of origin.",
+            "nullable": true,
+            "readOnly": true
           },
           "originId": {
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "description": "Id of the system of origin."
+            "description": "Id in the system of origin."
           }
         },
         "additionalProperties": false,
@@ -1607,6 +2947,916 @@
           }
         },
         "additionalProperties": { }
+      },
+      "PurchaseAttributeValue": {
+        "required": [
+          "attributeDefinitionId",
+          "modifyUser"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeValueId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal identification of attribute value.",
+            "format": "int64",
+            "nullable": true
+          },
+          "attributeDefinitionId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal identification of attribute definition.",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "User who last modified the entry.",
+            "nullable": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sortNo": {
+            "maximum": 9999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Position within the attribute value set.",
+            "format": "int64",
+            "nullable": true
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Company identification of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "textValue": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "A string value.",
+            "nullable": true
+          },
+          "numberValue": {
+            "type": "number",
+            "description": "Number or decimal value.",
+            "format": "double",
+            "nullable": true
+          },
+          "dateValue": {
+            "type": "string",
+            "description": "Date value.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "boolValue": {
+            "type": "boolean",
+            "description": "A true or false value.",
+            "nullable": true
+          },
+          "codeValue": {
+            "type": "integer",
+            "description": "Code value.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The attribute value."
+      },
+      "PurchaseAttributeValueSet": {
+        "required": [
+          "attributeSetId",
+          "modifyUser"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal identification of attribute set.",
+            "format": "int64"
+          },
+          "attributeValueSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Internal identification of attribute value set.",
+            "format": "int64",
+            "nullable": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "User who last modified the entry.",
+            "nullable": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "attributeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PurchaseAttributeValue"
+            },
+            "description": "A list of attribute values.",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The attribute value set."
+      },
+      "PurchaseOrder": {
+        "required": [
+          "companyNo",
+          "currency",
+          "orderDate",
+          "orderTypeCode",
+          "origin",
+          "purchaseOrderNo",
+          "supplierId"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "description": "Change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true,
+            "example": "2019-08-24T14:15:22Z"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "minLength": 1,
+            "type": "string",
+            "description": "User who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Last modification date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "purchaseOrderId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Technical identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "example": 322784
+          },
+          "orderTypeCode": {
+            "maximum": 24509999,
+            "minimum": 24500000,
+            "type": "integer",
+            "description": "C2450 - Type of the order.",
+            "format": "int64",
+            "example": 24500002
+          },
+          "orderDate": {
+            "type": "string",
+            "description": "Date of the order.",
+            "format": "date"
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Company identification of the entry.",
+            "format": "int64",
+            "example": 100
+          },
+          "purchaseOrderNo": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string",
+            "description": "Purchase order number of the entry.",
+            "example": "B24.1234"
+          },
+          "externalPurchseOrderId": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "External id of the entry - may be used instead of the technical identification.",
+            "nullable": true,
+            "example": "S-35-50932"
+          },
+          "origin": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "Origin of the entry.",
+            "readOnly": true,
+            "example": "MYERP"
+          },
+          "supplierId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Id of the supplier of the entry.",
+            "format": "int64",
+            "example": 322784
+          },
+          "purchaseOrderTypeCode": {
+            "maximum": 24629999,
+            "minimum": 24620001,
+            "type": "integer",
+            "description": "C2462 - How was the order placed? Post, eMail,...",
+            "format": "int64",
+            "nullable": true,
+            "example": 24620001
+          },
+          "purchaseOrderStateCode": {
+            "maximum": 24529999,
+            "minimum": 24520001,
+            "type": "integer",
+            "description": "C2452 - State of the order e.g. recorded, placed, partially delivered,...",
+            "format": "int64",
+            "nullable": true,
+            "example": 24520002
+          },
+          "currency": {
+            "maxLength": 3,
+            "minLength": 1,
+            "type": "string",
+            "description": "Currency ISO code.",
+            "example": "CHF"
+          },
+          "exchangeRate": {
+            "maximum": 99999999.999999,
+            "type": "number",
+            "description": "Exchange rate used for purchase when not in own currency.",
+            "format": "double",
+            "nullable": true,
+            "example": 0.954
+          },
+          "isPurchaseOrderSent": {
+            "type": "boolean",
+            "description": "Flag if the purchase order was been sent."
+          },
+          "purchaseOrderSendDate": {
+            "type": "string",
+            "description": "Date the purchase order was sent.",
+            "format": "date",
+            "nullable": true,
+            "example": "2024-03-01"
+          },
+          "deliveryDateRequested": {
+            "type": "string",
+            "description": "Requested delivery date, if no confirmation, this is written to the delivery date.",
+            "format": "date",
+            "nullable": true,
+            "example": "2024-03-15"
+          },
+          "deliveryDate": {
+            "type": "string",
+            "description": "Confirmed delivery date. Equals requested delivery date if not confirmed.",
+            "format": "date",
+            "nullable": true,
+            "example": "2024-03-17"
+          },
+          "priceDate": {
+            "type": "string",
+            "description": "Date of the price information the purchase is based on.",
+            "format": "date",
+            "nullable": true,
+            "example": "2024-02-25"
+          },
+          "orderConfirmationDateRequested": {
+            "type": "string",
+            "description": "Date the supplier should confirm the order.",
+            "format": "date",
+            "nullable": true,
+            "example": "2024-01-05"
+          },
+          "orderConfirmationDate": {
+            "type": "string",
+            "description": "Date the order was confirmed.",
+            "format": "date",
+            "nullable": true,
+            "example": "2024-01-05"
+          },
+          "orderConfirmationNo": {
+            "maxLength": 40,
+            "type": "string",
+            "description": "Order confirmation no from the supplier.",
+            "nullable": true,
+            "example": "A18.223232"
+          },
+          "storageId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identifier of the storage.",
+            "format": "int64",
+            "nullable": true,
+            "example": 2315
+          },
+          "storageAreaId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identifier of the storage area.",
+            "format": "int64",
+            "nullable": true,
+            "example": 231
+          },
+          "shippingAddressCode": {
+            "maximum": 24649999,
+            "minimum": 24640001,
+            "type": "integer",
+            "description": "C2464 - Where is the purchase delivered? (24640001 - pickup address, 24640002 - shipping address)",
+            "format": "int64",
+            "nullable": true,
+            "example": 24640002
+          },
+          "shippingBusinessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the shipping business partner address (Required for shippings).",
+            "format": "int64",
+            "nullable": true,
+            "example": 3215
+          },
+          "pickupBusinessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the pickup business partner address (Required for pickups).",
+            "format": "int64",
+            "nullable": true,
+            "example": 3216
+          },
+          "pickupEmployeeBusinessPartnerId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the contact person at the pickup address.",
+            "format": "int64",
+            "nullable": true,
+            "example": 2345
+          },
+          "shippingTypeCode": {
+            "maximum": 24639999,
+            "minimum": 24630001,
+            "type": "integer",
+            "description": "C2463 - How is the purchase shipped? Pick up, lorry, post,...",
+            "format": "int64",
+            "nullable": true,
+            "example": 24630010
+          },
+          "incoTermsCode": {
+            "maximum": 24679999,
+            "minimum": 24670001,
+            "type": "integer",
+            "description": "C2467 - Incoterms define the responsibilities of exporters and importers in the arrangement of shipments and the transfer of liability involved at various stages of the transaction.",
+            "format": "int64",
+            "nullable": true,
+            "example": 24670002
+          },
+          "incoTermsLocation": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Location for the incoterms.",
+            "nullable": true,
+            "example": "Zürich"
+          },
+          "destinationDeliveryDateRequested": {
+            "type": "string",
+            "description": "Requested destination delivery date, e.g. date of transfer of responsibility.",
+            "format": "date",
+            "nullable": true,
+            "example": "2024-05-06"
+          },
+          "destinationDeliveryDate": {
+            "type": "string",
+            "description": "Destination delivery date, e.g. date of transfer of responsibility.",
+            "format": "date",
+            "nullable": true,
+            "example": "2024-05-05"
+          },
+          "ordererBusinessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the business partner address of the orderer.",
+            "format": "int64",
+            "nullable": true,
+            "example": 1394
+          },
+          "ordererEmployeeBusinessPartnerId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the orderer.",
+            "format": "int64",
+            "nullable": true,
+            "example": 3264
+          },
+          "supplierBusinessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the supplier business partner address.",
+            "format": "int64",
+            "nullable": true,
+            "example": 3215
+          },
+          "supplierEmployeeBusinessPartnerId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the contact person at the supplier.",
+            "format": "int64",
+            "nullable": true,
+            "example": 2345
+          },
+          "supplierNotes": {
+            "maxLength": 2000,
+            "type": "string",
+            "description": "Supplier related notes and remarks",
+            "nullable": true,
+            "example": "Every year in early summer, the supplier runs a promotion on all metal goods. Internal task recorded in the info centre so that we can place a bulk order for screws and fasteners."
+          },
+          "internalRemarks": {
+            "maxLength": 2000,
+            "type": "string",
+            "description": "Internal remarks about the supplier.",
+            "nullable": true,
+            "example": "Promised delivery dates are never met."
+          },
+          "externalRemarks": {
+            "maxLength": 2000,
+            "type": "string",
+            "description": "Remarks added to the supplier order.",
+            "nullable": true,
+            "example": "Please let us know the delivery dates in more detail."
+          },
+          "openingText": {
+            "maxLength": 4000,
+            "type": "string",
+            "description": "Text opening the supplier order.",
+            "nullable": true,
+            "example": "You have received the following order. Please check the items and confirm the delivery by means of an order confirmation."
+          },
+          "footerText": {
+            "maxLength": 4000,
+            "type": "string",
+            "description": "Final remarks concerning the order put in the footer of the order.",
+            "nullable": true,
+            "example": "Please inform us of any price changes in writing at the e-mail address purchase@memor.ch. Thank you very much."
+          },
+          "attributeValueSet": {
+            "$ref": "#/components/schemas/PurchaseAttributeValueSet"
+          },
+          "materialRequirementsPlanningGroupCode": {
+            "maximum": 4029999,
+            "minimum": 4020001,
+            "type": "integer",
+            "description": "C402 - Material requirements planning (MRP) group.",
+            "format": "int64",
+            "nullable": true,
+            "example": 4020005
+          },
+          "reference": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Reference that helps reidentify the purchase.",
+            "nullable": true,
+            "example": "E24-26873-F3"
+          },
+          "originOrderNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Order number of the associated sales or production order.",
+            "nullable": true,
+            "example": "V24.1234"
+          },
+          "automaticCompletion": {
+            "type": "boolean",
+            "description": "Is the purchase order automatically completed once it has been fully delivered and invoiced?"
+          },
+          "positions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PurchaseOrderPositions"
+            },
+            "description": "Gets or Sets Positions.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a purchase order entry."
+      },
+      "PurchaseOrderPositions": {
+        "required": [
+          "isPrinted",
+          "positionTypeCode"
+        ],
+        "type": "object",
+        "properties": {
+          "positionId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique id of the order position.",
+            "format": "int64",
+            "nullable": true,
+            "example": 123456
+          },
+          "positionNr": {
+            "maximum": 9999.999,
+            "minimum": 0,
+            "type": "number",
+            "description": "Item number. Format and conditions via company settings.",
+            "format": "double",
+            "nullable": true,
+            "example": 2.2
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "minLength": 1,
+            "type": "string",
+            "description": "User who last modified the entry.",
+            "nullable": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entry was last modified",
+            "format": "date-time",
+            "nullable": true
+          },
+          "positionTypeCode": {
+            "maximum": 24559999,
+            "minimum": 24550001,
+            "type": "integer",
+            "description": "C2455 - Type of the position 1: article 2: amount 3: text.",
+            "format": "int64",
+            "example": 24550003
+          },
+          "articleId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the article.",
+            "format": "int64",
+            "nullable": true,
+            "example": 365972
+          },
+          "text": {
+            "maxLength": 2000,
+            "type": "string",
+            "description": "Text of the position.",
+            "nullable": true,
+            "example": "WD-40"
+          },
+          "conversionFactorStockUnitDeliveryUnit": {
+            "maximum": 9999999.999999,
+            "minimum": 0,
+            "type": "number",
+            "description": "Coefficient stock unit -> delivery unit.",
+            "format": "double",
+            "nullable": true,
+            "example": 1
+          },
+          "conversionFactorDeliveryUnitStockUnit": {
+            "maximum": 9999999.999999,
+            "minimum": 0,
+            "type": "number",
+            "description": "Coefficient delivery unit -> stock unit.",
+            "format": "double",
+            "nullable": true,
+            "example": 1
+          },
+          "conversionFactorDeliveryUnitPriceUnit": {
+            "maximum": 9999999.999999,
+            "minimum": 0,
+            "type": "number",
+            "description": "Coefficient delivery unit -> price unit.",
+            "format": "double",
+            "nullable": true,
+            "example": 2
+          },
+          "conversionFactorPriceUnitDeliveryUnit": {
+            "maximum": 9999999.999999,
+            "minimum": 0,
+            "type": "number",
+            "description": "Coefficient price unit -> delivery unit.",
+            "format": "double",
+            "nullable": true,
+            "example": 0.5
+          },
+          "orderQuantityStockUnit": {
+            "maximum": 9999999999.9999,
+            "minimum": -9999999999.9999,
+            "type": "number",
+            "description": "Order quantity in stock units.",
+            "format": "double",
+            "nullable": true,
+            "example": 1000
+          },
+          "orderQuantityDeliverUnit": {
+            "maximum": 9999999999.9999,
+            "minimum": -9999999999.9999,
+            "type": "number",
+            "description": "Order quantity in delivery units.",
+            "format": "double",
+            "nullable": true,
+            "example": 100
+          },
+          "orderQuantityPriceUnit": {
+            "maximum": 9999999999.9999,
+            "minimum": -9999999999.9999,
+            "type": "number",
+            "description": "Order quantity in price units.",
+            "format": "double",
+            "nullable": true,
+            "example": 200
+          },
+          "deliveryUnitCode": {
+            "maximum": 289999,
+            "minimum": 280001,
+            "type": "integer",
+            "description": "C28 - Delivery unit code.",
+            "format": "int64",
+            "nullable": true,
+            "example": 280005
+          },
+          "priceUnitCode": {
+            "maximum": 289999,
+            "minimum": 280001,
+            "type": "integer",
+            "description": "C28 - Price unit code.",
+            "format": "int64",
+            "nullable": true,
+            "example": 280002
+          },
+          "priceTypeCode": {
+            "maximum": 24589999,
+            "minimum": 24580001,
+            "type": "integer",
+            "description": "C2458 - Pricetype 1: Normal price 2: Special offer price.",
+            "format": "int64",
+            "nullable": true,
+            "example": 24580002
+          },
+          "price": {
+            "maximum": 9999999999.9999,
+            "minimum": 0,
+            "type": "number",
+            "description": "Price per unit.",
+            "format": "double",
+            "nullable": true,
+            "example": 2568.25
+          },
+          "isVatInPriceIncluded": {
+            "type": "boolean",
+            "description": "Vat is in price included."
+          },
+          "inputTaxCode": {
+            "maximum": 239999,
+            "minimum": 230001,
+            "type": "integer",
+            "description": "C23 - Type of applied tax (vat, input tax).",
+            "format": "int64",
+            "nullable": true,
+            "example": 230006
+          },
+          "discountPercentage": {
+            "maximum": 999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Discount in percent.",
+            "format": "double",
+            "nullable": true,
+            "example": 2.5
+          },
+          "surchargePercentage": {
+            "maximum": 999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Surcharge in percent.",
+            "format": "double",
+            "nullable": true,
+            "example": 3.2
+          },
+          "discountAmount": {
+            "type": "number",
+            "description": "Discount in money.",
+            "format": "double",
+            "nullable": true,
+            "example": 3658.51
+          },
+          "surchargeAmount": {
+            "type": "number",
+            "description": "Surcharge in money.",
+            "format": "double",
+            "nullable": true,
+            "example": 5026.73
+          },
+          "storageId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identifier of the storage - Overrides values in header.",
+            "format": "int64",
+            "nullable": true,
+            "example": 2315
+          },
+          "storageAreaId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identifier of the storage location - Overrides values in header.",
+            "format": "int64",
+            "nullable": true,
+            "example": 231
+          },
+          "shippingTypeCode": {
+            "maximum": 24639999,
+            "minimum": 24630001,
+            "type": "integer",
+            "description": "C2463 - How is the purchase delivered? Pick up, lorry, post,...  - Overrides values in header",
+            "format": "int64",
+            "nullable": true,
+            "example": 24630005
+          },
+          "priceOriginCode": {
+            "maximum": 24599999,
+            "minimum": 24590001,
+            "type": "integer",
+            "description": "C2459 - Origin of the price information 1: Set manually 2: Supplier article price 3: Supplier article scale price 4: Current materials purchase price.",
+            "format": "int64",
+            "nullable": true,
+            "example": 24590002
+          },
+          "accountNo": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Identifier of the expense account.",
+            "nullable": true,
+            "example": "321.2"
+          },
+          "assetNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Identifier of the asset the order is placed for.",
+            "nullable": true,
+            "example": "digger 254"
+          },
+          "costCenterNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Cost center responsible for the order.",
+            "nullable": true,
+            "example": "2-563.7"
+          },
+          "costUnitNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Cost unit responsible for the order.",
+            "nullable": true,
+            "example": "6-7.25"
+          },
+          "salesChannelNo": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "Identifies the sale channel.",
+            "nullable": true,
+            "example": "449"
+          },
+          "orderNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Identifier of the accounting order for posting expense.",
+            "nullable": true,
+            "example": "20240315.02"
+          },
+          "attributeValueSet": {
+            "$ref": "#/components/schemas/PurchaseAttributeValueSet"
+          },
+          "deliveryDateRequested": {
+            "type": "string",
+            "description": "Requested delivery date, if no confirmation, this is written to the delivery date. - Overrides value from the header.",
+            "format": "date",
+            "nullable": true,
+            "example": "2024-04-21"
+          },
+          "deliveryDate": {
+            "type": "string",
+            "description": "Confirmed delivery date. Equals requested delivery date if not confirmed. - Overrides value from the header.",
+            "format": "date",
+            "nullable": true,
+            "example": "2024-04-30"
+          },
+          "destinationDeliveryDateRequested": {
+            "type": "string",
+            "description": "Requested destination delivery date, e.g. date of transfer of responsibility. - Overrides value from the header.",
+            "format": "date",
+            "nullable": true,
+            "example": "2024-04-21"
+          },
+          "destinationDeliveryDate": {
+            "type": "string",
+            "description": "Destination delivery date, e.g. date of transfer of responsibility. - Overrides value from the header.",
+            "format": "date",
+            "nullable": true,
+            "example": "2024-04-30"
+          },
+          "countryOfOrigin": {
+            "maxLength": 2,
+            "type": "string",
+            "description": "ISO code of country of origin.",
+            "nullable": true,
+            "example": "CN"
+          },
+          "tariffCode": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "C28 - Customs tariff number.",
+            "nullable": true,
+            "example": "12412"
+          },
+          "orderConfirmationDate": {
+            "type": "string",
+            "description": "Date the order was confirmed. - Overrides value from the header.",
+            "format": "date",
+            "nullable": true,
+            "example": "2024-01-05"
+          },
+          "orderConfirmationNo": {
+            "maxLength": 40,
+            "type": "string",
+            "description": "Order confirmation no from the supplier. - Overrides value from the header.",
+            "nullable": true,
+            "example": "A23.98709"
+          },
+          "orderConfirmationDateRequested": {
+            "type": "string",
+            "description": "Date the supplier should confirm the order. - Overrides value from the header.",
+            "format": "date",
+            "nullable": true,
+            "example": "2024-05-04"
+          },
+          "isFullyCharged": {
+            "type": "boolean",
+            "description": "Indicates whether the purchase position has been fully charged or whether it is still partially open."
+          },
+          "netAmount": {
+            "type": "number",
+            "description": "Net amount (gross - tax) of the order position.",
+            "format": "double",
+            "nullable": true,
+            "example": 2159.53
+          },
+          "grossAmount": {
+            "type": "number",
+            "description": "Total cost of order position.",
+            "format": "double",
+            "nullable": true,
+            "example": 2436.85
+          },
+          "taxAmount": {
+            "type": "number",
+            "description": "Amount of taxes for the order position.",
+            "format": "double",
+            "nullable": true,
+            "example": 277.32
+          },
+          "isPrinted": {
+            "type": "boolean",
+            "description": "Determines whether an item is printed on the order document or not."
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
       },
       "PurchaseSupplier": {
         "required": [
@@ -1857,10 +4107,352 @@
           "automaticCompletion": {
             "type": "boolean",
             "description": "Default for the automatic completion of purchase orders with this supplier"
+          },
+          "attributeValueSet": {
+            "$ref": "#/components/schemas/PurchaseAttributeValueSet"
           }
         },
         "additionalProperties": false,
         "description": "Represents a supplier entry."
+      },
+      "ServiceRecordingServiceProvider": {
+        "required": [
+          "active",
+          "companyNo",
+          "description",
+          "serviceProviderId",
+          "shortDescription"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 5214698741
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "serviceProviderId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Id of the service provider.",
+            "format": "int64",
+            "example": 1265
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Is this entry active or not?"
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The company number identifies the customer via the corresponding number in the mandate system.",
+            "format": "int64",
+            "example": 20
+          },
+          "shortDescription": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string",
+            "description": "Short identifier/abbreviation/acronym of the service provider.",
+            "example": "MAU"
+          },
+          "description": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "description": "Full description / Name of the service provider.",
+            "example": "Martin Urfer"
+          },
+          "externalId": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Identification in an external system e.g. the card ID from a locking system can be included here. It is not the identification from the system of origin.",
+            "nullable": true,
+            "example": "C47C97C0F4B04096855955CB5AD47444"
+          },
+          "function": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Function, position or title of the service provider.",
+            "nullable": true,
+            "example": "Leiter Informatik"
+          },
+          "serviceProviderTypeCode": {
+            "maximum": 2869999,
+            "minimum": 2860001,
+            "type": "integer",
+            "description": "C286 - Type of the service provider\r\n\r\n1 - Mitarbeiter - Employees\r\n\r\n2 - Maschinen   - Machines\r\n\r\n3 - Kleingeräte - Small devices\r\n\r\n5 - Allgemein   - Universal.",
+            "format": "int64",
+            "nullable": true,
+            "example": 2860003
+          },
+          "department": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string",
+            "description": "Department the service provider is assigned to.",
+            "nullable": true,
+            "example": "Werkstatt"
+          },
+          "defaultServiceTypeId": {
+            "type": "integer",
+            "description": "Default service type id of the service provider .",
+            "format": "int64",
+            "nullable": true,
+            "example": 295676
+          },
+          "employeeId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identifies the employee in BAF.",
+            "format": "int64",
+            "nullable": true,
+            "example": 1284
+          },
+          "origin": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "The system of origin.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "25"
+          },
+          "originId": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Id in the system of origin.",
+            "nullable": true,
+            "example": "1023-7894-56"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a service provider entry."
+      },
+      "ServiceRecordingServiceRecord": {
+        "required": [
+          "companyNo",
+          "quantity",
+          "serviceRecordStatusCode",
+          "serviceTypeId"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 8971239429
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "serviceRecordId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Technical identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "example": 326479517
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Company identification of the entry.",
+            "format": "int64",
+            "example": 37
+          },
+          "serviceProviderId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identification of the service provider.",
+            "format": "int64",
+            "nullable": true,
+            "example": 3366
+          },
+          "personnelNo": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Identification of the service provider.",
+            "nullable": true,
+            "example": "3366"
+          },
+          "serviceRecordDate": {
+            "type": "string",
+            "description": "Day on which the service was provided.",
+            "format": "date",
+            "nullable": true,
+            "example": "2023-09-22"
+          },
+          "serviceTypeId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identification of the service type.",
+            "format": "int64",
+            "example": 697
+          },
+          "serviceProviderDayId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identification of the service provider day.",
+            "format": "int64",
+            "nullable": true,
+            "example": 3698521470
+          },
+          "costCenterNo": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string",
+            "description": "Cost center identifier.",
+            "nullable": true,
+            "example": "C68"
+          },
+          "costUnitNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Cost unit identifier.",
+            "nullable": true,
+            "example": "K-68"
+          },
+          "orderNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Order identifier.",
+            "nullable": true,
+            "example": "E-3654.12"
+          },
+          "period": {
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Accounting period of the entry. Format YYYYMM (e.g. 202401).",
+            "format": "int64",
+            "nullable": true,
+            "example": 202010
+          },
+          "text": {
+            "maxLength": 240,
+            "type": "string",
+            "description": "Description of the work done.",
+            "nullable": true,
+            "example": "Stahlträger montieren"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "The amount of work performed. The unit depends on the type of service.",
+            "format": "double",
+            "example": 4
+          },
+          "timeFrom": {
+            "type": "string",
+            "description": "Work start time.",
+            "format": "time",
+            "nullable": true,
+            "example": "08:00:00"
+          },
+          "timeUntil": {
+            "type": "string",
+            "description": "Work end time.",
+            "format": "time",
+            "nullable": true,
+            "example": "12:45:00"
+          },
+          "serviceRecordStatusCode": {
+            "maximum": 2919999,
+            "minimum": 2910001,
+            "type": "integer",
+            "description": "C291 - State of the service entry\r\n\r\n2910010 - Provisional              - Provisorisch\r\n\r\n2910020 - Recorded                 - Erfasst\r\n\r\n2910025 - Not ready for billing    - Nicht verrechnungsbereit\r\n\r\n2910030 - Ready for billing        - Verrechnungsbereit\r\n\r\n2910040 - Billed                   - Verrechnet\r\n\r\n2910045 - No billing               - Keine Verrechnung.",
+            "format": "int64",
+            "example": 2910020
+          },
+          "activityCode": {
+            "maximum": 2909999,
+            "minimum": 2900001,
+            "type": "integer",
+            "description": "C290 - Activity.",
+            "format": "int64",
+            "nullable": true
+          },
+          "locked": {
+            "type": "boolean",
+            "description": "The service record is locked for changes in performis UI.",
+            "nullable": true
+          },
+          "machineServiceProviderDayId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "For machine service records only. Identification of the service provider day of the machine operator (person).",
+            "format": "int64",
+            "nullable": true,
+            "example": 842697135
+          },
+          "serviceRecordGuid": {
+            "maxLength": 36,
+            "type": "string",
+            "description": "Globally Unique Identifier of the service record. Is set automatically if not specified.",
+            "format": "uuid",
+            "nullable": true,
+            "example": "196f85a1-d8f6-4cb3-a7c1-4961d379af57"
+          },
+          "noCaccPosting": {
+            "type": "boolean",
+            "description": "Service record will not be posted to cost accounting.",
+            "nullable": true
+          },
+          "origin": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "The system of origin.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "B_HTR"
+          },
+          "originId": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Id in the system of origin.",
+            "nullable": true,
+            "example": "319"
+          },
+          "originStatusCode": {
+            "maximum": 5779999,
+            "minimum": 5770001,
+            "type": "integer",
+            "description": "C577 - Status of the origin\r\n\r\n5770100 - not approved       - nicht freigegeben\r\n\r\n5770200 - partially approved - teilweise freigegeben\r\n\r\n5770500 - approved           - freigegeben.",
+            "format": "int64",
+            "nullable": true,
+            "example": 5770100
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a service record entry."
       }
     },
     "securitySchemes": {
