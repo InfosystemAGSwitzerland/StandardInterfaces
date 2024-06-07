@@ -933,6 +933,193 @@
         }
       }
     },
+    "/api/v1/master-data/service-recording/service-providers": {
+      "get": {
+        "tags": [
+          "MasterData"
+        ],
+        "summary": "Get service providers.",
+        "description": "Returns all matching service providers.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries since the specified date time.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries since the specified change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "serviceProviderId",
+            "in": "query",
+            "description": "Get the entry with the specified service provider id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "Get all entries with the specified origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "originId",
+            "in": "query",
+            "description": "Get all entries with the specified external service provider id - should be used with an origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "employeeId",
+            "in": "query",
+            "description": "Get all entries with the specified employee id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Get all entries with the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Service providers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceRecordingServiceProvider"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/v1/purchasing/orders": {
       "get": {
         "tags": [
@@ -1102,17 +1289,24 @@
               }
             }
           },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Requestor has insufficient rights"
           },
           "500": {
             "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance"
           }
         }
       }
@@ -1497,7 +1691,7 @@
           {
             "name": "originId",
             "in": "query",
-            "description": "Id of the system of origin of the presence time to delete. Used together with the origin.",
+            "description": "Id in the system of origin of the presence time to delete. Used together with the origin.",
             "schema": {
               "type": "string"
             }
@@ -1526,193 +1720,6 @@
           },
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Requestor has insufficient rights"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/v1/service-recording/service-providers": {
-      "get": {
-        "tags": [
-          "ServiceRecording"
-        ],
-        "summary": "Get service providers.",
-        "description": "Returns all matching service providers.",
-        "parameters": [
-          {
-            "name": "X-Requesting-System",
-            "in": "header",
-            "description": "Identifying the system calling the service.",
-            "required": true,
-            "schema": {
-              "maxLength": 50,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-Requesting-User",
-            "in": "header",
-            "description": "Identifying the user calling the service.",
-            "required": true,
-            "schema": {
-              "maxLength": 30,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-Flow-ID",
-            "in": "header",
-            "description": "Optional technical Id (GUID) for call identification.",
-            "schema": {
-              "maxLength": 30,
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-Client-Type",
-            "in": "header",
-            "description": "Optional client type calling the service.",
-            "schema": {
-              "maxLength": 30,
-              "type": "string"
-            }
-          },
-          {
-            "name": "changesSinceDateTime",
-            "in": "query",
-            "description": "Get all entries since the specified date time.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "changesSinceChangeId",
-            "in": "query",
-            "description": "Get all entries since the specified change id.",
-            "schema": {
-              "maximum": 9999999999,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "serviceProviderId",
-            "in": "query",
-            "description": "Get the entry with the specified sercice provider id.",
-            "schema": {
-              "maximum": 9999999999,
-              "minimum": 1,
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "origin",
-            "in": "query",
-            "description": "Get all entries with the specified origin.",
-            "schema": {
-              "maxLength": 200,
-              "type": "string"
-            }
-          },
-          {
-            "name": "originId",
-            "in": "query",
-            "description": "Get all entries with the specified external service provider id - should be used with an origin.",
-            "schema": {
-              "maxLength": 200,
-              "type": "string"
-            }
-          },
-          {
-            "name": "employeeId",
-            "in": "query",
-            "description": "Get all entries with the specified employee id.",
-            "schema": {
-              "maximum": 9999999999,
-              "minimum": 1,
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "companyNo",
-            "in": "query",
-            "description": "Get all entries with the specified company number.",
-            "schema": {
-              "maximum": 999999,
-              "minimum": 1,
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "skip",
-            "in": "query",
-            "description": "Number of entries to skip for pagination.",
-            "schema": {
-              "maximum": 100000,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum number of entries to return.",
-            "schema": {
-              "maximum": 1000,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32",
-              "default": 100
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Service providers.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ServiceRecordingServiceProvider"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input, object invalid",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MaintenanceWindow"
-                }
-              }
-            }
           },
           "401": {
             "description": "Unauthorized"
@@ -1795,7 +1802,7 @@
           {
             "name": "serviceProviderDayId",
             "in": "query",
-            "description": "Get the entries with the specified sercice provider day id.",
+            "description": "Get the entries with the specified service provider day id.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 0,
@@ -1815,7 +1822,7 @@
           {
             "name": "serviceProviderId",
             "in": "query",
-            "description": "Get the entries with the specified sercice provider id.",
+            "description": "Get the entries with the specified service provider id.",
             "schema": {
               "maximum": 9999999999,
               "minimum": 1,
@@ -1892,17 +1899,24 @@
               }
             }
           },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Requestor has insufficient rights"
           },
           "500": {
             "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance"
           }
         }
       },
@@ -2005,17 +2019,24 @@
               }
             }
           },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Requestor has insufficient rights"
           },
           "500": {
             "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance"
           }
         }
       },
@@ -2087,7 +2108,7 @@
           {
             "name": "originId",
             "in": "query",
-            "description": "Id of the system of origin.",
+            "description": "Id in the system of origin.",
             "schema": {
               "maxLength": 200,
               "type": "string"
@@ -2105,20 +2126,429 @@
               }
             }
           },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
           "204": {
             "description": "The service record was deleted successfully."
           },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Requestor has insufficient rights"
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/service-recording/absences": {
+      "get": {
+        "tags": [
+          "ServiceRecording"
+        ],
+        "summary": "Get absences.",
+        "description": "Returns all matching absences.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the date time specified.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the change id specified.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "serviceProviderDayId",
+            "in": "query",
+            "description": "Get the entries with the specified service provider day id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "absenceDate",
+            "in": "query",
+            "description": "Get the entries with the specified Date.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "serviceProviderId",
+            "in": "query",
+            "description": "Get the entries with the specified service provider id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "personnelNo",
+            "in": "query",
+            "description": "Get the entries for the employee with the specified personnel number.",
+            "schema": {
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Get the entries with the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries  to skip  for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceRecordingAbsence"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           },
           "503": {
-            "description": "Service Unavailable"
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ServiceRecording"
+        ],
+        "summary": "Updates an existing absence if internal or external Id match. Creates an absence if neither internal or external Id is provided or no matching record could be found.",
+        "description": "Updates an existing absence if internal or external Id match. Creates an absence if neither internal or external Id is provided or no matching record could be found.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A list of absences to update or create.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ServiceRecordingAbsence"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceRecordingAbsence"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ServiceRecording"
+        ],
+        "summary": "Deletes an absence.",
+        "description": "Deletes an absence.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "absenceId",
+            "in": "query",
+            "description": "Identifies the absence.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "The system of origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "originId",
+            "in": "query",
+            "description": "Id in the system of origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The absence was deleted successfully."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -2133,7 +2563,6 @@
           "companyNo",
           "costType",
           "entryDate",
-          "origin",
           "period",
           "voucherNo"
         ],
@@ -2189,10 +2618,11 @@
             "example": "C47C97C0F4B04096855955CB5AD47444"
           },
           "origin": {
-            "maxLength": 10,
-            "minLength": 1,
+            "maxLength": 200,
             "type": "string",
             "description": "The entry's system of origin.",
+            "nullable": true,
+            "readOnly": true,
             "example": "ISBRW"
           },
           "companyNo": {
@@ -2817,7 +3247,7 @@
         "required": [
           "companyNo",
           "hours",
-          "locked",
+          "isLocked",
           "originId",
           "personnelNo",
           "presenceDate",
@@ -2900,7 +3330,7 @@
             "format": "time",
             "nullable": true
           },
-          "locked": {
+          "isLocked": {
             "type": "boolean",
             "description": "The presence time record is locked for all but the origin system."
           },
@@ -4115,6 +4545,151 @@
         "additionalProperties": false,
         "description": "Represents a supplier entry."
       },
+      "ServiceRecordingAbsence": {
+        "required": [
+          "companyNo",
+          "hours"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 322784
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "absenceId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Technical identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "example": 665588
+          },
+          "serviceProviderDayId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identification of the service provider day.",
+            "format": "int64",
+            "nullable": true,
+            "example": 3269
+          },
+          "serviceProviderId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identification of the service provider.",
+            "format": "int64",
+            "nullable": true,
+            "example": 8715
+          },
+          "absenceDate": {
+            "type": "string",
+            "description": "Date of the absence.",
+            "format": "date",
+            "nullable": true,
+            "example": "2023-12-24"
+          },
+          "absenceTypeId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identification of the absence type.",
+            "format": "int64",
+            "nullable": true,
+            "example": 3269
+          },
+          "hours": {
+            "type": "number",
+            "description": "Duration of absence in hours.",
+            "format": "double",
+            "example": 8
+          },
+          "timeFrom": {
+            "type": "string",
+            "description": "Start of absence.",
+            "format": "date-time",
+            "nullable": true,
+            "example": "2023-02-25 08:00:00"
+          },
+          "timeUntil": {
+            "type": "string",
+            "description": "End of absence.",
+            "format": "date-time",
+            "nullable": true,
+            "example": "2023-02-25 17:00:00"
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Company identification of the entry.",
+            "format": "int64",
+            "example": 25
+          },
+          "personnelNo": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Id of the person/(human) service provider in the external system.",
+            "nullable": true,
+            "example": "1258"
+          },
+          "timePeriodCode": {
+            "maximum": 5759999,
+            "minimum": 5750001,
+            "type": "integer",
+            "description": "C575 - Predefined time periods\r\n\r\n5750020 - Entire day\r\n\r\n5750040 - Morning\r\n\r\n5750060 - Afternoon.",
+            "format": "int64",
+            "nullable": true,
+            "example": 5750020
+          },
+          "absenceApplicationId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identifies the application for this absence.",
+            "format": "int64",
+            "nullable": true,
+            "example": 69874
+          },
+          "isLocked": {
+            "type": "boolean",
+            "description": "This absence is locked for changes in performis UI.",
+            "nullable": true
+          },
+          "origin": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "The system of origin.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "20"
+          },
+          "originId": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Id in the system of origin.",
+            "nullable": true,
+            "example": "1023789456"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an absense entry."
+      },
       "ServiceRecordingServiceProvider": {
         "required": [
           "active",
@@ -4246,7 +4821,6 @@
         "required": [
           "companyNo",
           "quantity",
-          "serviceRecordStatusCode",
           "serviceTypeId"
         ],
         "type": "object",
@@ -4384,11 +4958,10 @@
             "example": "12:45:00"
           },
           "serviceRecordStatusCode": {
-            "maximum": 2919999,
-            "minimum": 2910001,
             "type": "integer",
             "description": "C291 - State of the service entry\r\n\r\n2910010 - Provisional              - Provisorisch\r\n\r\n2910020 - Recorded                 - Erfasst\r\n\r\n2910025 - Not ready for billing    - Nicht verrechnungsbereit\r\n\r\n2910030 - Ready for billing        - Verrechnungsbereit\r\n\r\n2910040 - Billed                   - Verrechnet\r\n\r\n2910045 - No billing               - Keine Verrechnung.",
             "format": "int64",
+            "readOnly": true,
             "example": 2910020
           },
           "activityCode": {
@@ -4399,7 +4972,7 @@
             "format": "int64",
             "nullable": true
           },
-          "locked": {
+          "isLocked": {
             "type": "boolean",
             "description": "The service record is locked for changes in performis UI.",
             "nullable": true
@@ -4414,7 +4987,6 @@
             "example": 842697135
           },
           "serviceRecordGuid": {
-            "maxLength": 36,
             "type": "string",
             "description": "Globally Unique Identifier of the service record. Is set automatically if not specified.",
             "format": "uuid",
