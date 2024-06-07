@@ -45,19 +45,15 @@ At the moment, we enable third party developer to use the following modules via 
   - Preview
     - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_material_management_deliveryNote.json&nocors" target="_blank"><b>Preview</b> Material Management - Delivery Note</a>
     - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_purchase_supplier.json&nocors" target="_blank"><b>Preview</b> Purchase - Supplier</a>
-    - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_service_recording_absence.json&nocors" target="_blank"><b>Preview</b> Service Recording - Absence</a>
     - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_service_recording_allowance.json&nocors" target="_blank"><b>Preview</b> Service Recording - Allowance</a>
     - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_service_recording_allowance_definition.json&nocors" target="_blank"><b>Preview</b> Service Recording - Allowance Definitions</a>
-    - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_service_recording_service_provider.json&nocors" target="_blank"><b>Preview</b> Service Recording - Service Provider</a>
     - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_service_recording_service_provider_day.json&nocors" target="_blank"><b>Preview</b> Service Recording - Service Provider Day</a>
-    - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_service_recording_service_record.json&nocors" target="_blank"><b>Preview</b> Service Recording - Service Record</a>
     - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis-finance-open-item-payment-status.json&nocors" target="_blank"><b>Preview</b> Finance - Payment Status</a>
   
 - BAF - Business Application Functions
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BAF.json&nocors" target="_blank"><b>Current</b> version documentation</a>
   - Preview
     - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2BAF_fixed_assets.json.json&nocors" target="_blank"><b>Preview</b> Fixed Assets</a>
-    - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2BAF_order.json&nocors" target="_blank"><b>Preview</b> Order</a>
 
 - ressys
   - available soon
