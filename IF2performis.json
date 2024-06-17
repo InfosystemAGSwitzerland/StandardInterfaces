@@ -291,6 +291,299 @@
         }
       }
     },
+    "/api/v1/finance/accounting/receivables/payment-statuses": {
+      "get": {
+        "tags": [
+          "Finance"
+        ],
+        "summary": "Gets receivables payment status information.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the date time specified.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the change id specified.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "openItemId",
+            "in": "query",
+            "description": "Get the entry with the specified unique open item id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Get all entries with the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "voucherType",
+            "in": "query",
+            "description": "Get all entries with the specified voucher type. Voucher no, voucher type and company no may be used together to identify the open items of a specifiy voucher.",
+            "schema": {
+              "maxLength": 4,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "name": "voucherNo",
+            "in": "query",
+            "description": "Get all entries with the specified voucher number. Voucher no, voucher type and company no may be used together to identify the open items of a specifiy voucher.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "financialInterfaceId",
+            "in": "query",
+            "description": "Get all the entries with the specified financial interface identification. Normally there is only one open item per voucher.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 10000
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Receivables payment status information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReceivablesPaymentStatus"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Finance"
+        ],
+        "summary": "Set the status of an open item payment status.",
+        "description": "To settle an receivable, provide an identification for the open item which is either:\r\n            \r\n- Open Item No & Company No\r\n            \r\n- Voucher No, Voucher Type, Company No & Line No\r\n            \r\n- Financial Interface Id & line no\r\n            \r\nYou must provide the amount which is still open. This allows to settle a receivable partly.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ReceivablesPaymentStatus"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Open item payment status information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReceivablesPaymentStatus"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/v1/master-data/material-management/articles": {
       "get": {
         "tags": [
@@ -1358,14 +1651,6 @@
             }
           },
           {
-            "name": "searchString",
-            "in": "query",
-            "description": "Optional search string for looking up a record within name and searchterm fields.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "changesSinceDateTime",
             "in": "query",
             "description": "Get all entries since the specified date time.",
@@ -1438,6 +1723,14 @@
             }
           },
           {
+            "name": "approvedOnly",
+            "in": "query",
+            "description": "Get only the entries that are approved.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "skip",
             "in": "query",
             "description": "Number of entries to skip for pagination.",
@@ -1469,7 +1762,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/PresenceTime"
+                    "$ref": "#/components/schemas/ServiceRecordingPresenceTime"
                   }
                 }
               }
@@ -1559,7 +1852,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/PresenceTime"
+                  "$ref": "#/components/schemas/ServiceRecordingPresenceTime"
                 }
               }
             },
@@ -1567,7 +1860,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/PresenceTime"
+                  "$ref": "#/components/schemas/ServiceRecordingPresenceTime"
                 }
               }
             },
@@ -1575,7 +1868,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/PresenceTime"
+                  "$ref": "#/components/schemas/ServiceRecordingPresenceTime"
                 }
               }
             }
@@ -1589,7 +1882,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/PresenceTime"
+                    "$ref": "#/components/schemas/ServiceRecordingPresenceTime"
                   }
                 }
               }
@@ -1718,8 +2011,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "The presence time was deleted successfully."
           },
           "401": {
             "description": "Unauthorized"
@@ -1849,6 +2142,14 @@
               "minimum": 1,
               "type": "integer",
               "format": "int64"
+            }
+          },
+          {
+            "name": "approvedOnly",
+            "in": "query",
+            "description": "Get only the entries that are approved.",
+            "schema": {
+              "type": "boolean"
             }
           },
           {
@@ -2231,7 +2532,7 @@
           {
             "name": "absenceDate",
             "in": "query",
-            "description": "Get the entries with the specified Date.",
+            "description": "Get the entries with the specified date.",
             "schema": {
               "type": "string",
               "format": "date"
@@ -2267,6 +2568,14 @@
               "minimum": 1,
               "type": "integer",
               "format": "int64"
+            }
+          },
+          {
+            "name": "approvedOnly",
+            "in": "query",
+            "description": "Get only the entries that are approved.",
+            "schema": {
+              "type": "boolean"
             }
           },
           {
@@ -2540,6 +2849,404 @@
           },
           "204": {
             "description": "The absence was deleted successfully."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/service-recording/allowances": {
+      "get": {
+        "tags": [
+          "ServiceRecording"
+        ],
+        "summary": "Get allowances.",
+        "description": "Returns all matching allowances.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the date time specified.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the change id specified.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "serviceProviderDayId",
+            "in": "query",
+            "description": "Get the entries with the specified service provider id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "serviceProviderId",
+            "in": "query",
+            "description": "Get the entries with the specified service provider id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "allowanceDate",
+            "in": "query",
+            "description": "Get the entries with the specified date.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Get the entries with the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "approvedOnly",
+            "in": "query",
+            "description": "Get only the entries that are approved.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries  to skip  for pagination.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 10000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceRecordingAllowance"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ServiceRecording"
+        ],
+        "summary": "Updates an existing day allowance if internal or external Id match. Creates a day allowance if neither internal or external Id is provided or no matching record could be found.",
+        "description": "Updates an existing absence if internal or external Id match. Creates an absence if neither internal or external Id is provided or no matching record could be found.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A list of allowances to update or create.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ServiceRecordingAllowance"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceRecordingAllowance"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ServiceRecording"
+        ],
+        "summary": "Deletes an allowance.",
+        "description": "Deletes an allowance.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "allowanceId",
+            "in": "query",
+            "description": "Identifier of an allowance.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "The system of origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "originId",
+            "in": "query",
+            "description": "The identification in the system of origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The allowance was deleted successfully."
           },
           "401": {
             "description": "Unauthorized"
@@ -3242,114 +3949,6 @@
         },
         "additionalProperties": false,
         "description": "The attribute value set."
-      },
-      "PresenceTime": {
-        "required": [
-          "companyNo",
-          "hours",
-          "isLocked",
-          "originId",
-          "personnelNo",
-          "presenceDate",
-          "timeFrom"
-        ],
-        "type": "object",
-        "properties": {
-          "changeId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Change identification of the entity.",
-            "format": "int64",
-            "nullable": true,
-            "readOnly": true
-          },
-          "changeDate": {
-            "type": "string",
-            "description": "Change date of the entity.",
-            "format": "date-time",
-            "nullable": true,
-            "readOnly": true
-          },
-          "presenceTimeId": {
-            "maximum": 9999999999,
-            "minimum": 0,
-            "type": "integer",
-            "description": "Unique identifier of the presence time dataset.",
-            "format": "int64",
-            "nullable": true
-          },
-          "companyNo": {
-            "maximum": 999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "The company number identifies the customer via the corresponding number in the mandate system.",
-            "format": "int64"
-          },
-          "serviceProviderId": {
-            "maximum": 9999999999,
-            "minimum": 0,
-            "type": "integer",
-            "description": "Id of the \"Leistungsträger\".",
-            "format": "int64",
-            "nullable": true
-          },
-          "serviceProviderDayId": {
-            "maximum": 9999999999,
-            "minimum": 0,
-            "type": "integer",
-            "description": "Identifier to the \"Leistungsträger-Tag\".",
-            "format": "int64",
-            "nullable": true
-          },
-          "personnelNo": {
-            "maxLength": 50,
-            "minLength": 1,
-            "type": "string",
-            "description": "Id of the \"Leistungsträger\" in the external system.",
-            "nullable": true
-          },
-          "presenceDate": {
-            "type": "string",
-            "description": "Date of presence.",
-            "format": "date"
-          },
-          "hours": {
-            "type": "number",
-            "description": "Hours the service provider was present.",
-            "format": "double"
-          },
-          "timeFrom": {
-            "type": "string",
-            "description": "Time the service provider started work.",
-            "format": "time"
-          },
-          "timeUntil": {
-            "type": "string",
-            "description": "Time the service provider ended work.",
-            "format": "time",
-            "nullable": true
-          },
-          "isLocked": {
-            "type": "boolean",
-            "description": "The presence time record is locked for all but the origin system."
-          },
-          "origin": {
-            "maxLength": 10,
-            "type": "string",
-            "description": "The system of origin.",
-            "nullable": true,
-            "readOnly": true
-          },
-          "originId": {
-            "maxLength": 50,
-            "minLength": 1,
-            "type": "string",
-            "description": "Id in the system of origin."
-          }
-        },
-        "additionalProperties": false,
-        "description": "The DTO for a presence time."
       },
       "ProblemDetails": {
         "type": "object",
@@ -4545,8 +5144,162 @@
         "additionalProperties": false,
         "description": "Represents a supplier entry."
       },
+      "ReceivablesPaymentStatus": {
+        "required": [
+          "openAmount"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "description": "Change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 378197
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true,
+            "example": "2019-08-24T14:15:22Z"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "minLength": 1,
+            "type": "string",
+            "description": "User who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Company identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "example": 100
+          },
+          "voucherType": {
+            "maxLength": 4,
+            "minLength": 1,
+            "type": "string",
+            "description": "Type of voucher e.g. 'FA' for invoice.",
+            "nullable": true,
+            "example": "FA"
+          },
+          "voucherNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Voucher number of the receivable.",
+            "format": "int64",
+            "nullable": true,
+            "example": 322784
+          },
+          "lineNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Line number of the receivable within the voucher.",
+            "format": "int64",
+            "nullable": true,
+            "example": 1
+          },
+          "openItemId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique open item identifier of receivable.",
+            "format": "int64",
+            "nullable": true,
+            "example": 322784
+          },
+          "financialInterfaceId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the voucher.",
+            "format": "int64",
+            "nullable": true,
+            "example": 322784
+          },
+          "totalAmount": {
+            "maximum": 99999999.99,
+            "minimum": -99999999.99,
+            "type": "number",
+            "description": "Total amount of the receivable.",
+            "format": "double",
+            "nullable": true,
+            "readOnly": true,
+            "example": 108.1
+          },
+          "openAmount": {
+            "maximum": 99999999.99,
+            "minimum": -99999999.99,
+            "type": "number",
+            "description": "Amount still open. If value is 0, the receivable is fully settled.",
+            "format": "double",
+            "example": 108.1
+          },
+          "openItemCriterion1": {
+            "maximum": 99999999,
+            "minimum": 10000,
+            "type": "integer",
+            "description": "Open item criterion - used to categorise open items.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 63700001
+          },
+          "openItemCriterion2": {
+            "maximum": 99999999,
+            "minimum": 10000,
+            "type": "integer",
+            "description": "Open item criterion - used to categorise open items.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 12340001
+          },
+          "openItemCriterion3": {
+            "maximum": 99999999,
+            "minimum": 10000,
+            "type": "integer",
+            "description": "Open item criterion - used to categorise open items.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 45670001
+          },
+          "openItemCriterion4": {
+            "maximum": 99999999,
+            "minimum": 10000,
+            "type": "integer",
+            "description": "Open item criterion - used to categorise open items.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 12380001
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about the payment status of an open item."
+      },
       "ServiceRecordingAbsence": {
         "required": [
+          "absenceTypeId",
           "companyNo",
           "hours"
         ],
@@ -4609,7 +5362,6 @@
             "type": "integer",
             "description": "Identification of the absence type.",
             "format": "int64",
-            "nullable": true,
             "example": 3269
           },
           "hours": {
@@ -4671,6 +5423,11 @@
             "description": "This absence is locked for changes in performis UI.",
             "nullable": true
           },
+          "isApproved": {
+            "type": "boolean",
+            "description": "This absence is approved.",
+            "readOnly": true
+          },
           "origin": {
             "maxLength": 200,
             "type": "string",
@@ -4688,7 +5445,272 @@
           }
         },
         "additionalProperties": false,
-        "description": "Represents an absense entry."
+        "description": "Represents an absence entry."
+      },
+      "ServiceRecordingAllowance": {
+        "required": [
+          "allowanceDefinitionId",
+          "apply",
+          "companyNo",
+          "exclude"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 369852147
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "allowanceId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Identification of the allowance.",
+            "format": "int64",
+            "nullable": true,
+            "example": 26873
+          },
+          "serviceProviderDayId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Identification of the service provider day.",
+            "format": "int64",
+            "nullable": true,
+            "example": 36874
+          },
+          "serviceProviderId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Identification of the service provider.",
+            "format": "int64",
+            "nullable": true,
+            "example": 555
+          },
+          "allowanceDate": {
+            "type": "string",
+            "description": "Date of the allowance.",
+            "format": "date",
+            "nullable": true,
+            "example": "2024-05-15"
+          },
+          "allowanceDefinitionId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identification of the allowance definition.",
+            "format": "int64",
+            "example": 15795
+          },
+          "baseValue": {
+            "type": "number",
+            "description": "Base value for the calculation.",
+            "format": "double",
+            "nullable": true,
+            "example": 8.33333
+          },
+          "percentage": {
+            "maximum": 999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Percentage rate for the calculation.",
+            "format": "double",
+            "nullable": true,
+            "example": 50
+          },
+          "amount": {
+            "maximum": 10000000000,
+            "minimum": 0,
+            "type": "number",
+            "description": "Amount of the allowance.",
+            "format": "double",
+            "nullable": true,
+            "example": 4.25
+          },
+          "apply": {
+            "type": "boolean",
+            "description": "Shows whether the allowance will be applied or not."
+          },
+          "exclude": {
+            "type": "boolean",
+            "description": "Shows if the allowance is excluded from use."
+          },
+          "isLocked": {
+            "type": "boolean",
+            "description": "The allowance is locked for changes in performis UI.",
+            "nullable": true
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Company identification of the entry.",
+            "format": "int64",
+            "example": 25
+          },
+          "orderNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Order identifier.",
+            "nullable": true,
+            "example": "K-658-55"
+          },
+          "costCenterNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Cost center identifier.",
+            "nullable": true,
+            "example": "C-222"
+          },
+          "isApproved": {
+            "type": "boolean",
+            "description": "This allowance is approved.",
+            "readOnly": true
+          },
+          "origin": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "The system of origin.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "B_HTR"
+          },
+          "originId": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Id in the system of origin.",
+            "nullable": true,
+            "example": "319"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an allowance entry."
+      },
+      "ServiceRecordingPresenceTime": {
+        "required": [
+          "companyNo",
+          "hours",
+          "isLocked",
+          "originId",
+          "personnelNo",
+          "presenceDate",
+          "timeFrom"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Change identification of the entity.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entity.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "presenceTimeId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Unique identifier of the presence time dataset.",
+            "format": "int64",
+            "nullable": true
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The company number identifies the customer via the corresponding number in the mandate system.",
+            "format": "int64"
+          },
+          "serviceProviderId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Id of the \"Leistungsträger\".",
+            "format": "int64",
+            "nullable": true
+          },
+          "serviceProviderDayId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identifier to the \"Leistungsträger-Tag\".",
+            "format": "int64",
+            "nullable": true
+          },
+          "personnelNo": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Id of the \"Leistungsträger\" in the external system.",
+            "nullable": true
+          },
+          "presenceDate": {
+            "type": "string",
+            "description": "Date of presence.",
+            "format": "date"
+          },
+          "hours": {
+            "type": "number",
+            "description": "Hours the service provider was present.",
+            "format": "double"
+          },
+          "timeFrom": {
+            "type": "string",
+            "description": "Time the service provider started work.",
+            "format": "time"
+          },
+          "timeUntil": {
+            "type": "string",
+            "description": "Time the service provider ended work.",
+            "format": "time",
+            "nullable": true
+          },
+          "isLocked": {
+            "type": "boolean",
+            "description": "The presence time record is locked for all but the origin system."
+          },
+          "isApproved": {
+            "type": "boolean",
+            "description": "This presence time is approved.",
+            "readOnly": true
+          },
+          "origin": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "The system of origin.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "originId": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Id in the system of origin."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a presence time entry."
       },
       "ServiceRecordingServiceProvider": {
         "required": [
@@ -4997,6 +6019,11 @@
             "type": "boolean",
             "description": "Service record will not be posted to cost accounting.",
             "nullable": true
+          },
+          "isApproved": {
+            "type": "boolean",
+            "description": "This service record is approved.",
+            "readOnly": true
           },
           "origin": {
             "maxLength": 200,
