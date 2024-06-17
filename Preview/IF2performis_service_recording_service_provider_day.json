@@ -260,7 +260,7 @@
             "description": "Hours that are relevant for allowences.",
             "format": "double"
           },
-          "dayOff": {
+          "IsDayOff": {
             "type": "boolean",
             "description": "Is a day off."
           },
@@ -268,7 +268,7 @@
             "type": "boolean",
             "description": "A work hour rule was violated."
           },
-          "approved": {
+          "isApproved": {
             "type": "boolean",
             "description": "The service provider day was approved by the authorized user."
           },
@@ -280,7 +280,7 @@
             "description": "Id of the service provider.",
             "example": 7684411397
           },
-          "dayValid": {
+          "isDayValid": {
             "type": "boolean",
             "description": "The record was checked by all rules and is valid."
           },

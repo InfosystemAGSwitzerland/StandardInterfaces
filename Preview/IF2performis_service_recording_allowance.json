@@ -48,9 +48,6 @@
           "403": {
             "description": "Requestor has insufficient rights"
           },
-          "404": {
-            "description": "No Record found"
-          },
           "500": {
             "description": "Internal Server Error"
           },
@@ -106,6 +103,70 @@
             "description": "Optional client type calling the service."
           },
           {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the date time specified.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the change id specified.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "serviceProviderDayId",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 3456789012,
+              "minimum": 0,
+              "maximum": 9999999999
+            },
+            "in": "query",
+            "description": "Get the entries with the specified service provider id."
+          },
+          {
+            "name": "serviceProviderId",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1234567890,
+              "minimum": 0,
+              "maximum": 9999999999
+            },
+            "in": "query",
+            "description": "Get the entries with the specified service provider id."
+          },
+          {
+            "name": "allowanceDate",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "in": "query",
+            "description": "Date of the allowance."
+          },
+          {
+            "name": "companyNo",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "maximum": 999999,
+              "minimum": 1
+            },
+            "in": "query",
+            "description": "Get the entries with the specified company number."
+          },
+          {
             "name": "skip",
             "in": "query",
             "description": "Number of entries  to skip  for pagination.",
@@ -127,70 +188,6 @@
               "format": "int32",
               "default": 1000
             }
-          },
-          {
-            "name": "changesSinceDateTime",
-            "in": "query",
-            "description": "Get all entries since the specified date time.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "changesSinceChangeId",
-            "in": "query",
-            "description": "Get all entries since the specified change id.",
-            "schema": {
-              "maximum": 9999999999,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "serviceProviderDayId",
-            "schema": {
-              "type": "integer",
-              "format": "int64",
-              "example": 1234567890,
-              "minimum": 0,
-              "maximum": 9999999999
-            },
-            "in": "query",
-            "description": "Key to fetch all allowances from the given day/performance/performing unit."
-          },
-          {
-            "name": "serviceProviderId",
-            "schema": {
-              "type": "integer",
-              "format": "int64",
-              "example": 1234567890,
-              "minimum": 0,
-              "maximum": 9999999999
-            },
-            "in": "query",
-            "description": "Identifies the service provider who gets the allowance."
-          },
-          {
-            "name": "allowanceDate",
-            "schema": {
-              "type": "string",
-              "format": "date"
-            },
-            "in": "query",
-            "description": "Date of the allowance."
-          },
-          {
-            "name": "companyNo",
-            "schema": {
-              "type": "integer",
-              "format": "int64",
-              "maximum": 999999,
-              "minimum": 1
-            },
-            "in": "query",
-            "description": "Identifies the company of the allowances."
           }
         ],
         "description": "Returns all matching allowances."
@@ -382,6 +379,26 @@
             "in": "query",
             "name": "allowanceId",
             "description": "Identifier of an allowance."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 10,
+              "example": "B_HTR"
+            },
+            "in": "query",
+            "name": "origin",
+            "description": "The system of origin."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 50,
+              "example": "319"
+            },
+            "in": "query",
+            "name": "originId",
+            "description": "The identification in the system of origin."
           }
         ],
         "description": "Deletes an allowance."
@@ -392,7 +409,13 @@
   "components": {
     "schemas": {
       "serviceRecordingAllowance": {
-        "title": "Allowance",
+        "required": [
+          "allowanceDefinitionId",
+          "companyNo",
+          "apply",
+          "locked",
+          "exclude"
+        ],
         "type": "object",
         "properties": {
           "changeId": {
@@ -414,7 +437,7 @@
             "format": "int64",
             "minimum": 1,
             "maximum": 9999999999,
-            "description": "Id of the allowance.",
+            "description": "Identification of the allowance.",
             "example": 26873
           },
           "serviceProviderDayId": {
@@ -422,7 +445,7 @@
             "format": "int64",
             "minimum": 1,
             "maximum": 9999999999,
-            "description": "Id of the service provider day.",
+            "description": "Identification of the service provider day.",
             "example": 36874
           },
           "serviceProviderId": {
@@ -430,7 +453,7 @@
             "format": "int64",
             "minimum": 1,
             "maximum": 9999999999,
-            "description": "Id of the service provider.",
+            "description": "Identification of the service provider.",
             "example": 555
           },
           "allowanceDate": {
@@ -444,22 +467,8 @@
             "format": "int64",
             "minimum": 0,
             "maximum": 9999999999,
-            "description": "Id of the allowance definition.",
+            "description": "Identification of the allowance definition.",
             "example": 15795
-          },
-          "companyNo": {
-            "type": "integer",
-            "format": "int64",
-            "minimum": 1,
-            "maximum": 999999,
-            "description": "Identifies the company of the allowance.",
-            "example": 25
-          },
-          "orderNo": {
-            "type": "string",
-            "maxLength": 20,
-            "description": "The OrderNo identifies the order to be booked in accounting. This is the actual order no of the order.",
-            "example": "K-658-55"
           },
           "baseValue": {
             "type": "number",
@@ -470,28 +479,45 @@
           "percentage": {
             "type": "number",
             "format": "decimal",
-            "example": 50,
             "minimum": 0,
-            "maximum": 100,
-            "description": "Percentage rate for the calculation.."
+            "maximum": 999.99,
+            "description": "Percentage rate for the calculation.",
+            "example": 50
           },
           "amount": {
             "type": "number",
             "format": "decimal",
+            "minimum": 0,
+            "maximum": 10000000000,
             "description": "Amount of the allowance.",
             "example": 4.25
           },
           "apply": {
             "type": "boolean",
-            "description": "Shows whether the allowance is applied or not."
-          },
-          "locked": {
-            "type": "boolean",
-            "description": "Shows whether the allowance is locked for changes."
+            "description": "Shows whether the allowance will applied or not."
           },
           "exclude": {
             "type": "boolean",
             "description": "Shows if the allowance is excluded from use."
+          },
+          "isLocked": {
+            "type": "boolean",
+            "description": "The service record is locked for changes in performis UI.",
+            "nullable": true
+          },
+          "companyNo": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 999999,
+            "description": "Company identification of the entry.",
+            "example": 25
+          },
+          "orderNo": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "Order identifier.",
+            "example": "K-658-55"
           },
           "costCenterNo": {
             "type": "string",
@@ -500,26 +526,21 @@
             "example": "C-222"
           },
           "origin": {
+            "maxLength": 200,
             "type": "string",
-            "maxLength": 10,
             "description": "The system of origin.",
-            "example": "25"
+            "nullable": true,
+            "readOnly": true,
+            "example": "B_HTR"
           },
           "originId": {
+            "maxLength": 200,
             "type": "string",
-            "maxLength": 50,
-            "description": "Id of the system of origin.",
-            "example": "1023789456"
+            "description": "Id in the system of origin.",
+            "nullable": true,
+            "example": "319"
           }
         },
-        "required": [
-          "allowanceId",
-          "apply",
-          "locked",
-          "exclude",
-          "origin",
-          "originId"
-        ],
         "description": "Represents an allowance entry."
       },
       "problemDetails": {
