@@ -141,7 +141,7 @@
           {
             "schema": {
               "type": "string",
-              "maxLength": 30
+              "maxLength": 128
             },
             "in": "header",
             "name": "X-Flow-ID",
