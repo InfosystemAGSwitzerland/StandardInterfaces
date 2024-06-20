@@ -50,7 +50,9 @@ At the moment, we enable third party developer to use the following modules via 
 - BAF - Business Application Functions
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BAF.json&nocors" target="_blank"><b>Current</b> version documentation</a>
   - Preview
-    - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2BAF_fixed_assets.json.json&nocors" target="_blank"><b>Preview</b> Fixed Assets</a>
+    - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2BAF_fixed_assets.json&nocors" target="_blank"><b>Preview</b> Fixed Assets</a>
+
+
 
 - ressys
   - available soon
