@@ -89,7 +89,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
