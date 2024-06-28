@@ -606,7 +606,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -619,7 +619,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -629,7 +629,7 @@
             }
           },
           "503": {
-            "description": "Service Unavailable",
+            "description": "Service Unavailable.",
             "content": {
               "application/json": {
                 "schema": {
@@ -639,13 +639,13 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error."
           }
         }
       }
@@ -655,7 +655,7 @@
         "tags": [
           "MasterData"
         ],
-        "summary": "Search for project-structures",
+        "summary": "Search for project-structures.",
         "description": "By passing in the appropriate options, the service searches for project-structures in the system.",
         "parameters": [
           {
@@ -750,7 +750,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -763,7 +763,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -773,7 +773,7 @@
             }
           },
           "503": {
-            "description": "Service Unavailable",
+            "description": "Service Unavailable.",
             "content": {
               "application/json": {
                 "schema": {
@@ -783,13 +783,13 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error."
           }
         }
       }
@@ -905,7 +905,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -918,7 +918,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -928,7 +928,7 @@
             }
           },
           "503": {
-            "description": "Service Unavailable",
+            "description": "Service Unavailable.",
             "content": {
               "application/json": {
                 "schema": {
@@ -938,13 +938,13 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error."
           }
         }
       }
@@ -1059,7 +1059,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1072,7 +1072,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1082,7 +1082,7 @@
             }
           },
           "503": {
-            "description": "Service Unavailable",
+            "description": "Service Unavailable.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1092,13 +1092,13 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error."
           }
         }
       }
@@ -1240,7 +1240,7 @@
           }
         ],
         "requestBody": {
-          "description": "Set of job time stamps to assign",
+          "description": "Set of job time stamps to assign.",
           "content": {
             "application/json": {
               "schema": {
@@ -1362,7 +1362,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1375,7 +1375,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1385,7 +1385,7 @@
             }
           },
           "503": {
-            "description": "Service Unavailable",
+            "description": "Service Unavailable.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1395,13 +1395,13 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error."
           }
         }
       },
@@ -1472,7 +1472,7 @@
         },
         "responses": {
           "201": {
-            "description": "Created",
+            "description": "Created.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1482,7 +1482,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1492,7 +1492,7 @@
             }
           },
           "503": {
-            "description": "Service Unavailable",
+            "description": "Service Unavailable.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1502,13 +1502,13 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error."
           }
         }
       }
@@ -1597,7 +1597,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1610,7 +1610,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1620,7 +1620,7 @@
             }
           },
           "503": {
-            "description": "Service Unavailable",
+            "description": "Service Unavailable.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1630,13 +1630,13 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error."
           }
         }
       }
@@ -1725,7 +1725,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1738,7 +1738,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1748,7 +1748,7 @@
             }
           },
           "503": {
-            "description": "Service Unavailable",
+            "description": "Service Unavailable.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1758,13 +1758,13 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error."
           }
         }
       },
@@ -1836,7 +1836,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1846,7 +1846,7 @@
             }
           },
           "201": {
-            "description": "Created",
+            "description": "Created.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1856,7 +1856,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1866,7 +1866,7 @@
             }
           },
           "503": {
-            "description": "Service Unavailable",
+            "description": "Service Unavailable.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1876,13 +1876,13 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error."
           }
         }
       }
@@ -1971,7 +1971,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1984,7 +1984,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1994,7 +1994,7 @@
             }
           },
           "503": {
-            "description": "Service Unavailable",
+            "description": "Service Unavailable.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2004,13 +2004,13 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error."
           }
         }
       },
@@ -2082,7 +2082,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2092,7 +2092,7 @@
             }
           },
           "201": {
-            "description": "Created",
+            "description": "Created.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2102,7 +2102,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2112,7 +2112,7 @@
             }
           },
           "503": {
-            "description": "Service Unavailable",
+            "description": "Service Unavailable.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2122,13 +2122,13 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error."
           }
         }
       }
@@ -2182,7 +2182,7 @@
           {
             "name": "skip",
             "in": "query",
-            "description": "Number of records to skip for pagination",
+            "description": "Number of records to skip for pagination.",
             "schema": {
               "maximum": 100000,
               "minimum": 0,
@@ -2205,7 +2205,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Maximum number of records to return",
+            "description": "Maximum number of records to return.",
             "schema": {
               "maximum": 100,
               "minimum": 0,
@@ -2217,7 +2217,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2230,7 +2230,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2240,7 +2240,7 @@
             }
           },
           "503": {
-            "description": "Service Unavailable",
+            "description": "Service Unavailable.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2250,13 +2250,13 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error."
           }
         }
       },
@@ -2264,7 +2264,7 @@
         "tags": [
           "RentalJob"
         ],
-        "summary": "Modify job completion",
+        "summary": "Modify job completion.",
         "description": "Sets the rental return for a given job id.",
         "parameters": [
           {
@@ -2307,7 +2307,7 @@
           }
         ],
         "requestBody": {
-          "description": "return to set on job Id",
+          "description": "return to set on job Id.",
           "content": {
             "application/json": {
               "schema": {
@@ -2328,7 +2328,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2338,7 +2338,7 @@
             }
           },
           "201": {
-            "description": "Created",
+            "description": "Created.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2348,7 +2348,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2358,7 +2358,7 @@
             }
           },
           "503": {
-            "description": "Service Unavailable",
+            "description": "Service Unavailable.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2368,13 +2368,13 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error."
           }
         }
       }
@@ -2463,7 +2463,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2476,7 +2476,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2486,7 +2486,7 @@
             }
           },
           "503": {
-            "description": "Service Unavailable",
+            "description": "Service Unavailable.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2496,13 +2496,13 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error."
           }
         }
       }
@@ -2512,7 +2512,7 @@
         "tags": [
           "RentalJob"
         ],
-        "summary": "Modify job transport positions checklist",
+        "summary": "Modify job transport positions checklist.",
         "description": "Updates the loaded or unloaded status on an existing set of job transport.",
         "parameters": [
           {
@@ -2576,7 +2576,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2586,7 +2586,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2596,7 +2596,7 @@
             }
           },
           "503": {
-            "description": "Service Unavailable",
+            "description": "Service Unavailable.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2606,16 +2606,16 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden."
           },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error."
           }
         }
       }
@@ -2704,7 +2704,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2717,7 +2717,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2727,7 +2727,7 @@
             }
           },
           "503": {
-            "description": "Service Unavailable",
+            "description": "Service Unavailable.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2737,13 +2737,13 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error."
           }
         }
       },
@@ -2824,7 +2824,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2837,7 +2837,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2847,7 +2847,7 @@
             }
           },
           "503": {
-            "description": "Service Unavailable",
+            "description": "Service Unavailable.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2857,13 +2857,503 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized."
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
+    "/api/v1/rental/jobs/surcharges": {
+      "get": {
+        "tags": [
+          "RentalJob"
+        ],
+        "summary": "Search for job surcharges.",
+        "description": "By passing in the appropriate options, the service searches for job surcharges in the system.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical ID (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "jobId",
+            "in": "query",
+            "description": "Required to retrieve records of specific job.",
+            "required": true,
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JobSurcharge"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "RentalJob"
+        ],
+        "summary": "Modify job surchages.",
+        "description": "Sets the job surcharges for a given job id.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical ID (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Job surcharges to be set on job id.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/JobSurcharge"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JobSurcharge"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JobSurcharge"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
+    "/api/v1/rental/jobs/problems": {
+      "get": {
+        "tags": [
+          "RentalJob"
+        ],
+        "summary": "Search for job problems.",
+        "description": "By passing in the appropriate options, the service searches for job problems in the system.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "jobId",
+            "in": "query",
+            "description": "Required to retrieve records of specific job.",
+            "required": true,
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JobProblem"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "RentalJob"
+        ],
+        "summary": "Modify job problems.",
+        "description": "Set the job problems for a given job id.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Job problems to be set on job id.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/JobProblem"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JobProblem"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JobProblem"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
           }
         }
       }
@@ -2884,13 +3374,13 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "The id when the entity was last changed.",
+            "description": "Gets the id when the entity was last changed.",
             "format": "int64",
             "nullable": true
           },
           "changeDate": {
             "type": "string",
-            "description": "The date and time when the entity was last changed.",
+            "description": "Gets the date and time when the entity was last changed.",
             "format": "date-time",
             "nullable": true
           },
@@ -2898,78 +3388,78 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Technical identification number of the accessory.",
+            "description": "Gets or sets technical identification number of the accessory.",
             "format": "int64",
             "nullable": true
           },
           "externalAccessoryId": {
             "maxLength": 50,
             "type": "string",
-            "description": "External technical identification number of the accessory - may be used instead of Leva.Manager.AssetResource.Interface.Accessory.Accessory.AccessoryId.",
+            "description": "Gets or sets external technical identification number of the accessory - may be used instead of Leva.Manager.AssetResource.Interface.Accessory.Accessory.AccessoryId.",
             "nullable": true
           },
           "origin": {
             "maxLength": 10,
             "type": "string",
-            "description": "Origin of the entity.",
+            "description": "Gets or sets origin of the entity.",
             "nullable": true
           },
           "active": {
             "type": "boolean",
-            "description": "Is this accessory active or not."
+            "description": "Gets or sets a value indicating whether is this accessory active or not."
           },
           "description": {
             "maxLength": 200,
             "minLength": 1,
             "type": "string",
-            "description": "Accessory's name."
+            "description": "Gets or sets accessory's name."
           },
           "accessoryDisplayType": {
             "$ref": "#/components/schemas/AccessoryDisplayType"
           },
           "numberOfItems": {
             "type": "integer",
-            "description": "The exact number of available accessories. Required when Leva.Manager.AssetResource.Interface.Accessory.Accessory.AccessoryDisplayType is set to \"QUANTITY\".",
+            "description": "Gets or sets the exact number of available accessories. Required when Leva.Manager.AssetResource.Interface.Accessory.Accessory.AccessoryDisplayType is set to \"QUANTITY\".",
             "format": "int64",
             "nullable": true
           },
           "identification": {
             "maxLength": 200,
             "type": "string",
-            "description": "Identification or serial number of the accessory. Required when Leva.Manager.AssetResource.Interface.Accessory.Accessory.AccessoryDisplayType is set to \"IDENTIFICATION\".",
+            "description": "Gets or sets identification or serial number of the accessory. Required when Leva.Manager.AssetResource.Interface.Accessory.Accessory.AccessoryDisplayType is set to \"IDENTIFICATION\".",
             "nullable": true
           },
           "branchCode": {
             "maximum": 45629999,
             "minimum": 45620000,
             "type": "integer",
-            "description": "C4562 identification code of the branch to which the machine belongs to.",
+            "description": "Gets or sets c4562 identification code of the branch to which the machine belongs to.",
             "format": "int64",
             "nullable": true
           },
           "isExternalResource": {
             "type": "boolean",
-            "description": "A value indicating whether the resource is external."
+            "description": "Gets or sets a value indicating whether a value indicating whether the resource is external."
           },
           "schedulingGroupCode": {
             "maximum": 45429999,
             "minimum": 45420000,
             "type": "integer",
-            "description": "C4542 code of the accessory's scheduling group that combines accessories of the same type and use (not necessarily the same model or manufacturer but can fullfil the same job requirements).",
+            "description": "Gets or sets c4542 code of the accessory's scheduling group that combines accessories of the same type and use (not necessarily the same model or manufacturer but can fullfil the same job requirements).",
             "format": "int64"
           },
           "costCenterNo": {
             "maxLength": 20,
             "minLength": 1,
             "type": "string",
-            "description": "Cost center number for the accessory.",
+            "description": "Gets or sets cost center number for the accessory.",
             "nullable": true
           },
           "ownerCompanyNo": {
             "maximum": 999999,
             "minimum": 1,
             "type": "integer",
-            "description": "The number of the company that owns the accessory.",
+            "description": "Gets or sets the number of the company that owns the accessory.",
             "format": "int64",
             "nullable": true
           },
@@ -2978,7 +3468,7 @@
             "items": {
               "$ref": "#/components/schemas/SchedulingGroup"
             },
-            "description": "A list of additional scheduling groups. A scheduling group combines accessories of the same type and use (not necessarily the same model or manufacturer).",
+            "description": "Gets or sets a list of additional scheduling groups. A scheduling group combines accessories of the same type and use (not necessarily the same model or manufacturer).",
             "nullable": true
           }
         },
@@ -3005,56 +3495,56 @@
           "street": {
             "maxLength": 43,
             "type": "string",
-            "description": "Street name without house number.",
+            "description": "Gets or sets street name without house number.",
             "nullable": true
           },
           "houseNo": {
             "maxLength": 12,
             "type": "string",
-            "description": "House number.",
+            "description": "Gets or sets house number.",
             "nullable": true
           },
           "poBox": {
             "maxLength": 50,
             "type": "string",
-            "description": "The post office box of the address. The P.O. Box should be transferred including the country-specific text component. For example, for Switzerland \"Postfach 12\" in England \"PO Box 12\".",
+            "description": "Gets or sets the post office box of the address. The P.O. Box should be transferred including the country-specific text component. For example, for Switzerland \"Postfach 12\" in England \"PO Box 12\".",
             "nullable": true
           },
           "additionalLine1": {
             "maxLength": 50,
             "type": "string",
-            "description": "Additional line of an address which is neither a street nor a post office box. For example, \"c/o Samuel Schnelli\" or \"Office Samuel Schnelli\".",
+            "description": "Gets or sets additional line of an address which is neither a street nor a post office box. For example, \"c/o Samuel Schnelli\" or \"Office Samuel Schnelli\".",
             "nullable": true
           },
           "additionalLine2": {
             "maxLength": 200,
             "type": "string",
-            "description": "Extended additional component of an address that is neither a street nor a post office box. For example, \"Floor 12\" or \"Building 15\".",
+            "description": "Gets or sets extended additional component of an address that is neither a street nor a post office box. For example, \"Floor 12\" or \"Building 15\".",
             "nullable": true
           },
           "country": {
             "maxLength": 2,
             "minLength": 1,
             "type": "string",
-            "description": "Country in ISO code (ISO 3166)."
+            "description": "Gets or sets country in ISO code (ISO 3166)."
           },
           "zipCode": {
             "maxLength": 20,
             "minLength": 1,
             "type": "string",
-            "description": "Zip code of the address in country-specific format. Mandatory together with the country code and the city. For example, \"EC1A 1AA\" for London, England or \"9500\" for Wil, Switzerland."
+            "description": "Gets or sets zip code of the address in country-specific format. Mandatory together with the country code and the city. For example, \"EC1A 1AA\" for London, England or \"9500\" for Wil, Switzerland."
           },
           "city": {
             "maxLength": 40,
             "minLength": 1,
             "type": "string",
-            "description": "City."
+            "description": "Gets or sets city."
           },
           "latitude": {
             "maximum": 90,
             "minimum": -90,
             "type": "number",
-            "description": "Location latitude.",
+            "description": "Gets or sets location latitude.",
             "format": "double",
             "nullable": true
           },
@@ -3062,13 +3552,22 @@
             "maximum": 180,
             "minimum": -180,
             "type": "number",
-            "description": "Location longitude.",
+            "description": "Gets or sets location longitude.",
             "format": "double",
             "nullable": true
           }
         },
         "additionalProperties": false,
         "description": "Address format."
+      },
+      "AssignmentEnum": {
+        "enum": [
+          "RENTAL_HANDOVER",
+          "RENTAL_RETURN",
+          "RENTAL_OTHER"
+        ],
+        "type": "string",
+        "description": "Assigns the surcharge to a specific job process step."
       },
       "CompanyAccount": {
         "required": [
@@ -3083,46 +3582,46 @@
         "properties": {
           "active": {
             "type": "boolean",
-            "description": "Is this entry active or not."
+            "description": "Gets or sets a value indicating whether this entry is active or not."
           },
           "companyNo": {
             "maximum": 999999,
             "minimum": 1,
             "type": "integer",
-            "description": "The number of the company that this entry is assigned to.",
+            "description": "Gets or sets the number of the company that this entry is assigned to.",
             "format": "int64"
           },
           "customerNo": {
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "description": "Identification number of the customer."
+            "description": "Gets or sets the identification number of the customer."
           },
           "currency": {
             "maxLength": 3,
             "minLength": 1,
             "type": "string",
-            "description": "Default currency in ISO 4217 Code (3 digit letter)."
+            "description": "Gets or sets the default currency in ISO 4217 Code (3 digit letter)."
           },
           "salesChannel": {
             "maxLength": 3,
             "type": "string",
-            "description": "Sales channel of the customer.",
+            "description": "Gets or sets the sales channel of the customer.",
             "nullable": true
           },
           "cashPayment": {
             "type": "boolean",
-            "description": "Defines whether or not the customer pays cash."
+            "description": "Gets or sets a value indicating whether or not the customer pays cash."
           },
           "privateSurcharge": {
             "type": "boolean",
-            "description": "Defines whether or not the customer pays a B2C surcharge."
+            "description": "Gets or sets a value indicating whether or not the customer pays a B2C surcharge."
           },
           "c4504ChargingType": {
             "maximum": 45049999,
             "minimum": 45040000,
             "type": "integer",
-            "description": "Defines how the customer pays the bill (single or collective invoice).",
+            "description": "Gets or sets a value indicating how the customer pays the bill (single or collective invoice).",
             "format": "int64",
             "nullable": true
           },
@@ -3130,7 +3629,7 @@
             "maximum": 15029999,
             "minimum": 15020000,
             "type": "integer",
-            "description": "Defines the periodicity of invoicing.",
+            "description": "Gets or sets the periodicity of invoicing.",
             "format": "int64",
             "nullable": true
           },
@@ -3138,14 +3637,14 @@
             "maxLength": 4000,
             "minLength": 1,
             "type": "string",
-            "description": "Internal notes about the customer.",
+            "description": "Gets or sets internal notes about the customer.",
             "nullable": true
           },
           "c4570PriceCategory": {
             "maximum": 45709999,
             "minimum": 45700000,
             "type": "integer",
-            "description": "Defines if a customer has a price category.",
+            "description": "Gets or sets the price category for the customer.",
             "format": "int64",
             "nullable": true
           },
@@ -3153,7 +3652,7 @@
             "maximum": 279999,
             "minimum": 270000,
             "type": "integer",
-            "description": "Code of the payment terms.",
+            "description": "Gets or sets the code of the payment terms.",
             "format": "int64",
             "nullable": true
           },
@@ -3161,21 +3660,21 @@
             "maxLength": 30,
             "minLength": 1,
             "type": "string",
-            "description": "Shortname of the payment terms.",
+            "description": "Gets or sets the shortname of the payment terms.",
             "nullable": true
           },
           "costUnit": {
             "maxLength": 20,
             "minLength": 1,
             "type": "string",
-            "description": "Cost unit of customer.",
+            "description": "Gets or sets the cost unit of the customer.",
             "nullable": true
           },
           "chargingBusinessPartnerAddressId": {
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Internal address number of the customer which is charged for the services.",
+            "description": "Gets or sets the internal address number of the customer billed for the services.",
             "format": "int64",
             "nullable": true
           },
@@ -3183,14 +3682,14 @@
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "description": "External address id of the customer which is charged for the services.",
+            "description": "Gets or sets the external address id of the customer billed for the services.",
             "nullable": true
           },
           "shippingBusinessPartnerAddressId": {
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Address number of the customer invoice shipping address.",
+            "description": "Gets or sets the invoice shipping address number for the customer.",
             "format": "int64",
             "nullable": true
           },
@@ -3198,7 +3697,7 @@
             "maximum": 1269999,
             "minimum": 1260000,
             "type": "integer",
-            "description": "Code (C126) of the export identifier.",
+            "description": "Gets or sets the code (C126) of the export identifier.",
             "format": "int64",
             "nullable": true
           },
@@ -3206,7 +3705,7 @@
             "maximum": 33059999,
             "minimum": 33050000,
             "type": "integer",
-            "description": "Sales area of the customer.",
+            "description": "Gets or sets the code of the sales area of the customer.",
             "format": "int64",
             "nullable": true
           },
@@ -3214,15 +3713,18 @@
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "description": "Default reference of the customer. Is printed on the invoice.",
+            "description": "Gets or sets the customer's default reference. This reference appears on the invoice.",
             "nullable": true
+          },
+          "attributeValueSet": {
+            "$ref": "#/components/schemas/CustomerAttributeValueSet"
           },
           "customerSalesReward": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SalesReward"
             },
-            "description": "Sales reward programm for customer. Per year, a rate configures the payback reward for the customer.",
+            "description": "Gets or sets the sales reward programm for the customer. Each year, a specific rate determines the amount of cashback for the customer.",
             "nullable": true
           }
         },
@@ -3243,46 +3745,46 @@
         "properties": {
           "changeId": {
             "type": "integer",
-            "description": "Change id of the entry.",
+            "description": "Gets or sets change id of the entry.",
             "format": "int64"
           },
           "changeDate": {
             "type": "string",
-            "description": "Change date of the entry.",
+            "description": "Gets or sets change date of the entry.",
             "format": "date-time"
           },
           "businessPartnerAddressId": {
             "maximum": 9999999999,
             "minimum": 0,
             "type": "integer",
-            "description": "Address id of the customer.",
+            "description": "Gets or sets address id of the customer.",
             "format": "int64"
           },
           "origin": {
             "maxLength": 10,
             "minLength": 1,
             "type": "string",
-            "description": "Origin of the customer (used together with origin id). Customers created in leva+ will have the origin \"leva+\". They will not have an origin id."
+            "description": "Gets or sets origin of the customer (used together with origin id). Customers created in leva+ will have the origin \"leva+\". They will not have an origin id."
           },
           "customerId": {
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Technical identification number of the customer.",
+            "description": "Gets or sets technical identification number of the customer.",
             "format": "int64"
           },
           "externalCustomerId": {
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "description": "External id of the customer - set if the customer was created in a third party system.",
+            "description": "Gets or sets external id of the customer - set if the customer was created in a third party system.",
             "nullable": true
           },
           "c3341CustomerStatus": {
             "maximum": 33419999,
             "minimum": 33410000,
             "type": "integer",
-            "description": "Status of the customer. Only customers with the status \"33410030 = customer\" may be used for orders.",
+            "description": "Gets or sets status of the customer. Only customers with the status \"33410030 = customer\" may be used for orders.",
             "format": "int32",
             "nullable": true
           },
@@ -3290,16 +3792,16 @@
             "maxLength": 30,
             "minLength": 1,
             "type": "string",
-            "description": "User which modified the entity."
+            "description": "Gets or sets user which modified the entity."
           },
           "modifyDate": {
             "type": "string",
-            "description": "Date the entity was last modified.",
+            "description": "Gets or sets date the entity was last modified.",
             "format": "date-time"
           },
           "isConsortium": {
             "type": "boolean",
-            "description": "Defines whether or not this customer is a consortium.",
+            "description": "Gets or sets defines whether or not this customer is a consortium.",
             "nullable": true
           },
           "companyAccounts": {
@@ -3307,19 +3809,147 @@
             "items": {
               "$ref": "#/components/schemas/CompanyAccount"
             },
-            "description": "List of company accounts this customer is assigned to.",
+            "description": "Gets or sets list of company accounts this customer is assigned to.",
             "nullable": true
           }
         },
         "additionalProperties": false,
         "description": "The customer dto."
       },
+      "CustomerAttributeValue": {
+        "required": [
+          "attributeDefinitionId"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeValueId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute value.",
+            "format": "int64",
+            "nullable": true
+          },
+          "attributeDefinitionId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute definition.",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets or sets the user who last modified the entry.",
+            "nullable": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets or sets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sortNo": {
+            "maximum": 9999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the position within the attribute value set.",
+            "format": "int64",
+            "nullable": true
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the company identification of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "textValue": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "Gets or sets the text string value.",
+            "nullable": true
+          },
+          "numberValue": {
+            "type": "number",
+            "description": "Gets or sets the number or decimal value.",
+            "format": "double",
+            "nullable": true
+          },
+          "dateValue": {
+            "type": "string",
+            "description": "Gets or sets the date value.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "boolValue": {
+            "type": "boolean",
+            "description": "Gets or sets the true or false value.",
+            "nullable": true
+          },
+          "codeValue": {
+            "type": "integer",
+            "description": "Gets or sets the code value.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The attribute value."
+      },
+      "CustomerAttributeValueSet": {
+        "required": [
+          "attributeSetId"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute set.",
+            "format": "int64"
+          },
+          "attributeValueSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute value set.",
+            "format": "int64",
+            "nullable": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets or sets the user who last modified the entry.",
+            "nullable": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets or sets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "attributeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerAttributeValue"
+            },
+            "description": "Gets the list of attribute values.",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The attribute value set."
+      },
       "FileDocumentLink": {
         "type": "object",
         "properties": {
           "fileDocumentGuid": {
             "type": "string",
-            "description": "Internal guid of the document.",
+            "description": "Gets or sets internal guid of the document.",
             "nullable": true
           }
         },
@@ -3343,7 +3973,7 @@
             "maximum": 999999,
             "minimum": 1,
             "type": "integer",
-            "description": "The number of the company that this entry is assigned to.",
+            "description": "Gets or sets the number of the company that this entry is assigned to.",
             "format": "int64",
             "nullable": true
           },
@@ -3351,7 +3981,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Job id of performis/leva+. Will be set internally - leave empty if not known.",
+            "description": "Gets or sets job id of performis/leva+. Will be set internally - leave empty if not known.",
             "format": "int64",
             "nullable": true
           },
@@ -3359,89 +3989,92 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Change identifier of the entity.",
+            "description": "Gets or sets change identifier of the entity.",
             "format": "int64",
             "nullable": true
           },
           "changeDate": {
             "type": "string",
-            "description": "Change date of the entity.",
+            "description": "Gets or sets change date of the entity.",
             "format": "date-time",
             "nullable": true
           },
           "reportEmailReceivers": {
             "type": "string",
-            "description": "Seperated string of e-mail addresses to receive a report copy.",
+            "description": "Gets or sets seperated string of e-mail addresses to receive a report copy.",
             "nullable": true
           },
           "employeeId": {
             "type": "integer",
-            "description": "Internal employee id to which the job is assigned to.",
+            "description": "Gets or sets internal employee id to which the job is assigned to.",
             "format": "int64",
             "nullable": true
           },
           "orderNo": {
             "minLength": 1,
             "type": "string",
-            "description": "The order number."
+            "description": "Gets or sets the order number."
           },
           "orderTitle": {
             "minLength": 1,
             "type": "string",
-            "description": "The order title."
+            "description": "Gets or sets the order title."
           },
           "jobDateTimeFrom": {
             "type": "string",
-            "description": "Scheduled start date and time for this job.",
+            "description": "Gets or sets scheduled start date and time for this job.",
             "format": "date-time"
           },
           "jobDateTimeTo": {
             "type": "string",
-            "description": "Scheduled end date and time for this job.",
+            "description": "Gets or sets scheduled end date and time for this job.",
             "format": "date-time"
+          },
+          "primaryJobLocation": {
+            "$ref": "#/components/schemas/JobLocation"
           },
           "resourceNo": {
             "type": "integer",
-            "description": "The resource demand number to which this job is assigned to. Each order can have multiple resource demands. They are numbered 0001 onwards and are unique within the order (similar to order-line position no., but for resource demands).",
+            "description": "Gets or sets the resource demand number to which this job is assigned to. Each order can have multiple resource demands. They are numbered 0001 onwards and are unique within the order (similar to order-line position no., but for resource demands).",
             "format": "int64"
           },
           "schedulingGroupCode": {
             "type": "integer",
-            "description": "Code 4542 use IF2BA to retrieve value list.",
+            "description": "Gets or sets code 4542 use IF2BA to retrieve value list.",
             "format": "int64"
           },
           "jobStatusCode": {
             "type": "integer",
-            "description": "Code 4555 use IF2BA to retrieve value list.",
+            "description": "Gets or sets code 4555 use IF2BA to retrieve value list.",
             "format": "int64"
           },
           "resourceTypeCode": {
             "type": "integer",
-            "description": "Code 4550 use IF2BA to retrieve value list.",
+            "description": "Gets or sets code 4550 use IF2BA to retrieve value list.",
             "format": "int64",
             "nullable": true
           },
           "resourceStatusCode": {
             "type": "integer",
-            "description": "Code 4554 use IF2BA to retrieve value list.",
+            "description": "Gets or sets code 4554 use IF2BA to retrieve value list.",
             "format": "int64",
             "nullable": true
           },
           "machineId": {
             "type": "integer",
-            "description": "Internal maschine id assigned to this job.",
+            "description": "Gets or sets internal maschine id assigned to this job.",
             "format": "int64",
             "nullable": true
           },
           "accessoryId": {
             "type": "integer",
-            "description": "External accessory id assigned to this job.",
+            "description": "Gets or sets external accessory id assigned to this job.",
             "format": "int64",
             "nullable": true
           },
           "useCaseCode": {
             "type": "integer",
-            "description": "Code 6951 use IF2BA to retrieve value list.",
+            "description": "Gets or sets code 6951 use IF2BA to retrieve value list.",
             "format": "int64",
             "example": 69510030
           },
@@ -3449,7 +4082,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Technical identification number of the customer.",
+            "description": "Gets or sets technical identification number of the customer.",
             "format": "int64",
             "nullable": true
           },
@@ -3457,8 +4090,14 @@
             "maximum": 69540003,
             "minimum": 69540001,
             "type": "integer",
-            "description": "Code 6954 use IF2BA to retrieve value list.",
+            "description": "Gets or sets code 6954 use IF2BA to retrieve value list.",
             "format": "int64",
+            "nullable": true
+          },
+          "description": {
+            "maxLength": 2000,
+            "type": "string",
+            "description": "Gets or sets an optional description such as further instructions for the employee.",
             "nullable": true
           },
           "details": {
@@ -3476,23 +4115,23 @@
         "properties": {
           "bookingActivityId": {
             "type": "integer",
-            "description": "Unique booking activity id. Other jobs containing the same activity do not have the same job booking activity id.",
+            "description": "Gets or sets unique booking activity id. Other jobs containing the same activity do not have the same job booking activity id.",
             "format": "int64"
           },
           "activityCode": {
             "minLength": 1,
             "type": "string",
-            "description": "Code 4557. Use IF2BA to retrieve code values for activities."
+            "description": "Gets or sets code 4557. Use IF2BA to retrieve code values for activities."
           },
           "activity": {
             "maxLength": 150,
             "type": "string",
-            "description": "Text of activity if specified.  NOTE: This may contain free-text for the activity. If the job requires a special activity e.g. 'Assist customer on demand' a planner might replace the regular activity text with anything else (non-translated custom input).",
+            "description": "Gets or sets text of activity if specified.  NOTE: This may contain free-text for the activity. If the job requires a special activity e.g. 'Assist customer on demand' a planner might replace the regular activity text with anything else (non-translated custom input).",
             "nullable": true
           },
           "active": {
             "type": "boolean",
-            "description": "Usually set to `true`. if set to `false`, the booking activity has been revoked from the job and the employee should no longer be able to submit timestamps on that activity."
+            "description": "Gets or sets a value indicating whether usually set to `true`. if set to `false`, the booking activity has been revoked from the job and the employee should no longer be able to submit timestamps on that activity."
           }
         },
         "additionalProperties": false,
@@ -3509,18 +4148,18 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Unique id of this completion.",
+            "description": "Gets or sets unique id of this completion.",
             "format": "int64",
             "nullable": true
           },
           "jobId": {
             "type": "integer",
-            "description": "Unique id of job to which this completion is assigned.",
+            "description": "Gets or sets unique id of job to which this completion is assigned.",
             "format": "int64"
           },
           "completed": {
             "type": "boolean",
-            "description": "Marks a rental job as completed."
+            "description": "Gets or sets a value indicating whether marks a rental job as completed."
           }
         },
         "additionalProperties": false,
@@ -3534,7 +4173,7 @@
             "items": {
               "$ref": "#/components/schemas/JobTimeStamp"
             },
-            "description": "List of time stamps.",
+            "description": "Gets or sets list of time stamps.",
             "nullable": true
           },
           "reportList": {
@@ -3542,7 +4181,7 @@
             "items": {
               "$ref": "#/components/schemas/JobReport"
             },
-            "description": "List of reports.",
+            "description": "Gets or sets list of reports.",
             "nullable": true
           },
           "bookingActivityList": {
@@ -3550,7 +4189,7 @@
             "items": {
               "$ref": "#/components/schemas/JobBookingActivity"
             },
-            "description": "List of booking activities.",
+            "description": "Gets or sets list of booking activities.",
             "nullable": true
           },
           "transportPositionList": {
@@ -3558,7 +4197,15 @@
             "items": {
               "$ref": "#/components/schemas/JobTransportPosition"
             },
-            "description": "List of transport positions.",
+            "description": "Gets or sets list of transport positions.",
+            "nullable": true
+          },
+          "jobSurchargeList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobSurcharge"
+            },
+            "description": "Gets or sets list of surcharges.",
             "nullable": true
           },
           "documentList": {
@@ -3566,7 +4213,15 @@
             "items": {
               "$ref": "#/components/schemas/JobDocument"
             },
-            "description": "List of job documents.",
+            "description": "Gets or sets list of job documents.",
+            "nullable": true
+          },
+          "jobProblemList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobProblem"
+            },
+            "description": "Gets or sets list of job problems.",
             "nullable": true
           },
           "jobHandover": {
@@ -3591,19 +4246,19 @@
         "properties": {
           "jobDocumentId": {
             "type": "integer",
-            "description": "Unique id of this job document assignment.",
+            "description": "Gets or sets unique id of this job document assignment.",
             "format": "int64",
             "nullable": true
           },
           "jobId": {
             "type": "integer",
-            "description": "Unique id for the job to which this document is assigned to.",
+            "description": "Gets or sets unique id for the job to which this document is assigned to.",
             "format": "int64"
           },
           "jobDocumentName": {
             "minLength": 1,
             "type": "string",
-            "description": "The name of the document."
+            "description": "Gets or sets the name of the document."
           },
           "jobDocument": {
             "$ref": "#/components/schemas/FileDocumentLink"
@@ -3624,34 +4279,34 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Unique identifier for the hand over.",
+            "description": "Gets or sets unique identifier for the hand over.",
             "format": "int64",
             "nullable": true
           },
           "jobId": {
             "type": "integer",
-            "description": "Id of the job to which this handover is assigned.",
+            "description": "Gets or sets id of the job to which this handover is assigned.",
             "format": "int64"
           },
           "employeeId": {
             "type": "integer",
-            "description": "Internal unique identifer of the employee that created this handover.",
+            "description": "Gets or sets internal unique identifer of the employee that created this handover.",
             "format": "int64",
             "nullable": true
           },
           "handoverCompletedDateTime": {
             "type": "string",
-            "description": "Date and time at which the handover is completed.  NOTE: this timestamp typically marks the actual beginning of the rental period.",
+            "description": "Gets or sets date and time at which the handover is completed.  NOTE: this timestamp typically marks the actual beginning of the rental period.",
             "format": "date-time"
           },
           "customerBriefed": {
             "type": "boolean",
-            "description": "Wether or not the customer was explicitly briefed on the machine/accessory."
+            "description": "Gets or sets a value indicating whether wether or not the customer was explicitly briefed on the machine/accessory."
           },
           "comment": {
             "maxLength": 2000,
             "type": "string",
-            "description": "Any remarks made by the employee that should be noted on this handover.",
+            "description": "Gets or sets any remarks made by the employee that should be noted on this handover.",
             "nullable": true
           },
           "customerSignature": {
@@ -3660,6 +4315,145 @@
         },
         "additionalProperties": false,
         "description": "A handover for a rental job. Confirms that the resource (machine/accessory) has been handed over to the customer. Additional information such as a comment and signature can be supplied."
+      },
+      "JobLocation": {
+        "type": "object",
+        "properties": {
+          "locationId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets unique identifier of job location.",
+            "format": "int64",
+            "nullable": true,
+            "example": 8392
+          },
+          "description": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Gets or sets location description.",
+            "nullable": true,
+            "example": "Construction Site, Gate 4"
+          },
+          "transportRestriction": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets transport restriction information as text.",
+            "nullable": true,
+            "example": "limited height 4.5 meteres at gate 3, prefer gate 4 (no height limit)."
+          },
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Location information for leva+ (address, additional information such as restrictions, ect.)."
+      },
+      "JobProblem": {
+        "required": [
+          "active",
+          "customersFault",
+          "description",
+          "fixRequired",
+          "impactOnCondition",
+          "jobId",
+          "problemType",
+          "reportedByEmployee",
+          "reportedDateTime",
+          "reportingContext",
+          "reportingContextText",
+          "solved",
+          "visibleForCustomer"
+        ],
+        "type": "object",
+        "properties": {
+          "problemId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the unique identifier for this problem.",
+            "format": "int64",
+            "nullable": true,
+            "example": 583911
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether indicates whether or not the problem is active. Inactive means that the entry has been deleted."
+          },
+          "jobId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets unique identifier for the job on which this problem is assigned to.",
+            "format": "int64",
+            "example": 452341
+          },
+          "problemType": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the problem type (0 = damage, 1 = defect).",
+            "format": "int64"
+          },
+          "description": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets title and or description of the problem.",
+            "example": "various impact dents on the left front side."
+          },
+          "impactOnCondition": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether wether or not the problem has an impact on the condition of the resource. Conditions will be transfered noted on the machine/accessory and can furthermore be passed onto future rentals."
+          },
+          "visibleForCustomer": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether wether or not the problem is visible for the customer."
+          },
+          "customersFault": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether wether or not the problem was caused by the customer and actually is customers fault."
+          },
+          "comment": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets any further comment/description on the problem.",
+            "nullable": true
+          },
+          "solved": {
+            "type": "boolean",
+            "description": "`Gets or sets a value indicating whether true` if the problem has been solved."
+          },
+          "reportedByEmployee": {
+            "maxLength": 30,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets internal identifier for the employee.",
+            "example": "363"
+          },
+          "reportedDateTime": {
+            "type": "string",
+            "description": "Gets or sets date and time at which the problem is noted.",
+            "format": "date-time",
+            "example": "2012-04-23T18:25:43.511Z."
+          },
+          "reportingContext": {
+            "$ref": "#/components/schemas/ReportingContextEnum"
+          },
+          "reportingContextText": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets additional context information (e.g. reported by mobile device).",
+            "example": "Custom Job Application."
+          },
+          "fixRequired": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether wether or not the problem requires a fix. Problems that require a fix will leave a notification on the resource and are visible on the planning board."
+          }
+        },
+        "additionalProperties": false,
+        "description": "On a job problem specific conditions or issues related to the resource (machine/accessory) are stored. They may be submitted in the initial job to clarify existing issues that can be mentioned on handover, or additional job problems are submitted during handover or return to better clarify wether or not something is caused by the customer."
       },
       "JobReport": {
         "required": [
@@ -3674,36 +4468,36 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Internal unique report id.",
+            "description": "Gets or sets internal unique report id.",
             "format": "int64",
             "nullable": true
           },
           "jobId": {
             "type": "integer",
-            "description": "Internal unique job id.",
+            "description": "Gets or sets internal unique job id.",
             "format": "int64"
           },
           "reportFromDate": {
             "type": "string",
-            "description": "Begin of reporting time span.",
+            "description": "Gets or sets begin of reporting time span.",
             "format": "date-time"
           },
           "reportToDate": {
             "type": "string",
-            "description": "End of reporting time span.",
+            "description": "Gets or sets end of reporting time span.",
             "format": "date-time"
           },
           "comment": {
             "minLength": 1,
             "type": "string",
-            "description": "Additional comments on the report (usually visible on report) and for backoffice."
+            "description": "Gets or sets additional comments on the report (usually visible on report) and for backoffice."
           },
           "reportTimeStampList": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/JobReportTimeStamp"
             },
-            "description": "List of report time stamps.",
+            "description": "Gets or sets list of report time stamps.",
             "nullable": true
           }
         },
@@ -3722,34 +4516,34 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "The unique identifier for the job report time stamp.",
+            "description": "Gets or sets the unique identifier for the job report time stamp.",
             "format": "int64",
             "nullable": true
           },
           "timeStamp": {
             "type": "string",
-            "description": "The time stamp associated with the job.",
+            "description": "Gets or sets the time stamp associated with the job.",
             "format": "date-time"
           },
           "timeStampTypeCode": {
             "type": "integer",
-            "description": "Code 4556. The type of the time stamp (TimeStampType).",
+            "description": "Gets or sets code 4556. The type of the time stamp (TimeStampType).",
             "format": "int64"
           },
           "source": {
             "minLength": 1,
             "type": "string",
-            "description": "Source identifier of entry origin."
+            "description": "Gets or sets source identifier of entry origin."
           },
           "bookingActivityId": {
             "type": "integer",
-            "description": "The identifier for resource booking activity.",
+            "description": "Gets or sets the identifier for resource booking activity.",
             "format": "int64",
             "nullable": true
           },
           "comment": {
             "type": "string",
-            "description": "A comment associated with the time stamp.",
+            "description": "Gets or sets a comment associated with the time stamp.",
             "nullable": true
           }
         },
@@ -3767,40 +4561,40 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Unique id of this return.",
+            "description": "Gets or sets unique id of this return.",
             "format": "int64",
             "nullable": true
           },
           "jobId": {
             "type": "integer",
-            "description": "Unique id of job to which this return is assigned.",
+            "description": "Gets or sets unique id of job to which this return is assigned.",
             "format": "int64"
           },
           "employeeId": {
             "type": "integer",
-            "description": "Internal employee id who made the return.",
+            "description": "Gets or sets internal employee id who made the return.",
             "format": "int64",
             "nullable": true
           },
           "returnStartedDateTime": {
             "type": "string",
-            "description": "Actual date time at which the return process started.",
+            "description": "Gets or sets actual date time at which the return process started.",
             "format": "date-time"
           },
           "jobEndDateTime": {
             "type": "string",
-            "description": "Actual job end date of the rental.",
+            "description": "Gets or sets actual job end date of the rental.",
             "format": "date-time",
             "nullable": true
           },
           "damage": {
             "type": "boolean",
-            "description": "Set when damage is noticed on return."
+            "description": "Gets or sets a value indicating whether set when damage is noticed on return."
           },
           "comment": {
             "maxLength": 2000,
             "type": "string",
-            "description": "Any additional information noted by the employee for this return.",
+            "description": "Gets or sets any additional information noted by the employee for this return.",
             "nullable": true
           },
           "customerSignature": {
@@ -3809,6 +4603,76 @@
         },
         "additionalProperties": false,
         "description": "A return for a rental job. Confirms that the resource (machine/accessory) has been returned/picked up. Additional information such as a comment or whether or not the resource has been damaged is submitted."
+      },
+      "JobSurcharge": {
+        "required": [
+          "assignment",
+          "dateTime",
+          "quantity",
+          "surchargeId"
+        ],
+        "type": "object",
+        "properties": {
+          "jobSurchargeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the unique identifier for this job surcharge.",
+            "format": "int64",
+            "nullable": true,
+            "example": 483915
+          },
+          "surchargeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets unique id of the surcharge (master data).",
+            "format": "int64",
+            "example": 8739145
+          },
+          "jobId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets unique id of job.",
+            "format": "int64",
+            "nullable": true,
+            "example": 82916
+          },
+          "dateTime": {
+            "type": "string",
+            "description": "Gets or sets when the surcharge was recorded.",
+            "format": "date-time",
+            "example": "2012-04-23T18:25:43.511Z."
+          },
+          "assignment": {
+            "$ref": "#/components/schemas/AssignmentEnum"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "Gets or sets quantity in price unit of measure given by the base-surcharge.",
+            "format": "double",
+            "example": 23.5
+          },
+          "comment": {
+            "maxLength": 2000,
+            "type": "string",
+            "description": "Gets or sets optional comment by the employee who submitted the surcharge.",
+            "nullable": true,
+            "example": "reason for quantity: additional gas can filled on customers request."
+          },
+          "reportId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets report id which contains this surcharge entry. Surcharges are generally created during the entire job process. Reports collect them for invoicing. If a surcharge is not assigned to a report, it is not considered for billing. When the job surcharge id is provided on job report creation, report id field will be filled by the back end.",
+            "format": "int64",
+            "nullable": true,
+            "example": 456223
+          }
+        },
+        "additionalProperties": false,
+        "description": "Surcharge recorded on a job that is either entered by the employee (e.g. gas refilling in liters) or generated by the system (e.g. overtime surcharge)."
       },
       "JobTimeStamp": {
         "required": [
@@ -3822,46 +4686,46 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "The unique identifier for the job timestamp.",
+            "description": "Gets or sets the unique identifier for the job timestamp.",
             "format": "int64",
             "nullable": true
           },
           "jobId": {
             "type": "integer",
-            "description": "The unique identifier for the job onto which the time stamp is assigned.",
+            "description": "Gets or sets the unique identifier for the job onto which the time stamp is assigned.",
             "format": "int64"
           },
           "timeStamp": {
             "type": "string",
-            "description": "The timestamp associated with the job.",
+            "description": "Gets or sets the timestamp associated with the job.",
             "format": "date-time"
           },
           "timeStampTypeCode": {
             "type": "integer",
-            "description": "Code 4556. The type of timestamp (TimestampType).",
+            "description": "Gets or sets code 4556. The type of timestamp (TimestampType).",
             "format": "int64"
           },
           "bookingActivityId": {
             "type": "integer",
-            "description": "The identifier for resource booking activity.",
+            "description": "Gets or sets the identifier for resource booking activity.",
             "format": "int64",
             "nullable": true
           },
           "machineId": {
             "type": "integer",
-            "description": "The identifier for the machine.",
+            "description": "Gets or sets the identifier for the machine.",
             "format": "int64",
             "nullable": true
           },
           "employeeId": {
             "type": "integer",
-            "description": "The internal identifier for the employee.",
+            "description": "Gets or sets the internal identifier for the employee.",
             "format": "int64",
             "nullable": true
           },
           "comment": {
             "type": "string",
-            "description": "A comment associated with the timestamp.",
+            "description": "Gets or sets a comment associated with the timestamp.",
             "nullable": true
           }
         },
@@ -3878,72 +4742,72 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Înternal unique id for this job transport position.",
+            "description": "Gets or sets internal unique id for this job transport position.",
             "format": "int64",
             "nullable": true
           },
           "jobId": {
             "type": "integer",
-            "description": "Unique job id.",
+            "description": "Gets or sets unique job id.",
             "format": "int64"
           },
           "description": {
             "type": "string",
-            "description": "Description of good.",
+            "description": "Gets or sets description of good.",
             "nullable": true
           },
           "unitOfMeasure": {
             "type": "string",
-            "description": "Unit of measurement in wich the quantity is transported.",
+            "description": "Gets or sets unit of measurement in wich the quantity is transported.",
             "nullable": true
           },
           "decimalCount": {
             "type": "integer",
-            "description": "Amount of decimals in quantity allowed for this unit of measurement.",
+            "description": "Gets or sets amount of decimals in quantity allowed for this unit of measurement.",
             "format": "int32",
             "nullable": true
           },
           "transportQuantity": {
             "type": "number",
-            "description": "The transport quantity.",
+            "description": "Gets or sets the transport quantity.",
             "format": "double",
             "nullable": true
           },
           "loadedQuantity": {
             "type": "number",
-            "description": "Loaded quantity can be different from the transport quantity. Use-case is under or over-delivery.",
+            "description": "Gets or sets loaded quantity can be different from the transport quantity. Use-case is under or over-delivery.",
             "format": "double",
             "nullable": true
           },
           "unloadedQuantity": {
             "type": "number",
-            "description": "Unloaded quantity can be different from the transport quantity. Use-case is under or over-delivery.",
+            "description": "Gets or sets unloaded quantity can be different from the transport quantity. Use-case is under or over-delivery.",
             "format": "double",
             "nullable": true
           },
           "loadingDateTime": {
             "type": "string",
-            "description": "Planned loading date and time.",
+            "description": "Gets or sets planned loading date and time.",
             "format": "date-time",
             "nullable": true
           },
           "loadingCompleted": {
             "type": "boolean",
-            "description": "Indicates whether the loading was completed."
+            "description": "Gets or sets a value indicating whether indicates whether the loading was completed."
           },
           "unloadingDateTime": {
             "type": "string",
-            "description": "Planned unloading date and time.",
+            "description": "Gets or sets planned unloading date and time.",
             "format": "date-time",
             "nullable": true
           },
           "unloadingCompleted": {
             "type": "boolean",
-            "description": "Indicates whether the unloading was completed."
+            "description": "Gets or sets a value indicating whether indicates whether the unloading was completed."
           },
           "rentalJobId": {
             "type": "integer",
-            "description": "Is set, when the current transport demand (assigned resource) points to a rental job.",
+            "description": "Gets or sets is set, when the current transport demand (assigned resource) points to a rental job.",
             "format": "int64",
             "nullable": true
           },
@@ -3968,21 +4832,21 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Internal unique id for this job transport position.",
+            "description": "Gets or sets internal unique id for this job transport position.",
             "format": "int64"
           },
           "jobId": {
             "type": "integer",
-            "description": "Unique job id.",
+            "description": "Gets or sets unique job id.",
             "format": "int64"
           },
           "loadingCompleted": {
             "type": "boolean",
-            "description": "Indicates whether the loading was completed."
+            "description": "Gets or sets a value indicating whether indicates whether the loading was completed."
           },
           "unloadingCompleted": {
             "type": "boolean",
-            "description": "Indicates whether the unloading was completed."
+            "description": "Gets or sets a value indicating whether indicates whether the unloading was completed."
           }
         },
         "additionalProperties": false,
@@ -4001,13 +4865,13 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Change id of the entity.",
+            "description": "Gets or sets change id of the entity.",
             "format": "int64",
             "nullable": true
           },
           "changeDate": {
             "type": "string",
-            "description": "Change date of the entity.",
+            "description": "Gets or sets change date of the entity.",
             "format": "date-time",
             "nullable": true
           },
@@ -4015,7 +4879,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Internal technical key for the machine.",
+            "description": "Gets or sets internal technical key for the machine.",
             "format": "int64",
             "nullable": true,
             "example": 4711
@@ -4024,30 +4888,30 @@
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "description": "External technical key for machine - may be used instead of Leva.Manager.AssetResource.Interface.Machine.Machine.MachineId.",
+            "description": "Gets or sets external technical key for machine - may be used instead of Leva.Manager.AssetResource.Interface.Machine.Machine.MachineId.",
             "nullable": true,
             "example": "ABC-4711"
           },
           "origin": {
             "maxLength": 10,
             "type": "string",
+            "description": "Gets or sets origin of the entity.",
             "nullable": true
           },
           "active": {
             "type": "boolean",
-            "description": "Sets whether or not the machine may be used in leva+.",
-            "example": true
+            "description": "Gets or sets a value indicating whether sets whether or not the machine may be used in leva+."
           },
           "description": {
             "maxLength": 200,
             "minLength": 1,
             "type": "string",
-            "description": "Description (e.g. name, type, number) of the machine.",
-            "example": "Genie RS-1932, Blue Version"
+            "description": "Gets or sets description (e.g. name, type, number) of the machine.",
+            "example": "Genie RS-1932, Blue Version."
           },
           "placingOnMarket": {
             "type": "string",
-            "description": "Date when the machine was first registered and used in the business. Important for service dates etc.",
+            "description": "Gets or sets date when the machine was first registered and used in the business. Important for service dates etc.",
             "format": "date-time",
             "example": "2022-01-11"
           },
@@ -4055,7 +4919,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Identification number for Leva.Manager.AssetResource.Interface.Machine.EquipmentType.",
+            "description": "Gets or sets identification number for Leva.Manager.AssetResource.Interface.Machine.EquipmentType.",
             "format": "int64",
             "nullable": true,
             "example": 4711
@@ -4064,7 +4928,7 @@
             "maxLength": 36,
             "minLength": 1,
             "type": "string",
-            "description": "Unique identifier for a machine. Used for communication with third party systems.",
+            "description": "Gets or sets unique identifier for a machine. Used for communication with third party systems.",
             "nullable": true,
             "example": "87315090-9a06-4edc-8fc5-f9f68972e3c6"
           },
@@ -4072,21 +4936,21 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Identification number for a single machine.",
+            "description": "Gets or sets identification number for a single machine.",
             "format": "int64",
             "nullable": true,
             "example": 87315
           },
           "acquisitionDate": {
             "type": "string",
-            "description": "The date the machine was acquired.",
+            "description": "Gets or sets the date the machine was acquired.",
             "format": "date-time",
             "nullable": true,
             "example": "2022-11-25"
           },
           "underWarrantyUntil": {
             "type": "string",
-            "description": "The warranty expiry date.",
+            "description": "Gets or sets the warranty expiry date.",
             "format": "date-time",
             "nullable": true,
             "example": "2028-11-11"
@@ -4095,7 +4959,7 @@
             "maximum": 45439999,
             "minimum": 45430000,
             "type": "integer",
-            "description": "C4543 code of the machine manufacturer.",
+            "description": "Gets or sets c4543 code of the machine manufacturer.",
             "format": "int64",
             "nullable": true,
             "example": 45430010
@@ -4103,49 +4967,49 @@
           "masterNumber": {
             "maxLength": 100,
             "type": "string",
-            "description": "A master number is used to assign and identify the vehicle.",
+            "description": "Gets or sets a master number is used to assign and identify the vehicle.",
             "nullable": true,
             "example": "325.752.721"
           },
           "chassisNumber": {
             "maxLength": 100,
             "type": "string",
-            "description": "Chassis number of this vehicle.",
+            "description": "Gets or sets chassis number of this vehicle.",
             "nullable": true,
             "example": "WMG6315L4FZ010120"
           },
           "engineNumber": {
             "maxLength": 100,
             "type": "string",
-            "description": "The number on the engine.",
+            "description": "Gets or sets the number on the engine.",
             "nullable": true,
             "example": "D - 0 000 123"
           },
           "typeCertificateNumber": {
             "maxLength": 100,
             "type": "string",
-            "description": "Official number for identification of the vehicle type by external entities.",
+            "description": "Gets or sets official number for identification of the vehicle type by external entities.",
             "nullable": true,
             "example": "123123"
           },
           "licensePlate": {
             "maxLength": 20,
             "type": "string",
-            "description": "Number on the licence plate.",
+            "description": "Gets or sets the number on the licence plate.",
             "nullable": true,
             "example": "BE 1000"
           },
           "wikiUrl": {
             "maxLength": 200,
             "type": "string",
-            "description": "URL to information portal.",
+            "description": "Gets or sets uRL to information portal.",
             "nullable": true
           },
           "ownerCompanyNo": {
             "maximum": 999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Number of the holder company.",
+            "description": "Gets or sets number of the holder company.",
             "format": "int64",
             "nullable": true,
             "example": 1235
@@ -4153,7 +5017,7 @@
           "assetNo": {
             "maxLength": 16,
             "type": "string",
-            "description": "Accounting asset number.",
+            "description": "Gets or sets accounting asset number.",
             "nullable": true,
             "example": "1546"
           },
@@ -4161,7 +5025,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Address number of the owner.",
+            "description": "Gets or sets address number of the owner.",
             "format": "int64",
             "nullable": true,
             "example": 12345
@@ -4170,7 +5034,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Address number of the location.",
+            "description": "Gets or sets address number of the location.",
             "format": "int64",
             "nullable": true,
             "example": 12345
@@ -4179,7 +5043,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Address number of the customer to invoice.",
+            "description": "Gets or sets address number of the customer to invoice.",
             "format": "int64",
             "nullable": true,
             "example": 12345
@@ -4188,7 +5052,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Business partner ID of the regular driver.",
+            "description": "Gets or sets business partner ID of the regular driver.",
             "format": "int64",
             "nullable": true,
             "example": 12345
@@ -4197,7 +5061,7 @@
             "maximum": 45469999,
             "minimum": 45460000,
             "type": "integer",
-            "description": "C4546 code of the counter group.",
+            "description": "Gets or sets c4546 code of the counter group.",
             "format": "int64",
             "nullable": true,
             "example": 45460010
@@ -4206,7 +5070,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "The identification number of the semi-trailer that is usually coupled with this machine.",
+            "description": "Gets or sets the identification number of the semi-trailer that is usually coupled with this machine.",
             "format": "int64",
             "nullable": true,
             "example": 5679
@@ -4215,7 +5079,7 @@
             "maximum": 45419999,
             "minimum": 45410000,
             "type": "integer",
-            "description": "C4541 code of the machine model, e.g. crane.",
+            "description": "Gets or sets c4541 code of the machine model, e.g. crane.",
             "format": "int64",
             "example": 45410010
           },
@@ -4223,18 +5087,18 @@
             "maximum": 45629999,
             "minimum": 45620000,
             "type": "integer",
-            "description": "C4562 identification code of the branch to which the machine belongs.",
+            "description": "Gets or sets c4562 identification code of the branch to which the machine belongs.",
             "format": "int64",
             "nullable": true,
             "example": 45620010
           },
           "isExternalResource": {
             "type": "boolean",
-            "description": "Is this machine an external resource?"
+            "description": "Gets or sets a value indicating whether is this machine an external resource?."
           },
           "yearOfManufacture": {
             "type": "integer",
-            "description": "The year in which the machine was built.",
+            "description": "Gets or sets the year in which the machine was built.",
             "format": "int64",
             "nullable": true,
             "example": 2020
@@ -4243,7 +5107,7 @@
             "maximum": 45429999,
             "minimum": 45420000,
             "type": "integer",
-            "description": "C4542 code of the machine scheduling type.",
+            "description": "Gets or sets c4542 code of the machine scheduling type.",
             "format": "int64",
             "nullable": true,
             "example": 45420010
@@ -4251,19 +5115,19 @@
           "locationApiKey": {
             "maxLength": 50,
             "type": "string",
-            "description": "API key to access location service for the machine.",
+            "description": "Gets or sets aPI key to access location service for the machine.",
             "nullable": true
           },
           "isMachineLocationSyncEnabled": {
             "type": "boolean",
-            "description": "Whether or not the machine's location is automatically synced.",
+            "description": "Gets or sets whether or not the machine's location is automatically synced.",
             "nullable": true
           },
           "manufacturerApiCode": {
             "maximum": 33069999,
             "minimum": 33060000,
             "type": "integer",
-            "description": "C3306 code of the used location API connector.",
+            "description": "Gets or sets c3306 code of the used location API connector.",
             "format": "int64",
             "nullable": true,
             "example": 33060010
@@ -4271,14 +5135,14 @@
           "engineType": {
             "maxLength": 200,
             "type": "string",
-            "description": "What type of engine does the machine have.",
+            "description": "Gets or sets what type of engine does the machine have.",
             "nullable": true,
-            "example": "Diesel"
+            "example": "Diesel."
           },
           "costCenterNo": {
             "maxLength": 20,
             "type": "string",
-            "description": "Number of the cost center this machine is billed internally to.",
+            "description": "Gets or sets number of the cost center this machine is billed internally to.",
             "nullable": true,
             "example": "56789"
           },
@@ -4286,14 +5150,14 @@
             "maximum": 33369999,
             "minimum": 33360000,
             "type": "integer",
-            "description": "C3336 code defining which telematics system the machine uses.",
+            "description": "Gets or sets c3336 code defining which telematics system the machine uses.",
             "format": "int64",
             "nullable": true,
             "example": 33360010
           },
           "lastYearlyService": {
             "type": "string",
-            "description": "Date of the machine's last yearly service.",
+            "description": "Gets or sets date of the machine's last yearly service.",
             "nullable": true,
             "example": "2023-01-12"
           },
@@ -4302,7 +5166,7 @@
             "items": {
               "$ref": "#/components/schemas/TypeOfDrive"
             },
-            "description": "List of type of drives of the machine.",
+            "description": "Gets or sets list of type of drives of the machine.",
             "nullable": true
           },
           "schedulingGroups": {
@@ -4310,7 +5174,7 @@
             "items": {
               "$ref": "#/components/schemas/SchedulingGroup"
             },
-            "description": "List of additional scheduling groups. A scheduling group combines machines of the same type and use\r\n(not necessarily the same model or manufacturer). (E.g. a 20m boom, might be sold as 12m boom).",
+            "description": "Gets or sets list of additional scheduling groups. A scheduling group combines machines of the same type and use\r\n(not necessarily the same model or manufacturer). (E.g. a 20m boom, might be sold as 12m boom).",
             "nullable": true
           },
           "drivers": {
@@ -4318,7 +5182,7 @@
             "items": {
               "$ref": "#/components/schemas/MachineDriver"
             },
-            "description": "List of the business partner IDs of the driver/s that can use this machine.",
+            "description": "Gets or sets list of the business partner IDs of the driver/s that can use this machine.",
             "nullable": true
           },
           "counters": {
@@ -4326,7 +5190,7 @@
             "items": {
               "$ref": "#/components/schemas/MachineCounter"
             },
-            "description": "List of counters of the machine.",
+            "description": "Gets or sets list of counters of the machine.",
             "nullable": true
           },
           "usages": {
@@ -4334,7 +5198,7 @@
             "items": {
               "$ref": "#/components/schemas/MachineUsage"
             },
-            "description": "List of applications this machine is used in.",
+            "description": "Gets or sets list of applications this machine is used in.",
             "nullable": true
           }
         },
@@ -4351,14 +5215,14 @@
             "maximum": 45489999,
             "minimum": 45480000,
             "type": "integer",
-            "description": "C4548 code of the counter type used in the machine, e.g. km, hours of operation.",
+            "description": "Gets or sets c4548 code of the counter type used in the machine, e.g. km, hours of operation.",
             "format": "int64",
             "example": 45480010
           },
           "account": {
             "maxLength": 10,
             "type": "string",
-            "description": "Account to post the counters against.",
+            "description": "Gets or sets account to post the counters against.",
             "nullable": true,
             "example": "4711"
           }
@@ -4373,7 +5237,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Business partner ID of the driver.",
+            "description": "Gets or sets business partner ID of the driver.",
             "format": "int64",
             "nullable": true,
             "example": 57689
@@ -4387,7 +5251,7 @@
         "properties": {
           "application": {
             "type": "string",
-            "description": "The application this machine is used in.",
+            "description": "Gets or sets the application this machine is used in.",
             "nullable": true
           }
         },
@@ -4464,13 +5328,13 @@
         "properties": {
           "changeId": {
             "type": "integer",
-            "description": "Change id of the entity.",
+            "description": "Gets or sets change id of the entity.",
             "format": "int64",
             "nullable": true
           },
           "changeDate": {
             "type": "string",
-            "description": "Change date of the entity.",
+            "description": "Gets or sets change date of the entity.",
             "format": "date-time",
             "nullable": true
           },
@@ -4478,33 +5342,33 @@
             "maxLength": 10,
             "minLength": 1,
             "type": "string",
-            "description": "Origin of the entity."
+            "description": "Gets or sets origin of the entity."
           },
           "active": {
             "type": "boolean",
-            "description": "Is this entity active or not."
+            "description": "Gets or sets a value indicating whether is this entity active or not."
           },
           "modifyUser": {
             "maxLength": 30,
             "minLength": 1,
             "type": "string",
-            "description": "User which modified the entity last."
+            "description": "Gets or sets user which modified the entity last."
           },
           "modifyDate": {
             "type": "string",
-            "description": "Date the entity was last modified.",
+            "description": "Gets or sets date the entity was last modified.",
             "format": "date-time"
           },
           "description": {
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "description": "Title of the project or order."
+            "description": "Gets or sets title of the project or order."
           },
           "identification": {
             "maxLength": 50,
             "type": "string",
-            "description": "Identification (order no or project no).",
+            "description": "Gets or sets identification (order no or project no).",
             "nullable": true
           },
           "type": {
@@ -4512,25 +5376,25 @@
           },
           "customerId": {
             "type": "integer",
-            "description": "Customer id of the project or order.",
+            "description": "Gets or sets customer id of the project or order.",
             "format": "int64",
             "nullable": true
           },
           "currency": {
             "maxLength": 3,
             "type": "string",
-            "description": "Currency in ISO 4217 Code (3 digit letter).",
+            "description": "Gets or sets currency in ISO 4217 Code (3 digit letter).",
             "nullable": true
           },
           "startDate": {
             "type": "string",
-            "description": "Start date of the project or order.",
+            "description": "Gets or sets start date of the project or order.",
             "format": "date-time",
             "nullable": true
           },
           "endDate": {
             "type": "string",
-            "description": "End date of the project or order.",
+            "description": "Gets or sets end date of the project or order.",
             "format": "date-time",
             "nullable": true
           },
@@ -4538,7 +5402,7 @@
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "description": "Identifikation string of the parent object. If the object is the root - no parent is given.",
+            "description": "Gets or sets identifikation string of the parent object. If the object is the root - no parent is given.",
             "nullable": true
           }
         },
@@ -4553,6 +5417,14 @@
         "type": "string",
         "description": "Defines what type the entry is. While projects are only structural and will never have cost directly associated, orders are used to render services and charge assigned customer. It is possible to create an order without assigning it to a parent project."
       },
+      "ReportingContextEnum": {
+        "enum": [
+          "LEVA.JOB.HANDOVER",
+          "LEVA.JOB.RETURN"
+        ],
+        "type": "string",
+        "description": "During which context (process) the problem has been noted."
+      },
       "SalesReward": {
         "type": "object",
         "properties": {
@@ -4560,14 +5432,14 @@
             "maxLength": 2100,
             "minLength": 1000,
             "type": "string",
-            "description": "The year the sales reward applies to.",
+            "description": "Gets or sets the year the sales reward applies to.",
             "nullable": true
           },
           "rate": {
             "maximum": 99,
             "minimum": 0,
             "type": "number",
-            "description": "Rate of the sales reward the customer receives.",
+            "description": "Gets or sets rate of the sales reward the customer receives.",
             "format": "double",
             "nullable": true
           }
@@ -4580,7 +5452,7 @@
         "properties": {
           "schedulingGroupCode": {
             "type": "integer",
-            "description": "C4542 code of the resource grouping that combines resources of the same type and use\r\n(not necessarily the same model or manufacturer).",
+            "description": "Gets or sets c4542 code of the resource grouping that combines resources of the same type and use\r\n(not necessarily the same model or manufacturer).",
             "format": "int64",
             "example": 45420010
           }
@@ -4593,14 +5465,14 @@
         "properties": {
           "signatureId": {
             "type": "integer",
-            "description": "Signature id. Leave empty when creating a new signature entry.",
+            "description": "Gets or sets signature id. Leave empty when creating a new signature entry.",
             "format": "int64",
             "nullable": true
           },
           "signeeName": {
             "maxLength": 100,
             "type": "string",
-            "description": "Person who is signing the document. Preferably full name.",
+            "description": "Gets or sets person who is signing the document. Preferably full name.",
             "nullable": true
           },
           "signaturFileDocumentLink": {
@@ -4628,7 +5500,7 @@
           "E"
         ],
         "type": "string",
-        "description": "Typ of drive values.\r\n- `B`: Petrol\r\n- `H`: Hybrid\r\n- `D`: Diesel\r\n- `E`: Electric"
+        "description": "Typ of drive values.\r\n- `B`: Petrol\r\n- `H`: Hybrid\r\n- `D`: Diesel\r\n- `E`: Electric."
       }
     },
     "securitySchemes": {
