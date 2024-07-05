@@ -911,7 +911,145 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Customer"
+                    "$ref": "#/components/schemas/Surcharge"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
+    "/api/v1/master-data/workers": {
+      "get": {
+        "tags": [
+          "MasterData"
+        ],
+        "summary": "Search for workers.",
+        "description": "By passing in the appropriate options, the service searches for available workers in the system.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "workerId",
+            "in": "query",
+            "description": "Retrieve specific record by worker id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "employeeId",
+            "in": "query",
+            "description": "Retrieve specific record by employee id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Worker"
                   }
                 }
               }
@@ -3357,6 +3495,174 @@
           }
         }
       }
+    },
+    "/api/v1/rental/orders": {
+      "get": {
+        "tags": [
+          "RentalOrder"
+        ],
+        "summary": "Returns a list of rental orders filtered by the provided parameters.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entries which were added/edited since a specific date/time.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all the entries which were added/edited since the provided change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "query",
+            "description": "Retrieve specific record by id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "minStatusCode",
+            "in": "query",
+            "description": "Retrieve specific record where the status code is equal or greater then the provided minimum status code.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "maxStatusCode",
+            "in": "query",
+            "description": "Retrieve specific record where the status code is equal or smaller then the provided maximum status code.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Job"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
     }
   },
   "components": {
@@ -3961,6 +4267,7 @@
           "jobDateTimeFrom",
           "jobDateTimeTo",
           "jobStatusCode",
+          "orderId",
           "orderNo",
           "orderTitle",
           "resourceNo",
@@ -3989,13 +4296,13 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets change identifier of the entity.",
+            "description": "Gets or sets the change identifier of the entity.",
             "format": "int64",
             "nullable": true
           },
           "changeDate": {
             "type": "string",
-            "description": "Gets or sets change date of the entity.",
+            "description": "Gets or sets the change date of the entity.",
             "format": "date-time",
             "nullable": true
           },
@@ -4004,30 +4311,44 @@
             "description": "Gets or sets seperated string of e-mail addresses to receive a report copy.",
             "nullable": true
           },
+          "workerId": {
+            "type": "integer",
+            "description": "Gets or sets the internal worker id to which the job is assigned.",
+            "format": "int64",
+            "nullable": true
+          },
           "employeeId": {
             "type": "integer",
             "description": "Gets or sets internal employee id to which the job is assigned to.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
+          },
+          "orderId": {
+            "type": "integer",
+            "description": "Gets or sets the order identifier.",
+            "format": "int64"
           },
           "orderNo": {
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets the order number."
+            "description": "Gets or sets the order number.",
+            "deprecated": true
           },
           "orderTitle": {
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets the order title."
+            "description": "Gets or sets the order title.",
+            "deprecated": true
           },
           "jobDateTimeFrom": {
             "type": "string",
-            "description": "Gets or sets scheduled start date and time for this job.",
+            "description": "Gets or sets the scheduled start date and time for this job.",
             "format": "date-time"
           },
           "jobDateTimeTo": {
             "type": "string",
-            "description": "Gets or sets scheduled end date and time for this job.",
+            "description": "Gets or sets the scheduled end date and time for this job.",
             "format": "date-time"
           },
           "primaryJobLocation": {
@@ -4035,7 +4356,7 @@
           },
           "resourceNo": {
             "type": "integer",
-            "description": "Gets or sets the resource demand number to which this job is assigned to. Each order can have multiple resource demands. They are numbered 0001 onwards and are unique within the order (similar to order-line position no., but for resource demands).",
+            "description": "Gets or sets the resource demand number to which this job is assigned. Each order can have multiple resource demands. They are numbered 0001 onwards and are unique within the order (similar to order-line position no., but for resource demands).",
             "format": "int64"
           },
           "schedulingGroupCode": {
@@ -4062,13 +4383,13 @@
           },
           "machineId": {
             "type": "integer",
-            "description": "Gets or sets internal maschine id assigned to this job.",
+            "description": "Gets or sets the internal machine id assigned to this job.",
             "format": "int64",
             "nullable": true
           },
           "accessoryId": {
             "type": "integer",
-            "description": "Gets or sets external accessory id assigned to this job.",
+            "description": "Gets or sets the external accessory id assigned to this job.",
             "format": "int64",
             "nullable": true
           },
@@ -4082,7 +4403,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets technical identification number of the customer.",
+            "description": "Gets or sets the technical identification number of the customer.",
             "format": "int64",
             "nullable": true
           },
@@ -4200,7 +4521,7 @@
             "description": "Gets or sets list of transport positions.",
             "nullable": true
           },
-          "jobSurchargeList": {
+          "surchargeList": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/JobSurcharge"
@@ -4216,7 +4537,7 @@
             "description": "Gets or sets list of job documents.",
             "nullable": true
           },
-          "jobProblemList": {
+          "problemList": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/JobProblem"
@@ -4224,13 +4545,21 @@
             "description": "Gets or sets list of job problems.",
             "nullable": true
           },
-          "jobHandover": {
+          "schedule": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobScheduleEntry"
+            },
+            "description": "Gets or sets list of job schedule entries.",
+            "nullable": true
+          },
+          "handover": {
             "$ref": "#/components/schemas/JobHandover"
           },
-          "jobReturn": {
+          "return": {
             "$ref": "#/components/schemas/JobReturn"
           },
-          "jobCompletion": {
+          "completion": {
             "$ref": "#/components/schemas/JobCompletion"
           }
         },
@@ -4279,29 +4608,36 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets unique identifier for the hand over.",
+            "description": "Gets or sets the unique identifier for the hand over.",
             "format": "int64",
             "nullable": true
           },
           "jobId": {
             "type": "integer",
-            "description": "Gets or sets id of the job to which this handover is assigned.",
+            "description": "Gets or sets the id of the job to which this handover is assigned.",
             "format": "int64"
+          },
+          "workerId": {
+            "type": "integer",
+            "description": "Gets or sets the internal unique identifer of the worker that created this handover.",
+            "format": "int64",
+            "nullable": true
           },
           "employeeId": {
             "type": "integer",
             "description": "Gets or sets internal unique identifer of the employee that created this handover.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "handoverCompletedDateTime": {
             "type": "string",
-            "description": "Gets or sets date and time at which the handover is completed.  NOTE: this timestamp typically marks the actual beginning of the rental period.",
+            "description": "Gets or sets the date and time at which the handover is completed.  NOTE: this timestamp typically marks the actual beginning of the rental period.",
             "format": "date-time"
           },
           "customerBriefed": {
             "type": "boolean",
-            "description": "Gets or sets a value indicating whether wether or not the customer was explicitly briefed on the machine/accessory."
+            "description": "Gets or sets a value indicating whether or not the customer was explicitly briefed on the machine/accessory."
           },
           "comment": {
             "maxLength": 2000,
@@ -4561,35 +4897,42 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets unique id of this return.",
+            "description": "Gets or sets the unique id of this return.",
             "format": "int64",
             "nullable": true
           },
           "jobId": {
             "type": "integer",
-            "description": "Gets or sets unique id of job to which this return is assigned.",
+            "description": "Gets or sets the unique id of job to which this return is assigned.",
             "format": "int64"
           },
-          "employeeId": {
+          "workerId": {
             "type": "integer",
-            "description": "Gets or sets internal employee id who made the return.",
+            "description": "Gets or sets the internal unique identifer of the worker that created this return.",
             "format": "int64",
             "nullable": true
           },
+          "employeeId": {
+            "type": "integer",
+            "description": "Gets or sets internal unique identifer of the employee that created this return.",
+            "format": "int64",
+            "nullable": true,
+            "deprecated": true
+          },
           "returnStartedDateTime": {
             "type": "string",
-            "description": "Gets or sets actual date time at which the return process started.",
+            "description": "Gets or sets the actual date time at which the return process started.",
             "format": "date-time"
           },
           "jobEndDateTime": {
             "type": "string",
-            "description": "Gets or sets actual job end date of the rental.",
+            "description": "Gets or sets the actual job end date of the rental.",
             "format": "date-time",
             "nullable": true
           },
           "damage": {
             "type": "boolean",
-            "description": "Gets or sets a value indicating whether set when damage is noticed on return."
+            "description": "Gets or sets a value indicating whether damage is detected on return."
           },
           "comment": {
             "maxLength": 2000,
@@ -4603,6 +4946,44 @@
         },
         "additionalProperties": false,
         "description": "A return for a rental job. Confirms that the resource (machine/accessory) has been returned/picked up. Additional information such as a comment or whether or not the resource has been damaged is submitted."
+      },
+      "JobScheduleEntry": {
+        "required": [
+          "activityCode"
+        ],
+        "type": "object",
+        "properties": {
+          "scheduleEntryId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the unique internal identifier for this job schedule entry.",
+            "format": "int64",
+            "nullable": true,
+            "example": 32345
+          },
+          "activityCode": {
+            "type": "integer",
+            "description": "Gets or sets the code 4557. Use IF2BA to retrieve code values for activities.",
+            "format": "int64",
+            "example": 45570018
+          },
+          "activity": {
+            "type": "string",
+            "description": "Gets or sets the text of the activity if specified.",
+            "nullable": true,
+            "example": "Unloading"
+          },
+          "dateTime": {
+            "type": "string",
+            "description": "Gets or sets the time of the schedule activity.",
+            "format": "date-time",
+            "nullable": true,
+            "example": "2022-12-01T07:30:00"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Entries such as 'Job start', 'Job end', (...) which are on the schedule of the job."
       },
       "JobSurcharge": {
         "required": [
@@ -4717,11 +5098,18 @@
             "format": "int64",
             "nullable": true
           },
+          "workerId": {
+            "type": "integer",
+            "description": "Gets or sets the internal identifier for the worker.",
+            "format": "int64",
+            "nullable": true
+          },
           "employeeId": {
             "type": "integer",
             "description": "Gets or sets the internal identifier for the employee.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "comment": {
             "type": "string",
@@ -4871,7 +5259,7 @@
           },
           "changeDate": {
             "type": "string",
-            "description": "Gets or sets change date of the entity.",
+            "description": "Gets or sets the change date of the entity.",
             "format": "date-time",
             "nullable": true
           },
@@ -5334,7 +5722,7 @@
           },
           "changeDate": {
             "type": "string",
-            "description": "Gets or sets change date of the entity.",
+            "description": "Gets or sets the change date of the entity.",
             "format": "date-time",
             "nullable": true
           },
@@ -5482,6 +5870,67 @@
         "additionalProperties": false,
         "description": "Signature details when available. If not provided: a report, handover or return is considered unsigned."
       },
+      "Surcharge": {
+        "required": [
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "surchargeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal unique identifier for surcharge master data entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "changeId": {
+            "type": "integer",
+            "description": "Gets or sets the id of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets or sets the date of the entry.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "description": {
+            "maxLength": 300,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the title/name of the surcharge."
+          },
+          "priceUnitOfMeasure": {
+            "type": "string",
+            "description": "Gets or sets unit of measure in which quantities for must be submitted.",
+            "nullable": true
+          },
+          "sortNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets or sets a sort number order of the surcharge when being displayed (ascending).",
+            "nullable": true
+          },
+          "suggestedQuantity": {
+            "type": "number",
+            "description": "Gets or sets a quantity in PriceUnitOfMeasure that is usually suggested for this surcharge, so that users must not manually input common a common quantity.",
+            "format": "double",
+            "nullable": true
+          },
+          "suggestedOnRentalHandover": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether wether or not this surcharge is suggested on rental handovers (e.g. additional instruction or placement)."
+          },
+          "suggestedOnRentalReturn": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether wether or not this surcharge is suggested on rental returns (e.g. cleaning)."
+          }
+        },
+        "additionalProperties": false,
+        "description": "The surcharge dto."
+      },
       "TypeOfDrive": {
         "type": "object",
         "properties": {
@@ -5501,6 +5950,78 @@
         ],
         "type": "string",
         "description": "Typ of drive values.\r\n- `B`: Petrol\r\n- `H`: Hybrid\r\n- `D`: Diesel\r\n- `E`: Electric."
+      },
+      "Worker": {
+        "type": "object",
+        "properties": {
+          "workerId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the worker identifier.",
+            "format": "int64"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the entry is active."
+          },
+          "companyNo": {
+            "maximum": 99999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the company number.",
+            "format": "int64"
+          },
+          "employeeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the employee identifier.",
+            "format": "int64"
+          },
+          "personnelNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the personnel number.",
+            "format": "int64",
+            "nullable": true
+          },
+          "fullName": {
+            "maxLength": 150,
+            "type": "string",
+            "description": "Gets or sets the the full name (surname + second surname + name).",
+            "nullable": true
+          },
+          "phoneNo": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the phone number.",
+            "nullable": true
+          },
+          "mobileNo": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the mobile number.",
+            "nullable": true
+          },
+          "email": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets the email address.",
+            "nullable": true
+          },
+          "branchCode": {
+            "maximum": 45629999,
+            "minimum": 45620000,
+            "type": "integer",
+            "description": "Gets or sets the code 4562. Use IF2BA to retrieve the value list.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Worker entity."
       }
     },
     "securitySchemes": {
