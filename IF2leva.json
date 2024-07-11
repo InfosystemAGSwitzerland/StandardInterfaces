@@ -3626,7 +3626,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Job"
+                    "$ref": "#/components/schemas/RentalOrder"
                   }
                 }
               }
@@ -5804,6 +5804,76 @@
         ],
         "type": "string",
         "description": "Defines what type the entry is. While projects are only structural and will never have cost directly associated, orders are used to render services and charge assigned customer. It is possible to create an order without assigning it to a parent project."
+      },
+      "RentalOrder": {
+        "required": [
+          "branchCode",
+          "orderNo",
+          "orderTitle",
+          "statusCode"
+        ],
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the order identifier.",
+            "format": "int64",
+            "nullable": true
+          },
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the change identifier of the entity.",
+            "format": "int64",
+            "nullable": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets or sets the change date of the entity.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "orderNo": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the order number."
+          },
+          "orderTitle": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the order title."
+          },
+          "statusCode": {
+            "maximum": 45520600,
+            "minimum": 45520010,
+            "type": "integer",
+            "description": "Gets or sets code 4552. Use IF2BA to retrieve the value list.",
+            "format": "int64"
+          },
+          "branchCode": {
+            "maximum": 45629999,
+            "minimum": 45620000,
+            "type": "integer",
+            "description": "Gets or sets code 4562. Use IF2BA to retrieve the value list.",
+            "format": "int64"
+          },
+          "jobIdList": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Gets or sets a list of job ids that are part of this order.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for rental orders."
       },
       "ReportingContextEnum": {
         "enum": [
