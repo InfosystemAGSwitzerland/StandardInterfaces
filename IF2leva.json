@@ -11,6 +11,325 @@
     "version": "v1"
   },
   "paths": {
+    "/api/v1/asset-resource-information/storage-places": {
+      "get": {
+        "tags": [
+          "AssetResourceInformation"
+        ],
+        "summary": "Search for asset resource storage places.",
+        "description": "By passing in the appropriate options, the service searches for available asset resource storage places in the system.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since a specific datetime.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since the provided change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "accessoryId",
+            "in": "query",
+            "description": "Retrieve specific record by accessory id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "machineId",
+            "in": "query",
+            "description": "Retrieve specific record by machine id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "storagePlaceId",
+            "in": "query",
+            "description": "Retrieve specific record by storage place id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "storageLocationId",
+            "in": "query",
+            "description": "Retrieve specific record by storage location id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "storageId",
+            "in": "query",
+            "description": "Retrieve specific record by storage id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "activeOnly",
+            "in": "query",
+            "description": "Retrieve specific records by only active.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AssetResourceStoragePlace"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "AssetResourceInformation"
+        ],
+        "summary": "Update asset resource storage places.",
+        "description": "By passing in the appropriate options, the service searches for available asset resource storage places in the system.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Set of asset resource storage places to assign.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AssetResourceStoragePlace"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AssetResourceStoragePlace"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AssetResourceStoragePlace"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AssetResourceStoragePlace"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
     "/api/v1/master-data/accessories": {
       "get": {
         "tags": [
@@ -44,7 +363,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -199,7 +518,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -354,7 +673,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -509,7 +828,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -683,7 +1002,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -827,7 +1146,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -982,7 +1301,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -1087,6 +1406,175 @@
         }
       }
     },
+    "/api/v1/master-data/storage-places": {
+      "get": {
+        "tags": [
+          "MasterData"
+        ],
+        "summary": "Search for storage places.",
+        "description": "By passing in the appropriate options, the service searches for available storage places in the system.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since a specific datetime.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since the provided change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "storagePlaceId",
+            "in": "query",
+            "description": "Retrieve specific record by storage place id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "storageLocationId",
+            "in": "query",
+            "description": "Retrieve specific record by storage location id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "storageId",
+            "in": "query",
+            "description": "Retrieve specific record by storage id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StoragePlace"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
     "/api/v1/rental/jobs": {
       "get": {
         "tags": [
@@ -1119,7 +1607,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -1273,7 +1761,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -1363,7 +1851,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -1475,7 +1963,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -1574,7 +2062,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -1684,7 +2172,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -1812,7 +2300,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -1938,7 +2426,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -2058,7 +2546,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -2184,7 +2672,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -2304,7 +2792,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -2430,7 +2918,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -2550,7 +3038,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -2678,7 +3166,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -2791,7 +3279,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -2917,7 +3405,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -3039,7 +3527,7 @@
             "in": "header",
             "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -3165,7 +3653,7 @@
             "in": "header",
             "description": "Optional technical ID (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -3284,7 +3772,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -3410,7 +3898,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -3528,7 +4016,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -3672,6 +4160,7 @@
           "accessoryDisplayType",
           "description",
           "isExternalResource",
+          "origin",
           "schedulingGroupCode"
         ],
         "type": "object",
@@ -3866,6 +4355,39 @@
         "additionalProperties": false,
         "description": "Address format."
       },
+      "AssetResourceStoragePlace": {
+        "required": [
+          "storagePlaceId"
+        ],
+        "type": "object",
+        "properties": {
+          "accessoryId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the accessory identifier.",
+            "format": "int64",
+            "nullable": true
+          },
+          "machineId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the machine identifier.",
+            "format": "int64",
+            "nullable": true
+          },
+          "storagePlaceId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the storage place identifier.",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Asset resource storage place mapping entry."
+      },
       "AssignmentEnum": {
         "enum": [
           "RENTAL_HANDOVER",
@@ -4037,6 +4559,55 @@
         "additionalProperties": false,
         "description": "The company account dto."
       },
+      "Contact": {
+        "required": [
+          "roleCode"
+        ],
+        "type": "object",
+        "properties": {
+          "contactId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the contact identifier.",
+            "format": "int64",
+            "nullable": true
+          },
+          "roleCode": {
+            "maximum": 45449999,
+            "minimum": 45440001,
+            "type": "integer",
+            "description": "Gets or sets code 4544. Use IF2BA to retrieve the value list.",
+            "format": "int64"
+          },
+          "fullName": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Gets or sets the the full name (name + surname).",
+            "nullable": true
+          },
+          "phoneNo": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets or sets the phone number.",
+            "nullable": true
+          },
+          "mobileNo": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets or sets the mobile number.",
+            "nullable": true
+          },
+          "email": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets or sets the email address.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for contacts."
+      },
       "Customer": {
         "required": [
           "businessPartnerAddressId",
@@ -4124,7 +4695,8 @@
       },
       "CustomerAttributeValue": {
         "required": [
-          "attributeDefinitionId"
+          "attributeDefinitionId",
+          "modifyUser"
         ],
         "type": "object",
         "properties": {
@@ -4180,7 +4752,7 @@
           "numberValue": {
             "type": "number",
             "description": "Gets or sets the number or decimal value.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true
           },
           "dateValue": {
@@ -4206,7 +4778,8 @@
       },
       "CustomerAttributeValueSet": {
         "required": [
-          "attributeSetId"
+          "attributeSetId",
+          "modifyUser"
         ],
         "type": "object",
         "properties": {
@@ -4419,6 +4992,78 @@
             "maxLength": 2000,
             "type": "string",
             "description": "Gets or sets an optional description such as further instructions for the employee.",
+            "nullable": true
+          },
+          "horizontalReach": {
+            "maximum": 9999999999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Gets or sets the horizontal reach of the resource demand in meters.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "boomLength": {
+            "maximum": 9999999999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Gets or sets the boom length of the resource demand in meters.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "workingHeight": {
+            "maximum": 9999999999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Gets or sets the working height of the resource demand in meters.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "durationOfTransferToJobLocation": {
+            "maximum": 999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Gets or sets the duration of the transfer to the job location of the resource demand in hours.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "durationOfTransferFromJobLocation": {
+            "maximum": 999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Gets or sets the duration of the transfer from the job location of the resource demand in hours.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "weight": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the weight of the resource demand in kilograms.",
+            "format": "int64",
+            "nullable": true
+          },
+          "loadWeight": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the load weight of the resource demand in kilograms.",
+            "format": "int64",
+            "nullable": true
+          },
+          "lateralReach": {
+            "maximum": 9999999999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Gets or sets the lateral reach of the resource demand in meters.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "maximumLoad": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the maximum load of the resource demand in kilograms.",
+            "format": "int64",
             "nullable": true
           },
           "details": {
@@ -5032,7 +5677,7 @@
           "quantity": {
             "type": "number",
             "description": "Gets or sets quantity in price unit of measure given by the base-surcharge.",
-            "format": "double",
+            "format": "decimal",
             "example": 23.5
           },
           "comment": {
@@ -5810,6 +6455,7 @@
           "branchCode",
           "orderNo",
           "orderTitle",
+          "orderTypeCode",
           "statusCode"
         ],
         "type": "object",
@@ -5848,6 +6494,13 @@
             "type": "string",
             "description": "Gets or sets the order title."
           },
+          "orderTypeCode": {
+            "maximum": 45539999,
+            "minimum": 45530001,
+            "type": "integer",
+            "description": "Gets or sets the code 4553 order type.",
+            "format": "int64"
+          },
           "statusCode": {
             "maximum": 45520600,
             "minimum": 45520010,
@@ -5862,6 +6515,18 @@
             "description": "Gets or sets code 4562. Use IF2BA to retrieve the value list.",
             "format": "int64"
           },
+          "yourReference": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the custom order reference.",
+            "nullable": true
+          },
+          "visitDate": {
+            "type": "string",
+            "description": "Gets or sets the visit date.",
+            "format": "date-time",
+            "nullable": true
+          },
           "jobIdList": {
             "type": "array",
             "items": {
@@ -5870,10 +6535,121 @@
             },
             "description": "Gets or sets a list of job ids that are part of this order.",
             "nullable": true
+          },
+          "contactList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Contact"
+            },
+            "description": "Gets or sets a list of contact that are part of this order.",
+            "nullable": true
+          },
+          "orderPhaseList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RentalOrderPhase"
+            },
+            "description": "Gets or sets a list of order phases that are part of this order.",
+            "nullable": true
+          },
+          "jobOrderLineList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RentalOrderLine"
+            },
+            "description": "Gets or sets a list of order lines that are part of this order.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
         "description": "The DTO for rental orders."
+      },
+      "RentalOrderLine": {
+        "required": [
+          "orderPhaseId",
+          "sortNo"
+        ],
+        "type": "object",
+        "properties": {
+          "orderLineId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the order line identifier.",
+            "format": "int64",
+            "nullable": true
+          },
+          "orderPhaseId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the order phase identifier.",
+            "format": "int64"
+          },
+          "sortNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the order line sorting number.",
+            "format": "int64"
+          },
+          "orderLineDetails": {
+            "maxLength": 4000,
+            "type": "string",
+            "description": "Gets or sets the order line details (rich text format).",
+            "nullable": true
+          },
+          "jobIdList": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Gets or sets a list of job ids that are part of this order line.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for rental order lines."
+      },
+      "RentalOrderPhase": {
+        "required": [
+          "description",
+          "shortDescription",
+          "sortNo"
+        ],
+        "type": "object",
+        "properties": {
+          "orderPhaseId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the order phase identifier.",
+            "format": "int64",
+            "nullable": true
+          },
+          "sortNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the order phase sorting number.",
+            "format": "int64"
+          },
+          "shortDescription": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the order phase identifier."
+          },
+          "description": {
+            "maxLength": 4000,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the order phase identifier."
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for rental order phases."
       },
       "ReportingContextEnum": {
         "enum": [
@@ -5940,6 +6716,77 @@
         "additionalProperties": false,
         "description": "Signature details when available. If not provided: a report, handover or return is considered unsigned."
       },
+      "StoragePlace": {
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets the id when the entry was last changed.",
+            "format": "int64",
+            "nullable": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets the date and time when the entry was last changed.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "storagePlaceId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the storage place identifier.",
+            "format": "int64"
+          },
+          "storagePlaceDescription": {
+            "maxLength": 400,
+            "type": "string",
+            "description": "Gets or sets the storage place description.",
+            "nullable": true
+          },
+          "storageLocationId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the storage location identifier.",
+            "format": "int64"
+          },
+          "storageLocationPlaceDescription": {
+            "maxLength": 400,
+            "type": "string",
+            "description": "Gets or sets the storage location description.",
+            "nullable": true
+          },
+          "storageId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the storage identifier.",
+            "format": "int64"
+          },
+          "storageDescription": {
+            "maxLength": 400,
+            "type": "string",
+            "description": "Gets or sets the storage description.",
+            "nullable": true
+          },
+          "companyNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the storage company number.",
+            "format": "int64"
+          },
+          "inspectionAfterRental": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether when this storage place is provided on a rental return, an inspection is required afterwards."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Storage place entry."
+      },
       "Surcharge": {
         "required": [
           "description"
@@ -5986,7 +6833,7 @@
           "suggestedQuantity": {
             "type": "number",
             "description": "Gets or sets a quantity in PriceUnitOfMeasure that is usually suggested for this surcharge, so that users must not manually input common a common quantity.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true
           },
           "suggestedOnRentalHandover": {
