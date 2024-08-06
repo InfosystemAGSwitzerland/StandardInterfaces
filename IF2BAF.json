@@ -10,6 +10,419 @@
     "version": "v1"
   },
   "paths": {
+    "/api/v1/documents": {
+      "get": {
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Gets a document with additional information.",
+        "description": "Gets a document for the sent identification.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "documentGuid",
+            "in": "query",
+            "description": "Unique identifier for a document.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "dataFormat",
+            "in": "query",
+            "description": "The format the document needs to be sent. Either Base64 or Binary.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Writes documents.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The document information to update or create.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentInfo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentInfo"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Deletes a document.",
+        "description": "Removes a document from the database for the sent identification.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "documentGuid",
+            "in": "query",
+            "description": "Unique identifier for a document.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The document was deleted successfully."
+          },
+          "401": {
+            "description": "Unauthorised."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
+    "/api/v1/documents/file": {
+      "get": {
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Gets the content of a document.",
+        "description": "Gets the Content of a document for the sent identification. Use this call to directly show a file.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "documentGuid",
+            "in": "query",
+            "description": "Unique identifier for a document.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Document as a binary stream. The header contains all the information about the file for a web browser to display or download the file correctly using standard headers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
     "/api/v1/master-data/orders": {
       "get": {
         "tags": [
@@ -43,7 +456,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -105,7 +518,7 @@
           {
             "name": "orderType",
             "in": "query",
-            "description": "Get all the entities of a certain order type. (M: Material P: Production V: Sales E: Purchase A: Other)",
+            "description": "Get all the entities of a certain order type. (M: Material P: Production V: Sales E: Purchase A: Other).",
             "schema": {
               "maxLength": 1,
               "type": "string"
@@ -146,7 +559,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
             "content": {
               "application/json": {
                 "schema": {
@@ -159,7 +572,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Invalid input, object invalid.",
             "content": {
               "application/json": {
                 "schema": {
@@ -168,17 +581,24 @@
               }
             }
           },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Basic Authentication failed."
           },
           "403": {
-            "description": "Requestor has insufficient rights"
+            "description": "Requestor has insufficient rights."
           },
           "500": {
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance"
+            "description": "Internal Server Error."
           }
         }
       },
@@ -195,6 +615,7 @@
             "description": "Identifying the system calling the service.",
             "required": true,
             "schema": {
+              "maxLength": 50,
               "type": "string"
             }
           },
@@ -204,6 +625,7 @@
             "description": "Identifying the user calling the service.",
             "required": true,
             "schema": {
+              "maxLength": 30,
               "type": "string"
             }
           },
@@ -212,6 +634,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -247,7 +670,17 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created.",
             "content": {
               "application/json": {
                 "schema": {
@@ -257,7 +690,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, object invalid",
+            "description": "Invalid input, object invalid.",
             "content": {
               "application/json": {
                 "schema": {
@@ -266,17 +699,24 @@
               }
             }
           },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Basic Authentication failed"
+            "description": "Basic Authentication failed."
           },
           "403": {
-            "description": "Requestor has insufficient rights"
+            "description": "Requestor has insufficient rights."
           },
           "500": {
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "description": "Service unavailable due to maintenance"
+            "description": "Internal Server Error."
           }
         }
       }
@@ -294,7 +734,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Internal identification of attribute value.",
+            "description": "Gets internal identification of attribute value.",
             "format": "int64",
             "nullable": true,
             "readOnly": true
@@ -303,19 +743,19 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Internal identification of attribute definition.",
+            "description": "Gets or sets internal identification of attribute definition.",
             "format": "int64"
           },
           "modifyUser": {
             "maxLength": 30,
             "type": "string",
-            "description": "User who last modified the entry.",
+            "description": "Gets user who last modified the entry.",
             "nullable": true,
             "readOnly": true
           },
           "modifyDate": {
             "type": "string",
-            "description": "Date the entry was last modified.",
+            "description": "Gets date the entry was last modified.",
             "format": "date-time",
             "nullable": true,
             "readOnly": true
@@ -324,7 +764,7 @@
             "maximum": 9999,
             "minimum": 1,
             "type": "integer",
-            "description": "Position within the attribute value set.",
+            "description": "Gets position within the attribute value set.",
             "format": "int64",
             "nullable": true,
             "readOnly": true
@@ -333,36 +773,36 @@
             "maximum": 999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Company identification of the entry.",
+            "description": "Gets or sets company identification of the entry.",
             "format": "int64",
             "nullable": true
           },
           "textValue": {
             "maxLength": 1000,
             "type": "string",
-            "description": "A string value.\r\nWhether Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.TextValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.NumberValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.DateValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.BoolValue or Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
+            "description": "Gets or sets a string value.\r\nWhether Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.TextValue, Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.NumberValue, Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.DateValue, Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.BoolValue or Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
             "nullable": true
           },
           "numberValue": {
             "type": "number",
-            "description": "Number or decimal value.\r\nWhether Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.TextValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.NumberValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.DateValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.BoolValue or Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
-            "format": "double",
+            "description": "Gets or sets number or decimal value.\r\nWhether Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.TextValue, Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.NumberValue, Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.DateValue, Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.BoolValue or Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
+            "format": "decimal",
             "nullable": true
           },
           "dateValue": {
             "type": "string",
-            "description": "Date value.\r\nWhether Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.TextValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.NumberValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.DateValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.BoolValue or Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
+            "description": "Gets or sets date value.\r\nWhether Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.TextValue, Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.NumberValue, Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.DateValue, Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.BoolValue or Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
             "format": "date-time",
             "nullable": true
           },
           "boolValue": {
             "type": "boolean",
-            "description": "A true or false value.\r\nWhether Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.TextValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.NumberValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.DateValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.BoolValue or Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
+            "description": "Gets or sets a true or false value.\r\nWhether Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.TextValue, Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.NumberValue, Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.DateValue, Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.BoolValue or Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
             "nullable": true
           },
           "codeValue": {
             "type": "integer",
-            "description": "Code value.\r\nWhether Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.TextValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.NumberValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.DateValue, Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.BoolValue or Infosystem.Baf.IF2Baf.WebApi.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
+            "description": "Gets or sets code value.\r\nWhether Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.TextValue, Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.NumberValue, Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.DateValue, Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.BoolValue or Infosystem.Baf.WebApi.IF2Baf.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
             "format": "int64",
             "nullable": true
           }
@@ -380,19 +820,19 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Internal identification of attribute set.",
+            "description": "Gets or sets internal identification of attribute set.",
             "format": "int64"
           },
           "modifyUser": {
             "maxLength": 30,
             "type": "string",
-            "description": "User who last modified the entry.",
+            "description": "Gets user who last modified the entry.",
             "nullable": true,
             "readOnly": true
           },
           "modifyDate": {
             "type": "string",
-            "description": "Date the entry was last modified.",
+            "description": "Gets date the entry was last modified.",
             "format": "date-time",
             "nullable": true,
             "readOnly": true
@@ -402,12 +842,107 @@
             "items": {
               "$ref": "#/components/schemas/AttributeValue"
             },
-            "description": "A list of attribute values.",
+            "description": "Gets a list of attribute values.",
             "nullable": true
           }
         },
         "additionalProperties": false,
         "description": "The DTO for an attribute value set."
+      },
+      "DocumentInfo": {
+        "required": [
+          "documentGuid",
+          "fileExtension"
+        ],
+        "type": "object",
+        "properties": {
+          "origin": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets the origin of the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "MYERP"
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the company identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "example": 100
+          },
+          "documentGuid": {
+            "type": "string",
+            "description": "Gets or sets the unique identifier of the document. Has to be a valid GUID.",
+            "format": "uuid"
+          },
+          "documentName": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the name of the document or file. If no documentName was provided, the documentGuid is used.",
+            "nullable": true,
+            "example": "Manual RS-1932"
+          },
+          "fileExtension": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the filetype extension of the document.",
+            "example": "pdf"
+          },
+          "mimeType": {
+            "type": "string",
+            "description": "Gets or sets the mime/Type of the document.",
+            "nullable": true,
+            "example": "application/pdf"
+          },
+          "dataBinary": {
+            "type": "string",
+            "description": "Gets or sets the data of the document in binary format. Either dataBinary or dataBase64 needs to be provided.",
+            "format": "byte",
+            "nullable": true
+          },
+          "dataBase64": {
+            "type": "string",
+            "description": "Gets or sets the data of the document in base 64 format. Either dataBinary or dataBase64 needs to be provided.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for document with additional information."
+      },
+      "MaintenanceWindow": {
+        "type": "object",
+        "properties": {
+          "maintenanceWindowId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "fromDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "untilDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "info": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientStartAllowed": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
       },
       "Order": {
         "required": [
@@ -426,14 +961,14 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Change identification of the entry.",
+            "description": "Gets change identification of the entry.",
             "format": "int64",
             "nullable": true,
             "readOnly": true
           },
           "changeDate": {
             "type": "string",
-            "description": "Change date of the entry.",
+            "description": "Gets change date of the entry.",
             "format": "date-time",
             "nullable": true,
             "readOnly": true
@@ -442,116 +977,116 @@
             "maximum": 9999999999,
             "minimum": 0,
             "type": "integer",
-            "description": "Technical identification of the entry.",
+            "description": "Gets or sets technical identification of the entry.",
             "format": "int64",
             "nullable": true
           },
           "origin": {
             "maxLength": 200,
             "type": "string",
-            "description": "The system of the origin of the order.",
+            "description": "Gets the system of the origin of the order.",
             "nullable": true,
             "readOnly": true
           },
           "externalOrderId": {
             "maxLength": 200,
             "type": "string",
-            "description": "Third-party order id - This id must be unique within the origin (origin field).\r\nAs id it is recommended to use either the primary key of the foreign system or a GUID (Global Unique Identifier).",
+            "description": "Gets or sets third-party order id - This id must be unique within the origin (origin field).\r\nAs id it is recommended to use either the primary key of the foreign system or a GUID (Global Unique Identifier).",
             "nullable": true
           },
           "orderNo": {
             "maxLength": 20,
             "minLength": 1,
             "type": "string",
-            "description": "Identifies the order to be booked in accounting. This is the actual order number of the order."
+            "description": "Gets or sets the order to be booked in accounting. This is the actual order number of the order."
           },
           "companyNo": {
             "maximum": 999999,
             "minimum": 0,
             "type": "integer",
-            "description": "Company identification of the entry.",
+            "description": "Gets or sets company identification of the entry.",
             "format": "int64"
           },
           "description": {
             "maxLength": 100,
             "minLength": 1,
             "type": "string",
-            "description": "The description is a short description / title of the order."
+            "description": "Gets or sets a short description / title of the order."
           },
           "orderType": {
             "maxLength": 1,
             "minLength": 1,
             "type": "string",
-            "description": "Identifies the type of the order."
+            "description": "Gets or sets the type of the order."
           },
           "orderStatus": {
             "maximum": 1049999,
             "minimum": 1040001,
             "type": "integer",
-            "description": "Code that identifies the current status of the order.",
+            "description": "Gets or sets code that identifies the current status of the order.",
             "format": "int64"
           },
           "businessPartnerAddressId": {
             "maximum": 9999999999,
             "minimum": 0,
             "type": "integer",
-            "description": "Reference to the business partner address within performis.",
+            "description": "Gets or sets reference to the business partner address within performis.",
             "format": "int64",
             "nullable": true
           },
           "responsiblePerson": {
             "maxLength": 30,
             "type": "string",
-            "description": "Name or designation of the person responsible.",
+            "description": "Gets or sets name or designation of the person responsible.",
             "nullable": true
           },
           "costCenterNo": {
             "maxLength": 20,
             "type": "string",
-            "description": "Cost center number of the order.",
+            "description": "Gets or sets cost center number of the order.",
             "nullable": true
           },
           "costUnitNo": {
             "maxLength": 20,
             "type": "string",
-            "description": "Cost unit number of the order.",
+            "description": "Gets or sets cost unit number of the order.",
             "nullable": true
           },
           "salesChannelNo": {
             "maxLength": 3,
             "type": "string",
-            "description": "Identifies the sale channel.",
+            "description": "Gets or sets the sale channel.",
             "nullable": true
           },
           "isCostAccountingOrder": {
             "type": "boolean",
-            "description": "Is it a cost accounting order?"
+            "description": "Gets or sets is it a cost accounting order?."
           },
           "chargingType": {
             "maxLength": 2,
             "type": "string",
-            "description": "Defines whether the order is reallocated. KT: cost unit KS: cost centre AU: order",
+            "description": "Gets or sets whether the order is reallocated. KT: cost unit KS: cost center AU: order.",
             "nullable": true
           },
           "budgetCharging": {
             "type": "boolean",
-            "description": "Shows whether the order is relevant to the budget."
+            "description": "Gets or sets whether the order is relevant to the budget."
           },
           "orderDate": {
             "type": "string",
-            "description": "Date the order was placed.",
+            "description": "Gets or sets date the order was placed.",
             "format": "date",
             "nullable": true
           },
           "currency": {
             "maxLength": 3,
             "type": "string",
-            "description": "Currency as ISO code.",
+            "description": "Gets or sets currency as ISO code.",
             "nullable": true
           },
           "isManualPostable": {
             "type": "boolean",
-            "description": "Shows whether the order can be booked in accounting?"
+            "description": "Gets or sets whether the order can be booked in accounting?."
           },
           "attributeValueSet": {
             "$ref": "#/components/schemas/AttributeValueSet"
