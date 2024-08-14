@@ -43,7 +43,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -59,7 +59,7 @@
           {
             "name": "skip",
             "in": "query",
-            "description": "Number of entries  to skip  for pagination.",
+            "description": "Number of entries to skip for pagination.",
             "schema": {
               "maximum": 1000000,
               "minimum": 0,
@@ -218,7 +218,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -323,7 +323,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -511,7 +511,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -617,7 +617,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -800,7 +800,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -836,11 +836,30 @@
             "in": "query",
             "description": "Get a list with all the entries for the specified article id.",
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "integer",
-                "format": "int64"
-              }
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "articleNo",
+            "in": "query",
+            "description": "Get a list with all the entries for the specified article number.",
+            "schema": {
+              "maxLength": 20,
+              "type": "string"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Get a list with all the entries for the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
             }
           },
           {
@@ -953,7 +972,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -1042,6 +1061,151 @@
         }
       }
     },
+    "/api/v1/master-data/material-management/warehouses": {
+      "get": {
+        "tags": [
+          "MasterData"
+        ],
+        "summary": "Gets material management warehouses.",
+        "description": "Returns all matching warehouses.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the date time specified.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the change id specified.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "warehouseId",
+            "in": "query",
+            "description": "Get the entry with the specified warehouse id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 1000
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Warehouse information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MaterialManagementWarehouse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/v1/master-data/purchase/suppliers": {
       "get": {
         "tags": [
@@ -1075,7 +1239,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -1140,7 +1304,8 @@
             "in": "query",
             "description": "Get all entries with the specified supplier number - only unique with company no.",
             "schema": {
-              "maxLength": 10,
+              "maximum": 9999999999,
+              "minimum": 1,
               "type": "integer",
               "format": "int64"
             }
@@ -1259,7 +1424,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -1413,6 +1578,183 @@
         }
       }
     },
+    "/api/v1/material-management/delivery-notes": {
+      "get": {
+        "tags": [
+          "MaterialManagement"
+        ],
+        "summary": "Gets material management delivery notes.",
+        "description": "Returns all matching delivery notes.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the date time specified.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the change id specified.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "deliveryNoteId",
+            "in": "query",
+            "description": "Get the entries with the specified delivery note id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "supplierDeliveryNoteNo",
+            "in": "query",
+            "description": "Get the entries with specified delivery note no of the supplier.",
+            "schema": {
+              "maxLength": 20,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Get the entries with the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "deliveryDate",
+            "in": "query",
+            "description": "Get the entries with the specified delivery date.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MaterialManagementDeliveryNote"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/v1/purchasing/orders": {
       "get": {
         "tags": [
@@ -1445,7 +1787,7 @@
             "in": "header",
             "description": "Optional technical id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -1604,6 +1946,398 @@
         }
       }
     },
+    "/api/v1/purchasing/invoices": {
+      "get": {
+        "tags": [
+          "Purchasing"
+        ],
+        "summary": "Get purchase invoices.",
+        "description": "Returns all matching purchase invoices.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the date time specified.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the change id specified.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "invoiceId",
+            "in": "query",
+            "description": "Get invoice with the invoice id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "Get the entries with the specified origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "externalInvoiceId",
+            "in": "query",
+            "description": "Get the entries with the specified external invoice id - should be used with an origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Get the entries with the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 10000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PurchaseInvoice"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Purchasing"
+        ],
+        "summary": "Creates or updates a purchase invoice.",
+        "description": "The invoice data must always be provided completely.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A single invoice.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PurchaseInvoice"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseInvoice"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseInvoice"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Purchasing"
+        ],
+        "summary": "Deletes an purchase invoice.",
+        "description": "Deletes a single purchase invoice. Only unposted purchase invoices can be deleted.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "invoiceId",
+            "in": "query",
+            "description": "Identifier of an purchase invoice.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "The system of origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "originId",
+            "in": "query",
+            "description": "The identification in the system of origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid input, object invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The invoice was deleted successfully."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Requestor has insufficient rights"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/v1/service-recording/presence-times": {
       "get": {
         "tags": [
@@ -1637,7 +2371,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -1831,7 +2565,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -1951,7 +2685,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -2059,7 +2793,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -2155,7 +2889,7 @@
           {
             "name": "skip",
             "in": "query",
-            "description": "Number of entries  to skip  for pagination.",
+            "description": "Number of entries to skip for pagination.",
             "schema": {
               "maximum": 100000,
               "minimum": 0,
@@ -2253,7 +2987,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -2373,7 +3107,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -2485,7 +3219,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -2581,7 +3315,7 @@
           {
             "name": "skip",
             "in": "query",
-            "description": "Number of entries  to skip  for pagination.",
+            "description": "Number of entries to skip for pagination.",
             "schema": {
               "maximum": 100000,
               "minimum": 0,
@@ -2679,7 +3413,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -2783,7 +3517,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -2895,7 +3629,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -2951,6 +3685,16 @@
             }
           },
           {
+            "name": "personnelNo",
+            "in": "query",
+            "description": "Get the entries for the employee with the specified personnel number.",
+            "schema": {
+              "maxLength": 50,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          {
             "name": "allowanceDate",
             "in": "query",
             "description": "Get the entries with the specified date.",
@@ -2981,9 +3725,9 @@
           {
             "name": "skip",
             "in": "query",
-            "description": "Number of entries  to skip  for pagination.",
+            "description": "Number of entries to skip for pagination.",
             "schema": {
-              "maximum": 2147483647,
+              "maximum": 100000,
               "minimum": 0,
               "type": "integer",
               "format": "int32"
@@ -3079,7 +3823,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -3183,7 +3927,7 @@
             "in": "header",
             "description": "Optional technical Id (GUID) for call identification.",
             "schema": {
-              "maxLength": 30,
+              "maxLength": 128,
               "type": "string"
             }
           },
@@ -3431,13 +4175,13 @@
           "amountBSC": {
             "type": "number",
             "description": "Amount of the entry in balance sheet currency.",
-            "format": "double",
+            "format": "decimal",
             "example": 18000.65
           },
           "quantity": {
             "type": "number",
             "description": "Quantity in the unit defined on the cost type.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 2.1234
           },
@@ -3455,10 +4199,53 @@
             "description": "Defines the type of system generated entries. E => Debit bookings for combined cc & cu entries / F => Fix cost entries / K => Short term income statement / V => Cost allocation / Z => Additional entries / B => Credit bookings for allocations / T => Debit bookings for allocations",
             "nullable": true,
             "example": "U"
+          },
+          "financialDimensions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CostAccountingFinancialDimension"
+            },
+            "description": "A list of financial dimensions.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
         "description": "Represents a entry in the cost accounting."
+      },
+      "CostAccountingFinancialDimension": {
+        "required": [
+          "financialDimensionNo",
+          "financialDimensionValue"
+        ],
+        "type": "object",
+        "properties": {
+          "costAccountingFinancialDimensionId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique id of the cost accounting financial dimension entry.",
+            "format": "int64",
+            "nullable": true,
+            "example": 123456
+          },
+          "financialDimensionNo": {
+            "maximum": 99,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identifies the financial dimension.",
+            "format": "int64",
+            "example": 23
+          },
+          "financialDimensionValue": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "The financial dimension value.",
+            "example": "321.2"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a cost accounting financial dimension entry."
       },
       "MaintenanceWindow": {
         "type": "object",
@@ -3600,14 +4387,14 @@
             "minimum": 0,
             "type": "number",
             "description": "The conversion factor to convert StockUnit to PriceUnit e.g. 1 (stockUnitCode).",
-            "format": "double"
+            "format": "decimal"
           },
           "conversionFactorPriceUnitStockUnit": {
             "maximum": 9999999,
             "minimum": 0,
             "type": "number",
             "description": "The conversion factor to convert PriceUnit to StockUnit e.g. 12 (priceUnitCode).",
-            "format": "double"
+            "format": "decimal"
           },
           "stockManagement": {
             "type": "boolean",
@@ -3708,7 +4495,6 @@
       },
       "MaterialManagementArticlePrice": {
         "required": [
-          "articleId",
           "price",
           "priceTypeCode",
           "validFrom"
@@ -3771,7 +4557,22 @@
             "minimum": 1,
             "type": "integer",
             "description": "Unique identifier of the article.",
-            "format": "int64"
+            "format": "int64",
+            "nullable": true
+          },
+          "articleNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Article number for identification together with 'articleNo'.",
+            "nullable": true
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Company for identification together with 'companyNo'.",
+            "format": "int64",
+            "nullable": true
           },
           "priceTypeCode": {
             "maximum": 4079999,
@@ -3790,7 +4591,7 @@
             "minimum": 0,
             "type": "number",
             "description": "Price per price Unit in balance sheet currency.",
-            "format": "double"
+            "format": "decimal"
           }
         },
         "additionalProperties": false,
@@ -3879,7 +4680,7 @@
           "numberValue": {
             "type": "number",
             "description": "Number or decimal value.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true
           },
           "dateValue": {
@@ -3949,6 +4750,480 @@
         },
         "additionalProperties": false,
         "description": "The attribute value set."
+      },
+      "MaterialManagementDeliveryNote": {
+        "required": [
+          "companyNo",
+          "deliveryNoteId"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 5214698741
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "User who last modified the entry.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "deliveryNoteId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identification of the delivery note.",
+            "format": "int64",
+            "readOnly": true,
+            "example": 123456
+          },
+          "supplierDeliveryNoteNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Delivery note no of the supplier.",
+            "nullable": true,
+            "example": "MAU"
+          },
+          "materialPostingTypeCode": {
+            "maximum": 4129999,
+            "minimum": 4120001,
+            "type": "integer",
+            "description": "C412 - material posting type\r\n\r\n4120010\t- Input inventory\r\n\r\n4120011\t- Purchase receipt\r\n\r\n4120012\t- Purchase returns\r\n\r\n4120013\t- Production input\r\n\r\n4120014\t- Production returns\r\n\r\n4120015\t- Sales returns\r\n\r\n4120016\t- Cost center returns\r\n\r\n4120017\t- Order returns\r\n\r\n4120020\t- Production output\r\n\r\n4120021\t- Sales output\r\n\r\n4120022\t- Cost center output\r\n\r\n4120023\t- Store difference\r\n\r\n4120024\t- Order output\r\n\r\n4120030\t- Material transfer\r\n\r\n4120031\t- Reclassification",
+            "format": "int64",
+            "example": 4120011
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The company number of the delivery note.",
+            "format": "int64",
+            "example": 100
+          },
+          "deliveryDate": {
+            "type": "string",
+            "description": "Date and time of the delivery.",
+            "format": "date",
+            "nullable": true,
+            "readOnly": true
+          },
+          "warehouseId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identification of the warehouse.",
+            "format": "int64",
+            "nullable": true,
+            "example": 123456
+          },
+          "targetWarehouseId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identification of the target warehouse in case of material transfer.",
+            "format": "int64",
+            "nullable": true,
+            "example": 654321
+          },
+          "orderNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Identifies the purchase, sales, production or material order.",
+            "nullable": true,
+            "example": "E2024.0123"
+          },
+          "costCenterNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Cost center number.",
+            "nullable": true,
+            "example": "Digger 101"
+          },
+          "costUnitNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Cost unit number.",
+            "nullable": true,
+            "example": "C-222"
+          },
+          "isReversal": {
+            "type": "boolean",
+            "description": "This delivery note is a reversal."
+          },
+          "reversedDeliveryNoteId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identification of the reversed delivery note on the reversal delivery note.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 222333
+          },
+          "reversalDeliveryNoteId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Identification of the reversal delivery note on the reversed delivery note.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 444555
+          },
+          "positions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MaterialManagementDeliveryNotePosition"
+            },
+            "description": "List of positions of the delivery note.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a material management delivery."
+      },
+      "MaterialManagementDeliveryNotePosition": {
+        "required": [
+          "articleNo"
+        ],
+        "type": "object",
+        "properties": {
+          "positionNo": {
+            "maximum": 9999.999,
+            "minimum": 0.001,
+            "type": "number",
+            "description": "Position number in the delivery note.",
+            "format": "decimal",
+            "readOnly": true,
+            "example": 123456
+          },
+          "positionSequenceNo": {
+            "maximum": 9,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Sequence number in the delivery note position.\r\nNormaly 1, 2 for the add posting in case of a material transfer.",
+            "format": "int64",
+            "readOnly": true,
+            "example": 1
+          },
+          "orderPosNo": {
+            "maximum": 9999.999,
+            "minimum": 0.001,
+            "type": "number",
+            "description": "Position number of the order position.",
+            "format": "decimal",
+            "nullable": true,
+            "readOnly": true,
+            "example": 123456
+          },
+          "articleId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the article.",
+            "format": "int64"
+          },
+          "articleNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Article number for identification by the users.",
+            "nullable": true
+          },
+          "quantityInStockUnit": {
+            "maximum": 9999999999.9999,
+            "minimum": -9999999999.9999,
+            "type": "number",
+            "description": "Delivery quantity in stock units.",
+            "format": "decimal",
+            "example": 100
+          },
+          "remarks": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Remarks for the delivery note position.",
+            "nullable": true
+          },
+          "materialPostings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MaterialManagementMaterialPosting"
+            },
+            "description": "List of material postings for the managed articles.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a material management delivery position."
+      },
+      "MaterialManagementMaterialPosting": {
+        "required": [
+          "articleNo"
+        ],
+        "type": "object",
+        "properties": {
+          "materialPostingId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the material posting.",
+            "format": "int64"
+          },
+          "articleId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the article.",
+            "format": "int64"
+          },
+          "articleNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Article number for identification by the users.",
+            "nullable": true
+          },
+          "storageBinId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the storage bin.",
+            "format": "int64"
+          },
+          "quantityInStockUnit": {
+            "maximum": 9999999999.9999,
+            "minimum": -9999999999.9999,
+            "type": "number",
+            "description": "Delivery quantity in stock units.",
+            "format": "decimal",
+            "example": 100
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a material management posting."
+      },
+      "MaterialManagementStorageArea": {
+        "required": [
+          "active",
+          "storageAreaName"
+        ],
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "description": "Is this entry active or not?"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "User who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "storageAreaId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the storage area.",
+            "format": "int64",
+            "example": 398
+          },
+          "storageAreaName": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Name of the storage area.",
+            "example": "Halle 1"
+          },
+          "storageAreaShortName": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Short name of the storage area.",
+            "nullable": true,
+            "example": "H1"
+          },
+          "isNegativeStockAllowed": {
+            "type": "boolean",
+            "description": "Indicates if a negative stock quantity is allowed for this storage area."
+          },
+          "storageBins": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MaterialManagementStorageBin"
+            },
+            "description": "Gets the list of storage bins.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a material management storage area."
+      },
+      "MaterialManagementStorageBin": {
+        "required": [
+          "active",
+          "storageBinName"
+        ],
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "description": "Is this entry active or not?"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "User who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "storageBinId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the storage bin.",
+            "format": "int64",
+            "example": 979
+          },
+          "storageBinName": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string",
+            "description": "Name of the storage bin.",
+            "example": "A2.5"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a material management storage bin."
+      },
+      "MaterialManagementWarehouse": {
+        "required": [
+          "active",
+          "warehouseName"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 8971239429
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Is this entry active or not?"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "User who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "warehouseId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the warehouse.",
+            "format": "int64",
+            "example": 326479517
+          },
+          "warehouseName": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Name of the warehouse.",
+            "example": "Warehouse AT01"
+          },
+          "warehouseShortName": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Short name of the warehouse.",
+            "nullable": true,
+            "example": "AT01"
+          },
+          "locationBusinessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the location business partner address.",
+            "format": "int64",
+            "nullable": true,
+            "example": 5927
+          },
+          "ownerBusinessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Unique identifier of the owner business partner address.",
+            "format": "int64",
+            "nullable": true,
+            "example": 5927
+          },
+          "storageAreas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MaterialManagementStorageArea"
+            },
+            "description": "Gets the list of storage areas.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a material management warehouse."
       },
       "ProblemDetails": {
         "type": "object",
@@ -4036,7 +5311,7 @@
           "numberValue": {
             "type": "number",
             "description": "Number or decimal value.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true
           },
           "dateValue": {
@@ -4106,6 +5381,674 @@
         },
         "additionalProperties": false,
         "description": "The attribute value set."
+      },
+      "PurchaseInvoice": {
+        "required": [
+          "companyNo",
+          "currency",
+          "entryDate",
+          "invoiceTypeCode",
+          "paymentTermsCode",
+          "period",
+          "totalAmountInBalanceSheetCurrency",
+          "totalAmountInInvoiceCurrency",
+          "valueDate",
+          "vatDate",
+          "voucherType"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 8971239429
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "User who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "invoiceId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Technical identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "example": 326479517
+          },
+          "origin": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "The system of origin.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "WorkflowXY"
+          },
+          "originId": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Id in the system of origin.",
+            "nullable": true,
+            "example": "INV-319.321.898"
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Company identification of the entry.",
+            "format": "int64",
+            "example": 37
+          },
+          "invoiceTypeCode": {
+            "maximum": 24719999,
+            "minimum": 24710001,
+            "type": "integer",
+            "description": "C2471 - Type of invoice\r\n\r\n24710001 - invoice\r\n\r\n24710002 - credit note\r\n",
+            "format": "int64",
+            "example": 24710001
+          },
+          "voucherType": {
+            "maxLength": 4,
+            "minLength": 1,
+            "type": "string",
+            "description": "Voucher type for accounting system.",
+            "example": "EFAK"
+          },
+          "voucherNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Voucher number for accounting system.",
+            "format": "int64",
+            "nullable": true,
+            "example": 658421
+          },
+          "entryDate": {
+            "type": "string",
+            "description": "Entry date of the invoice.",
+            "format": "date",
+            "example": "2024-06-28"
+          },
+          "valueDate": {
+            "type": "string",
+            "description": "Value date of the invoice.",
+            "format": "date",
+            "example": "2024-06-24"
+          },
+          "vatDate": {
+            "type": "string",
+            "description": "Relevant date for tax.",
+            "format": "date",
+            "example": "2024-05-24"
+          },
+          "period": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Accounting period of the invoice.\r\nFormat YYYYMM (e.g. 202401).",
+            "format": "int64",
+            "example": 202407
+          },
+          "accountPayableNo": {
+            "type": "integer",
+            "description": "Number of the account payable.\r\nThe supplier number or the account payable number must be specified.",
+            "format": "int64",
+            "nullable": true
+          },
+          "supplierNo": {
+            "type": "integer",
+            "description": "Supplier number of the invoice.\r\nThe supplier number or the account payable number must be specified.",
+            "format": "int64",
+            "nullable": true
+          },
+          "supplierInvoiceNo": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Invoice number of the supplier.",
+            "nullable": true,
+            "example": "INV-2024-1234"
+          },
+          "currency": {
+            "maxLength": 3,
+            "minLength": 1,
+            "type": "string",
+            "description": "ISO code of the currency."
+          },
+          "exchangeRate": {
+            "maximum": 99999999.999999,
+            "type": "number",
+            "description": "Exchange rate used for invoice when not in balance sheet currency. \r\nUse 1 when invoice is in balance sheet currency. \r\nIf the exchange rate is not specified, it is determined using the entry date.",
+            "format": "decimal",
+            "nullable": true,
+            "example": 0.954
+          },
+          "invoiceStatusCode": {
+            "maximum": 24729999,
+            "minimum": 24720001,
+            "type": "integer",
+            "description": "C2472 - Status of the invoice\r\n\r\n24720001 - open\r\n\r\n24720002 - posted to accounting system.\r\n",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 24720001
+          },
+          "paymentTermsCode": {
+            "maximum": 279999,
+            "minimum": 270001,
+            "type": "integer",
+            "description": "C27 - Payment terms code for the invoice.",
+            "format": "int64"
+          },
+          "totalAmountInInvoiceCurrency": {
+            "maximum": 999999999999.99,
+            "minimum": -999999999999.99,
+            "type": "number",
+            "description": "Total amount of the invoice in invoice currency.",
+            "format": "decimal",
+            "example": 108.1
+          },
+          "totalAmountInBalanceSheetCurrency": {
+            "maximum": 999999999999.99,
+            "minimum": -999999999999.99,
+            "type": "number",
+            "description": "Total amount of the invoice in balance sheet currency.",
+            "format": "decimal",
+            "example": 108.1
+          },
+          "postingText": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Optional posting text for accountig system",
+            "nullable": true
+          },
+          "qrCode": {
+            "maxLength": 4000,
+            "type": "string",
+            "description": "Complete QR-Code for payment.",
+            "nullable": true
+          },
+          "qrIban": {
+            "maxLength": 34,
+            "type": "string",
+            "description": "QR-IBAN for payment.",
+            "nullable": true
+          },
+          "qrQrrReference": {
+            "maxLength": 27,
+            "type": "string",
+            "description": "QRR-Reference for payment.\r\nOnly numeric characters are allowed.",
+            "nullable": true
+          },
+          "qrScorReference": {
+            "maxLength": 25,
+            "type": "string",
+            "description": "SCOR-Reference for payment.",
+            "nullable": true
+          },
+          "qrTypeCode": {
+            "maximum": 9859999,
+            "minimum": 9850001,
+            "type": "integer",
+            "description": "C985 - Type of QR-Code for payment\r\n\r\n9850001 - Switzerland qr with reference no\r\n\r\n9850002 - Switzerland qr with SCOR no\r\n\r\n9850003 - Switzerland qr without reference",
+            "format": "int64",
+            "nullable": true,
+            "example": 9850001
+          },
+          "positions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PurchaseInvoicePosition"
+            },
+            "description": "Gets the list of invoice positions.",
+            "nullable": true
+          },
+          "taxes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PurchaseInvoiceInputTax"
+            },
+            "description": "Gets the list of input taxes.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a purchase invoice entry."
+      },
+      "PurchaseInvoiceInputTax": {
+        "required": [
+          "amountInInvoiceCurrency",
+          "vatAmountInInvoiceCurrency",
+          "vatCode",
+          "vatQuota",
+          "vatRate"
+        ],
+        "type": "object",
+        "properties": {
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "User who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "purchaseInvoiceVatId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Technical identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "example": 326479517
+          },
+          "vatCode": {
+            "maximum": 239999,
+            "minimum": 230001,
+            "type": "integer",
+            "description": "C23 - Type of applied input tax.",
+            "format": "int64",
+            "example": 230006
+          },
+          "vatRate": {
+            "maximum": 999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Input tax rate.",
+            "format": "decimal",
+            "example": 19
+          },
+          "vatQuota": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Input tax quota.",
+            "format": "int64",
+            "example": 100
+          },
+          "amountInInvoiceCurrency": {
+            "maximum": 9999999999.99,
+            "minimum": -9999999999.99,
+            "type": "number",
+            "description": "Amount for the tax code excluding input tax in invoice currency.",
+            "format": "decimal",
+            "example": 100
+          },
+          "vatAmountInInvoiceCurrency": {
+            "maximum": 9999999999.99,
+            "minimum": -9999999999.99,
+            "type": "number",
+            "description": "Tax amount for the tax code in invoice currency.",
+            "format": "decimal",
+            "example": 19
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a purchase invoice input tax record."
+      },
+      "PurchaseInvoicePosition": {
+        "required": [
+          "invoicePositionNo",
+          "positionTypeCode"
+        ],
+        "type": "object",
+        "properties": {
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "User who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "invoicePositionId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Technical identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "example": 326479517
+          },
+          "positionTypeCode": {
+            "maximum": 24559999,
+            "minimum": 24550001,
+            "type": "integer",
+            "description": "C2455 - Type of the position\r\n\r\n24550001 - article position\r\n\r\n24550002 - amount position\r\n\r\n24550003 - text position\r\n",
+            "format": "int64",
+            "example": 24550001
+          },
+          "invoicePositionNo": {
+            "maximum": 9999.999,
+            "minimum": 0,
+            "type": "number",
+            "description": "Get or set the invoice position number. Must be unique in a invoice.",
+            "format": "decimal",
+            "example": 2.2
+          },
+          "goodsReceiptPositionId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Technical identification of the goods receipt position.",
+            "format": "int64",
+            "nullable": true,
+            "example": 326479517
+          },
+          "deliveryNoteId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Technical identification of the delivery note in the material management system.",
+            "format": "int64",
+            "nullable": true,
+            "example": 326479517
+          },
+          "deliveryNotePositionNo": {
+            "maximum": 9999.999,
+            "minimum": 0.001,
+            "type": "number",
+            "description": "Position number of the delivery note position in the material management system.",
+            "format": "decimal",
+            "nullable": true,
+            "example": 2.2
+          },
+          "quantityInDeliveryUnit": {
+            "maximum": 9999999999.9999,
+            "minimum": -9999999999.9999,
+            "type": "number",
+            "description": "Invoice quantity in delivery units.\r\nRequired for position type article .",
+            "format": "decimal",
+            "nullable": true,
+            "example": 100
+          },
+          "deliveryUnitCode": {
+            "maximum": 289999,
+            "minimum": 280001,
+            "type": "integer",
+            "description": "C28 - Delivery unit code.\r\nRequired for position type article .",
+            "format": "int64",
+            "nullable": true,
+            "example": 280005
+          },
+          "quantityInPriceUnit": {
+            "maximum": 9999999999.9999,
+            "minimum": -9999999999.9999,
+            "type": "number",
+            "description": "Invoice quantity in price units.\r\nRequired for position type article.",
+            "format": "decimal",
+            "nullable": true,
+            "example": 100
+          },
+          "priceUnitCode": {
+            "maximum": 289999,
+            "minimum": 280001,
+            "type": "integer",
+            "description": "C28 - Price unit code.\r\nRequired for position type article .",
+            "format": "int64",
+            "nullable": true,
+            "example": 280005
+          },
+          "price": {
+            "maximum": 9999999999.9999,
+            "minimum": 0,
+            "type": "number",
+            "description": "Price per price unit.",
+            "format": "decimal",
+            "nullable": true,
+            "example": 2568.25
+          },
+          "surchargePercent": {
+            "maximum": 999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Surcharge in percent. If this value is specified, the surcharge amount must also be specified.",
+            "format": "decimal",
+            "nullable": true,
+            "example": 1.25
+          },
+          "surchargeAmount": {
+            "maximum": 9999999999.99,
+            "minimum": -9999999999.99,
+            "type": "number",
+            "description": "Gets or sets the amount of a surcharge.",
+            "format": "decimal",
+            "nullable": true,
+            "example": 10.25
+          },
+          "discountPercent": {
+            "maximum": 999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Discount in percent. If this value is specified, the discount amount must also be specified.",
+            "format": "decimal",
+            "nullable": true,
+            "example": 1.25
+          },
+          "discountAmount": {
+            "maximum": 9999999999.99,
+            "minimum": -9999999999.99,
+            "type": "number",
+            "description": "Gets or sets the amount of a discount.",
+            "format": "decimal",
+            "nullable": true,
+            "example": 10.25
+          },
+          "vatCode": {
+            "maximum": 239999,
+            "minimum": 230001,
+            "type": "integer",
+            "description": "C23 - Type of applied input tax.",
+            "format": "int64",
+            "nullable": true,
+            "example": 230006
+          },
+          "vatRate": {
+            "maximum": 999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Input tax rate.",
+            "format": "decimal",
+            "nullable": true,
+            "example": 19
+          },
+          "vatQuota": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Input tax quota.",
+            "format": "int64",
+            "nullable": true,
+            "example": 100
+          },
+          "amountInInvoiceCurrency": {
+            "type": "number",
+            "description": "Amount of position excluding input tax in invoice currency.",
+            "format": "decimal",
+            "nullable": true,
+            "example": 2159.53
+          },
+          "amountInBalanceSheetCurrency": {
+            "type": "number",
+            "description": "Amount of position excluding input tax in balance sheet currency.",
+            "format": "decimal",
+            "nullable": true,
+            "example": 2159.53
+          },
+          "text": {
+            "maxLength": 2000,
+            "type": "string",
+            "description": "Text of the position.",
+            "nullable": true,
+            "example": "Transport costs"
+          },
+          "accountNo": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Identifier of the expense account.",
+            "nullable": true,
+            "example": "321.2"
+          },
+          "costCenterNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Cost center responsible for the order.",
+            "nullable": true,
+            "example": "2-563.7"
+          },
+          "costUnitNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Cost unit responsible for the order.",
+            "nullable": true,
+            "example": "6-7.25"
+          },
+          "orderNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Identifier of the accounting order for posting expense.",
+            "nullable": true,
+            "example": "20240315.02"
+          },
+          "salesChannelNo": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "Identifies the sale channel.",
+            "nullable": true,
+            "example": "449"
+          },
+          "assetNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Identifier of the asset the order is placed for.",
+            "nullable": true,
+            "example": "digger 254"
+          },
+          "costAllocationTypeCode": {
+            "maximum": 24569999,
+            "minimum": 24560001,
+            "type": "integer",
+            "description": "C2456 - Type of cost allocation code.\r\n\r\n24560001 - Allocation by amount\r\n\r\n24560002 - Allocation by quantity\r\n\r\n24560003 - Manual allocation",
+            "format": "int64",
+            "nullable": true,
+            "example": 24560003
+          },
+          "portionCosts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PurchaseInvoicePositionPortionOfCosts"
+            },
+            "description": "List of portion of cost for cost allocations.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a purchase invoice position."
+      },
+      "PurchaseInvoicePositionPortionOfCosts": {
+        "required": [
+          "allocationAmount"
+        ],
+        "type": "object",
+        "properties": {
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "User who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "invoicePositionPortionOfCostsId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Technical identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "example": 326479517
+          },
+          "goodsReceiptPositionId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Technical identification of the goods receipt position to which costs are allocated.",
+            "format": "int64",
+            "nullable": true,
+            "example": 326479517
+          },
+          "invoicePositionNo": {
+            "maximum": 9999.999,
+            "minimum": 0,
+            "type": "number",
+            "description": "The invoice position number to which costs are allocated.\r\nItem to which the costs are allocated. Can be specified as an alternative to the goods receipt item.",
+            "format": "decimal",
+            "nullable": true,
+            "example": 2.2
+          },
+          "allocationPercent": {
+            "maximum": 999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Allocation in percent.",
+            "format": "decimal",
+            "nullable": true,
+            "example": 1.25
+          },
+          "allocationAmount": {
+            "maximum": 999999999999.99,
+            "minimum": -999999999999.99,
+            "type": "number",
+            "description": "Gets or sets the amount of a allocation.",
+            "format": "decimal",
+            "example": 10.25
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a purchase invoice position cost allocation."
       },
       "PurchaseOrder": {
         "required": [
@@ -4239,8 +6182,8 @@
           "exchangeRate": {
             "maximum": 99999999.999999,
             "type": "number",
-            "description": "Exchange rate used for purchase when not in own currency.",
-            "format": "double",
+            "description": "Exchange rate used for purchase when not in balance sheet currency.",
+            "format": "decimal",
             "nullable": true,
             "example": 0.954
           },
@@ -4297,11 +6240,11 @@
             "nullable": true,
             "example": "A18.223232"
           },
-          "storageId": {
+          "warehouseId": {
             "maximum": 9999999999,
             "minimum": 0,
             "type": "integer",
-            "description": "Identifier of the storage.",
+            "description": "Identifier of the warehouse.",
             "format": "int64",
             "nullable": true,
             "example": 2315
@@ -4494,7 +6437,7 @@
           "positions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PurchaseOrderPositions"
+              "$ref": "#/components/schemas/PurchaseOrderPosition"
             },
             "description": "Gets or Sets Positions.",
             "nullable": true
@@ -4503,7 +6446,7 @@
         "additionalProperties": false,
         "description": "Represents a purchase order entry."
       },
-      "PurchaseOrderPositions": {
+      "PurchaseOrderPosition": {
         "required": [
           "isPrinted",
           "positionTypeCode"
@@ -4519,12 +6462,12 @@
             "nullable": true,
             "example": 123456
           },
-          "positionNr": {
+          "positionNo": {
             "maximum": 9999.999,
             "minimum": 0,
             "type": "number",
             "description": "Item number. Format and conditions via company settings.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 2.2
           },
@@ -4559,6 +6502,12 @@
             "nullable": true,
             "example": 365972
           },
+          "articleNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Article number for identification by the users.",
+            "nullable": true
+          },
           "text": {
             "maxLength": 2000,
             "type": "string",
@@ -4571,7 +6520,7 @@
             "minimum": 0,
             "type": "number",
             "description": "Coefficient stock unit -> delivery unit.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 1
           },
@@ -4580,7 +6529,7 @@
             "minimum": 0,
             "type": "number",
             "description": "Coefficient delivery unit -> stock unit.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 1
           },
@@ -4589,7 +6538,7 @@
             "minimum": 0,
             "type": "number",
             "description": "Coefficient delivery unit -> price unit.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 2
           },
@@ -4598,7 +6547,7 @@
             "minimum": 0,
             "type": "number",
             "description": "Coefficient price unit -> delivery unit.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 0.5
           },
@@ -4607,7 +6556,7 @@
             "minimum": -9999999999.9999,
             "type": "number",
             "description": "Order quantity in stock units.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 1000
           },
@@ -4616,7 +6565,7 @@
             "minimum": -9999999999.9999,
             "type": "number",
             "description": "Order quantity in delivery units.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 100
           },
@@ -4625,7 +6574,7 @@
             "minimum": -9999999999.9999,
             "type": "number",
             "description": "Order quantity in price units.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 200
           },
@@ -4661,7 +6610,7 @@
             "minimum": 0,
             "type": "number",
             "description": "Price per unit.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 2568.25
           },
@@ -4669,11 +6618,11 @@
             "type": "boolean",
             "description": "Vat is in price included."
           },
-          "inputTaxCode": {
+          "vatCode": {
             "maximum": 239999,
             "minimum": 230001,
             "type": "integer",
-            "description": "C23 - Type of applied tax (vat, input tax).",
+            "description": "C23 - Type of input tax (vat, input tax).",
             "format": "int64",
             "nullable": true,
             "example": 230006
@@ -4683,7 +6632,7 @@
             "minimum": 0,
             "type": "number",
             "description": "Discount in percent.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 2.5
           },
@@ -4692,29 +6641,29 @@
             "minimum": 0,
             "type": "number",
             "description": "Surcharge in percent.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 3.2
           },
           "discountAmount": {
             "type": "number",
             "description": "Discount in money.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 3658.51
           },
           "surchargeAmount": {
             "type": "number",
             "description": "Surcharge in money.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 5026.73
           },
-          "storageId": {
+          "warehouseId": {
             "maximum": 9999999999,
             "minimum": 0,
             "type": "integer",
-            "description": "Identifier of the storage - Overrides values in header.",
+            "description": "Identifier of the warehouse - Overrides values in header.",
             "format": "int64",
             "nullable": true,
             "example": 2315
@@ -4861,21 +6810,21 @@
           "netAmount": {
             "type": "number",
             "description": "Net amount (gross - tax) of the order position.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 2159.53
           },
           "grossAmount": {
             "type": "number",
             "description": "Total cost of order position.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 2436.85
           },
-          "taxAmount": {
+          "vatAmount": {
             "type": "number",
             "description": "Amount of taxes for the order position.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 277.32
           },
@@ -4885,7 +6834,7 @@
           }
         },
         "additionalProperties": false,
-        "description": ""
+        "description": "Represents a purchase order position."
       },
       "PurchaseSupplier": {
         "required": [
@@ -5065,7 +7014,7 @@
             "minimum": 0,
             "type": "number",
             "description": "Landed costs are additional charges or costs incurred for the purchase order.",
-            "format": "double"
+            "format": "decimal"
           },
           "vatCode": {
             "maximum": 239999,
@@ -5240,7 +7189,7 @@
             "minimum": -99999999.99,
             "type": "number",
             "description": "Total amount of the receivable.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "readOnly": true,
             "example": 108.1
@@ -5250,7 +7199,7 @@
             "minimum": -99999999.99,
             "type": "number",
             "description": "Amount still open. If value is 0, the receivable is fully settled.",
-            "format": "double",
+            "format": "decimal",
             "example": 108.1
           },
           "openItemCriterion1": {
@@ -5367,7 +7316,7 @@
           "hours": {
             "type": "number",
             "description": "Duration of absence in hours.",
-            "format": "double",
+            "format": "decimal",
             "example": 8
           },
           "timeFrom": {
@@ -5396,7 +7345,7 @@
             "maxLength": 50,
             "minLength": 0,
             "type": "string",
-            "description": "Id of the person/(human) service provider in the external system.",
+            "description": "Personnel number of the employee.",
             "nullable": true,
             "example": "1258"
           },
@@ -5409,11 +7358,11 @@
             "nullable": true,
             "example": 5750020
           },
-          "absenceApplicationId": {
+          "absenceRequestId": {
             "maximum": 9999999999,
             "minimum": 0,
             "type": "integer",
-            "description": "Identifies the application for this absence.",
+            "description": "Gets or sets the identification for this absence request.",
             "format": "int64",
             "nullable": true,
             "example": 69874
@@ -5500,6 +7449,14 @@
             "nullable": true,
             "example": 555
           },
+          "personnelNo": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Personnel number of the employee.",
+            "nullable": true,
+            "example": "1258"
+          },
           "allowanceDate": {
             "type": "string",
             "description": "Date of the allowance.",
@@ -5518,7 +7475,7 @@
           "baseValue": {
             "type": "number",
             "description": "Base value for the calculation.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 8.33333
           },
@@ -5527,7 +7484,7 @@
             "minimum": 0,
             "type": "number",
             "description": "Percentage rate for the calculation.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 50
           },
@@ -5536,7 +7493,7 @@
             "minimum": 0,
             "type": "number",
             "description": "Amount of the allowance.",
-            "format": "double",
+            "format": "decimal",
             "nullable": true,
             "example": 4.25
           },
@@ -5662,7 +7619,7 @@
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "description": "Id of the \"Leistungsträger\" in the external system.",
+            "description": "Personnel number of the employee.",
             "nullable": true
           },
           "presenceDate": {
@@ -5893,7 +7850,7 @@
           "personnelNo": {
             "maxLength": 50,
             "type": "string",
-            "description": "Identification of the service provider.",
+            "description": "Personnel number of the employee.",
             "nullable": true,
             "example": "3366"
           },
@@ -5962,7 +7919,7 @@
           "quantity": {
             "type": "number",
             "description": "The amount of work performed. The unit depends on the type of service.",
-            "format": "double",
+            "format": "decimal",
             "example": 4
           },
           "timeFrom": {
