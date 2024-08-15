@@ -5762,6 +5762,15 @@
             "format": "decimal",
             "example": 2.2
           },
+          "orderPositionId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Technical identification of the purchase order position.",
+            "format": "int64",
+            "nullable": true,
+            "example": 326479517
+          },
           "goodsReceiptPositionId": {
             "maximum": 9999999999,
             "minimum": 0,
