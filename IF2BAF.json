@@ -10,6 +10,494 @@
     "version": "v1"
   },
   "paths": {
+    "/api/v1/codes": {
+      "get": {
+        "tags": [
+          "Codes"
+        ],
+        "summary": "Gets codes.",
+        "description": "Returns all matching codes.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the date time specified.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the change id specified.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "codeTypeId",
+            "in": "query",
+            "description": "Get the entries of the specified code type.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "codeNo",
+            "in": "query",
+            "description": "Get the entries of the specified code number.",
+            "schema": {
+              "maximum": 99999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Get the entries with the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "includeDetails",
+            "in": "query",
+            "description": "Defines if code details are included in the response.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "includeLocalizations",
+            "in": "query",
+            "description": "Defines if code localizations are included in the response.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Code"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
+    "/api/v1/master-data/cost-centers": {
+      "get": {
+        "tags": [
+          "CostCenters"
+        ],
+        "summary": "Gets cost centers.",
+        "description": "Returns all cost centers that match the parameters.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Retrieves all entries which were added/edited after a specific datetime.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Retrieves all entries which were added/edited after the provided change id.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "costCenterId",
+            "in": "query",
+            "description": "Retrieve a specific entry by internal cost center id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Retrieves the entries with the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "costCenterNo",
+            "in": "query",
+            "description": "Retrieves the entries of the specified cost center number.",
+            "schema": {
+              "maxLength": 16,
+              "type": "string"
+            }
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "Retrieves all entries of a certain origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "originId",
+            "in": "query",
+            "description": "Retrieves all entries with a specific origin identifier.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CostCenter"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "CostCenters"
+        ],
+        "summary": "Updates an existing cost center if either internal or external id match. Creates a cost center if neither internal nor external id is provided or no matching record could be found.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The cost center to create or update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CostCenter"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CostCenter"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CostCenter"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CostCenter"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CostCenter"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
     "/api/v1/documents": {
       "get": {
         "tags": [
@@ -416,6 +904,440 @@
           },
           "404": {
             "description": "Not found."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
+    "/api/v1/master-data/fixed-assets": {
+      "get": {
+        "tags": [
+          "FixedAssets"
+        ],
+        "summary": "Gets fixed assets.",
+        "description": "Returns all fixed assets that match the parameters.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Retrieves all entries which were added/edited after a specific datetime.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Retrieves all entries which were added/edited after the provided change id.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "fixedAssetId",
+            "in": "query",
+            "description": "Retrieve a specific entry by internal fixed asset id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Retrieves the entries with the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "fixedAssetNo",
+            "in": "query",
+            "description": "Retrieves the entries of the specified fixed asset number.",
+            "schema": {
+              "maxLength": 16,
+              "type": "string"
+            }
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "Retrieves all entries of a certain origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "originId",
+            "in": "query",
+            "description": "Retrieves all entries with a specific origin identifier.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FixedAsset"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "FixedAssets"
+        ],
+        "summary": "Updates an existing fixed asset if either internal or external id match. Creates a fixed asset if neither internal nor external id is provided or no matching record could be found.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The fixed asset to create or update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FixedAsset"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FixedAsset"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FixedAsset"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FixedAsset"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FixedAsset"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
+    "/api/v1/master-data/item-structure": {
+      "get": {
+        "tags": [
+          "ItemStructure"
+        ],
+        "summary": "Get the item structure.",
+        "description": "Returns all matching branches of the item-structure.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the date time specified.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the change id specified.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItemCategory"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
           },
           "500": {
             "description": "Internal Server Error."
@@ -849,6 +1771,292 @@
         "additionalProperties": false,
         "description": "The DTO for an attribute value set."
       },
+      "Code": {
+        "required": [
+          "active",
+          "codeNo",
+          "codeTypeId",
+          "text"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether this entry is active or not."
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "codeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the unique identifier of the code.",
+            "format": "int64",
+            "nullable": true
+          },
+          "codeTypeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the unique identifier of the code type.",
+            "format": "int64"
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the company identification of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "codeNo": {
+            "maximum": 99999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the number of the code.",
+            "format": "int64"
+          },
+          "text": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the description of the code."
+          },
+          "shortText": {
+            "maxLength": 12,
+            "type": "string",
+            "description": "Gets or sets the optional short description of the code.",
+            "nullable": true
+          },
+          "codeDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CodeDetail"
+            },
+            "description": "Gets the list of code details.",
+            "nullable": true
+          },
+          "localizations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CodeLocalization"
+            },
+            "description": "Gets translations of the code.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a code entry."
+      },
+      "CodeDetail": {
+        "required": [
+          "detailNo"
+        ],
+        "type": "object",
+        "properties": {
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "codeDetailId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the unique identifier of the code detail.",
+            "format": "int64",
+            "nullable": true
+          },
+          "detailNo": {
+            "maximum": 99,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the number of the code detail.",
+            "format": "int64"
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the company identification of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "value": {
+            "maxLength": 120,
+            "type": "string",
+            "description": "Gets or sets textual representation of the value of the code detail.",
+            "nullable": true
+          },
+          "valueNumeric": {
+            "type": "number",
+            "description": "Gets or sets numeric representation of the value of the code detail, if the value is numeric.",
+            "format": "decimal",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a code detail entry."
+      },
+      "CodeLocalization": {
+        "required": [
+          "isoLanguage",
+          "text"
+        ],
+        "type": "object",
+        "properties": {
+          "isoLanguage": {
+            "maxLength": 2,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the ISO 639-1 two-letter code of the language."
+          },
+          "text": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the translated description of the code."
+          },
+          "shortText": {
+            "maxLength": 12,
+            "type": "string",
+            "description": "Gets or sets the optional translated short description of the code.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Translation of the code entry."
+      },
+      "CostCenter": {
+        "required": [
+          "active",
+          "companyNo",
+          "costCenterName",
+          "costCenterNo"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "origin": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets the system of the origin of the entry.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "originId": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets or sets the system of origin. - This id must be unique within the origin.\r\nAs Id it is recommended to use either the primary key of the foreign system or a global unique identifier.",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether this entry is active or not."
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets company identification of the entry.",
+            "format": "int64"
+          },
+          "costCenterNo": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the number of the cost center."
+          },
+          "costCenterName": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the name of the cost center."
+          },
+          "accountAssignmentGroupCode": {
+            "maximum": 909999,
+            "minimum": 900001,
+            "type": "integer",
+            "description": "Gets or sets the account assignment group.",
+            "format": "int64",
+            "nullable": true
+          },
+          "attributeValueSet": {
+            "$ref": "#/components/schemas/AttributeValueSet"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for a cost center."
+      },
       "DocumentInfo": {
         "required": [
           "documentGuid",
@@ -913,6 +2121,320 @@
         },
         "additionalProperties": false,
         "description": "The DTO for document with additional information."
+      },
+      "FixedAsset": {
+        "required": [
+          "active",
+          "companyNo",
+          "fixedAssetName",
+          "fixedAssetNo"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "fixedAssetId": {
+            "type": "integer",
+            "description": "Gets or sets the technical identification of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "origin": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets the system of the origin of the entry.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "originId": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets or sets the system of origin. - This Id must be unique within the origin.\r\nAs Id it is recommended to use either the Primary Key of the foreign system or a Global Unique Identifier.",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether this entry is active or not."
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets company identification of the entry.",
+            "format": "int64"
+          },
+          "fixedAssetNo": {
+            "maxLength": 16,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the number of the fixed asset."
+          },
+          "fixedAssetName": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the name of the fixed asset."
+          },
+          "costCenterNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets or sets cost center number of the fixed asset.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for a fixed asset."
+      },
+      "ItemCategory": {
+        "required": [
+          "active",
+          "itemCategoryCode",
+          "itemCategoryName"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 719347
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true,
+            "example": "2024-01-30T11:46:59Z"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether this entry is active or not."
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true,
+            "example": "2024-01-30T11:46:59Z"
+          },
+          "itemCategoryCode": {
+            "maximum": 1309999,
+            "minimum": 1300000,
+            "type": "integer",
+            "description": "Gets or sets the C130 - item category code. Used to separate the items of the different modules.",
+            "format": "int64",
+            "example": 1300100
+          },
+          "itemCategoryName": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the description of the item category.",
+            "example": "Workshop"
+          },
+          "itemMainGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemMainGroup"
+            },
+            "description": "Gets the list of item main groups for the item category.",
+            "nullable": true
+          },
+          "localizations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemCategoryLocalization"
+            },
+            "description": "Gets translations of the item category.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an item category."
+      },
+      "ItemCategoryLocalization": {
+        "required": [
+          "isoLanguage",
+          "itemCategoryName"
+        ],
+        "type": "object",
+        "properties": {
+          "isoLanguage": {
+            "maxLength": 2,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the ISO 639-1 two-letter code of the language."
+          },
+          "itemCategoryName": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the translated description of the item category."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Translation of the item category."
+      },
+      "ItemGroup": {
+        "required": [
+          "active",
+          "itemGroupId",
+          "itemGroupName"
+        ],
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether this entry is active or not."
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true,
+            "example": "2024-01-30T11:46:59Z"
+          },
+          "itemGroupId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the unique identifier of the item group.",
+            "format": "int64",
+            "example": 9073
+          },
+          "itemGroupName": {
+            "maxLength": 300,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the description of the item group.",
+            "example": "Engine-Oil"
+          },
+          "sortNo": {
+            "maximum": 9999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the position within the item main group.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an item group for the items."
+      },
+      "ItemMainGroup": {
+        "required": [
+          "active",
+          "itemMainGroupId",
+          "itemMainGroupName"
+        ],
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether this entry is active or not."
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true,
+            "example": "2024-01-30T11:46:59Z"
+          },
+          "itemMainGroupId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the unique identifier of the item main group.",
+            "format": "int64",
+            "example": 79017
+          },
+          "itemMainGroupName": {
+            "maxLength": 300,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the description of the item main group.",
+            "example": "Fluids"
+          },
+          "sortNo": {
+            "maximum": 9999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the position within the item category.",
+            "format": "int64",
+            "nullable": true
+          },
+          "itemGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemGroup"
+            },
+            "description": "Gets the list of item groups for the item main groups.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an item main group for the items."
       },
       "MaintenanceWindow": {
         "type": "object",
