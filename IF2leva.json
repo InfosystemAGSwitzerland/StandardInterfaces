@@ -4544,6 +4544,13 @@
             "description": "Gets or sets the customer's default reference. This reference appears on the invoice.",
             "nullable": true
           },
+          "vatRegistrationNo": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the VAT registration number.",
+            "nullable": true
+          },
           "attributeValueSet": {
             "$ref": "#/components/schemas/CustomerAttributeValueSet"
           },
@@ -5066,6 +5073,10 @@
             "format": "int64",
             "nullable": true
           },
+          "deliveredResource": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the resource demand will be delivered."
+          },
           "details": {
             "$ref": "#/components/schemas/JobDetails"
           }
@@ -5198,6 +5209,14 @@
             "description": "Gets or sets list of job schedule entries.",
             "nullable": true
           },
+          "heightList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobHeight"
+            },
+            "description": "Gets or sets list of job height entries.",
+            "nullable": true
+          },
           "handover": {
             "$ref": "#/components/schemas/JobHandover"
           },
@@ -5296,6 +5315,74 @@
         },
         "additionalProperties": false,
         "description": "A handover for a rental job. Confirms that the resource (machine/accessory) has been handed over to the customer. Additional information such as a comment and signature can be supplied."
+      },
+      "JobHeight": {
+        "type": "object",
+        "properties": {
+          "craneHeightId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the indentifier of the crane height (only one of CraneHeightId, WorkingPlatformHeightId or TruckMountedWorkingPlatformHeightId is set).",
+            "format": "int64",
+            "nullable": true
+          },
+          "truckMountedWorkingPlatformHeightId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the indentifier of the truck mounted working platform height (only one of CraneHeightId, WorkingPlatformHeightId or TruckMountedWorkingPlatformHeightId is set).",
+            "format": "int64",
+            "nullable": true
+          },
+          "workingPlatformHeightId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the indentifier of the working platform height (only one of CraneHeightId, WorkingPlatformHeightId or TruckMountedWorkingPlatformHeightId is set).",
+            "format": "int64",
+            "nullable": true
+          },
+          "craneJobHeightCode": {
+            "maximum": 45589999,
+            "minimum": 45580001,
+            "type": "integer",
+            "description": "Gets or sets the 4558 crane job height code (only one of CraneJobHeightCode, TruckMountedWorkingPlatformJobHeightCode or WorkingPlatformJobHeightCode is set).",
+            "format": "int64",
+            "nullable": true
+          },
+          "truckMountedWorkingPlatformJobHeightCode": {
+            "maximum": 33089999,
+            "minimum": 33080001,
+            "type": "integer",
+            "description": "Gets or sets the 3308 truck mounted working platform job height code (only one of CraneJobHeightCode, TruckMountedWorkingPlatformJobHeightCode or WorkingPlatformJobHeightCode is set).",
+            "format": "int64",
+            "nullable": true
+          },
+          "workingPlatformJobHeightCode": {
+            "maximum": 45599999,
+            "minimum": 45590001,
+            "type": "integer",
+            "description": "Gets or sets the 4559 working platform job height code (only one of CraneJobHeightCode, TruckMountedWorkingPlatformJobHeightCode or WorkingPlatformJobHeightCode is set).",
+            "format": "int64",
+            "nullable": true
+          },
+          "height": {
+            "maximum": 9999999999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Gets or sets the job height in meters.",
+            "format": "decimal"
+          },
+          "additionalInformation": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Gets or sets the additional information.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Height information of a job."
       },
       "JobLocation": {
         "type": "object",
