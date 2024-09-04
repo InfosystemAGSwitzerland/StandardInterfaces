@@ -3984,6 +3984,115 @@
         }
       }
     },
+    "/api/v1/rental/jobs/rental-schedulings": {
+      "put": {
+        "tags": [
+          "RentalJob"
+        ],
+        "summary": "Updates the scheduled resource on rental job schedulings.",
+        "description": "Set the scheduled resource rental jobs for a given job ids.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Rental job schedulings to be be updated.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/JobRentalScheduling"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JobRentalScheduling"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
     "/api/v1/rental/orders": {
       "get": {
         "tags": [
@@ -5452,7 +5561,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets unique identifier for the job on which this problem is assigned to.",
+            "description": "Gets or sets unique identifier for the job to which this problem is assigned.",
             "format": "int64",
             "example": 452341
           },
@@ -5523,6 +5632,30 @@
         "additionalProperties": false,
         "description": "On a job problem specific conditions or issues related to the resource (machine/accessory) are stored. They may be submitted in the initial job to clarify existing issues that can be mentioned on handover, or additional job problems are submitted during handover or return to better clarify wether or not something is caused by the customer."
       },
+      "JobRentalScheduling": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "integer",
+            "description": "Gets or sets unique identifier for the job to which this scheduling is assigned.",
+            "format": "int64"
+          },
+          "accessoryId": {
+            "type": "integer",
+            "description": "Gets or sets the new unique identifier of the accessory that should be scheduled for this job.\r\nEither `AccessoryId` or `MachineId` must be set.",
+            "format": "int64",
+            "nullable": true
+          },
+          "machineId": {
+            "type": "integer",
+            "description": "Gets or sets the new unique identifier of the machine that should be scheduled for this job.\r\nEither `AccessoryId` or `MachineId` must be set.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Mapping between a job and the scheduled resource."
+      },
       "JobReport": {
         "required": [
           "comment",
@@ -5559,6 +5692,9 @@
             "minLength": 1,
             "type": "string",
             "description": "Gets or sets additional comments on the report (usually visible on report) and for backoffice."
+          },
+          "reportPdfFileDocumentLink": {
+            "$ref": "#/components/schemas/FileDocumentLink"
           },
           "reportTimeStampList": {
             "type": "array",
