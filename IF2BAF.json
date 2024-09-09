@@ -569,7 +569,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DocumentInfo"
+                  "$ref": "#/components/schemas/Document"
                 }
               }
             }
@@ -658,7 +658,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DocumentInfo"
+                "$ref": "#/components/schemas/Document"
               }
             }
           }
@@ -669,7 +669,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DocumentInfo"
+                  "$ref": "#/components/schemas/Document"
                 }
               }
             }
@@ -679,7 +679,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DocumentInfo"
+                  "$ref": "#/components/schemas/Document"
                 }
               }
             }
@@ -2057,7 +2057,7 @@
         "additionalProperties": false,
         "description": "The DTO for a cost center."
       },
-      "DocumentInfo": {
+      "Document": {
         "required": [
           "documentGuid",
           "fileExtension"
