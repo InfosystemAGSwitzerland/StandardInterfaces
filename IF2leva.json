@@ -5531,14 +5531,13 @@
           "active",
           "customersFault",
           "description",
-          "fixRequired",
-          "impactOnCondition",
           "jobId",
           "problemType",
           "reportedByEmployee",
           "reportedDateTime",
           "reportingContext",
           "reportingContextText",
+          "resourceConditionCode",
           "solved",
           "visibleForCustomer"
         ],
@@ -5579,9 +5578,12 @@
             "description": "Gets or sets title and or description of the problem.",
             "example": "various impact dents on the left front side."
           },
-          "impactOnCondition": {
-            "type": "boolean",
-            "description": "Gets or sets a value indicating whether wether or not the problem has an impact on the condition of the resource. Conditions will be transfered noted on the machine/accessory and can furthermore be passed onto future rentals."
+          "resourceConditionCode": {
+            "maximum": 33429999,
+            "minimum": 33420001,
+            "type": "integer",
+            "description": "Gets or sets code 3342 use IF2BA to retrieve value list.",
+            "format": "int64"
           },
           "visibleForCustomer": {
             "type": "boolean",
@@ -5623,10 +5625,6 @@
             "type": "string",
             "description": "Gets or sets additional context information (e.g. reported by mobile device).",
             "example": "Custom Job Application."
-          },
-          "fixRequired": {
-            "type": "boolean",
-            "description": "Gets or sets a value indicating whether wether or not the problem requires a fix. Problems that require a fix will leave a notification on the resource and are visible on the planning board."
           }
         },
         "additionalProperties": false,
@@ -7158,10 +7156,143 @@
             "description": "Gets or sets the code 4562. Use IF2BA to retrieve the value list.",
             "format": "int64",
             "nullable": true
+          },
+          "bafEmployeeAttributeValueSet": {
+            "$ref": "#/components/schemas/WorkerAttributeValueSet"
           }
         },
         "additionalProperties": false,
         "description": "Worker entity."
+      },
+      "WorkerAttributeValue": {
+        "required": [
+          "attributeDefinitionId",
+          "modifyUser"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeValueId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute value.",
+            "format": "int64",
+            "nullable": true
+          },
+          "attributeDefinitionId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute definition.",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets or sets the user who last modified the entry.",
+            "nullable": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets or sets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sortNo": {
+            "maximum": 9999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the position within the attribute value set.",
+            "format": "int64",
+            "nullable": true
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the company identification of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "textValue": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "Gets or sets the text string value.",
+            "nullable": true
+          },
+          "numberValue": {
+            "type": "number",
+            "description": "Gets or sets the number or decimal value.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "dateValue": {
+            "type": "string",
+            "description": "Gets or sets the date value.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "boolValue": {
+            "type": "boolean",
+            "description": "Gets or sets the true or false value.",
+            "nullable": true
+          },
+          "codeValue": {
+            "type": "integer",
+            "description": "Gets or sets the code value.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The attribute value."
+      },
+      "WorkerAttributeValueSet": {
+        "required": [
+          "attributeSetId",
+          "modifyUser"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute set.",
+            "format": "int64"
+          },
+          "attributeValueSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute value set.",
+            "format": "int64",
+            "nullable": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets or sets the user who last modified the entry.",
+            "nullable": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets or sets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "attributeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkerAttributeValue"
+            },
+            "description": "Gets the list of attribute values.",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The attribute value set."
       }
     },
     "securitySchemes": {
