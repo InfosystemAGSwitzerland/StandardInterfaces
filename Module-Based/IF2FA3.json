@@ -124,6 +124,24 @@
             }
           },
           {
+            "name": "includeVATPosition",
+            "in": "query",
+            "description": "Include VAT positions.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "includeDocumentPositions",
+            "in": "query",
+            "description": "Include document positions.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
             "name": "X-RequestingSystem",
             "in": "header",
             "description": "Identifing the system calling the service.",
@@ -555,6 +573,201 @@
         "additionalProperties": false,
         "description": "DocumentInfoDto"
       },
+      "DocumentPositionDto": {
+        "type": "object",
+        "properties": {
+          "InvoiceDocumentPositionNumber": {
+            "maximum": 99999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Position number for document print",
+            "format": "int64",
+            "example": 10
+          },
+          "InvoiceDocumentPositionTypeCode": {
+            "maximum": 15089999,
+            "minimum": 15080001,
+            "type": "integer",
+            "description": "Document position type - C1508",
+            "format": "int64",
+            "example": 15080001
+          },
+          "SortNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Sort of the positions",
+            "format": "int64",
+            "nullable": true
+          },
+          "ArticleNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Article Number",
+            "nullable": true,
+            "example": "H62832"
+          },
+          "Text": {
+            "maxLength": 4000,
+            "type": "string",
+            "description": "Text of the invoice position. May contain RTF formated text.",
+            "nullable": true,
+            "example": "Verkauf Badewanne"
+          },
+          "QuantityServiceUnit": {
+            "type": "number",
+            "description": "Quantity in the service unit",
+            "format": "double",
+            "nullable": true,
+            "example": 1
+          },
+          "ServiceUnitCode": {
+            "maximum": 289999,
+            "minimum": 280001,
+            "type": "integer",
+            "description": "Service unit code C28",
+            "format": "int64",
+            "nullable": true,
+            "example": 280001
+          },
+          "QuantityPriceUnit": {
+            "type": "number",
+            "description": "Quantity in the price unit",
+            "format": "double",
+            "nullable": true,
+            "example": 1
+          },
+          "PriceUnitCode": {
+            "maximum": 289999,
+            "minimum": 280001,
+            "type": "integer",
+            "description": "price unit code C28",
+            "format": "int64",
+            "nullable": true,
+            "example": 280001
+          },
+          "PriceInInvoiceCurrency": {
+            "type": "number",
+            "description": "Price in Invoice Currency",
+            "format": "double",
+            "nullable": true,
+            "example": 140.5
+          },
+          "AmountInInvoiceCurrency": {
+            "type": "number",
+            "description": "Amount in Invoice Currency",
+            "format": "double",
+            "nullable": true,
+            "example": 140.5
+          },
+          "VATCode": {
+            "maximum": 239999,
+            "minimum": 230001,
+            "type": "integer",
+            "description": "VAT Code of the position",
+            "format": "int64",
+            "nullable": true,
+            "example": 230001
+          },
+          "VATRate": {
+            "type": "number",
+            "description": "VAT Rate of Charging Position",
+            "format": "double",
+            "nullable": true,
+            "example": 8.1
+          },
+          "VATQuota": {
+            "type": "number",
+            "description": "Percentage of VAT rate that is actually taxed",
+            "format": "double",
+            "nullable": true,
+            "example": 100
+          },
+          "VATBaseAmountInInvoiceCurrency": {
+            "type": "number",
+            "description": "VAT Base Amount in Invoice Currency",
+            "format": "double",
+            "nullable": true,
+            "example": 129.97
+          },
+          "ReconciliationAmountInInvoiceCurrency": {
+            "type": "number",
+            "description": "Reconciliation Amount in Invoice Currency",
+            "format": "double",
+            "example": 130
+          },
+          "Reconciliation": {
+            "type": "string",
+            "description": "Reconciliation",
+            "nullable": true,
+            "example": "false"
+          },
+          "IsPrinted": {
+            "type": "boolean",
+            "description": "Print flag - shows if the position is printed or not",
+            "example": true
+          },
+          "VATBaseAmountInclusiveInInvoiceCurrency": {
+            "type": "number",
+            "description": "Base amount inclusive VAT in invoice currency",
+            "format": "double",
+            "nullable": true,
+            "example": 140.5
+          },
+          "VATBaseAmountExclusiveInInvoiceCurrency": {
+            "type": "number",
+            "description": "Base amount exclusive VAT in invoice currency",
+            "format": "double",
+            "nullable": true,
+            "example": 129.97
+          },
+          "AdditionalFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdditionalFieldDto"
+            },
+            "description": "Gets AdditionalFields",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "DocumentPositionDto"
+      },
+      "DocumentTypeDto": {
+        "type": "object",
+        "properties": {
+          "DocumentTypeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Identifies the invoice document",
+            "format": "int64",
+            "example": 2
+          },
+          "DocumentTypeName": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Name of the document type",
+            "nullable": true,
+            "example": "Rechnungsdocument"
+          },
+          "IsMainDocument": {
+            "type": "boolean",
+            "description": "Is this the main document?",
+            "example": true
+          },
+          "DocumentPositions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentPositionDto"
+            },
+            "description": "Gets DocumentPositions",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "DocumentTypeDto"
+      },
       "DocumentTypeEnum": {
         "enum": [
           "MainDocument",
@@ -710,6 +923,14 @@
               "$ref": "#/components/schemas/PositionDto"
             },
             "description": "Gets or Sets Positions",
+            "nullable": true
+          },
+          "DocumentTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentTypeDto"
+            },
+            "description": "Get the positions of the different printed documenttypes",
             "nullable": true
           },
           "Documents": {
@@ -1092,6 +1313,12 @@
           "AmountInvoiceCurrency": {
             "type": "number",
             "description": "Gets or Sets AmountInvoiceCurrency",
+            "format": "double",
+            "nullable": true
+          },
+          "AmountAccountCurrency": {
+            "type": "number",
+            "description": "Gets or Sets AmountAccountCurrency",
             "format": "double",
             "nullable": true
           },
