@@ -156,7 +156,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -440,7 +440,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -595,7 +595,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -750,7 +750,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -915,7 +915,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -1059,7 +1059,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -1214,7 +1214,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -1352,7 +1352,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -1521,7 +1521,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -1675,7 +1675,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -2213,7 +2213,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -2341,7 +2341,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -2587,7 +2587,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -2833,7 +2833,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -3079,7 +3079,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -3320,7 +3320,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -3568,7 +3568,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -3813,7 +3813,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -4207,7 +4207,7 @@
             "in": "query",
             "description": "Maximum number of records to return.",
             "schema": {
-              "maximum": 100,
+              "maximum": 2147483647,
               "minimum": 0,
               "type": "integer",
               "format": "int32",
@@ -4367,6 +4367,9 @@
             "format": "int64",
             "nullable": true
           },
+          "additionalInformationAttributeValueSet": {
+            "$ref": "#/components/schemas/AccessoryAttributeValueSet"
+          },
           "additionalSchedulingGroupCodes": {
             "type": "array",
             "items": {
@@ -4378,6 +4381,136 @@
         },
         "additionalProperties": false,
         "description": "Accessory master data."
+      },
+      "AccessoryAttributeValue": {
+        "required": [
+          "attributeDefinitionId",
+          "modifyUser"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeValueId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute value.",
+            "format": "int64",
+            "nullable": true
+          },
+          "attributeDefinitionId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute definition.",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets or sets the user who last modified the entry.",
+            "nullable": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets or sets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sortNo": {
+            "maximum": 9999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the position within the attribute value set.",
+            "format": "int64",
+            "nullable": true
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the company identification of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "textValue": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "Gets or sets the text string value.",
+            "nullable": true
+          },
+          "numberValue": {
+            "type": "number",
+            "description": "Gets or sets the number or decimal value.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "dateValue": {
+            "type": "string",
+            "description": "Gets or sets the date value.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "boolValue": {
+            "type": "boolean",
+            "description": "Gets or sets the true or false value.",
+            "nullable": true
+          },
+          "codeValue": {
+            "type": "integer",
+            "description": "Gets or sets the code value.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The attribute value."
+      },
+      "AccessoryAttributeValueSet": {
+        "required": [
+          "attributeSetId",
+          "modifyUser"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute set.",
+            "format": "int64"
+          },
+          "attributeValueSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute value set.",
+            "format": "int64",
+            "nullable": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets or sets the user who last modified the entry.",
+            "nullable": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets or sets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "attributeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccessoryAttributeValue"
+            },
+            "description": "Gets the list of attribute values.",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The attribute value set."
       },
       "AccessoryDisplayType": {
         "enum": [
@@ -4396,6 +4529,11 @@
         ],
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "description": "Gets or sets the business partner address id of the address.",
+            "nullable": true
+          },
           "street": {
             "maxLength": 43,
             "type": "string",
@@ -4443,6 +4581,11 @@
             "minLength": 1,
             "type": "string",
             "description": "Gets or sets city."
+          },
+          "shortAddress": {
+            "type": "string",
+            "description": "Gets or sets the short address of the address.",
+            "nullable": true
           },
           "latitude": {
             "maximum": 90,
@@ -4556,7 +4699,7 @@
           },
           "c4504ChargingType": {
             "maximum": 45049999,
-            "minimum": 45040000,
+            "minimum": 45040001,
             "type": "integer",
             "description": "Gets or sets a value indicating how the customer pays the bill (single or collective invoice).",
             "format": "int64",
@@ -4564,7 +4707,7 @@
           },
           "c1502ChargingPeriodicity": {
             "maximum": 15029999,
-            "minimum": 15020000,
+            "minimum": 15020001,
             "type": "integer",
             "description": "Gets or sets the periodicity of invoicing.",
             "format": "int64",
@@ -4579,7 +4722,7 @@
           },
           "c4570PriceCategory": {
             "maximum": 45709999,
-            "minimum": 45700000,
+            "minimum": 45700001,
             "type": "integer",
             "description": "Gets or sets the price category for the customer.",
             "format": "int64",
@@ -4587,7 +4730,7 @@
           },
           "c27PaymentTerms": {
             "maximum": 279999,
-            "minimum": 270000,
+            "minimum": 270001,
             "type": "integer",
             "description": "Gets or sets the code of the payment terms.",
             "format": "int64",
@@ -4632,7 +4775,7 @@
           },
           "c126ExportInformation": {
             "maximum": 1269999,
-            "minimum": 1260000,
+            "minimum": 1260001,
             "type": "integer",
             "description": "Gets or sets the code (C126) of the export identifier.",
             "format": "int64",
@@ -4640,7 +4783,7 @@
           },
           "c3305SalesArea": {
             "maximum": 33059999,
-            "minimum": 33050000,
+            "minimum": 33050001,
             "type": "integer",
             "description": "Gets or sets the code of the sales area of the customer.",
             "format": "int64",
@@ -4775,7 +4918,7 @@
           },
           "c3341CustomerStatus": {
             "maximum": 33419999,
-            "minimum": 33410000,
+            "minimum": 33410001,
             "type": "integer",
             "description": "Gets or sets status of the customer. Only customers with the status \"33410030 = customer\" may be used for orders.",
             "format": "int32",
@@ -4817,7 +4960,7 @@
         "type": "object",
         "properties": {
           "attributeValueId": {
-            "maximum": 2147483647,
+            "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
             "description": "Gets or sets the internal identification of attribute value.",
@@ -4825,7 +4968,7 @@
             "nullable": true
           },
           "attributeDefinitionId": {
-            "maximum": 2147483647,
+            "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
             "description": "Gets or sets the internal identification of attribute definition.",
@@ -6065,6 +6208,11 @@
             "format": "int64",
             "nullable": true
           },
+          "transportType": {
+            "type": "string",
+            "description": "Gets or sets the type of transport this transport demand is part of: 'DELIVERY' (outward transport), 'PICK-UP' (return transport), 'TRANSFER' (relocation).",
+            "nullable": true
+          },
           "pickupLocation": {
             "$ref": "#/components/schemas/Address"
           },
@@ -6415,6 +6563,12 @@
             "nullable": true,
             "example": "2023-01-12"
           },
+          "dimensionsAttributeValueSet": {
+            "$ref": "#/components/schemas/MachineAttributeValueSet"
+          },
+          "additionalInformationAttributeValueSet": {
+            "$ref": "#/components/schemas/MachineAttributeValueSet"
+          },
           "typeOfDrives": {
             "type": "array",
             "items": {
@@ -6458,6 +6612,136 @@
         },
         "additionalProperties": false,
         "description": "Machine entity."
+      },
+      "MachineAttributeValue": {
+        "required": [
+          "attributeDefinitionId",
+          "modifyUser"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeValueId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute value.",
+            "format": "int64",
+            "nullable": true
+          },
+          "attributeDefinitionId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute definition.",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets or sets the user who last modified the entry.",
+            "nullable": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets or sets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sortNo": {
+            "maximum": 9999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the position within the attribute value set.",
+            "format": "int64",
+            "nullable": true
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the company identification of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "textValue": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "Gets or sets the text string value.",
+            "nullable": true
+          },
+          "numberValue": {
+            "type": "number",
+            "description": "Gets or sets the number or decimal value.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "dateValue": {
+            "type": "string",
+            "description": "Gets or sets the date value.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "boolValue": {
+            "type": "boolean",
+            "description": "Gets or sets the true or false value.",
+            "nullable": true
+          },
+          "codeValue": {
+            "type": "integer",
+            "description": "Gets or sets the code value.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The attribute value."
+      },
+      "MachineAttributeValueSet": {
+        "required": [
+          "attributeSetId",
+          "modifyUser"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute set.",
+            "format": "int64"
+          },
+          "attributeValueSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute value set.",
+            "format": "int64",
+            "nullable": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets or sets the user who last modified the entry.",
+            "nullable": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets or sets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "attributeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MachineAttributeValue"
+            },
+            "description": "Gets the list of attribute values.",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The attribute value set."
       },
       "MachineCounter": {
         "required": [
@@ -6884,8 +7168,8 @@
         "type": "object",
         "properties": {
           "year": {
-            "maxLength": 2100,
-            "minLength": 1000,
+            "maxLength": 4,
+            "minLength": 4,
             "type": "string",
             "description": "Gets or sets the year the sales reward applies to.",
             "nullable": true
@@ -7172,7 +7456,7 @@
         "type": "object",
         "properties": {
           "attributeValueId": {
-            "maximum": 2147483647,
+            "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
             "description": "Gets or sets the internal identification of attribute value.",
@@ -7180,7 +7464,7 @@
             "nullable": true
           },
           "attributeDefinitionId": {
-            "maximum": 2147483647,
+            "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
             "description": "Gets or sets the internal identification of attribute definition.",
