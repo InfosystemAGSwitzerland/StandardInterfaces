@@ -5329,6 +5329,10 @@
             "type": "boolean",
             "description": "Gets or sets a value indicating whether the resource demand will be delivered."
           },
+          "goesToTour": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether this resource demand will be processed as part of a tour instead of the original order."
+          },
           "details": {
             "$ref": "#/components/schemas/JobDetails"
           }
