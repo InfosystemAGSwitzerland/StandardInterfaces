@@ -766,7 +766,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Machine"
+                    "$ref": "#/components/schemas/EquipmentType"
                   }
                 }
               }
@@ -4292,20 +4292,20 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets technical identification number of the accessory.",
+            "description": "Gets or sets the technical identification number of the accessory.",
             "format": "int64",
             "nullable": true
           },
           "externalAccessoryId": {
             "maxLength": 50,
             "type": "string",
-            "description": "Gets or sets external technical identification number of the accessory - may be used instead of Leva.Manager.AssetResource.Interface.Accessory.Accessory.AccessoryId.",
+            "description": "Gets or sets the external technical identification number of the accessory - may be used instead of Infosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Accessory.Accessory.AccessoryId.",
             "nullable": true
           },
           "origin": {
             "maxLength": 10,
             "type": "string",
-            "description": "Gets or sets origin of the entity.",
+            "description": "Gets or sets the origin of the entity.",
             "nullable": true
           },
           "active": {
@@ -4316,28 +4316,28 @@
             "maxLength": 200,
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets accessory's name."
+            "description": "Gets or sets the accessory's name."
           },
           "accessoryDisplayType": {
             "$ref": "#/components/schemas/AccessoryDisplayType"
           },
           "numberOfItems": {
             "type": "integer",
-            "description": "Gets or sets the exact number of available accessories. Required when Leva.Manager.AssetResource.Interface.Accessory.Accessory.AccessoryDisplayType is set to \"QUANTITY\".",
+            "description": "Gets or sets the exact number of available accessories. Required when Infosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Accessory.Accessory.AccessoryDisplayType is set to \"QUANTITY\".",
             "format": "int64",
             "nullable": true
           },
           "identification": {
             "maxLength": 200,
             "type": "string",
-            "description": "Gets or sets identification or serial number of the accessory. Required when Leva.Manager.AssetResource.Interface.Accessory.Accessory.AccessoryDisplayType is set to \"IDENTIFICATION\".",
+            "description": "Gets or sets the identification or serial number of the accessory. Required when Infosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Accessory.Accessory.AccessoryDisplayType is set to \"IDENTIFICATION\".",
             "nullable": true
           },
           "branchCode": {
             "maximum": 45629999,
             "minimum": 45620000,
             "type": "integer",
-            "description": "Gets or sets c4562 identification code of the branch to which the machine belongs to.",
+            "description": "Gets or sets the c4562 identification code of the branch to which the machine belongs to.",
             "format": "int64",
             "nullable": true
           },
@@ -4349,14 +4349,14 @@
             "maximum": 45429999,
             "minimum": 45420000,
             "type": "integer",
-            "description": "Gets or sets c4542 code of the accessory's scheduling group that combines accessories of the same type and use (not necessarily the same model or manufacturer but can fullfil the same job requirements).",
+            "description": "Gets or sets the c4542 code of the accessory's scheduling group that combines accessories of the same type and use (not necessarily the same model or manufacturer but can fullfil the same job requirements).",
             "format": "int64"
           },
           "costCenterNo": {
             "maxLength": 20,
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets cost center number for the accessory.",
+            "description": "Gets or sets the cost center number for the accessory.",
             "nullable": true
           },
           "ownerCompanyNo": {
@@ -4820,6 +4820,7 @@
       },
       "Contact": {
         "required": [
+          "originCode",
           "roleCode"
         ],
         "type": "object",
@@ -4836,7 +4837,14 @@
             "maximum": 45449999,
             "minimum": 45440001,
             "type": "integer",
-            "description": "Gets or sets code 4544. Use IF2BA to retrieve the value list.",
+            "description": "Gets or sets the code 4544 role. Use IF2BA to retrieve the value list.",
+            "format": "int64"
+          },
+          "originCode": {
+            "maximum": 69569999,
+            "minimum": 69560001,
+            "type": "integer",
+            "description": "Gets or sets the code 6956 origin. Use IF2BA to retrieve the value list.",
             "format": "int64"
           },
           "fullName": {
@@ -5082,12 +5090,73 @@
         "additionalProperties": false,
         "description": "The attribute value set."
       },
+      "EquipmentType": {
+        "required": [
+          "description",
+          "origin"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "description": "Gets the id when the entity was last changed.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets the date and time when the entity was last changed.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "equipmentTypeId": {
+            "type": "integer",
+            "description": "Gets or sets the technical identification of the equipment type.",
+            "format": "int64",
+            "nullable": true
+          },
+          "externalEquipmentTypeId": {
+            "type": "string",
+            "description": "Gets or sets the external identification of the equipment type - may be used instead of the EquipmentTypeId.",
+            "nullable": true
+          },
+          "origin": {
+            "type": "string",
+            "description": "Gets or sets origin of the entity.",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the equipment type is active or not."
+          },
+          "description": {
+            "type": "string",
+            "description": "Gets or sets the name or designation of the associated equipment type.",
+            "nullable": true
+          },
+          "manufacturerSeries": {
+            "type": "string",
+            "description": "Gets or sets a string indicating which equipment type series the equipment belongs to.",
+            "nullable": true
+          },
+          "suppliersBusinessAddressId": {
+            "type": "integer",
+            "description": "Gets or sets the address number of the supplier.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Equipment type master data."
+      },
       "FileDocumentLink": {
         "type": "object",
         "properties": {
           "fileDocumentGuid": {
             "type": "string",
-            "description": "Gets or sets internal guid of the document.",
+            "description": "Gets or sets the internal guid of the document.",
             "nullable": true
           }
         },
@@ -5120,7 +5189,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets job id of performis/leva+. Will be set internally - leave empty if not known.",
+            "description": "Gets or sets the job id of performis/leva+. Will be set internally - leave empty if not known.",
             "format": "int64",
             "nullable": true
           },
@@ -5140,7 +5209,7 @@
           },
           "reportEmailReceivers": {
             "type": "string",
-            "description": "Gets or sets seperated string of e-mail addresses to receive a report copy.",
+            "description": "Gets or sets a semicolon-seperated string of e-mail addresses to receive a report copy.",
             "nullable": true
           },
           "workerId": {
@@ -5151,7 +5220,7 @@
           },
           "employeeId": {
             "type": "integer",
-            "description": "Gets or sets internal employee id to which the job is assigned to.",
+            "description": "Gets or sets the internal employee id to which the job is assigned to.",
             "format": "int64",
             "nullable": true,
             "deprecated": true
@@ -5193,29 +5262,35 @@
           },
           "schedulingGroupCode": {
             "type": "integer",
-            "description": "Gets or sets code 4542 use IF2BA to retrieve value list.",
+            "description": "Gets or sets the code 4542 scheduling group. Use IF2BA to retrieve a list of valid values.",
             "format": "int64"
           },
           "jobStatusCode": {
             "type": "integer",
-            "description": "Gets or sets code 4555 use IF2BA to retrieve value list.",
+            "description": "Gets or sets the code 4555 job status. Use IF2BA to retrieve a list of valid values.",
             "format": "int64"
           },
           "resourceTypeCode": {
             "type": "integer",
-            "description": "Gets or sets code 4550 use IF2BA to retrieve value list.",
+            "description": "Gets or sets the code 4550 resource type. Use IF2BA to retrieve a list of valid values.",
             "format": "int64",
             "nullable": true
           },
           "resourceStatusCode": {
             "type": "integer",
-            "description": "Gets or sets code 4554 use IF2BA to retrieve value list.",
+            "description": "Gets or sets the code 4554 resource status. Use IF2BA to retrieve a list of valid values.",
             "format": "int64",
             "nullable": true
           },
           "machineId": {
             "type": "integer",
             "description": "Gets or sets the internal machine id assigned to this job.",
+            "format": "int64",
+            "nullable": true
+          },
+          "trailerMachineId": {
+            "type": "integer",
+            "description": "Gets or sets the internal trailer machine id assigned to this job.",
             "format": "int64",
             "nullable": true
           },
@@ -5227,7 +5302,7 @@
           },
           "useCaseCode": {
             "type": "integer",
-            "description": "Gets or sets code 6951 use IF2BA to retrieve value list.",
+            "description": "Gets or sets the code 6951 use case. Use IF2BA to retrieve a list of valid values.",
             "format": "int64",
             "example": 69510030
           },
@@ -5243,7 +5318,7 @@
             "maximum": 69540003,
             "minimum": 69540001,
             "type": "integer",
-            "description": "Gets or sets code 6954 use IF2BA to retrieve value list.",
+            "description": "Gets or sets the code 6954 service type. Use IF2BA to retrieve a list of valid values.",
             "format": "int64",
             "nullable": true
           },
@@ -5348,18 +5423,18 @@
         "properties": {
           "bookingActivityId": {
             "type": "integer",
-            "description": "Gets or sets unique booking activity id. Other jobs containing the same activity do not have the same job booking activity id.",
+            "description": "Gets or sets the unique booking activity id. Other jobs containing the same activity do not have the same job booking activity id.",
             "format": "int64"
           },
           "activityCode": {
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets code 4557. Use IF2BA to retrieve code values for activities."
+            "description": "Gets or sets the code 4557 activity code. Use IF2BA to retrieve code values for activities."
           },
           "activity": {
             "maxLength": 150,
             "type": "string",
-            "description": "Gets or sets text of activity if specified.  NOTE: This may contain free-text for the activity. If the job requires a special activity e.g. 'Assist customer on demand' a planner might replace the regular activity text with anything else (non-translated custom input).",
+            "description": "Gets or sets the text of the activity if specified.  NOTE: This may contain free-text for the activity. If the job requires a special activity e.g. 'Assist customer on demand' a planner might replace the regular activity text with anything else (non-translated custom input).",
             "nullable": true
           },
           "active": {
@@ -5381,7 +5456,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets unique id of this completion.",
+            "description": "Gets or sets the unique id of this completion.",
             "format": "int64",
             "nullable": true
           },
@@ -5406,7 +5481,7 @@
             "items": {
               "$ref": "#/components/schemas/JobTimeStamp"
             },
-            "description": "Gets or sets list of time stamps.",
+            "description": "Gets or sets the list of time stamps.",
             "nullable": true
           },
           "reportList": {
@@ -5414,7 +5489,7 @@
             "items": {
               "$ref": "#/components/schemas/JobReport"
             },
-            "description": "Gets or sets list of reports.",
+            "description": "Gets or sets the list of reports.",
             "nullable": true
           },
           "bookingActivityList": {
@@ -5422,7 +5497,7 @@
             "items": {
               "$ref": "#/components/schemas/JobBookingActivity"
             },
-            "description": "Gets or sets list of booking activities.",
+            "description": "Gets or sets the list of booking activities.",
             "nullable": true
           },
           "transportPositionList": {
@@ -5430,7 +5505,7 @@
             "items": {
               "$ref": "#/components/schemas/JobTransportPosition"
             },
-            "description": "Gets or sets list of transport positions.",
+            "description": "Gets or sets the list of transport positions.",
             "nullable": true
           },
           "surchargeList": {
@@ -5438,7 +5513,7 @@
             "items": {
               "$ref": "#/components/schemas/JobSurcharge"
             },
-            "description": "Gets or sets list of surcharges.",
+            "description": "Gets or sets the list of surcharges.",
             "nullable": true
           },
           "documentList": {
@@ -5446,7 +5521,7 @@
             "items": {
               "$ref": "#/components/schemas/JobDocument"
             },
-            "description": "Gets or sets list of job documents.",
+            "description": "Gets or sets the list of job documents.",
             "nullable": true
           },
           "problemList": {
@@ -5454,7 +5529,7 @@
             "items": {
               "$ref": "#/components/schemas/JobProblem"
             },
-            "description": "Gets or sets list of job problems.",
+            "description": "Gets or sets the list of job problems.",
             "nullable": true
           },
           "schedule": {
@@ -5462,7 +5537,7 @@
             "items": {
               "$ref": "#/components/schemas/JobScheduleEntry"
             },
-            "description": "Gets or sets list of job schedule entries.",
+            "description": "Gets or sets the list of job schedule entries.",
             "nullable": true
           },
           "heightList": {
@@ -5470,7 +5545,7 @@
             "items": {
               "$ref": "#/components/schemas/JobHeight"
             },
-            "description": "Gets or sets list of job height entries.",
+            "description": "Gets or sets the list of job height entries.",
             "nullable": true
           },
           "handover": {
@@ -5495,7 +5570,7 @@
         "properties": {
           "jobDocumentId": {
             "type": "integer",
-            "description": "Gets or sets unique id of this job document assignment.",
+            "description": "Gets or sets the unique id of this job document assignment.",
             "format": "int64",
             "nullable": true
           },
@@ -5545,7 +5620,7 @@
           },
           "employeeId": {
             "type": "integer",
-            "description": "Gets or sets internal unique identifer of the employee that created this handover.",
+            "description": "Gets or sets the internal unique identifer of the employee that created this handover.",
             "format": "int64",
             "nullable": true,
             "deprecated": true
@@ -5722,14 +5797,14 @@
             "maxLength": 200,
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets title and or description of the problem.",
+            "description": "Gets or sets the title and or description of the problem.",
             "example": "various impact dents on the left front side."
           },
           "resourceConditionCode": {
             "maximum": 33429999,
             "minimum": 33420001,
             "type": "integer",
-            "description": "Gets or sets code 3342 use IF2BA to retrieve value list.",
+            "description": "Gets or sets the code 3342 resource condition. Use IF2BA to retrieve a list of valid values.",
             "format": "int64"
           },
           "visibleForCustomer": {
@@ -5754,14 +5829,14 @@
             "maxLength": 30,
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets internal identifier for the employee.",
+            "description": "Gets or sets the internal identifier for the employee.",
             "example": "363"
           },
           "reportedDateTime": {
             "type": "string",
-            "description": "Gets or sets date and time at which the problem is noted.",
+            "description": "Gets or sets the date and time at which the problem is noted.",
             "format": "date-time",
-            "example": "2012-04-23T18:25:43.511Z."
+            "example": "2012-04-23T18:25:43.511Z"
           },
           "reportingContext": {
             "$ref": "#/components/schemas/ReportingContextEnum"
@@ -5771,7 +5846,7 @@
             "minLength": 1,
             "type": "string",
             "description": "Gets or sets additional context information (e.g. reported by mobile device).",
-            "example": "Custom Job Application."
+            "example": "Custom Job Application"
           }
         },
         "additionalProperties": false,
@@ -5782,7 +5857,7 @@
         "properties": {
           "jobId": {
             "type": "integer",
-            "description": "Gets or sets unique identifier for the job to which this scheduling is assigned.",
+            "description": "Gets or sets the unique identifier for the job to which this scheduling is assigned.",
             "format": "int64"
           },
           "accessoryId": {
@@ -5814,23 +5889,23 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets internal unique report id.",
+            "description": "Gets or sets the internal unique report id.",
             "format": "int64",
             "nullable": true
           },
           "jobId": {
             "type": "integer",
-            "description": "Gets or sets internal unique job id.",
+            "description": "Gets or sets the internal unique job id.",
             "format": "int64"
           },
           "reportFromDate": {
             "type": "string",
-            "description": "Gets or sets begin of reporting time span.",
+            "description": "Gets or sets the begin of reporting time span.",
             "format": "date-time"
           },
           "reportToDate": {
             "type": "string",
-            "description": "Gets or sets end of reporting time span.",
+            "description": "Gets or sets the end of reporting time span.",
             "format": "date-time"
           },
           "comment": {
@@ -5846,7 +5921,7 @@
             "items": {
               "$ref": "#/components/schemas/JobReportTimeStamp"
             },
-            "description": "Gets or sets list of report time stamps.",
+            "description": "Gets or sets the list of report time stamps.",
             "nullable": true
           }
         },
@@ -5882,7 +5957,7 @@
           "source": {
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets source identifier of entry origin."
+            "description": "Gets or sets the source identifier of entry origin."
           },
           "bookingActivityId": {
             "type": "integer",
@@ -5927,7 +6002,7 @@
           },
           "employeeId": {
             "type": "integer",
-            "description": "Gets or sets internal unique identifer of the employee that created this return.",
+            "description": "Gets or sets the internal unique identifer of the employee that created this return.",
             "format": "int64",
             "nullable": true,
             "deprecated": true
@@ -6020,7 +6095,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets unique id of the surcharge (master data).",
+            "description": "Gets or sets the unique id of the surcharge (master data).",
             "format": "int64",
             "example": 8739145
           },
@@ -6028,7 +6103,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets unique id of job.",
+            "description": "Gets or sets the unique id of the referenced job.",
             "format": "int64",
             "nullable": true,
             "example": 82916
@@ -6037,21 +6112,21 @@
             "type": "string",
             "description": "Gets or sets when the surcharge was recorded.",
             "format": "date-time",
-            "example": "2012-04-23T18:25:43.511Z."
+            "example": "2012-04-23T18:25:43.511Z"
           },
           "assignment": {
             "$ref": "#/components/schemas/AssignmentEnum"
           },
           "quantity": {
             "type": "number",
-            "description": "Gets or sets quantity in price unit of measure given by the base-surcharge.",
+            "description": "Gets or sets the quantity in price unit of measure given by the base-surcharge.",
             "format": "decimal",
             "example": 23.5
           },
           "comment": {
             "maxLength": 2000,
             "type": "string",
-            "description": "Gets or sets optional comment by the employee who submitted the surcharge.",
+            "description": "Gets or sets the optional comment by the employee who submitted the surcharge.",
             "nullable": true,
             "example": "reason for quantity: additional gas can filled on customers request."
           },
@@ -6059,7 +6134,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets report id which contains this surcharge entry. Surcharges are generally created during the entire job process. Reports collect them for invoicing. If a surcharge is not assigned to a report, it is not considered for billing. When the job surcharge id is provided on job report creation, report id field will be filled by the back end.",
+            "description": "Gets or sets the report id which contains this surcharge entry. Surcharges are generally created during the entire job process. Reports collect them for invoicing. If a surcharge is not assigned to a report, it is not considered for billing. When the job surcharge id is provided on job report creation, report id field will be filled by the back end.",
             "format": "int64",
             "nullable": true,
             "example": 456223
@@ -6217,6 +6292,30 @@
             "description": "Gets or sets the type of transport this transport demand is part of: 'DELIVERY' (outward transport), 'PICK-UP' (return transport), 'TRANSFER' (relocation).",
             "nullable": true
           },
+          "loadingGroupNo": {
+            "type": "integer",
+            "description": "Gets or sets the number of the loading group.",
+            "format": "int32",
+            "nullable": true
+          },
+          "loadingSequenceNo": {
+            "type": "integer",
+            "description": "Gets or sets the number of the loading sequence (order of position within group/tour point).",
+            "format": "int32",
+            "nullable": true
+          },
+          "unloadingGroupNo": {
+            "type": "integer",
+            "description": "Gets or sets the number of the unloading group.",
+            "format": "int32",
+            "nullable": true
+          },
+          "unloadingSequenceNo": {
+            "type": "integer",
+            "description": "Gets or sets the number of the unloading sequence (order of position within group/tour point).",
+            "format": "int32",
+            "nullable": true
+          },
           "pickupLocation": {
             "$ref": "#/components/schemas/Address"
           },
@@ -6238,12 +6337,12 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets internal unique id for this job transport position.",
+            "description": "Gets or sets the internal unique id for this job transport position.",
             "format": "int64"
           },
           "jobId": {
             "type": "integer",
-            "description": "Gets or sets unique job id.",
+            "description": "Gets or sets the unique job id.",
             "format": "int64"
           },
           "loadingCompleted": {
@@ -6285,7 +6384,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets internal technical key for the machine.",
+            "description": "Gets or sets the internal technical key for the machine.",
             "format": "int64",
             "nullable": true,
             "example": 4711
@@ -6294,30 +6393,31 @@
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets external technical key for machine - may be used instead of Leva.Manager.AssetResource.Interface.Machine.Machine.MachineId.",
+            "description": "Gets or sets the external technical key for the machine - may be used instead of Infosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Machine.Machine.MachineId.",
             "nullable": true,
             "example": "ABC-4711"
           },
           "origin": {
             "maxLength": 10,
             "type": "string",
-            "description": "Gets or sets origin of the entity.",
+            "description": "Gets or sets the origin of the entity.",
             "nullable": true
           },
           "active": {
             "type": "boolean",
-            "description": "Gets or sets a value indicating whether sets whether or not the machine may be used in leva+."
+            "description": "Gets or sets a value indicating whether sets whether or not the machine may be used in leva+.",
+            "example": true
           },
           "description": {
             "maxLength": 200,
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets description (e.g. name, type, number) of the machine.",
+            "description": "Gets or sets the description (e.g. name, type, number) of the machine.",
             "example": "Genie RS-1932, Blue Version."
           },
           "placingOnMarket": {
             "type": "string",
-            "description": "Gets or sets date when the machine was first registered and used in the business. Important for service dates etc.",
+            "description": "Gets or sets the date when the machine was first registered and used in the business. Important for service dates etc.",
             "format": "date-time",
             "example": "2022-01-11"
           },
@@ -6325,7 +6425,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets identification number for Leva.Manager.AssetResource.Interface.Machine.EquipmentType.",
+            "description": "Gets or sets the identification number for Infosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Machine.EquipmentType.",
             "format": "int64",
             "nullable": true,
             "example": 4711
@@ -6334,7 +6434,7 @@
             "maxLength": 36,
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets unique identifier for a machine. Used for communication with third party systems.",
+            "description": "Gets or sets the unique identifier for a machine. Used for communication with third party systems.",
             "nullable": true,
             "example": "87315090-9a06-4edc-8fc5-f9f68972e3c6"
           },
@@ -6342,7 +6442,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets identification number for a single machine.",
+            "description": "Gets or sets the identification number for a single machine.",
             "format": "int64",
             "nullable": true,
             "example": 87315
@@ -6365,7 +6465,7 @@
             "maximum": 45439999,
             "minimum": 45430000,
             "type": "integer",
-            "description": "Gets or sets c4543 code of the machine manufacturer.",
+            "description": "Gets or sets the c4543 code of the machine manufacturer.",
             "format": "int64",
             "nullable": true,
             "example": 45430010
@@ -6380,7 +6480,7 @@
           "chassisNumber": {
             "maxLength": 100,
             "type": "string",
-            "description": "Gets or sets chassis number of this vehicle.",
+            "description": "Gets or sets the chassis number of this vehicle.",
             "nullable": true,
             "example": "WMG6315L4FZ010120"
           },
@@ -6394,7 +6494,7 @@
           "typeCertificateNumber": {
             "maxLength": 100,
             "type": "string",
-            "description": "Gets or sets official number for identification of the vehicle type by external entities.",
+            "description": "Gets or sets the official number for identification of the vehicle type by external entities.",
             "nullable": true,
             "example": "123123"
           },
@@ -6408,14 +6508,14 @@
           "wikiUrl": {
             "maxLength": 200,
             "type": "string",
-            "description": "Gets or sets uRL to information portal.",
+            "description": "Gets or sets the URL to information portal.",
             "nullable": true
           },
           "ownerCompanyNo": {
             "maximum": 999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets number of the holder company.",
+            "description": "Gets or sets the number of the holder company.",
             "format": "int64",
             "nullable": true,
             "example": 1235
@@ -6423,7 +6523,7 @@
           "assetNo": {
             "maxLength": 16,
             "type": "string",
-            "description": "Gets or sets accounting asset number.",
+            "description": "Gets or sets the accounting asset number.",
             "nullable": true,
             "example": "1546"
           },
@@ -6431,7 +6531,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets address number of the owner.",
+            "description": "Gets or sets the address number of the owner.",
             "format": "int64",
             "nullable": true,
             "example": 12345
@@ -6440,7 +6540,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets address number of the location.",
+            "description": "Gets or sets the address number of the location.",
             "format": "int64",
             "nullable": true,
             "example": 12345
@@ -6449,7 +6549,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets address number of the customer to invoice.",
+            "description": "Gets or sets the address number of the customer to invoice.",
             "format": "int64",
             "nullable": true,
             "example": 12345
@@ -6458,7 +6558,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets business partner ID of the regular driver.",
+            "description": "Gets or sets the business partner ID of the regular driver.",
             "format": "int64",
             "nullable": true,
             "example": 12345
@@ -6467,7 +6567,7 @@
             "maximum": 45469999,
             "minimum": 45460000,
             "type": "integer",
-            "description": "Gets or sets c4546 code of the counter group.",
+            "description": "Gets or sets the c4546 code of the counter group.",
             "format": "int64",
             "nullable": true,
             "example": 45460010
@@ -6485,7 +6585,7 @@
             "maximum": 45419999,
             "minimum": 45410000,
             "type": "integer",
-            "description": "Gets or sets c4541 code of the machine model, e.g. crane.",
+            "description": "Gets or sets the c4541 code of the machine model, e.g. crane.",
             "format": "int64",
             "example": 45410010
           },
@@ -6493,7 +6593,7 @@
             "maximum": 45629999,
             "minimum": 45620000,
             "type": "integer",
-            "description": "Gets or sets c4562 identification code of the branch to which the machine belongs.",
+            "description": "Gets or sets the c4562 identification code of the branch to which the machine belongs.",
             "format": "int64",
             "nullable": true,
             "example": 45620010
@@ -6513,7 +6613,7 @@
             "maximum": 45429999,
             "minimum": 45420000,
             "type": "integer",
-            "description": "Gets or sets c4542 code of the machine scheduling type.",
+            "description": "Gets or sets the c4542 code of the machine scheduling type.",
             "format": "int64",
             "nullable": true,
             "example": 45420010
@@ -6521,7 +6621,7 @@
           "locationApiKey": {
             "maxLength": 50,
             "type": "string",
-            "description": "Gets or sets aPI key to access location service for the machine.",
+            "description": "Gets or sets the API key to access location service for the machine.",
             "nullable": true
           },
           "isMachineLocationSyncEnabled": {
@@ -6533,7 +6633,7 @@
             "maximum": 33069999,
             "minimum": 33060000,
             "type": "integer",
-            "description": "Gets or sets c3306 code of the used location API connector.",
+            "description": "Gets or sets the c3306 code of the used location API connector.",
             "format": "int64",
             "nullable": true,
             "example": 33060010
@@ -6541,14 +6641,14 @@
           "engineType": {
             "maxLength": 200,
             "type": "string",
-            "description": "Gets or sets what type of engine does the machine have.",
+            "description": "Gets or sets what type of engine the machine has.",
             "nullable": true,
             "example": "Diesel."
           },
           "costCenterNo": {
             "maxLength": 20,
             "type": "string",
-            "description": "Gets or sets number of the cost center this machine is billed internally to.",
+            "description": "Gets or sets the number of the cost center this machine is billed internally to.",
             "nullable": true,
             "example": "56789"
           },
@@ -6556,14 +6656,14 @@
             "maximum": 33369999,
             "minimum": 33360000,
             "type": "integer",
-            "description": "Gets or sets c3336 code defining which telematics system the machine uses.",
+            "description": "Gets or sets the c3336 code defining which telematics system the machine uses.",
             "format": "int64",
             "nullable": true,
             "example": 33360010
           },
           "lastYearlyService": {
             "type": "string",
-            "description": "Gets or sets date of the machine's last yearly service.",
+            "description": "Gets or sets the date of the machine's last yearly service.",
             "nullable": true,
             "example": "2023-01-12"
           },
@@ -6578,7 +6678,7 @@
             "items": {
               "$ref": "#/components/schemas/TypeOfDrive"
             },
-            "description": "Gets or sets list of type of drives of the machine.",
+            "description": "Gets or sets the list of type of drives of the machine.",
             "nullable": true
           },
           "schedulingGroups": {
@@ -6586,7 +6686,7 @@
             "items": {
               "$ref": "#/components/schemas/SchedulingGroup"
             },
-            "description": "Gets or sets list of additional scheduling groups. A scheduling group combines machines of the same type and use\r\n(not necessarily the same model or manufacturer). (E.g. a 20m boom, might be sold as 12m boom).",
+            "description": "Gets or sets the list of additional scheduling groups. A scheduling group combines machines of the same type and use\r\n(not necessarily the same model or manufacturer). (E.g. a 20m boom, might be sold as 12m boom).",
             "nullable": true
           },
           "drivers": {
@@ -6594,7 +6694,7 @@
             "items": {
               "$ref": "#/components/schemas/MachineDriver"
             },
-            "description": "Gets or sets list of the business partner IDs of the driver/s that can use this machine.",
+            "description": "Gets or sets the list of the business partner IDs of the driver/s that can use this machine.",
             "nullable": true
           },
           "counters": {
@@ -6602,7 +6702,7 @@
             "items": {
               "$ref": "#/components/schemas/MachineCounter"
             },
-            "description": "Gets or sets list of counters of the machine.",
+            "description": "Gets or sets the list of counters of the machine.",
             "nullable": true
           },
           "usages": {
@@ -6610,7 +6710,7 @@
             "items": {
               "$ref": "#/components/schemas/MachineUsage"
             },
-            "description": "Gets or sets list of applications this machine is used in.",
+            "description": "Gets or sets the list of applications this machine is used in.",
             "nullable": true
           }
         },
@@ -6687,7 +6787,7 @@
           },
           "boolValue": {
             "type": "boolean",
-            "description": "Gets or sets the true or false value.",
+            "description": "Gets or sets the `true` or `false` value.",
             "nullable": true
           },
           "codeValue": {
@@ -6757,14 +6857,14 @@
             "maximum": 45489999,
             "minimum": 45480000,
             "type": "integer",
-            "description": "Gets or sets c4548 code of the counter type used in the machine, e.g. km, hours of operation.",
+            "description": "Gets or sets the c4548 code of the counter type used in the machine, e.g. km, hours of operation.",
             "format": "int64",
             "example": 45480010
           },
           "account": {
             "maxLength": 10,
             "type": "string",
-            "description": "Gets or sets account to post the counters against.",
+            "description": "Gets or sets the account to post the counters against.",
             "nullable": true,
             "example": "4711"
           }
@@ -6779,7 +6879,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets business partner ID of the driver.",
+            "description": "Gets or sets the business partner identifier of the driver.",
             "format": "int64",
             "nullable": true,
             "example": 57689
@@ -6870,7 +6970,7 @@
         "properties": {
           "changeId": {
             "type": "integer",
-            "description": "Gets or sets change id of the entity.",
+            "description": "Gets or sets the change id of the entity.",
             "format": "int64",
             "nullable": true
           },
@@ -6884,7 +6984,7 @@
             "maxLength": 10,
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets origin of the entity."
+            "description": "Gets or sets the origin of the entity."
           },
           "active": {
             "type": "boolean",
@@ -6894,23 +6994,23 @@
             "maxLength": 30,
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets user which modified the entity last."
+            "description": "Gets or sets the user which modified the entity last."
           },
           "modifyDate": {
             "type": "string",
-            "description": "Gets or sets date the entity was last modified.",
+            "description": "Gets or sets the date the entity was last modified.",
             "format": "date-time"
           },
           "description": {
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets title of the project or order."
+            "description": "Gets or sets the title of the project or order."
           },
           "identification": {
             "maxLength": 50,
             "type": "string",
-            "description": "Gets or sets identification (order no or project no).",
+            "description": "Gets or sets the identification (order no or project no).",
             "nullable": true
           },
           "type": {
@@ -6918,25 +7018,25 @@
           },
           "customerId": {
             "type": "integer",
-            "description": "Gets or sets customer id of the project or order.",
+            "description": "Gets or sets the customer id of the project or order.",
             "format": "int64",
             "nullable": true
           },
           "currency": {
             "maxLength": 3,
             "type": "string",
-            "description": "Gets or sets currency in ISO 4217 Code (3 digit letter).",
+            "description": "Gets or sets the currency in ISO 4217 Code (3 digit letter).",
             "nullable": true
           },
           "startDate": {
             "type": "string",
-            "description": "Gets or sets start date of the project or order.",
+            "description": "Gets or sets the start date of the project or order.",
             "format": "date-time",
             "nullable": true
           },
           "endDate": {
             "type": "string",
-            "description": "Gets or sets end date of the project or order.",
+            "description": "Gets or sets the end date of the project or order.",
             "format": "date-time",
             "nullable": true
           },
@@ -6944,7 +7044,7 @@
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets identifikation string of the parent object. If the object is the root - no parent is given.",
+            "description": "Gets or sets the identification string of the parent object. If the object is the root - no parent is given.",
             "nullable": true
           }
         },
@@ -7014,14 +7114,14 @@
             "maximum": 45520600,
             "minimum": 45520010,
             "type": "integer",
-            "description": "Gets or sets code 4552. Use IF2BA to retrieve the value list.",
+            "description": "Gets or sets the code 4552. Use IF2BA to retrieve the value list.",
             "format": "int64"
           },
           "branchCode": {
             "maximum": 45629999,
             "minimum": 45620000,
             "type": "integer",
-            "description": "Gets or sets code 4562. Use IF2BA to retrieve the value list.",
+            "description": "Gets or sets the code 4562. Use IF2BA to retrieve the value list.",
             "format": "int64"
           },
           "yourReference": {
@@ -7208,14 +7308,14 @@
         "properties": {
           "signatureId": {
             "type": "integer",
-            "description": "Gets or sets signature id. Leave empty when creating a new signature entry.",
+            "description": "Gets or sets the signature id. Leave empty when creating a new signature entry.",
             "format": "int64",
             "nullable": true
           },
           "signeeName": {
             "maxLength": 100,
             "type": "string",
-            "description": "Gets or sets person who is signing the document. Preferably full name.",
+            "description": "Gets or sets the person who is signing the document. Preferably full name.",
             "nullable": true
           },
           "signaturFileDocumentLink": {
@@ -7330,7 +7430,7 @@
           },
           "priceUnitOfMeasure": {
             "type": "string",
-            "description": "Gets or sets unit of measure in which quantities for must be submitted.",
+            "description": "Gets or sets the unit of measure in which quantities for must be submitted.",
             "nullable": true
           },
           "sortNo": {
