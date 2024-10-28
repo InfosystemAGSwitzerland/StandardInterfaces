@@ -1,10 +1,11 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "if2performis api",
-    "description": "if2performis api",
+    "title": "IF2performis API",
+    "description": "Interface to access performis modules",
     "contact": {
       "name": "Infosystem AG",
+      "url": "https://www.infosystem.ch",
       "email": "info@infosystem.ch"
     },
     "version": "v1"
@@ -253,6 +254,164 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/CostAccountingEntry"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
+    "/api/v1/finance/cost-accounting/journals": {
+      "get": {
+        "tags": [
+          "Finance"
+        ],
+        "summary": "Retrieves cost accounting journals.",
+        "description": "Returns all matching cost accounting journals.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries since the specified date time.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries since the specified change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Get the entries of the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "journalId",
+            "in": "query",
+            "description": "Get the journal with the specified identification.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 1000000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 10000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CostAccountingJournal"
                   }
                 }
               }
@@ -4240,6 +4399,240 @@
         "additionalProperties": false,
         "description": "Represents a cost accounting financial dimension entry."
       },
+      "CostAccountingJournal": {
+        "required": [
+          "companyNo",
+          "journalId",
+          "period"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 5214698741
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "journalId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets identification of the cost accountig journal.",
+            "format": "int64",
+            "example": 123456
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the company number of the cost accountig journal.",
+            "format": "int64",
+            "example": 100
+          },
+          "period": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the period of the cost accountig journal.",
+            "format": "int64",
+            "example": 100
+          },
+          "journalEntries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CostAccountingJournalEntry"
+            },
+            "description": "Gets the list of journal entries.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a cost accounting journal."
+      },
+      "CostAccountingJournalEntry": {
+        "required": [
+          "amountBSC",
+          "budgetOrActual",
+          "costType",
+          "entryDate"
+        ],
+        "type": "object",
+        "properties": {
+          "caccJournalEntryId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets unique identifier of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "example": 12345
+          },
+          "origin": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets or sets the entry's system of origin.",
+            "nullable": true,
+            "example": "ISLE"
+          },
+          "originId": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets or sets the identification of the entry's system of origin.",
+            "nullable": true,
+            "example": "LEIST:12345"
+          },
+          "budgetOrActual": {
+            "maxLength": 1,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets B => Budget / I => Actual / P => Plan / K => Shortterm income statement.",
+            "example": "I"
+          },
+          "costCenterNo": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets cost center identifier. Either costCenterNo, costUnitNo or orderNo may be used at once.",
+            "nullable": true,
+            "example": "135"
+          },
+          "costUnitNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets or sets cost unit identifier. Either costCenterNo, costUnitNo or orderNo may be used at once.",
+            "nullable": true,
+            "example": "6548217"
+          },
+          "orderNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets or sets order no identifier. Either costCenterNo, costUnitNo or orderNo may be used at once.",
+            "nullable": true,
+            "example": "4712"
+          },
+          "salesChannel": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "Gets or sets the sales channel. May be used together with costCenterNo, CostUnitNo or orderNo.",
+            "nullable": true,
+            "example": "20"
+          },
+          "costType": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets cost type of the entry.",
+            "example": "4547"
+          },
+          "voucherType": {
+            "maxLength": 4,
+            "type": "string",
+            "description": "Gets or sets voucher type from financial accounting.",
+            "nullable": true,
+            "example": "INV"
+          },
+          "voucherNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets voucher number from financial accounting.",
+            "format": "int64",
+            "nullable": true,
+            "example": 658421
+          },
+          "entryDate": {
+            "type": "string",
+            "description": "Gets or sets date of the entry.",
+            "format": "date",
+            "example": "2024-08-24"
+          },
+          "text": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "Gets or sets entry text.",
+            "nullable": true,
+            "example": "Budget 202403"
+          },
+          "amountBSC": {
+            "type": "number",
+            "description": "Gets or sets amount of the entry in balance sheet currency.\r\nValue has 18 digits before the decimal point and 2 decimal places.",
+            "format": "decimal",
+            "example": 18000.65
+          },
+          "quantity": {
+            "type": "number",
+            "description": "Gets or sets quantity in the unit defined on the cost type.\r\nValue has 18 digits before the decimal point and 4 decimal places.",
+            "format": "decimal",
+            "nullable": true,
+            "example": 2.1234
+          },
+          "isReversal": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the entry is a reversal."
+          },
+          "financialDimensions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CostAccountingJournalEntryFinancialDimension"
+            },
+            "description": "Gets a list of financial dimensions.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a entry in the cost accounting journal."
+      },
+      "CostAccountingJournalEntryFinancialDimension": {
+        "required": [
+          "financialDimensionNo",
+          "financialDimensionValue"
+        ],
+        "type": "object",
+        "properties": {
+          "financialDimensionNo": {
+            "maximum": 99,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the financial dimension.",
+            "format": "int64",
+            "example": 23
+          },
+          "financialDimensionValue": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the financial dimension value.",
+            "example": "321.2"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a cost accounting financial dimension of the journal entry."
+      },
       "MaintenanceWindow": {
         "type": "object",
         "properties": {
@@ -6338,7 +6731,7 @@
             "type": "string",
             "description": "Gets or sets location for the incoterms.",
             "nullable": true,
-            "example": "ZÃ¼rich"
+            "example": "Zürich"
           },
           "destinationDeliveryDateRequested": {
             "type": "string",
@@ -7627,7 +8020,7 @@
             "maximum": 9999999999,
             "minimum": 0,
             "type": "integer",
-            "description": "Gets or sets id of the \"LeistungstrÃ¤ger\".",
+            "description": "Gets or sets id of the \"Leistungsträger\".",
             "format": "int64",
             "nullable": true
           },
@@ -7635,7 +8028,7 @@
             "maximum": 9999999999,
             "minimum": 0,
             "type": "integer",
-            "description": "Gets or sets identifier to the \"LeistungstrÃ¤ger-Tag\".",
+            "description": "Gets or sets identifier to the \"Leistungsträger-Tag\".",
             "format": "int64",
             "nullable": true
           },
@@ -7772,7 +8165,7 @@
             "maximum": 2869999,
             "minimum": 2860001,
             "type": "integer",
-            "description": "Gets or sets c286 - Type of the service provider\r\n\r\n1 - Mitarbeiter - Employees\r\n\r\n2 - Maschinen   - Machines\r\n\r\n3 - KleingerÃ¤te - Small devices\r\n\r\n5 - Allgemein   - Universal.",
+            "description": "Gets or sets c286 - Type of the service provider\r\n\r\n1 - Mitarbeiter - Employees\r\n\r\n2 - Maschinen   - Machines\r\n\r\n3 - Kleingeräte - Small devices\r\n\r\n5 - Allgemein   - Universal.",
             "format": "int64",
             "nullable": true,
             "example": 2860003
@@ -7938,7 +8331,7 @@
             "type": "string",
             "description": "Gets or sets description of the work done.",
             "nullable": true,
-            "example": "StahltrÃ¤ger montieren"
+            "example": "Stahlträger montieren"
           },
           "quantity": {
             "type": "number",
