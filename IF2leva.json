@@ -4093,6 +4093,115 @@
         }
       }
     },
+    "/api/v1/rental/jobs/asset-resource-storage-places": {
+      "put": {
+        "tags": [
+          "RentalJob"
+        ],
+        "summary": "Persists rental job asset resource storage places.",
+        "description": "Used for changing the storage location in a specific job context.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Rental job asset resource storage places to be be updated.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/JobAssetResourceStoragePlace"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JobAssetResourceStoragePlace"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
     "/api/v1/rental/orders": {
       "get": {
         "tags": [
@@ -5415,6 +5524,29 @@
         "additionalProperties": false,
         "description": "The DTO for the rental jobs."
       },
+      "JobAssetResourceStoragePlace": {
+        "required": [
+          "assetResourceStoragePlace",
+          "context",
+          "jobId"
+        ],
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "integer",
+            "description": "Gets or sets the job id in which the asset resource storage place was changed.",
+            "format": "int64"
+          },
+          "context": {
+            "$ref": "#/components/schemas/ReportingContextEnum"
+          },
+          "assetResourceStoragePlace": {
+            "$ref": "#/components/schemas/AssetResourceStoragePlace"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an asset resource storage place change in the context of a rental job."
+      },
       "JobBookingActivity": {
         "required": [
           "activityCode"
@@ -6226,6 +6358,22 @@
             "type": "integer",
             "description": "Gets or sets unique job id.",
             "format": "int64"
+          },
+          "accessoryId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the accessory id.",
+            "format": "int64",
+            "nullable": true
+          },
+          "machineId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the machine id.",
+            "format": "int64",
+            "nullable": true
           },
           "description": {
             "type": "string",
