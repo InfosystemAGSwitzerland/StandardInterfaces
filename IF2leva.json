@@ -5437,6 +5437,12 @@
             "description": "Gets or sets an optional description such as further instructions for the employee.",
             "nullable": true
           },
+          "jobEndComment": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets the the job end comment for the resource.",
+            "nullable": true
+          },
           "horizontalReach": {
             "maximum": 9999999999.99,
             "minimum": 0,
