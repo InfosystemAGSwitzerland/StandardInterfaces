@@ -4696,6 +4696,11 @@
             "description": "Gets or sets the short address of the address.",
             "nullable": true
           },
+          "email": {
+            "type": "string",
+            "description": "Gets or sets the email address.",
+            "nullable": true
+          },
           "latitude": {
             "maximum": 90,
             "minimum": -90,
@@ -5271,6 +5276,18 @@
         },
         "additionalProperties": false,
         "description": "Provides the guid to a saved file. This structure is used to attach previously saved attachments to the application context. e.g. a photo made on a mobile device is saved to performis and then attached to a job as a job document."
+      },
+      "FlexibleTimeSpecificationEnum": {
+        "enum": [
+          "FIX",
+          "ALLDAY",
+          "MORNING",
+          "AFTERNOON",
+          "FROM",
+          "UNTIL"
+        ],
+        "type": "string",
+        "description": "The flexible time specification enum."
       },
       "Job": {
         "required": [
@@ -6434,6 +6451,12 @@
           "unloadingCompleted": {
             "type": "boolean",
             "description": "Gets or sets a value indicating whether indicates whether the unloading was completed."
+          },
+          "loadingFlexibleTimeSpecification": {
+            "$ref": "#/components/schemas/FlexibleTimeSpecificationEnum"
+          },
+          "unloadingFlexibleTimeSpecification": {
+            "$ref": "#/components/schemas/FlexibleTimeSpecificationEnum"
           },
           "rentalJobId": {
             "type": "integer",
