@@ -6033,7 +6033,6 @@
       },
       "JobReport": {
         "required": [
-          "comment",
           "jobId",
           "reportFromDate",
           "reportToDate"
@@ -6064,9 +6063,14 @@
             "format": "date-time"
           },
           "comment": {
-            "minLength": 1,
             "type": "string",
-            "description": "Gets or sets additional comments on the report (usually visible on report) and for backoffice."
+            "description": "Gets or sets additional comments on the report (usually visible on report) and for backoffice.",
+            "nullable": true
+          },
+          "externalRef": {
+            "type": "string",
+            "description": "Gets or sets the external reference of this report (e.g. an external service record number).",
+            "nullable": true
           },
           "reportPdfFileDocumentLink": {
             "$ref": "#/components/schemas/FileDocumentLink"
