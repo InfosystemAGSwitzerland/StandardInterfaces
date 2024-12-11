@@ -4369,6 +4369,254 @@
           }
         }
       }
+    },
+    "/api/v1/rental/orders/internal-documents": {
+      "get": {
+        "tags": [
+          "RentalOrder"
+        ],
+        "summary": "Search for internal documents in rental orders.",
+        "description": "By passing in the appropriate options, the service searches for rental order internal documents in the system.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "query",
+            "description": "Required to retrieve records of a specific order.",
+            "required": true,
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RentalOrderDocument"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "RentalOrder"
+        ],
+        "summary": "Modify rental order internal documents.",
+        "description": "Sets the rental order documents that will be assigned to the respective orders.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifing the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifing the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Rental order internal documents to be assigned to the order id.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RentalOrderDocument"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RentalOrderDocument"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RentalOrderDocument"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RentalOrderDocument"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
     }
   },
   "components": {
@@ -5275,7 +5523,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Provides the guid to a saved file. This structure is used to attach previously saved attachments to the application context. e.g. a photo made on a mobile device is saved to performis and then attached to a job as a job document."
+        "description": "Provides the guid to a saved file. This structure is used to attach previously saved attachments to the application context. e.g. a photo made on a mobile device is saved to performis and then attached to a job or an order as a job or order document."
       },
       "FlexibleTimeSpecificationEnum": {
         "enum": [
@@ -6402,6 +6650,30 @@
             "format": "int64",
             "nullable": true
           },
+          "weight": {
+            "type": "number",
+            "description": "Gets or sets the weight (in kilograms) of the transport.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "length": {
+            "type": "number",
+            "description": "Gets or sets the length (in meters) of the transport.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "width": {
+            "type": "number",
+            "description": "Gets or sets the width (in meters) of the transport.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "height": {
+            "type": "number",
+            "description": "Gets or sets the height (in meters) of the transport.",
+            "format": "decimal",
+            "nullable": true
+          },
           "description": {
             "type": "string",
             "description": "Gets or sets description of good.",
@@ -6465,6 +6737,12 @@
           "rentalJobId": {
             "type": "integer",
             "description": "Gets or sets is set, when the current transport demand (assigned resource) points to a rental job.",
+            "format": "int64",
+            "nullable": true
+          },
+          "originalRentalOrderId": {
+            "type": "integer",
+            "description": "Gets or sets the original rental order id of this transport demand.",
             "format": "int64",
             "nullable": true
           },
@@ -7353,6 +7631,36 @@
         },
         "additionalProperties": false,
         "description": "The DTO for rental orders."
+      },
+      "RentalOrderDocument": {
+        "required": [
+          "orderId",
+          "rentalOrderDocumentName"
+        ],
+        "type": "object",
+        "properties": {
+          "rentalOrderDocumentId": {
+            "type": "integer",
+            "description": "Gets or sets the unique id of this rental order document assignment.",
+            "format": "int64",
+            "nullable": true
+          },
+          "orderId": {
+            "type": "integer",
+            "description": "Gets or sets unique id for the rental order to which this document is assigned to.",
+            "format": "int64"
+          },
+          "rentalOrderDocumentName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the name of the document."
+          },
+          "rentalOrderDocument": {
+            "$ref": "#/components/schemas/FileDocumentLink"
+          }
+        },
+        "additionalProperties": false,
+        "description": "An existing document linked to a rental order."
       },
       "RentalOrderLine": {
         "required": [
