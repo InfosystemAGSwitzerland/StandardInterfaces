@@ -5135,7 +5135,7 @@
             "format": "int64",
             "nullable": true
           },
-          "c126ExportInformation": {
+          "c126VatExportIndicator": {
             "maximum": 1269999,
             "minimum": 1260001,
             "type": "integer",
@@ -5700,6 +5700,12 @@
             "maxLength": 2000,
             "type": "string",
             "description": "Gets or sets an optional description such as further instructions for the employee.",
+            "nullable": true
+          },
+          "descriptionShift": {
+            "maxLength": 2000,
+            "type": "string",
+            "description": "Gets or sets an optional shift description such as further instructions for the employee.",
             "nullable": true
           },
           "jobEndComment": {
