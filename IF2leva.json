@@ -5626,6 +5626,10 @@
             "description": "Gets or sets the scheduled end date and time for this job.",
             "format": "date-time"
           },
+          "jobDateTimeAccordingSchedule": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the job date and time are according to the schedule."
+          },
           "primaryJobLocation": {
             "$ref": "#/components/schemas/JobLocation"
           },
