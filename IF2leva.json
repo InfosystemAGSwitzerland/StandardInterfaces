@@ -5798,6 +5798,16 @@
             "type": "boolean",
             "description": "Gets or sets a value indicating whether this resource demand will be processed as part of a tour instead of the original order."
           },
+          "reportRequiredForShift": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether a report is required for this resource shift, if the job is a shift at all.",
+            "nullable": true
+          },
+          "chargeDeviceForShift": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the device hours should be charged for this resource shift, if the job is a shift at all.",
+            "nullable": true
+          },
           "details": {
             "$ref": "#/components/schemas/JobDetails"
           }
