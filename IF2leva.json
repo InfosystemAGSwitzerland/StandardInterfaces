@@ -5808,6 +5808,12 @@
             "description": "Gets or sets a value indicating whether the device hours should be charged for this resource shift, if the job is a shift at all.",
             "nullable": true
           },
+          "shiftTypeCode": {
+            "type": "integer",
+            "description": "Gets or sets the code of the shift type (performis code '6963').",
+            "format": "int64",
+            "nullable": true
+          },
           "details": {
             "$ref": "#/components/schemas/JobDetails"
           }
