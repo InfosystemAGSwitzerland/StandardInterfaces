@@ -4836,6 +4836,20 @@
             "description": "Gets or sets ISO code of the country of origin.",
             "nullable": true
           },
+          "intrastatCommodityCode": {
+            "maximum": 1359999,
+            "minimum": 1350001,
+            "type": "integer",
+            "description": "Gets or sets the C135 - Intrastat commodity code.",
+            "format": "int64",
+            "nullable": true
+          },
+          "cn8Code": {
+            "maxLength": 8,
+            "type": "string",
+            "description": "Gets or sets the CN8 Commodity Code.",
+            "nullable": true
+          },
           "vat": {
             "type": "array",
             "items": {
@@ -6855,6 +6869,22 @@
           "automaticCompletion": {
             "type": "boolean",
             "description": "Gets or sets a value indicating whether the purchase order is automatically completed once it has been fully delivered and invoiced."
+          },
+          "sourcePurchaseOrderId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets technical identification of the source purchase order.\r\nIf Infosystem.Performis.WebApi.IF2Performis.Dtos.PurchaseOrder.OrderTypeCode equals 24500002, this is the original order.",
+            "format": "int64",
+            "nullable": true,
+            "example": 322783
+          },
+          "sourcePurchaseOrderNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets or sets purchase order number of the source purchase order.\r\nIf Infosystem.Performis.WebApi.IF2Performis.Dtos.PurchaseOrder.OrderTypeCode equals 24500002, this is the original order.",
+            "nullable": true,
+            "example": "B24.1233"
           },
           "positions": {
             "type": "array",

@@ -1,10 +1,11 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "if2baf api",
-    "description": "if2baf api",
+    "title": "IF2BAF API",
+    "description": "Interface to access Infosystems Business Application Framework",
     "contact": {
       "name": "Infosystem AG",
+      "url": "https://www.infosystem.ch",
       "email": "info@infosystem.ch"
     },
     "version": "v1"
