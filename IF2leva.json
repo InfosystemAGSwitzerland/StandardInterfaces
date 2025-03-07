@@ -7501,6 +7501,12 @@
           "type": {
             "$ref": "#/components/schemas/ProjectStructureType"
           },
+          "companyNo": {
+            "type": "integer",
+            "description": "Gets or sets the number of the company the element of the project structure belongs to.",
+            "format": "int64",
+            "nullable": true
+          },
           "customerId": {
             "type": "integer",
             "description": "Gets or sets the customer id of the project or order.",
