@@ -330,6 +330,292 @@
         }
       }
     },
+    "/api/v1/asset-resource-information/problems": {
+      "get": {
+        "tags": [
+          "AssetResourceInformation"
+        ],
+        "summary": "Search for asset resource problems.",
+        "description": "By passing in the appropriate options, the service searches for available asset resource problems in the system.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since a specific datetime.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all the entities which were added/edited since the provided change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "accessoryId",
+            "in": "query",
+            "description": "Retrieve specific record by accessory id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "machineId",
+            "in": "query",
+            "description": "Retrieve specific record by machine id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "activeOnly",
+            "in": "query",
+            "description": "Retrieve specific records by only active.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AssetResourceProblem"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "AssetResourceInformation"
+        ],
+        "summary": "Create or modify resource problems.",
+        "description": "By passing in the appropriate options, the service searches for available asset resource problems in the system.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Set of asset resource problems to assign.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AssetResourceProblem"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AssetResourceProblem"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AssetResourceProblem"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AssetResourceProblem"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
     "/api/v1/master-data/accessories": {
       "get": {
         "tags": [
@@ -4968,6 +5254,108 @@
         },
         "additionalProperties": false,
         "description": "Address format."
+      },
+      "AssetResourceProblem": {
+        "required": [
+          "active",
+          "customersFault",
+          "description",
+          "problemType",
+          "reportedByEmployee",
+          "reportedDateTime",
+          "reportingContextText",
+          "resourceConditionCode",
+          "solved",
+          "visibleForCustomer"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the unique identifier for this problem.",
+            "format": "int64",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether or not the problem is active."
+          },
+          "accessoryId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the accessory identifier.",
+            "format": "int64",
+            "nullable": true
+          },
+          "machineId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the machine identifier.",
+            "format": "int64",
+            "nullable": true
+          },
+          "problemType": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the problem type (0 = damage, 1 = defect).",
+            "format": "int64"
+          },
+          "description": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the title and or description of the problem."
+          },
+          "resourceConditionCode": {
+            "maximum": 33429999,
+            "minimum": 33420001,
+            "type": "integer",
+            "description": "Gets or sets the code 3342 resource condition. Use IF2BA to retrieve a list of valid values.",
+            "format": "int64"
+          },
+          "visibleForCustomer": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether or not the problem is visible for the customer."
+          },
+          "customersFault": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether or not the problem was caused by the customer, i.e. is the customer's fault."
+          },
+          "comment": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets any further comment/description on the problem.",
+            "nullable": true
+          },
+          "solved": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the problem has been solved."
+          },
+          "reportedByEmployee": {
+            "maxLength": 30,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the employee who reported the problem."
+          },
+          "reportedDateTime": {
+            "type": "string",
+            "description": "Gets or sets the date when the resource problem was reported.",
+            "format": "date-time"
+          },
+          "reportingContextText": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets additional information in the context of the reporting process."
+          }
+        },
+        "additionalProperties": false,
+        "description": "An asset resource problem record is used to store conditions or problems related to a specific resource, which is either a machine or an accessory."
       },
       "AssetResourceStoragePlace": {
         "required": [
