@@ -6202,6 +6202,11 @@
             "format": "int64",
             "nullable": true
           },
+          "pureCraneWork": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the machine assigned to the job will be used for crane work only or not, if the resource type for the job is a truck crane.",
+            "nullable": true
+          },
           "details": {
             "$ref": "#/components/schemas/JobDetails"
           }
@@ -7189,8 +7194,18 @@
             "format": "int32",
             "nullable": true
           },
+          "pickupLocationDescription": {
+            "type": "string",
+            "description": "Gets or sets the description of the pick-up location.",
+            "nullable": true
+          },
           "pickupLocation": {
             "$ref": "#/components/schemas/Address"
+          },
+          "deliveryLocationDescription": {
+            "type": "string",
+            "description": "Gets or sets the description of the delivery location.",
+            "nullable": true
           },
           "deliveryLocation": {
             "$ref": "#/components/schemas/Address"
