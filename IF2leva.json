@@ -6378,10 +6378,143 @@
           },
           "completion": {
             "$ref": "#/components/schemas/JobCompletion"
+          },
+          "jobDetailsAttributeValueSet": {
+            "$ref": "#/components/schemas/JobDetailsAttributeValueSet"
           }
         },
         "additionalProperties": false,
         "description": "Detail information on a job such as scheduled activities, contacts and locations."
+      },
+      "JobDetailsAttributeValue": {
+        "required": [
+          "attributeDefinitionId",
+          "modifyUser"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeValueId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute value.",
+            "format": "int64",
+            "nullable": true
+          },
+          "attributeDefinitionId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute definition.",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets or sets the user who last modified the entry.",
+            "nullable": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets or sets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sortNo": {
+            "maximum": 9999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the position within the attribute value set.",
+            "format": "int64",
+            "nullable": true
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the company identification of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "textValue": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "Gets or sets the text string value.",
+            "nullable": true
+          },
+          "numberValue": {
+            "type": "number",
+            "description": "Gets or sets the number or decimal value.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "dateValue": {
+            "type": "string",
+            "description": "Gets or sets the date value.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "boolValue": {
+            "type": "boolean",
+            "description": "Gets or sets the `true` or `false` value.",
+            "nullable": true
+          },
+          "codeValue": {
+            "type": "integer",
+            "description": "Gets or sets the code value.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The attribute value."
+      },
+      "JobDetailsAttributeValueSet": {
+        "required": [
+          "attributeSetId",
+          "modifyUser"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute set.",
+            "format": "int64"
+          },
+          "attributeValueSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of attribute value set.",
+            "format": "int64",
+            "nullable": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets or sets the user who last modified the entry.",
+            "nullable": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets or sets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "attributeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobDetailsAttributeValue"
+            },
+            "description": "Gets the list of attribute values.",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The attribute value set."
       },
       "JobDocument": {
         "required": [
