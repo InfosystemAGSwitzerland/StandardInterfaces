@@ -721,6 +721,18 @@
             "nullable": true,
             "example": 129.97
           },
+          "VATBaseAmountInVatCurrency": {
+            "type": "number",
+            "description": "VAT Base amount in VAT currency",
+            "format": "double",
+            "nullable": true
+          },
+          "VATAmountInVatCurrency": {
+            "type": "number",
+            "description": "VAT amount in VAT currency",
+            "format": "double",
+            "nullable": true
+          },
           "AdditionalFields": {
             "type": "array",
             "items": {
@@ -884,6 +896,18 @@
             "maxLength": 3,
             "type": "string",
             "description": "Invoice Currency in ISO 4217 Code (3 digit letter)",
+            "nullable": true
+          },
+          "VatCurrency": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "VAT currency in ISO 4217 Code (3 digit letter).",
+            "nullable": true
+          },
+          "RateVatCurrency": {
+            "type": "number",
+            "description": "Exchange rate from balance sheet currency to VAT currency.",
+            "format": "double",
             "nullable": true
           },
           "LastChangeDateTime": {
