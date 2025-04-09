@@ -11,6 +11,292 @@
     "version": "v1"
   },
   "paths": {
+    "/api/v1/acknowledgments": {
+      "get": {
+        "tags": [
+          "Acknowledgments"
+        ],
+        "summary": "Gets acknowledgments.",
+        "description": "Returns all acknowledgments that match the parameters.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Retrieves all entries which were added/edited after a specific datetime.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Retrieves all entries which were added/edited after the provided change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "objectType",
+            "in": "query",
+            "description": "Retrieves the acknowledgments for all objects with the specified type.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "objectId",
+            "in": "query",
+            "description": "Retrieves the acknowledgments for all objects with the specified identifier. Should be used in combination with objectType.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "acknowledgeStatusCode",
+            "in": "query",
+            "description": "Retrieves the acknowledgments with the specified status. (1360100: Push pending, 1360110: Get pending, 1360200: Confirmation pending, 1360300: Confirmed, 1360400: Confirmed with error).",
+            "schema": {
+              "maximum": 1369999,
+              "minimum": 1360000,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Acknowledgment"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Acknowledgments"
+        ],
+        "summary": "Updates the status of the acknowledgments.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The list of acknowledgments to update or create.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Acknowledgment"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Acknowledgment"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Acknowledgment"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Acknowledgment"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
     "/api/v1/codes": {
       "get": {
         "tags": [
@@ -1647,6 +1933,110 @@
   },
   "components": {
     "schemas": {
+      "Acknowledgment": {
+        "required": [
+          "acknowledgeStatusCode",
+          "changeId",
+          "objectId",
+          "objectType"
+        ],
+        "type": "object",
+        "properties": {
+          "acknowledgmentId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets the unique identifier of the acknowledgment.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "objectType": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the object type of the acknowledgment."
+          },
+          "objectId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the object id of the acknowledgment.",
+            "format": "int64"
+          },
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets change identification of the entry.",
+            "format": "int64"
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "acknowledgeStatusCode": {
+            "maximum": 1369999,
+            "minimum": 1360000,
+            "type": "integer",
+            "description": "Gets or sets the acknowledge status code of the acknowledgment.",
+            "format": "int64"
+          },
+          "lastInitialUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who set the acknowledgment in status `initial`.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "lastInitialDate": {
+            "type": "string",
+            "description": "Gets the date and time the acknowledgment was set in status `initial`.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "deliveredAt": {
+            "type": "string",
+            "description": "Gets the date and time the acknowledgment was set in status `delivered`.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "confirmedAt": {
+            "type": "string",
+            "description": "Gets the date and time the acknowledgment was set in status `confirmed` or status `confirmed with error`.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "confirmationError": {
+            "maxLength": 4000,
+            "type": "string",
+            "description": "Gets or sets the confirmation error message.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for an acknowledgment."
+      },
       "AttributeValue": {
         "required": [
           "attributeDefinitionId"
