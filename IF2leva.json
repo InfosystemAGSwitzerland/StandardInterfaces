@@ -5551,7 +5551,8 @@
             "minLength": 1,
             "type": "string",
             "description": "Gets or sets the VAT registration number.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "attributeValueSet": {
             "$ref": "#/components/schemas/CustomerAttributeValueSet"
@@ -5696,6 +5697,20 @@
           "isConsortium": {
             "type": "boolean",
             "description": "Gets or sets defines whether or not this customer is a consortium.",
+            "nullable": true
+          },
+          "nationalTaxNo": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the national tax number.",
+            "nullable": true
+          },
+          "vatRegistrationNo": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the VAT registration number.",
             "nullable": true
           },
           "companyAccounts": {
