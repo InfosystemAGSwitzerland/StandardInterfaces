@@ -2759,10 +2759,41 @@
             "description": "Gets or sets the position within the item main group.",
             "format": "int64",
             "nullable": true
+          },
+          "localizations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemGroupLocalization"
+            },
+            "description": "Gets translations of the item group.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
         "description": "Represents an item group for the items."
+      },
+      "ItemGroupLocalization": {
+        "required": [
+          "isoLanguage",
+          "itemGroupName"
+        ],
+        "type": "object",
+        "properties": {
+          "isoLanguage": {
+            "maxLength": 2,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the ISO 639-1 two-letter code of the language."
+          },
+          "itemGroupName": {
+            "maxLength": 300,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the translated description of the item group."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Translation of the item group."
       },
       "ItemMainGroup": {
         "required": [
@@ -2822,10 +2853,41 @@
             },
             "description": "Gets the list of item groups for the item main groups.",
             "nullable": true
+          },
+          "localizations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemMainGroupLocalization"
+            },
+            "description": "Gets translations of the item main group.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
         "description": "Represents an item main group for the items."
+      },
+      "ItemMainGroupLocalization": {
+        "required": [
+          "isoLanguage",
+          "itemMainGroupName"
+        ],
+        "type": "object",
+        "properties": {
+          "isoLanguage": {
+            "maxLength": 2,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the ISO 639-1 two-letter code of the language."
+          },
+          "itemMainGroupName": {
+            "maxLength": 300,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the translated description of the item main group."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Translation of the item main group."
       },
       "MaintenanceWindow": {
         "type": "object",
