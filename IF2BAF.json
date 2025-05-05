@@ -1498,6 +1498,125 @@
         }
       }
     },
+    "/api/v1/invoicing/next-invoice-number": {
+      "get": {
+        "tags": [
+          "Invoicing"
+        ],
+        "summary": "Retrieves the next invoice number.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "The company number for which to retrieve the next invoice number.",
+            "required": true,
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "referenceDate",
+            "in": "query",
+            "description": "The reference date for which to retrieve the next invoice number.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "numberRange",
+            "in": "query",
+            "description": "Optional number range for which to retrieve the next invoice number.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NextInvoiceNumber"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Basic Authentication failed."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
     "/api/v1/master-data/item-structure": {
       "get": {
         "tags": [
@@ -2918,6 +3037,36 @@
           }
         },
         "additionalProperties": false
+      },
+      "NextInvoiceNumber": {
+        "required": [
+          "numberRange"
+        ],
+        "type": "object",
+        "properties": {
+          "companyNo": {
+            "type": "integer",
+            "description": "Gets or sets the company number for the next invoice number.",
+            "format": "int64"
+          },
+          "referenceDate": {
+            "type": "string",
+            "description": "Gets or sets the reference date for the next invoice number.",
+            "format": "date"
+          },
+          "numberRange": {
+            "type": "string",
+            "description": "Gets or sets the number range for the next invoice number.",
+            "nullable": true
+          },
+          "invoiceNumber": {
+            "type": "integer",
+            "description": "Gets or sets the next invoice number.",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for the next invoice number."
       },
       "Order": {
         "required": [
