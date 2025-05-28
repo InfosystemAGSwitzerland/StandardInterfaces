@@ -5173,6 +5173,7 @@
         "type": "object",
         "properties": {
           "id": {
+            "maxLength": 10,
             "type": "string",
             "description": "Gets or sets the business partner address id of the address.",
             "nullable": true
@@ -5226,11 +5227,13 @@
             "description": "Gets or sets city."
           },
           "shortAddress": {
+            "maxLength": 50,
             "type": "string",
             "description": "Gets or sets the short address of the address.",
             "nullable": true
           },
           "email": {
+            "maxLength": 500,
             "type": "string",
             "description": "Gets or sets the email address.",
             "nullable": true
@@ -5883,11 +5886,13 @@
             "nullable": true
           },
           "externalEquipmentTypeId": {
+            "maxLength": 50,
             "type": "string",
             "description": "Gets or sets the external identification of the equipment type - may be used instead of the EquipmentTypeId.",
             "nullable": true
           },
           "origin": {
+            "maxLength": 10,
             "type": "string",
             "description": "Gets or sets origin of the entity.",
             "nullable": true
@@ -5897,11 +5902,13 @@
             "description": "Gets or sets a value indicating whether the equipment type is active or not."
           },
           "description": {
+            "maxLength": 200,
             "type": "string",
             "description": "Gets or sets the name or designation of the associated equipment type.",
             "nullable": true
           },
           "manufacturerSeries": {
+            "maxLength": 100,
             "type": "string",
             "description": "Gets or sets a string indicating which equipment type series the equipment belongs to.",
             "nullable": true
@@ -5920,6 +5927,8 @@
         "type": "object",
         "properties": {
           "fileDocumentGuid": {
+            "maxLength": 36,
+            "minLength": 1,
             "type": "string",
             "description": "Gets or sets the internal guid of the document.",
             "nullable": true
@@ -5985,6 +5994,7 @@
             "nullable": true
           },
           "reportEmailReceivers": {
+            "maxLength": 500,
             "type": "string",
             "description": "Gets or sets a semicolon-seperated string of e-mail addresses to receive a report copy.",
             "nullable": true
@@ -6264,6 +6274,7 @@
             "format": "int64"
           },
           "activityCode": {
+            "maxLength": 8,
             "minLength": 1,
             "type": "string",
             "description": "Gets or sets the code 4557 activity code. Use IF2BA to retrieve code values for activities."
@@ -6550,6 +6561,7 @@
             "format": "int64"
           },
           "jobDocumentName": {
+            "maxLength": 200,
             "minLength": 1,
             "type": "string",
             "description": "Gets or sets the name of the document."
@@ -6878,11 +6890,13 @@
             "format": "date-time"
           },
           "comment": {
+            "maxLength": 2000,
             "type": "string",
             "description": "Gets or sets additional comments on the report (usually visible on report) and for backoffice.",
             "nullable": true
           },
           "externalRef": {
+            "maxLength": 50,
             "type": "string",
             "description": "Gets or sets the external reference of this report (e.g. an external service record number).",
             "nullable": true
@@ -6929,6 +6943,7 @@
             "format": "int64"
           },
           "source": {
+            "maxLength": 30,
             "minLength": 1,
             "type": "string",
             "description": "Gets or sets the source identifier of entry origin."
@@ -6940,6 +6955,7 @@
             "nullable": true
           },
           "comment": {
+            "maxLength": 2000,
             "type": "string",
             "description": "Gets or sets a comment associated with the time stamp.",
             "nullable": true
@@ -7031,6 +7047,7 @@
             "example": 45570018
           },
           "activity": {
+            "maxLength": 150,
             "type": "string",
             "description": "Gets or sets the text of the activity if specified.",
             "nullable": true,
@@ -7174,6 +7191,7 @@
             "deprecated": true
           },
           "comment": {
+            "maxLength": 2000,
             "type": "string",
             "description": "Gets or sets a comment associated with the timestamp.",
             "nullable": true
@@ -7242,11 +7260,13 @@
             "nullable": true
           },
           "description": {
+            "maxLength": 300,
             "type": "string",
             "description": "Gets or sets description of good.",
             "nullable": true
           },
           "unitOfMeasure": {
+            "maxLength": 8,
             "type": "string",
             "description": "Gets or sets unit of measurement in wich the quantity is transported.",
             "nullable": true
@@ -7314,6 +7334,7 @@
             "nullable": true
           },
           "transportType": {
+            "maxLength": 20,
             "type": "string",
             "description": "Gets or sets the type of transport this transport demand is part of: 'DELIVERY' (outward transport), 'PICK-UP' (return transport), 'TRANSFER' (relocation).",
             "nullable": true
@@ -7343,6 +7364,7 @@
             "nullable": true
           },
           "pickupLocationDescription": {
+            "maxLength": 101,
             "type": "string",
             "description": "Gets or sets the description of the pick-up location.",
             "nullable": true
@@ -7351,6 +7373,7 @@
             "$ref": "#/components/schemas/Address"
           },
           "deliveryLocationDescription": {
+            "maxLength": 101,
             "type": "string",
             "description": "Gets or sets the description of the delivery location.",
             "nullable": true
@@ -7639,6 +7662,7 @@
             "description": "Gets or sets a value indicating whether is this machine an external resource?."
           },
           "yearOfManufacture": {
+            "maxLength": 4,
             "type": "integer",
             "description": "Gets or sets the year in which the machine was built.",
             "format": "int64",
@@ -7928,6 +7952,7 @@
         "type": "object",
         "properties": {
           "application": {
+            "maxLength": 10,
             "type": "string",
             "description": "Gets or sets the application this machine is used in.",
             "nullable": true
@@ -8501,6 +8526,7 @@
             "description": "Gets or sets the title/name of the surcharge."
           },
           "priceUnitOfMeasure": {
+            "maxLength": 8,
             "type": "string",
             "description": "Gets or sets the unit of measure in which quantities for must be submitted.",
             "nullable": true
