@@ -8519,6 +8519,15 @@
             "format": "date-time",
             "nullable": true
           },
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the surcharge is active."
+          },
+          "companyNo": {
+            "type": "integer",
+            "description": "Gets or sets the number of the company to which the surcharge belongs.",
+            "format": "int64"
+          },
           "description": {
             "maxLength": 300,
             "minLength": 1,
@@ -8550,10 +8559,22 @@
           "suggestedOnRentalReturn": {
             "type": "boolean",
             "description": "Gets or sets a value indicating whether wether or not this surcharge is suggested on rental returns (e.g. cleaning)."
+          },
+          "type": {
+            "$ref": "#/components/schemas/SurchargeTypeEnum"
           }
         },
         "additionalProperties": false,
         "description": "The surcharge dto."
+      },
+      "SurchargeTypeEnum": {
+        "enum": [
+          "OrderLineSurcharge",
+          "RentalJobSurcharge",
+          "TimeSurcharge"
+        ],
+        "type": "string",
+        "description": "Defines the available surcharge types."
       },
       "TypeOfDrive": {
         "type": "object",
