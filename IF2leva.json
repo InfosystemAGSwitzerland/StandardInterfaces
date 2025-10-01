@@ -8129,6 +8129,7 @@
       "RentalOrder": {
         "required": [
           "branchCode",
+          "languageCode",
           "orderNo",
           "orderTitle",
           "orderTypeCode",
@@ -8189,6 +8190,13 @@
             "minimum": 45620000,
             "type": "integer",
             "description": "Gets or sets the code 4562. Use IF2BA to retrieve the value list.",
+            "format": "int64"
+          },
+          "languageCode": {
+            "maximum": 179999,
+            "minimum": 170001,
+            "type": "integer",
+            "description": "Gets or sets the language code of the order (code 17). Use IF2BA to retrieve the value list.",
             "format": "int64"
           },
           "yourReference": {
