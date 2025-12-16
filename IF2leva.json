@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.4",
   "info": {
     "title": "IF2leva+ API",
     "description": "Interface to access leva+ modules",
@@ -2068,6 +2068,29 @@
               "type": "integer",
               "format": "int64"
             }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
           }
         ],
         "responses": {
@@ -2269,6 +2292,29 @@
             "schema": {
               "type": "integer",
               "format": "int64"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
             }
           }
         ],
@@ -5951,15 +5997,9 @@
       },
       "Job": {
         "required": [
-          "jobDateTimeFrom",
-          "jobDateTimeTo",
-          "jobStatusCode",
           "orderId",
           "orderNo",
-          "orderTitle",
-          "resourceNo",
-          "schedulingGroupCode",
-          "useCaseCode"
+          "orderTitle"
         ],
         "type": "object",
         "properties": {
@@ -6032,12 +6072,14 @@
           "jobDateTimeFrom": {
             "type": "string",
             "description": "Gets or sets the scheduled start date and time for this job.",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "jobDateTimeTo": {
             "type": "string",
             "description": "Gets or sets the scheduled end date and time for this job.",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "jobDateTimeAccordingSchedule": {
             "type": "boolean",
@@ -6049,17 +6091,20 @@
           "resourceNo": {
             "type": "integer",
             "description": "Gets or sets the resource demand number to which this job is assigned. Each order can have multiple resource demands. They are numbered 0001 onwards and are unique within the order (similar to order-line position no., but for resource demands).",
-            "format": "int64"
+            "format": "int64",
+            "nullable": true
           },
           "schedulingGroupCode": {
             "type": "integer",
             "description": "Gets or sets the code 4542 scheduling group. Use IF2BA to retrieve a list of valid values.",
-            "format": "int64"
+            "format": "int64",
+            "nullable": true
           },
           "jobStatusCode": {
             "type": "integer",
             "description": "Gets or sets the code 4555 job status. Use IF2BA to retrieve a list of valid values.",
-            "format": "int64"
+            "format": "int64",
+            "nullable": true
           },
           "resourceTypeCode": {
             "type": "integer",
@@ -6095,7 +6140,7 @@
             "type": "integer",
             "description": "Gets or sets the code 6951 use case. Use IF2BA to retrieve a list of valid values.",
             "format": "int64",
-            "example": 69510030
+            "nullable": true
           },
           "customerId": {
             "maximum": 9999999999,
@@ -7216,7 +7261,7 @@
           },
           "jobId": {
             "type": "integer",
-            "description": "Gets or sets unique job id.",
+            "description": "Gets or sets the id of the transport job.",
             "format": "int64"
           },
           "accessoryId": {
@@ -7323,7 +7368,13 @@
           },
           "rentalJobId": {
             "type": "integer",
-            "description": "Gets or sets is set, when the current transport demand (assigned resource) points to a rental job.",
+            "description": "Gets or sets the id of the rental job, whose resource demand is the source of the current transport demand (or null if this is not the case).",
+            "format": "int64",
+            "nullable": true
+          },
+          "parentRentalJobId": {
+            "type": "integer",
+            "description": "Gets or sets the id of the rental job, whose resource demand is the parent of the resource demand that is the source of the current transport demand (or null if this is not the case).",
             "format": "int64",
             "nullable": true
           },
