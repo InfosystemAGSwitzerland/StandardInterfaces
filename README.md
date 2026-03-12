@@ -34,26 +34,18 @@ in connecting to one of Infosystems products:
 All interface are built with .net core/.net and use state of the art OpenAPI descriptions to enable third-party developer quickstart.<br>
 All interfaces are built based on Infosystems Web API Standards, following the IETF RFCs regarding restful HTTP APIs.
 
-<b>Interfaces</b><br>
+### Standard Interfaces
 At the moment, we enable third party developer to use the following modules via REST API:
 - leva+
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2leva.json&nocors" target="_blank"><b>Current</b> version documentation</a>
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2leva%20-%20Preview.json&nocors" target="_blank"><b>Preview</b> version documentation</a>
-  
-- performis - ERP
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2performis.json&nocors" target="_blank"><b>Current</b> version documentation</a>
-  - Preview
-    - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_service_recording_allowance_definition.json&nocors" target="_blank"><b>Preview</b> Service Recording - Allowance Definitions</a>
-    - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Preview/IF2performis_service_recording_service_provider_day.json&nocors" target="_blank"><b>Preview</b> Service Recording - Service Provider Day</a>
-  
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2leva.json&nocors" target="_blank">See documentation online</a>
+- performis ERP
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2performis.json&nocors" target="_blank">See documentation online</a>
 - BAF - Business Application Functions
-  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BAF.json&nocors" target="_blank"><b>Current</b> version documentation</a>
-
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BAF.json&nocors" target="_blank">See documentation online</a>
 - ressys
   - available soon
 
-
-<b>Module-based interfaces</b><br>
+### Module Interfaces
 Please use the product based services if available.
 - performis FI - Financial Accounting
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/Module-Based/IF2FI3.json&nocors" target="_blank">See documentation online</a>
@@ -73,11 +65,9 @@ Please use the product based services if available.
 All interfaces offer the same standard functionality to enable you to quickly learn and interact with them. If required, an API might offer enhanced functionality.
 
 To see a graphical representation of the interface, please use the OpenAPI online editor https://editor.swagger.io or simply click the link below the API above.
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
-
 All interfaces are built with:
 * [.net](https://dotnet.microsoft.com/en-us/)
 * [OpenAPI](https://swagger.io/specification/)
@@ -111,7 +101,7 @@ All rights reserved Infosystem AG.
 ## Contact
 
 Main Contact - [@Infosystem_AG](https://twitter.com/Infosystem_AG) - info@infosystem.ch<br>
-Stefan Jud (Product Owner) - [@Stefan_Jud](https://www.linkedin.com/in/stefan-jud-4ba82b63/)
+Stefan Jud (Product Owner & Lead Solution Architect) - [@Stefan_Jud](https://www.linkedin.com/in/stefan-jud-4ba82b63/)
 
 Project Link: [https://github.com/InfosystemAGSwitzerland/StandardInterfaces/](https://github.com/InfosystemAGSwitzerland/StandardInterfaces/)
 
