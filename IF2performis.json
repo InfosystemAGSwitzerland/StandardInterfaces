@@ -2496,6 +2496,98 @@
         }
       }
     },
+    "/api/v1/purchasing/order-approval": {
+      "put": {
+        "tags": [
+          "Purchasing"
+        ],
+        "summary": "Approves or rejects a purchase order.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A single purchase order approval.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PurchaseOrderApproval"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The purchase order approval was processed successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
     "/api/v1/service-recording/presence-times": {
       "get": {
         "tags": [
@@ -5303,6 +5395,13 @@
             "readOnly": true,
             "example": 444555
           },
+          "sourceOrderNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets source order number for which a credit note was created.",
+            "nullable": true,
+            "readOnly": true
+          },
           "positions": {
             "type": "array",
             "items": {
@@ -6600,6 +6699,14 @@
             "nullable": true,
             "example": 24520002
           },
+          "approvalStateCode": {
+            "maximum": 24539999,
+            "minimum": 24530001,
+            "type": "integer",
+            "description": "Gets or sets c2453 - Approval state of the order, e.g. approved, rejected, approval requested.",
+            "format": "int64",
+            "nullable": true
+          },
           "currency": {
             "maxLength": 3,
             "minLength": 1,
@@ -6897,6 +7004,35 @@
         },
         "additionalProperties": false,
         "description": "Represents a purchase order entry."
+      },
+      "PurchaseOrderApproval": {
+        "required": [
+          "isApproved",
+          "purchaseOrderId"
+        ],
+        "type": "object",
+        "properties": {
+          "purchaseOrderId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets technical identification of the purchase order to approve.",
+            "format": "int64",
+            "example": 322784
+          },
+          "isApproved": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the purchase order is approved (true) or rejected (false)."
+          },
+          "comment": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "Gets or sets an optional comment for the approval or rejection of the purchase order.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a purchase order approval."
       },
       "PurchaseOrderPosition": {
         "required": [
