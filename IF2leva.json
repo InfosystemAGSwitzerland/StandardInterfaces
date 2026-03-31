@@ -5066,6 +5066,14 @@
             },
             "description": "Gets or sets a list of additional scheduling groups. A scheduling group combines accessories of the same type and use (not necessarily the same model or manufacturer).",
             "nullable": true
+          },
+          "localizations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccessoryLocalization"
+            },
+            "description": "Gets or sets the list of localizations for the accessory.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -5209,6 +5217,23 @@
         ],
         "type": "string",
         "description": "Possible type values: - 'NONE': Accessory without identification nor quantity - 'IDENTIFICATION': Accessory with identification - 'QUANTITY': Accessory with quantity."
+      },
+      "AccessoryLocalization": {
+        "type": "object",
+        "properties": {
+          "isoLanguage": {
+            "type": "string",
+            "description": "Gets or sets the iso language code for the accessory localization entry.",
+            "nullable": true
+          },
+          "accessoryDescription": {
+            "type": "string",
+            "description": "Gets or sets the description of the accessory in the specified language.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Data object for an accessory localization."
       },
       "Address": {
         "required": [
@@ -7823,6 +7848,14 @@
             },
             "description": "Gets or sets the list of applications this machine is used in.",
             "nullable": true
+          },
+          "localizations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MachineLocalization"
+            },
+            "description": "Gets or sets the list of localizations for the machine.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -7998,6 +8031,23 @@
         },
         "additionalProperties": false,
         "description": "Entity \"Machine Driver\" for query operations."
+      },
+      "MachineLocalization": {
+        "type": "object",
+        "properties": {
+          "isoLanguage": {
+            "type": "string",
+            "description": "Gets or sets the iso language code for the machine localization entry.",
+            "nullable": true
+          },
+          "machineDescription": {
+            "type": "string",
+            "description": "Gets or sets the description of the machine in the specified language.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Data object for a machine localization."
       },
       "MachineUsage": {
         "type": "object",
@@ -8621,10 +8671,35 @@
           },
           "type": {
             "$ref": "#/components/schemas/SurchargeTypeEnum"
+          },
+          "localizations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SurchargeLocalization"
+            },
+            "description": "Gets or sets the list of surcharge localizations.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
         "description": "The surcharge dto."
+      },
+      "SurchargeLocalization": {
+        "type": "object",
+        "properties": {
+          "isoLanguage": {
+            "type": "string",
+            "description": "Gets or sets the iso language code for the surcharge localization entry.",
+            "nullable": true
+          },
+          "surchargeDescription": {
+            "type": "string",
+            "description": "Gets or sets the description of the surcharge in the specified language.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Data object for a surcharge localization."
       },
       "SurchargeTypeEnum": {
         "enum": [
