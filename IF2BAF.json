@@ -111,7 +111,7 @@
           {
             "name": "skip",
             "in": "query",
-            "description": "Number of records to skip for pagination.",
+            "description": "Number of entries to skip for pagination.",
             "schema": {
               "maximum": 100000,
               "minimum": 0,
@@ -122,7 +122,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Maximum number of records to return.",
+            "description": "Maximum number of entries to return.",
             "schema": {
               "maximum": 1000,
               "minimum": 0,
@@ -167,7 +167,7 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed."
+            "description": "Unauthorized."
           },
           "403": {
             "description": "Requestor has insufficient rights."
@@ -286,7 +286,951 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed."
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
+    "/api/v1/master-data/business-partner/partners": {
+      "get": {
+        "tags": [
+          "BusinessPartner"
+        ],
+        "summary": "Gets business partners.",
+        "description": "Returns all business partners that match the parameters.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Retrieves all entries which were added/edited after a specific datetime.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Retrieves all entries which were added/edited after the provided change id.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "businessPartnerId",
+            "in": "query",
+            "description": "Retrieve a specific entry by business partner id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "Retrieves all entries of a certain origin.",
+            "schema": {
+              "maxLength": 10,
+              "type": "string"
+            }
+          },
+          {
+            "name": "originId",
+            "in": "query",
+            "description": "Retrieves all entries with a specific origin identifier.",
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BusinessPartner"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "BusinessPartner"
+        ],
+        "summary": "Updates an existing business partner if either internal or external id match. Creates a business partner if neither internal nor external id is provided or no matching record could be found.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The business partner to create or update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessPartner"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessPartner"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessPartner"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessPartner"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessPartner"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
+    "/api/v1/master-data/business-partner/addresses": {
+      "get": {
+        "tags": [
+          "BusinessPartner"
+        ],
+        "summary": "Gets business partner addresses.",
+        "description": "Returns all business partner addresses that match the parameters.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Retrieves all entries which were added/edited after a specific datetime.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Retrieves all entries which were added/edited after the provided change id.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "businessPartnerAddressId",
+            "in": "query",
+            "description": "Retrieve a specific entry by business partner address id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "businessPartnerId",
+            "in": "query",
+            "description": "Retrieves all entries by business partner id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "Retrieves all entries of a certain origin.",
+            "schema": {
+              "maxLength": 10,
+              "type": "string"
+            }
+          },
+          {
+            "name": "originId",
+            "in": "query",
+            "description": "Retrieves all entries with a specific origin identifier.",
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BusinessPartnerAddress"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "BusinessPartner"
+        ],
+        "summary": "Updates an existing address if either internal or external id match. Creates an address if neither internal nor external id is provided or no matching record could be found.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The address to create or update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessPartnerAddress"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessPartnerAddress"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessPartnerAddress"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessPartnerAddress"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessPartnerAddress"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
+    "/api/v1/master-data/business-partner/contacts": {
+      "get": {
+        "tags": [
+          "BusinessPartner"
+        ],
+        "summary": "Gets business partner contacts.",
+        "description": "Returns all business partner contacts that match the parameters.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Retrieves all entries which were added/edited after a specific datetime.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Retrieves all entries which were added/edited after the provided change id.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "businessPartnerContactId",
+            "in": "query",
+            "description": "Retrieve a specific entry by business partner contact id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "businessPartnerAddressId",
+            "in": "query",
+            "description": "Retrieves all entries by business partner address id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "Retrieves all entries of a certain origin.",
+            "schema": {
+              "maxLength": 10,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BusinessPartnerContact"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "BusinessPartner"
+        ],
+        "summary": "Updates an existing contact if either internal or external id match. Creates a contact if neither internal nor external id is provided or no matching record could be found.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The contact to create or update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessPartnerContact"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessPartnerContact"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessPartnerContact"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessPartnerContact"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessPartnerContact"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "BusinessPartner"
+        ],
+        "summary": "Deletes a contact.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "businessPartnerContactId",
+            "in": "query",
+            "description": "Identifies the contact.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The contact was deleted successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
           },
           "403": {
             "description": "Requestor has insufficient rights."
@@ -601,7 +1545,7 @@
           {
             "name": "skip",
             "in": "query",
-            "description": "Number of records to skip for pagination.",
+            "description": "Number of entries to skip for pagination.",
             "schema": {
               "maximum": 100000,
               "minimum": 0,
@@ -612,7 +1556,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Maximum number of records to return.",
+            "description": "Maximum number of entries to return.",
             "schema": {
               "maximum": 1000,
               "minimum": 0,
@@ -657,7 +1601,7 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed."
+            "description": "Unauthorized."
           },
           "403": {
             "description": "Requestor has insufficient rights."
@@ -774,7 +1718,7 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed."
+            "description": "Unauthorized."
           },
           "403": {
             "description": "Requestor has insufficient rights."
@@ -1198,6 +2142,191 @@
         }
       }
     },
+    "/api/v1/master-data/employees": {
+      "get": {
+        "tags": [
+          "Employees"
+        ],
+        "summary": "Searches for employees.",
+        "description": "Returns all matching employees.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Retrieves all entries which were added/edited after a specific datetime.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Retrieves all entries which were added/edited after the provided change id.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "employeeId",
+            "in": "query",
+            "description": "Retrieve a specific entry by employee id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Retrieves the entries with the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "personnelNo",
+            "in": "query",
+            "description": "Retrieves the entries of the specified personnel number.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "Retrieves all entries of a certain origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "originId",
+            "in": "query",
+            "description": "Retrieves all entries with a specific origin identifier.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Employee"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
     "/api/v1/master-data/fixed-assets": {
       "get": {
         "tags": [
@@ -1314,7 +2443,7 @@
           {
             "name": "skip",
             "in": "query",
-            "description": "Number of records to skip for pagination.",
+            "description": "Number of entries to skip for pagination.",
             "schema": {
               "maximum": 100000,
               "minimum": 0,
@@ -1325,7 +2454,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Maximum number of records to return.",
+            "description": "Maximum number of entries to return.",
             "schema": {
               "maximum": 1000,
               "minimum": 0,
@@ -1370,7 +2499,7 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed."
+            "description": "Unauthorized."
           },
           "403": {
             "description": "Requestor has insufficient rights."
@@ -1487,7 +2616,7 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed."
+            "description": "Unauthorized."
           },
           "403": {
             "description": "Requestor has insufficient rights."
@@ -1606,7 +2735,7 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed."
+            "description": "Unauthorized."
           },
           "403": {
             "description": "Requestor has insufficient rights."
@@ -1740,7 +2869,7 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed."
+            "description": "Unauthorized."
           },
           "403": {
             "description": "Requestor has insufficient rights."
@@ -1864,7 +2993,7 @@
           {
             "name": "skip",
             "in": "query",
-            "description": "Number of records to skip for pagination.",
+            "description": "Number of entries to skip for pagination.",
             "schema": {
               "maximum": 100000,
               "minimum": 0,
@@ -1875,7 +3004,7 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Maximum number of records to return.",
+            "description": "Maximum number of entries to return.",
             "schema": {
               "maximum": 1000,
               "minimum": 0,
@@ -1920,7 +3049,7 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed."
+            "description": "Unauthorized."
           },
           "403": {
             "description": "Requestor has insufficient rights."
@@ -2038,7 +3167,7 @@
             }
           },
           "401": {
-            "description": "Basic Authentication failed."
+            "description": "Unauthorized."
           },
           "403": {
             "description": "Requestor has insufficient rights."
@@ -2203,7 +3332,7 @@
           },
           "companyNo": {
             "maximum": 999999,
-            "minimum": 1,
+            "minimum": 0,
             "type": "integer",
             "description": "Gets or sets company identification of the entry.",
             "format": "int64",
@@ -2280,6 +3409,490 @@
         },
         "additionalProperties": false,
         "description": "The DTO for an attribute value set."
+      },
+      "BusinessPartner": {
+        "required": [
+          "businessPartnerStatus",
+          "businessPartnerType",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "businessPartnerId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets technical identification of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "origin": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Gets the system of the origin of the business partner.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "originId": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the id in the system of origin.",
+            "nullable": true
+          },
+          "businessPartnerStatus": {
+            "$ref": "#/components/schemas/BusinessPartnerStatus"
+          },
+          "businessPartnerType": {
+            "$ref": "#/components/schemas/BusinessPartnerType"
+          },
+          "genderCode": {
+            "maximum": 7559999,
+            "minimum": 7550000,
+            "type": "integer",
+            "description": "Gets or sets the gender code of the business partner.",
+            "format": "int64",
+            "nullable": true
+          },
+          "salutation": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the salutation of the business partner.",
+            "nullable": true
+          },
+          "title": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the title of the business partner.",
+            "nullable": true
+          },
+          "firstName": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the first name of the business partner.",
+            "nullable": true
+          },
+          "middleName": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the middle name of the business partner.",
+            "nullable": true
+          },
+          "name": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the name of the business partner."
+          },
+          "nameAddition": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets the name addition of the business partner.",
+            "nullable": true
+          },
+          "initials": {
+            "maxLength": 6,
+            "type": "string",
+            "description": "Gets or sets the initials of the business partner.",
+            "nullable": true
+          },
+          "isoLanguage": {
+            "maxLength": 2,
+            "type": "string",
+            "description": "Gets or sets the ISO language code of the business partner.",
+            "nullable": true
+          },
+          "attributeValueSet": {
+            "$ref": "#/components/schemas/AttributeValueSet"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for a business partner."
+      },
+      "BusinessPartnerAddress": {
+        "required": [
+          "businessPartnerAddressStatus",
+          "city",
+          "isoCountry",
+          "isoLanguage"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "businessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets technical identification of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "origin": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Gets the system of the origin of the business partner address.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "originId": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the id in the system of origin.",
+            "nullable": true
+          },
+          "businessPartnerId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the business partner id associated with the address.",
+            "format": "int64"
+          },
+          "businessPartnerAddressStatus": {
+            "$ref": "#/components/schemas/BusinessPartnerStatus"
+          },
+          "overridePartnerName": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the name of the company on the address if it differs from that of the business partner.",
+            "nullable": true
+          },
+          "overridePartnerNameAddition": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets the addition to the partner name on the address if it differs from that of the business partner.",
+            "nullable": true
+          },
+          "shortAddress": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the short form of the address. It is generated automatically if not supplied.",
+            "nullable": true
+          },
+          "street": {
+            "maxLength": 43,
+            "type": "string",
+            "description": "Gets or sets the street of the address.",
+            "nullable": true
+          },
+          "houseNo": {
+            "maxLength": 12,
+            "type": "string",
+            "description": "Gets or sets the house number of the address.",
+            "nullable": true
+          },
+          "poBox": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the post office box of the address.",
+            "nullable": true
+          },
+          "additionalLine1": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the first additional line of the address.",
+            "nullable": true
+          },
+          "additionalLine2": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets or sets the second additional line of the address.",
+            "nullable": true
+          },
+          "zipCode": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets or sets the zip code of the address.",
+            "nullable": true
+          },
+          "city": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the city of the address."
+          },
+          "isoCountry": {
+            "maxLength": 2,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the ISO country code of the address."
+          },
+          "isoLanguage": {
+            "maxLength": 2,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the ISO language code of the business partner."
+          },
+          "searchTerms": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets search terms for the address.",
+            "nullable": true
+          },
+          "latitude": {
+            "maximum": 90,
+            "minimum": -90,
+            "type": "number",
+            "description": "Gets the latitude coordinate of the address.",
+            "format": "decimal",
+            "nullable": true,
+            "readOnly": true
+          },
+          "longitude": {
+            "maximum": 180,
+            "minimum": -180,
+            "type": "number",
+            "description": "Gets the longitude coordinate of the address.",
+            "format": "decimal",
+            "nullable": true,
+            "readOnly": true
+          },
+          "phone": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets the phone number of the address.",
+            "nullable": true
+          },
+          "mobilePhone": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets the mobile phone number of the address.",
+            "nullable": true
+          },
+          "fax": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets the fax number of the address.",
+            "nullable": true
+          },
+          "email": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets the email address of the address.",
+            "nullable": true
+          },
+          "internet": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets the internet address (website) of the address.",
+            "nullable": true
+          },
+          "furtherNumber": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets a further number for the address.",
+            "nullable": true
+          },
+          "businessPartner": {
+            "$ref": "#/components/schemas/BusinessPartner"
+          },
+          "attributeValueSet": {
+            "$ref": "#/components/schemas/AttributeValueSet"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for a business partner address."
+      },
+      "BusinessPartnerContact": {
+        "required": [
+          "businessPartnerContactStatus"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "businessPartnerContactId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets technical identification of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "origin": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Gets the system of the origin of the business partner contact.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "businessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the business partner address id associated with the contact.",
+            "format": "int64"
+          },
+          "employeeBusinessPartnerId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the business partner id of the employee.",
+            "format": "int64"
+          },
+          "businessPartnerContactStatus": {
+            "$ref": "#/components/schemas/BusinessPartnerStatus"
+          },
+          "function": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Gets or sets the position or function of the contact person.",
+            "nullable": true
+          },
+          "department": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Gets or sets the department of the contact person.",
+            "nullable": true
+          },
+          "phone": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets the phone number of the contact.",
+            "nullable": true
+          },
+          "mobilePhone": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets the mobile phone number of the contact.",
+            "nullable": true
+          },
+          "fax": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets the fax number of the contact.",
+            "nullable": true
+          },
+          "email": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets the email address of the contact.",
+            "nullable": true
+          },
+          "internet": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets the internet address (website) of the contact.",
+            "nullable": true
+          },
+          "furtherNumber": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets a further number for the contact.",
+            "nullable": true
+          },
+          "attributeValueSet": {
+            "$ref": "#/components/schemas/AttributeValueSet"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for a business partner contact."
+      },
+      "BusinessPartnerStatus": {
+        "enum": [
+          "Inactive",
+          "Provisional",
+          "Active"
+        ],
+        "type": "string",
+        "description": "Status of business partners, addresses or contacts."
+      },
+      "BusinessPartnerType": {
+        "enum": [
+          "Organization",
+          "Department",
+          "Person"
+        ],
+        "type": "string",
+        "description": "Type of a business partner."
       },
       "Code": {
         "required": [
@@ -2631,6 +4244,176 @@
         },
         "additionalProperties": false,
         "description": "The DTO for document with additional information."
+      },
+      "Employee": {
+        "required": [
+          "active",
+          "companyNo",
+          "firstName",
+          "lastName"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "employeeId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets technical identification of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "origin": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets the system of the origin of the employee.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "originId": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the id in the system of origin.",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether this entry is active or not."
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets company identification of the entry.",
+            "format": "int64"
+          },
+          "personnelNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets personnel number of the employee. It is unique per company.",
+            "format": "int64",
+            "nullable": true
+          },
+          "firstName": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets first name of the employee."
+          },
+          "lastName": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets last name of the employee."
+          },
+          "displayName": {
+            "maxLength": 120,
+            "type": "string",
+            "description": "Gets the display name of the employee. Automatically generated in the format: PersonnelNo - FirstName LastName (ex. 1234 - John Smith).",
+            "nullable": true,
+            "readOnly": true
+          },
+          "entryDate": {
+            "type": "string",
+            "description": "Gets or sets date when the employee entered the company.",
+            "format": "date",
+            "nullable": true
+          },
+          "leavingDate": {
+            "type": "string",
+            "description": "Gets or sets date when the employee left the company.",
+            "format": "date",
+            "nullable": true
+          },
+          "internalUserId": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets or sets the internal user id of the employee.",
+            "nullable": true
+          },
+          "isoLanguage": {
+            "maxLength": 2,
+            "type": "string",
+            "description": "Gets or sets the ISO language code of the employee.",
+            "nullable": true
+          },
+          "workplaceBusinessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets business partner address id of the employees workplace.",
+            "format": "int64",
+            "nullable": true
+          },
+          "employeeBusinessPartnerId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets internal business partner id of the employee.",
+            "format": "int64",
+            "nullable": true
+          },
+          "genderCode": {
+            "maximum": 7559999,
+            "minimum": 7550000,
+            "type": "integer",
+            "description": "Gets or sets the gender code of the employee.",
+            "format": "int64",
+            "nullable": true
+          },
+          "internal": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the employee is directly employed by the organization (`true`) or is an external employee (`false`)."
+          },
+          "department": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Gets or sets name of the department the employee is a member of.",
+            "nullable": true
+          },
+          "function": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Gets or sets function, position or title of the employee.",
+            "nullable": true
+          },
+          "attributeValueSet": {
+            "$ref": "#/components/schemas/AttributeValueSet"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for an employee."
       },
       "FixedAsset": {
         "required": [
