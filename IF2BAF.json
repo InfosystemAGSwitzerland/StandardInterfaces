@@ -2746,6 +2746,218 @@
         }
       }
     },
+    "/api/v1/invoicing/invoices": {
+      "get": {
+        "tags": [
+          "Invoicing"
+        ],
+        "summary": "Searches for invoices.",
+        "description": "Returns all matching invoices.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Retrieves all entries which were added/edited after a specific datetime.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Retrieves all entries which were added/edited after the provided change id.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "invoicingInvoiceId",
+            "in": "query",
+            "description": "Retrieve a specific entry by invoicing invoice id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "invoiceNo",
+            "in": "query",
+            "description": "Retrieves the entries by invoice number.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Retrieves the entries with the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "Retrieves all entries of a certain origin.",
+            "schema": {
+              "maxLength": 10,
+              "type": "string"
+            }
+          },
+          {
+            "name": "originId",
+            "in": "query",
+            "description": "Retrieves all entries with a specific origin identifier.",
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "voucherType",
+            "in": "query",
+            "description": "Retrieves all entries with a specific voucher type.",
+            "schema": {
+              "maxLength": 4,
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeSystemGeneratedChargingPositions",
+            "in": "query",
+            "description": "Indicates whether to include system-generated charging positions in the response.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "includeInvoicePartPositions",
+            "in": "query",
+            "description": "Indicates whether to include invoice part positions in the response.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvoicingInvoice"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
     "/api/v1/master-data/item-structure": {
       "get": {
         "tags": [
@@ -4506,6 +4718,1021 @@
         },
         "additionalProperties": false,
         "description": "The DTO for a fixed asset."
+      },
+      "InvoicingAccountType": {
+        "enum": [
+          "GL",
+          "AP",
+          "AR"
+        ],
+        "type": "string",
+        "description": "Type of the payment account. The type is used to distinguish between general ledger accounts, account payable accounts and account receivable accounts."
+      },
+      "InvoicingAdditionalField": {
+        "required": [
+          "content",
+          "definitionCode"
+        ],
+        "type": "object",
+        "properties": {
+          "definitionCode": {
+            "maximum": 15049999,
+            "minimum": 15040000,
+            "type": "integer",
+            "description": "Gets or sets the code of the definition of the additional field.",
+            "format": "int64"
+          },
+          "content": {
+            "maxLength": 4000,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the content of the additional field."
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for an additional field of an invoice."
+      },
+      "InvoicingChargingPosition": {
+        "type": "object",
+        "properties": {
+          "chargingPositionId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets technical identification of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "chargingPositionTypeCode": {
+            "maximum": 15039999,
+            "minimum": 15030000,
+            "type": "integer",
+            "description": "Gets or sets the code of the charging position type.",
+            "format": "int64",
+            "nullable": true
+          },
+          "vatCode": {
+            "maximum": 239999,
+            "minimum": 230001,
+            "type": "integer",
+            "description": "Gets or sets the code of the VAT for the position.",
+            "format": "int64",
+            "nullable": true
+          },
+          "isVatPosition": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the position is a VAT position."
+          },
+          "vatRate": {
+            "maximum": 999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Gets or sets the VAT rate for the position. The VAT rate is given as percentage.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "vatQuota": {
+            "maximum": 999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Gets or sets the VAT quota for the position. The VAT quota is given as percentage.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "isVatReduction": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the position is a VAT reduction."
+          },
+          "amountInInvoiceCurrency": {
+            "type": "number",
+            "description": "Gets or sets the amount of the position in invoice currency.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "amountInAccountCurrency": {
+            "type": "number",
+            "description": "Gets or sets the amount of the position in account currency.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "amountInBalanceSheetCurrency": {
+            "type": "number",
+            "description": "Gets or sets the amount of the position in balance sheet currency.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "exchangeRateInvoiceCurrency": {
+            "type": "number",
+            "description": "Gets or sets the exchange rate.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "accountNo": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Gets or sets the account number of the position.",
+            "nullable": true
+          },
+          "assetNo": {
+            "maxLength": 16,
+            "type": "string",
+            "description": "Gets or sets the asset number of the position.",
+            "nullable": true
+          },
+          "costUnitNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets or sets the cost unit number of the position.",
+            "nullable": true
+          },
+          "costCenterNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets or sets the cost center number of the position.",
+            "nullable": true
+          },
+          "costTypeNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets or sets the cost type of the position.",
+            "nullable": true
+          },
+          "salesChannelNo": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "Gets or sets the sale channel of the position.",
+            "nullable": true
+          },
+          "orderNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets or sets the order number of the position.",
+            "nullable": true
+          },
+          "referenceCode": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the reference code of the position.",
+            "format": "int64",
+            "nullable": true
+          },
+          "text": {
+            "maxLength": 4000,
+            "type": "string",
+            "description": "Gets or sets the text of the position. May contain RTF formatting.",
+            "nullable": true
+          },
+          "plaintext": {
+            "maxLength": 4000,
+            "type": "string",
+            "description": "Gets or sets the plaintext of the position. Plaintext without any RTF formatting.",
+            "nullable": true
+          },
+          "articleNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets or sets the article number of the position.",
+            "nullable": true
+          },
+          "quantityInDeliveryUnit": {
+            "maximum": 9999999999.9999,
+            "minimum": -9999999999.9999,
+            "type": "number",
+            "description": "Gets or sets the quantity of the position in the delivery unit.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "deliveryUnitCode": {
+            "maximum": 289999,
+            "minimum": 280001,
+            "type": "integer",
+            "description": "Gets or sets the code of the delivery unit for the position.",
+            "format": "int64",
+            "nullable": true
+          },
+          "quantityInPriceUnit": {
+            "maximum": 9999999999.9999,
+            "minimum": -9999999999.9999,
+            "type": "number",
+            "description": "Gets or sets the quantity of the position in the price unit.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "priceUnitCode": {
+            "maximum": 289999,
+            "minimum": 280001,
+            "type": "integer",
+            "description": "Gets or sets the code of the price unit for the position.",
+            "format": "int64",
+            "nullable": true
+          },
+          "priceInInvoiceCurrency": {
+            "maximum": 9999999999.9999,
+            "minimum": 0,
+            "type": "number",
+            "description": "Gets or sets the price of the position in the invoice currency. The price is given per price unit.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "quantityInStockUnit": {
+            "maximum": 9999999999.9999,
+            "minimum": -9999999999.9999,
+            "type": "number",
+            "description": "Gets or sets the quantity of the position in the stock unit.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "stockUnitCode": {
+            "maximum": 289999,
+            "minimum": 280001,
+            "type": "integer",
+            "description": "Gets or sets the code of the stock unit for the position.",
+            "format": "int64",
+            "nullable": true
+          },
+          "sortNo": {
+            "maximum": 99999,
+            "minimum": -99999,
+            "type": "integer",
+            "description": "Gets or sets the sort number of the position.",
+            "format": "int64",
+            "nullable": true
+          },
+          "additionalFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoicingAdditionalField"
+            },
+            "description": "Gets a list of additional fields.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for an invoicing position."
+      },
+      "InvoicingDocument": {
+        "required": [
+          "documentGuid"
+        ],
+        "type": "object",
+        "properties": {
+          "documentType": {
+            "$ref": "#/components/schemas/InvoicingDocumentType"
+          },
+          "documentName": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the name of the invoice document.",
+            "nullable": true
+          },
+          "documentGuid": {
+            "type": "string",
+            "description": "Gets or sets the GUID of the invoice document.\r\nUse this value to retrieve the invoice document.",
+            "format": "uuid"
+          },
+          "externalDocumentId": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the id of the invoice document in an external archive.",
+            "nullable": true
+          },
+          "sortNo": {
+            "maximum": 99999,
+            "minimum": -99999,
+            "type": "integer",
+            "description": "Gets or sets the sort number of the invoice document.",
+            "format": "int64",
+            "nullable": true
+          },
+          "isDocumentGenerated": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the invoice document has already been generated.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for invoicing document."
+      },
+      "InvoicingDocumentType": {
+        "enum": [
+          "MainDocument",
+          "InvoiceDocument",
+          "PaymentDocument",
+          "AdditionalDocument"
+        ],
+        "type": "string",
+        "description": "The enumeration for the type of an invoicing document."
+      },
+      "InvoicingInvoice": {
+        "required": [
+          "companyNo",
+          "invoiceCurrency",
+          "invoiceRecipient",
+          "isoLanguage",
+          "postingInformation"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "invoicingInvoiceId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets technical identification of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "origin": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Gets the system of the origin of the invoice.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "originId": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the id in the system of origin.",
+            "nullable": true
+          },
+          "invoiceNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the invoice number.",
+            "format": "int64",
+            "nullable": true
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets company identification of the entry.",
+            "format": "int64"
+          },
+          "invoicingRunId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the invoicing run id the invoice belongs to.",
+            "format": "int64",
+            "nullable": true
+          },
+          "invoiceType": {
+            "$ref": "#/components/schemas/InvoicingInvoiceType"
+          },
+          "isoLanguage": {
+            "maxLength": 2,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the ISO language code of the invoice."
+          },
+          "invoiceDate": {
+            "type": "string",
+            "description": "Gets or sets the invoice date.",
+            "format": "date",
+            "nullable": true
+          },
+          "invoiceCurrency": {
+            "maxLength": 3,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the invoice currency in ISO 4217 format."
+          },
+          "vatCurrency": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "Gets or sets the VAT currency in ISO 4217 format.",
+            "nullable": true
+          },
+          "exchangeRateVatCurrency": {
+            "type": "number",
+            "description": "Gets or sets the exchange rate from balance sheet currency to VAT currency.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "lastChangeDateTime": {
+            "type": "string",
+            "description": "Gets or sets the date and time of the last change of the invoice.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isAdvancePayment": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the invoice is an advance payment. An advance payment is an invoice that is created before the actual delivery of goods or services."
+          },
+          "invoiceRecipient": {
+            "$ref": "#/components/schemas/InvoicingInvoiceRecipient"
+          },
+          "invoicingOffice": {
+            "$ref": "#/components/schemas/InvoicingOffice"
+          },
+          "postingInformation": {
+            "$ref": "#/components/schemas/InvoicingPostingInformation"
+          },
+          "additionalFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoicingAdditionalField"
+            },
+            "description": "Gets a list of additional fields.",
+            "nullable": true
+          },
+          "payments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoicingPayment"
+            },
+            "description": "Gets a list of payments.",
+            "nullable": true
+          },
+          "chargingPositions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoicingChargingPosition"
+            },
+            "description": "Gets a list of charging positions.",
+            "nullable": true
+          },
+          "invoiceParts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoicingInvoicePart"
+            },
+            "description": "Gets a list of invoice parts.",
+            "nullable": true
+          },
+          "documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoicingDocument"
+            },
+            "description": "Gets a list of documents.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for an invoice."
+      },
+      "InvoicingInvoicePart": {
+        "required": [
+          "invoicePartTypeName"
+        ],
+        "type": "object",
+        "properties": {
+          "invoicePartTypeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the technical identification of the invoice part type.",
+            "format": "int64"
+          },
+          "invoicePartTypeName": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the name of the invoice part type.",
+            "nullable": true
+          },
+          "isMainPart": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the part is the main part of the invoice."
+          },
+          "partPositions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoicingInvoicePartPosition"
+            },
+            "description": "Gets the list of positions for the invoice part.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for an invoicing invoice part."
+      },
+      "InvoicingInvoicePartPosition": {
+        "type": "object",
+        "properties": {
+          "invoicePartPositionNumber": {
+            "maximum": 99999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the position number of the position in the invoice part.",
+            "format": "int64",
+            "example": 10
+          },
+          "invoicePartPositionTypeCode": {
+            "maximum": 15089999,
+            "minimum": 15080001,
+            "type": "integer",
+            "description": "Gets or sets the code of the part position type.",
+            "format": "int64"
+          },
+          "sortNo": {
+            "maximum": 999999,
+            "minimum": -999999,
+            "type": "integer",
+            "description": "Gets or sets the sort number of the part position.",
+            "format": "int64",
+            "nullable": true
+          },
+          "articleNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets or sets the article number of the position.",
+            "nullable": true
+          },
+          "text": {
+            "maxLength": 4000,
+            "type": "string",
+            "description": "Gets or sets the text of the position. May contain RTF formatting.",
+            "nullable": true
+          },
+          "quantityInDeliveryUnit": {
+            "maximum": 9999999999.9999,
+            "minimum": -9999999999.9999,
+            "type": "number",
+            "description": "Gets or sets the quantity of the position in the delivery unit.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "deliveryUnitCode": {
+            "maximum": 289999,
+            "minimum": 280001,
+            "type": "integer",
+            "description": "Gets or sets the code of the delivery unit for the position.",
+            "format": "int64",
+            "nullable": true
+          },
+          "quantityInPriceUnit": {
+            "maximum": 9999999999.9999,
+            "minimum": -9999999999.9999,
+            "type": "number",
+            "description": "Gets or sets the quantity of the position in the price unit.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "priceUnitCode": {
+            "maximum": 289999,
+            "minimum": 280001,
+            "type": "integer",
+            "description": "Gets or sets the code of the price unit for the position.",
+            "format": "int64",
+            "nullable": true
+          },
+          "priceInInvoiceCurrency": {
+            "type": "number",
+            "description": "Gets or sets the price of the position in the invoice currency. The price is given per price unit.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "amountInInvoiceCurrency": {
+            "type": "number",
+            "description": "Gets or sets the amount of the position in the invoice currency. The amount is given for the total quantity of the position.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "vatCode": {
+            "maximum": 239999,
+            "minimum": 230001,
+            "type": "integer",
+            "description": "Gets or sets the code of the VAT for the position.",
+            "format": "int64",
+            "nullable": true
+          },
+          "vatRate": {
+            "maximum": 999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Gets or sets the VAT rate for the position. The VAT rate is given as percentage.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "vatQuota": {
+            "maximum": 999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Gets or sets the VAT quota for the position. The VAT quota is given as percentage.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "vatBaseAmountInInvoiceCurrency": {
+            "type": "number",
+            "description": "Gets or sets the VAT base amount for the position in the invoice currency.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "isUsedForOutput": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the position has been used for the output of the document."
+          },
+          "vatBaseAmountInclusiveInInvoiceCurrency": {
+            "type": "number",
+            "description": "Gets or sets the VAT base amount inclusive for the position in the invoice currency.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "vatBaseAmountExclusiveInInvoiceCurrency": {
+            "type": "number",
+            "description": "Gets or sets the VAT base amount exclusive for the position in the invoice currency.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "vatBaseAmountInVatCurrency": {
+            "type": "number",
+            "description": "Gets or sets the VAT base amount for the position in the VAT currency.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "vatAmountInVatCurrency": {
+            "type": "number",
+            "description": "Gets or sets the VAT amount for the position in the VAT currency.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "additionalFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoicingAdditionalField"
+            },
+            "description": "Gets a list of additional fields.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for an invoicing part position."
+      },
+      "InvoicingInvoiceRecipient": {
+        "required": [
+          "invoiceAddress"
+        ],
+        "type": "object",
+        "properties": {
+          "invoiceAddress": {
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the invoice address."
+          },
+          "dispatchAddress": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Gets or sets the dispatch address.",
+            "nullable": true
+          },
+          "recipientBusinessPartnerAddressId": {
+            "type": "integer",
+            "description": "Gets or sets the technical identification of the business partner address of the recipient.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for an invoice recipient."
+      },
+      "InvoicingInvoiceType": {
+        "enum": [
+          "Invoice",
+          "InvoiceReversal",
+          "CreditNote",
+          "CreditNoteReversal"
+        ],
+        "type": "string",
+        "description": "Type of the invoice. The type is used to distinguish between regular invoices, credit notes and reversals of both."
+      },
+      "InvoicingOffice": {
+        "required": [
+          "invoicingOfficeBusinessPartnerAddressId",
+          "invoicingOfficeId",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "invoicingOfficeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the technical identification of the invoicing office.",
+            "format": "int64"
+          },
+          "name": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the name of the invoicing office."
+          },
+          "invoicingOfficeBusinessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the technical identification of the business partner address of the invoicing office.",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for an invoicing office."
+      },
+      "InvoicingPayment": {
+        "required": [
+          "accountType",
+          "paymentTypeCode"
+        ],
+        "type": "object",
+        "properties": {
+          "paymentTypeCode": {
+            "maximum": 15109999,
+            "minimum": 15100000,
+            "type": "integer",
+            "description": "Gets or sets the code of the payment type.",
+            "format": "int64"
+          },
+          "accountNo": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Gets or sets the account number of the payment.",
+            "nullable": true
+          },
+          "accountType": {
+            "$ref": "#/components/schemas/InvoicingAccountType"
+          },
+          "paymentTermsCode": {
+            "maximum": 279999,
+            "minimum": 270000,
+            "type": "integer",
+            "description": "Gets or sets the code of the payment terms.",
+            "format": "int64",
+            "nullable": true
+          },
+          "expiry1": {
+            "type": "string",
+            "description": "Gets or sets the date of the first discount expiration.",
+            "format": "date",
+            "nullable": true
+          },
+          "discount1": {
+            "type": "number",
+            "description": "Gets or sets the first discount in percentage.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "expiry2": {
+            "type": "string",
+            "description": "Gets or sets the date of the second discount expiration.",
+            "format": "date",
+            "nullable": true
+          },
+          "discount2": {
+            "type": "number",
+            "description": "Gets or sets the second discount in percentage.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "expiry3": {
+            "type": "string",
+            "description": "Gets or sets the date of the third discount expiration.",
+            "format": "date",
+            "nullable": true
+          },
+          "discount3": {
+            "type": "number",
+            "description": "Gets or sets the third discount in percentage.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "amountInInvoiceCurrency": {
+            "type": "number",
+            "description": "Gets or sets the amount of the payment in the invoice currency.",
+            "format": "decimal"
+          },
+          "openItemCriteria1": {
+            "maximum": 99999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the first open item criteria.",
+            "format": "int64",
+            "nullable": true
+          },
+          "openItemCriteria2": {
+            "maximum": 99999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the second open item criteria.",
+            "format": "int64",
+            "nullable": true
+          },
+          "openItemCriteria3": {
+            "maximum": 99999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the third open item criteria.",
+            "format": "int64",
+            "nullable": true
+          },
+          "openItemCriteria4": {
+            "maximum": 99999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the fourth open item criteria.",
+            "format": "int64",
+            "nullable": true
+          },
+          "qrCode": {
+            "maxLength": 4000,
+            "type": "string",
+            "description": "Gets or sets the QR code for the payment.",
+            "nullable": true
+          },
+          "referenceTypeCode": {
+            "maximum": 1339999,
+            "minimum": 1330000,
+            "type": "integer",
+            "description": "Gets or sets the code of the reference type for the payment.",
+            "format": "int64",
+            "nullable": true
+          },
+          "paymentAccount": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Gets or sets the payment account.",
+            "nullable": true
+          },
+          "bankNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the bank identification number - BIC.",
+            "format": "int64",
+            "nullable": true
+          },
+          "clearingNo": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the clearing number of the bank.",
+            "format": "int64",
+            "nullable": true
+          },
+          "bankAccountNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets or sets the bank account number of the payment.",
+            "nullable": true
+          },
+          "ibanBankAccountNo": {
+            "maxLength": 34,
+            "type": "string",
+            "description": "Gets or sets the IBAN bank account number of the payment.",
+            "nullable": true
+          },
+          "bankAddress": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets or sets the bank address for the payment.",
+            "nullable": true
+          },
+          "bankIsoCountry": {
+            "maxLength": 2,
+            "type": "string",
+            "description": "Gets or sets the ISO country code of the bank for the payment.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for an invoicing payment."
+      },
+      "InvoicingPostingInformation": {
+        "required": [
+          "isPosted",
+          "isReversal",
+          "isReversed",
+          "isVatIncluded",
+          "postingDate",
+          "postingPeriod"
+        ],
+        "type": "object",
+        "properties": {
+          "isPosted": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the invoice is posted."
+          },
+          "isReversal": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the invoice is a reversal."
+          },
+          "isReversed": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the invoice is reversed."
+          },
+          "reversalReason": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "Gets or sets the reason for reversal if the invoice is a reversal.",
+            "nullable": true
+          },
+          "reversalInvoiceId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the technical identification of the invoice that is the reversal of the current invoice.",
+            "format": "int64",
+            "nullable": true
+          },
+          "reversalInvoiceNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the invoice number of the invoice that is the reversal of the current invoice.",
+            "format": "int64",
+            "nullable": true
+          },
+          "reversedInvoiceId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the technical identification of the invoice that is reversed by the current invoice if the invoice is a reversal.",
+            "format": "int64",
+            "nullable": true
+          },
+          "reversedInvoiceNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the invoice number of the invoice that is reversed by the current invoice if the invoice is a reversal.",
+            "format": "int64",
+            "nullable": true
+          },
+          "isVatIncluded": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether VAT is included in the invoice amounts."
+          },
+          "postingDate": {
+            "type": "string",
+            "description": "Gets or sets the posting date of the invoice.",
+            "format": "date"
+          },
+          "postingPeriod": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the posting period of the invoice.",
+            "format": "int64"
+          },
+          "valueDate": {
+            "type": "string",
+            "description": "Gets or sets the value date of the invoice.",
+            "format": "date",
+            "nullable": true
+          },
+          "voucherType": {
+            "maxLength": 4,
+            "type": "string",
+            "description": "Gets or sets the type of the voucher to be used for posting the invoice.",
+            "nullable": true
+          },
+          "postingTitle": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Gets or sets the title to be used for posting the invoice.",
+            "nullable": true
+          },
+          "postingText": {
+            "maxLength": 240,
+            "type": "string",
+            "description": "Gets or sets the text to be used for posting the invoice.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for invoicing posting information."
       },
       "ItemCategory": {
         "required": [
