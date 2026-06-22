@@ -616,6 +616,508 @@
         }
       }
     },
+    "/api/v1/incident-management-system/incidents": {
+      "get": {
+        "tags": [
+          "IncidentManagementSystem"
+        ],
+        "summary": "Retrieves IMS incidents including their associated subjects.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "If provided, only returns records changed since this date and time.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "If provided, only returns records with a change id greater than this value.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "imsIncidentId",
+            "in": "query",
+            "description": "If provided, retrieves the specific incident with this identifier.",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "imsIncidentNo",
+            "in": "query",
+            "description": "If provided, retrieves the specific incident with this human-readable number (e.g. \"IMS-2024-00042\").",
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "If provided, filters incidents by company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ImsIncident"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "IncidentManagementSystem"
+        ],
+        "summary": "Creates one or more new IMS incidents.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "List of incidents to create. To assign a specific identifier, provide `imsIncidentId`. Omit or use an empty GUID to have the server assign one. Providing an `imsIncidentId` that already exists returns 409 Conflict.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ImsIncident"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ImsIncident"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ImsIncident"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ImsIncident"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/incident-management-system/documents": {
+      "get": {
+        "tags": [
+          "IncidentManagementSystem"
+        ],
+        "summary": "Retrieves documents linked to a specific IMS incident.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "imsIncidentId",
+            "in": "query",
+            "description": "Required. The unique identifier of the IMS incident whose documents to retrieve.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "If provided, filters documents by company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ImsDocument"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "IncidentManagementSystem"
+        ],
+        "summary": "Creates or updates documents linked to IMS incidents.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "IMS documents to persist. Set `isDeleted` to `true` on an existing document to remove it.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ImsDocument"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ImsDocument"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ImsDocument"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ImsDocument"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/master-data/accessories": {
       "get": {
         "tags": [
@@ -6019,6 +6521,413 @@
         ],
         "type": "string",
         "description": "The flexible time specification enum."
+      },
+      "ImsDocument": {
+        "required": [
+          "imsDocumentName",
+          "imsIncidentId"
+        ],
+        "type": "object",
+        "properties": {
+          "imsDocumentId": {
+            "type": "integer",
+            "description": "Gets or sets the unique id of this IMS document assignment.",
+            "format": "int64",
+            "nullable": true
+          },
+          "imsIncidentId": {
+            "type": "string",
+            "description": "Gets or sets the unique identifier of the IMS incident to which this document is assigned.",
+            "format": "uuid"
+          },
+          "imsDocumentName": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the name of the document."
+          },
+          "imsDocument": {
+            "$ref": "#/components/schemas/FileDocumentLink"
+          },
+          "isDeleted": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether this document assignment is marked for deletion."
+          }
+        },
+        "additionalProperties": false,
+        "description": "An existing document linked to an IMS incident."
+      },
+      "ImsIncident": {
+        "required": [
+          "companyNo",
+          "priorityCode",
+          "resolved",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "type": "integer",
+            "description": "Gets change id of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 100042
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true,
+            "example": "2024-03-15T08:30:00Z"
+          },
+          "imsIncidentId": {
+            "type": "string",
+            "description": "Gets or sets the primary technical identifier of the incident (guid).",
+            "format": "uuid",
+            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+          },
+          "imsIncidentNumberId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets the numeric identifier of the incident. Assigned internally — leave empty when creating a new incident.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 12345
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user that last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "j.smith"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date when the entry was last modified.",
+            "format": "date-time",
+            "readOnly": true,
+            "example": "2024-03-15T09:00:00Z"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether this incident is active.",
+            "example": true
+          },
+          "imsIncidentNo": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the unique human-readable incident number (e.g. \"IMS-2024-00042\"). Assigned internally — read-only.",
+            "nullable": true,
+            "example": "IMS-2024-00042"
+          },
+          "title": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the incident title.",
+            "example": "Machine damage during unloading at customer site"
+          },
+          "description": {
+            "maxLength": 4000,
+            "type": "string",
+            "description": "Gets or sets the incident description.",
+            "nullable": true,
+            "example": "The crane arm made contact with a low-hanging power line while unloading at the customer site. No injuries occurred."
+          },
+          "incidentDate": {
+            "type": "string",
+            "description": "Gets or sets the date when the incident occurred.",
+            "format": "date-time",
+            "example": "2024-03-14T14:45:00Z"
+          },
+          "employeeIdClerk": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the employee id of the clerk who administers and tracks the incident.",
+            "format": "int64",
+            "nullable": true,
+            "example": 4711
+          },
+          "employeeIdResponsible": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the employee id of the person responsible for resolving the incident.",
+            "format": "int64",
+            "nullable": true,
+            "example": 8823
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the company number the incident is assigned to.",
+            "format": "int64",
+            "example": 1001
+          },
+          "responsibleBranchCode": {
+            "maximum": 45629999,
+            "minimum": 45620000,
+            "type": "integer",
+            "description": "Gets or sets the code 4562 responsible branch. Use IF2BA to retrieve a list of valid values.",
+            "format": "int64",
+            "nullable": true,
+            "example": 45620010
+          },
+          "priorityCode": {
+            "maximum": 69579999,
+            "minimum": 69570000,
+            "type": "integer",
+            "description": "Gets or sets the code 6957 priority. Use IF2BA to retrieve a list of valid values.",
+            "format": "int64",
+            "example": 69570002
+          },
+          "incidentTypeCode": {
+            "maximum": 69609999,
+            "minimum": 69600000,
+            "type": "integer",
+            "description": "Gets or sets the code 6960 incident type. Use IF2BA to retrieve a list of valid values.",
+            "format": "int64",
+            "nullable": true,
+            "example": 69600001
+          },
+          "resolved": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether this incident is fully resolved, meaning all associated costs are covered and no further action is required.",
+            "example": false
+          },
+          "imsSubjects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImsSubject"
+            },
+            "description": "Gets the list of subjects associated with this incident.\r\nEach subject represents a specific aspect of the event, such as a damaged machine, an injured person, or a liability claim.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an IMS incident such as an accident, near-miss, or major event involving company resources or personnel.\r\nAn incident groups one or more subjects, each describing a specific aspect of the event (e.g. a damaged machine, an injured person)."
+      },
+      "ImsSubject": {
+        "required": [
+          "damagedParty"
+        ],
+        "type": "object",
+        "properties": {
+          "imsSubjectId": {
+            "type": "string",
+            "description": "Gets or sets the primary technical identifier of the subject (guid).",
+            "format": "uuid",
+            "example": "7c9e6679-7425-40de-944b-e07fc1f90ae7"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether this subject is active.",
+            "example": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user that last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "j.smith"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date when the entry was last modified.",
+            "format": "date-time",
+            "readOnly": true,
+            "example": "2024-03-15T09:00:00Z"
+          },
+          "imsIncidentId": {
+            "type": "string",
+            "description": "Gets or sets the parent incident identifier (guid) this subject belongs to.",
+            "format": "uuid",
+            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+          },
+          "title": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets or sets the subject title.",
+            "nullable": true,
+            "example": "Damaged crane arm — machine ID 5521"
+          },
+          "description": {
+            "maxLength": 4000,
+            "type": "string",
+            "description": "Gets or sets the description of the subject.",
+            "nullable": true,
+            "example": "The crane arm sustained a dent and hydraulic leak upon contact with the power line. Repair estimate pending."
+          },
+          "causerParty": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets or sets the party that caused the referenced incident.",
+            "nullable": true,
+            "example": "Müller GmbH"
+          },
+          "causerPartyBusinessPartnerAddressId": {
+            "type": "integer",
+            "description": "Gets or sets the business partner address id of the party that caused the incident.",
+            "format": "int64",
+            "nullable": true,
+            "example": 98001
+          },
+          "causerRentalOrderId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the id of the rental order associated with the causer of the incident.",
+            "format": "int64",
+            "nullable": true,
+            "example": 3000012
+          },
+          "damagedParty": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the name of the party that sustained damage as a result of the incident. This may be the own company or an external party.",
+            "example": "Infosystem AG"
+          },
+          "customerCompanyId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal company id of the customer linked to this subject.",
+            "format": "int64",
+            "nullable": true,
+            "example": 20045
+          },
+          "invoiceAddressBusinessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the business partner address id used as the invoice address for costs related to resolving this subject.",
+            "format": "int64",
+            "nullable": true,
+            "example": 98002
+          },
+          "invoiceShippingAddressBusinessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the business partner address id used as the invoice shipping address for costs related to resolving this subject.",
+            "format": "int64",
+            "nullable": true,
+            "example": 98003
+          },
+          "insuranceTypeCode": {
+            "maximum": 33449999,
+            "minimum": 33440000,
+            "type": "integer",
+            "description": "Gets or sets the code 3344 insurance type. Use IF2BA to retrieve a list of valid values.",
+            "format": "int64",
+            "nullable": true,
+            "example": 33440001
+          },
+          "insuranceCaseNo": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Gets or sets the case number of the own company's insurance policy related to this subject.",
+            "nullable": true,
+            "example": "INS-2024-007"
+          },
+          "insuranceOtherParty": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets or sets the name of the insurance company of the other involved party (causer or damaged party).",
+            "nullable": true,
+            "example": "Allianz Versicherung AG"
+          },
+          "insuranceCaseNoOtherParty": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Gets or sets the insurance case number of the other involved party's insurance policy.",
+            "nullable": true,
+            "example": "ALZ-CH-2024-9900"
+          },
+          "involvedEmployeeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the id of the internal Leva employee directly involved in the incident (e.g. the machine operator).",
+            "format": "int64",
+            "nullable": true,
+            "example": 4711
+          },
+          "involvedPersonOtherParty": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets or sets the name of the person from the other involved party (e.g. a third-party driver or bystander).",
+            "nullable": true,
+            "example": "Hans Muster"
+          },
+          "involvedAccessoryId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the id of the accessory involved in the incident.",
+            "format": "int64",
+            "nullable": true,
+            "example": 77210
+          },
+          "involvedMachineId": {
+            "type": "integer",
+            "description": "Gets or sets the id of the machine involved in the incident.",
+            "format": "int64",
+            "nullable": true,
+            "example": 5521
+          },
+          "assignedBranchCode": {
+            "maximum": 45629999,
+            "minimum": 45620000,
+            "type": "integer",
+            "description": "Gets or sets the code 4562 assigned branch. Use IF2BA to retrieve a list of valid values.",
+            "format": "int64",
+            "nullable": true,
+            "example": 45620010
+          },
+          "causerCategoryCode": {
+            "maximum": 69589999,
+            "minimum": 69580000,
+            "type": "integer",
+            "description": "Gets or sets the code 6958 causer category, classifying who or what caused the incident (e.g. own driver, third party, weather). Use IF2BA to retrieve a list of valid values.",
+            "format": "int64",
+            "nullable": true,
+            "example": 69580002
+          },
+          "statusCode": {
+            "maximum": 69599999,
+            "minimum": 69590000,
+            "type": "integer",
+            "description": "Gets or sets the code 6959 processing status of this subject (e.g. open, in progress, closed). Use IF2BA to retrieve a list of valid values.",
+            "format": "int64",
+            "example": 69590001
+          },
+          "resolved": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether this subject is fully resolved, meaning all associated costs are covered and no further action is required.",
+            "example": false
+          },
+          "orderHeaderId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the id of the sales order header linked to this subject, if the incident is related to a specific order.",
+            "format": "int64",
+            "nullable": true,
+            "example": 6000099
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a specific aspect of an IMS incident, such as a damaged machine, an injured person, or a liability claim.\r\nEach subject tracks its own status, involved parties and insurance details."
       },
       "Job": {
         "required": [
