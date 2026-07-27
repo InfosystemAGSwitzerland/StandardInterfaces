@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.4",
   "info": {
     "title": "IF2performis API",
     "description": "Interface to access performis modules",
@@ -4417,12 +4417,16 @@
             "example": "Budget 202403"
           },
           "amountBSC": {
+            "maximum": 1E+18,
+            "minimum": -1E+18,
             "type": "number",
             "description": "Gets or sets amount of the entry in balance sheet currency.",
             "format": "decimal",
             "example": 18000.65
           },
           "quantity": {
+            "maximum": 1E+18,
+            "minimum": -1E+18,
             "type": "number",
             "description": "Gets or sets quantity in the unit defined on the cost type.",
             "format": "decimal",
@@ -4534,7 +4538,7 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets identification of the cost accountig journal.",
+            "description": "Gets or sets identification of the cost accounting journal.",
             "format": "int64",
             "example": 123456
           },
@@ -4542,7 +4546,7 @@
             "maximum": 999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets the company number of the cost accountig journal.",
+            "description": "Gets or sets the company number of the cost accounting journal.",
             "format": "int64",
             "example": 100
           },
@@ -4550,7 +4554,7 @@
             "maximum": 999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets the period of the cost accountig journal.",
+            "description": "Gets or sets the period of the cost accounting journal.",
             "format": "int64",
             "example": 100
           },
@@ -4671,12 +4675,16 @@
             "example": "Budget 202403"
           },
           "amountBSC": {
+            "maximum": 1E+18,
+            "minimum": -1E+18,
             "type": "number",
             "description": "Gets or sets amount of the entry in balance sheet currency.\r\nValue has 18 digits before the decimal point and 2 decimal places.",
             "format": "decimal",
             "example": 18000.65
           },
           "quantity": {
+            "maximum": 1E+18,
+            "minimum": -1E+18,
             "type": "number",
             "description": "Gets or sets quantity in the unit defined on the cost type.\r\nValue has 18 digits before the decimal point and 4 decimal places.",
             "format": "decimal",
@@ -5433,7 +5441,7 @@
             "maximum": 9,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets sequence number in the delivery note position.\r\nNormaly 1, 2 for the add posting in case of a material transfer.",
+            "description": "Gets sequence number in the delivery note position.\r\nNormally 1, 2 for the add posting in case of a material transfer.",
             "format": "int64",
             "readOnly": true,
             "example": 1
@@ -6050,6 +6058,7 @@
           },
           "exchangeRate": {
             "maximum": 99999999.999999,
+            "minimum": 1E-06,
             "type": "number",
             "description": "Gets or sets exchange rate used for invoice when not in balance sheet currency.\r\nUse 1 when invoice is in balance sheet currency.\r\nIf the exchange rate is not specified, it is determined using the entry date.",
             "format": "decimal",
@@ -6092,7 +6101,7 @@
           "postingText": {
             "maxLength": 50,
             "type": "string",
-            "description": "Gets or sets optional posting text for accountig system.",
+            "description": "Gets or sets optional posting text for accounting system.",
             "nullable": true
           },
           "qrCode": {
@@ -6196,7 +6205,7 @@
             "type": "number",
             "description": "Gets or sets input tax rate.",
             "format": "decimal",
-            "example": 19
+            "example": 19.00
           },
           "vatQuota": {
             "maximum": 100,
@@ -6212,7 +6221,7 @@
             "type": "number",
             "description": "Gets or sets amount for the tax code excluding input tax in invoice currency.",
             "format": "decimal",
-            "example": 100
+            "example": 100.00
           },
           "vatAmountInInvoiceCurrency": {
             "maximum": 9999999999.99,
@@ -6220,7 +6229,7 @@
             "type": "number",
             "description": "Gets or sets tax amount for the tax code in invoice currency.",
             "format": "decimal",
-            "example": 19
+            "example": 19.00
           }
         },
         "additionalProperties": false,
@@ -6269,7 +6278,7 @@
             "maximum": 9999.999,
             "minimum": 0,
             "type": "number",
-            "description": "Gets or sets get or set the invoice position number. Must be unique in a invoice.",
+            "description": "Gets or sets the invoice position number. Must be unique in an invoice.",
             "format": "decimal",
             "example": 2.2
           },
@@ -6313,7 +6322,7 @@
             "maximum": 9999999999.9999,
             "minimum": -9999999999.9999,
             "type": "number",
-            "description": "Gets or sets invoice quantity in delivery units.\r\nRequired for position type article .",
+            "description": "Gets or sets invoice quantity in delivery units.\r\nRequired for position type article.",
             "format": "decimal",
             "nullable": true,
             "example": 100
@@ -6322,7 +6331,7 @@
             "maximum": 289999,
             "minimum": 280001,
             "type": "integer",
-            "description": "Gets or sets c28 - Delivery unit code.\r\nRequired for position type article .",
+            "description": "Gets or sets c28 - Delivery unit code.\r\nRequired for position type article.",
             "format": "int64",
             "nullable": true,
             "example": 280005
@@ -6340,7 +6349,7 @@
             "maximum": 289999,
             "minimum": 280001,
             "type": "integer",
-            "description": "Gets or sets c28 - Price unit code.\r\nRequired for position type article .",
+            "description": "Gets or sets c28 - Price unit code.\r\nRequired for position type article.",
             "format": "int64",
             "nullable": true,
             "example": 280005
@@ -6406,7 +6415,7 @@
             "description": "Gets or sets input tax rate.",
             "format": "decimal",
             "nullable": true,
-            "example": 19
+            "example": 19.00
           },
           "vatQuota": {
             "maximum": 100,
@@ -6418,6 +6427,8 @@
             "example": 100
           },
           "amountInInvoiceCurrency": {
+            "maximum": 1E+18,
+            "minimum": -1E+18,
             "type": "number",
             "description": "Gets or sets amount of position excluding input tax in invoice currency.",
             "format": "decimal",
@@ -6425,6 +6436,8 @@
             "example": 2159.53
           },
           "amountInBalanceSheetCurrency": {
+            "maximum": 1E+18,
+            "minimum": -1E+18,
             "type": "number",
             "description": "Gets or sets amount of position excluding input tax in balance sheet currency.",
             "format": "decimal",
@@ -6599,7 +6612,6 @@
           },
           "modifyUser": {
             "maxLength": 30,
-            "minLength": 1,
             "type": "string",
             "description": "Gets user who last modified the entry.",
             "nullable": true,
@@ -6624,7 +6636,7 @@
           },
           "orderTypeCode": {
             "maximum": 24509999,
-            "minimum": 24500000,
+            "minimum": 24500001,
             "type": "integer",
             "description": "Gets or sets c2450 - Type of the order.",
             "format": "int64",
@@ -6637,7 +6649,7 @@
           },
           "companyNo": {
             "maximum": 999999,
-            "minimum": 0,
+            "minimum": 1,
             "type": "integer",
             "description": "Gets or sets company identification of the entry.",
             "format": "int64",
@@ -6650,7 +6662,7 @@
             "description": "Gets or sets purchase order number of the entry.",
             "example": "B24.1234"
           },
-          "externalPurchseOrderId": {
+          "externalPurchaseOrderId": {
             "maxLength": 200,
             "minLength": 1,
             "type": "string",
@@ -6679,7 +6691,8 @@
             "minimum": 1,
             "type": "integer",
             "description": "Gets or sets the supplier number of the purchase order.",
-            "format": "int64"
+            "format": "int64",
+            "nullable": true
           },
           "purchaseOrderTypeCode": {
             "maximum": 24629999,
@@ -6716,6 +6729,7 @@
           },
           "exchangeRate": {
             "maximum": 99999999.999999,
+            "minimum": 1E-06,
             "type": "number",
             "description": "Gets or sets exchange rate used for purchase when not in balance sheet currency.",
             "format": "decimal",
@@ -6724,11 +6738,11 @@
           },
           "isPurchaseOrderSent": {
             "type": "boolean",
-            "description": "Gets or sets a value indicating whether the purchase order was been sent."
+            "description": "Gets or sets a value indicating whether the purchase order has been sent."
           },
           "purchaseOrderSendDate": {
             "type": "string",
-            "description": "Gets or sets date the purchase order was sent.",
+            "description": "Gets or sets date the purchase order has been sent.",
             "format": "date",
             "nullable": true,
             "example": "2024-03-01"
@@ -7061,7 +7075,6 @@
           },
           "modifyUser": {
             "maxLength": 30,
-            "minLength": 1,
             "type": "string",
             "description": "Gets or sets user who last modified the entry.",
             "nullable": true,
@@ -7148,7 +7161,7 @@
             "nullable": true,
             "example": 1000
           },
-          "orderQuantityDeliverUnit": {
+          "orderQuantityDeliveryUnit": {
             "maximum": 9999999999.9999,
             "minimum": -9999999999.9999,
             "type": "number",
@@ -7234,6 +7247,8 @@
             "example": 3.2
           },
           "discountAmount": {
+            "maximum": 1E+18,
+            "minimum": -1E+18,
             "type": "number",
             "description": "Gets or sets discount in money.",
             "format": "decimal",
@@ -7241,6 +7256,8 @@
             "example": 3658.51
           },
           "surchargeAmount": {
+            "maximum": 1E+18,
+            "minimum": -1E+18,
             "type": "number",
             "description": "Gets or sets surcharge in money.",
             "format": "decimal",
@@ -7396,6 +7413,8 @@
             "description": "Gets or sets a value indicating whether the purchase position has been fully charged or whether it is still partially open."
           },
           "netAmount": {
+            "maximum": 1E+18,
+            "minimum": -1E+18,
             "type": "number",
             "description": "Gets or sets net amount (gross - tax) of the order position.",
             "format": "decimal",
@@ -7403,6 +7422,8 @@
             "example": 2159.53
           },
           "grossAmount": {
+            "maximum": 1E+18,
+            "minimum": -1E+18,
             "type": "number",
             "description": "Gets or sets total cost of order position.",
             "format": "decimal",
@@ -7410,6 +7431,8 @@
             "example": 2436.85
           },
           "vatAmount": {
+            "maximum": 1E+18,
+            "minimum": -1E+18,
             "type": "number",
             "description": "Gets or sets amount of taxes for the order position.",
             "format": "decimal",
@@ -7460,7 +7483,6 @@
           },
           "modifyUser": {
             "maxLength": 30,
-            "minLength": 1,
             "type": "string",
             "description": "Gets user who last modified the entry.",
             "nullable": true,
@@ -7470,6 +7492,7 @@
             "type": "string",
             "description": "Gets date the entry was last modified.",
             "format": "date-time",
+            "nullable": true,
             "readOnly": true
           },
           "supplierId": {
@@ -7501,7 +7524,7 @@
           },
           "companyNo": {
             "maximum": 999999,
-            "minimum": 0,
+            "minimum": 1,
             "type": "integer",
             "description": "Gets or sets company identification of the entry.",
             "format": "int64",
@@ -7918,7 +7941,7 @@
           },
           "companyNo": {
             "maximum": 999999,
-            "minimum": 0,
+            "minimum": 1,
             "type": "integer",
             "description": "Gets or sets company identification of the entry.",
             "format": "int64",
@@ -7952,7 +7975,7 @@
           },
           "isLocked": {
             "type": "boolean",
-            "description": "Gets or sets this absence is locked for changes in performis UI.",
+            "description": "Gets or sets a value indicating whether this absence is locked for changes in performis UI.",
             "nullable": true
           },
           "isApproved": {
@@ -8606,6 +8629,23 @@
   "security": [
     {
       "Bearer": [ ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "Finance"
+    },
+    {
+      "name": "MasterData"
+    },
+    {
+      "name": "MaterialManagement"
+    },
+    {
+      "name": "Purchasing"
+    },
+    {
+      "name": "ServiceRecording"
     }
   ]
 }
