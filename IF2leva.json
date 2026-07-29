@@ -816,7 +816,7 @@
           }
         ],
         "requestBody": {
-          "description": "List of incidents to create. To assign a specific identifier, provide `imsIncidentId`. Omit or use an empty GUID to have the server assign one. Providing an `imsIncidentId` that already exists returns 409 Conflict.",
+          "description": "List of incidents to create. To assign a specific identifier, provide `imsIncidentId`. Omit it, send `null`, an empty string, or an empty GUID to have the server assign one. Providing an `imsIncidentId` that already exists returns 409 Conflict.",
           "content": {
             "application/json": {
               "schema": {
@@ -5928,6 +5928,18 @@
             "minLength": 1,
             "type": "string",
             "description": "Gets or sets additional information in the context of the reporting process."
+          },
+          "resourceProblemDate": {
+            "type": "string",
+            "description": "Gets or sets the date on which the problem occurred.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "resourceProblemTime": {
+            "type": "string",
+            "description": "Gets or sets the time on which the problem occurred.",
+            "format": "date-time",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -6584,8 +6596,9 @@
           },
           "imsIncidentId": {
             "type": "string",
-            "description": "Gets or sets the primary technical identifier of the incident (guid).",
+            "description": "Gets or sets the primary technical identifier of the incident (guid).\r\nLeave `null` or empty to have the server assign a new identifier.",
             "format": "uuid",
+            "nullable": true,
             "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
           },
           "imsIncidentNumberId": {
@@ -6621,9 +6634,9 @@
           "imsIncidentNo": {
             "maxLength": 50,
             "type": "string",
-            "description": "Gets or sets the unique human-readable incident number (e.g. \"IMS-2024-00042\"). Assigned internally — read-only.",
+            "description": "Gets the unique human-readable incident number (e.g. \"321\"). Assigned internally — read-only.",
             "nullable": true,
-            "example": "IMS-2024-00042"
+            "readOnly": true
           },
           "title": {
             "maxLength": 200,
@@ -6722,8 +6735,9 @@
         "properties": {
           "imsSubjectId": {
             "type": "string",
-            "description": "Gets or sets the primary technical identifier of the subject (guid).",
+            "description": "Gets or sets the primary technical identifier of the subject (guid).\r\nLeave `null` or empty to have the server assign a new identifier.",
             "format": "uuid",
+            "nullable": true,
             "example": "7c9e6679-7425-40de-944b-e07fc1f90ae7"
           },
           "active": {
@@ -6748,8 +6762,9 @@
           },
           "imsIncidentId": {
             "type": "string",
-            "description": "Gets or sets the parent incident identifier (guid) this subject belongs to.",
+            "description": "Gets or sets the parent incident identifier (guid) this subject belongs to.\r\nMust be `null` or empty — the subject is automatically linked to the incident it is posted with.",
             "format": "uuid",
+            "nullable": true,
             "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
           },
           "title": {
