@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.4",
   "info": {
     "title": "IF2BAF API",
     "description": "Interface to access Infosystems Business Application Framework",
@@ -412,6 +412,15 @@
               "format": "int32",
               "default": 100
             }
+          },
+          {
+            "name": "includeDetails",
+            "in": "query",
+            "description": "Defines if addresses of the business partners are included in the response.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
           }
         ],
         "responses": {
@@ -676,6 +685,24 @@
             "name": "originId",
             "in": "query",
             "description": "Retrieves all entries with a specific origin identifier.",
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "businessPartnerOrigin",
+            "in": "query",
+            "description": "Retrieves all entries of a certain business partner origin.",
+            "schema": {
+              "maxLength": 10,
+              "type": "string"
+            }
+          },
+          {
+            "name": "businessPartnerOriginId",
+            "in": "query",
+            "description": "Retrieves all entries with a specific business partner origin identifier.",
             "schema": {
               "maxLength": 50,
               "type": "string"
@@ -959,7 +986,16 @@
             "in": "query",
             "description": "Retrieves all entries of a certain origin.",
             "schema": {
-              "maxLength": 10,
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "originId",
+            "in": "query",
+            "description": "Retrieves all entries with a specific origin identifier.",
+            "schema": {
+              "maxLength": 200,
               "type": "string"
             }
           },
@@ -3744,6 +3780,14 @@
             "description": "Gets or sets the ISO language code of the business partner.",
             "nullable": true
           },
+          "businessPartnerAddresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BusinessPartnerAddress"
+            },
+            "description": "Gets the list of business partner addresses.",
+            "nullable": true
+          },
           "attributeValueSet": {
             "$ref": "#/components/schemas/AttributeValueSet"
           }
@@ -3817,7 +3861,20 @@
             "minimum": 0,
             "type": "integer",
             "description": "Gets or sets the business partner id associated with the address.",
-            "format": "int64"
+            "format": "int64",
+            "nullable": true
+          },
+          "businessPartnerOrigin": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Gets or sets the system of the origin of the business partner.",
+            "nullable": true
+          },
+          "businessPartnerOriginId": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the id of the business partner in the system of origin.",
+            "nullable": true
           },
           "businessPartnerAddressStatus": {
             "$ref": "#/components/schemas/BusinessPartnerStatus"
@@ -3954,9 +4011,6 @@
             "description": "Gets or sets a further number for the address.",
             "nullable": true
           },
-          "businessPartner": {
-            "$ref": "#/components/schemas/BusinessPartner"
-          },
           "attributeValueSet": {
             "$ref": "#/components/schemas/AttributeValueSet"
           }
@@ -4010,11 +4064,17 @@
             "readOnly": true
           },
           "origin": {
-            "maxLength": 10,
+            "maxLength": 200,
             "type": "string",
             "description": "Gets the system of the origin of the business partner contact.",
             "nullable": true,
             "readOnly": true
+          },
+          "originId": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets or sets the id in the system of origin.",
+            "nullable": true
           },
           "businessPartnerAddressId": {
             "maximum": 9999999999,
@@ -4028,7 +4088,20 @@
             "minimum": 1,
             "type": "integer",
             "description": "Gets or sets the business partner id of the employee.",
-            "format": "int64"
+            "format": "int64",
+            "nullable": true
+          },
+          "employeeBusinessPartnerOrigin": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Gets or sets the system of the origin of the business partner of the employee.",
+            "nullable": true
+          },
+          "employeeBusinessPartnerOriginId": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Gets or sets the id of the business partner of the employee in the system of origin.",
+            "nullable": true
           },
           "businessPartnerContactStatus": {
             "$ref": "#/components/schemas/BusinessPartnerStatus"
@@ -5530,6 +5603,8 @@
             "nullable": true
           },
           "amountInInvoiceCurrency": {
+            "maximum": 1E+18,
+            "minimum": -1E+18,
             "type": "number",
             "description": "Gets or sets the amount of the payment in the invoice currency.",
             "format": "decimal"
@@ -5595,6 +5670,7 @@
             "nullable": true
           },
           "clearingNo": {
+            "maximum": 1E+18,
             "minimum": 1,
             "type": "integer",
             "description": "Gets or sets the clearing number of the bank.",
@@ -6269,6 +6345,38 @@
   "security": [
     {
       "Bearer": [ ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "Acknowledgments"
+    },
+    {
+      "name": "BusinessPartner"
+    },
+    {
+      "name": "Codes"
+    },
+    {
+      "name": "CostCenters"
+    },
+    {
+      "name": "Documents"
+    },
+    {
+      "name": "Employees"
+    },
+    {
+      "name": "FixedAssets"
+    },
+    {
+      "name": "Invoicing"
+    },
+    {
+      "name": "ItemStructure"
+    },
+    {
+      "name": "Orders"
     }
   ]
 }
