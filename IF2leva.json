@@ -616,6 +616,235 @@
         }
       }
     },
+    "/api/v1/asset-resource-information/problems/documents": {
+      "get": {
+        "tags": [
+          "AssetResourceInformation"
+        ],
+        "summary": "Retrieves documents linked to a specific asset resource problem.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "assetResourceProblemId",
+            "in": "query",
+            "description": "Required. The unique identifier of the asset resource problem whose documents to retrieve.",
+            "required": true,
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AssetResourceProblemDocument"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "AssetResourceInformation"
+        ],
+        "summary": "Creates or updates documents linked to an asset resource problem.",
+        "description": "Documents must be uploaded using IF2BAF before they can be linked to asset resource problems by their GUID.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Asset resource problem documents to persist. All documents must belong to the same asset resource problem. Set `isDeleted` to `true` on an existing document to remove it.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AssetResourceProblemDocument"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AssetResourceProblemDocument"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AssetResourceProblemDocument"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AssetResourceProblemDocument"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/incident-management-system/incidents": {
       "get": {
         "tags": [
@@ -1012,6 +1241,7 @@
           "IncidentManagementSystem"
         ],
         "summary": "Creates or updates documents linked to IMS incidents.",
+        "description": "Documents must be uploaded using IF2BAF before they can be linked to incidents by their GUID.",
         "parameters": [
           {
             "name": "X-Requesting-System",
@@ -1699,6 +1929,14 @@
             }
           },
           {
+            "name": "activeOnly",
+            "in": "query",
+            "description": "Retrieve only active records.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "Maximum number of records to return.",
@@ -1720,6 +1958,246 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/Customer"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "MasterData"
+        ],
+        "summary": "Creates new customers.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The customers to create. Origin is set to the requesting system on the server; each address must already exist, no address is created; update is not supported.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Customer"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
+    "/api/v1/master-data/customers/company-accounts": {
+      "post": {
+        "tags": [
+          "MasterData"
+        ],
+        "summary": "Creates new company accounts (customer company).",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The company accounts to create. Each customer must already exist; update is not supported.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CompanyAccount"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CompanyAccount"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CompanyAccount"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyAccount"
                   }
                 }
               }
@@ -1864,6 +2342,408 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/ProjectStructure"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
+    "/api/v1/master-data/projects": {
+      "get": {
+        "tags": [
+          "MasterData"
+        ],
+        "summary": "Retrieves projects (including subprojects, customers, contacts and Merkmale) matching the provided parameters.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "Retrieve a specific record by internal project id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Optional search string for looking up a record within the project number or name.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "active",
+            "in": "query",
+            "description": "Filter on the active flag.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all the entries which were added/edited since a specific datetime.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all the entries which were added/edited since the provided change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Project"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "MasterData"
+        ],
+        "summary": "Creates new projects, optionally including customer assignments. Subprojects are not created here; use\r\nM:Infosystem.Leva.WebApi.IF2Leva.Controllers.MasterDataController.PostMasterDataProjectsSubprojects(System.String,System.String,System.String,System.String,System.Collections.Generic.IList{Infosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Project.Subproject}) once the project exists.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The projects to create. Only Infosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Project.Project.ProjectName, Infosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Project.Project.OriginId\r\nand Infosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Project.Project.Customers are read from the request; all other fields are server-derived and\r\nignored on input. Origin is set to the value of the xRequestingSystem header on the server; update is not supported.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Project"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
+    "/api/v1/master-data/projects/subprojects": {
+      "post": {
+        "tags": [
+          "MasterData"
+        ],
+        "summary": "Creates new subprojects for existing projects. Each item carries its own parent project id,\r\nso subprojects for different projects can be created in a single request.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Identifying the client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The subprojects to create, each including the id of its parent project. Only\r\nInfosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Project.Subproject.ProjectId, Infosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Project.Subproject.Address,\r\nInfosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Project.Subproject.Remark and Infosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Project.Subproject.ProjectCustomerAdditions\r\nare read from the request; all other fields are server-derived and ignored on input.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Subproject"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Subproject"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Subproject"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Subproject"
                   }
                 }
               }
@@ -5124,6 +6004,15 @@
             }
           },
           {
+            "name": "orderNo",
+            "in": "query",
+            "description": "Retrieve specific record by order number.",
+            "schema": {
+              "maxLength": 20,
+              "type": "string"
+            }
+          },
+          {
             "name": "minStatusCode",
             "in": "query",
             "description": "Retrieve specific record where the status code is equal or greater then the provided minimum status code.",
@@ -5471,13 +6360,15 @@
             "type": "integer",
             "description": "Gets the id when the entity was last changed.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "changeDate": {
             "type": "string",
             "description": "Gets the date and time when the entity was last changed.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "accessoryId": {
             "maximum": 9999999999,
@@ -5846,6 +6737,20 @@
         ],
         "type": "object",
         "properties": {
+          "changeId": {
+            "type": "integer",
+            "description": "Gets the id when the entity was last changed.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets the date and time when the entity was last changed.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
           "id": {
             "maximum": 9999999999,
             "minimum": 1,
@@ -5945,6 +6850,41 @@
         "additionalProperties": false,
         "description": "An asset resource problem record is used to store conditions or problems related to a specific resource, which is either a machine or an accessory."
       },
+      "AssetResourceProblemDocument": {
+        "required": [
+          "assetResourceProblemDocumentName",
+          "assetResourceProblemId"
+        ],
+        "type": "object",
+        "properties": {
+          "assetResourceProblemDocumentId": {
+            "type": "integer",
+            "description": "Gets or sets the unique id of this asset resource problem document assignment.",
+            "format": "int64",
+            "nullable": true
+          },
+          "assetResourceProblemId": {
+            "type": "integer",
+            "description": "Gets or sets the unique identifier of the asset resource problem to which this document is assigned.",
+            "format": "int64"
+          },
+          "assetResourceProblemDocumentName": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the name of the document."
+          },
+          "assetResourceProblemDocument": {
+            "$ref": "#/components/schemas/FileDocumentLink"
+          },
+          "isDeleted": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether this document assignment is marked for deletion."
+          }
+        },
+        "additionalProperties": false,
+        "description": "An existing document linked to an asset resource problem."
+      },
       "AssetResourceStoragePlace": {
         "required": [
           "storagePlaceId"
@@ -5987,6 +6927,114 @@
         "type": "string",
         "description": "Assigns the surcharge to a specific job process step."
       },
+      "AttributeValue": {
+        "required": [
+          "attributeDefinitionId"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeValueId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "attributeDefinitionId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "sortNo": {
+            "maximum": 9999,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "textValue": {
+            "maxLength": 1000,
+            "type": "string",
+            "nullable": true
+          },
+          "numberValue": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "dateValue": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "boolValue": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "codeValue": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AttributeValueSet": {
+        "required": [
+          "attributeSetId"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "attributeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttributeValue"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CompanyAccount": {
         "required": [
           "active",
@@ -6001,6 +7049,15 @@
           "active": {
             "type": "boolean",
             "description": "Gets or sets a value indicating whether this entry is active or not."
+          },
+          "companyAccountId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets the technical identification number of the company account (generated by the server on creation).",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
           },
           "companyNo": {
             "maximum": 999999,
@@ -6078,8 +7135,9 @@
             "maxLength": 30,
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets the shortname of the payment terms.",
-            "nullable": true
+            "description": "Gets the shortname of the payment terms (derived from C27PaymentTerms).",
+            "nullable": true,
+            "readOnly": true
           },
           "costUnit": {
             "maxLength": 20,
@@ -6100,8 +7158,9 @@
             "maxLength": 50,
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets the external address id of the customer billed for the services.",
-            "nullable": true
+            "description": "Gets the external address id of the customer billed for the services (derived from ChargingBusinessPartnerAddressId).",
+            "nullable": true,
+            "readOnly": true
           },
           "shippingBusinessPartnerAddressId": {
             "maximum": 9999999999,
@@ -6150,12 +7209,13 @@
             "items": {
               "$ref": "#/components/schemas/SalesReward"
             },
-            "description": "Gets or sets the sales reward programm for the customer. Each year, a specific rate determines the amount of cashback for the customer.",
-            "nullable": true
+            "description": "Gets the sales reward programm for the customer. Each year, a specific rate determines the amount of cashback for the customer.",
+            "nullable": true,
+            "readOnly": true
           }
         },
         "additionalProperties": false,
-        "description": "The company account dto."
+        "description": "The company account dto. Properties with a private setter are server-owned\r\n(derived or related data) and are ignored on write operations."
       },
       "Contact": {
         "required": [
@@ -6164,11 +7224,23 @@
         ],
         "type": "object",
         "properties": {
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the contact is active."
+          },
           "contactId": {
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
             "description": "Gets or sets the contact identifier.",
+            "format": "int64",
+            "nullable": true
+          },
+          "businessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the business partner address id for external contacts.",
             "format": "int64",
             "nullable": true
           },
@@ -6185,6 +7257,33 @@
             "type": "integer",
             "description": "Gets or sets the code 6956 origin. Use IF2BA to retrieve the value list.",
             "format": "int64"
+          },
+          "originId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the id of the origin object the contact belongs to (order, project, customer-company mapping or sales region id, depending on the origin code).",
+            "format": "int64"
+          },
+          "internal": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the contact is an internal contact (employee) or an external contact (business partner or manual)."
+          },
+          "employeeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the employee id for internal contacts.",
+            "format": "int64",
+            "nullable": true
+          },
+          "businessPartnerId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the business partner id for external contacts.",
+            "format": "int64",
+            "nullable": true
           },
           "fullName": {
             "maxLength": 100,
@@ -6216,44 +7315,48 @@
       },
       "Customer": {
         "required": [
-          "businessPartnerAddressId",
-          "changeDate",
-          "changeId",
-          "customerId",
-          "modifyDate",
-          "modifyUser",
-          "origin"
+          "businessPartnerAddressId"
         ],
         "type": "object",
         "properties": {
           "changeId": {
             "type": "integer",
-            "description": "Gets or sets change id of the entry.",
-            "format": "int64"
+            "description": "Gets the change id of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
           },
           "changeDate": {
             "type": "string",
-            "description": "Gets or sets change date of the entry.",
-            "format": "date-time"
+            "description": "Gets the change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Gets a value indicating whether the customer is active (derived from C3341CustomerStatus == \"33410030 = customer\")."
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets the user which modified the entity.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entity was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
           },
           "businessPartnerAddressId": {
             "maximum": 9999999999,
             "minimum": 0,
             "type": "integer",
             "description": "Gets or sets address id of the customer.",
-            "format": "int64"
-          },
-          "origin": {
-            "maxLength": 10,
-            "minLength": 1,
-            "type": "string",
-            "description": "Gets or sets origin of the customer (used together with origin id). Customers created in leva+ will have the origin \"leva+\". They will not have an origin id."
-          },
-          "customerId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Gets or sets technical identification number of the customer.",
             "format": "int64"
           },
           "externalCustomerId": {
@@ -6263,6 +7366,21 @@
             "description": "Gets or sets external id of the customer - set if the customer was created in a third party system.",
             "nullable": true
           },
+          "origin": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Gets the origin of the customer (used together with origin id). Customers created in leva+ will have the origin \"leva+\". They will not have an origin id.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "customerNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets the technical identification number of the customer (generated by the server on creation).",
+            "format": "int64",
+            "nullable": true
+          },
           "c3341CustomerStatus": {
             "maximum": 33419999,
             "minimum": 33410001,
@@ -6270,17 +7388,6 @@
             "description": "Gets or sets status of the customer. Only customers with the status \"33410030 = customer\" may be used for orders.",
             "format": "int32",
             "nullable": true
-          },
-          "modifyUser": {
-            "maxLength": 30,
-            "minLength": 1,
-            "type": "string",
-            "description": "Gets or sets user which modified the entity."
-          },
-          "modifyDate": {
-            "type": "string",
-            "description": "Gets or sets date the entity was last modified.",
-            "format": "date-time"
           },
           "isConsortium": {
             "type": "boolean",
@@ -6306,12 +7413,22 @@
             "items": {
               "$ref": "#/components/schemas/CompanyAccount"
             },
-            "description": "Gets or sets list of company accounts this customer is assigned to.",
-            "nullable": true
+            "description": "Gets the list of company accounts this customer is assigned to (also known as customer-company).",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Contact"
+            },
+            "description": "Gets a list of contacts (customer-company origin, priority-resolved across all company accounts).",
+            "nullable": true,
+            "readOnly": true
           }
         },
         "additionalProperties": false,
-        "description": "The customer dto."
+        "description": "The customer dto. Properties with an init-only setter are server-owned\r\n(audit, derived or related data) and are overwritten on write operations."
       },
       "CustomerAttributeValue": {
         "required": [
@@ -6952,6 +8069,22 @@
         ],
         "type": "object",
         "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets the change identifier of the entity.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets the change date of the entity.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
           "companyNo": {
             "maximum": 999999,
             "minimum": 1,
@@ -6966,20 +8099,6 @@
             "type": "integer",
             "description": "Gets or sets the job id of performis/leva+. Will be set internally - leave empty if not known.",
             "format": "int64",
-            "nullable": true
-          },
-          "changeId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "description": "Gets or sets the change identifier of the entity.",
-            "format": "int64",
-            "nullable": true
-          },
-          "changeDate": {
-            "type": "string",
-            "description": "Gets or sets the change date of the entity.",
-            "format": "date-time",
             "nullable": true
           },
           "reportEmailReceivers": {
@@ -8429,15 +9548,17 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets change id of the entity.",
+            "description": "Gets the change id of the entity.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "changeDate": {
             "type": "string",
-            "description": "Gets or sets the change date of the entity.",
+            "description": "Gets the change date of the entity.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "machineId": {
             "maximum": 9999999999,
@@ -9043,6 +10164,339 @@
         },
         "additionalProperties": { }
       },
+      "Project": {
+        "required": [
+          "originId",
+          "projectName"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets the change identifier of the entity.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets the change date of the entity.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Gets a value indicating whether the project is active.",
+            "readOnly": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user that modified the entity last.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date when the entity was last modified.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "projectId": {
+            "type": "integer",
+            "description": "Gets the project identifier.",
+            "format": "int64",
+            "readOnly": true
+          },
+          "originId": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the external id of the project in the origin system (e.g. Salesforce reference)."
+          },
+          "origin": {
+            "maxLength": 120,
+            "type": "string",
+            "description": "Gets the origin of the project (e.g. CRM). Set on the server to the requesting system.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "projectNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets the project number (equals the project id).",
+            "nullable": true,
+            "readOnly": true
+          },
+          "projectName": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets the project name."
+          },
+          "customers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectCustomer"
+            },
+            "description": "Gets or sets the customers to assign to the project.",
+            "nullable": true
+          },
+          "attributeValueSet": {
+            "$ref": "#/components/schemas/AttributeValueSet"
+          },
+          "subprojects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subproject"
+            },
+            "description": "Gets the subprojects of this project. Subprojects can only be created via the dedicated subprojects endpoint.",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for a project, used both to retrieve existing projects and to create new ones."
+      },
+      "ProjectAddress": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "maxLength": 172,
+            "type": "string",
+            "description": "Gets or sets the street.",
+            "nullable": true
+          },
+          "houseNumber": {
+            "maxLength": 48,
+            "type": "string",
+            "description": "Gets or sets the house number.",
+            "nullable": true
+          },
+          "additionalAddress": {
+            "maxLength": 800,
+            "type": "string",
+            "description": "Gets or sets the additional address line.",
+            "nullable": true
+          },
+          "zipCode": {
+            "maxLength": 80,
+            "type": "string",
+            "description": "Gets or sets the zip code.",
+            "nullable": true
+          },
+          "city": {
+            "maxLength": 160,
+            "type": "string",
+            "description": "Gets or sets the city.",
+            "nullable": true
+          },
+          "isoCountry": {
+            "maxLength": 2,
+            "type": "string",
+            "description": "Gets or sets the ISO 3166-1 alpha-2 country code.",
+            "nullable": true
+          },
+          "latitude": {
+            "type": "number",
+            "description": "Gets or sets the latitude.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "description": "Gets or sets the longitude.",
+            "format": "decimal",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for the address of a subproject."
+      },
+      "ProjectContact": {
+        "required": [
+          "originCode",
+          "roleCode"
+        ],
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the contact is active."
+          },
+          "contactId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the contact identifier.",
+            "format": "int64",
+            "nullable": true
+          },
+          "businessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the business partner address id for external contacts.",
+            "format": "int64",
+            "nullable": true
+          },
+          "roleCode": {
+            "maximum": 45449999,
+            "minimum": 45440001,
+            "type": "integer",
+            "description": "Gets or sets the code 4544 role. Use IF2BA to retrieve the value list.",
+            "format": "int64"
+          },
+          "originCode": {
+            "maximum": 69569999,
+            "minimum": 69560001,
+            "type": "integer",
+            "description": "Gets or sets the code 6956 origin. Use IF2BA to retrieve the value list.",
+            "format": "int64"
+          },
+          "originId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the id of the origin object the contact belongs to.",
+            "format": "int64"
+          },
+          "internal": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the contact is an internal contact (employee) or an external contact (business partner or manual)."
+          },
+          "employeeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the employee id for internal contacts.",
+            "format": "int64",
+            "nullable": true
+          },
+          "businessPartnerId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the business partner id for external contacts.",
+            "format": "int64",
+            "nullable": true
+          },
+          "fullName": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Gets or sets the the full name (name + surname).",
+            "nullable": true
+          },
+          "phoneNo": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets or sets the phone number.",
+            "nullable": true
+          },
+          "mobileNo": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets or sets the mobile number.",
+            "nullable": true
+          },
+          "email": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets or sets the email address.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for contacts."
+      },
+      "ProjectCustomer": {
+        "required": [
+          "customerId"
+        ],
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "description": "Gets a value indicating whether the customer assignment is active.",
+            "readOnly": true
+          },
+          "projectCustomerId": {
+            "type": "integer",
+            "description": "Gets the id of the project customer assignment.",
+            "format": "int64",
+            "readOnly": true
+          },
+          "customerId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the customer id.",
+            "format": "int64"
+          },
+          "conditionId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the id of the condition. Ignored if the feature 'Bau\\BA\\Feature\\KonditionenAufKundenprojekt' is not enabled.",
+            "format": "int64",
+            "nullable": true
+          },
+          "customerConstructionSiteNo": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the construction site number used by the customer to reference the project.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectContact"
+            },
+            "description": "Gets the contacts of this project customer.",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for the customer assignment of a project, used both to retrieve existing and to create new assignments."
+      },
+      "ProjectCustomerAddition": {
+        "required": [
+          "projectCustomerId"
+        ],
+        "type": "object",
+        "properties": {
+          "projectCustomerId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the id of the project customer this addition belongs to.",
+            "format": "int64"
+          },
+          "customerSubprojectName": {
+            "maxLength": 60,
+            "type": "string",
+            "description": "Gets or sets the customer's designation for the subproject.",
+            "nullable": true
+          },
+          "invoiceText": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Gets or sets the invoice text, relevant only if invoiced separately.",
+            "nullable": true
+          },
+          "separateBilling": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the subproject is invoiced separately for this customer."
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for the subproject-specific data of a project customer."
+      },
       "ProjectStructure": {
         "required": [
           "active",
@@ -9056,15 +10510,17 @@
         "properties": {
           "changeId": {
             "type": "integer",
-            "description": "Gets or sets the change id of the entity.",
+            "description": "Gets the change id of the entity.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "changeDate": {
             "type": "string",
-            "description": "Gets or sets the change date of the entity.",
+            "description": "Gets the change date of the entity.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "origin": {
             "maxLength": 10,
@@ -9154,6 +10610,7 @@
       "RentalOrder": {
         "required": [
           "branchCode",
+          "companyNo",
           "languageCode",
           "orderNo",
           "orderTitle",
@@ -9162,6 +10619,22 @@
         ],
         "type": "object",
         "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets the change identifier of the entity.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets the change date of the entity.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
           "orderId": {
             "maximum": 9999999999,
             "minimum": 1,
@@ -9170,19 +10643,12 @@
             "format": "int64",
             "nullable": true
           },
-          "changeId": {
-            "maximum": 9999999999,
-            "minimum": 1,
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 0,
             "type": "integer",
-            "description": "Gets or sets the change identifier of the entity.",
-            "format": "int64",
-            "nullable": true
-          },
-          "changeDate": {
-            "type": "string",
-            "description": "Gets or sets the change date of the entity.",
-            "format": "date-time",
-            "nullable": true
+            "description": "Gets or sets the number of the company to which the order belongs.",
+            "format": "int64"
           },
           "orderNo": {
             "maxLength": 20,
@@ -9222,7 +10688,14 @@
             "minimum": 170001,
             "type": "integer",
             "description": "Gets or sets the language code of the order (code 17). Use IF2BA to retrieve the value list.",
-            "format": "int64"
+            "format": "int64",
+            "deprecated": true
+          },
+          "language": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Gets or sets the ISO language code of the order.",
+            "nullable": true
           },
           "yourReference": {
             "maxLength": 50,
@@ -9233,8 +10706,81 @@
           "visitDate": {
             "type": "string",
             "description": "Gets or sets the visit date.",
-            "format": "date-time",
+            "format": "date",
             "nullable": true
+          },
+          "currency": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "Gets or sets the currency of the order (ISO 4217).",
+            "nullable": true
+          },
+          "netAmount": {
+            "type": "integer",
+            "description": "Gets the net amount of the order in the currency of the order.",
+            "format": "int64",
+            "readOnly": true
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Gets or sets the start date of the order.",
+            "format": "date",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Gets or sets the end date of the order.",
+            "format": "date",
+            "nullable": true
+          },
+          "orderDate": {
+            "type": "string",
+            "description": "Gets or sets the order date.",
+            "format": "date",
+            "nullable": true
+          },
+          "priceDate": {
+            "type": "string",
+            "description": "Gets or sets the price date of the order.",
+            "format": "date",
+            "nullable": true
+          },
+          "taxDate": {
+            "type": "string",
+            "description": "Gets or sets the tax date of the order.",
+            "format": "date",
+            "nullable": true
+          },
+          "quoteDueDate": {
+            "type": "string",
+            "description": "Gets or sets the due date of the quote.",
+            "format": "date",
+            "nullable": true
+          },
+          "paymentTermsCode": {
+            "maximum": 279999,
+            "minimum": 270001,
+            "type": "integer",
+            "description": "Gets or sets the code 27 payment terms of the order. Use IF2BA to retrieve the value list.",
+            "format": "int64",
+            "nullable": true
+          },
+          "projectId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the id of the subproject the order belongs to.",
+            "format": "int64",
+            "nullable": true
+          },
+          "customer": {
+            "$ref": "#/components/schemas/RentalOrderCustomerReference"
+          },
+          "invoiceAddress": {
+            "$ref": "#/components/schemas/RentalOrderAddressReference"
+          },
+          "invoiceDispatchAddress": {
+            "$ref": "#/components/schemas/RentalOrderAddressReference"
           },
           "jobIdList": {
             "type": "array",
@@ -9272,6 +10818,64 @@
         },
         "additionalProperties": false,
         "description": "The DTO for rental orders."
+      },
+      "RentalOrderAddressReference": {
+        "required": [
+          "businessPartnerAddressId"
+        ],
+        "type": "object",
+        "properties": {
+          "businessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the business partner address identifier of the address.",
+            "format": "int64"
+          },
+          "customerId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the customer identifier determined via the business partner address of the customer.",
+            "format": "int64",
+            "nullable": true
+          },
+          "customerCompanyId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the identifier of the customer-company combination determined for the address.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for an address reference of a rental order (e.g. invoice or invoice dispatch address)."
+      },
+      "RentalOrderCustomerReference": {
+        "required": [
+          "customerId"
+        ],
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the customer identifier.",
+            "format": "int64"
+          },
+          "customerCompanyId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the identifier of the customer-company combination of the order.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for the customer information of a rental order."
       },
       "RentalOrderDocument": {
         "required": [
@@ -9464,13 +11068,15 @@
             "type": "integer",
             "description": "Gets the id when the entry was last changed.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "changeDate": {
             "type": "string",
             "description": "Gets the date and time when the entry was last changed.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "storagePlaceId": {
             "maximum": 9999999999,
@@ -9525,6 +11131,87 @@
         },
         "additionalProperties": false,
         "description": "Storage place entry."
+      },
+      "Subproject": {
+        "required": [
+          "projectId"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets the change identifier of the entity.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets the change date of the entity.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Gets a value indicating whether the subproject is active.",
+            "readOnly": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user that modified the entity last.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date when the entity was last modified.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "subprojectId": {
+            "type": "integer",
+            "description": "Gets the subproject identifier.",
+            "format": "int64",
+            "readOnly": true
+          },
+          "subprojectNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets the subproject number ({ProjectId}.{SubNr}, e.g. \"4711.00\").",
+            "nullable": true,
+            "readOnly": true
+          },
+          "projectId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the id of the parent project.",
+            "format": "int64"
+          },
+          "address": {
+            "$ref": "#/components/schemas/ProjectAddress"
+          },
+          "remark": {
+            "maxLength": 2000,
+            "type": "string",
+            "description": "Gets or sets the remark (e.g. transport/access restrictions at the site).",
+            "nullable": true
+          },
+          "projectCustomerAdditions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectCustomerAddition"
+            },
+            "description": "Gets or sets the subproject-specific additions for the assigned project customers.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for a subproject, used both to retrieve existing and to create new subprojects for an existing project."
       },
       "Surcharge": {
         "required": [
