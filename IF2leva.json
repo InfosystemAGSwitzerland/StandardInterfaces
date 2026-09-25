@@ -7335,8 +7335,7 @@
           },
           "active": {
             "type": "boolean",
-            "description": "Gets a value indicating whether the customer is active (derived from C3341CustomerStatus == \"33410030 = customer\").",
-            "readOnly": true
+            "description": "Gets a value indicating whether the customer is active (derived from C3341CustomerStatus == \"33410030 = customer\")."
           },
           "modifyUser": {
             "maxLength": 30,
@@ -7430,7 +7429,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "The customer dto. Properties with a private setter are server-owned\r\n(audit, derived or related data) and are overwritten on write operations."
+        "description": "The customer dto. Properties with an init-only setter are server-owned\r\n(audit, derived or related data) and are overwritten on write operations."
       },
       "CustomerAttributeValue": {
         "required": [
