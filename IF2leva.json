@@ -7229,7 +7229,7 @@
             "description": "Gets or sets a value indicating whether the contact is active."
           },
           "contactId": {
-            "maximum": 9999999999,
+			"maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
             "description": "Gets or sets the contact identifier.",
@@ -10318,7 +10318,7 @@
         "additionalProperties": false,
         "description": "The DTO for the address of a subproject."
       },
-      "ProjectContact": {
+	   "ProjectContact": {
         "required": [
           "originCode",
           "roleCode"
