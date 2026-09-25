@@ -7848,7 +7848,8 @@
       },
       "ImsSubject": {
         "required": [
-          "damagedParty"
+          "damagedParty",
+		  "title"
         ],
         "type": "object",
         "properties": {
