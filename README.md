@@ -42,8 +42,8 @@ At the moment, we enable third party developer to use the following modules via 
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2performis.json&nocors" target="_blank">See documentation online</a>
 - BAF - Business Application Functions
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2BAF.json&nocors" target="_blank">See documentation online</a>
-- ressys
-  - available soon
+- ressys OSDM - Open Sales and Distribution Model
+  - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2ressysOSDM.json&nocors" target="_blank">See documentation online</a>
 
 ### Module Interfaces
 Please use the product based services if available.
