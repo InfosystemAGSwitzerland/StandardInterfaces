@@ -7048,10 +7048,10 @@
             "nullable": true
           },
           "problemType": {
-            "maximum": 1,
+            "maximum": 2,
             "minimum": 0,
             "type": "integer",
-            "description": "Gets or sets the problem type (0 = damage, 1 = defect).",
+            "description": "Gets or sets the problem type (0 = damage, 1 = defect, 2 = warranty).",
             "format": "int64"
           },
           "description": {
@@ -7698,7 +7698,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "The customer dto. Properties with a private setter are server-owned\r\n(audit, derived or related data) and are overwritten on write operations."
+        "description": "The customer dto. Properties with an private setter are server-owned\r\n(audit, derived or related data) and are overwritten on write operations."
       },
       "CustomerAttributeValue": {
         "required": [
@@ -8117,7 +8117,7 @@
       "ImsSubject": {
         "required": [
           "damagedParty",
-		  "title"
+          "title"
         ],
         "type": "object",
         "properties": {
@@ -8157,9 +8157,9 @@
           },
           "title": {
             "maxLength": 200,
+            "minLength": 1,
             "type": "string",
             "description": "Gets or sets the subject title.",
-            "nullable": true,
             "example": "Damaged crane arm — machine ID 5521"
           },
           "description": {
@@ -8255,6 +8255,22 @@
             "description": "Gets or sets the insurance case number of the other involved party's insurance policy.",
             "nullable": true,
             "example": "ALZ-CH-2024-9900"
+          },
+          "warrantyProviderBusinessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the business partner address id of the warranty provider (Garantiegeber). Only used if the incident is a warranty case.",
+            "format": "int64",
+            "nullable": true,
+            "example": 98004
+          },
+          "warrantyCaseNo": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Gets or sets the warranty case number (Garantiefallnummer) assigned by the warranty provider. Only used if the incident is a warranty case.",
+            "nullable": true,
+            "example": "WC-2026-0815"
           },
           "involvedEmployeeId": {
             "maximum": 9999999999,
@@ -9153,10 +9169,10 @@
             "example": 452341
           },
           "problemType": {
-            "maximum": 1,
+            "maximum": 2,
             "minimum": 0,
             "type": "integer",
-            "description": "Gets or sets the problem type (0 = damage, 1 = defect).",
+            "description": "Gets or sets the problem type (0 = damage, 1 = defect, 2 = warranty).",
             "format": "int64"
           },
           "description": {
@@ -10894,7 +10910,7 @@
             "maximum": 269999,
             "minimum": 260001,
             "type": "integer",
-            "description": "Gets the currency code of the order (code 26).",
+            "description": "Gets the currency of the order code of the order (code 26).",
             "format": "int64",
             "nullable": true,
             "readOnly": true
@@ -10953,9 +10969,18 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets the id of the subproject the order belongs to.",
+            "description": "Gets or sets the id of the project the order belongs to (linked on the order header via project customer).",
             "format": "int64",
             "nullable": true
+          },
+          "subprojectId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets the id of the subproject the order belongs to. It is resolved via the location of the order:\r\nif the location originates from a subproject of the order's project, that subproject is used; otherwise the\r\ndefault subproject (.00) of the order's project.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
           },
           "customer": {
             "$ref": "#/components/schemas/RentalOrderCustomerReference"
