@@ -742,6 +742,172 @@
         }
       }
     },
+    "/api/v1/master-data/finance/subledger-accounts": {
+      "get": {
+        "tags": [
+          "MasterData"
+        ],
+        "summary": "Get subledger account information.",
+        "description": "Returns all matching subledger account headers including their subledger accounts and payment information.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries since the specified date time.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries since the specified change id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Get all entries with the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "subledgerType",
+            "in": "query",
+            "description": "Get all entries with the specified subledger type.",
+            "schema": {
+              "$ref": "#/components/schemas/SubledgerType"
+            }
+          },
+          {
+            "name": "businessPartnerAddressId",
+            "in": "query",
+            "description": "Get the entry with the specified business partner address id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 1000
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subledger account information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FinanceSubledgerAccountHeader"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
     "/api/v1/master-data/material-management/articles": {
       "get": {
         "tags": [
@@ -2102,6 +2268,114 @@
             "description": "Internal Server Error."
           }
         }
+      },
+      "put": {
+        "tags": [
+          "Purchasing"
+        ],
+        "summary": "Creates or updates a purchase order.",
+        "description": "The order data must always be provided completely. Positions which are not part of the request are removed from the order. There is no concurrency check: the last write wins and overwrites concurrent changes.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A single order.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PurchaseOrder"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseOrder"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseOrder"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
       }
     },
     "/api/v1/purchasing/invoices": {
@@ -2575,6 +2849,412 @@
           },
           "204": {
             "description": "The purchase order approval was processed successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
+    "/api/v1/purchasing/goods-receipts": {
+      "get": {
+        "tags": [
+          "Purchasing"
+        ],
+        "summary": "Get purchase goods receipts.",
+        "description": "Returns all matching purchase goods receipts including their positions.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "changesSinceDateTime",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the date time specified.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "changesSinceChangeId",
+            "in": "query",
+            "description": "Get all entries which were added or edited since the change id specified.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "goodsReceiptId",
+            "in": "query",
+            "description": "Get the entry with the specified goods receipt id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "Get the entries with the specified origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "originId",
+            "in": "query",
+            "description": "Get the entries with the specified id in the system of origin - should be used with an origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "purchaseOrderId",
+            "in": "query",
+            "description": "Get the entries of the purchase order with the specified purchase order id.",
+            "schema": {
+              "maximum": 9999999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "purchaseOrderOriginId",
+            "in": "query",
+            "description": "Get the entries of the purchase order with the specified id in the system of origin - should be used with an origin.",
+            "schema": {
+              "maxLength": 200,
+              "type": "string"
+            }
+          },
+          {
+            "name": "companyNo",
+            "in": "query",
+            "description": "Get the entries with the specified company number.",
+            "schema": {
+              "maximum": 999999,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "purchaseOrderNo",
+            "in": "query",
+            "description": "Get the entries of the purchase order with the specified purchase order number - only unique with company number.",
+            "schema": {
+              "maxLength": 20,
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of entries to skip for pagination.",
+            "schema": {
+              "maximum": 100000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return.",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Purchase goods receipt information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PurchaseGoodsReceipt"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Purchasing"
+        ],
+        "summary": "Creates or updates a purchase goods receipt.",
+        "description": "The goods receipt data must always be provided completely, including all positions.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A single goods receipt with its positions.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PurchaseGoodsReceipt"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseGoodsReceipt"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseGoodsReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Requestor has insufficient rights."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    },
+    "/api/v1/purchasing/goods-receipts-reversal": {
+      "put": {
+        "tags": [
+          "Purchasing"
+        ],
+        "summary": "Reverses a purchase goods receipt.",
+        "description": "Reverses a single purchase goods receipt. The goods receipt is identified either by its goods receipt id or by origin and origin id.",
+        "parameters": [
+          {
+            "name": "X-Requesting-System",
+            "in": "header",
+            "description": "Identifying the system calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Requesting-User",
+            "in": "header",
+            "description": "Identifying the user calling the service.",
+            "required": true,
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Flow-ID",
+            "in": "header",
+            "description": "Optional technical Id (GUID) for call identification.",
+            "schema": {
+              "maxLength": 128,
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Client-Type",
+            "in": "header",
+            "description": "Optional client type calling the service.",
+            "schema": {
+              "maxLength": 30,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A single purchase goods receipt reversal.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PurchaseGoodsReceiptReversal"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Invalid input, object invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable due to maintenance.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceWindow"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "The goods receipt was reversed successfully."
           },
           "401": {
             "description": "Unauthorized."
@@ -4251,6 +4931,131 @@
   },
   "components": {
     "schemas": {
+      "AttributeValue": {
+        "required": [
+          "attributeDefinitionId"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeValueId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets internal identification of attribute value.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "attributeDefinitionId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets internal identification of attribute definition.",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "sortNo": {
+            "maximum": 9999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets position within the attribute value set.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets company identification of the entry.",
+            "format": "int64",
+            "nullable": true
+          },
+          "textValue": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "Gets or sets a string value.\r\nWhether Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.TextValue, Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.NumberValue, Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.DateValue, Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.BoolValue or Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
+            "nullable": true
+          },
+          "numberValue": {
+            "type": "number",
+            "description": "Gets or sets number or decimal value.\r\nWhether Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.TextValue, Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.NumberValue, Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.DateValue, Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.BoolValue or Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "dateValue": {
+            "type": "string",
+            "description": "Gets or sets date value.\r\nWhether Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.TextValue, Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.NumberValue, Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.DateValue, Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.BoolValue or Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "boolValue": {
+            "type": "boolean",
+            "description": "Gets or sets a true or false value.\r\nWhether Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.TextValue, Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.NumberValue, Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.DateValue, Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.BoolValue or Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
+            "nullable": true
+          },
+          "codeValue": {
+            "type": "integer",
+            "description": "Gets or sets code value.\r\nWhether Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.TextValue, Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.NumberValue, Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.DateValue, Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.BoolValue or Infosystem.Performis.WebApi.IF2Performis.Dtos.AttributeValue.CodeValue actually has a value depends on the definition of the attribute.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for an attribute value."
+      },
+      "AttributeValueSet": {
+        "required": [
+          "attributeSetId"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets internal identification of attribute set.",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "attributeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttributeValue"
+            },
+            "description": "Gets a list of attribute values.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The DTO for an attribute value set."
+      },
       "CostAccountingEntry": {
         "required": [
           "amountBSC",
@@ -4732,6 +5537,394 @@
         },
         "additionalProperties": false,
         "description": "Represents a cost accounting financial dimension of the journal entry."
+      },
+      "FinanceSubledgerAccount": {
+        "required": [
+          "active",
+          "companyNo",
+          "currency",
+          "subledgerAccountId"
+        ],
+        "type": "object",
+        "properties": {
+          "subledgerAccountId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the identifier for the subledger account entry.",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether this entry is active or not."
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets company identification of the entry.",
+            "format": "int64",
+            "example": 100
+          },
+          "subledgerType": {
+            "$ref": "#/components/schemas/SubledgerType"
+          },
+          "accountNo": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the account number of the entry.",
+            "format": "int64"
+          },
+          "currency": {
+            "maxLength": 3,
+            "minLength": 1,
+            "type": "string",
+            "description": "Gets or sets ISO code of the currency."
+          },
+          "summaryGeneralLedgerAccountNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets or sets the general ledger summary account for this subledger account, if not provided the company default will be used.",
+            "nullable": true
+          },
+          "paymentGeneralLedgerAccountNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets or sets the general ledger payment account for this subledger account, if not provided the company default will be used.",
+            "nullable": true
+          },
+          "vatInclusiveDefault": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether VAT is inclusive by default."
+          },
+          "vatCodeDefault": {
+            "maximum": 239999,
+            "minimum": 230000,
+            "type": "integer",
+            "description": "Gets or sets the default VAT code.",
+            "format": "int64",
+            "nullable": true
+          },
+          "debitDirect": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the account payable uses debit direct for payment."
+          },
+          "debitDirectRescission": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the account receivable uses debit direct, he may be able to use a rescission if selected."
+          },
+          "discountPeriodTolerance": {
+            "maximum": 99,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the discount period tolerance in days.",
+            "format": "int64",
+            "nullable": true
+          },
+          "maxWriteOffInPercent": {
+            "maximum": 99,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the maximum write-off in percent.",
+            "format": "int64",
+            "nullable": true
+          },
+          "maxWriteOffInCurrency": {
+            "maximum": 99999999.99,
+            "minimum": 0,
+            "type": "number",
+            "description": "Gets or sets the maximum write-off amount in currency.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "paymentTermsCode": {
+            "maximum": 279999,
+            "minimum": 270000,
+            "type": "integer",
+            "description": "Gets or sets the payment terms code.",
+            "format": "int64"
+          },
+          "paymentGroupCode": {
+            "maximum": 2149999,
+            "minimum": 2140000,
+            "type": "integer",
+            "description": "Gets or sets the payment group code.",
+            "format": "int64",
+            "nullable": true
+          },
+          "paymentMethodCode": {
+            "maximum": 9739999,
+            "minimum": 9730000,
+            "type": "integer",
+            "description": "Gets or sets the payment method code.",
+            "format": "int64",
+            "nullable": true
+          },
+          "feeAgreementCode": {
+            "maximum": 2189999,
+            "minimum": 2180000,
+            "type": "integer",
+            "description": "Gets or sets the fee agreement code.",
+            "format": "int64",
+            "nullable": true
+          },
+          "creditLimit": {
+            "maximum": 1E+18,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the maximum amount of open items this subledger account is allowed to have. An empty credit limit allows unrestricted open items.",
+            "format": "int64",
+            "nullable": true
+          },
+          "delCredere": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the del credere risk in percent.",
+            "format": "int64",
+            "nullable": true
+          },
+          "automatedOISettlement": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the open item settlement is automated."
+          },
+          "interestType": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Gets or sets the type of interest which is used for subledger.",
+            "nullable": true
+          },
+          "defaultOpenItemCriterion1": {
+            "maximum": 99999999,
+            "minimum": 10000,
+            "type": "integer",
+            "description": "Gets or sets the default open item criterion 1 for this subledger account.",
+            "format": "int64",
+            "nullable": true
+          },
+          "defaultOpenItemCriterion2": {
+            "maximum": 99999999,
+            "minimum": 10000,
+            "type": "integer",
+            "description": "Gets or sets the default open item criterion 2 for this subledger account.",
+            "format": "int64",
+            "nullable": true
+          },
+          "defaultOpenItemCriterion3": {
+            "maximum": 99999999,
+            "minimum": 10000,
+            "type": "integer",
+            "description": "Gets or sets the default open item criterion 3 for this subledger account.",
+            "format": "int64",
+            "nullable": true
+          },
+          "defaultOpenItemCriterion4": {
+            "maximum": 99999999,
+            "minimum": 10000,
+            "type": "integer",
+            "description": "Gets or sets the default open item criterion 4 for this subledger account.",
+            "format": "int64",
+            "nullable": true
+          },
+          "authorisationGroupCode": {
+            "maximum": 2139999,
+            "minimum": 2120000,
+            "type": "integer",
+            "description": "Gets or sets the authorisation group to which this subledger account is assigned.\r\nRange is 2120000 to 2129999 for account receivable and 2130000 to 2139999 for account payable.",
+            "format": "int64",
+            "nullable": true
+          },
+          "notes": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "Gets or sets subledger account related notes and remarks.",
+            "nullable": true
+          },
+          "attributeValueSet": {
+            "$ref": "#/components/schemas/AttributeValueSet"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a subledger account."
+      },
+      "FinanceSubledgerAccountHeader": {
+        "required": [
+          "businessPartnerAddressId"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 5214698741
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "businessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets or sets the business partner address identification.",
+            "format": "int64"
+          },
+          "vatRegistryNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets or sets the VAT registration number.",
+            "nullable": true
+          },
+          "vatIdentityNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets or sets the VAT identification number.",
+            "nullable": true
+          },
+          "taxOffice": {
+            "maxLength": 60,
+            "type": "string",
+            "description": "Gets or sets the name of the dedicated tax office.",
+            "nullable": true
+          },
+          "lastCreditReport": {
+            "type": "string",
+            "description": "Gets or sets the date of the last credit report.",
+            "format": "date",
+            "nullable": true
+          },
+          "notes": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "Gets or sets subledger account related notes and remarks.",
+            "nullable": true
+          },
+          "subledgerAccounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FinanceSubledgerAccount"
+            },
+            "description": "Gets the list of subledger accounts associated with this header.",
+            "nullable": true
+          },
+          "subledgerPaymentInformation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FinanceSubledgerPaymentInformation"
+            },
+            "description": "Gets the list of payment information associated with this header.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a subledger account header."
+      },
+      "FinanceSubledgerPaymentInformation": {
+        "required": [
+          "active",
+          "subledgerPaymentInformationId"
+        ],
+        "type": "object",
+        "properties": {
+          "subledgerPaymentInformationId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the identifier for the subledger payment information entry.",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether this entry is active or not."
+          },
+          "finalBeneficiaryBusinessPartnerAddressId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the final beneficiary business partner address identification.\r\nOnly for account payable.",
+            "format": "int64",
+            "nullable": true
+          },
+          "bankId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the bank identification.",
+            "format": "int64",
+            "nullable": true
+          },
+          "iban": {
+            "maxLength": 34,
+            "type": "string",
+            "description": "Gets or sets the International Bank Account Number (IBAN).",
+            "nullable": true
+          },
+          "bankAccountNumber": {
+            "maxLength": 24,
+            "type": "string",
+            "description": "Gets or sets the bank account number, which may be used instead of the IBAN.",
+            "nullable": true
+          },
+          "paymentInstruction": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "Gets or sets payment instruction.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents subledger payment information."
       },
       "MaintenanceWindow": {
         "type": "object",
@@ -5901,6 +7094,287 @@
         "additionalProperties": false,
         "description": "The attribute value set."
       },
+      "PurchaseGoodsReceipt": {
+        "required": [
+          "deliveryDate",
+          "positions",
+          "statusCode",
+          "warehouseId"
+        ],
+        "type": "object",
+        "properties": {
+          "changeId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets change identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 8971239429
+          },
+          "changeDate": {
+            "type": "string",
+            "description": "Gets change date of the entry.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "goodsReceiptId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets technical identification of the entry.",
+            "format": "int64",
+            "nullable": true,
+            "example": 326479
+          },
+          "origin": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets the system of origin.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "WMS"
+          },
+          "originId": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets or sets id in the system of origin.",
+            "nullable": true,
+            "example": "GR-319.321.898"
+          },
+          "purchaseOrderId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets technical identification of the purchase order the goods receipt belongs to.",
+            "format": "int64",
+            "nullable": true,
+            "example": 322784
+          },
+          "purchaseOrderOriginId": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets or sets id of the purchase order in the system of origin.",
+            "nullable": true,
+            "example": "S-35-50932"
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets company identification of the associated purchase order.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 100
+          },
+          "purchaseOrderNo": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "Gets purchase order number of the associated purchase order.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "B24.1234"
+          },
+          "warehouseId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets identification of the warehouse the goods are or were received into.",
+            "format": "int64",
+            "example": 1001
+          },
+          "supplierDeliveryNoteNo": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets or sets delivery note number of the supplier.",
+            "nullable": true,
+            "example": "LS-2026-0815"
+          },
+          "deliveryDate": {
+            "type": "string",
+            "description": "Gets or sets date of the delivery respectively of the receipt into the warehouse.",
+            "format": "date"
+          },
+          "statusCode": {
+            "maximum": 24709999,
+            "minimum": 24700001,
+            "type": "integer",
+            "description": "Gets or sets c2470 - Status of the goods receipt 24700010: pending 24700020: final.",
+            "format": "int64",
+            "example": 24700010
+          },
+          "positions": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PurchaseGoodsReceiptPosition"
+            },
+            "description": "Gets the list of positions of the goods receipt."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a purchase goods receipt entry including its positions."
+      },
+      "PurchaseGoodsReceiptPosition": {
+        "required": [
+          "purchaseOrderPositionId"
+        ],
+        "type": "object",
+        "properties": {
+          "positionId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets unique id of the goods receipt position.",
+            "format": "int64",
+            "nullable": true,
+            "example": 123456
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets user who last modified the entry.",
+            "nullable": true,
+            "readOnly": true,
+            "example": "STJ"
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "purchaseOrderPositionId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets unique id of the purchase order position the goods are received for.",
+            "format": "int64",
+            "example": 987654
+          },
+          "deliveredQuantityStockUnit": {
+            "maximum": 9999999999.9999,
+            "minimum": 0,
+            "type": "number",
+            "description": "Gets or sets delivered quantity in stock unit.",
+            "format": "decimal",
+            "nullable": true,
+            "example": 12.5
+          },
+          "isFullyDelivered": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the purchase order position is completely delivered."
+          },
+          "storageAreaId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets identification of the storage area the goods are or were posted to.",
+            "format": "int64",
+            "nullable": true,
+            "example": 2001
+          },
+          "storageBinId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets identification of the storage bin the goods are or were posted to.",
+            "format": "int64",
+            "nullable": true,
+            "example": 3001
+          },
+          "storageHeaderId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets identification of the storage header (batch). Only applicable for articles with batch tracking.",
+            "format": "int64",
+            "nullable": true,
+            "example": 4001
+          },
+          "deliveryNoteNo": {
+            "maximum": 9999999999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Gets delivery note number of the material management reference.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 5001
+          },
+          "deliveryNotePositionNo": {
+            "maximum": 9999.999,
+            "minimum": 0,
+            "type": "number",
+            "description": "Gets delivery note position number of the material management reference.",
+            "format": "decimal",
+            "nullable": true,
+            "readOnly": true,
+            "example": 1.1
+          },
+          "sequenceNo": {
+            "maximum": 9,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets sequence number of the material management reference.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true,
+            "example": 1
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a purchase goods receipt position."
+      },
+      "PurchaseGoodsReceiptReversal": {
+        "type": "object",
+        "properties": {
+          "goodsReceiptId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets technical identification of the goods receipt to reverse.",
+            "format": "int64",
+            "nullable": true,
+            "example": 326479
+          },
+          "origin": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets or sets the system of origin of the goods receipt to reverse.",
+            "nullable": true,
+            "example": "WMS"
+          },
+          "originId": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "Gets or sets id in the system of origin of the goods receipt to reverse.",
+            "nullable": true,
+            "example": "GR-319.321.898"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the reversal of a purchase goods receipt."
+      },
       "PurchaseInvoice": {
         "required": [
           "companyNo",
@@ -6588,9 +8062,8 @@
           "companyNo",
           "currency",
           "orderDate",
+          "ordererPersonnelNo",
           "orderTypeCode",
-          "origin",
-          "purchaseOrderNo",
           "supplierId"
         ],
         "type": "object",
@@ -6659,7 +8132,9 @@
             "maxLength": 20,
             "minLength": 1,
             "type": "string",
-            "description": "Gets or sets purchase order number of the entry.",
+            "description": "Gets the purchase order number of the entry.",
+            "nullable": true,
+            "readOnly": true,
             "example": "B24.1234"
           },
           "externalPurchaseOrderId": {
@@ -6675,6 +8150,7 @@
             "minLength": 1,
             "type": "string",
             "description": "Gets origin of the entry.",
+            "nullable": true,
             "readOnly": true,
             "example": "MYERP"
           },
@@ -6716,9 +8192,10 @@
             "maximum": 24539999,
             "minimum": 24530001,
             "type": "integer",
-            "description": "Gets or sets c2453 - Approval state of the order, e.g. approved, rejected, approval requested.",
+            "description": "Gets c2453 - Approval state of the order, e.g. approved, rejected, approval requested.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "currency": {
             "maxLength": 3,
@@ -6886,19 +8363,23 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets unique identifier of the business partner address of the orderer.",
+            "description": "Gets the unique identifier of the business partner address of the orderer. Use OrdererPersonnelNo instead.",
             "format": "int64",
             "nullable": true,
-            "example": 1394
+            "readOnly": true,
+            "example": 1394,
+            "deprecated": true
           },
           "ordererEmployeeBusinessPartnerId": {
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets unique identifier of the orderer.",
+            "description": "Gets the unique identifier of the orderer. Use OrdererPersonnelNo instead.",
             "format": "int64",
             "nullable": true,
-            "example": 3264
+            "readOnly": true,
+            "example": 3264,
+            "deprecated": true
           },
           "supplierBusinessPartnerAddressId": {
             "maximum": 9999999999,
@@ -6930,8 +8411,7 @@
             "minimum": 1,
             "type": "integer",
             "description": "Gets or sets the personnel number of the orderer.",
-            "format": "int64",
-            "nullable": true
+            "format": "int64"
           },
           "internalRemarks": {
             "maxLength": 2000,
@@ -6962,7 +8442,7 @@
             "example": "Please inform us of any price changes in writing at the e-mail address purchase@memor.ch. Thank you very much."
           },
           "attributeValueSet": {
-            "$ref": "#/components/schemas/PurchaseAttributeValueSet"
+            "$ref": "#/components/schemas/AttributeValueSet"
           },
           "materialRequirementsPlanningGroupCode": {
             "maximum": 4029999,
@@ -7051,6 +8531,7 @@
       "PurchaseOrderPosition": {
         "required": [
           "isPrinted",
+          "positionNo",
           "positionTypeCode"
         ],
         "type": "object",
@@ -7070,21 +8551,22 @@
             "type": "number",
             "description": "Gets or sets item number. Format and conditions via company settings.",
             "format": "decimal",
-            "nullable": true,
             "example": 2.2
           },
           "modifyUser": {
             "maxLength": 30,
             "type": "string",
-            "description": "Gets or sets user who last modified the entry.",
+            "description": "Gets the user who last modified the entry.",
             "nullable": true,
+            "readOnly": true,
             "example": "STJ"
           },
           "modifyDate": {
             "type": "string",
-            "description": "Gets or sets date the entry was last modified.",
+            "description": "Gets the date the entry was last modified.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "positionTypeCode": {
             "maximum": 24559999,
@@ -7106,8 +8588,9 @@
           "articleNo": {
             "maxLength": 20,
             "type": "string",
-            "description": "Gets or sets article number for identification by the users.",
-            "nullable": true
+            "description": "Gets the article number for identification by the users. It is set by the system, the article is identified by the article id.",
+            "nullable": true,
+            "readOnly": true
           },
           "text": {
             "maxLength": 2000,
@@ -7343,7 +8826,7 @@
             "example": "20240315.02"
           },
           "attributeValueSet": {
-            "$ref": "#/components/schemas/PurchaseAttributeValueSet"
+            "$ref": "#/components/schemas/AttributeValueSet"
           },
           "deliveryDateRequested": {
             "type": "string",
@@ -7416,27 +8899,30 @@
             "maximum": 1E+18,
             "minimum": -1E+18,
             "type": "number",
-            "description": "Gets or sets net amount (gross - tax) of the order position.",
+            "description": "Gets the net amount (gross - tax) of the order position. It is calculated by the system.",
             "format": "decimal",
             "nullable": true,
+            "readOnly": true,
             "example": 2159.53
           },
           "grossAmount": {
             "maximum": 1E+18,
             "minimum": -1E+18,
             "type": "number",
-            "description": "Gets or sets total cost of order position.",
+            "description": "Gets the total cost of the order position. It is calculated by the system.",
             "format": "decimal",
             "nullable": true,
+            "readOnly": true,
             "example": 2436.85
           },
           "vatAmount": {
             "maximum": 1E+18,
             "minimum": -1E+18,
             "type": "number",
-            "description": "Gets or sets amount of taxes for the order position.",
+            "description": "Gets the amount of taxes for the order position. It is calculated by the system.",
             "format": "decimal",
             "nullable": true,
+            "readOnly": true,
             "example": 277.32
           },
           "isPrinted": {
@@ -8615,6 +10101,14 @@
         },
         "additionalProperties": false,
         "description": "Represents a service record entry."
+      },
+      "SubledgerType": {
+        "enum": [
+          "AR",
+          "AP"
+        ],
+        "type": "string",
+        "description": "Represents the type of subledger, either Accounts Receivable (AR) or Accounts Payable (AP)."
       }
     },
     "securitySchemes": {
