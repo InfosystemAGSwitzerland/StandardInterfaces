@@ -2586,7 +2586,7 @@
           }
         ],
         "requestBody": {
-          "description": "The projects to create. Only Infosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Project.Project.ProjectName, Infosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Project.Project.OriginId\r\nand Infosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Project.Project.Customers are read from the request; all other fields are server-derived and\r\nignored on input. Origin is set to the value of the xRequestingSystem header on the server; update is not supported.",
+          "description": "The projects to create. Only Infosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Project.Project.ProjectName, Infosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Project.Project.OriginId,\r\nInfosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Project.Project.Customers and Infosystem.Leva.WebApi.IF2Leva.Controllers.Dtos.Project.Project.AttributeValueSet are read from the request; the attribute\r\nvalues (Merkmale) are stored in a new attribute value set, values without a company number apply to all companies.\r\nAll other fields are server-derived and ignored on input. Origin is set to the value of the xRequestingSystem header on the server; update is not supported.",
           "content": {
             "application/json": {
               "schema": {
@@ -7195,114 +7195,6 @@
         "type": "string",
         "description": "Assigns the surcharge to a specific job process step."
       },
-      "AttributeValue": {
-        "required": [
-          "attributeDefinitionId"
-        ],
-        "type": "object",
-        "properties": {
-          "attributeValueId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "format": "int64",
-            "nullable": true,
-            "readOnly": true
-          },
-          "attributeDefinitionId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "format": "int64"
-          },
-          "modifyUser": {
-            "maxLength": 30,
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "modifyDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true,
-            "readOnly": true
-          },
-          "sortNo": {
-            "maximum": 9999,
-            "minimum": 1,
-            "type": "integer",
-            "format": "int64",
-            "nullable": true,
-            "readOnly": true
-          },
-          "companyNo": {
-            "maximum": 999999,
-            "minimum": 1,
-            "type": "integer",
-            "format": "int64",
-            "nullable": true
-          },
-          "textValue": {
-            "maxLength": 1000,
-            "type": "string",
-            "nullable": true
-          },
-          "numberValue": {
-            "type": "number",
-            "format": "decimal",
-            "nullable": true
-          },
-          "dateValue": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "boolValue": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "codeValue": {
-            "type": "integer",
-            "format": "int64",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "AttributeValueSet": {
-        "required": [
-          "attributeSetId"
-        ],
-        "type": "object",
-        "properties": {
-          "attributeSetId": {
-            "maximum": 9999999999,
-            "minimum": 1,
-            "type": "integer",
-            "format": "int64"
-          },
-          "modifyUser": {
-            "maxLength": 30,
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "modifyDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true,
-            "readOnly": true
-          },
-          "attributeValues": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AttributeValue"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "CompanyAccount": {
         "required": [
           "active",
@@ -7485,6 +7377,31 @@
         "additionalProperties": false,
         "description": "The company account dto. Properties with a private setter are server-owned\r\n(derived or related data) and are ignored on write operations."
       },
+      "ConsortiumMember": {
+        "required": [
+          "consortiumCustomerId",
+          "consortiumPercentage"
+        ],
+        "type": "object",
+        "properties": {
+          "consortiumCustomerId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the customer number (technical customer id) of the member. The customer must already exist.",
+            "format": "int64"
+          },
+          "consortiumPercentage": {
+            "maximum": 99,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the share of the member in percent (1-99). The shares of all members of a consortium must sum up to 100.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The consortium member dto. A member of a consortium (ARGE) customer with its share."
+      },
       "Contact": {
         "required": [
           "originCode",
@@ -7664,6 +7581,20 @@
             "description": "Gets or sets defines whether or not this customer is a consortium.",
             "nullable": true
           },
+          "consortiumValidUntil": {
+            "type": "string",
+            "description": "Gets or sets the date (without time) until which the consortium is valid.",
+            "format": "date",
+            "nullable": true
+          },
+          "consortiumMembers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConsortiumMember"
+            },
+            "description": "Gets or sets the members of the consortium with their shares. Each member must reference an existing customer\r\nand the sum of all shares must be 100.",
+            "nullable": true
+          },
           "nationalTaxNo": {
             "maxLength": 20,
             "minLength": 1,
@@ -7711,9 +7642,10 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets the internal identification of attribute value.",
+            "description": "Gets the internal identification of attribute value.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "attributeDefinitionId": {
             "maximum": 9999999999,
@@ -7725,28 +7657,30 @@
           "modifyUser": {
             "maxLength": 30,
             "type": "string",
-            "description": "Gets or sets the user who last modified the entry.",
-            "nullable": true
+            "description": "Gets the user who last modified the entry.",
+            "readOnly": true
           },
           "modifyDate": {
             "type": "string",
-            "description": "Gets or sets the date the entry was last modified.",
+            "description": "Gets the date the entry was last modified.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "sortNo": {
             "maximum": 9999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets the position within the attribute value set.",
+            "description": "Gets the position within the attribute value set.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "companyNo": {
             "maximum": 999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets the company identification of the entry.",
+            "description": "Gets or sets the company identification of the entry. On creation, the value applies to all companies when not provided.",
             "format": "int64",
             "nullable": true
           },
@@ -7781,7 +7715,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "The attribute value."
+        "description": "The attribute value. Properties with a private setter are server-owned and are ignored on write operations."
       },
       "CustomerAttributeValueSet": {
         "required": [
@@ -7801,34 +7735,35 @@
             "maximum": 9999999999,
             "minimum": 1,
             "type": "integer",
-            "description": "Gets or sets the internal identification of attribute value set.",
+            "description": "Gets the internal identification of attribute value set.",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "modifyUser": {
             "maxLength": 30,
             "type": "string",
-            "description": "Gets or sets the user who last modified the entry.",
-            "nullable": true
+            "description": "Gets the user who last modified the entry.",
+            "readOnly": true
           },
           "modifyDate": {
             "type": "string",
-            "description": "Gets or sets the date the entry was last modified.",
+            "description": "Gets the date the entry was last modified.",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "readOnly": true
           },
           "attributeValues": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CustomerAttributeValue"
             },
-            "description": "Gets the list of attribute values.",
-            "nullable": true,
-            "readOnly": true
+            "description": "Gets or sets the list of attribute values.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
-        "description": "The attribute value set."
+        "description": "The attribute value set. Properties with a private setter are server-owned and are ignored on write operations."
       },
       "EquipmentType": {
         "required": [
@@ -10533,7 +10468,7 @@
             "nullable": true
           },
           "attributeValueSet": {
-            "$ref": "#/components/schemas/AttributeValueSet"
+            "$ref": "#/components/schemas/ProjectAttributeValueSet"
           },
           "subprojects": {
             "type": "array",
@@ -10602,6 +10537,140 @@
         },
         "additionalProperties": false,
         "description": "The DTO for the address of a subproject."
+      },
+      "ProjectAttributeValue": {
+        "required": [
+          "attributeDefinitionId",
+          "modifyUser"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeValueId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets the internal identification of the attribute value.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "attributeDefinitionId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of the attribute definition.",
+            "format": "int64"
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "sortNo": {
+            "maximum": 9999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets the position within the attribute value set.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "companyNo": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the company identification of the entry. On creation, the value applies to all companies when not provided.",
+            "format": "int64",
+            "nullable": true
+          },
+          "textValue": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "Gets or sets the text value.",
+            "nullable": true
+          },
+          "numberValue": {
+            "type": "number",
+            "description": "Gets or sets the number or decimal value.",
+            "format": "decimal",
+            "nullable": true
+          },
+          "dateValue": {
+            "type": "string",
+            "description": "Gets or sets the date value.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "boolValue": {
+            "type": "boolean",
+            "description": "Gets or sets the true or false value.",
+            "nullable": true
+          },
+          "codeValue": {
+            "type": "integer",
+            "description": "Gets or sets the code value.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An attribute value (Merkmal) of a project. Properties with a private setter are server-owned and are ignored on\r\nwrite operations."
+      },
+      "ProjectAttributeValueSet": {
+        "required": [
+          "attributeSetId",
+          "modifyUser"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets or sets the internal identification of the attribute set.",
+            "format": "int64"
+          },
+          "attributeValueSetId": {
+            "maximum": 9999999999,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Gets the internal identification of the attribute value set.",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          },
+          "modifyUser": {
+            "maxLength": 30,
+            "type": "string",
+            "description": "Gets the user who last modified the entry.",
+            "readOnly": true
+          },
+          "modifyDate": {
+            "type": "string",
+            "description": "Gets the date the entry was last modified.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "attributeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectAttributeValue"
+            },
+            "description": "Gets or sets the list of attribute values.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The attribute value set (Merkmale) of a project. Properties with a private setter are server-owned and are ignored\r\non write operations."
       },
       "ProjectCustomer": {
         "required": [
