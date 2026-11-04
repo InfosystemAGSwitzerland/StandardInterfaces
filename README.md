@@ -45,6 +45,8 @@ At the moment, we enable third party developer to use the following modules via 
 - ressys OSDM - Open Sales and Distribution Model
   - <a href="https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/InfosystemAGSwitzerland/StandardInterfaces/master/IF2ressysOSDM.json&nocors" target="_blank">See documentation online</a>
 
+<!-- Module Interfaces  -->
+<details>
 ### Module Interfaces
 Please use the product based services if available.
 - performis FI - Financial Accounting
@@ -66,6 +68,7 @@ All interfaces offer the same standard functionality to enable you to quickly le
 
 To see a graphical representation of the interface, please use the OpenAPI online editor https://editor.swagger.io or simply click the link below the API above.
 <p align="right">(<a href="#top">back to top</a>)</p>
+</details>
 
 ### Built With
 All interfaces are built with:
