@@ -10487,31 +10487,31 @@
         "type": "object",
         "properties": {
           "street": {
-            "maxLength": 172,
+            "maxLength": 43,
             "type": "string",
             "description": "Gets or sets the street.",
             "nullable": true
           },
           "houseNumber": {
-            "maxLength": 48,
+            "maxLength": 12,
             "type": "string",
             "description": "Gets or sets the house number.",
             "nullable": true
           },
           "additionalAddress": {
-            "maxLength": 800,
+            "maxLength": 200,
             "type": "string",
             "description": "Gets or sets the additional address line.",
             "nullable": true
           },
           "zipCode": {
-            "maxLength": 80,
+            "maxLength": 20,
             "type": "string",
             "description": "Gets or sets the zip code.",
             "nullable": true
           },
           "city": {
-            "maxLength": 160,
+            "maxLength": 40,
             "type": "string",
             "description": "Gets or sets the city.",
             "nullable": true
